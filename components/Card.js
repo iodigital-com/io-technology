@@ -5,7 +5,7 @@ const Card = ({ title, description, imgSrc, href, unoptimized = false }) => (
   <div
     className={`${
       imgSrc && 'h-full'
-    }  overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700`}
+    }  overflow-hidden rounded-md border-2 border-black border-opacity-100`}
   >
     {imgSrc &&
       (href ? (
@@ -30,7 +30,7 @@ const Card = ({ title, description, imgSrc, href, unoptimized = false }) => (
         />
       ))}
     <div className="p-6">
-      <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
+      <h2 className="mb-3 text-2xl font-bold leading-6 tracking-tight">
         {href ? (
           <Link href={href} aria-label={`Link to ${title}`}>
             {title}
@@ -43,7 +43,7 @@ const Card = ({ title, description, imgSrc, href, unoptimized = false }) => (
       {href && (
         <Link
           href={href}
-          className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+          className="relative bottom-0 text-base font-medium leading-6 text-amber-600 hover:text-amber-700"
           aria-label={`Link to ${title}`}
         >
           Learn more &rarr;
