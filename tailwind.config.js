@@ -20,7 +20,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['TTCommonsPro', ...defaultTheme.fontFamily.sans],
-        serif: ['Reckless', ...defaultTheme.fontFamily.sans],
+        serif: ['Reckless', ...defaultTheme.fontFamily.serif],
       },
       colors: {
         primary: colors.teal,
