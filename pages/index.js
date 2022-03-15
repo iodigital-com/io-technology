@@ -8,6 +8,7 @@ import { getLatestVideos } from '@/lib/youtube'
 import Card from '@/components/Card'
 import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
+import JobGrid from '@/components/JobGrid'
 
 const MAX_BLOG_POSTS = 5
 
@@ -134,7 +135,7 @@ export default function Home({ posts, videos, jobs }) {
         </div>
       </div>
 
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Jobs
@@ -143,30 +144,8 @@ export default function Home({ posts, videos, jobs }) {
             {siteMetadata.description}
           </p>
         </div>
-        {jobs.slice(5).map((job) => (
-          <a key={job.id} href={job.careers_url} target="_blank" rel="noreferrer">
-            {job.title}
-          </a>
-        ))}
-        <ul className="mt-5">
-          {jobs.slice(0, 5).map((job) => (
-            <li key={job.id}>
-              <a href={job.careers_url} target="_blank" rel="noreferrer">
-                {job.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex justify-end text-base font-medium leading-6">
-          <Link
-            href="https://www.iodigital.com/en/careers/jobs?expertise=Technology"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="all jobs"
-          >
-            All Technology Jobs &rarr;
-          </Link>
-        </div>
       </div>
+      <JobGrid jobs={jobs.slice(0, 9)} />
     </>
   )
 }
