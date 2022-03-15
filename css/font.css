@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'TTCommonsPro';
+    src: url('/fonts/TTCommonsPro-Regular.woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TTCommonsPro';
+    src: url('/fonts/TTCommonsPro-Medium.woff2');
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TTCommonsPro';
+    src: url('/fonts/TTCommonsPro-Bold.woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Reckless';
+    src: url('/fonts/Reckless-LightItalic.woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Reckless';
+    src: url('/fonts/Reckless-RegularItalic.woff2');
+    font-weight: 400;
+    font-display: swap;
+}
