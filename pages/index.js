@@ -36,7 +36,7 @@ async function getAuthors(posts) {
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
   const { videos } = await getLatestVideos(3)
-  const { jobs } = await getLatestJobs(100)
+  const { jobs } = await getLatestJobs(9)
   const authors = await getAuthors(posts)
 
   return { props: { posts, videos, jobs, authors } }
@@ -178,7 +178,7 @@ export default function Home({ posts, videos, jobs, authors }) {
           Jobs
         </h1>
       </div>
-      <JobGrid jobs={jobs.slice(0, 9)} />
+      <JobGrid jobs={jobs} />
     </>
   )
 }
