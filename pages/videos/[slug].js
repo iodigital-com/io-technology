@@ -1,4 +1,5 @@
 import PageTitle from '@/components/PageTitle'
+import { PageSEO } from '@/components/SEO'
 
 export const getStaticPaths = async () => {
   const { videos } = await fetch('http://localhost:3000/api/youtube').then((res) => res.json())
@@ -24,13 +25,15 @@ export const getStaticProps = async (context) => {
 }
 
 export default function Video({ video }) {
+  const descriptionArray = video.description.split('-')
+
   return (
     <>
-      <PageTitle>
+      <PageSEO title={`Videos - ${video.title}`} description={video.description} />
+      <PageTitle className="pt-8">
         <span dangerouslySetInnerHTML={{ __html: video.title }}></span>
       </PageTitle>
-      <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">{video.description}</p>
-      <div className="aspect-w-16 aspect-h-9">
+      <div className="aspect-w-16 aspect-h-9 my-10">
         <iframe
           src={`https://www.youtube.com/embed/${video.id}`}
           title="YouTube video player"
@@ -39,6 +42,12 @@ export default function Video({ video }) {
           allowFullScreen
         />
       </div>
+
+      {descriptionArray.map((description) => (
+        <p key={description} className="text-lg leading-7 text-gray-700">
+          {description}
+        </p>
+      ))}
     </>
   )
 }

@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import { getLatestVideos } from '@/lib/youtube'
 import Card from '@/components/Card'
@@ -12,15 +12,37 @@ import JobGrid from '@/components/JobGrid'
 
 const MAX_BLOG_POSTS = 5
 
+async function getAuthors(posts) {
+  const authors = await posts.map(async (post) => {
+    const authorList = post.authors || ['default']
+
+    const authorPromise = authorList.map(async (author) => {
+      const authorResults = await getFileBySlug('authors', [author])
+      const object = { [author]: authorResults.frontMatter }
+      return object
+    }, {})
+
+    const authors = await Promise.all(authorPromise)
+    return authors
+  }, {})
+  const authorsArray = await Promise.all(authors)
+
+  return authorsArray.reduce((current, authorArray) => {
+    const object = authorArray.reduce((curr, author) => ({ ...curr, ...author }))
+    return { ...current, ...object }
+  }, {})
+}
+
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
   const { videos } = await getLatestVideos(3)
   const { jobs } = await getLatestJobs(100)
+  const authors = await getAuthors(posts)
 
-  return { props: { posts, videos, jobs } }
+  return { props: { posts, videos, jobs, authors } }
 }
 
-export default function Home({ posts, videos, jobs }) {
+export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -49,19 +71,35 @@ export default function Home({ posts, videos, jobs }) {
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
+                        <div className="flex justify-between">
+                          <div>
+                            <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                              <Link
+                                href={`/blog/${slug}`}
+                                className="text-gray-900 dark:text-gray-100"
+                              >
+                                {title}
+                              </Link>
+                            </h2>
+                            <div className="flex flex-wrap">
+                              {tags.map((tag) => (
+                                <Tag key={tag} text={tag} />
+                              ))}
+                            </div>
+                          </div>
+                          <div>
+                            {frontMatter.authors.map((author) => {
+                              return (
+                                <Image
+                                  key={authors[author].name}
+                                  src={authors[author].avatar}
+                                  width="50px"
+                                  height="50px"
+                                  alt="avatar"
+                                  className="h-10 w-10 rounded-full"
+                                />
+                              )
+                            })}
                           </div>
                         </div>
                         <div>
