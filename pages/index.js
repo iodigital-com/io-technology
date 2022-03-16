@@ -35,7 +35,13 @@ async function getAuthors(posts) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-  const { videos } = await getLatestVideos(3)
+  let videos = []
+  try {
+    const { videos } = await getLatestVideos(3)
+  } catch (e) {
+    console.log('sada')
+  }
+
   const { jobs } = await getLatestJobs(9)
   const authors = await getAuthors(posts)
 
@@ -48,14 +54,38 @@ export default function Home({ posts, videos, jobs, authors }) {
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 bg-io_blue-500 p-16 text-white">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Blog
+          <h1 className="p-32 text-center text-3xl leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            <span>
+              We have <i>infinite </i>insights to share
+            </span>
           </h1>
-          <p className="text-lg leading-7">{siteMetadata.description}</p>
         </div>
+        {posts.slice(0, 1).map((frontMatter) => {
+          const { slug, date, title, summary, tags, image } = frontMatter
+
+          return (
+            <article key={title} className="relative">
+              {image && (
+                <Image
+                  src={image}
+                  alt={title}
+                  width={1200}
+                  height={627}
+                  layout="responsive"
+                  priority={true}
+                />
+              )}
+              <h2 className="absolute bottom-0 w-full bg-white/[.1] p-10 text-right text-3xl font-bold leading-8">
+                <Link href={`/blog/${slug}`} className="">
+                  {title}
+                </Link>
+              </h2>
+            </article>
+          )
+        })}
         <ul className="divide-y divide-gray-200 ">
           {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter) => {
+          {posts.slice(1, MAX_BLOG_POSTS).map((frontMatter) => {
             const { slug, date, title, summary, tags, image } = frontMatter
             return (
               <li key={slug} className="py-12">
