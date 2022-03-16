@@ -46,16 +46,14 @@ export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="divide-y divide-gray-200 bg-io_blue-500 text-white">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Blog
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
-          </p>
+          <p className="text-lg leading-7">{siteMetadata.description}</p>
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        <ul className="divide-y divide-gray-200 ">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter) => {
             const { slug, date, title, summary, tags, image } = frontMatter
@@ -65,7 +63,7 @@ export default function Home({ posts, videos, jobs, authors }) {
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <dd className="text-base font-medium leading-6">
                         <time dateTime={date}>{formatDate(date)}</time>
                       </dd>
                     </dl>
@@ -74,10 +72,7 @@ export default function Home({ posts, videos, jobs, authors }) {
                         <div className="flex justify-between">
                           <div>
                             <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                              <Link
-                                href={`/blog/${slug}`}
-                                className="text-gray-900 dark:text-gray-100"
-                              >
+                              <Link href={`/blog/${slug}`} className="">
                                 {title}
                               </Link>
                             </h2>
@@ -114,14 +109,12 @@ export default function Home({ posts, videos, jobs, authors }) {
                             />
                           )}
                         </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
+                        <div className="prose max-w-none text-white">{summary}</div>
                       </div>
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
+                          className="text-white hover:text-io_orange-500"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
@@ -137,24 +130,18 @@ export default function Home({ posts, videos, jobs, authors }) {
       </div>
       {posts.length > MAX_BLOG_POSTS && (
         <div className="flex justify-end text-base font-medium leading-6">
-          <Link
-            href="/blog"
-            className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
-            aria-label="all posts"
-          >
+          <Link href="/blog" className="" aria-label="all posts">
             All Posts &rarr;
           </Link>
         </div>
       )}
 
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="divide-y divide-gray-200">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Videos
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
-          </p>
+          <p className="text-lg leading-7 text-gray-500">{siteMetadata.description}</p>
         </div>
         <div className="container py-12">
           <div className="-m-4 flex flex-wrap">
@@ -174,7 +161,7 @@ export default function Home({ posts, videos, jobs, authors }) {
       </div>
 
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Jobs
         </h1>
       </div>
