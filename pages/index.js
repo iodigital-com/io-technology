@@ -35,12 +35,7 @@ async function getAuthors(posts) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-  let videos = []
-  try {
-    const { videos } = await getLatestVideos(3)
-  } catch (e) {
-    console.log(e)
-  }
+  const { videos } = await getLatestVideos(3)
   const { jobs } = await getLatestJobs(100)
   const authors = await getAuthors(posts)
 
