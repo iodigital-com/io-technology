@@ -4,6 +4,7 @@ import Facebook from './facebook.svg'
 import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
 import Twitter from './twitter.svg'
+import Web from './web.svg'
 
 // Icons taken from: https://simpleicons.org/
 
@@ -14,9 +15,10 @@ const components = {
   youtube: Youtube,
   linkedin: Linkedin,
   twitter: Twitter,
+  website: Web, // from material ui icons
 }
 
-const SocialIcon = ({ kind, href, size = 8 }) => {
+const SocialIcon = ({ kind, href, size = 8, children }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
@@ -24,7 +26,7 @@ const SocialIcon = ({ kind, href, size = 8 }) => {
 
   return (
     <a
-      className="text-sm text-gray-500 transition hover:text-gray-600"
+      className="flex items-center text-gray-500 transition hover:text-gray-600"
       target="_blank"
       rel="noopener noreferrer"
       href={href}
@@ -33,6 +35,7 @@ const SocialIcon = ({ kind, href, size = 8 }) => {
       <SocialSvg
         className={`fill-current text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 h-${size} w-${size}`}
       />
+      {children && <span className="ml-1">{children}</span>}
     </a>
   )
 }
