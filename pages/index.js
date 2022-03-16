@@ -115,6 +115,25 @@ export default function Home({ posts, videos, jobs, authors }) {
                       <time dateTime={date}>{formatDate(date)}</time>
                     </dd>
                   </dl>
+                  <div>
+                    {image && (
+                      <Image
+                        src={image}
+                        alt={title}
+                        width={1200}
+                        height={627}
+                        layout="responsive"
+                        priority={true}
+                        className={
+                          Math.floor(Math.random() * 2) === 1
+                            ? 'rounded-bl-full'
+                            : Math.floor(Math.random() * 2) === 1
+                            ? 'rounded-br-full'
+                            : ''
+                        }
+                      />
+                    )}
+                  </div>
                   <div className="space-y-5 xl:col-span-3">
                     <div className="space-y-6">
                       <div className="flex justify-between">
@@ -144,18 +163,6 @@ export default function Home({ posts, videos, jobs, authors }) {
                             )
                           })}
                         </div>
-                      </div>
-                      <div>
-                        {image && (
-                          <Image
-                            src={image}
-                            alt={title}
-                            width={1200}
-                            height={627}
-                            layout="responsive"
-                            priority={true}
-                          />
-                        )}
                       </div>
                       <div className="prose max-w-none text-white">{summary}</div>
                     </div>
