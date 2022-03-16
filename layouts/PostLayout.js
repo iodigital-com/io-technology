@@ -6,6 +6,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
+import SocialIcon from '@/components/social-icons'
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
@@ -62,26 +63,45 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       {author.avatar && (
                         <Image
                           src={author.avatar}
-                          width="38px"
-                          height="38px"
+                          width="200px"
+                          height="200px"
                           alt="avatar"
                           className="h-10 w-10 rounded-full"
                         />
                       )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
+                      <dl className="whitespace-nowrap text-sm font-medium leading-7">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
-                            >
-                              {author.twitter.replace('https://twitter.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
+                        {author.twitter && (
+                          <>
+                            <dt className="sr-only">Twitter</dt>
+                            <dd>
+                              <SocialIcon kind="twitter" href={author.twitter} size="5">
+                                {author.twitter.replace('https://twitter.com/', '@')}
+                              </SocialIcon>
+                            </dd>
+                          </>
+                        )}
+                        {author.github && (
+                          <>
+                            <dt className="sr-only">Github</dt>
+                            <dd>
+                              <SocialIcon kind="github" href={author.github} size="5">
+                                {author.github.replace('https://github.com/', '')}
+                              </SocialIcon>
+                            </dd>
+                          </>
+                        )}
+                        {author.website && (
+                          <>
+                            <dt className="sr-only">Website</dt>
+                            <dd>
+                              <SocialIcon kind="website" href={author.website} size="5">
+                                Blog
+                              </SocialIcon>
+                            </dd>
+                          </>
+                        )}
                       </dl>
                     </li>
                   ))}
