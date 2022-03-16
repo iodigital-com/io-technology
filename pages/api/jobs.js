@@ -1,6 +1,7 @@
 const parser = require('xml2js')
 
 export default async (req, res) => {
+  console.log('going to fetch iodigital')
   const baseURL = 'https://www.iodigital.com/api/job-feed'
 
   const {
