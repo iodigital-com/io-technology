@@ -1,8 +1,9 @@
 import PageTitle from '@/components/PageTitle'
 import { PageSEO } from '@/components/SEO'
+import { getAllVideos } from '@/lib/youtube'
 
 export const getStaticPaths = async () => {
-  const { videos } = await fetch('http://localhost:3000/api/youtube').then((res) => res.json())
+  const { videos } = await getAllVideos()
 
   return {
     paths: videos.map((vid) => ({ params: { slug: vid.id } })),
@@ -11,7 +12,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-  const { videos } = await fetch('http://localhost:3000/api/youtube').then((res) => res.json())
+  const { videos } = await getAllVideos()
 
   const video = videos.find((vid) =>
     context && context.params ? vid.id === context.params.slug : false
