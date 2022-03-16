@@ -10,6 +10,8 @@ import SocialIcon from '@/components/social-icons'
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
+//TODO make component of hero
+
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, date, title, tags, image } = frontMatter
 
@@ -21,24 +23,19 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         {...frontMatter}
       />
       <ScrollTop />
-      <article className="p-16">
+      <article>
         <div>
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
-              </dl>
+          <header className="relative">
+            <dl className="space-y-10">
               <div>
-                <PageTitle>{title}</PageTitle>
+                <dt className="sr-only">Published on</dt>
+                <dd className="text-right text-base font-medium leading-6">
+                  <time dateTime={date}>
+                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </dd>
               </div>
-            </div>
+            </dl>
             {image && (
               <Image
                 src={image}
@@ -49,6 +46,11 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 priority={true}
               />
             )}
+            <div className="space-y-1 text-center">
+              <div className="absolute bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
+                <PageTitle className="text-white">{title}</PageTitle>
+              </div>
+            </div>
           </header>
           <div
             className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
