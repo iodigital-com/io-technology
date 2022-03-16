@@ -75,11 +75,30 @@ export default function Home({ posts, videos, jobs, authors }) {
                   priority={true}
                 />
               )}
-              <h2 className="absolute bottom-0 w-full bg-white/[.1] p-10 text-right text-3xl font-bold leading-8">
+              <h2 className="absolute bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
                 <Link href={`/blog/${slug}`} className="">
                   {title}
                 </Link>
+                <p>
+                  <time className="text-sm" dateTime={date}>
+                    {formatDate(date)}
+                  </time>
+                </p>
               </h2>
+              {frontMatter.authors.map((author) => {
+                return (
+                  <div key={authors[author].name} className="absolute top-10 right-10">
+                    <Image
+                      key={authors[author].name}
+                      src={authors[author].avatar}
+                      width="100px"
+                      height="100px"
+                      alt="avatar"
+                      className="h-10 w-10 rounded-full"
+                    />
+                  </div>
+                )
+              })}
             </article>
           )
         })}
