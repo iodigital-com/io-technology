@@ -46,7 +46,7 @@ export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="divide-y divide-gray-200 bg-io_blue-500 text-white">
+      <div className="divide-y divide-gray-200 bg-io_blue-500 p-16 text-white">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Blog
@@ -136,7 +136,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       )}
 
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-gray-200 p-16">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Videos
@@ -160,7 +160,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       </div>
 
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+      <div className="space-y-2 p-16 pt-6 pb-8 md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Jobs
         </h1>
