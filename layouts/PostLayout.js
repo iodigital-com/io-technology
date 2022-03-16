@@ -29,11 +29,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             <dl className="space-y-10">
               <div>
                 <dt className="sr-only">Published on</dt>
-                <dd className="text-right text-base font-medium leading-6">
-                  <time dateTime={date}>
-                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                  </time>
-                </dd>
+                <dd className="text-right text-base font-medium leading-6"></dd>
               </div>
             </dl>
             {image && (
@@ -48,7 +44,12 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             )}
             <div className="space-y-1 text-center">
               <div className="absolute bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
-                <PageTitle className="text-white">{title}</PageTitle>
+                <h2 className="text-white">{title}</h2>
+                <p>
+                  <time className="text-sm text-white" dateTime={date}>
+                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </p>
               </div>
             </div>
           </header>
