@@ -1,4 +1,5 @@
 export default async (req, res) => {
+  console.log('going to fetch youtube')
   const baseURL = 'https://www.googleapis.com/youtube/v3/'
   const channelId = 'UCNhy3hGzwMfbtX3Ei8Htcpg'
 
