@@ -1,6 +1,45 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
+const io_blue = {
+  50: '#f5f7fd',
+  100: '#ebeffb',
+  200: '#cdd7f6',
+  300: '#afbff0',
+  400: '#728fe4',
+  500: '#365fd9',
+  600: '#3156c3',
+  700: '#2947a3',
+  800: '#203982',
+  900: '#1a2f6a',
+}
+
+const io_orange = {
+  50: '#fef8f5',
+  100: '#fdf1ec',
+  200: '#fadbcf',
+  300: '#f7c5b2',
+  400: '#f09a78',
+  500: '#EA6F3E',
+  600: '#d36438',
+  700: '#b0532f',
+  800: '#8c4325',
+  900: '#73361e',
+}
+
+const io_orange_secondary = {
+  50: '#fffcf8',
+  100: '#fff8f1',
+  200: '#ffeedd',
+  300: '#fee4c8',
+  400: '#fed09e',
+  500: '#FDBC75',
+  600: '#e4a969',
+  700: '#be8d58',
+  800: '#987146',
+  900: '#7c5c39',
+}
+
 module.exports = {
   experimental: {
     optimizeUniversalDefaults: true,
@@ -23,8 +62,11 @@ module.exports = {
         serif: ['Reckless', ...defaultTheme.fontFamily.serif],
       },
       colors: {
-        primary: colors.teal,
+        primary: io_orange,
         gray: colors.neutral,
+        io_orange,
+        io_orange_secondary,
+        io_blue,
       },
       typography: (theme) => ({
         DEFAULT: {
