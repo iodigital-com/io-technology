@@ -52,7 +52,7 @@ export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="divide-y divide-gray-200 bg-io_blue-500 p-16 text-white">
+      <div className="bg-io_blue-500 p-16 text-white">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="p-32 text-center text-3xl leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             <span>
@@ -83,80 +83,78 @@ export default function Home({ posts, videos, jobs, authors }) {
             </article>
           )
         })}
-        <ul className="divide-y divide-gray-200 ">
+        <section className="grid grid-cols-3 gap-4">
           {!posts.length && 'No posts found.'}
           {posts.slice(1, MAX_BLOG_POSTS).map((frontMatter) => {
             const { slug, date, title, summary, tags, image } = frontMatter
             return (
-              <li key={slug} className="py-12">
-                <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6">
-                        <time dateTime={date}>{formatDate(date)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
-                        <div className="flex justify-between">
-                          <div>
-                            <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                              <Link href={`/blog/${slug}`} className="">
-                                {title}
-                              </Link>
-                            </h2>
-                            <div className="flex flex-wrap">
-                              {tags.map((tag) => (
-                                <Tag key={tag} text={tag} />
-                              ))}
-                            </div>
-                          </div>
-                          <div>
-                            {frontMatter.authors.map((author) => {
-                              return (
-                                <Image
-                                  key={authors[author].name}
-                                  src={authors[author].avatar}
-                                  width="50px"
-                                  height="50px"
-                                  alt="avatar"
-                                  className="h-10 w-10 rounded-full"
-                                />
-                              )
-                            })}
+              <article key={slug} className="py-12">
+                <div className="space-y-2">
+                  <dl>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-base font-medium leading-6">
+                      <time dateTime={date}>{formatDate(date)}</time>
+                    </dd>
+                  </dl>
+                  <div className="space-y-5 xl:col-span-3">
+                    <div className="space-y-6">
+                      <div className="flex justify-between">
+                        <div>
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <Link href={`/blog/${slug}`} className="">
+                              {title}
+                            </Link>
+                          </h2>
+                          <div className="flex flex-wrap">
+                            {tags.map((tag) => (
+                              <Tag key={tag} text={tag} />
+                            ))}
                           </div>
                         </div>
                         <div>
-                          {image && (
-                            <Image
-                              src={image}
-                              alt={title}
-                              width={1200}
-                              height={627}
-                              layout="responsive"
-                              priority={true}
-                            />
-                          )}
+                          {frontMatter.authors.map((author) => {
+                            return (
+                              <Image
+                                key={authors[author].name}
+                                src={authors[author].avatar}
+                                width="50px"
+                                height="50px"
+                                alt="avatar"
+                                className="h-10 w-10 rounded-full"
+                              />
+                            )
+                          })}
                         </div>
-                        <div className="prose max-w-none text-white">{summary}</div>
                       </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-white hover:text-io_orange-500"
-                          aria-label={`Read "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
+                      <div>
+                        {image && (
+                          <Image
+                            src={image}
+                            alt={title}
+                            width={1200}
+                            height={627}
+                            layout="responsive"
+                            priority={true}
+                          />
+                        )}
                       </div>
+                      <div className="prose max-w-none text-white">{summary}</div>
+                    </div>
+                    <div className="text-base font-medium leading-6">
+                      <Link
+                        href={`/blog/${slug}`}
+                        className="text-white hover:text-io_orange-500"
+                        aria-label={`Read "${title}"`}
+                      >
+                        Read more &rarr;
+                      </Link>
                     </div>
                   </div>
-                </article>
-              </li>
+                </div>
+              </article>
             )
           })}
-        </ul>
+        </section>
       </div>
       {posts.length > MAX_BLOG_POSTS && (
         <div className="flex justify-end text-base font-medium leading-6">
