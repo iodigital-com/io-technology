@@ -30,7 +30,7 @@ export default function Video({ video }) {
   return (
     <>
       <PageSEO title={`Videos - ${video.title}`} description={video.description} />
-      <PageTitle>
+      <PageTitle className="pt-8">
         <span dangerouslySetInnerHTML={{ __html: video.title }}></span>
       </PageTitle>
       <div className="aspect-w-16 aspect-h-9 my-10">
