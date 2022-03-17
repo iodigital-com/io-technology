@@ -1,7 +1,11 @@
 const parser = require('xml2js')
 
-export default async (req, res) => {
-  console.log('going to fetch iodigital')
+const fs = require('fs')
+const path = require('path')
+
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
+
+const getJobs = async () => {
   const baseURL = 'https://www.iodigital.com/api/job-feed'
 
   const {
@@ -36,7 +40,7 @@ export default async (req, res) => {
     }))
     .filter((job) => job.department === 'Technology')
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({ jobs }))
+  fs.writeFileSync(path.resolve('data/jobs.json'), JSON.stringify({ jobs }))
 }
+
+getJobs()
