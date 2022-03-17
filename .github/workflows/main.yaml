@@ -1,0 +1,36 @@
+name: Main build
+
+on:
+  push:
+    branches:
+      - develop
+  schedule:
+    - cron: "0 7 * * 2,4" # At 07:00 on Tuesday and Thursday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository to Master branch
+        uses: actions/checkout@v1
+      - name: Setup NodeJs 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "13.x"
+      - name: Cache dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        run: npm install
+      - name: Update YouTube data
+        run: node scripts/youtube.js
+      - name: Update Jobs data
+        run: node scripts/jobs.js
+      - name: Commit and Push updated json files to the repository
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: 'develop'
