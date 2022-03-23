@@ -70,7 +70,7 @@ const LayoutWrapper = ({ children }) => {
         </div>
       </header>
       <div className="flex h-full flex-col justify-between">
-        <main className="mb-auto">{children}</main>
+        <main className="mb-auto p-4 xl:p-16">{children}</main>
         <Footer />
       </div>
     </>
