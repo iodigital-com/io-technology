@@ -60,12 +60,12 @@ export default function Blog({ post, authorDetails, prev, next, jobs }) {
             prev={prev}
             next={next}
           />
-          <div className="space-y-2 px-4 pt-6 pb-8 md:space-y-5 xl:px-16">
-            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
+            <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
-            </h1>
+            </h2>
+            <JobGrid jobs={jobs} />
           </div>
-          <JobGrid jobs={jobs} />
         </>
       ) : (
         <div className="mt-24 text-center">

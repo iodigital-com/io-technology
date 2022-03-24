@@ -10,7 +10,7 @@ import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 
-const MAX_BLOG_POSTS = 5
+const MAX_BLOG_POSTS = 4
 
 async function getAuthors(posts) {
   const authors = await posts.map(async (post) => {
@@ -46,8 +46,8 @@ export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="bg-io_blue-500 p-4 text-white xl:p-16">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+      <div className="bg-io_blue-500 text-white">
+        <div className="container mx-auto pt-6 pb-8">
           <h1 className="py-12 text-center text-3xl leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 xl:p-32">
             <span>
               We have <i>infinite </i>insights to share
@@ -58,7 +58,7 @@ export default function Home({ posts, videos, jobs, authors }) {
           const { slug, date, title, summary, tags, image } = frontMatter
 
           return (
-            <article key={title} className="relative">
+            <article key={title} className="container relative mx-auto">
               {image && (
                 <Image
                   src={image}
@@ -96,7 +96,7 @@ export default function Home({ posts, videos, jobs, authors }) {
             </article>
           )
         })}
-        <section className="grid gap-4 lg:grid-cols-3">
+        <section className="container mx-auto grid gap-4 lg:grid-cols-3">
           {!posts.length && 'No posts found.'}
           {posts.slice(1, MAX_BLOG_POSTS).map((frontMatter) => {
             const { slug, date, title, summary, tags, image } = frontMatter
@@ -184,7 +184,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       )}
 
-      <div className="divide-y divide-gray-200 p-4 xl:p-16">
+      <div className="container mx-auto">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Videos
@@ -208,12 +208,12 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       </div>
 
-      <div className="space-y-2 px-4 md:space-y-5 xl:px-16">
+      <div className="container mx-auto md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Jobs
         </h1>
+        <JobGrid jobs={jobs} />
       </div>
-      <JobGrid jobs={jobs} />
     </>
   )
 }
