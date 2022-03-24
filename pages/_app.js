@@ -1,6 +1,7 @@
 import '@/css/tailwind.css'
 import '@/css/prism.css'
 import '@/css/font.css'
+import '@/css/post-layout.css'
 // import 'katex/dist/katex.css'
 
 import { ThemeProvider } from 'next-themes'

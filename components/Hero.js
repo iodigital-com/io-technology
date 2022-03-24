@@ -22,7 +22,7 @@ export default function Hero({ image, title, date, authors, src }) {
         />
       )}
       <div className="space-y-1 text-center">
-        <div className="absolute bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
+        <div className="text-md absolute bottom-0 w-full bg-black/[.2] p-10 text-right font-bold leading-8 xl:text-3xl">
           {src ? (
             <h2 className="absolute left-0 bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
               <Link href={src} className="">
