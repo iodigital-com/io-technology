@@ -46,20 +46,21 @@ export default function Hero({ image, title, date, authors, src }) {
           )}
         </div>
       </div>
-      {authors.map((author) => {
-        return (
-          <div key={author.name} className="absolute top-10 right-10">
-            <Image
-              key={author.name}
-              src={author.avatar}
-              width="100px"
-              height="100px"
-              alt="avatar"
-              className="h-10 w-10 rounded-full"
-            />
-          </div>
-        )
-      })}
+      {authors &&
+        authors.map((author) => {
+          return (
+            <div key={author.name} className="absolute top-10 right-10">
+              <Image
+                key={author.name}
+                src={author.avatar}
+                width="100px"
+                height="100px"
+                alt="avatar"
+                className="h-10 w-10 rounded-full"
+              />
+            </div>
+          )
+        })}
     </header>
   )
 }
