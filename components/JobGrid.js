@@ -1,5 +1,5 @@
 const JobGrid = ({ jobs }) => (
-  <div className="line grid gap-4 gap-y-10 p-4 xl:grid-cols-5 xl:p-16">
+  <div className="grid gap-4 gap-y-10 xl:grid-cols-5">
     {jobs.map((job) => (
       <a
         key={job.id}
