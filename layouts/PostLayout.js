@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
@@ -30,7 +31,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         {...frontMatter}
       />
       <ScrollTop />
-      <article>
+      <article className="p-4 xl:p-16">
         <div>
           <Hero date={date} title={title} image={image} authors={authorsArray}></Hero>
           <div
@@ -91,8 +92,10 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 </ul>
               </dd>
             </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+            <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
+              <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-2 xl:pb-0">
+                <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark">{children}</div>
+              </div>
             </div>
             <footer>
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">

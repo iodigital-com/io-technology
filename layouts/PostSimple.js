@@ -13,9 +13,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
     <SectionContainer>
       <BlogSEO url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
       <ScrollTop />
-      <article className="p-16">
+      <article className="p-4 xl:p-16">
         <div>
-          <header>
+          <header className="relative -mx-4 -mt-4 xl:-mx-16 xl:-mt-16">
             <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
               <dl>
                 <div>

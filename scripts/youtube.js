@@ -1,8 +1,14 @@
-export default async (req, res) => {
-  console.log('going to fetch youtube')
+const fs = require('fs')
+const path = require('path')
+
+require('dotenv').config()
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
+
+const getVideos = async () => {
   const baseURL = 'https://www.googleapis.com/youtube/v3/'
   const channelId = 'UCNhy3hGzwMfbtX3Ei8Htcpg'
 
+  console.log(process.env.YOUTUBE_API_KEY)
   const { items } = await fetch(
     `${baseURL}search?maxResults=100&part=snippet&order=date&channelId=${channelId}&key=${process.env.YOUTUBE_API_KEY}`
   )
@@ -16,7 +22,7 @@ export default async (req, res) => {
       id: id.videoId,
     }))
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({ videos }))
+  fs.writeFileSync(path.resolve('data/youtube.json'), JSON.stringify({ videos }))
 }
+
+getVideos()

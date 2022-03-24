@@ -16,13 +16,7 @@ const MAX_BLOG_POSTS = 5
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-  let videos = []
-  try {
-    const { videos } = await getLatestVideos(3)
-  } catch (e) {
-    console.log('sada')
-  }
-
+  const { videos } = await getLatestVideos(3)
   const { jobs } = await getLatestJobs(9)
   const authors = await getAuthors(posts)
 
@@ -33,9 +27,9 @@ export default function Home({ posts, videos, jobs, authors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="bg-io_blue-500 p-16 text-white">
+      <div className="bg-io_blue-500 p-4 text-white xl:p-16">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="p-32 text-center text-3xl leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="py-12 text-center text-3xl leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 xl:p-32">
             <span>
               We have <i>infinite </i>insights to share
             </span>
@@ -56,7 +50,7 @@ export default function Home({ posts, videos, jobs, authors }) {
             ></Hero>
           )
         })}
-        <section className="grid grid-cols-3 gap-4">
+        <section className="grid gap-4 lg:grid-cols-3">
           {!posts.length && 'No posts found.'}
           {posts.slice(1, MAX_BLOG_POSTS).map((frontMatter) => {
             const { slug, date, title, summary, tags, image } = frontMatter
@@ -144,7 +138,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       )}
 
-      <div className="divide-y divide-gray-200 p-16">
+      <div className="divide-y divide-gray-200 p-4 xl:p-16">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Videos
@@ -168,7 +162,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       </div>
 
-      <div className="space-y-2 p-16 pt-6 pb-8 md:space-y-5">
+      <div className="space-y-2 px-4 md:space-y-5 xl:px-16">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Jobs
         </h1>
