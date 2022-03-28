@@ -2,6 +2,7 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import Card from '@/components/Card'
 import { getAllVideos } from '@/lib/youtube'
+import VideoCard from '@/components/VideoCard'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
@@ -25,13 +26,7 @@ export default function Videos({ videos }) {
           <div className="-m-4 flex flex-wrap">
             {videos.map((vid) => (
               <div key={vid.id} className="md p-4 md:w-1/3">
-                <Card
-                  title={vid.title}
-                  description={vid.description}
-                  imgSrc={vid.thumbnails.high.url}
-                  unoptimized={true}
-                  href={`/videos/${vid.id}`}
-                />
+                <VideoCard video={vid} playButton={false} />
               </div>
             ))}
           </div>

@@ -9,6 +9,7 @@ import Card from '@/components/Card'
 import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
+import VideoCarousel from '@/components/VideoCarousel'
 
 const MAX_BLOG_POSTS = 4
 
@@ -35,7 +36,7 @@ async function getAuthors(posts) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-  const { videos } = await getLatestVideos(3)
+  const { videos } = await getLatestVideos(6)
   const { jobs } = await getLatestJobs(9)
   const authors = await getAuthors(posts)
 
@@ -191,22 +192,8 @@ export default function Home({ posts, videos, jobs, authors }) {
           </h1>
           <p className="text-lg leading-7 text-gray-500">{siteMetadata.description}</p>
         </div>
-        <div className="container py-12">
-          <div className="-m-4 flex flex-wrap">
-            {videos.map((vid) => (
-              <div key={vid.id} className="md p-4 md:w-1/3">
-                <Card
-                  title={vid.title}
-                  description={vid.description}
-                  imgSrc={vid.thumbnails.high.url}
-                  unoptimized={true}
-                  href={`/videos/${vid.id}`}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
+      <VideoCarousel videos={videos} />
 
       <div className="container mx-auto md:space-y-5">
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
