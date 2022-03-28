@@ -5,13 +5,21 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
 import SocialIcon from '@/components/social-icons'
+import Hero from '@/components/Hero'
+import getAuthors from '@/lib/authors'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 
-const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter('blog')
+  const authors = await getAuthors(posts)
 
-//TODO make component of hero
+  return { props: { authors } }
+}
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, date, title, tags, image } = frontMatter
+  const { slug, date, title, tags, image, authors } = frontMatter
+
+  const authorsArray = frontMatter.authors.map((author) => authors[author])
 
   return (
     <>
@@ -22,32 +30,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       />
       <ScrollTop />
       <article>
-        <header className="relative -mx-4 -mt-4 overflow-hidden xl:-mx-16 xl:-mt-16">
-          {image && (
-            <div className="header-image">
-              <Image
-                src={image}
-                alt={title}
-                width={1200}
-                height={627}
-                objectFit="cover"
-                objectPosition="center"
-                layout="responsive"
-                priority={true}
-              />
-            </div>
-          )}
-          <div className="space-y-1 text-center">
-            <div className="absolute bottom-0 w-full bg-black/[.2] p-10 text-right text-3xl font-bold leading-8">
-              <h1 className="text-white">{title}</h1>
-              <p>
-                <time className="text-sm text-white" dateTime={date}>
-                  {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                </time>
-              </p>
-            </div>
-          </div>
-        </header>
+        <Hero date={date} title={title} image={image} authors={authorsArray}></Hero>
         <div
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}

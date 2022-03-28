@@ -10,11 +10,13 @@ const Heading = (level) => {
     h6: 'text-xl font-semibold',
   }
 
-  return (props) => (
-    <Tag id={props.id} className={classes[Tag]}>
-      {props.children}
-    </Tag>
-  )
+  return function CreateTag(props) {
+    return (
+      <Tag id={props.id} className={classes[Tag]}>
+        {props.children}
+      </Tag>
+    )
+  }
 }
 
 export default Heading
