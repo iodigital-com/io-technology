@@ -8,7 +8,6 @@ const getVideos = async () => {
   const baseURL = 'https://www.googleapis.com/youtube/v3/'
   const channelId = 'UCNhy3hGzwMfbtX3Ei8Htcpg'
 
-  console.log(process.env.YOUTUBE_API_KEY)
   const { items } = await fetch(
     `${baseURL}search?maxResults=100&part=snippet&order=date&channelId=${channelId}&key=${process.env.YOUTUBE_API_KEY}`
   )
