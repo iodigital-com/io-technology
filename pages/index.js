@@ -5,13 +5,13 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import { getLatestVideos } from '@/lib/youtube'
-import Card from '@/components/Card'
 import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import VideoCarousel from '@/components/VideoCarousel'
 import Hero from '@/components/Hero'
 import { getAuthors } from '@/lib/authors'
+import SectionTitle from '@/components/SectionTitle'
 
 const MAX_BLOG_POSTS = 4
 
@@ -48,7 +48,7 @@ export default function Home({ posts, videos, jobs, authors }) {
               date={date}
               title={title}
               image={image}
-            ></Hero>
+            />
           )
         })}
         <section className="container mx-auto grid gap-4 lg:grid-cols-3">
@@ -139,20 +139,15 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       )}
 
-      <div className="container mx-auto">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Videos
-          </h1>
-          <p className="text-lg leading-7 text-gray-500">{siteMetadata.description}</p>
-        </div>
-      </div>
+      <SectionTitle>
+        Our latest <span className="font-serif">videos</span>
+      </SectionTitle>
       <VideoCarousel videos={videos} />
 
-      <div className="container mx-auto md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Jobs
-        </h1>
+      <SectionTitle>
+        Some of our <span className="font-serif">jobs</span>
+      </SectionTitle>
+      <div className="container mx-auto">
         <JobGrid jobs={jobs} />
       </div>
     </>
