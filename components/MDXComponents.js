@@ -26,7 +26,6 @@ export const MDXComponents = {
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
   const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
-  console.log(MDXLayout)
   return (
     <div>
       <MDXLayout layout={layout} components={MDXComponents} {...rest} />
