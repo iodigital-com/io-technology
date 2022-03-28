@@ -2,7 +2,7 @@ import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import { getLatestVideos } from '@/lib/youtube'
 import Card from '@/components/Card'
@@ -10,29 +10,10 @@ import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import VideoCarousel from '@/components/VideoCarousel'
+import Hero from '@/components/Hero'
+import { getAuthors } from '@/lib/authors'
 
 const MAX_BLOG_POSTS = 4
-
-async function getAuthors(posts) {
-  const authors = await posts.map(async (post) => {
-    const authorList = post.authors || ['default']
-
-    const authorPromise = authorList.map(async (author) => {
-      const authorResults = await getFileBySlug('authors', [author])
-      const object = { [author]: authorResults.frontMatter }
-      return object
-    }, {})
-
-    const authors = await Promise.all(authorPromise)
-    return authors
-  }, {})
-  const authorsArray = await Promise.all(authors)
-
-  return authorsArray.reduce((current, authorArray) => {
-    const object = authorArray.reduce((curr, author) => ({ ...curr, ...author }))
-    return { ...current, ...object }
-  }, {})
-}
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
@@ -56,45 +37,18 @@ export default function Home({ posts, videos, jobs, authors }) {
           </h1>
         </div>
         {posts.slice(0, 1).map((frontMatter) => {
-          const { slug, date, title, summary, tags, image } = frontMatter
+          const { slug, date, title, image } = frontMatter
+          const authorsArray = frontMatter.authors.map((author) => authors[author])
 
           return (
-            <article key={title} className="container relative mx-auto">
-              {image && (
-                <Image
-                  src={image}
-                  alt={title}
-                  width={1200}
-                  height={627}
-                  layout="responsive"
-                  priority={true}
-                />
-              )}
-              <h2 className="text-md absolute bottom-0 w-full bg-black/[.2] p-10 text-right font-bold leading-8 xl:text-3xl">
-                <Link href={`/blog/${slug}`} className="">
-                  {title}
-                </Link>
-                <p>
-                  <time className="text-sm" dateTime={date}>
-                    {formatDate(date)}
-                  </time>
-                </p>
-              </h2>
-              {frontMatter.authors.map((author) => {
-                return (
-                  <div key={authors[author].name} className="absolute top-10 right-10">
-                    <Image
-                      key={authors[author].name}
-                      src={authors[author].avatar}
-                      width="100px"
-                      height="100px"
-                      alt="avatar"
-                      className="h-10 w-10 rounded-full"
-                    />
-                  </div>
-                )
-              })}
-            </article>
+            <Hero
+              key={title}
+              src={`/blog/${slug}`}
+              authors={authorsArray}
+              date={date}
+              title={title}
+              image={image}
+            ></Hero>
           )
         })}
         <section className="container mx-auto grid gap-4 lg:grid-cols-3">
