@@ -6,20 +6,9 @@ import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
 import SocialIcon from '@/components/social-icons'
 import Hero from '@/components/Hero'
-import getAuthors from '@/lib/authors'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
-
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog')
-  const authors = await getAuthors(posts)
-
-  return { props: { authors } }
-}
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, date, title, tags, image, authors } = frontMatter
-
-  const authorsArray = frontMatter.authors.map((author) => authors[author])
+  const { slug, date, title, tags, image } = frontMatter
 
   return (
     <>
@@ -30,7 +19,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       />
       <ScrollTop />
       <article>
-        <Hero date={date} title={title} image={image} authors={authorsArray}></Hero>
+        <Hero date={date} title={title} image={image} />
         <div
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}
