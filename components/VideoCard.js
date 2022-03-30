@@ -24,7 +24,7 @@ const VideoCard = ({ video, playButton = true }) => {
           layout="responsive"
         />
         {playButton && (
-          <div className="absolute top-1/2 left-1/2 flex h-36 w-36 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-full bg-io_orange-500 align-middle text-xl text-white">
+          <div className="absolute top-1/2 left-1/2 flex h-36 w-36 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-full bg-io_orange-500 align-middle text-xl text-white shadow-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="11"
