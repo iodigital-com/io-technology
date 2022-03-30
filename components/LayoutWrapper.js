@@ -32,7 +32,7 @@ const LayoutWrapper = ({ children }) => {
         ref={headerRef}
         className={`sticky top-0 z-50  ${
           scrolledPassedHeader ? '' : `bg-io_${theme}-500`
-        } py-4 px-4 text-white sm:bg-io_${theme}-500`}
+        } py-4 px-4 text-white bg-io_${theme}-500`}
       >
         <div className="container mx-auto flex items-center justify-between">
           <div>
