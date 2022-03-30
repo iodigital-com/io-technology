@@ -6,10 +6,12 @@ import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 const LayoutWrapper = ({ children }) => {
   const [scrolledPassedHeader, setScrolledPassedHeader] = useState(false)
   const headerRef = useRef()
+
   useEffect(() => {
     const headerHeight = headerRef.current.scrollHeight
     const handleScroll = () => {
@@ -22,14 +24,15 @@ const LayoutWrapper = ({ children }) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+  const { theme } = useBrandingTheme()
 
   return (
     <>
       <header
         ref={headerRef}
         className={`sticky top-0 z-50  ${
-          scrolledPassedHeader ? '' : 'bg-io_blue-500'
-        } py-4 px-4 text-white sm:bg-io_blue-500`}
+          scrolledPassedHeader ? '' : `bg-io_${theme}-500`
+        } py-4 px-4 text-white sm:bg-io_${theme}-500`}
       >
         <div className="container mx-auto flex items-center justify-between">
           <div>

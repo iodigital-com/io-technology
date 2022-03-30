@@ -1,52 +1,23 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
-
-const io_blue = {
-  50: '#f5f7fd',
-  100: '#ebeffb',
-  200: '#cdd7f6',
-  300: '#afbff0',
-  400: '#728fe4',
-  500: '#365fd9',
-  600: '#3156c3',
-  700: '#2947a3',
-  800: '#203982',
-  900: '#1a2f6a',
-}
-
-const io_orange = {
-  50: '#fef8f5',
-  100: '#fdf1ec',
-  200: '#fadbcf',
-  300: '#f7c5b2',
-  400: '#f09a78',
-  500: '#EA6F3E',
-  600: '#d36438',
-  700: '#b0532f',
-  800: '#8c4325',
-  900: '#73361e',
-}
-
-const io_orange_secondary = {
-  50: '#fffcf8',
-  100: '#fff8f1',
-  200: '#ffeedd',
-  300: '#fee4c8',
-  400: '#fed09e',
-  500: '#FDBC75',
-  600: '#e4a969',
-  700: '#be8d58',
-  800: '#987146',
-  900: '#7c5c39',
-}
+const brandColors = require('./brandColors')
 
 module.exports = {
   experimental: {
     optimizeUniversalDefaults: true,
   },
   content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
+  safelist: [
+    {
+      pattern: /(bg|text)-io_(blue|orange|rouge)-(50|100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
+    },
+  ],
   darkMode: 'class',
   theme: {
+    container: {
+      padding: '1rem',
+    },
     extend: {
       spacing: {
         '9/16': '56.25%',
@@ -62,11 +33,9 @@ module.exports = {
         serif: ['Reckless', ...defaultTheme.fontFamily.serif],
       },
       colors: {
-        primary: io_orange,
+        primary: brandColors.colors.io_orange,
         gray: colors.neutral,
-        io_orange,
-        io_orange_secondary,
-        io_blue,
+        ...brandColors.colors,
       },
       typography: (theme) => ({
         DEFAULT: {
