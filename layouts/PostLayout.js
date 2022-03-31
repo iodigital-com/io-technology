@@ -5,10 +5,12 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
 import SocialIcon from '@/components/social-icons'
-import Hero from '@/components/Hero'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import formatDate from '@/lib/utils/formatDate'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, date, title, tags, image } = frontMatter
+  const { theme } = useBrandingTheme()
 
   return (
     <>
@@ -19,7 +21,36 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       />
       <ScrollTop />
       <article>
-        <Hero date={date} title={title} image={image} />
+        <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
+          <div className="container mx-auto">
+            <h1 className="text-4xl font-medium xl:text-7xl">{title}</h1>
+            <div className="mb-4 divide-x">
+              {authorDetails.slice(0, 1).map((author) => {
+                return (
+                  <p key={author.name} className="inline pr-2 text-xl font-light">
+                    By {author.name}
+                  </p>
+                )
+              })}
+              <time className="inline pl-2 text-xl font-light" dateTime={date}>
+                {formatDate(date)}
+              </time>
+            </div>
+            {image && (
+              <div className="-mt-64 translate-y-72">
+                <Image
+                  src={image}
+                  alt={title}
+                  width={1200}
+                  height={627}
+                  layout="responsive"
+                  priority={true}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+
         <div
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}
@@ -80,7 +111,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
           </dl>
           <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
             <div className="xl:col-span-2 xl:pb-0">
-              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">{children}</div>
             </div>
           </div>
           <footer>
@@ -104,7 +135,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         Previous Article
                       </h2>
-                      <div className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400">
+                      <div
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+                      >
                         <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
                       </div>
                     </div>
@@ -114,7 +147,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         Next Article
                       </h2>
-                      <div className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400">
+                      <div
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+                      >
                         <Link href={`/blog/${next.slug}`}>{next.title}</Link>
                       </div>
                     </div>
@@ -125,7 +160,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/blog"
-                className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
+                className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
               >
                 &larr; Back to the blog
               </Link>
