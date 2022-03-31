@@ -33,8 +33,8 @@ export default function Home({ posts, videos, jobs, authors }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className={`bg-io_${theme}-500 text-white`}>
-        <div className="pt-14 pb-24">
-          <div className="container mx-auto grid grid-cols-12">
+        <div className="pb-14 pt-24">
+          <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
               Let's discover <span className="font-serif">infinite opportunities</span> together
             </h1>
