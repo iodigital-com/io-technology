@@ -9,7 +9,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import formatDate from '@/lib/utils/formatDate'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, date, title, tags, image } = frontMatter
+  const { slug, date, title, tags, image, summary } = frontMatter
   const { theme } = useBrandingTheme()
 
   return (
@@ -32,12 +32,18 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </p>
                 )
               })}
-              <time className="inline pl-2 text-xl font-light" dateTime={date}>
+              <time className="inline pl-2 font-light" dateTime={date}>
                 {formatDate(date)}
               </time>
             </div>
+            <div className="grid grid-cols-4">
+              <p className="col-span-full col-start-1 text-2xl md:col-start-2 xl:col-start-3">
+                {summary}
+              </p>
+            </div>
+
             {image && (
-              <div className="-mt-64 translate-y-72">
+              <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
                 <Image
                   src={image}
                   alt={title}
