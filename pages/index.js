@@ -89,7 +89,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter) => {
           const { slug, date, title, summary, tags, image } = frontMatter
           return (
-            <article className="border-t border-gray-300 pt-6 pb-10">
+            <article key={slug} className="border-t border-gray-300 pt-6 pb-10">
               <div className="grid grid-cols-12">
                 <div className="hidden md:col-span-3 md:block xl:col-span-5">
                   <div className="flex flex-col xl:flex-row">
