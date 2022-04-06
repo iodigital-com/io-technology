@@ -5,7 +5,6 @@ import Logo from '@/data/logo.svg'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 const LayoutWrapper = ({ children }) => {
@@ -33,11 +32,12 @@ const LayoutWrapper = ({ children }) => {
   }, [])
   const { theme } = useBrandingTheme()
 
+  console.log(scrolledPassedHeader)
   return (
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 z-50  ${
+        className={`sticky top-0 z-50 duration-150 ease-out ${
           scrolledPassedHeader ? '' : `bg-io_${theme}-500`
         } py-4 px-4 text-white xl:bg-io_${theme}-500`}
       >
@@ -73,12 +73,12 @@ const LayoutWrapper = ({ children }) => {
                   key={link.title}
                   href={link.href}
                   className={`font-semibold ease-out sm:mt-2 sm:p-4 ${
-                    scrolledPassedHeader && navigationIsOpen
+                    navigationIsOpen
                       ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
-                      : `pointer-events-none text-white duration-200 dark:text-gray-100
+                      : `text-white duration-200 dark:text-gray-100
                       ${
                         scrolledPassedHeader
-                          ? '-translate-y-4 opacity-0'
+                          ? 'pointer-events-none -translate-y-4 opacity-0'
                           : 'translate-y-0 opacity-100'
                       }`
                   }`}
@@ -90,7 +90,7 @@ const LayoutWrapper = ({ children }) => {
               <button
                 type="button"
                 className={`absolute -right-1 -top-1 bottom-0 m-1 h-16 w-16 rounded-full  bg-white p-5 ${
-                  scrolledPassedHeader ? 'sm:opacity-100' : 'opacity-0'
+                  scrolledPassedHeader ? 'sm:opacity-100' : 'pointer-events-none opacity-0'
                 }
                 duration-150 ease-out`}
                 aria-label="Toggle Menu"
