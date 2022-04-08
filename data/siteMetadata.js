@@ -1,11 +1,11 @@
 const siteMetadata = {
   title: 'iO Technology',
   author: 'iO',
-  headerTitle: 'Technology',
+  headerTitle: 'Technology hub',
   description: 'A blog by iO Developers',
   language: 'en-us',
   theme: 'light', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://technology.iodigital.com',
   siteLogo: '/logo.png',
   image: '/avatar.png',
   socialBanner: '/twitter-card.png',
