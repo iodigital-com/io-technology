@@ -15,7 +15,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
   return (
     <>
       <BlogSEO
-        url={`${siteMetadata.siteUrl}/blog/${slug}`}
+        url={`${siteMetadata.siteUrl}/articles/${slug}`}
         authorDetails={authorDetails}
         {...frontMatter}
       />
@@ -144,7 +144,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <div
                         className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
                       >
-                        <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                        <Link href={`/articles/${prev.slug}`}>{prev.title}</Link>
                       </div>
                     </div>
                   )}
@@ -156,7 +156,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <div
                         className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
                       >
-                        <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                        <Link href={`/articles/${next.slug}`}>{next.title}</Link>
                       </div>
                     </div>
                   )}

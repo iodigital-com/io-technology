@@ -1,12 +1,11 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import Card from '@/components/Card'
 import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
-  return { props: { videos } }
+  return { props: { videos, theme: 'blue' } }
 }
 
 export default function Videos({ videos }) {

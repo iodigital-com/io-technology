@@ -10,7 +10,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
 
   return (
     <>
-      <BlogSEO url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSEO url={`${siteMetadata.siteUrl}/articles/${frontMatter.slug}`} {...frontMatter} />
       <ScrollTop />
       <article className="container mx-auto">
         <div>
@@ -41,7 +41,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 {prev && (
                   <div className="pt-4 xl:pt-8">
                     <Link
-                      href={`/blog/${prev.slug}`}
+                      href={`/articles/${prev.slug}`}
                       className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
                     >
                       &larr; {prev.title}
@@ -51,7 +51,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 {next && (
                   <div className="pt-4 xl:pt-8">
                     <Link
-                      href={`/blog/${next.slug}`}
+                      href={`/articles/${next.slug}`}
                       className="text-amber-600 hover:text-amber-700 dark:hover:text-primary-400"
                     >
                       {next.title} &rarr;

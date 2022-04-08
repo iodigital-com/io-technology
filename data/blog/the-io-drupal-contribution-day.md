@@ -2,7 +2,7 @@
 title: 'The iO Drupal contribution day'
 date: '2021-12-01'
 tags: ['drupal']
-image: '/blog/drupal-contribution-day/drupal-contribution-day.jpg'
+image: '/articles/drupal-contribution-day/drupal-contribution-day.jpg'
 summary: 'In a year where contributions were going down a bit we thought it was a good idea to see if we can end the year with a little bump.'
 authors: ['lennard-swaneveld']
 ---
@@ -22,13 +22,13 @@ In order to provide a feeling of accomplishment to those participating we decide
 
 Triaging a bug means making sure that the bug report contains everything somebody needs to get working on it. Things like steps to reproduce and a clear description of the expected outcome of an action versus the actual outcome. You can also check if a bug is still relevant or that it might have been fixed in another issue. Here is the flow chart the Bug Smash Initiative uses when doing triage: 
 
-![Maple](/blog/drupal-contribution-day/bug-triage-flow.jpg)
+![Maple](/articles/drupal-contribution-day/bug-triage-flow.jpg)
 
 At other events there was usually not real structure on how to find things to triage. So that often meant that people would focus on the first couple of pages of bugs in the issue queue. Or we would do a Major triage where we would only look at bugs that were tagged as ‘major’.
 
 But since Drupal core contains almost 7000 bugs, that leaves quite a lot of bugs untouched once they move of the first couple of pages.
 
-![Maple](/blog/drupal-contribution-day/open-bugs-by-years-open.jpg)
+![Maple](/articles/drupal-contribution-day/open-bugs-by-years-open.jpg)
 
 So our weapon of choice would be using [Bug bingo triage](https://lendude.gitlab.io/bug-smash-initiative/). The button on that page will send you to a random bug in the issue queue that hasn’t  had any activity in more than a year. That way, you will not get stuck triaging the same set of pages over and over.
 

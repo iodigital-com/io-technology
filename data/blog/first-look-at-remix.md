@@ -2,10 +2,10 @@
 title: 'First look at Remix'
 date: '2021-12-08'
 tags: ['frontend', 'react', 'remix']
-image: '/blog/first-look-at-remix/remix.jpg'
+image: '/articles/first-look-at-remix/remix.jpg'
 summary: 'There has been a lot of buzz around the open-source release of Remix. I took a first look by following the deep-dive tutorial and this is what I found.'
 authors: ['dave-bitter']
-theme: 'rouge'
+theme: 'orange'
 ---
 
 [Remix](https://remix.run) is a full-stack web framework that lets you focus on the user interface and work back through web fundamentals to deliver a fast, slick, and resilient user experience. This is what excited me when I first read about Remix. I'm a big advocate for progressively enhancing web applications and this framework seems to take this approach by simply using web fundamentals.

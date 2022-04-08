@@ -1,0 +1,61 @@
+import Image from '@/components/Image'
+import Link from '@/components/Link'
+import formatDate from '@/lib/utils/formatDate'
+import Tag from '@/components/Tag'
+import Arrow from '@/data/arrow.svg'
+
+const Article = ({ slug, date, title, tags, authors }) => (
+  <article key={slug} className="border-t border-gray-300 pt-6 pb-10">
+    <div className="grid grid-cols-12">
+      <div className="hidden md:col-span-3 md:block xl:col-span-5">
+        <div className="flex flex-col xl:flex-row">
+          <div className="flex-0 relative overflow-hidden rounded-full md:mb-4 md:h-16 md:w-16 xl:mr-7 xl:mb-0 xl:h-32 xl:w-32">
+            {authors.slice(0, 1).map((author) => {
+              return (
+                <Image
+                  key={author.name}
+                  src={author.avatar}
+                  width={200}
+                  height={200}
+                  alt="avatar"
+                  className="rounded-full"
+                />
+              )
+            })}
+          </div>
+          <div className="text-body-xs">
+            {authors.slice(0, 1).map((author) => {
+              return (
+                <>
+                  <p className="mb-0">By {author.name}</p>
+                  <p className="mb-0">{author.occupation}</p>
+                </>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+      <div className="col-span-full md:col-start-4 xl:col-start-7">
+        <h2 className="text-2xl">
+          <Link href={`/articles/${slug}`}>{title}</Link>
+        </h2>
+        <dl className="mb-4">
+          <dt className="sr-only">Published on</dt>
+          <dd className="leading- text-sm font-light">
+            <time dateTime={date}>{formatDate(date)}</time>
+          </dd>
+        </dl>
+        <div className="mb-6 flex flex-wrap">
+          {tags.map((tag) => (
+            <Tag key={tag} text={tag} />
+          ))}
+        </div>
+        <Link href={`/articles/${slug}`}>
+          <Arrow className="w-6" />
+        </Link>
+      </div>
+    </div>
+  </article>
+)
+
+export default Article
