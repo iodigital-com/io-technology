@@ -65,7 +65,7 @@ const LayoutWrapper = ({ children }) => {
           </div>
           <div className="relative flex items-center text-base leading-5" ref={navigationItemsRef}>
             <div
-              className={`hidden items-center rounded-full pl-2 sm:flex ${
+              className={`hidden items-center rounded-full pl-2 sm:flex sm:pr-12 ${
                 navigationIsOpen ? 'border-white' : 'border-gray-200'
               }`}
             >
