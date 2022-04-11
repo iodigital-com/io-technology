@@ -5,7 +5,7 @@ import Tag from '@/components/Tag'
 import Arrow from '@/data/arrow.svg'
 
 const Article = ({ slug, date, title, tags, authors }) => (
-  <article key={slug} className="border-b border-gray-300 pt-6 pb-10">
+  <article className="border-b border-gray-300 pt-6 pb-10">
     <div className="grid grid-cols-12">
       <div className="hidden md:col-span-3 md:block xl:col-span-5">
         <div className="flex flex-col xl:flex-row">
@@ -24,14 +24,8 @@ const Article = ({ slug, date, title, tags, authors }) => (
             })}
           </div>
           <div className="text-body-xs">
-            {authors.slice(0, 1).map((author) => {
-              return (
-                <>
-                  <p className="mb-0">By {author.name}</p>
-                  <p className="mb-0">{author.occupation}</p>
-                </>
-              )
-            })}
+            <p className="mb-0">By {authors[0].name}</p>
+            <p className="mb-0">{authors[0].occupation}</p>
           </div>
         </div>
       </div>
