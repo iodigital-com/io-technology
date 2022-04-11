@@ -7,6 +7,8 @@ import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 import fs from 'fs'
 import path from 'path'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import { getAuthors } from '@/lib/authors'
 
 const root = process.cwd()
 
@@ -37,19 +39,23 @@ export async function getStaticProps({ params }) {
     fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
   }
 
-  return { props: { posts: filteredPosts, tag: params.tag } }
+  const authors = await getAuthors(allPosts)
+
+  return { props: { posts: filteredPosts, tag: params.tag, authors, theme: 'black' } }
 }
 
-export default function Tag({ posts, tag }) {
+export default function Tag({ posts, tag, authors }) {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
+  const { theme } = useBrandingTheme()
+
   return (
     <>
       <TagSEO
-        title={`${tag} - ${siteMetadata.author}`}
-        description={`${tag} tags - ${siteMetadata.author}`}
+        title={`${title} - ${siteMetadata.author}`}
+        description={`${title} tags - ${siteMetadata.author}`}
       />
-      <ListLayout posts={posts} title={title} />
+      <ListLayout posts={posts} title={`All #${title} articles`} authors={authors} theme={theme} />
     </>
   )
 }

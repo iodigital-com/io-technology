@@ -5,7 +5,7 @@ import Tag from '@/components/Tag'
 import Arrow from '@/data/arrow.svg'
 
 const Article = ({ slug, date, title, tags, authors }) => (
-  <article key={slug} className="border-t border-gray-300 pt-6 pb-10">
+  <article key={slug} className="border-b border-gray-300 pt-6 pb-10">
     <div className="grid grid-cols-12">
       <div className="hidden md:col-span-3 md:block xl:col-span-5">
         <div className="flex flex-col xl:flex-row">
