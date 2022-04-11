@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import Pagination from '@/components/Pagination'
 import Article from '@/components/Article'
-import Image from '@/components/Image'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export default function ListLayout({
   posts,
@@ -34,7 +32,7 @@ export default function ListLayout({
                 <span className="block">{title}</span>
               </h1>
             </div>
-            <div className="grid-col-12 col-span-full grid md:col-span-6 md:col-start-1 lg:col-span-6 lg:col-start-1">
+            <div className="col-span-full grid grid-cols-12 md:col-span-6 md:col-start-1 lg:col-span-6 lg:col-start-1">
               <div className="col-span-full">
                 <div className="relative">
                   <div className="rounded-[1px] border border-b-0 bg-white px-5 xl:px-6">
