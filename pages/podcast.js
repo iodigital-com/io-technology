@@ -1,10 +1,6 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 
-export async function getStaticProps() {
-  return { props: { theme: 'rouge' } }
-}
-
 export default function Podcast() {
   return (
     <>
