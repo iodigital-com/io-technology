@@ -2,7 +2,7 @@
 title: 'How accessible are links?'
 date: '2021-12-10'
 tags: ['a11y']
-image: '/articles/how-accessibile-are-links/a11y-links.jpg'
+images: ['/articles/how-accessibile-are-links/a11y-links.jpg']
 summary: 'Links are one of the main basic elements that you’ll find on any website. Yet, a lot of them are not as accessible as we would like.'
 authors: ['frank-van-eldijk']
 ---

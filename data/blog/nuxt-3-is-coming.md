@@ -2,7 +2,7 @@
 title: 'Nuxt 3 is coming, this is why you should be excited!'
 date: '2022-01-01'
 tags: ['frontend', 'vue', 'nuxt']
-image: '/articles/nuxt-3-is-coming/nuxt-3.jpg'
+images: ['/articles/nuxt-3-is-coming/nuxt-3.jpg']
 summary: 'Nuxt 3 beta is out and ready to play with. While not production ready yet, most important features can be experimented with and, as we’ll discuss later, it will bring about an easy way to upgrade at your own pace.'
 authors: ['vlad-pintea']
 ---

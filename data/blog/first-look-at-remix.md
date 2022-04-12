@@ -2,7 +2,7 @@
 title: 'First look at Remix'
 date: '2021-12-08'
 tags: ['frontend', 'react', 'remix']
-image: '/articles/first-look-at-remix/remix.jpg'
+images: ['/articles/first-look-at-remix/remix.jpg']
 summary: 'There has been a lot of buzz around the open-source release of Remix. I took a first look by following the deep-dive tutorial and this is what I found.'
 authors: ['dave-bitter']
 theme: 'orange'
@@ -37,7 +37,6 @@ All these admin pages might share a special navigation bar for logged in admins.
 ### Scoped JS and CSS per nested route
 
 These nested routes are not just useful as partials, but will allow Remix to also easily chunck-up your nested routes for JS and CSS bundles. Naturally, it knows what pieces to load as you load them per nested route. This makes these nested routes true small little routes and optimises the loading of resources.
-
 
 This concept is fundamental to how Remix works. You can read more about nested routes [here](https://remix.run/docs/en/v1/guides/routing) and CSS scoping with `<Links />` [here](https://remix.run/docs/en/v1/guides/styling).
 
@@ -90,63 +89,52 @@ There is quite some Typescript-specific code here, but in its essence there is a
 So what about handling things like forms? I need to handle that on the client right? Well, not necessarily. Forms can easily be handled with a `method` attribute on the form element. Sure, you might want to make a fancy multi-step form, but this is where progressive enhancement pops up again. Just make a form with a `method` and let it post using the web standards. You then export an `action` function that will handle the posting of the form. Take a look at this code snippet of the [Jokes app tutorial](https://remix.run/docs/en/v1/tutorials/jokes) I followed in preparation for this article. You can find my full end result in [this repository](https://github.com/DaveBitter/remix-jokes).
 
 ```jsx
+import type { ActionFunction } from 'remix'
 
-import type { ActionFunction } from "remix";
+import { redirect } from 'remix'
 
-import { redirect } from "remix";
+import { db } from '~/utils/db.server'
 
-import { db } from "~/utils/db.server";
+export const action: ActionFunction = async ({ request }) => {
+  const form = await request.formData()
+  const name = form.get('name')
+  const content = form.get('content')
+  // we do this type check to be extra sure and to make TypeScript happy
+  // we'll explore validation next!
+  if (typeof name !== 'string' || typeof content !== 'string') {
+    throw new Error(`Form not submitted correctly.`)
+  }
 
+  const fields = { name, content }
 
-export const action: ActionFunction = async ({
-request
-}) => {
-const form = await request.formData();
-const name = form.get("name");
-const content = form.get("content");
-// we do this type check to be extra sure and to make TypeScript happy
-// we'll explore validation next!
-if (
-  typeof name !== "string" ||
-  typeof content !== "string"
-) {
-  throw new Error(`Form not submitted correctly.`);
+  const joke = await db.joke.create({ data: fields })
+  return redirect(`/jokes/${joke.id}`)
 }
-
-
-const fields = { name, content };
-
-
-const joke = await db.joke.create({ data: fields });
-return redirect(`/jokes/${joke.id}`);
-};
-
 
 export default function NewJokeRoute() {
-return (
-  <div>
-    <p>Add your own hilarious joke</p>
-    <form method="post">
-      <div>
-        <label>
-          Name: <input type="text" name="name" />
-        </label>
-      </div>
-      <div>
-        <label>
-          Content: <textarea name="content" />
-        </label>
-      </div>
-      <div>
-        <button type="submit" className="button">
-          Add
-        </button>
-      </div>
-    </form>
-  </div>
-);
+  return (
+    <div>
+      <p>Add your own hilarious joke</p>
+      <form method="post">
+        <div>
+          <label>
+            Name: <input type="text" name="name" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Content: <textarea name="content" />
+          </label>
+        </div>
+        <div>
+          <button type="submit" className="button">
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  )
 }
-
 ```
 
 There is a basic form (with no client-side JS) that just posts on submit. The `action` function is then called where we can then get the form data and handle it like normal. But what about validation? Naturally, you want to do this on the server, but it's considered good practice to do this on the client as well. The nice thing about having everything in this file is that we can reuse the same validation function in both places. Here's another snippet with just server-side validation implemented.
@@ -322,40 +310,29 @@ Note that we return the validation messages if there is something wrong and rend
 
 > This is a great example of how easy it can be to create an interactive part of your web application without the need for client-side JS for something that has web standards. Sure you can, but Remix is built in a way where you take this approach first.
 
-
 ## Resource routes
 
 If I would've build the previous form without any client-side JS in Next.js, I would've had to build a Next.js API route. These are incredibly powerful. You can read more about these API routes in my article [Next.js API routes](https://www.davebitter.com/articles/next-js-api-routes). With Remix, you can do exactly the same, but even more. Remix doesn't just offer this for, for instance, JSON responses, but for any kind of response really. You can create a file with a special naming pattern like `/app/routes/jokes[.]rss.tsx`. The `[.]rss` part tells Remix that you will return a `.rss` file. In this code snippet, you can see how something like this could work.
 
 ```jsx
+import type { LoaderFunction } from 'remix'
 
-import type { LoaderFunction } from "remix";
+import { db } from '~/utils/db.server'
 
-import { db } from "~/utils/db.server";
-
-
-export const loader: LoaderFunction = async ({
-  request
-}) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const jokes = await db.joke.findMany({
-      take: 100,
-      orderBy: { createdAt: "desc" },
-      include: { jokester: { select: { username: true } } }
-  });
+    take: 100,
+    orderBy: { createdAt: 'desc' },
+    include: { jokester: { select: { username: true } } },
+  })
 
-
-  const host =
-      request.headers.get("X-Forwarded-Host") ??
-      request.headers.get("host");
+  const host = request.headers.get('X-Forwarded-Host') ?? request.headers.get('host')
   if (!host) {
-      throw new Error("Could not determine domain URL.");
+    throw new Error('Could not determine domain URL.')
   }
-  const protocol = host.includes("localhost")
-      ? "http"
-      : "https";
-  const domain = `${protocol}://${host}`;
-  const jokesUrl = `${domain}/jokes`;
-
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const domain = `${protocol}://${host}`
+  const jokesUrl = `${domain}/jokes`
 
   const rssString = `
   <rss xmlns:blogChannel="${jokesUrl}" version="2.0">
@@ -367,8 +344,8 @@ export const loader: LoaderFunction = async ({
       <generator>Kody the Koala</generator>
       <ttl>40</ttl>
       ${jokes
-          .map(joke =>
-              `
+        .map((joke) =>
+          `
           <item>
             <title>${joke.name}</title>
             <description>A funny joke called ${joke.name}</description>
@@ -378,23 +355,20 @@ export const loader: LoaderFunction = async ({
             <guid>${jokesUrl}/${joke.id}</guid>
           </item>
         `.trim()
-          )
-          .join("\n")}
+        )
+        .join('\n')}
     </channel>
   </rss>
-`.trim();
-
+`.trim()
 
   return new Response(rssString, {
-      headers: {
-          "Cache-Control": `public, max-age=${60 * 10
-              }, s-maxage=${60 * 60 * 24}`,
-          "Content-Type": "application/xml",
-          "Content-Length": String(Buffer.byteLength(rssString))
-      }
-  });
-};
-
+    headers: {
+      'Cache-Control': `public, max-age=${60 * 10}, s-maxage=${60 * 60 * 24}`,
+      'Content-Type': 'application/xml',
+      'Content-Length': String(Buffer.byteLength(rssString)),
+    },
+  })
+}
 ```
 
 How cool is that! The routes folder is not just for HTML pages, but you can create routes for any resource you need, hence the name resource routes.
@@ -409,20 +383,18 @@ You probably want to add some meta-tags to your pages. You can do this easily by
 
 ```jsx
 export const meta: MetaFunction = () => {
-
-const description = `Learn Remix and laugh at the same time!`;
-return {
-  description,
-  keywords: "Remix,jokes",
-  "twitter:image": "https://remix-jokes.lol/social.png",
-  "twitter:card": "summary_large_image",
-  "twitter:creator": "@remix_run",
-  "twitter:site": "@remix_run",
-  "twitter:title": "Remix Jokes",
-  "twitter:description": description
-};
-};
-
+  const description = `Learn Remix and laugh at the same time!`
+  return {
+    description,
+    keywords: 'Remix,jokes',
+    'twitter:image': 'https://remix-jokes.lol/social.png',
+    'twitter:card': 'summary_large_image',
+    'twitter:creator': '@remix_run',
+    'twitter:site': '@remix_run',
+    'twitter:title': 'Remix Jokes',
+    'twitter:description': description,
+  }
+}
 ```
 
 But you might want to update the title or description for a specific nested route. You guessed it, you can export the same function with different values there to extend this base set of meta tags. I think that's pretty sweet.
@@ -432,32 +404,18 @@ But you might want to update the title or description for a specific nested rout
 You can export a `CatchBoundary` and `ErrorBoundary` function for every (nested) route.
 
 ```jsx
-
 export function CatchBoundary() {
-  const caught = useCatch();
-
+  const caught = useCatch()
 
   if (caught.status === 404) {
-      return (
-          <div className="error-container">
-              There are no jokes to display.
-          </div>
-      );
+    return <div className="error-container">There are no jokes to display.</div>
   }
-  throw new Error(
-      `Unexpected caught response with status: ${caught.status}`
-  );
+  throw new Error(`Unexpected caught response with status: ${caught.status}`)
 }
-
 
 export function ErrorBoundary() {
-  return (
-      <div className="error-container">
-          I did a whoopsies.
-      </div>
-  );
+  return <div className="error-container">I did a whoopsies.</div>
 }
-
 ```
 
 This will help you with two things. You can notify the user with some custom message on the page, but more importantly, you can isolate this error to just the nested route. The rest of you're application will run fine. This helps you think about how you want to handle your not so optimal flow.
@@ -469,6 +427,5 @@ During the Jokes app tutorial, I didn't even realize that hadn't written any cli
 ## Verdict.
 
 I'm a big advocate of Progressive Enhancement to make web applications simple, accessible and resilient. You can read some of my articles on this [here](https://www.davebitter.com/tags/progressive-enhancement). I usually put this to practice for just components. Seeing Remix take this approach to the entire application gives me hope for a future of building great web applications using web standards and progressive enhancement.
-
 
 For the first time in years, I felt like a "web developer" again instead of a JS engineer. It's incredible fun to start thinking about how to leverage these standards smartly. I'm very excited about what Remix will offer and will definitely continue researching Remix and sharing it with all of you. Thanks for reading!

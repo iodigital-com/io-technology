@@ -39,9 +39,9 @@ export default function Videos({ videos }) {
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
               <div className="xl:w-11/12">
-                <p className="mb-2">
-                  Most of our meeetups are live streamed to YouTube. Please subscribe to get
-                  notified about when a meetup is planned!
+                <p className="mb-4">
+                  Most of our meetups are live streamed to YouTube. Please subscribe to get notified
+                  when a meetup is planned!
                 </p>
                 <div className="flex flex-row">
                   <SocialIcon
