@@ -3,7 +3,7 @@ import '@/css/prism.css'
 import '@/css/font.css'
 import '@/css/post-layout.css'
 // import 'katex/dist/katex.css'
-
+import asciiLogo from '@/lib/io'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
 
@@ -15,6 +15,16 @@ import { BrandingThemeProvider } from '@/lib/hooks/useBrandingTheme'
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
+
+if (!isDevelopment) {
+  console.info(asciiLogo)
+  console.info('%cCheck out our latest jobs:', 'color: #ed7f53; font-size: 1.5rem')
+  console.info(
+    '%chttps://www.iodigital.com/en/careers/jobs?expertise=Technology',
+    'font-size: 1rem'
+  )
+  console.info('')
+}
 
 export default function App({ Component, pageProps }) {
   return (
