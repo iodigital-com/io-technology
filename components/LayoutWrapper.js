@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const LayoutWrapper = ({ children }) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false)
@@ -51,7 +51,7 @@ const LayoutWrapper = ({ children }) => {
                 }`}
               >
                 <div className="mr-3 duration-150 ease-out sm:opacity-100">
-                  <Logo />
+                  <Player autoplay src="/logo.json" className={`logo theme-${theme}`} />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl">
