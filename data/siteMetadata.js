@@ -1,7 +1,7 @@
 const siteMetadata = {
   title: 'iO Technology',
   author: 'iO',
-  headerTitle: 'Technology hub',
+  headerTitle: 'technology_hub',
   description: 'A blog by iO Developers',
   language: 'en-us',
   theme: 'light', // system, dark or light
