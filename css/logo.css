@@ -1,0 +1,10 @@
+.logo {
+  width: 85px;
+}
+
+.logo .lottieIcon {
+  fill: #fff;
+}
+.logo.theme-default .lottieIcon {
+  fill: #000;
+}
