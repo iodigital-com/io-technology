@@ -165,7 +165,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </div>
             <div className="pt-4 xl:pt-8">
               <Link
-                href="/blog"
+                href="/articles"
                 className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
               >
                 &larr; Back to the blog

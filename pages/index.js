@@ -38,13 +38,18 @@ export default function Home({ posts, videos, jobs, authors }) {
             </h1>
             <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:-mt-6 xl:col-span-7">
               <div className="w-1/2">
-                <Image src={'/home2.avif'} width={1200} height={1200} layout="responsive" />
+                <Image
+                  src={'/iO-technology-blog1.png'}
+                  width={2160}
+                  height={2160}
+                  layout="responsive"
+                />
               </div>
               <div className="w-1/2">
                 <Image
-                  src={'/home1.avif'}
-                  width={1200}
-                  height={1200}
+                  src={'/iO-technology-blog2.png'}
+                  width={2160}
+                  height={2160}
                   layout="responsive"
                   className="rounded-full"
                 />
@@ -53,11 +58,12 @@ export default function Home({ posts, videos, jobs, authors }) {
             <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
               <div className="RichText_root__3OHW3">
                 <p>
-                  iO is an end-to-end agency designing and executing solutions for the strategic,
-                  creative, digital &amp; marketing needs of today and tomorrow. We not only help
-                  clients to achieve their business objectives, together we discover and exploit the
-                  endless possibilities –&nbsp;
-                  <i>infinite opportunities</i>&nbsp;– that a constantly changing market offers.
+                  We are iO – a growing team of experts thriving on curiosity and explorers of all
+                  things <span className="font-serif">new and exciting</span>. As an end-to-end
+                  agency we <span className="font-serif">think big and work locally</span> in
+                  strategy, creation, content, marketing & technology - across every industry
+                  imaginable. Knowledge is the foundation of everything we undertake. Are you
+                  creative, curious and hungry for knowledge? Feed your mind.
                 </p>
               </div>
             </span>
