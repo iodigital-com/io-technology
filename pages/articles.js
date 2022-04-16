@@ -29,7 +29,7 @@ export default function Articles({ posts, initialDisplayPosts, pagination, autho
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}
-        title="All articles"
+        title="Discover all articles"
         authors={authors}
         theme={theme}
       />
