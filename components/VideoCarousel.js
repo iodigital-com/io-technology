@@ -2,7 +2,7 @@ import VideoCard from '@/components/VideoCard'
 
 const VideoCarousel = ({ videos }) => {
   return (
-    <div className="my-12 mb-24 flex flex-wrap md:snap-x md:flex-nowrap md:gap-12 md:overflow-x-auto md:px-12">
+    <div className="my-12 mb-24 flex flex-col flex-wrap items-center md:snap-x md:flex-row md:flex-nowrap md:gap-12 md:overflow-x-auto md:px-12">
       {videos.map((vid) => (
         <div
           key={vid.id}
