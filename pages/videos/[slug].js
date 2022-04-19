@@ -2,6 +2,7 @@ import { PageSEO } from '@/components/SEO'
 import { getAllVideos } from '@/lib/youtube'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import formatDate from '@/lib/utils/formatDate'
+import siteMetadata from '@/data/siteMetadata'
 
 export const getStaticPaths = async () => {
   const { videos } = await getAllVideos()
@@ -33,7 +34,7 @@ export default function Video({ video }) {
 
   return (
     <>
-      <PageSEO title={`Videos - ${video.title}`} description={video.description} />
+      <PageSEO title={`${video.title} - ${siteMetadata.author}`} description={video.description} />
 
       <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
         <div className="container mx-auto">
