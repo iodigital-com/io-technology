@@ -12,6 +12,8 @@ import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
+import Image1 from '../public/iO-technology-blog1.png'
+import Image2 from '../public/iO-technology-blog2.png'
 
 const MAX_BLOG_POSTS = 5
 
@@ -39,33 +41,37 @@ export default function Home({ posts, videos, jobs, authors }) {
             <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:-mt-6 xl:col-span-7">
               <div className="w-1/2">
                 <Image
-                  src={'/iO-technology-blog1.png'}
+                  src={Image1}
                   width={2160}
                   height={2160}
                   layout="responsive"
+                  sizes="(min-width: 768px) 20vw, 33vw"
+                  priority={true}
+                  placeholder="blur"
                 />
               </div>
               <div className="w-1/2">
                 <Image
-                  src={'/iO-technology-blog2.png'}
+                  src={Image2}
                   width={2160}
                   height={2160}
                   layout="responsive"
+                  sizes="(min-width: 768px) 20vw, 33vw"
+                  priority={true}
+                  placeholder="blur"
                   className="rounded-full"
                 />
               </div>
             </div>
             <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <div className="RichText_root__3OHW3">
-                <p>
-                  We are iO – a growing team of experts thriving on curiosity and explorers of all
-                  things <span className="font-serif">new and exciting</span>. As an end-to-end
-                  agency we <span className="font-serif">think big and work locally</span> in
-                  strategy, creation, content, marketing & technology - across every industry
-                  imaginable. Knowledge is the foundation of everything we undertake. Are you
-                  creative, curious and hungry for knowledge? Feed your mind.
-                </p>
-              </div>
+              <p className="text-lg">
+                We are iO – a growing team of experts thriving on curiosity and explorers of all
+                things <span className="font-serif">new and exciting</span>. As an end-to-end agency
+                we <span className="font-serif">think big and work locally</span> in strategy,
+                creation, content, marketing & technology - across every industry imaginable.
+                Knowledge is the foundation of everything we undertake. Are you creative, curious
+                and hungry for knowledge? Feed your mind.
+              </p>
             </span>
             <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
               <li className="mb-4 flex items-center last:mb-0">
