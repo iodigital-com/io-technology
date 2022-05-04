@@ -24,7 +24,7 @@ if (!isDevelopment) {
     '%chttps://www.iodigital.com/en/careers/jobs?expertise=Technology',
     'font-size: 1rem'
   )
-  console.info('')
+  console.info(' ')
 }
 
 export default function App({ Component, pageProps }) {
