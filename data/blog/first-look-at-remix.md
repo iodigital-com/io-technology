@@ -14,7 +14,7 @@ This is not a step-by-step guide on how to make a web application with Remix, bu
 
 ## Routing mechanism
 
-Like Next.js, Remix uses a file-based routing system. In `/app` (where your app will live) you can create a folder called `routes`. Every file you add (e.g. `/app/routes/example` will create a route and page under `http://website.com/example`. If you're unfamiliar with this concept, please read my article [A simple, yet detailed introduction to Next.js](https://www.davebitter.com/articles/a-simple-yet-detailled-introduction-to-next-js). Next.js and Remix work nearly the same with some exceptions like creating a dynamic page (`[slug]` vs. `$slug`. If this is not the way you want to work, you can also define your routes in an object for both of these frameworks.
+Like Next.js, Remix uses a file-based routing system. In `/app` (where your app will live) you can create a folder called `routes`. Every file you add (e.g. `/app/routes/example` will create a route and page under `http://website.com/example`. If you're unfamiliar with this concept, please read my article on my personal blog [A simple, yet detailed introduction to Next.js](https://www.davebitter.com/articles/a-simple-yet-detailled-introduction-to-next-js). Next.js and Remix work nearly the same with some exceptions like creating a dynamic page (`[slug]` vs. `$slug`. If this is not the way you want to work, you can also define your routes in an object for both of these frameworks.
 
 ### Nested routes
 
@@ -312,7 +312,7 @@ Note that we return the validation messages if there is something wrong and rend
 
 ## Resource routes
 
-If I would've build the previous form without any client-side JS in Next.js, I would've had to build a Next.js API route. These are incredibly powerful. You can read more about these API routes in my article [Next.js API routes](https://www.davebitter.com/articles/next-js-api-routes). With Remix, you can do exactly the same, but even more. Remix doesn't just offer this for, for instance, JSON responses, but for any kind of response really. You can create a file with a special naming pattern like `/app/routes/jokes[.]rss.tsx`. The `[.]rss` part tells Remix that you will return a `.rss` file. In this code snippet, you can see how something like this could work.
+If I had built the previous form without any client-side JS in Next.js, I would've had to build a Next.js API route. These are incredibly powerful. With Remix, you can do exactly the same, but even more. Remix doesn't just offer this for, for instance, JSON responses, but for any kind of response really. You can create a file with a special naming pattern like `/app/routes/jokes[.]rss.tsx`. The `[.]rss` part tells Remix that you will return a `.rss` file. In this code snippet, you can see how something like this could work.
 
 ```jsx
 import type { LoaderFunction } from 'remix'
@@ -426,6 +426,6 @@ During the Jokes app tutorial, I didn't even realize that hadn't written any cli
 
 ## Verdict.
 
-I'm a big advocate of Progressive Enhancement to make web applications simple, accessible and resilient. You can read some of my articles on this [here](https://www.davebitter.com/tags/progressive-enhancement). I usually put this to practice for just components. Seeing Remix take this approach to the entire application gives me hope for a future of building great web applications using web standards and progressive enhancement.
+I'm a big advocate of Progressive Enhancement to make web applications simple, accessible and resilient. I usually put this to practice for just components. Seeing Remix take this approach to the entire application gives me hope for a future of building great web applications using web standards and progressive enhancement.
 
 For the first time in years, I felt like a "web developer" again instead of a JS engineer. It's incredible fun to start thinking about how to leverage these standards smartly. I'm very excited about what Remix will offer and will definitely continue researching Remix and sharing it with all of you. Thanks for reading!
