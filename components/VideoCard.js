@@ -3,16 +3,17 @@ import Link from '@/components/Link'
 
 const VideoCard = ({ video, playButton = true }) => {
   return (
-    <article className="flex flex-col-reverse items-center bg-gray-100 p-8">
+    <article className="relative flex flex-col-reverse items-center bg-gray-100 p-8">
       <div>
         <header>
           <h3 className="mb-2 text-3xl font-medium line-clamp-2">
             <span dangerouslySetInnerHTML={{ __html: video.title }}></span>
           </h3>
-          <p className="text-lg line-clamp-3">{video.description}</p>
+          <p className="hyphens-auto text-lg line-clamp-3 ">{video.description}</p>
         </header>
       </div>
-      <Link href={`/videos/${video.id}`} className="relative mb-8 w-full">
+
+      <div className="relative mb-8 w-full">
         <Image
           alt={video.title}
           src={video.thumbnails.default.url.replace('default', 'maxresdefault')}
@@ -22,6 +23,7 @@ const VideoCard = ({ video, playButton = true }) => {
           objectFit="cover"
           layout="responsive"
         />
+
         {playButton && (
           <div className="absolute top-1/2 left-1/2 flex h-28 w-28 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-full bg-io_orange-500 align-middle text-white shadow-lg">
             <svg
@@ -40,6 +42,9 @@ const VideoCard = ({ video, playButton = true }) => {
             <span>Play video</span>
           </div>
         )}
+      </div>
+      <Link href={`/videos/${video.id}`} className="absolute top-0 right-0 bottom-0 left-0 text-0">
+        Go to page for {video.title}
       </Link>
     </article>
   )

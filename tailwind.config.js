@@ -32,6 +32,9 @@ module.exports = {
         sans: ['TTCommonsPro', ...defaultTheme.fontFamily.sans],
         serif: ['Reckless', ...defaultTheme.fontFamily.serif],
       },
+      fontSize: {
+        0: '0',
+      },
       colors: {
         primary: brandColors.colors.io_orange,
         gray: colors.neutral,
