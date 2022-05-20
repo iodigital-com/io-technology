@@ -1,3 +1,4 @@
-.header-image > * {
-  max-height: 75vh;
+.header-image * {
+  max-height: 40vh;
+  object-fit: cover;
 }
