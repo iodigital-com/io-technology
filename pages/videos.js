@@ -43,22 +43,6 @@ export default function Videos({ videos }) {
                   Most of our meetups are live streamed to YouTube. Please subscribe to get notified
                   when a meetup is planned!
                 </p>
-                <div className="flex flex-row">
-                  <SocialIcon
-                    kind="youtube"
-                    href={siteMetadata.youtube}
-                    size="6"
-                    classNames="!text-white mr-2"
-                  />{' '}
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={siteMetadata.youtube}
-                    className="underline underline-offset-1"
-                  >
-                    iO - Technology
-                  </a>
-                </div>
               </div>
             </div>
           </div>
