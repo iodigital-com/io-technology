@@ -24,7 +24,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
           <div className="container mx-auto">
             <h1 className="text-4xl font-medium xl:text-7xl">{title}</h1>
-            <div className="mb-4 divide-x">
+            <div className="my-4 divide-x">
               {authorDetails.slice(0, 1).map((author) => {
                 return (
                   <p key={author.name} className="inline pr-2 text-xl font-light">
