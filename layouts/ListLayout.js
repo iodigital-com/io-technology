@@ -25,7 +25,7 @@ export default function ListLayout({
   return (
     <>
       <section className={`bg-io_${theme}-500 ${textClass}`}>
-        <div className="container mx-auto mb-12 pt-8 pb-24 md:pb-32 xl:pb-40">
+        <div className="container mx-auto mb-12 pt-0 pb-24">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
