@@ -8,7 +8,7 @@ import asciiLogo from '@/lib/io'
 import { ThemeProvider } from 'next-themes'
 
 import siteMetadata from '@/data/siteMetadata'
-import Analytics from '@/components/analytics'
+import Analytics from '@/components/Analytics'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import { ClientReload } from '@/components/ClientReload'
 import { BrandingThemeProvider } from '@/lib/hooks/useBrandingTheme'
