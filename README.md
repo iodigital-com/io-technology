@@ -28,3 +28,7 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Contributing
+
+Check the guidelines in the [Wiki](https://github.com/iodigital-com/io-technology/wiki)
