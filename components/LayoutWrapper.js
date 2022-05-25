@@ -42,7 +42,7 @@ const LayoutWrapper = ({ children }) => {
           scrolledPassedHeader ? '' : `bg-io_${themeBg}-500`
         } py-4 px-4 ${textClass} xl:bg-io_${themeBg}-500`}
       >
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between p-0">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div
@@ -51,7 +51,11 @@ const LayoutWrapper = ({ children }) => {
                 }`}
               >
                 <div className="mr-3 duration-150 ease-out sm:opacity-100">
-                  <Player autoplay src="/logo.json" className={`logo theme-${theme}`} />
+                  <Player
+                    autoplay
+                    src="/logo.json"
+                    className={`logo theme-${theme} -translate-x-3 sm:translate-x-0`}
+                  />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl">
