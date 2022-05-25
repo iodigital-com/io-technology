@@ -43,7 +43,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </div>
 
             {images?.length > 0 && (
-              <div className="header-image -mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
+              <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
                 <Image
                   src={images[0]}
                   alt={title}
