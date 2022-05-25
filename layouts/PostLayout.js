@@ -24,7 +24,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
         <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
           <div className="container mx-auto">
             <h1 className="text-4xl font-medium xl:text-7xl">{title}</h1>
-            <div className="mb-4 divide-x">
+            <div className="my-4 divide-x">
               {authorDetails.slice(0, 1).map((author) => {
                 return (
                   <p key={author.name} className="inline pr-2 text-xl font-light">
@@ -43,7 +43,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </div>
 
             {images?.length > 0 && (
-              <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
+              <div className="header-image -mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
                 <Image
                   src={images[0]}
                   alt={title}

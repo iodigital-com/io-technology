@@ -30,9 +30,11 @@ const Article = ({ slug, date, title, tags, authors }) => (
         </div>
       </div>
       <div className="col-span-full md:col-start-4 xl:col-start-7">
-        <h2 className="text-2xl">
-          <Link href={`/articles/${slug}`}>{title}</Link>
-        </h2>
+        <Link href={`/articles/${slug}`}>
+          <h2 className="text-2xl">
+            <Link href={`/articles/${slug}`}>{title}</Link>
+          </h2>
+        </Link>
         <dl className="mb-4">
           <dt className="sr-only">Published on</dt>
           <dd className="leading- text-sm font-light">
