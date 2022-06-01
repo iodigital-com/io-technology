@@ -18,6 +18,7 @@ const Article = ({ slug, date, title, tags, authors }) => (
                   width={200}
                   height={200}
                   alt="avatar"
+                  objectFit="cover"
                   className="rounded-full"
                 />
               )
