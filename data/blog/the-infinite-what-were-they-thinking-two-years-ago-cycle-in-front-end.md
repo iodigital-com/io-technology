@@ -91,7 +91,7 @@ Let's take frameworks as an indicator. One of the big reasons for certain front-
 
 ![Rendering schema from SSR to CSR to SSG to SSR](/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/rendering-schema.png)
 
-Another example is rendering strategies. Ever noticed we tend to go in circles? We started with rendering all applications server-side. The rise of SPA frameworks moved everything to client-side rendering. This caused issues that we tried to resolve with static site generation. This was cumbersome so one of the latest frameworks, Remix, is moving back to web fundamentals with server-side rendering. The front-end community figuring this out over the past decade has caused an immense rise in "legacy applications”.
+Another example is rendering strategies. Ever noticed we tend to go in circles? We started with rendering all applications server-side. The rise of SPA frameworks moved everything to client-side rendering. This caused issues that we tried to resolve with static site generation. This was cumbersome so one of the latest frameworks, [Remix](/articles/first-look-at-remix), is moving back to web fundamentals with server-side rendering. The front-end community figuring this out over the past decade has caused an immense rise in "legacy applications”.
 
 ### We'll get there
 
