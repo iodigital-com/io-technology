@@ -1,9 +1,8 @@
 ---
-title: 'The infinite "what were they thinking two years ago"-cycle in front-end'
+title: 'The infinite legacy cycle in front-end'
 date: '2022-06-01'
 tags: ['frontend']
-images:
-  ['/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/interview.jpg']
+images: ['/articles/the-infinite-legacy-cycle-in-front-end/interview.jpg']
 summary: 'Projects often become legacy in a incredibly short time. I have spoken to people in technology with a variety of skills, experience and roles. Time to find out how they think about this, what tips they have to prevent these issues and more.'
 authors: ['dave-bitter']
 theme: 'orange'
@@ -33,7 +32,7 @@ I have spoken to people in technology with a variety of skills, experience and r
 
 Whether you work at a small startup or a large corporation, there seems to be a common reason why unsustainable solutions are written. Often, the credo is to deliver early, deliver much and keep on getting funding/budget. Especially in front-end development, it's easy to fall into this trap. It's very easy to deliver quickly in front-end development with flashy UI and new features. Almost always this means you have to sacrifice some things. Scalability, documentation and sustainability are some of those things. It's hard to sell these to management who first need to see quick positive results before thinking about long-term consequences. A lot of temporary solutions are made to stay on track with the deadlines.
 
-![I'll fix it later... he, in fact, did not fix it later...](/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/fix-it-later.png)
+![I'll fix it later... he, in fact, did not fix it later...](/articles/the-infinite-legacy-cycle-in-front-end/fix-it-later.png)
 
 > Nothing is as permanent as a temporary solution.
 
@@ -51,7 +50,7 @@ It's incredibly hard to get time to refactor "legacy code”. There is often a c
 
 As a developer, you often fall into the trap of making your case to non-technical people with technical terms. For example, try explaining to a non-technical person that you need to refactor your global state manager to a new framework that makes it easier to persist state client- and serverside. These terms are not difficult for developers to understand, but if you are not a developer, they can sound like a foreign language.
 
-![Making your manager fall asleep with technical terms](/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/making-your-manager-fall-asleep.png)
+![Making your manager fall asleep with technical terms](/articles/the-infinite-legacy-cycle-in-front-end/making-your-manager-fall-asleep.png)
 
 Instead, try to not just "dumb down” what you are explaining, but ask yourself if you need to explain it at all. A better way of communicating this to your manager is to explain the benefits for the users of their product. We need to use this new technique as it will allow us to remember choices the user made across different pages and moments in time. This way we can personalise the user experience and work on improving the conversion rate. You see, this turns it into an understandable story that clearly shows the business value.
 
@@ -71,11 +70,11 @@ It may seem like a counterintuitive statement, but a major downfall of very smar
 
 Naturally, this can be countered with well-written documentation, knowledge transfers and similar solutions, but you will never fully understand how it works as the original developer did. There is an acronym that we like to use called K.I.S.S. (Keep It Simple Stupid). Although this may seem overly obvious, this credo is not followed in a lot of situations. It's actually quite hard to keep your solution simple and easy to understand. The extra time invested in this will be worth it in the long run as developers not using an existing solution because it's they can't grasp what it offers or how it works is such a shame. A new solution, maybe equally as complex, is written and the cycle continues.
 
-## Front-end is **in its infancy**
+## Front-end is in its infancy
 
-![Two front-end developers walk into a bar. They've got nothing to talk about...](/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/two-front-end-developers-walk-into-a-bar.png)
+![Two front-end developers walk into a bar. They've got nothing to talk about...](/articles/the-infinite-legacy-cycle-in-front-end/two-front-end-developers-walk-into-a-bar.png)
 
-I can go on and on about reasons for the _"The infinite "what were they thinking two years ago”-cycle in front-end”_ phenomenon, but it comes mostly down to a simple observation. Front-end is in its infancy compared to, for instance, Java and .NET by about 30 years. These platforms went through similar cycles and became more standardised and agreed upon over the years.
+I can go on and on about reasons for the _"The infinite legacy cycle in front-end”_ phenomenon, but it comes mostly down to a simple observation. Front-end is in its infancy compared to, for instance, Java and .NET by about 30 years. These platforms went through similar cycles and became more standardised and agreed upon over the years.
 
 ### We are not really focused on design patterns
 
@@ -89,7 +88,7 @@ Let's take frameworks as an indicator. One of the big reasons for certain front-
 
 ### Rendering strategies
 
-![Rendering schema from SSR to CSR to SSG to SSR](/articles/the-infinite-what-were-they-thinking-two-years-ago-cycle-in-front-end/rendering-schema.png)
+![Rendering schema from SSR to CSR to SSG to SSR](/articles/the-infinite-legacy-cycle-in-front-end/rendering-schema.png)
 
 Another example is rendering strategies. Ever noticed we tend to go in circles? We started with rendering all applications server-side. The rise of SPA frameworks moved everything to client-side rendering. This caused issues that we tried to resolve with static site generation. This was cumbersome so one of the latest frameworks, [Remix](/articles/first-look-at-remix), is moving back to web fundamentals with server-side rendering. The front-end community figuring this out over the past decade has caused an immense rise in "legacy applications”.
 
