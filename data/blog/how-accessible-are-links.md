@@ -5,6 +5,7 @@ tags: ['a11y']
 images: ['/articles/how-accessibile-are-links/a11y-links.jpg']
 summary: 'Links are one of the main basic elements that you’ll find on any website. Yet, a lot of them are not as accessible as we would like.'
 authors: ['frank-van-eldijk']
+canonicalUrl: 'https://beingfrankly.nl/blog/how-accessible-are-links'
 ---
 
 In this short article I'll focus on screen readers and voice recognition, and how they deal with links. I'll not cover every possible problem that could happen. I'm going to reserve that for a different article which I'll publish soon.
