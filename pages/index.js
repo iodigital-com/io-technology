@@ -118,7 +118,7 @@ export default function Home({ posts, videos, jobs, authors }) {
 
       {posts.length > MAX_BLOG_POSTS && (
         <div className="container mx-auto flex justify-end text-xl font-medium leading-6">
-          <Link href="/blog" aria-label="all posts">
+          <Link href="/articles" aria-label="all posts">
             All Posts &rarr;
           </Link>
         </div>
