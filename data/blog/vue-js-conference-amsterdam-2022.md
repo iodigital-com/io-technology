@@ -5,6 +5,7 @@ tags: ['frontend', 'vue', 'conference']
 images: ['/articles/vue-js-conference-amsterdam-2022/group.jpeg']
 summary: "Together with some colleagues I’ve attended the VueJS conference in Amsterdam. It was nice to meet colleagues from other campuses and having a chance to get to know them in a different setting. The conference itself was a little underwhelming, but that doesn't mean I went home without some valuable takeaways."
 authors: ['thijs-busser']
+theme: 'black'
 ---
 
 I didn't take extensive notes during the conference so by no means do I pretend this will be an exhaustive list of everything presented during the conference. For instance there were a lot of talks focussing on Nuxt.js but this is not something I have a lot of interest in. With that being said, these are my main takeaways from the two days.
