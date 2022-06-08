@@ -47,8 +47,8 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 <Image
                   src={images[0]}
                   alt={title}
-                  width={1200}
-                  height={627}
+                  width={1280}
+                  height={720}
                   layout="responsive"
                   priority={true}
                 />
