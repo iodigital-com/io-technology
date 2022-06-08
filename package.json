@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "~18",
+    "node": "~16",
     "npm": "~8"
   },
   "dependencies": {
