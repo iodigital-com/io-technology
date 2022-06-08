@@ -123,9 +123,9 @@ In this example, created by the great [Una Kravets](https://una.im), we see a pa
 <div className="md:-mx-32 my-4">
   <div className="relative aspect-w-16 aspect-h-9 border">
     <iframe src="https://codepen.io/vanhoofmaarten/full/vYWYKLP" className="absolute inset-0" style={{
-      width: "200%",
-      height: "200%",
-      transform: "translate(-25%,-25%) scale(.5)",
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
     }}></iframe>
   </div>
 </div>
@@ -154,11 +154,11 @@ Currently the container query specification settles at more distinct property li
 
 ```css
 .product {
-  container: product / size;
+  container: product / inline-size;
 
   /* Shorthand for */
   container-name: product;
-  container-type: size;
+  container-type: inline-size;
 }
 ```
 
@@ -166,11 +166,8 @@ Currently the container query specification settles at more distinct property li
 
 ```css
 .product {
-  /* Target specific containers*/
   container-name: product;
-
-  /* inline-size, block-size, aspect-ratio, orientation, style, state */
-  container-type: size;
+  container-type: inline-size;
 }
 ```
 
@@ -179,7 +176,7 @@ With the container-type you can establish an element as a query container. Curre
 ##### Size container features
 
 ```css
-@container size(inline-size > 400px) {
+@container (inline-size > 400px) {
   .product-body {
   }
 }
@@ -191,6 +188,9 @@ Size container feature are:
 - **inline-size** or **block-size**, the logical properties for width and height for respectively only the horizontal or vertical axis,
 - **aspect/ratio**
 - **orientation**
+
+<div className="p-4 bg-io_orange-100 font-serif mb-4">Browser vendors have indicated to first focus and ship the inline-size container feature. Other container features will follow later.</div>
+<br />
 
 ##### Style container features
 
@@ -207,7 +207,8 @@ Style container features can be used for querying computed values. With this, we
 }
 ```
 
-:warning: The style container queries proposal might be deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/7020
+<div className="p-4 bg-io_orange-100 font-serif mb-4">The style container queries proposal might be deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/7020</div>
+<br />
 
 ##### State container features
 
@@ -228,7 +229,8 @@ header {
 }
 ```
 
-:warning: The state container queries proposal has been deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/6402
+<div className="p-4 bg-io_orange-100 font-serif mb-4">The state container queries proposal has been deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/6402</div>
+<br />
 
 #### Container-name
 
@@ -236,22 +238,22 @@ The container-name property enables us to implement multi-level container querie
 
 ```css
 .product-list {
-  container-type: size;
+  container-type: inline-size;
   container-name: list;
 }
 
 .page {
-  container-type: size;
+  container-type: inline-size;
   container-name: folio;
 }
 
-@container list size(inline-size > 800px) {
+@container list (inline-size > 800px) {
   .product {
     /* … */
   }
 }
 
-@container folio size(inline-size > 400px) and size(block-size > 200px) {
+@container folio (inline-size > 400px) and (inline-size < 800px) {
   .product {
     /* … */
   }
@@ -265,7 +267,7 @@ Here our first query will target `.product-list` through the `list` container-na
 The actual container query is declared using the `@container` rule, which has a similar syntax to the `@media` rule or media query with the [addition of also declaring the container-type](https://github.com/w3c/csswg-drafts/issues/6393). In this example, the query will match if the inline-size, the logical property of width, is larger than 400 pixels. Like media queries, we can use multiple conditions. Here, the query will match if the inline-size exceeds 400 pixels and block-size exceeds 200 pixels.
 
 ```css
-@container size(inline-size > 400px) {
+@container (inline-size > 400px) {
   .product-body {
     /* … */
   }
@@ -275,7 +277,7 @@ The actual container query is declared using the `@container` rule, which has a 
 To make use of container-names, we need to declare the container-name. In the example below, we filter the query to the container with `container-name` `list`.
 
 ```css
-@container list size(inline-size > 800px) {
+@container list (inline-size > 800px) {
   .product {
     /* … */
   }
@@ -286,10 +288,10 @@ An important note with using container queries is that container cannot query th
 
 ```css
 .ancestor {
-  container-type: size;
+  container-type: inline-size;
 }
 
-@container size(inline-size > 800px) {
+@container (inline-size > 800px) {
   .ancestor {
     /* NOPE */
   }
@@ -353,8 +355,9 @@ With the knowledge of container queries in our possession, we can refactor the u
   container: inline-size;
 }
 
-@container size(inline-size > 500px) {
+@container (inline-size > 500px) {
   .widget-body {
+    /* … */
   }
 }
 ```
@@ -374,9 +377,9 @@ A good use case for container queries, I believe, is a shopping cart component, 
 <div className="md:-mx-32 my-4">
   <div className="relative aspect-w-16 aspect-h-9 border">
     <iframe src="https://codepen.io/vanhoofmaarten/full/mdWBMGb" className="absolute inset-0" style={{
-      width: "200%",
-      height: "200%",
-      transform: "translate(-25%,-25%) scale(.5)",
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
     }}></iframe>
   </div>
 </div>
@@ -392,9 +395,9 @@ If I enlarge the image of the stegosaurus, we see the outline disappear and the 
 <div className="md:-mx-32 my-4">
   <div className="relative aspect-w-16 aspect-h-9 border">
     <iframe src="https://codepen.io/vanhoofmaarten/full/WNpJoGq" className="absolute inset-0" style={{
-      width: "200%",
-      height: "200%",
-      transform: "translate(-25%,-25%) scale(.5)",
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
     }}></iframe>
   </div>
 </div>
