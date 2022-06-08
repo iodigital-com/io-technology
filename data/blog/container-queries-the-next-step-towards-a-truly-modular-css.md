@@ -1,8 +1,8 @@
 ---
 title: 'Container Queries, the next step towards a truly modular CSS'
 date: '2022-06-08'
-tags: ['frontend', 'css', 'web']
-images: ['/articles/container-queries-the-next-step-in-towards-a-truly-modular-css/hero.svg']
+tags: ['frontend', 'css']
+images: ['/articles/container-queries-the-next-step-towards-a-truly-modular-css/hero.svg']
 summary: 'Container queries enables encapsulation of adaptive styling based on the size, style or state of a parent element. This allows responsive component-based architectures, like design systems and component libraries, to provide the most optimal responsive styling within a component itself.'
 authors: ['maarten-van-hoof']
 ---
@@ -24,7 +24,7 @@ If my former questions are not ringing any bells: No worries. I'll share with yo
 With having seen the evolution of front-end over the last couple of years, having contributed to several design systems and component libraries, and heck having even maintained a personal Bootstrap fork with alternate naming convention for half a decade, I believe container queries are one of the most exciting new features coming to the CSS standard. Something that will enable you to optimize responsive styling for your components. Let me give you an example.
 
 <div className="md:-mx-32">
-![A mockup of a dashboard of a webapplication](/articles/container-queries-the-next-step-in-towards-a-truly-modular-css/dashboard-default.svg)
+![A mockup of a dashboard of a webapplication](/articles/container-queries-the-next-step-towards-a-truly-modular-css/dashboard-default.svg)
 </div>
 
 ## Widgets
@@ -43,7 +43,7 @@ Let's look at some other possible factors that could come in to play. Additional
 How would we translate these requirements, with possible side-effects, to code?
 
 <div className="md:-mx-32">
-![A mockup of a dashboard of a webapplication with the viewport highlighted](/articles/container-queries-the-next-step-in-towards-a-truly-modular-css/dashboard-global-highlight.svg)
+![A mockup of a dashboard of a webapplication with the viewport highlighted](/articles/container-queries-the-next-step-towards-a-truly-modular-css/dashboard-global-highlight.svg)
 </div>
 
 First thing to we'd might take in to consideration is using media queries. However, media queries give us the ability to style responsively according to the viewport and doesn't offer us enough flexibility to create modular styling.
@@ -51,7 +51,7 @@ First thing to we'd might take in to consideration is using media queries. Howev
 ## Possible solutions
 
 <div className="md:-mx-32">
-![A mockup of a dashboard of a webapplication with the separate components highlighted](/articles/container-queries-the-next-step-in-towards-a-truly-modular-css/dashboard-weather-highlighted.svg)
+![A mockup of a dashboard of a webapplication with the separate components highlighted](/articles/container-queries-the-next-step-towards-a-truly-modular-css/dashboard-weather-highlighted.svg)
 </div>
 
 How can each component be responsible for it's own adaptive styling?
