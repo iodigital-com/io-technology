@@ -58,10 +58,6 @@ Since we are not able to time travel yet, we don't know what the future will bri
 Our **code** will have to **evolve** in order to keep up with the new requirements, and by copying those 4 lines and
 not thinking about what you just did on a conceptual level, you increase the **technical debt** that will have to be **paid off eventually.**
 
-If you want to know more about technical debt and how to handle it, I suggest you read this post:
-[How To Rescue Legacy Code through Refactoring](https://www.intracto.com/en-be/blog/paying-technical-debt-how-to-rescue-legacy-code-through-refactoring)
-by [Jeroen Moons](https://twitter.com/jeroenmoons).
-
 > The ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. ...[Therefore,] making it easy to read makes it easier to write. -- **Robert C. Martin, Clean Code**
 
 ## Reading vs Writing
