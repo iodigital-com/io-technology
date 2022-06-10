@@ -104,13 +104,20 @@ const LayoutWrapper = ({ children }) => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 504 291.2"
+                  viewBox={navigationIsOpen ? '0 0 23 23' : '0 0 504 291.2'}
                   fill="black"
                   className="text-white dark:text-black"
                 >
-                  <g>
+                  {navigationIsOpen ? (
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="m12.414 11 9.193-9.192L20.192.394 11 9.586 1.808.394.393 1.808 9.586 11 .393 20.192l1.415 1.415L11 12.414l9.192 9.193 1.415-1.415L12.414 11Z"
+                      fill="#1F1F1F"
+                    />
+                  ) : (
                     <path d="M492.8 156.8H11.2a11.2 11.2 0 1 1 0-22.4h481.6a11.2 11.2 0 0 1 0 22.4ZM504 11.2A11.23 11.23 0 0 0 492.8 0H11.2a11.2 11.2 0 0 0 0 22.4h481.6A11.23 11.23 0 0 0 504 11.2Zm0 268.8a11.23 11.23 0 0 0-11.2-11.2H11.2a11.2 11.2 0 0 0 0 22.4h481.6A11.23 11.23 0 0 0 504 280Z" />
-                  </g>
+                  )}
                 </svg>
               </button>
               <span
