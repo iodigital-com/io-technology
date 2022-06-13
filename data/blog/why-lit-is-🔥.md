@@ -12,7 +12,7 @@ In the fast-changing world of front-end development it's hard to keep up with al
 
 ![Schema of the elements of a URL](/articles/why-lit-is-🔥/standards.png)
 
-Luckily things are changing (again). With architectural choices like [micro frontends](https://www.isaac.nl/nl/developer-blog/micro-frontends/) it is possible to break up a complex and large code base in logical smaller parts. What if those parts share a few components? Which framework should you use? It should be interoperable and future ready. This is one example where _web components_ shine as you can use those [anywhere](https://caniuse.com/custom-elementsv1) you use HTML.
+Luckily things are changing (again). With architectural choices like [micro frontends](https://www.iodigital.com/en/insights/technology/micro-frontend-future-frontend-development) it is possible to break up a complex and large code base in logical smaller parts. What if those parts share a few components? Which framework should you use? It should be interoperable and future ready. This is one example where _web components_ shine as you can use those [anywhere](https://caniuse.com/custom-elementsv1) you use HTML.
 
 ## What is LIT?
 
