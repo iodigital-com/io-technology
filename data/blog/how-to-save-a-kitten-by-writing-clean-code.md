@@ -1,6 +1,6 @@
 ---
 title: 'How to save a kitten by writing clean code'
-date: '2022-06-08'
+date: '2022-06-13'
 tags: ['clean-code']
 images: ['/articles/how-to-save-a-kitten-by-writing-clean-code/intro-sad-cat.jpeg']
 summary: "So you came here to save a kitten? That's wonderful, but the real reason we're both here is to talk about clean code."
