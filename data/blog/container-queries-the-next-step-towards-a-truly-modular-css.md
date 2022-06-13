@@ -1,6 +1,6 @@
 ---
 title: 'Container Queries, the next step towards a truly modular CSS'
-date: '2022-06-08'
+date: '2022-06-15'
 tags: ['frontend', 'css']
 images: ['/articles/container-queries-the-next-step-towards-a-truly-modular-css/hero.svg']
 summary: 'Container queries enables encapsulation of adaptive styling based on the size, style or state of a parent element. This allows responsive component-based architectures, like design systems and component libraries, to provide the most optimal responsive styling within a component itself.'
