@@ -17,6 +17,12 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com/company/iodigital-com/',
   locale: 'en-US',
   gtmId: 'GTM-N6WMF5H',
+  legal: [
+    { title: 'Cookies', url: 'https://www.iodigital.com/en/cookie-policy' },
+    { title: 'Privacy', url: 'https://www.iodigital.com/en/privacy-policy' },
+    { title: 'Terms & Conditions', url: 'https://www.iodigital.com/en/terms-and-conditions' },
+    { title: 'Disclaimer', url: 'https://www.iodigital.com/en/disclaimer' },
+  ],
 }
 
 module.exports = siteMetadata
