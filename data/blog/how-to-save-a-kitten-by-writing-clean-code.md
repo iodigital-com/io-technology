@@ -109,7 +109,7 @@ Explain in atomic steps what it should do in order to return the expected result
 This is an example of a signup method from a project I'm working on, before writing any code I
 **write down every step** using comments, changing them and moving them around until I have a clear view of how to get to the **expected result**.
 
-```
+```php
     public function signUp(SmartCode $code, User $user)
     {
         // 1. Check if the code is valid
@@ -139,7 +139,7 @@ In the documentation example above I wrote down the steps to take, then when I w
 comments to determine the names of variables and methods, so the **comments** can be **removed** because they no longer
 give any extra information. By doing so your code stays readable and you **avoid superfluous and unnecessary comments**.
 
-```
+```php
     public function signUp(SmartCode $code, User $user)
     {
         $this->guardThatSmartCodeIsValid($code);
@@ -175,7 +175,7 @@ require the exact same logic: if so, you're most likely better off putting the d
 
 I see many people making the following mistake.
 
-```
+```php
 <?php
 
 function writeFile($fullpath, $content)
@@ -206,7 +206,7 @@ At first I was confused when I heard this, but after some time I started to real
 In 80% of cases where I used else before I just realized I no longer needed it if i turned the condition of my if-statement around.
 Looking at the above example it would look something like this.
 
-```
+```php
 <?php
 
 function writeFile($fullpath, $content)
