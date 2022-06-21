@@ -1,0 +1,199 @@
+---
+title: 'The future of page transitions with Shared Element Transitions'
+date: '2022-06-22'
+tags: ['frontend', 'css', 'js']
+images: ['/articles/the-future-of-page-transitons-with-shared-element-transitions/header.jpg']
+summary: 'The Shared Element Transitions API allows to create page transitions using a browser API that can provide users with a better visual connection beteen page-a and page-b by transitioning shared elements on both pages.'
+authors: ['milan-vogels']
+theme: 'orange'
+---
+
+In native mobile app development transitioning from one page/state to another is something that has been supported for a long time, for example using the [Activity transitions](https://developer.android.com/training/transitions/start-activity) for Android. For the web however, things arent all that easy.
+
+Yes, we can create transitions between pages using libraries like [BarbaJs](https://barba.js.org/). But these don't provide any visual connection between page-a and page-b to the user. So to close the gap, a new browser API is in the works: Shared Element Transition API.
+
+The [Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is a proposal for a new Web API. It allows for creating transtition animations between page navigation, transitioning elements that are present on both pages.
+
+---
+
+<div className="p-4 bg-io_orange-100 font-serif">[Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is under active development and the specification is likely to change during its development.</div>
+
+---
+
+## Getting started
+
+To get started with the Shared Element Transition API the following flags have to be enabled in Chrome:
+
+- [chrome://flags/#document-transition](chrome://flags/#document-transition)
+- [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features)
+
+First of all we need to check if the browser supports the API, and add a fallback if they don't.
+
+```JavaScript
+async function navigate() {
+    if (!document.createDocumentTransition) {
+        updateDOM(); // update the DOM
+        return;
+    }
+}
+```
+
+If it does support the new API, we can use the `createDocumentTransition` function to create a new transition.
+
+```JavaScript
+async function navigate() {
+    if (!document.createDocumentTransition) {
+        updateDOM(); // update the DOM
+        return;
+    }
+
+    const transition = document.createDocumentTransition();
+    await transition.start(() => updateDOM());
+}
+```
+
+The default transition the API creates is a simple fade. I created a small codepen example that just toggles between a card view and a detail view by toggling the display style.
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/milanvogels/full/ZErNQdr" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/milanvogels/pen/ZErNQdr</small>
+
+## Changing the animation
+
+The animation is using CSS, the default browser UA styles will animate `::page-transition-incoming-image` _from_ opacity 0 and `::page-transition-outgoing-image` _to_ opacity 0.
+
+We can add our own animations by using the following pseudo-element selectors
+
+```CSS
+::page-transition
+::page-transition-container(root)
+::page-transition-image-wrapper(root)
+::page-transition-outgoing-image(root)
+::page-transition-incoming-image(root)
+```
+
+For example, we can change the animation to a slide out:
+
+```CSS
+@keyframes slide-to-top {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+::page-transition-outgoing-image(root) {
+  animation: 400ms ease-out both slide-to-top;
+}
+
+::page-transition-incoming-image(root) {
+  animation: none; /* disable default animation */
+}
+```
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/milanvogels/full/wvybGOy" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/milanvogels/pen/wvybGOy</small>
+
+To animate seperate elements, instead of the whole page, we can replace `root` with a `page-transition-tag` property value you can add to another css selector. The default animation transitions the `width` and `height` attributes from the 'before' state to the 'after' state. Also its animates the `transform` to update to position of the targeted element.
+
+In the following example we add a `page-transition-tag: article-img` to an image tag.
+
+```CSS
+.foo img {
+    page-transition-tag: article-img;
+}
+
+::page-transition-outgoing-image(article-image) {}
+::page-transition-incoming-image(article-image) {}
+
+```
+
+This gives us an already pretty cool effect.
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/milanvogels/full/ZErNOBz" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/milanvogels/pen/ZErNOBz</small>
+
+If we want specific elements of your site to stay in-place during the transition, we have to add a `page-transition-tag` and `contain: paint`. Assuming the element wont change between page-a and page-b, the element will now remain in the same place.
+
+```CSS
+.header {
+  page-transition-tag: header;
+  contain: paint;
+}
+
+```
+
+We cant have the same `page-transition-tag` used multiple times on the same page. We'll get an error in the console when starting the transition:
+
+> Unexpected duplicate page transition tag: tag-name
+
+So instead of defining it in CSS, we can add it with JavaScript, for example on a click event.
+
+```JavaScript
+async function navigate() {
+    if (!document.createDocumentTransition) {
+        updateDOM(); // update the DOM
+        return;
+    }
+
+    const foo = GetElementYouClickedOn();
+
+    foo.style.pageTransitionTag = 'article-img';
+
+    const transition = document.createDocumentTransition();
+    await transition.start(() => updateDOM());
+
+    foo.style.pageTransitionTag = '';
+}
+```
+
+Example of a full grid of cards animating each card-image to the full article-image. Its still showing the singular article detail view we created, hence the detail-image doesnt reflect the card-image.
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/milanvogels/full/PoQvdEM" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/milanvogels/pen/PoQvdEM</small>
+
+### Multi-page applications
+
+The current iteration of the Shared Element Transition API only supports Single-page applications (SPAs). Support for Multi-page applications (MPAs) is on the roadmap to be added in the future. The use of the API for SPAs or MPAs should work in a similar way.
+
+## Start experimenting!
+
+I'am really exited about this API myself, it allows us to create page transitions that can add context to the user in a non complicated way without the use of any 3rd party libraries. The Shared Element Transition API is still in an early phase and it will take some time until its ready for shipping and implemented by other browsers, but we can already experiment a lot with it.
+
+I would like to encourage you to do the same and share your opinions in the [Github repository](https://github.com/WICG/shared-element-transitions). Cant wait to see what others are able to create with this new API.
+
+Bright times ahead for page transitions!
