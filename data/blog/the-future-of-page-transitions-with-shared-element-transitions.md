@@ -24,8 +24,8 @@ The [Shared Element Transition](https://github.com/WICG/shared-element-transitio
 
 To get started with the Shared Element Transition API the following flags have to be enabled in Chrome:
 
-- [chrome://flags/#document-transition](chrome://flags/#document-transition)
-- [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features)
+- `chrome://flags/#document-transition`
+- `chrome://flags/#enable-experimental-web-platform-features`
 
 First of all we need to check if the browser supports the API, and add a fallback if they don't.
 
