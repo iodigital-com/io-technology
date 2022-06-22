@@ -1,5 +1,5 @@
 ---
-title: 'Smart cropping with browser native Face Detection'
+title: 'Smart cropping with native browser Face Detection'
 date: '2022-06-22'
 tags: ['frontend']
 images: ['/articles/native-face-detection-cropping/teaser.png']
@@ -14,7 +14,7 @@ Let’s imagine that we need want to display an image on our webpage in an aspec
 
 ![A single person in frame](/articles/native-face-detection-cropping/single-face.png)
 
-Luckily, with modern CSS, we can easily make this 16 by 9 with the following to CSS rules:
+Luckily, with modern CSS, we can easily make this 16 by 9 with the following to CSS lines:
 
 ```css
 img {
@@ -217,7 +217,11 @@ Luckily, we can quite easily implement the functionality to get the combined bou
 }
 ```
 
-Firstly, we get the highest top, lowest bottom, farthest left and farthest right of all the detected faces. We can then easily calculate what the width and height have to be for the combined bounding box. Then, we use those values to set the value for the `object-position` just like we did earlier. A short demo for this image:
+Firstly, we get the highest top, lowest bottom, farthest left and farthest right of all the detected faces. We can then easily calculate what the width and height have to be for the combined bounding box.
+
+![Sketch of edges of group](/articles/native-face-detection-cropping/combined-bounding-box-sketch.png)
+
+Then, we use those values to set the value for the `object-position` just like we did earlier. A short demo for this image:
 
 ![Multiple people in frame](/articles/native-face-detection-cropping/multiple-faces.png)
 
