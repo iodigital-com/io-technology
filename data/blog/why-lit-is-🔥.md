@@ -256,7 +256,7 @@ export class MyElement extends LitElement {
 }
 ```
 
-## That sounds to good to be true
+## That sounds too good to be true
 
 ...and perhaps it is. LIT is relatively new, as are web components. A certain widely used framework that uses a virtual DOM implementation has had a bumpy ride when it comes to [web component interoperability](https://www.npmjs.com/package/@lit-labs/react).
 
