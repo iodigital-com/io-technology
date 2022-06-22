@@ -3,16 +3,16 @@ title: 'The future of page transitions with Shared Element Transitions'
 date: '2022-06-22'
 tags: ['frontend', 'css', 'js']
 images: ['/articles/the-future-of-page-transitons-with-shared-element-transitions/header.jpg']
-summary: 'The Shared Element Transitions API allows to create page transitions using a browser API that can provide users with a better visual connection beteen page-a and page-b by transitioning shared elements on both pages.'
+summary: 'The Shared Element Transitions API allows creating page transitions using a browser API that can provide users with a better visual connection between page-a and page-b by transitioning shared elements on both pages.'
 authors: ['milan-vogels']
 theme: 'orange'
 ---
 
-In native mobile app development transitioning from one page/state to another is something that has been supported for a long time, for example using the [Activity transitions](https://developer.android.com/training/transitions/start-activity) for Android. For the web however, things arent all that easy.
+In native mobile app development transitioning from one page/state to another is something that has been supported for a long time. For example, you can do this using [Activity transitions](https://developer.android.com/training/transitions/start-activity) for Android. For the web, however, things aren't all that easy.
 
 Yes, we can create transitions between pages using libraries like [BarbaJs](https://barba.js.org/). But these don't provide any visual connection between page-a and page-b to the user. So to close the gap, a new browser API is in the works: Shared Element Transition API.
 
-The [Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is a proposal for a new Web API. It allows for creating transtition animations between page navigation, transitioning elements that are present on both pages.
+The [Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is a proposal for a new Web API. It allows for creating transition animations between page navigation and transitioning elements that are present on both pages.
 
 ---
 
@@ -24,10 +24,10 @@ The [Shared Element Transition](https://github.com/WICG/shared-element-transitio
 
 To get started with the Shared Element Transition API the following flags have to be enabled in Chrome:
 
-- `chrome://flags/#document-transition`
-- `chrome://flags/#enable-experimental-web-platform-features`
+- [chrome://flags/#document-transition](chrome://flags/#document-transition)
+- [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features)
 
-First of all we need to check if the browser supports the API, and add a fallback if they don't.
+First of all, we need to check if the browser supports the API, and add a fallback if they don't.
 
 ```JavaScript
 async function navigate() {
@@ -52,7 +52,7 @@ async function navigate() {
 }
 ```
 
-The default transition the API creates is a simple fade. I created a small codepen example that just toggles between a card view and a detail view by toggling the display style.
+The default transition the API creates is a simple fade. I created a small CodePen example that just toggles between a card view and a detail view by toggling the display style.
 
 <div className="md:-mx-32 my-4">
   <div className="relative aspect-w-16 aspect-h-9 border">
@@ -68,7 +68,7 @@ The default transition the API creates is a simple fade. I created a small codep
 
 ## Changing the animation
 
-The animation is using CSS, the default browser UA styles will animate `::page-transition-incoming-image` _from_ opacity 0 and `::page-transition-outgoing-image` _to_ opacity 0.
+The animation is using CSS. The default browser UA styles will animate `::page-transition-incoming-image` _from_ `opacity: 0;` and `::page-transition-outgoing-image` _to_ `opacity: 0;`.
 
 We can add our own animations by using the following pseudo-element selectors
 
@@ -80,7 +80,7 @@ We can add our own animations by using the following pseudo-element selectors
 ::page-transition-incoming-image(root)
 ```
 
-For example, we can change the animation to a slide out:
+For example, we can change the animation to a _slide out_:
 
 ```CSS
 @keyframes slide-to-top {
@@ -110,9 +110,9 @@ For example, we can change the animation to a slide out:
 
 <small>Source available on https://codepen.io/milanvogels/pen/wvybGOy</small>
 
-To animate seperate elements, instead of the whole page, we can replace `root` with a `page-transition-tag` property value you can add to another css selector. The default animation transitions the `width` and `height` attributes from the 'before' state to the 'after' state. Also its animates the `transform` to update to position of the targeted element.
+To animate separate elements, instead of the whole page, we can replace `root` with a `page-transition-tag` property value you can add to another css selector. The default animation transitions the `width` and `height` attributes from the 'before' state to the 'after' state. Also, it animates the `transform` to update to the position of the targeted element.
 
-In the following example we add a `page-transition-tag: article-img` to an image tag.
+In the following example, we add a `page-transition-tag: article-img` to an image tag.
 
 ```CSS
 .foo img {
@@ -138,7 +138,7 @@ This gives us an already pretty cool effect.
 
 <small>Source available on https://codepen.io/milanvogels/pen/ZErNOBz</small>
 
-If we want specific elements of your site to stay in-place during the transition, we have to add a `page-transition-tag` and `contain: paint`. Assuming the element wont change between page-a and page-b, the element will now remain in the same place.
+If we want specific elements of our site to stay in place during the transition, we have to add a `page-transition-tag` and `contain: paint`. Assuming the element won't change between page-a and page-b, the element will now remain in the same place.
 
 ```CSS
 .header {
@@ -148,7 +148,7 @@ If we want specific elements of your site to stay in-place during the transition
 
 ```
 
-We cant have the same `page-transition-tag` used multiple times on the same page. We'll get an error in the console when starting the transition:
+We can't have the same `page-transition-tag` being used multiple times on the same page. We'll get an error in the console when starting the transition:
 
 > Unexpected duplicate page transition tag: tag-name
 
@@ -172,7 +172,7 @@ async function navigate() {
 }
 ```
 
-Example of a full grid of cards animating each card-image to the full article-image. Its still showing the singular article detail view we created, hence the detail-image doesnt reflect the card-image.
+Here's an example of a full grid of cards animating each card's image to the full article image. It still shows the singular article detail view we created, hence the detail image doesn't reflect the card's image.
 
 <div className="md:-mx-32 my-4">
   <div className="relative aspect-w-16 aspect-h-9 border">
@@ -188,12 +188,12 @@ Example of a full grid of cards animating each card-image to the full article-im
 
 ### Multi-page applications
 
-The current iteration of the Shared Element Transition API only supports Single-page applications (SPAs). Support for Multi-page applications (MPAs) is on the roadmap to be added in the future. The use of the API for SPAs or MPAs should work in a similar way.
+The current iteration of the Shared Element Transition API only supports Single-page applications (SPAs). Support for Multi-page applications (MPAs) is on the roadmap to be added in the future. The use of the API for SPAs or MPAs should work similarly.
 
 ## Start experimenting!
 
-I'am really exited about this API myself, it allows us to create page transitions that can add context to the user in a non complicated way without the use of any 3rd party libraries. The Shared Element Transition API is still in an early phase and it will take some time until its ready for shipping and implemented by other browsers, but we can already experiment a lot with it.
+I'm really excited about this API myself, it allows us to create page transitions that can add context to the user in a non-complicated way without the use of any 3rd party libraries. The Shared Element Transition API is still in an early phase and it will take some time until it's ready for shipping and implemented by other browsers, but we can already experiment a lot with it.
 
-I would like to encourage you to do the same and share your opinions in the [Github repository](https://github.com/WICG/shared-element-transitions). Cant wait to see what others are able to create with this new API.
+I would like to encourage you to do the same and share your opinions in the [Github repository](https://github.com/WICG/shared-element-transitions). Can't wait to see what others can create with this new API.
 
 Bright times ahead for page transitions!
