@@ -1,6 +1,6 @@
 ---
 title: 'The future of page transitions with Shared Element Transitions'
-date: '2022-06-22'
+date: '2022-06-23'
 tags: ['frontend', 'css', 'js']
 images: ['/articles/the-future-of-page-transitions-with-shared-element-transitions/header.jpg']
 summary: 'The Shared Element Transitions API allows creating page transitions using a browser API that can provide users with a better visual connection between page-a and page-b by transitioning shared elements on both pages.'
