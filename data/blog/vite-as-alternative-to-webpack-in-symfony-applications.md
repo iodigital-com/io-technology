@@ -1,6 +1,6 @@
 ---
 title: 'Vite as an alternative to webpack-encore in Symfony applications'
-date: '2022-06-22'
+date: '2022-06-24'
 tags: ['frontend', 'vite', 'symfony']
 images: ['/articles/vite-as-alternative-to-webpack-in-symfony-applications/hero.webp']
 summary: 'Vite (French word for "quick", pronounced /vit/, like "veet") is the fastest frontend build tool at the moment. Webpack-encore integrates perfectly with symfony applications. What if we could have both'
