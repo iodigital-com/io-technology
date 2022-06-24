@@ -3,7 +3,7 @@ title: 'Vite as an alternative to webpack-encore in Symfony applications'
 date: '2022-06-22'
 tags: ['frontend', 'vite', 'symfony']
 images: ['/articles/vite-as-alternative-to-webpack-in-symfony-applications/hero.webp']
-summary: 'Vite is the fastest frontend building tool at the moment. Webpack-encore integrates perfectly with symfony applications. What if we could have both'
+summary: 'Vite (French word for "quick", pronounced /vit/, like "veet") is the fastest frontend build tool at the moment. Webpack-encore integrates perfectly with symfony applications. What if we could have both'
 authors: ['yves-maerschalck']
 theme: 'orange'
 ---
@@ -16,6 +16,18 @@ But sometimes you may want something different. You've heard a lot of good thing
 <div className="p-4 bg-io_orange-100 font-serif">All examples used in this blogpost will be using [Vue](https://vuejs.org/), but Vite can be used with a variety of frameworks.</div>
 
 The following setup will only be usefull for developers who work in a hybrid symfony/javascript environment where you render your page in twig and you spawn your [SPA](https://en.wikipedia.org/wiki/Single-page_application) or Vue component on this page.
+
+## Why would you want to replace Webpack with Vite?
+
+**Webpack** is a bundler-based build tool, which means that to serve your application, it needs to crawl, process, and concatenate your application’s entire JavaScript file. This applies to the dependencies and the application code that you write. This is the reason why it takes the webpack dev-server quite a long time to start up. With large applications, starting times can take up to 10 minutes.
+
+Whenever you save a file, the whole JavaScript bundle will be rebuilt by Webpack, which is why the change can take up to 10 seconds to be reflected in the browser, even with HMR enabled. The slow feedback loop caused by Webpack creates a bad developer experience for developers working on large-scale JavaScript applications.
+
+**Vite** on the other hand leverages the availability of **ES Modules in the browser** and **compile-to-native bundler tools** like esbuild.
+
+The use of ES Modules allows you to run a JavaScript application on the browser without having to bundle them together. Esbuild is a JavaScript bundler written in Go that performs 10–100x faster than Webpack.
+
+While a bundler-based workflow like Webpack will have to process your entire JavaScript modules before a single browser request, Vite only processes your dependency modules before a single browser request.
 
 ## Scaffolding a Vue app with Vite
 
@@ -300,7 +312,7 @@ Then, in your `vite.config.ts`, you can add them to your input files:
 
 ## Best of both worlds
 
-If you are working on a project with a team op frontend- and backend developers, this way of working might be very interesting. The frontenders will be able to develop (not so) little Vue apps outside of Symfony.
+If you are working on a project with a team of frontend- and backend developers, this way of working might be very interesting. The frontenders will be able to develop Vue apps outside of Symfony.
 Because your are still running your dev-server during development, it'll still be possible to just surf to `https://localhost:3000` and just develop your frontend like you normally do. When using multiple apps, just navigate to `https://localhost:3000/app1/` (don't forget the trailing slash) and you're set.
 
 Let me know what works for you. All tips and tricks are welcome!
