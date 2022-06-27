@@ -31,7 +31,7 @@ export default function Podcast() {
             <div className="col-span-full md:col-span-5 md:col-start-3 xl:col-span-4 xl:col-start-3">
               <div className="xl:w-11/12">
                 <p className="mb-4">
-                  We're busy recording a brand new podcast with iO college's talking about
+                  We're busy recording a brand new podcast with iO colleagues talking about
                   development & technology
                 </p>
                 <Player autoplay loop src="/podcast.json" speed={0.5} />
