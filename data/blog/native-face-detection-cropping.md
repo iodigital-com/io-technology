@@ -1,6 +1,6 @@
 ---
 title: 'Smart cropping with native browser Face Detection'
-date: '2022-06-22'
+date: '2022-06-28'
 tags: ['frontend']
 images: ['/articles/native-face-detection-cropping/teaser.png']
 summary: 'Many online services will help you with cropping an image while keeping face(s) in view. We can however do this just using an (experimental) browser native API. Let’s build it!'
