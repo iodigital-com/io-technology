@@ -6,7 +6,6 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, date }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   let { theme } = useBrandingTheme()
-  console.log(theme)
 
   const dynamicOgImageURL = new URL('https://og-image-io.vercel.app/')
   const fileType = 'png'
@@ -14,34 +13,39 @@ const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, da
 
   dynamicOgImageURL.pathname = `${encodeURIComponent(title)}.${fileType}`
 
-  featuredImages?.length &&
-    dynamicOgImageURL.searchParams.append('teaserImage', featuredImages[0].url)
+  const searchParams = [
+    {
+      key: 'teaserImage',
+      value: featuredImages?.length && featuredImages[0].url,
+    },
+    {
+      key: 'author',
+      value: authorList?.length && authorListFormatter.format(authorList.map(({ name }) => name)),
+    },
+    {
+      key: 'authorImage',
+      value:
+        authorList?.length &&
+        authorList[0].avatar &&
+        `https://techhub.iodigital.com${authorList[0].avatar}`,
+    },
+    {
+      key: 'blendTheme',
+      value: theme,
+    },
+    {
+      key: 'date',
+      value: date?.length && new Intl.DateTimeFormat('en').format(new Date(date)),
+    },
+    {
+      key: 'domain',
+      value: 'tech_hub',
+    },
+  ]
 
-  authorList?.length &&
-    dynamicOgImageURL.searchParams.append(
-      'author',
-
-      authorListFormatter.format(authorList.map(({ name }) => name))
-    )
-
-  authorList?.length &&
-    authorList[0].avatar &&
-    dynamicOgImageURL.searchParams.append(
-      'authorImage',
-      `${typeof window !== 'undefined' ? window.location.origin : 'https://techhub.iodigital.com'}${
-        authorList[0].avatar
-      }`
-    )
-
-  dynamicOgImageURL.searchParams.append('blendTheme', theme)
-
-  date?.length &&
-    dynamicOgImageURL.searchParams.append(
-      'date',
-      new Intl.DateTimeFormat('en').format(new Date(date))
-    )
-
-  dynamicOgImageURL.searchParams.append('domain', 'tech_hub')
+  searchParams.forEach(
+    ({ key, value }) => value && dynamicOgImageURL.searchParams.append(key, value)
+  )
 
   return dynamicOgImageURL
 }
