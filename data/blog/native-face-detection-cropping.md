@@ -1,6 +1,6 @@
 ---
 title: 'Smart cropping with native browser Face Detection'
-date: '2022-06-28'
+date: '2022-06-29'
 tags: ['frontend']
 images: ['/articles/native-face-detection-cropping/teaser.png']
 summary: 'Many online services will help you with cropping an image while keeping face(s) in view. We can however do this just using an (experimental) browser native API. Let’s build it!'
@@ -27,7 +27,7 @@ Once doing this, we see the following result in the browser:
 
 ![Half a person's face in frame](/articles/native-face-detection-cropping/single-face-cropped.png)
 
-Oh no! We can’t see the face anymore. This is because by default the `object-position` is set to `center center` which will center the crop on both the x-axis and the y-axis. No problem, we can just update our CSS to:
+Oh no! We can’t see the face anymore. This is because by default the [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) is set to `center center` which will center the crop on both the x-axis and the y-axis. No problem, we can just update our CSS to:
 
 ```css
 img {
@@ -41,7 +41,7 @@ But wait, now the bottom of the face isn’t visible:
 
 ![Top half of person's face in frame](/articles/native-face-detection-cropping/single-face-cropped-manually-positioned.png)
 
-We can ultimately fix the `object-positioning` by passing pixel or percentage values to get the crop just right. This is however a painstaking process that you would have to do for all your images. Besides that, what if the images can be random and you can’t cover all edge-cases?
+We can ultimately fix the `object-position` by passing pixel or percentage values to get the crop just right. This is however a painstaking process that you would have to do for all your images. Besides that, what if the images can be random and you can’t cover all edge-cases?
 
 **We need a way to crop and position the crop just right for the face to be in view.**
 
