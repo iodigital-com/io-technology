@@ -1,9 +1,52 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+
+const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, date }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  let { theme } = useBrandingTheme()
+  console.log(theme)
+
+  const dynamicOgImageURL = new URL('https://og-image-io.vercel.app/')
+  const fileType = 'png'
+  const authorListFormatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
+
+  dynamicOgImageURL.pathname = `${encodeURIComponent(title)}.${fileType}`
+
+  featuredImages?.length &&
+    dynamicOgImageURL.searchParams.append('teaserImage', featuredImages[0].url)
+
+  authorList?.length &&
+    dynamicOgImageURL.searchParams.append(
+      'author',
+
+      authorListFormatter.format(authorList.map(({ name }) => name))
+    )
+
+  authorList?.length &&
+    authorList[0].avatar &&
+    dynamicOgImageURL.searchParams.append(
+      'authorImage',
+      `${typeof window !== 'undefined' && window.location.origin}/${authorList[0].avatar}`
+    )
+
+  dynamicOgImageURL.searchParams.append('blendTheme', theme)
+
+  date?.length &&
+    dynamicOgImageURL.searchParams.append(
+      'date',
+      new Intl.DateTimeFormat('en').format(new Date(date))
+    )
+
+  dynamicOgImageURL.searchParams.append('domain', 'tech_hub')
+
+  return dynamicOgImageURL
+}
 
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
   const router = useRouter()
+
   return (
     <Head>
       <title>{title}</title>
@@ -14,16 +57,12 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
-      {ogImage.constructor.name === 'Array' ? (
-        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
-      ) : (
-        <meta property="og:image" content={ogImage} key={ogImage} />
-      )}
+      <meta property="og:image" content={ogImage.href} key={ogImage.href} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={twImage} />
+      <meta name="twitter:image" content={twImage.href} />
       <link
         rel="canonical"
         href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
@@ -33,22 +72,27 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
 }
 
 export const PageSEO = ({ title, description }) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const dynamicOgImageURL = getConstructedDynamicOGImageURL({
+    title: description,
+    featuredImages: [{ url: siteMetadata.siteUrl + siteMetadata.socialBanner }],
+  })
+
   return (
     <CommonSEO
       title={title}
       description={description}
       ogType="website"
-      ogImage={ogImageUrl}
-      twImage={twImageUrl}
+      ogImage={dynamicOgImageURL}
+      twImage={dynamicOgImageURL}
     />
   )
 }
 
 export const TagSEO = ({ title, description }) => {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const dynamicOgImageURL = getConstructedDynamicOGImageURL({
+    title: description,
+    featuredImages: [{ url: siteMetadata.siteUrl + siteMetadata.socialBanner }],
+  })
   const router = useRouter()
   return (
     <>
@@ -56,8 +100,8 @@ export const TagSEO = ({ title, description }) => {
         title={title}
         description={description}
         ogType="website"
-        ogImage={ogImageUrl}
-        twImage={twImageUrl}
+        ogImage={dynamicOgImageURL}
+        twImage={dynamicOgImageURL}
       />
       <Head>
         <link
@@ -81,7 +125,6 @@ export const BlogSEO = ({
   images = [],
   canonicalUrl,
 }) => {
-  const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
@@ -104,6 +147,7 @@ export const BlogSEO = ({
       return {
         '@type': 'Person',
         name: author.name,
+        avatar: author.avatar,
       }
     })
   } else {
@@ -136,7 +180,12 @@ export const BlogSEO = ({
     description: summary,
   }
 
-  const twImageUrl = featuredImages[0].url
+  const dynamicOgImageURL = getConstructedDynamicOGImageURL({
+    title,
+    featuredImages,
+    authorList,
+    date,
+  })
 
   return (
     <>
@@ -144,8 +193,8 @@ export const BlogSEO = ({
         title={`${title} - ${siteMetadata.author}`}
         description={summary}
         ogType="article"
-        ogImage={featuredImages}
-        twImage={twImageUrl}
+        ogImage={dynamicOgImageURL}
+        twImage={dynamicOgImageURL}
         canonicalUrl={canonicalUrl}
       />
       <Head>
