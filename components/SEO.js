@@ -24,12 +24,13 @@ const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, da
       authorListFormatter.format(authorList.map(({ name }) => name))
     )
 
-  typeof window !== 'undefined' &&
-    authorList?.length &&
+  authorList?.length &&
     authorList[0].avatar &&
     dynamicOgImageURL.searchParams.append(
       'authorImage',
-      `${window.location.origin}${authorList[0].avatar}`
+      `${typeof window !== 'undefined' ? window.location.origin : 'https://techhub.iodigital.com'}${
+        authorList[0].avatar
+      }`
     )
 
   dynamicOgImageURL.searchParams.append('blendTheme', theme)
