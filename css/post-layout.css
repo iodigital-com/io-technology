@@ -1,3 +1,8 @@
 .header-image > * {
   max-height: 75vh;
 }
+
+.post-title strong {
+  font-family: 'Reckless', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-weight: normal;
+}

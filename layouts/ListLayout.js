@@ -12,7 +12,8 @@ export default function ListLayout({
 }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
-    const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
+    const searchContent =
+      frontMatter.titleCleaned + frontMatter.summary + frontMatter.tags.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
@@ -69,7 +70,7 @@ export default function ListLayout({
         <ul>
           {!filteredBlogPosts.length && 'No articles found.'}
           {displayPosts.map((frontMatter, index) => {
-            const { slug, date, title, tags } = frontMatter
+            const { slug, date, titleHtml, tags } = frontMatter
             const authorsResolved = frontMatter.authors.map((author) => {
               return authors[author]
             })
@@ -80,7 +81,7 @@ export default function ListLayout({
                   key={slug}
                   slug={slug}
                   date={date}
-                  title={title}
+                  titleHtml={titleHtml}
                   tags={tags}
                   authors={authorsResolved}
                   border={index !== 0}
