@@ -23,12 +23,12 @@ export default function Footer() {
           <div className="mb-4 flex flex-col space-y-2 text-center md:flex-row md:space-y-0 md:space-x-2">
             {siteMetadata.legal.map((link, index) => {
               return (
-                <>
-                  {index > 0 && <div className="hidden md:inline-block">{` • `}</div>}
+                <div key={link.title}>
+                  {index > 0 && <div className="mr-2 hidden md:inline-block">{` • `}</div>}
                   <Link className="" href={link.url}>
                     {link.title}
                   </Link>
-                </>
+                </div>
               )
             })}
           </div>
