@@ -8,9 +8,10 @@ import SocialIcon from '@/components/social-icons'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import formatDate from '@/lib/utils/formatDate'
 import Arrow from '@/data/arrow.svg'
+import Clock from '@/data/clock.svg'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, date, titleHtml, titleCleaned, tags, images, summary } = frontMatter
+  const { slug, date, titleHtml, titleCleaned, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
 
   return (
@@ -36,9 +37,13 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </p>
                 )
               })}
-              <time className="inline pl-2 font-light" dateTime={date}>
+              <time className="inline px-2 font-light" dateTime={date}>
                 {formatDate(date)}
               </time>
+              <p className="inline pl-2 font-light">
+                <Clock className="mr-2 inline w-4" />
+                {readingTime.text}
+              </p>
             </div>
             <div className="grid grid-cols-4">
               <p className="col-span-full col-start-1 text-2xl md:col-start-2 xl:col-start-3">
