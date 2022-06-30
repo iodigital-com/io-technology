@@ -7,6 +7,7 @@ import ScrollTop from '@/components/ScrollTop'
 import SocialIcon from '@/components/social-icons'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import formatDate from '@/lib/utils/formatDate'
+import Arrow from '@/data/arrow.svg'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, date, titleHtml, titleCleaned, tags, images, summary } = frontMatter
@@ -169,9 +170,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/articles"
-                className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+                className={`relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
               >
-                &larr; Back to the blog
+                <Arrow className="mr-4 w-6 rotate-180" /> Back to all articles
               </Link>
             </div>
           </footer>
