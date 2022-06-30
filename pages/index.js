@@ -97,7 +97,7 @@ export default function Home({ posts, videos, jobs, authors }) {
 
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
-        {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter) => {
+        {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
           const { slug, date, title, tags } = frontMatter
           const authorsResolved = frontMatter.authors.map((author) => {
             return authors[author]
@@ -111,15 +111,21 @@ export default function Home({ posts, videos, jobs, authors }) {
               title={title}
               tags={tags}
               authors={authorsResolved}
+              border={index !== 0}
             />
           )
         })}
       </section>
 
       {posts.length > MAX_BLOG_POSTS && (
-        <div className="container mx-auto flex justify-end text-xl font-medium leading-6">
-          <Link href="/articles" aria-label="all posts">
-            All Posts &rarr;
+        <div className="container mx-auto mt-5 flex justify-end">
+          <Link
+            href="/articles"
+            aria-label="all posts"
+            className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+          >
+            <span>All Posts</span>
+            <Arrow className="ml-4 w-6" />
           </Link>
         </div>
       )}

@@ -4,8 +4,8 @@ import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
 import Arrow from '@/data/arrow.svg'
 
-const Article = ({ slug, date, title, tags, authors }) => (
-  <article className="border-b border-gray-300 pt-6 pb-10">
+const Article = ({ slug, date, title, tags, authors, border = true }) => (
+  <article className={`border-gray-300 py-8 ${border && 'border-t'}`}>
     <div className="grid grid-cols-12">
       <div className="hidden md:col-span-3 md:block xl:col-span-5">
         <div className="flex flex-col xl:flex-row">

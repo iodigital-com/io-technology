@@ -68,14 +68,14 @@ export default function ListLayout({
       <div className="container mx-auto">
         <ul>
           {!filteredBlogPosts.length && 'No articles found.'}
-          {displayPosts.map((frontMatter) => {
+          {displayPosts.map((frontMatter, index) => {
             const { slug, date, title, tags } = frontMatter
             const authorsResolved = frontMatter.authors.map((author) => {
               return authors[author]
             })
 
             return (
-              <li key={slug} className="py-4">
+              <li key={slug}>
                 <Article
                   key={slug}
                   slug={slug}
@@ -83,6 +83,7 @@ export default function ListLayout({
                   title={title}
                   tags={tags}
                   authors={authorsResolved}
+                  border={index !== 0}
                 />
               </li>
             )
@@ -90,7 +91,9 @@ export default function ListLayout({
         </ul>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <div className="container mx-auto">
+          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        </div>
       )}
     </>
   )
