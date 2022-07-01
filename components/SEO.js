@@ -63,11 +63,11 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={removeMarkdown(title)} />
       <meta property="og:image" content={ogImage.href} key={ogImage.href} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={removeMarkdown(title)} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage.href} />
       <link
