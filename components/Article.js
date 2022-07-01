@@ -1,3 +1,4 @@
+import MarkdownRenderer from 'react-markdown-renderer'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import formatDate from '@/lib/utils/formatDate'
@@ -32,7 +33,9 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => (
       </div>
       <div className="col-span-full md:col-start-4 xl:col-start-7">
         <Link href={`/articles/${slug}`}>
-          <h2 className="text-2xl">{title}</h2>
+          <h2 className="post-title post-title--teaser text-2xl">
+            {<MarkdownRenderer markdown={title} />}
+          </h2>
         </Link>
         <dl className="mb-4">
           <dt className="sr-only">Published on</dt>

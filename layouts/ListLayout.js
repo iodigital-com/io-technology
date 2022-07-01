@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
 import Article from '@/components/Article'
 
@@ -12,7 +13,8 @@ export default function ListLayout({
 }) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
-    const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
+    const searchContent =
+      removeMarkdown(frontMatter.title) + frontMatter.summary + frontMatter.tags.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 

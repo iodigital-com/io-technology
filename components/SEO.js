@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import removeMarkdown from 'markdown-to-text'
 import siteMetadata from '@/data/siteMetadata'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
@@ -55,18 +56,18 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
 
   return (
     <Head>
-      <title>{title}</title>
+      <title>{removeMarkdown(title)}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
       <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={removeMarkdown(title)} />
       <meta property="og:image" content={ogImage.href} key={ogImage.href} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteMetadata.twitter} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={removeMarkdown(title)} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage.href} />
       <link
