@@ -1,3 +1,4 @@
+import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
@@ -25,7 +26,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
           <div className="container mx-auto">
-            <h1 className="text-4xl font-medium xl:text-7xl">{title}</h1>
+            <h1 className="post-title text-4xl font-medium xl:text-7xl">
+              {<MarkdownRenderer markdown={title} />}
+            </h1>
             <div className="my-4 divide-x">
               {authorDetails.slice(0, 1).map((author) => {
                 return (
