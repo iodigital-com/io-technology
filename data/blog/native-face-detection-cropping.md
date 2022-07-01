@@ -1,5 +1,5 @@
 ---
-title: 'Smart cropping with native browser Face Detection'
+title: 'Smart cropping with native browser __Face Detection__'
 date: '2022-06-29'
 tags: ['frontend']
 images: ['/articles/native-face-detection-cropping/teaser.png']
