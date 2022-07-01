@@ -11,7 +11,7 @@ import Arrow from '@/data/arrow.svg'
 import Clock from '@/data/clock.svg'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, date, titleHtml, titleCleaned, tags, images, summary, readingTime } = frontMatter
+  const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
 
   return (
@@ -25,10 +25,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
           <div className="container mx-auto">
-            <h1
-              className="post-title text-4xl font-medium xl:text-7xl"
-              dangerouslySetInnerHTML={{ __html: titleHtml }}
-            ></h1>
+            <h1 className="text-4xl font-medium xl:text-7xl">{title}</h1>
             <div className="my-4 divide-x">
               {authorDetails.slice(0, 1).map((author) => {
                 return (
@@ -55,7 +52,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
                 <Image
                   src={images[0]}
-                  alt={titleCleaned}
+                  alt={title}
                   width={1280}
                   height={720}
                   layout="responsive"

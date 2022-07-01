@@ -98,7 +98,7 @@ export default function Home({ posts, videos, jobs, authors }) {
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
         {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, titleHtml, tags } = frontMatter
+          const { slug, date, title, tags } = frontMatter
           const authorsResolved = frontMatter.authors.map((author) => {
             return authors[author]
           })
@@ -108,7 +108,7 @@ export default function Home({ posts, videos, jobs, authors }) {
               key={slug}
               slug={slug}
               date={date}
-              titleHtml={titleHtml}
+              title={title}
               tags={tags}
               authors={authorsResolved}
               border={index !== 0}

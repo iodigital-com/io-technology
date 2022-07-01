@@ -124,7 +124,6 @@ export const TagSEO = ({ title, description }) => {
 export const BlogSEO = ({
   authorDetails,
   title,
-  titleCleaned,
   summary,
   date,
   lastmod,
@@ -171,7 +170,7 @@ export const BlogSEO = ({
       '@type': 'WebPage',
       '@id': url,
     },
-    headline: titleCleaned,
+    headline: title,
     image: featuredImages,
     datePublished: publishedAt,
     dateModified: modifiedAt,
@@ -197,7 +196,7 @@ export const BlogSEO = ({
   return (
     <>
       <CommonSEO
-        title={`${titleCleaned} - ${siteMetadata.author}`}
+        title={`${title} - ${siteMetadata.author}`}
         description={summary}
         ogType="article"
         ogImage={dynamicOgImageURL}
