@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import removeMarkdown from 'markdown-to-text'
 import siteMetadata from '@/data/siteMetadata'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
@@ -55,7 +56,7 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
 
   return (
     <Head>
-      <title>{title}</title>
+      <title>{removeMarkdown(title)}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
       <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
