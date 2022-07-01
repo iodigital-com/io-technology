@@ -32,7 +32,10 @@ const Article = ({ slug, date, titleHtml, tags, authors, border = true }) => (
       </div>
       <div className="col-span-full md:col-start-4 xl:col-start-7">
         <Link href={`/articles/${slug}`}>
-          <h2 className="post-title text-2xl" dangerouslySetInnerHTML={{ __html: titleHtml }}></h2>
+          <h2
+            className="post-title post-title--teaser text-2xl"
+            dangerouslySetInnerHTML={{ __html: titleHtml }}
+          ></h2>
         </Link>
         <dl className="mb-4">
           <dt className="sr-only">Published on</dt>
