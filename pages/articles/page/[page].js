@@ -4,6 +4,7 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../articles'
 import { getAuthors } from '@/lib/authors'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export async function getStaticPaths() {
   const totalPosts = await getAllFilesFrontMatter('blog')
@@ -40,11 +41,14 @@ export async function getStaticProps(context) {
       initialDisplayPosts,
       pagination,
       authors,
+      theme: 'rouge',
     },
   }
 }
 
 export default function PostPage({ posts, initialDisplayPosts, pagination, authors }) {
+  const { theme } = useBrandingTheme()
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -54,6 +58,7 @@ export default function PostPage({ posts, initialDisplayPosts, pagination, autho
         pagination={pagination}
         title="All Posts"
         authors={authors}
+        theme={theme}
       />
     </>
   )

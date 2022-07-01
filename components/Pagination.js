@@ -1,33 +1,45 @@
-import Link from '@/components/Link'
+import Link from 'next/link'
+import Arrow from '@/data/arrow.svg'
 
 export default function Pagination({ totalPages, currentPage }) {
   const prevPage = parseInt(currentPage) - 1 > 0
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
+  const btnClasses =
+    'relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white'
+  const btnClassesDisabled = `${btnClasses} cursor-auto disabled:opacity-50`
 
   return (
     <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
-          <button rel="previous" className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+          <button rel="previous" className={btnClassesDisabled} disabled={!prevPage}>
+            <Arrow className="mr-4 w-6 rotate-180" />
+            <span>Previous</span>
           </button>
         )}
         {prevPage && (
           <Link href={currentPage - 1 === 1 ? `/articles/` : `/articles/page/${currentPage - 1}`}>
-            <button rel="previous">Previous</button>
+            <a rel="previous" className={btnClasses}>
+              <Arrow className="mr-4 w-6 rotate-180" />
+              <span>Previous</span>
+            </a>
           </Link>
         )}
-        <span>
+        <span className="py-4 text-base font-bold leading-none">
           {currentPage} of {totalPages}
         </span>
         {!nextPage && (
-          <button rel="next" className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
+          <button rel="next" className={btnClassesDisabled} disabled={!nextPage}>
+            <span>Next</span>
+            <Arrow className="ml-4 w-6" />
           </button>
         )}
         {nextPage && (
           <Link href={`/articles/page/${currentPage + 1}`}>
-            <button rel="next">Next</button>
+            <a rel="next" className={btnClasses}>
+              <span>Next</span>
+              <Arrow className="ml-4 w-6" />
+            </a>
           </Link>
         )}
       </nav>
