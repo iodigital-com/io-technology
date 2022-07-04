@@ -48,6 +48,11 @@ const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, da
     ({ key, value }) => value && dynamicOgImageURL.searchParams.append(key, value)
   )
 
+  /*** added to prevent development generated image to be used for prod ***/
+  if (process.env.NODE_ENV === 'development') {
+    dynamicOgImageURL.searchParams.append('isDevelopment', 'true')
+  }
+
   return dynamicOgImageURL
 }
 
