@@ -1,4 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
+import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
@@ -153,7 +154,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <div
                         className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
                       >
-                        <Link href={`/articles/${prev.slug}`}>{prev.title}</Link>
+                        <Link href={`/articles/${prev.slug}`}>{removeMarkdown(prev.title)}</Link>
                       </div>
                     </div>
                   )}
