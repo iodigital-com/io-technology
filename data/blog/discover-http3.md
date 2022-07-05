@@ -1,6 +1,6 @@
 ---
 title: 'Discover HTTP/3'
-date: '2022-06-08'
+date: '2022-07-05'
 tags: ['network']
 images: ['/articles/discover-http3/developerblog-http3imgs-3.jpg']
 summary: 'What is HTTP/3 and how does it differ from HTTP/2? In order to understand we need to dive deep into how the protocols of the internet work.'
