@@ -7,12 +7,12 @@ import { getLatestJobs } from '@/lib/jobs'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
 
-const DEFAULT_LAYOUT = 'PostLayout'
+const DEFAULT_LAYOUT = 'SerieLayout'
 
 export async function getStaticPaths() {
-  const posts = getFiles('blog')
+  const series = getFiles('series')
   return {
-    paths: posts.map((p) => ({
+    paths: series.map((p) => ({
       params: {
         slug: formatSlug(p).split('/'),
       },
@@ -22,34 +22,35 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const allSeries = await getAllFilesFrontMatter('series')
   const allPosts = await getAllFilesFrontMatter('blog')
-  const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
-  const prev = allPosts[postIndex + 1] || null
-  const next = allPosts[postIndex - 1] || null
-  const post = await getFileBySlug('blog', params.slug.join('/'))
-  const authorList = post.frontMatter.authors || ['default']
+  const postIndex = allSeries.findIndex((post) => formatSlug(post.slug) === params.slug.join('/'))
+  const prev = allSeries[postIndex + 1] || null
+  const next = allSeries[postIndex - 1] || null
+  const serie = await getFileBySlug('series', params.slug.join('/'))
+  const { posts } = await getSerie(params.slug.join('/'), allPosts)
+  const authorList = serie.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
     const authorResults = await getFileBySlug('authors', [author])
     return authorResults.frontMatter
   })
   const authorDetails = await Promise.all(authorPromise)
-  const serie = await getSerie(post.frontMatter.serie, allPosts)
 
   // rss
-  if (allPosts.length > 0) {
-    const rss = generateRss(allPosts)
+  if (allSeries.length > 0) {
+    const rss = generateRss(allSeries)
     fs.writeFileSync('./public/feed.xml', rss)
   }
 
   const { jobs } = await getLatestJobs(4)
 
-  const theme = post.frontMatter.theme || 'orange'
+  const theme = serie.frontMatter.theme || 'orange'
 
-  return { props: { post, authorDetails, prev, next, jobs, serie, theme } }
+  return { props: { serie, posts, authorDetails, prev, next, jobs, theme } }
 }
 
-export default function Blog({ post, authorDetails, prev, next, jobs, serie }) {
-  const { mdxSource, toc, frontMatter } = post
+export default function Serie({ posts, authorDetails, prev, next, jobs, serie }) {
+  const { mdxSource, toc, frontMatter } = serie
 
   return (
     <>
@@ -64,7 +65,9 @@ export default function Blog({ post, authorDetails, prev, next, jobs, serie }) {
             prev={prev}
             next={next}
             serie={serie}
+            posts={posts}
           />
+
           <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
