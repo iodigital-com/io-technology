@@ -27,7 +27,7 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Update YouTube data
         run: node scripts/youtube.js
       - name: Update Jobs data
