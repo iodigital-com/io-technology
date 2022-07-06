@@ -36,5 +36,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: 'data'
+          new_branch: 'develop'
           commit: '--no-verify'
           message: 'chore(data): update YouTube and jobs files'
