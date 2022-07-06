@@ -137,7 +137,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Tags
                   </h2>
-                  <div className="flex flex-wrap">
+                  <div className="mt-2 flex flex-wrap">
                     {tags.map((tag) => (
                       <Tag key={tag} text={tag} />
                     ))}
@@ -166,7 +166,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       <div
                         className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
                       >
-                        <Link href={`/articles/${next.slug}`}>{next.title}</Link>
+                        <Link href={`/articles/${next.slug}`}>{removeMarkdown(next.title)}</Link>
                       </div>
                     </div>
                   )}
