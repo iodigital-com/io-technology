@@ -33,7 +33,8 @@ jobs:
       - name: Update Jobs data
         run: node scripts/jobs.js
       - name: Commit and Push updated json files to the repository
-        uses: mikeal/publish-to-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: 'develop'
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'data'
+          commit: '--no-verify'
+          message: 'chore(data): update YouTube and jobs files'
