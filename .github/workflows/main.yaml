@@ -28,8 +28,6 @@ jobs:
           key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - name: Install NPX
-        run: npm i -g npx
       - name: Update YouTube data
         run: node scripts/youtube.js
       - name: Update Jobs data
