@@ -45,7 +45,7 @@ The first in-depth tech talk of the day. There was clearly a lot to say about us
 
 It’s nice to see a Belgian up on that stage, as a former lecturer at Odisee you can clearly see the teaching skills of Bramus. With an audience still recovering from a lunch break he was able to keep the attention while going in depth about the cascade. He already [wrote a blogpost about this](https://www.bram.us/2021/09/15/the-future-of-css-cascade-layers-css-at-layer/) which I read some time ago. But hearing him speak about it in combination with beautiful crafted slides made my enthusiasm grow just that little bit more. Excellent talk about this feature that is rolling out in all major browsers right now. The love for cascade layers is real and from a personal standpoint, I'm really happy about the syntax of this feature, it’s simpel, elegant, and easy to understand, especially after you understand the cascade just that little bit better. Thanks Bramus, keep talking with those hands!
 
-![Bamus](/articles/css-day-2022-a-small-recap/bramus.jpg)
+![Bramus](/articles/css-day-2022-a-small-recap/bramus.jpg)
 
 [Watch on YouTube: Bramus Van Damme: The CSS Cascade, a deep dive](https://www.youtube.com/watch?v=zEPXyqj7pEA)
 
