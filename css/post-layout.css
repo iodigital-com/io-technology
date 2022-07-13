@@ -2,11 +2,13 @@
   max-height: 75vh;
 }
 
-.post-title strong {
+.post-title strong,
+.post-title em {
   font-family: 'Reckless', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   font-weight: 400;
 }
 
-.post-title--teaser strong {
+.post-title--teaser strong,
+.post-title--teaser em {
   font-weight: 300;
 }
