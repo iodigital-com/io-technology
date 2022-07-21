@@ -495,7 +495,7 @@ func deleteUser(w http.ResponseWriter, r *http.Request) {
 
 It automatically grabs the Go version of Prisma and uses it to create the endpoints.
 
-## What can an NLP **not** do?
+## What can an NLP _not_ do?
 
 **GPT-3:**
 Natural language processors are limited by the data they are trained on. This means that they may not be able to
