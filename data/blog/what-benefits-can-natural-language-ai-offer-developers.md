@@ -513,7 +513,7 @@ and **most importantly** everything that relies on precision.
 
 ## So how did I use GPT-3 to make this blog?
 
-\***\*Vince:\*\***
+**Vince:**
 I've made this blog post using [OpenAI's Playground](https://beta.openai.com/playground). I began by telling the AI
 what it was supposed to represent, then I wrote down the subject of the blog post and an outline of what the blog post
 was about. In this case, the outline was represented as "Random facts about NLP-AI". The next input I came up with was
