@@ -205,6 +205,10 @@ I wrote the Read function to read a user. I wrote 'function userR' and Copilot u
 to type the rest of the code. When it was time to write the Update function, I wrote 'f' and Copilot knew I meant
 function. I didn't have to write anything else to write the Delete function.
 
+![copilot user delete](/articles/what-benefits-can-natural-language-ai-offer-developers/copilot-prediction-user-delete.png)
+
+_The grey text is the prediction from Copilot._
+
 Here the Create function is written in a different code style, I also imported axios. Copilot includes the axios library
 to generate code. Again, I'm not editing the rest of the code.
 
