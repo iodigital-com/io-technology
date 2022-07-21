@@ -316,7 +316,44 @@ class UserCrud:
         print(f"user deleted {response.data}")
 ```
 
-Transform that to a Node.js backend code with Express and Prisma, I added the import libraries to the top of the file.
+Transform that to a Node.js backend code with Express and TypeORM, I added the import libraries to the top of the file.
+
+```typescript
+import express from 'express'
+import bodyParser from 'body-parser'
+import { createConnection } from 'typeorm'
+import { User } from './entity/User'
+
+const app = express()
+app.use(bodyParser.json())
+
+createConnection().then(async (connection) => {
+  app.post('/users', async (req, res) => {
+    const user = await connection.manager.save(User, req.body)
+    res.json(user) // returns user with id
+  })
+  app.get('/users /:id', async (req, res) => {
+    const user = await connection.manager.findOne(User, req.params['id'])
+    if (!user) throw new Error('User not found')
+    res.json(user) // returns user with id
+  })
+  app.put('/users /:id', async (req, res) => {
+    const user = await connection.manager.update(User, req.params['id'], req.body)
+    if (!user) throw new Error('User not found')
+    res.json(user) // returns user with id
+  })
+  app.delete('/users /:id', async (req, res) => {
+    const user = await connection.manager.delete(User, req.params['id'])
+    if (!user) throw new Error('User not found')
+    console.log('deleted user', user)
+  })
+})
+```
+
+_Hold up, wait a minute. I see that the backend code has the same link error as in the front end, does that mean that it
+cancels each other out? And that the code will suddenly work?_
+
+What if we needed to use another ORM? Transform TypeORM to Prisma!
 
 ```typescript
 import express from 'express'
@@ -351,12 +388,112 @@ app.delete('/users /:id', async (req, res) => {
 })
 ```
 
-_To be honest, I got very lucky with these transformations. These were the only two transformations that I came out
-successfully. I also tried Lisp, PHP, Go, C++, C#, Rust, and Ruby. But all of them have failed. I don't even know for
-sure if the Prisma client has been implemented correctly._
+One last transformation into Go
 
-_Hold up, wait a minute. I see that the backend code has the same link error as in the front end, does that mean that it
-cancels each other out? And that the code will suddenly work?_
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+    "net/http"
+    "strconv"
+
+    "github.com/gorilla/mux"
+    "github.com/prisma/prisma-client-go/prisma"
+)
+
+var prismaClient *prisma.Client
+
+func main() {
+    prismaClient = prisma.New("http://localhost:4466")
+
+    router := mux.NewRouter()
+    router.HandleFunc("/users", createUser).Methods("POST")
+    router.HandleFunc("/users/{id}", getUser).Methods("GET")
+    router.HandleFunc("/users/{id}", updateUser).Methods("PUT")
+    router.HandleFunc("/users/{id}", deleteUser).Methods("DELETE")
+
+    log.Fatal(http.ListenAndServe(":8080", router))
+}
+
+func createUser(w http.ResponseWriter, r *http.Request) {
+    user := prisma.UserCreateInput{}
+    err := json.NewDecoder(r.Body).Decode(&user)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    user, err = prismaClient.User.Create(user).Exec(r.Context())
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    json.NewEncoder(w).Encode(user)
+}
+
+func getUser(w http.ResponseWriter, r *http.Request) {
+    vars := mux.Vars(r)
+    id, err := strconv.Atoi(vars["id"])
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    user, err := prismaClient.User.FindOne(prisma.User.ID(id)).Exec(r.Context())
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    json.NewEncoder(w).Encode(user)
+}
+
+func updateUser(w http.ResponseWriter, r *http.Request) {
+    vars := mux.Vars(r)
+    id, err := strconv.Atoi(vars["id"])
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    user := prisma.UserUpdateInput{}
+    err = json.NewDecoder(r.Body).Decode(&user)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    user, err = prismaClient.User.Update(prisma.User.ID(id), user).Exec(r.Context())
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    json.NewEncoder(w).Encode(user)
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+    vars := mux.Vars(r)
+    id, err := strconv.Atoi(vars["id"])
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    user, err := prismaClient.User.Delete(prisma.User.ID(id)).Exec(r.Context())
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    fmt.Println("deleted user", user)
+}
+```
+
+It automatically grabs the Go version of Prisma and uses it to create the endpoints.
 
 ## What can an NLP **not** do?
 
