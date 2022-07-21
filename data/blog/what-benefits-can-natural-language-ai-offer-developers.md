@@ -90,7 +90,7 @@ Another concern is that Copilot could be used to write copywrited code. However,
 low, as Copilot tries to emulate the coding style of the input description.
 
 **Vince:**
-Meaning that the chances of generating copyrighted code are **not** zero. If you open an empty project without
+Meaning that the chances of generating copyrighted code is **not** zero. If you open an empty project without
 description, without context or any instructions, and just let Copilot generate code without any input, then there is
 a slightly higher chance that it will generate code that is copyrighted. But the chances are still very low. And _if_
 it does happen, _then_ you're on legal untested grounds. There hasn't been a case in the year that Copilot has been
@@ -248,10 +248,14 @@ GPT-3 can be used for tasks like code generation, natural language understanding
 
 **Vince:**
 🥱 As you can see this is repeated from the "Concrete examples"-paragraph above.
-I will provide some examples about what it can do, it will change the text, the examples I will
-provide are: [email writing, explaining code, simplifying language, sentiment analysis, blog writing, business models]
+I will provide some examples about what it can do, it will then generate a different output, the examples I provided
+are: [email writing, explaining code, simplifying language, sentiment analysis, blog writing, business models]
 
-#### **GPT-3:** Email writing
+**GPT-3:**
+GPT-3 can be used for a variety of tasks, including email writing, explaining code, simplifying language, sentiment
+analysis, blog writing, and business modeling.
+
+#### Email writing
 
 GPT-3 can be used to help you write emails. For example, if you're struggling to write a polite email to your boss, you
 can use GPT-3 to generate a template that you can fill in with your own details.
@@ -351,6 +355,9 @@ _To be honest, I got very lucky with these transformations. These were the only 
 successfully. I also tried Lisp, PHP, Go, C++, C#, Rust, and Ruby. But all of them have failed. I don't even know for
 sure if the Prisma client has been implemented correctly._
 
+_Hold up, wait a minute. I see that the backend code has the same link error as in the front end, does that mean that it
+cancels each other out? And that the code will suddenly work?_
+
 ## What can an NLP **not** do?
 
 **GPT-3:**
@@ -362,14 +369,14 @@ Therefore, it is important to always review the output of an NLP processor befor
 
 **Vince:**
 Also important to note is that you can't use Copilot to design your entire code architecture.
-You are still responsible to do that. An NLP is also bad at is current events, maths,
+You are still responsible to do that. An NLP is also bad at current events, maths,
 and **most importantly** everything that relies on precision.
 
 ![gpt-3 precision example](/articles/what-benefits-can-natural-language-ai-offer-developers/gpt-3-precision-example.png)
 
 ## So how did I use GPT-3 to make this blog?
 
-****Vince:****
+\***\*Vince:\*\***
 I've made this blog post using [OpenAI's Playground](https://beta.openai.com/playground). I began by telling the AI
 what it was supposed to represent, then I wrote down the subject of the blog post and an outline of what the blog post
 was about. In this case, the outline was represented as "Random facts about NLP-AI". The next input I came up with was
