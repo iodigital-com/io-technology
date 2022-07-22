@@ -10,6 +10,10 @@ authors: ['vince-liem', 'openai-gpt3']
 theme: 'rouge'
 ---
 
+_The author generated this text in part with GPT-3, OpenAI’s large-scale language-generation model. Upon generating draft
+language, the author reviewed, edited, and revised the language to their own liking and takes ultimate responsibility
+for the content of this publication._
+
 ## "We" meaning me and the robot living in my laptop.
 
 **GPT-3:**
