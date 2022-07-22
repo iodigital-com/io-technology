@@ -12,7 +12,7 @@ There are many holy grails in the web development community, but one of our bold
 
 The good news is that influential people are starting to notice the absurdity of this situation, and slowly ideas and concepts are emerging that will help our industry take the necessary steps forward. Not too long ago I spotted a mention of [The Ship of Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus) in an article on design systems, the rise of headless setups is helping us deal with architectural challenges and our own Dave Bitter wrote a very insightful article on some of the [most common causes for code corruption](https://techhub.iodigital.com/articles/the-infinite-legacy-cycle-in-front-end).
 
-Workflow improvements are essential and being aware of possible pitfalls is certainly a great help, but when reality hits, they will not safeguard our projects from imperfections and the inevitable decay. That's where the concept of technical debt comes into play. Technical debt won't necessarily prevent bad code, it helps you deal with it.
+Workflow improvements are essential and being aware of possible pitfalls is certainly a great help, but when reality hits, they will not safeguard our projects from imperfections and the inevitable decay. That's where the concept of technical debt comes into play. Technical debt won't necessarily prevent bad code, but it does help you deal with it.
 
 ## Introducing: technical debt
 
@@ -30,7 +30,7 @@ You've built what the client asked for, your code is bug-free, clean, lean, and 
 
 ### Botched internal planning
 
-PMs are busy people, so once in a while, a JIRA ticket slips through the cracks, or an important remark goes missing from the briefing. Maybe your designer didn't quite find his mojo and is slaving away beyond his deadline. Parts of the FA could be missing when we start work on a new piece of functionality, and of course, nobody remembered the 404 page so could we please whip something up ... the list of possible mishaps is endless. As developers, we're often caught between an immutable deadline and internal delays (i.e. "the sandwich"), and in the end, it's up to us to make it work.
+Project managers are busy people, so once in a while, a bug ticket slips through the cracks, or an important remark goes missing from the briefing. Maybe your designer didn't quite find his mojo and is slaving away beyond his deadline. Parts of the functional analysis could be missing when we start work on a new piece of functionality, and of course, nobody remembered the 404 page so could we please whip something up ... the list of possible mishaps is endless. As developers, we're often caught between an immutable deadline and internal delays (i.e. "the sandwich"), and in the end, it's up to us to make it work.
 
 ### Technological maturity
 
@@ -38,7 +38,7 @@ The quality of our code is only as robust as the capabilities of the language it
 
 ### Unnecessary complexity
 
-A good developer is taught to write DRY ("don't repeat yourself") code, but abstractions introduce complexity, and unnecessary complexity doesn't come cheap. It's not always easy knowing what to abstract from the start, and overengineered code will come back to bite you. Sadly, KISS ("keep it simple, stupid") and DRY are two ideals that are very hard to balance, so when in doubt, choose KISS. It may just be better to wait until bits of code starts repeating themselves before DRYing them, even though by then it might be too late to refractor on the fly.
+A good developer is taught to write DRY ("don't repeat yourself") code, but abstractions introduce complexity, and unnecessary complexity doesn't come cheap. It's not always easy knowing what to abstract from the start, and overengineered code will come back to bite you. Sadly, KISS ("keep it simple, stupid") and DRY are two ideals that are very hard to balance, so when in doubt, choose KISS. It may just be better to wait until bits of code start repeating themselves before DRYing them, even though by then it might be too late to refractor on the fly.
 
 ### By design
 
