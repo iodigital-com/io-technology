@@ -1,6 +1,6 @@
 ---
 title: 'How __natural language AI__ can benefit developers'
-date: '2022-07-20'
+date: '2022-07-25'
 tags: ['development', 'AI']
 images: ['/articles/what-benefits-can-natural-language-ai-offer-developers/header.png']
 summary: 'Natural language AI can offer developers a lot of benefits, from helping them write code to writing this blog
