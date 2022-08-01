@@ -37,7 +37,7 @@ Most common use case scenario are:
 
 ![Cassandra Logo](/articles/redis-vs-mongodb-vs-cassandra/cassandra-logo.png)
 ### Cassandra
-Quite slow and more time-consuming setup compared to the others and written in Java, Cassandra is a distributed database system (https://en.wikipedia.org/wiki/Distributed_database) by design. 
+Quite slow and more time-consuming setup compared to the others and written in Java, Cassandra is a [distributed database system] (https://en.wikipedia.org/wiki/Distributed_database) by design. 
 Cassandra is the most SQL-like of the 3 databases, at least syntax-wise. It differs from relational databases in several ways, the most important of them being that a row in SQL tables can contain only datatypes while Cassandra stores objects and can return those directly. 
 Works properly only in a clustered setup. This cluster is not in the master-slave way, since all the nodes are equal and contain the same replica and you don’t have a guaranteed node to answer you, but the first that gets updated and is free will serve the request. and is the one that outperform the other in availability and guarantees the correct replica with no point of failure of the data, partially thanks to the “tombstones” (a marking system that runs query in the various nodes) system. Basically, each node that you add to the system will give more availability and reliability to your system, since each node is guaranteed to have the exact data as the others and this nodes can also be set on a different zones
 As you can imagine, this allows very easy horizontal scaling and is ideal for extensive usage or huge dataset but is totally a waste for smaller projects, both cost wise and time wise, since the minimum viable setup of 3 nodes for making it working.
