@@ -39,7 +39,7 @@ const LayoutWrapper = ({ children }) => {
       <header
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
-          scrolledPassedHeader ? '' : `bg-io_${themeBg}-500`
+          scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
         } py-4 px-4 ${textClass} xl:bg-io_${themeBg}-500`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
@@ -47,7 +47,7 @@ const LayoutWrapper = ({ children }) => {
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div
                 className={`flex items-center justify-between ${
-                  scrolledPassedHeader ? 'opacity-0' : 'opacity-100'
+                  scrolledPassedHeader ? 'opacity-0' : 'pointer-events-auto opacity-100'
                 }`}
               >
                 <div className="mr-3 duration-150 ease-out sm:opacity-100">
@@ -70,7 +70,7 @@ const LayoutWrapper = ({ children }) => {
           <div className="relative flex items-center text-base leading-5" ref={navigationItemsRef}>
             <div
               className={`hidden items-center rounded-full pl-2 sm:flex sm:pr-12 ${
-                navigationIsOpen ? 'border-white' : 'border-gray-200'
+                navigationIsOpen ? 'pointer-events-auto border-white' : 'border-gray-200'
               }`}
             >
               {headerNavLinks.map((link, index) => (
@@ -94,7 +94,7 @@ const LayoutWrapper = ({ children }) => {
               ))}
               <button
                 type="button"
-                className={`absolute -right-1 -top-1 bottom-0 m-1 h-16 w-16 rounded-full  bg-white p-5 ${
+                className={`pointer-events-auto absolute -right-1 -top-1 bottom-0 m-1 h-16 w-16 rounded-full  bg-white p-5 ${
                   scrolledPassedHeader ? 'sm:opacity-100' : 'pointer-events-none opacity-0'
                 }
                 duration-150 ease-out`}
