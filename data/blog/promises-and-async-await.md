@@ -1,6 +1,6 @@
 ---
 title: 'Promises and async/await'
-date: '2022-07-27'
+date: '2022-08-08'
 tags: ['frontend', 'js']
 images: []
 summary: 'The Promise, a fundamental tool in the asynchronous language that is javascript.'
