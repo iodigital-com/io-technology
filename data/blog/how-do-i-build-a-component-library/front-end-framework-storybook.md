@@ -1,8 +1,11 @@
 ---
 title: 'How do I set up a _front-end framework_ & showcase it with _Storybook_?'
-date: '2022-10-08'
+date: '2022-08-24'
 tags: ['frontend']
-images: ['/iO-technology-blog1.png']
+images:
+  [
+    '/articles/how-do-i-build-a-component-library/front-end-framework-storybook/front-end-framework-storybook.png',
+  ]
 summary: 'How to build a component library Part 2: Picking a front-end framework and setting up Storybook.'
 authors: ['dave-bitter']
 theme: 'orange'
