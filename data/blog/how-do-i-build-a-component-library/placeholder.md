@@ -1,6 +1,6 @@
 ---
 title: 'placeholder'
-date: '2022-07-07'
+date: '2022-8-17'
 tags: ['frontend']
 images: ['/iO-technology-blog1.png']
 summary: 'How to build a component library Part 1: Setting up a Monorepo, Semver strategy and Private package registry.'
