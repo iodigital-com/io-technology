@@ -13,7 +13,7 @@ export async function getStaticProps() {
   return { props: { talks, authors, theme: 'black' } }
 }
 
-export default function Articles({ talks, authors }) {
+export default function Talks({ talks, authors }) {
   const { theme } = useBrandingTheme()
 
   return (
