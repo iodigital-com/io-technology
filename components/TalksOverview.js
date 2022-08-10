@@ -1,7 +1,6 @@
-import Link from '@/components/Link'
-import Arrow from '@/data/arrow.svg'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
+import MarkdownRenderer from 'react-markdown-renderer'
 
 const TalksOverview = ({ talks, authors }) => {
   const renderTalks = talks.map((talk) => {
@@ -21,7 +20,7 @@ const TalksOverview = ({ talks, authors }) => {
 const Talk = ({ title, summary, author, tags }) => (
   <li className="flex border-t-2 border-gray-100 pt-4">
     <div className="flex flex-col">
-      <h3 className="talk-title text-h5 mb-3 text-2xl line-clamp-2">{title}</h3>
+      <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
       <div className="text-body-xs mb-3 lg:mb-6">
         <p>{summary}</p>
       </div>
