@@ -10,14 +10,16 @@ export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
   const authors = await getAuthors(talks)
 
-  return { props: { talks, authors, theme: 'rouge' } }
+  return { props: { talks, authors, theme: 'black' } }
 }
 
 export default function Articles({ talks, authors }) {
+  const { theme } = useBrandingTheme()
+
   return (
     <>
       <PageSEO title={`Talks - ${siteMetadata.author}`} description={siteMetadata.description} />
-      <section className={`bg-black text-white`}>
+      <section className={`bg-io_${theme}-500 text-white`}>
         <div className="container mx-auto pt-8 pb-24 md:pb-32">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
