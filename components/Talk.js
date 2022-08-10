@@ -2,23 +2,8 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 
-const TalksOverview = ({ talks, authors }) => {
-  const renderTalks = talks.map((talk) => {
-    const [author] = talk.authors.map((author) => authors[author])
-    return <Talk key={talk.title} author={author} {...talk} />
-  })
-
-  return (
-    <div className="container mx-auto py-10 lg:py-16">
-      <ul className="grid gap-y-16 md:gap-x-4 lg:grid-cols-2 lg:gap-y-20 xl:grid-cols-3 xl:gap-x-6">
-        {renderTalks}
-      </ul>
-    </div>
-  )
-}
-
 const Talk = ({ title, summary, author, tags }) => (
-  <li className="flex border-t-2 border-gray-100 pt-4">
+  <li className="flex border-b-2 border-gray-100 pb-10">
     <div className="flex flex-col">
       <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
       <div className="text-body-xs mb-3 lg:mb-6">
@@ -57,4 +42,4 @@ const Talk = ({ title, summary, author, tags }) => (
   </li>
 )
 
-export default TalksOverview
+export default Talk
