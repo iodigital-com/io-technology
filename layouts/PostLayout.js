@@ -27,7 +27,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
           <div className="container mx-auto">
-            <h1 className="post-title text-4xl font-medium xl:text-7xl">
+            <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
             </h1>
             <div className="my-4 divide-x">
