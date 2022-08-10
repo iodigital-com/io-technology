@@ -24,7 +24,7 @@ export default function Talks({ talks, authors }) {
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
-                Awesome <span className="font-serif">Expert talks</span> to share knowledge
+                Looking to <span className="font-serif">inspire</span> at your event?
               </h1>
             </div>
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
@@ -40,7 +40,15 @@ export default function Talks({ talks, authors }) {
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
               <div className="xl:w-11/12">
                 <p className="mb-4 ">
-                  We have some great experts that can deliver some expert talks at your location!
+                  We have great experts that can deliver inspiring talks at your event! Feel free to
+                  reach out to{' '}
+                  <a
+                    className="underline underline-offset-2"
+                    href="mailto:business@iodigital.com?subject=Request%20for%20speaker%20(iO%20tech_hub)"
+                  >
+                    business@iodigital.com
+                  </a>{' '}
+                  to invite one of our speakers
                 </p>
               </div>
             </div>
