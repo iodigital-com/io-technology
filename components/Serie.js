@@ -34,7 +34,7 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
         </div>
       )}
       <div className={`col-span-full ${authors ? 'md:col-start-4 xl:col-start-7' : ''}`}>
-        <Link href={`/series/${slug}`}>
+        <Link href={`/${subpath}/${slug}`}>
           <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
         </Link>
         <dl className="mb-4">
