@@ -7,10 +7,11 @@ import Talk from '@/components/Talk'
 import Image from '@/components/Image'
 
 export async function getStaticProps() {
-  const talks = await getAllFilesFrontMatter('talks', 'creationDate')
+  const talks = await getAllFilesFrontMatter('talks')
+  const talksShuffled = talks.sort(() => (Math.random() > 0.5 ? 1 : -1))
   const authors = await getAuthors(talks)
 
-  return { props: { talks, authors, theme: 'black' } }
+  return { props: { talks: talksShuffled, authors, theme: 'black' } }
 }
 
 export default function Talks({ talks, authors }) {
