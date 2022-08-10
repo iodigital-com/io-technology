@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import removeMarkdown from 'markdown-to-text'
 import MarkdownRenderer from 'react-markdown-renderer'
 
 import Link from '@/components/Link'
@@ -35,12 +34,15 @@ const SeriePlaylist = ({ serie }) => {
                 }`}
               >
                 <strong className="font-bold">Part {index + 1}: </strong>
-                {removeMarkdown(title)}
+                <MarkdownRenderer markdown={title} />
               </div>
             </Link>
           </li>
         ))}
       </ol>
+      {posts.length === 1 && (
+        <p className="mt-4 text-center text-gray-400">Next article coming soon!</p>
+      )}
     </div>
   )
 }

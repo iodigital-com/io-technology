@@ -1,5 +1,6 @@
 ---
-title: 'How do is setup CI/CD & hosting?'
+draft: true
+title: 'How do I setup CI/CD & hosting?'
 date: '2022-09-07'
 tags: ['frontend']
 images: ['/articles/how-do-i-build-a-component-library/ci-cd-hosting/ci-cd-hosting.png']
