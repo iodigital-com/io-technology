@@ -7,7 +7,7 @@ import Talk from '@/components/Talk'
 import Image from '@/components/Image'
 
 export async function getStaticProps() {
-  const talks = await getAllFilesFrontMatter('talks')
+  const talks = await getAllFilesFrontMatter('talks', 'creationDate')
   const authors = await getAuthors(talks)
 
   return { props: { talks, authors, theme: 'black' } }
