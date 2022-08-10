@@ -28,7 +28,7 @@ export async function getStaticProps({ params }) {
   const prev = allSeries[postIndex + 1] || null
   const next = allSeries[postIndex - 1] || null
   const serie = await getFileBySlug('series', params.slug.join('/'))
-  const { posts } = await getSerie(params.slug.join('/'), allPosts)
+  const { posts = [] } = (await getSerie(params.slug.join('/'), allPosts)) || {}
   const authorList = serie.frontMatter.authors || ['default']
   const authorPromise = authorList.map(async (author) => {
     const authorResults = await getFileBySlug('authors', [author])

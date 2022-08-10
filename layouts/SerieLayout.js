@@ -136,7 +136,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
               )}
               <div className="container mx-auto pb-8 ">
                 <ul>
-                  {!posts.length && 'No series found.'}
+                  {!posts.length && 'No articles found.'}
                   {posts.map((frontMatter, index) => {
                     const { slug, date, title, tags } = frontMatter
 

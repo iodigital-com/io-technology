@@ -162,7 +162,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   </div>
                 </div>
               )}
-              {(next || prev) && (
+              {!serie && (next || prev) && (
                 <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                   {prev && (
                     <div>
