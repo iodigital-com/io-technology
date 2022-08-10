@@ -5,8 +5,8 @@ import MarkdownRenderer from 'react-markdown-renderer'
 const Talk = ({ title, summary, author, tags }) => (
   <li className="flex border-b-2 border-gray-100 pb-10">
     <div className="flex flex-col">
-      <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
-      <div className="text-body-xs mb-3 lg:mb-6">
+      <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
+      <div className="text-body-xs mb-3">
         <p>{summary}</p>
       </div>
 
@@ -23,10 +23,10 @@ const Talk = ({ title, summary, author, tags }) => (
               className="rounded-full"
             />
           </div>
-          {/* TODO: use link when author detail page is ready */}
-          {/* <Link href=""> */}
-          <p className="text-sm text-black">By {author.name}</p>
-          {/* </Link> */}
+          <div>
+            <p className="text-sm font-medium text-black">{author.name}</p>
+            <p className="text-sm text-black">{author.occupation}</p>
+          </div>
         </div>
 
         <div className="mb-3 flex flex-nowrap gap-1 line-clamp-1">
