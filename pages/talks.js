@@ -3,7 +3,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { PageSEO } from '@/components/SEO'
 import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import TalksOverview from '@/components/TalksOverview'
+import Talk from '@/components/Talk'
 import Image from '@/components/Image'
 
 export async function getStaticProps() {
@@ -47,7 +47,14 @@ export default function Talks({ talks, authors }) {
           </div>
         </div>
       </section>
-      <TalksOverview talks={talks} authors={authors} />
+      <div className="container mx-auto py-10 lg:py-16">
+        <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">
+          {talks.map((talk) => {
+            const [author] = talk.authors.map((author) => authors[author])
+            return <Talk key={talk.title} author={author} {...talk} />
+          })}
+        </ul>
+      </div>
     </>
   )
 }
