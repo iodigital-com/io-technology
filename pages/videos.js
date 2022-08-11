@@ -25,7 +25,7 @@ export default function Videos({ videos }) {
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
                 Check out our videos from{' '}
-                <span className="font-serif">meetups and expert talks</span>
+                <span className="font-serif font-light">meetups and expert talks</span>
               </h1>
             </div>
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
