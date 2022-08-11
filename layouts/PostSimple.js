@@ -1,3 +1,4 @@
+import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import { BlogSEO } from '@/components/SEO'
@@ -25,7 +26,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 </div>
               </dl>
               <div>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle> {<MarkdownRenderer markdown={title} />}</PageTitle>
               </div>
             </div>
           </header>

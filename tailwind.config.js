@@ -102,6 +102,10 @@ module.exports = {
             'ul li::marker': {
               backgroundColor: theme('colors.gray.500'),
             },
+            'ul ol': {
+              marginBottom: '1.25rem',
+              marginTop: '1.25rem',
+            },
             strong: { color: theme('colors.gray.600') },
             blockquote: {
               color: theme('colors.gray.900'),

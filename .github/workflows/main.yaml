@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout current repository to Master branch
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Setup NodeJs 16.x
         uses: actions/setup-node@v1
         with:
@@ -27,13 +27,16 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Update YouTube data
         run: node scripts/youtube.js
       - name: Update Jobs data
         run: node scripts/jobs.js
       - name: Commit and Push updated json files to the repository
-        uses: mikeal/publish-to-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: 'develop'
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'data'
+          default_author: github_actions
+          new_branch: 'develop'
+          commit: '--no-verify'
+          message: 'chore(data): update YouTube and jobs files'

@@ -68,12 +68,6 @@ const Head = () => {
       <link
         rel="icon"
         type="image/png"
-        sizes="192x192"
-        href={`/favicons/apple-icon-${theme}-192x192.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
         sizes="32x32"
         href={`/favicons/favicon-${theme}-32x32.png`}
       />
