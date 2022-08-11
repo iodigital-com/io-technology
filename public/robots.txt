@@ -1,0 +1,6 @@
+Sitemap: https://techhub.iodigital.com/sitemap.xml
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
