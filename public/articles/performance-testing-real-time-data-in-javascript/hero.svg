@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f1d581
+      }
+
+      .cls-5 {
+        fill: #fff2ee
+      }
+
+      .cls-7 {
+        fill: #e67249
+      }
+
+      .cls-10 {
+        fill: #5e3b3b;
+        stroke: #5e3b3b;
+        stroke-miterlimit: 10;
+        stroke-width: 4px
+      }
+    </style>
+  </defs>
+  <g style="isolation:isolate">
+    <g id="Layer_2">
+      <path fill="#fff" d="M350 150h900v600H350z" />
+      <path d="M0 0h1600v900H0z" class="cls-5" />
+    </g>
+    <g id="Layer_1">
+      <path fill="#2eb99e" d="M491 568c-30 52-48 113-48 178H224v-5c1-103 29-199 77-283l190 110Z" />
+      <path fill="#54e2b6" d="M622 437c-54 31-99 76-130 130l-1 1-190-110 1-1c50-87 123-159 210-210l110 190Z" />
+      <path fill="#f2a488" d="M1088 247 978 437c-53-30-113-47-178-47V170c105 0 203 28 288 77Z" />
+      <path fill="#e97d58" d="m1299 458-190 110-1-1c-31-54-76-99-130-130l110-190a579 579 0 0 1 211 211Z" />
+      <path d="M1376 745v1h-219c0-65-18-126-48-178l190-110a572 572 0 0 1 77 287Z" class="cls-7" />
+      <path
+        d="M794 171h12v220h-12zM983 441l-10-6 110-191 10 6v1L983 441zM489 573 298 463l6-10h1l190 110-6 10zM617 441 507 250l10-6 1 1 109 190-10 6zM1111 573l-6-10 191-110 6 10-1 1-190 109z"
+        class="cls-5" />
+      <path d="M1379 746h-6A572 572 0 0 0 304 460c-51 86-77 185-77 286h-6a578 578 0 1 1 1158 0Z" class="cls-10" />
+      <g>
+        <path d="M819 153v236a365 365 0 0 0-209 54L493 240h1c95-55 206-87 325-87Z" class="cls-1" />
+        <path d="M819 389a365 365 0 0 0-209 54L494 242v-2l325 149Z" class="cls-1" opacity=".5"
+          style="mix-blend-mode:multiply" />
+        <path
+          d="M609 447 489 239l3-2c99-57 212-87 327-87h3v242h-3a366 366 0 0 0-207 54l-3 1ZM497 241l114 198 8-5a361 361 0 0 1 197-48V156c-112 1-222 30-319 85Z"
+          class="cls-10" />
+      </g>
+      <path
+        d="M1119 746h-6a315 315 0 0 0-469-271h-1a313 313 0 0 0-156 271h-6a321 321 0 0 1 160-276v-1a319 319 0 0 1 435 117c28 49 43 104 43 160Z"
+        class="cls-10" />
+      <g>
+        <path d="M800 468h-6v-38h6v38z" class="cls-10" />
+        <path d="M585 517h6v40h-6z" class="cls-10" transform="rotate(-45 588 537)" />
+        <path d="M990 532h36v6h-36z" class="cls-10" transform="rotate(-45 1008 535)" />
+        <path d="m541 645-38-15 3-6 2 1 35 15-2 5z" class="cls-10" />
+        <path d="M891 467h37v6h-37z" class="cls-10" transform="rotate(-68 909 470)" />
+        <path d="m687 492-15-36 5-2v1l15 35-5 2z" class="cls-10" />
+        <path d="M1054 627h36v6h-36z" class="cls-10" transform="rotate(-23 1072 630)" />
+        <path d="m526 697-40-8 1-5h3l37 7-1 6z" class="cls-10" />
+        <path d="M834 451h38v6h-38z" class="cls-10" transform="rotate(-79 853 454)" />
+        <path d="m640 519-23-33 5-3 23 33-5 3z" class="cls-10" />
+        <path d="M1026 576h36v6h-36z" class="cls-10" transform="rotate(-34 1044 579)" />
+        <path d="M546 565h6v40h-6z" class="cls-10" transform="rotate(-57 549 585)" />
+        <path d="M941 493h37v6h-37z" class="cls-10" transform="rotate(-57 959 496)" />
+        <path d="m736 475-8-37 6-2v1l8 37-6 1z" class="cls-10" />
+        <path d="M1071 681h36v6h-36z" class="cls-10" transform="rotate(-12 1089 684)" />
+      </g>
+      <path d="M221 744h1158v6H221z" class="cls-10" />
+      <g>
+        <path d="m789 747 44-13-13-32-68-171c-2-6-9-4-8 2l31 173 7 41h7Z" class="cls-7" />
+        <path d="m790 750-2-6 41-12-80-200-1-1-1 2 38 213-6 1-38-213c-1-5 2-8 5-9s7 0 9 5l82 206-47 14Z"
+          class="cls-7" />
+        <path d="M856 747a50 50 0 1 0-99 0h99Z" class="cls-10" />
+      </g>
+    </g>
+  </g>
+</svg>
