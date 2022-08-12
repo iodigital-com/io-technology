@@ -15,6 +15,7 @@ import Clock from '@/data/clock.svg'
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
+  const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
 
   return (
     <>
@@ -31,13 +32,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               {<MarkdownRenderer markdown={title} />}
             </h1>
             <div className="my-4 divide-x">
-              {authorDetails.slice(0, 1).map((author) => {
-                return (
-                  <p key={author.name} className="inline pr-2 text-xl font-light">
-                    By {author.name}
-                  </p>
-                )
-              })}
+              <p className="inline pr-2 text-xl font-light">By {authorNames}</p>
               <time className="inline px-2 font-light" dateTime={date}>
                 {formatDate(date)}
               </time>
