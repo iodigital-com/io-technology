@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   media-src 'none';
   connect-src *;
   font-src 'self';
-  frame-src youtube.com www.youtube.com codepen.io *.hotjar.com facebook.com;
+  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com;
 `
 
 const securityHeaders = [
