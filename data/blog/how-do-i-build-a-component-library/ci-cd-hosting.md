@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'How do I setup _CI/CD & hosting?_'
 date: '2022-09-07'
 tags: ['frontend']
