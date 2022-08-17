@@ -3,6 +3,7 @@ import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
+import Share from '@/components/Share'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
@@ -127,7 +128,14 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
           </dl>
           <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
             <div className="xl:col-span-2 xl:pb-0">
-              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">{children}</div>
+              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
+                {children}
+                <div>
+                  <hr className="my-24" />
+                  <h1>Share</h1>
+                  <Share />
+                </div>
+              </div>
             </div>
           </div>
           <footer>
