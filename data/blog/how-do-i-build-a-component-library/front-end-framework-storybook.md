@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'How do I set up a _front-end framework_ & showcase it with _Storybook_?'
 date: '2022-08-24'
 tags: ['frontend']
