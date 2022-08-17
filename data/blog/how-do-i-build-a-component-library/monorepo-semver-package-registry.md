@@ -12,13 +12,17 @@ theme: 'orange'
 serie: 'how-do-i-build-a-component-library'
 ---
 
+<div className="p-4 bg-io_orange-100">_This article is part 1 of the series [How do I build a Component Library?](/series/how-do-i-build-a-component-library). You can find the demo repository for this series on [GitHub](https://github.com/DaveBitter/fe-monorepo) and the component library itself hosted [here](https://fe-monorepo.davebitter.com/)._</div>
+
+---
+
 When building a component library, it is wise to have a solid setup to be able to offer your components to your consumers. Now, this naturally is heavily opinionated. Let’s have a look at how you might do it.
 
 ## How do I set up a monorepo with Yarn Workspaces?
 
 My favourite way to separate the code for each component is using a monorepo. This way, you can create separate standalone packages for each of your components. These packages can then be used between one another and it keeps the code nicely scoped.
 
-There are a variety of packages that can help you with this. I used to use [Lerna](https://github.com/lerna/lerna) a lot, but its future became uncertain a while back. [This issue](https://github.com/lerna/lerna/issues/2703) is an interesting read on that. It has since been taken over by [Nrwl](https://github.com/lerna/lerna/issues/3121), but I have since made the shift to [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
+There are a variety of packages that can help you with this. I used to use [Lerna](https://github.com/lerna/lerna) a lot, but its future became uncertain a while back. [This issue](https://github.com/lerna/lerna/issues/2703) is an interesting read on that. It has since been taken over by [Nrwl](https://github.com/lerna/lerna/issues/3121), but I have made the shift to [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
 
 Yarn Workspaces allow you to set up multiple packages in such a way that you only need to run `yarn install` once to install all of them in a single pass. So, each package has its own `package.json` and `node_modules`. Yarn Workspaces will then make sure to install the dependencies in each package in your workspace, but also hoist duplicate packages up.
 
@@ -37,22 +41,22 @@ Next, you need to tell Yarn where your packages will live. For now, let’s set 
 
 This will tell Yarn that we have our packages in these two folders. Next, let’s add some placeholder packages. Your project structure might look something like this:
 
-```markdown
+```
 packages/
 ├── components/
-│ ├── button/
-│ │ ├── src/
-│ │ │ └── index.ts
-│ │ └── package.json
-│ └── text/
-│ ├── src/
-│ │ └── index.ts
-│ └── package.json
+│   ├── button/
+│   │   ├── src/
+│   │   │   └── index.ts
+│   │   └── package.json
+│   └── text/
+│       ├── src/
+│       │   └── index.ts
+│       └── package.json
 └── utilities/
-└── format-date/
-├── src/
-│ └── index.ts
-└── package.json
+    └── format-date/
+        ├── src/
+        │   └── index.ts
+        └── package.json
 package.json
 ```
 
@@ -77,7 +81,7 @@ How can we automate parts of this?
 
 ### Changesets
 
-We can make use of [changeset](https://github.com/changesets/changesets) to help us. It provides a CLI tool and a few scripts to do the above. Firstly, add changesets with the following command:
+We can make use of [changeset](https://github.com/changesets/changesets) to help us. It provides a CLI tool and a few scripts to do the above. Firstly, add changesets with the following command in the root or the repository:
 
 ```markdown
 yarn add @changesets/cli
@@ -169,6 +173,12 @@ registry=https://registry.npmjs.org
 
 Make sure to replace `YOUR_GITHUB_USERNAME` and `YOUR_GITHUB_TOKEN` with your username and token respectively.
 
+**Don’t commit this file. Update your `.gitignore`**:
+
+```jsx
+.npmrc
+```
+
 ### Updating the package.json file for each package
 
 Now, for every package that you want to publish, make sure to add this:
@@ -222,4 +232,6 @@ registry=https://npm.pkg.github.com
 
 You’ve set up a monorepo that uses Yarn Workspaces to handle dependency management. Next, you use Changeset to help with the versioning of components. Finally, you’ve published the separate packages to your private package registry.
 
-That’s already starting to look like a nice setup. The packages have no real code in there yet. Next, we are going to set up our front-end framework and Storybook.
+## Next steps
+
+That’s already starting to look like a nice setup. The packages have no real code in there yet. In the next article, we are going to set up our front-end framework and Storybook.

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 'How do I set up a _front-end framework_ & showcase it with _Storybook_?'
 date: '2022-08-24'
 tags: ['frontend']
@@ -12,6 +13,10 @@ theme: 'orange'
 serie: 'how-do-i-build-a-component-library'
 ---
 
+<div className="p-4 bg-io_orange-100">_This article is part 2 of the series [How do I build a Component Library?](/series/how-do-i-build-a-component-library). You can find the demo repository for this series on [GitHub](https://github.com/DaveBitter/fe-monorepo) and the component library itself hosted [here](https://fe-monorepo.davebitter.com/)._</div>
+
+---
+
 I’ve already stated that this series would be opinionated. Now, it doesn’t get more opinionated than picking a front-end framework. Which one did I pick and why?
 
 ## Picking a framework
@@ -22,9 +27,9 @@ There is a plethora of front-end frameworks available to use. Some swear by [Rea
 
 My personal preference for building robust web applications is React.js. React.js has the features, backing and support I’m looking for in a front-end framework. You might, however, be surprised to learn that I don’t actually like React.js to build component libraries.
 
-The downside with picking a framework like React.js/Vue.js/[Svelte](https://svelte.dev/)/[insert framework here] for a component library is that it’s hard to introduce it in a large company. While a company might use React.js for their newly chosen tech stack, they most likely still have a few [Angular.js](https://angularjs.org/) or vanilla applications that you want to support too. Even if they don’t, in a few years the company might decide to move to the new latest and greatest framework. Migrating your component library to this new framework is very costly and will most likely not happen. Because of this, your component library will most likely be labelled as ‘legacy’. I go more in-depth into this phenomenon in my article [The infinite legacy cycle in front-end](https://techhub.iodigital.com/articles/the-infinite-legacy-cycle-in-front-end).
+The downside with picking a framework like React.js/Vue.js/[Svelte](https://svelte.dev/)/[insert framework here] for a component library is that it’s hard to introduce it in a large company. While a company might use React.js for their newly chosen tech stack, they most likely still have a few [Angular.js](https://angularjs.org/) or vanilla applications that you want to support too. Even if they don’t, in a few years the company might decide to move to the new latest and greatest framework. Migrating your component library to this new framework is very costly and will most likely not happen. Because of this, your component library will most likely be labelled as ‘legacy’. I go more in-depth into this phenomenon in my article [The infinite legacy cycle in front-end](/articles/the-infinite-legacy-cycle-in-front-end).
 
-So how do you best prevent this from happening? For me, the perfect solutions are [Web Components](https://www.webcomponents.org/). Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps. At least, that’s what [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components) says. Simplified, Web Components are browser-native components that offer similar functionality as many front-end framework. An interesting concept, however, is the usage of the Shadow DOM. To learn more, head over to the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
+So how do you best prevent this from happening? For me, the perfect solutions are [Web Components](https://www.webcomponents.org/). Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps. At least, that’s what [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components) says. Simplified, Web Components are browser-native components that offer similar functionality as many front-end framewors. An interesting concept, however, is the usage of the Shadow DOM. To learn more, head over to the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ### So native Web Components?
 
@@ -33,7 +38,7 @@ I mean, you could! It might, however, be wise to look for a bit of an abstractio
 - [Lit](https://github.com/lit/lit)
 - [Stencil](https://stenciljs.com/)
 
-Like any set of frameworks, they both have their up- and downsides. There are many comparison articles online comparing them. Feel free to look it up after you finish this article. So which one did I choose? I decided to go for Lit. I told you this was going to be an opinionated series. The reason is that I’ve got experience using Lit already. Next to that, I like that it seems to be a bit more low-level and closer to the core which I always look out for. If you want to learn a bit more about Lit, head over to the article [Why lit is 🔥](https://techhub.iodigital.com/articles/why-lit-is-%F0%9F%94%A5) by my colleague Lucien Immink. To be fair, going with any of the mentioned options would be good.
+Like any set of frameworks, they both have their up- and downsides. There are many comparison articles online comparing them. Feel free to look it up after you finish this article. So which one did I choose? I decided to go for Lit. I told you this was going to be an opinionated series. The reason is that I’ve got experience using Lit already. Next to that, I like that it seems to be a bit more low-level and closer to the core which I always look out for. If you want to learn a bit more about Lit, head over to the article [Why lit is 🔥](/articles/why-lit-is-%F0%9F%94%A5) by my colleague Lucien Immink. To be fair, going with any of the mentioned options would be good.
 
 ### How do Web Components help me?
 
@@ -129,12 +134,16 @@ import { Meta } from "@storybook/addon-docs";
 
 import README from "../README.md";
 
-<Meta title="README (skip-storyshot)" />
+<Meta title="README" />
 
 <README />
 ```
 
 Now, when we open Storybook, we are greeted with the contents of the README file.
+
+## Looking back
+
+You've set up a front-end framwork to work with and Storybook do develop and showcase your components with.
 
 ## Next steps
 
