@@ -1,5 +1,6 @@
 ---
-title: 'How do I set up linting, unit, snapshot and visual regression testing?'
+draft: true
+title: 'How do I set up _linting_, _unit_, _snapshot_ and _visual regression testing_?'
 date: '2022-08-31'
 tags: ['frontend']
 images: ['/articles/how-do-i-build-a-component-library/linting-testing/linting-testing.png']
@@ -7,6 +8,10 @@ summary: 'How to build a component library Part 3: Setting up linting, unit, sna
 authors: ['dave-bitter']
 theme: 'orange'
 serie: 'how-do-i-build-a-component-library'
+---
+
+<div className="p-4 bg-io_orange-100">_This article is part 3 of the series [How do I build a Component Library?](/series/how-do-i-build-a-component-library). You can find the demo repository for this series on [GitHub](https://github.com/DaveBitter/fe-monorepo) and the component library itself hosted [here](https://fe-monorepo.davebitter.com/)._</div>
+
 ---
 
 Before adding new components to your component library, you might want to set up some linting and testing tools. This ensures that no unexpected mistakes, inconsistencies and manual labour are required. Let’s have a look at a few tools I think you should always add to your component library. This will not just consist of the the actual tools to run the testing and linting, but surrounding tools to help automate the chores even more and take work off your hands.
@@ -110,7 +115,8 @@ Now, we have this linting that will warn us in our IDE. As you may have noticed,
 I’ve added the following NPM script to the root `package.json`:
 
 ```jsx
-"format": "prettier --write \"**/*.{css,ts,js}\""
+"format:check": "prettier --write \"**/*.{css,ts,js}\"",
+"format:fix": "prettier --write \"**/*.{css,ts,js}\""
 ```
 
 ### Import sorts
@@ -137,7 +143,7 @@ Another neat automation I like to add to projects is sorting and grouping import
 }
 ```
 
-As you can see, for the demo repository, I want to have all imports related to Lit be at the top, then have a group with all other third-party modules. After that, I want all the private node_modules under the `@davebitter` scope grouped. Next, I want to have all relative imports in a group. Finally, all imports regarding styling should be grouped. After adding this configuration, you never have to worry about your imports again.
+As you can see, for the demo repository, I want to have all imports related to Lit be at the top, then have a group with all other third-party modules. After that, I want all the private `node_modules` under the `@davebitter` scope grouped. Next, I want to have all relative imports in a group. Finally, all imports regarding styling should be grouped. After adding this configuration, you never have to worry about your imports again.
 
 ### Manypkg
 
@@ -288,7 +294,10 @@ Naturally, we only want to lint needed files and not the entire repository if th
 
 ```jsx
 {
-	"packages/**/*.{js,ts}": "eslint --cache",
+	"packages/**/*.{js,ts}": [
+		"eslint --cache",
+		"jest ./packages"
+	],
 	"packages/**/*.css}": "stylelint --fix",
 	"packages/**/*.{js,ts,css,json,md}": "prettier --write",
 	"**/package.json": "manypkg check"
@@ -312,6 +321,10 @@ You can help developers with this process using [Commitizen](https://github.com/
 This will then guide you through an interactive CLI:
 
 ![Screenshot of questions the interactive CLI prompts with](/articles/how-do-i-build-a-component-library/linting-testing/commitizen.png)
+
+## Looking back
+
+You've set up quite a bit of tooling for the component library. Linting and testing are done automatically and more automations are added.
 
 ## Next steps
 
