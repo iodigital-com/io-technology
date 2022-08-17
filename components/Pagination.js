@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Arrow from '@/data/arrow.svg'
 
-export default function Pagination({ totalPages, currentPage }) {
+export default function Pagination({ totalPages, currentPage, subpath = 'articles' }) {
   const prevPage = parseInt(currentPage) - 1 > 0
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
   const btnClasses =
@@ -18,7 +18,9 @@ export default function Pagination({ totalPages, currentPage }) {
           </button>
         )}
         {prevPage && (
-          <Link href={currentPage - 1 === 1 ? `/articles/` : `/articles/page/${currentPage - 1}`}>
+          <Link
+            href={currentPage - 1 === 1 ? `/${subpath}/` : `/${subpath}/page/${currentPage - 1}`}
+          >
             <a rel="previous" className={btnClasses}>
               <Arrow className="mr-4 w-6 rotate-180" />
               <span>Previous</span>
@@ -35,7 +37,7 @@ export default function Pagination({ totalPages, currentPage }) {
           </button>
         )}
         {nextPage && (
-          <Link href={`/articles/page/${currentPage + 1}`}>
+          <Link href={`/${subpath}/page/${currentPage + 1}`}>
             <a rel="next" className={btnClasses}>
               <span>Next</span>
               <Arrow className="ml-4 w-6" />
