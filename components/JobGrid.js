@@ -34,7 +34,7 @@ const JobGrid = ({ jobs }) => {
         className={`h-40 bg-io_${theme}-600 p-2 pt-3 text-white hover:bg-io_${theme}-700`}
       >
         <h3 className="text my-1.5 text-2xl font-medium">
-          View all <span className="font-serif">jobs</span>
+          View all <span className="font-serif font-light">jobs</span>
         </h3>
         <svg style={{ width: 24, height: 24 }} className="text-white" viewBox="0 0 24 24">
           <path
