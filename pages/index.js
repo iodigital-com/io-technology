@@ -36,7 +36,8 @@ export default function Home({ posts, videos, jobs, authors }) {
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window of <span className="font-serif">infinite opportunity</span>?
+              Is technology your window of{' '}
+              <span className="font-serif font-light">infinite opportunity</span>?
             </h1>
             <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:-mt-6 xl:col-span-7">
               <div className="w-1/2">
@@ -92,7 +93,7 @@ export default function Home({ posts, videos, jobs, authors }) {
       </div>
 
       <SectionTitle id="articles">
-        Our latest <span className="font-serif">articles</span>
+        Our latest <span className="font-serif font-light">articles</span>
       </SectionTitle>
 
       <section className="container mx-auto">
@@ -131,12 +132,12 @@ export default function Home({ posts, videos, jobs, authors }) {
       )}
 
       <SectionTitle id="videos">
-        Our latest <span className="font-serif">videos</span>
+        Our latest <span className="font-serif font-light">videos</span>
       </SectionTitle>
       <VideoCarousel videos={videos} />
 
       <SectionTitle id="jobs">
-        Some of our <span className="font-serif">jobs</span>
+        Some of our <span className="font-serif font-light">jobs</span>
       </SectionTitle>
       <div className="container mx-auto">
         <JobGrid jobs={jobs} />
