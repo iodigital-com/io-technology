@@ -2,7 +2,7 @@
 title: 'A technical introduction to SSO'
 date: '2022-08-16'
 tags: ['security']
-summary: 'Single Sing-on has been around for years but on what standards is it working?'
+summary: 'Single Sign-on has been around for years but on what standards is it working?'
 authors: ['daan-beulen', 'mark-van-der-linden']
 theme: 'blue'
 serie: 'a-deep-dive-into-single-sing-on'
