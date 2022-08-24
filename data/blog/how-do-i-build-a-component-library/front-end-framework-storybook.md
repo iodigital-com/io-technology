@@ -1,5 +1,5 @@
 ---
-title: 'How do I set up a _front-end framework_ & showcase it with _Storybook_?'
+title: 'How do I pick a _front-end framework_ & showcase it with _Storybook_?'
 date: '2022-08-24'
 tags: ['frontend']
 images:
@@ -26,13 +26,13 @@ There is a plethora of front-end frameworks available to use. Some swear by [Rea
 
 My personal preference for building robust web applications is React.js. React.js has the features, backing and support I’m looking for in a front-end framework. You might, however, be surprised to learn that I don’t actually like React.js to build component libraries.
 
-The downside with picking a framework like React.js/Vue.js/[Svelte](https://svelte.dev/)/[insert framework here] for a component library is that it’s hard to introduce it in a large company. While a company might use React.js for their newly chosen tech stack, they most likely still have a few [Angular.js](https://angularjs.org/) or vanilla applications that you want to support too. Even if they don’t, in a few years the company might decide to move to the new latest and greatest framework. Migrating your component library to this new framework is very costly and will most likely not happen. Because of this, your component library will most likely be labelled as ‘legacy’. I go more in-depth into this phenomenon in my article [The infinite legacy cycle in front-end](/articles/the-infinite-legacy-cycle-in-front-end).
+The downside with picking a framework like React.js/Vue.js/[Svelte](https://svelte.dev/)/[insert framework here] for a component library is that it’s hard to introduce it in a large company. While a company might use React.js for their newly chosen tech stack, they most likely still have a few [AngularJS](https://angularjs.org/) or vanilla applications that you want to support too. Even if they don’t, in a few years the company might decide to move to the new latest and greatest framework. Migrating your component library to this new framework is very costly and will most likely not happen. Because of this, your component library will most likely be labelled as ‘legacy’. I go more in-depth into this phenomenon in my article [The infinite legacy cycle in front-end](/articles/the-infinite-legacy-cycle-in-front-end).
 
 So how do you best prevent this from happening? For me, the perfect solutions are [Web Components](https://www.webcomponents.org/). Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps. At least, that’s what [MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components) says. Simplified, Web Components are browser-native components that offer similar functionality as many front-end framewors. An interesting concept, however, is the usage of the Shadow DOM. To learn more, head over to the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
 ### So native Web Components?
 
-I mean, you could! It might, however, be wise to look for a bit of an abstraction. There are quite a few front-end frameworks built on Web Components (go figure right). Some notable ones are:
+I mean, you could! It might, however, be wise to look for a bit of an abstraction. There are quite a few front-end frameworks built on Web Components. Go figure, right? Some notable ones are:
 
 - [Lit](https://github.com/lit/lit)
 - [Stencil](https://stenciljs.com/)
@@ -41,7 +41,7 @@ Like any set of frameworks, they both have their up- and downsides. There are ma
 
 ### How do Web Components help me?
 
-As Lit compiles to browser-native Web Components, you can load them in any front-end framework or even vanilla web application. Let’s say you have a button component written as a Web Component. You can now use this button in your React.js application, while also using it in a legacy Angular.js project from years ago. In a year you’re migrating to a fancy new framework? You guessed it, you can load your Web Component in that project.
+As Lit compiles to browser-native Web Components, you can load them in any front-end framework or even vanilla web application. Let’s say you have a button component written as a Web Component. You can now use this button in your React.js application, while also using it in a legacy AngularJS project from years ago. In a year you’re migrating to a fancy new framework? You guessed it, you can load your Web Component in that project.
 
 This is such an incredibly needed feature for any component library. It ensures that you can roll out your component library company-wide and offers future-proof support.
 
@@ -142,7 +142,7 @@ Now, when we open Storybook, we are greeted with the contents of the README file
 
 ## Looking back
 
-You've set up a front-end framwork to work with and Storybook do develop and showcase your components with.
+You've set up a front-end framwork to work with and Storybook to develop and showcase your components with.
 
 ## Next steps
 
