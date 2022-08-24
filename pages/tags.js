@@ -4,25 +4,35 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
+import Image from '@/components/Image'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
 
-  return { props: { tags } }
+  return { props: { tags, theme: 'rouge' } }
 }
 
 export default function Tags({ tags }) {
+  const { theme } = useBrandingTheme()
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
   return (
     <>
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I blog about" />
-      <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
-        <div className="space-x-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:border-r-2 md:px-6 md:text-6xl md:leading-14">
-            Tags
-          </h1>
+      <section className={`bg-io_${theme}-500 text-white`}>
+        <div className="container mx-auto pt-8 pb-24 md:pb-32">
+          <div className="grid grid-cols-12">
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+              <h1 className="text-4xl md:text-5xl xl:text-7xl">
+                We write and talk about a lot of{' '}
+                <span className="font-serif font-light">different topics</span>. Check them out!
+              </h1>
+            </div>
+          </div>
         </div>
-        <div className="flex max-w-lg flex-wrap">
+      </section>
+      <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
+        <div className="flex max-w-lg flex-wrap justify-around">
           {Object.keys(tags).length === 0 && 'No tags found.'}
           {sortedTags.map((t) => {
             return (
