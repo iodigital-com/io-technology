@@ -1,35 +1,82 @@
 import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export default function AuthorLayout({ children, frontMatter }) {
-  const { name, avatar, occupation, company, email, twitter, linkedin, github } = frontMatter
+  const { name, avatar, occupation, company, email, twitter, linkedin, github, website } =
+    frontMatter
+
+  const { theme } = useBrandingTheme()
+  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
-      <PageSEO title={`About - ${name}`} description={`About me - ${name}`} />
-      <div className="divide-y p-4 xl:p-16">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            About
-          </h1>
-        </div>
-        <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-          <div className="flex flex-col items-center space-x-2 pt-8">
-            <Image src={avatar} alt="avatar" width="192px" height="192px" className="h-48 w-48" />
-            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
-            <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
-            <div className="text-gray-500 dark:text-gray-400">{company}</div>
-            <div className="flex space-x-3 pt-6">
-              <SocialIcon kind="mail" href={`mailto:${email}`} />
-              <SocialIcon kind="github" href={github} />
-              <SocialIcon kind="linkedin" href={linkedin} />
-              <SocialIcon kind="twitter" href={twitter} />
+      <PageSEO title={`Author - ${name}`} description={`About me - ${name}`} />
+
+      <section className={`bg-io_${theme}-500 ${textClass}`}>
+        <div className="container mx-auto pt-8 pb-24 md:pb-32">
+          <div className="grid grid-cols-12">
+            <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
+              <Image
+                src={avatar}
+                width={800}
+                height={800}
+                layout="responsive"
+                className="rounded-full"
+              />
+            </div>
+
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+              <h1 className="mb-2 text-4xl md:text-5xl xl:text-7xl">{name}</h1>
+              <p className="mb-4 text-2xl">{occupation}</p>
+              <div className="flex flex-wrap gap-4">
+                {linkedin && (
+                  <>
+                    <dt className="sr-only">LinkedIn</dt>
+                    <dd>
+                      <SocialIcon kind="linkedin" href={linkedin} size="5">
+                        {linkedin.replace('https://www.linkedin.com/in/', '').replace('/', '')}
+                      </SocialIcon>
+                    </dd>
+                  </>
+                )}
+                {twitter && (
+                  <>
+                    <dt className="sr-only">Twitter</dt>
+                    <dd>
+                      <SocialIcon kind="twitter" href={twitter} size="5">
+                        {twitter.replace('https://twitter.com/', '@')}
+                      </SocialIcon>
+                    </dd>
+                  </>
+                )}
+                {github && (
+                  <>
+                    <dt className="sr-only">Github</dt>
+                    <dd>
+                      <SocialIcon kind="github" href={github} size="5">
+                        {github.replace('https://github.com/', '')}
+                      </SocialIcon>
+                    </dd>
+                  </>
+                )}
+                {website && (
+                  <>
+                    <dt className="sr-only">Website</dt>
+                    <dd>
+                      <SocialIcon kind="website" href={website} size="5">
+                        {website.replace('https://', '').replace('/', '')}
+                      </SocialIcon>
+                    </dd>
+                  </>
+                )}
+              </div>
+              <div className="prose mt-4">{children}</div>
             </div>
           </div>
-          <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">{children}</div>
         </div>
-      </div>
+      </section>
     </>
   )
 }
