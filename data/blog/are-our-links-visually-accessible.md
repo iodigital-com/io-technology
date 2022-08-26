@@ -1,6 +1,6 @@
 ---
 title: 'Are our links visually accessible?'
-date: '2022-08-25'
+date: '2022-08-26'
 tags: ['a11y', 'accessibility']
 summary: 'A simple link inside a paragraph, what could go wrong? Well, a lot in fact. Let’s have a closer look, shall we?'
 authors: ['frank-van-eldijk']
