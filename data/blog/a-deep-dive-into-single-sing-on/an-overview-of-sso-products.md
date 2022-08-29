@@ -26,10 +26,6 @@ We'll be comparing these products on the following functionalities:
 - Integration support
 - MFA support
 
-In addition, these solutions provide the benefit of having the authentication mechanism centralized and based on standards. This means not having to deal with authentication, or storing of user data in applications that need some form of login functionality.
-
-In this first part of the SSO blog series, we will answer the following questions: 'What does an SSO solution provide other than simplify logins for your users?', 'What protocols are relevant in today's SSO solutions?' and 'What authentication flows are available and what makes them secure?'
-
 ### Ping Identity
 
 ![Ping Identity logo](/articles/an-overview-of-sso-products/ping-identity-logo.png)
