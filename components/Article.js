@@ -12,39 +12,41 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
   return (
     <article className={`border-gray-300 py-8 ${border && 'border-t'}`}>
       <div className="grid grid-cols-12">
-        <div className="hidden md:col-span-3 md:block xl:col-span-5">
-          <div className="flex flex-col xl:flex-row">
-            <div className="flex-0 relative overflow-hidden rounded-full md:mb-4 md:h-16 md:w-16 xl:mr-7 xl:mb-0 xl:h-32 xl:w-32">
-              {authors.slice(0, 1).map((author) => {
-                return (
-                  <Image
-                    key={author.name}
-                    src={author.avatar}
-                    width={200}
-                    height={200}
-                    alt="avatar"
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                )
-              })}
-            </div>
-            <div className="text-body-xs">
-              <p className="mb-0">
-                <Link>
-                  <a
-                    href={`/authors/${authors[0].slug[0]}`}
-                    className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                  >
-                    {authors[0].name}
-                  </a>
-                </Link>
-              </p>
-              <p className="mb-0">{authors[0].occupation}</p>
+        {authors && (
+          <div className="hidden md:col-span-3 md:block xl:col-span-5">
+            <div className="flex flex-col xl:flex-row">
+              <div className="flex-0 relative overflow-hidden rounded-full md:mb-4 md:h-16 md:w-16 xl:mr-7 xl:mb-0 xl:h-32 xl:w-32">
+                {authors.slice(0, 1).map((author) => {
+                  return (
+                    <Image
+                      key={author.name}
+                      src={author.avatar}
+                      width={200}
+                      height={200}
+                      alt="avatar"
+                      objectFit="cover"
+                      className="rounded-full"
+                    />
+                  )
+                })}
+              </div>
+              <div className="text-body-xs">
+                <p className="mb-0">
+                  <Link>
+                    <a
+                      href={`/authors/${authors[0].slug[0]}`}
+                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                    >
+                      {authors[0].name}
+                    </a>
+                  </Link>
+                </p>
+                <p className="mb-0">{authors[0].occupation}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-span-full md:col-start-4 xl:col-start-7">
+        )}
+        <div className={`col-span-full ${authors ? 'md:col-start-4 xl:col-start-7' : ''}`}>
           <Link href={`/articles/${slug}`}>
             <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
           </Link>
