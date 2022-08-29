@@ -1,5 +1,6 @@
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getFileBySlug, getFiles } from '@/lib/mdx'
+import { getPostsByAuthor, getTalksByAuthor } from '@/lib/authors'
 
 export async function getStaticPaths() {
   const authors = getFiles('authors')
@@ -12,13 +13,22 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const authorDetails = await getFileBySlug('authors', [params.slug])
-  return { props: { authorDetails } }
+  const posts = await getPostsByAuthor(params.slug)
+  const talks = await getTalksByAuthor(params.slug)
+
+  return { props: { authorDetails, posts, talks } }
 }
 
-export default function Slug({ authorDetails }) {
+export default function Slug({ authorDetails, posts, talks }) {
   const { mdxSource, frontMatter } = authorDetails
 
   return (
-    <MDXLayoutRenderer layout={'AuthorLayout'} mdxSource={mdxSource} frontMatter={frontMatter} />
+    <MDXLayoutRenderer
+      layout={'AuthorLayout'}
+      mdxSource={mdxSource}
+      frontMatter={frontMatter}
+      posts={posts}
+      talks={talks}
+    />
   )
 }
