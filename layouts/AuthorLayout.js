@@ -2,10 +2,12 @@ import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import Article from '@/components/Article'
+import SectionTitle from '@/components/SectionTitle'
+import Talk from '@/components/Talk'
 
-export default function AuthorLayout({ children, frontMatter }) {
-  const { name, avatar, occupation, company, email, twitter, linkedin, github, website } =
-    frontMatter
+export default function AuthorLayout({ children, frontMatter, posts, talks }) {
+  const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
 
   const { theme } = useBrandingTheme()
   const textClass = theme === 'default' ? 'text-black' : 'text-white'
@@ -15,7 +17,7 @@ export default function AuthorLayout({ children, frontMatter }) {
       <PageSEO title={`Author - ${name}`} description={`About me - ${name}`} />
 
       <section className={`bg-io_${theme}-500 ${textClass}`}>
-        <div className="container mx-auto pt-8 pb-24 md:pb-32">
+        <div className="container mx-auto pt-8 pb-12">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               <Image
@@ -77,6 +79,43 @@ export default function AuthorLayout({ children, frontMatter }) {
           </div>
         </div>
       </section>
+
+      {posts.length && (
+        <>
+          <SectionTitle>
+            Articles by <span className="font-serif font-light">{name}</span>
+          </SectionTitle>
+          <section className="container mx-auto max-w-2xl">
+            {posts.map((fm, index) => {
+              const { slug, date, title, tags } = fm
+
+              return (
+                <Article
+                  key={slug}
+                  slug={slug}
+                  date={date}
+                  title={title}
+                  tags={tags}
+                  border={index !== 0}
+                />
+              )
+            })}
+          </section>
+        </>
+      )}
+
+      {talks.length && (
+        <>
+          <SectionTitle>
+            Talks by <span className="font-serif font-light">{name}</span>
+          </SectionTitle>
+          <section className="container mx-auto max-w-2xl">
+            {talks.map((talk) => {
+              return <Talk key={talk.title} author={frontMatter} {...talk} />
+            })}
+          </section>
+        </>
+      )}
     </>
   )
 }
