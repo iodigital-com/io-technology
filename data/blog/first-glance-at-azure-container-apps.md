@@ -8,8 +8,6 @@ authors: ['owin-gruters']
 theme: 'blue'
 ---
 
-# A first glance at Azure Container Apps
-
 I did some testing of the relatively new Azure Container Apps. I must say I am quite enthusiastic and will probably try to use it in one of the upcoming projects we will do that are eligable for it. In my view, this would be projects that use microservices and maybe even 1 frontend and 1 API, but at least simple enough not to need AKS.
 
 ## How does is relate to other Azure services?
@@ -20,7 +18,8 @@ After I did a simple tutorial with a frontend UI app + an API app and how to con
 ## Service Connections
 
 In the Azure portal I noticed it is very easy to hookup other Azure services as a 'service connection', which is in preview, but looks very promising (see screenshot with services that can be connected).
-[List of available service conections](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f940hwxfcw5hymdsgru4.png).
+
+![The image shows a list of all service connection available from Container Apps.](/articles/first-glance-at-azure-container-apps/serviceconnections.png)
 
 ## NO azure managed certificates (yet)!
 
@@ -32,14 +31,14 @@ Finally I looked at the costs and was a bit amazed by the low cost of the setup.
 
 ## Some more on the calculation of the costs :)
 
-the number of vCPU seconds = (#requests \* execution time) / concurrent requests per container app. If thats more that 180.000 you start paying.
+The number of vCPU seconds = (#requests \* execution time) / concurrent requests per container app. If thats more that 180.000 you start paying.
 The denominator here is a bit tricky naming-wise. In the Azure Pricing Calculator it seems to be the number of simultaneous requests, but actually it is the number of concurrent requests your container can handle (as autoscaling will be done if it cant handle it).
 
 With this calculation it pays of to do proper microservicing, making the Apps small.
 
 Note that the calcultor does not seem to take into account the idle time of an instance if you decide to have 1 instance always online. It's not really clear to me yet how long the warmup time is for the first instance to be able to have the default to 0 instances.
 
-# To Sum up
+## To Sum up
 
 This new Azure resource for docker containers look very promising. As container instances has very limited functionality and AKS is quite complex to master, container apps seem a very promising resource. It can be for the gamechanger for docker images, what App Services have been for webservices.
 
