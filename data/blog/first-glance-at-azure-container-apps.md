@@ -19,26 +19,28 @@ After I did a simple tutorial with a frontend UI app + an API app and how to con
 
 ## Service Connections
 
-In the Azure portal I noticed it is very easy to hookup other Azure services as a 'service connection', which is in preview, but looks very promising (see screenshot with services that can be connected)
-[List of available service conections](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f940hwxfcw5hymdsgru4.png)
+In the Azure portal I noticed it is very easy to hookup other Azure services as a 'service connection', which is in preview, but looks very promising (see screenshot with services that can be connected).
+[List of available service conections](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f940hwxfcw5hymdsgru4.png).
 
 ## NO azure managed certificates (yet)!
 
-As for now, you can only bring your own certificate and thus custom domain. Azure managed certificates is in the making. But as frontdoor cannot do without certificates if you have more than 1 routing rule it's quite a blocker for now. (source: https://twitter.com/nthonyChu/status/1525267833856225281)
+As for now, you can only bring your own certificate and thus custom domain. Azure managed certificates is in the making. But as frontdoor cannot do without certificates if you have more than 1 routing rule it's quite a blocker for now. (source: https://twitter.com/nthonyChu/status/1525267833856225281).
 
 ## Costs!!
 
-Finally I looked at the costs and was a bit amazed by the low cost of the setup. Not sure if I entirely doing the right things in the azure calculator, but it seems that for less than 2M requests per month it is free of charge. Then 0.55 cents per every extra million requests. And even if I put in quite high numbers for requests, vCPU, concurrent requests and execution time the pricing is still enormously low compared to App Service or AKS. This is what surprised me the most.
+Finally I looked at the costs and was a bit amazed by the low cost of the setup. Not sure if I entirely doing the right things in the azure calculator, but it seems that for \< 2M requests per month it is free of charge. Then 0.55 cents per every extra million requests. And even if I put in quite high numbers for requests, vCPU, concurrent requests and execution time the pricing is still enormously low compared to App Service or AKS. This is what surprised me the most.
 
 ## Some more on the calculation of the costs :)
 
 the number of vCPU seconds = (#requests \* execution time) / concurrent requests per container app. If thats more that 180.000 you start paying.
 The denominator here is a bit tricky naming-wise. In the Azure Pricing Calculator it seems to be the number of simultaneous requests, but actually it is the number of concurrent requests your container can handle (as autoscaling will be done if it cant handle it).
 
-With this calculation it pays of to do proper microservicing, making the Apps small
+With this calculation it pays of to do proper microservicing, making the Apps small.
 
-Note that the calcultor does not seem to take into account the idle time of an instance if you decide to have 1 instance always online. It's not really clear to me yet how long the warmup time is for the first instance to be able to have the default to 0 instances
+Note that the calcultor does not seem to take into account the idle time of an instance if you decide to have 1 instance always online. It's not really clear to me yet how long the warmup time is for the first instance to be able to have the default to 0 instances.
 
 # To Sum up
 
-This new Azure resource for docker containers look very promising. As container instances has very limited functionality and AKS is quite complex to master, container apps seem a very promising resource. It can be for the gamechanger for docker images, what App Services have been for webservices
+This new Azure resource for docker containers look very promising. As container instances has very limited functionality and AKS is quite complex to master, container apps seem a very promising resource. It can be for the gamechanger for docker images, what App Services have been for webservices.
+
+It's also still in the making. You cannot yet create manager certificated, so it's bring your own for now. There will most likely be some other caveats that I have not encountered. But Microsoft is also actively developing more features and integrations, so it will only get better.
