@@ -1,6 +1,6 @@
 ---
 title: 'A First Glance at Azure Container Apps'
-date: '2022-08-29'
+date: '2022-09-01'
 tags: ['azure', 'devops', 'docker']
 images: ['/articles/first-glance-at-azure-container-apps/containerapps.png']
 summary: 'Azure recently launched Container Apps, Somewhere in the funtion-middle between Container Instances and Kubernetes Services lives this new resource type. This is a journal of a first gance on it.'
