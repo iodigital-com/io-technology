@@ -62,6 +62,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   width={1280}
                   height={720}
                   layout="responsive"
+                  objectFit="cover"
                   priority={true}
                 />
               </div>
