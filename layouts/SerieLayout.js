@@ -106,9 +106,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                           <dt className="sr-only">LinkedIn</dt>
                           <dd>
                             <SocialIcon kind="linkedin" href={author.linkedin} size="5">
-                              {author.linkedin
-                                .replace('https://www.linkedin.com/in/', '')
-                                .replace('/', '')}
+                              {author.name}
                             </SocialIcon>
                           </dd>
                         </>
