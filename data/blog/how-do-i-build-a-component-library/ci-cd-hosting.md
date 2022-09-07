@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'How do I setup _CI/CD & hosting?_'
 date: '2022-09-07'
 tags: ['frontend']
@@ -301,4 +300,4 @@ Now, for every pull request there is automated linting and testing. After all ch
 
 ## Looking back
 
-This was the final step for setting up a component library from start to finish. Naturally, there are many more requirements you might run into. A component library is a never-ending living organism. Hopefully, you’ve learned a bit more about how you can approach requirements and can create an awesome component library! Thanks for following along and good luck with your own!
+This was the final step for setting up a component library from start to finish. Naturally, there are many more requirements you might run into. A component library is a never-ending living organism. Hopefully, you’ve learned a bit more about how you can approach requirements and create an awesome component library! Thanks for following along and good luck with your own!
