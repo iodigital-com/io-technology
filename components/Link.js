@@ -24,6 +24,12 @@ const CustomLink = ({ href, ...rest }) => {
   }
 
   if (isAnchorLink) {
+    const isFootnoteRef = !!rest['data-footnote-ref']
+
+    if (isFootnoteRef) {
+      return <a href={href} className={`${classNames} ml-1 font-semibold no-underline`} {...rest} />
+    }
+
     return <a href={href} className={classNames} {...rest} />
   }
 
