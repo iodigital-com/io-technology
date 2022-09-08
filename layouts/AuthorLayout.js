@@ -38,7 +38,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                     <dt className="sr-only">LinkedIn</dt>
                     <dd>
                       <SocialIcon kind="linkedin" href={linkedin} size="5">
-                        {linkedin.replace('https://www.linkedin.com/in/', '').replace('/', '')}
+                        {name}
                       </SocialIcon>
                     </dd>
                   </>
