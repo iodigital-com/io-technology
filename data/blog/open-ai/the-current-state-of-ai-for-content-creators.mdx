@@ -1,0 +1,309 @@
+---
+title: 'The current state of AI for __content creators__'
+date: '2022-09-12'
+tags: ['content', 'AI']
+images: ['/articles/open-ai/the-current-state-of-ai-for-content-creators/header.jpeg']
+summary: 'In this blog post, we will take a look at some of the ways that GPT-3 can be used by content creators to
+improve their workflow. We will also provide some tips on how to get started with using GPT-3 for your own projects. We
+will use OpenAI’s Playground to try out some of the features of GPT-3.'
+authors: ['vince-liem', 'openai-gpt3']
+theme: 'rouge'
+serie: 'open-ai'
+---
+
+_The author generated this text in part with GPT-3, OpenAI’s large-scale language-generation model. Upon generating
+draft language, the author reviewed, edited, and revised the language to their own liking and takes ultimate
+responsibility for the content of this publication._
+
+## "We" meaning me and the robot occupying space in my laptop.
+
+As a content creator, you are always looking for new ways to optimize your workflow and get the most out of your
+content. With the release of OpenAI’s GPT-3, there is now a powerful tool that can help you with both of these things:
+natural language processing.
+
+Natural language processing (NLP) is a field of computer science and artificial intelligence focused on the interactions
+between computers and human (natural) languages. In other words, it’s all about teaching computers how to understand
+human language.
+
+GPT-3 is a state-of-the-art NLP model that has been designed specifically for Natural Language Understanding (NLU). NLU
+is different from traditional NLP in that it focuses on understanding the meaning of text, rather than just recognizing
+patterns or performing statistical analysis.
+
+## Get a list of topics you can talk about
+
+![Content creator taking notes](/articles/open-ai/the-current-state-of-ai-for-content-creators/content-creator-taking-notes.png)
+
+One of the most useful applications of GPT-3 for content creators is its ability to generate a list of potential topics
+that you can write about. This is especially helpful when you are feeling stuck for ideas, or if you want to explore a
+new topic that you are not familiar with.
+
+Simply enter in a prompt such as _“I am a travel blogger visiting Japan, here are some topics I want to write about:”_
+then add a dash in the next line to indicate that it is a list and GPT-3 will start generating potential topics that you
+could write about, based on your input.
+
+_TIP: Don’t add a space or a new line at the end of your prompt, always end the prompt with your last character._
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  I am a travel blogger visiting Japan, here are some topics I want to write about:
+  <br />-
+</div>
+
+After pressing _“Submit”_, GPT-3 completed the prompt for me and suggested the following topics.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  I am a travel blogger visiting Japan, here are some topics I want to write about:
+  <br />
+  -The best places to visit in Japan
+  <br />
+  -The best food to eat in Japan
+  <br />
+  -What to expect when visiting Japan
+  <br />
+  -A guide to Japanese culture
+  <br />
+  -The top things to do in Japan
+</div>
+
+## Summurize other articles and get keywords
+
+![A device with levers](/articles/open-ai/the-current-state-of-ai-for-content-creators/a-device-with-levers.png)
+
+If you are a content creator who writes about technical topics, then GPT-3 can be a valuable tool for helping you to
+summarize other articles and get keywords that you can use in your own content.
+
+Simply enter in a prompt such as _“#### Summarize this article for me”_ followed in a new line by _“## Article”_, two
+new lines and a copy of the article that you want to summarize.
+
+_TIP: Using 2 hashtags is the most optimized way for GPT-3 to indicate different sections and 4 hashtags to indicate an
+instruction._
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  \#### Summurize this technical article for me
+  <br />
+  <br />
+  \## Article
+  <br />
+  Test-driven development (TDD) is a software development process relying on software requirements being
+  converted to test cases before software is fully developed, and tracking all software development by
+  repeatedly testing the software against all test cases. This is as opposed to software being developed
+  first and test cases created later.
+  <br />
+  Software engineer Kent Beck, who is credited with having developed or "rediscovered" the technique,
+  stated in 2003 that TDD encourages simple designs and inspires confidence.
+  <br />
+  Test-driven development is related to the test-first programming concepts of extreme programming, begun
+  in 1999, but more recently has created more general interest in its own right.
+  <br />
+  Programmers also apply the concept to improving and debugging legacy code developed with older techniques.
+  <br />
+  <br />
+  \## Summary
+</div>
+
+Go ahead and press _“Submit”_ and GPT-3 will automatically generate a summary of the article for you that you can use in
+your own content. Your summary will look different than mine.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  [...]
+  <br />
+  <br />
+  \## Summary
+  <br />
+  Test-driven development is a software development process in which test cases are created before software
+  is developed, and all software development is tracked by repeatedly testing the software against those
+  test cases. The goal of TDD is to encourage simple designs and inspire confidence in the code being
+  developed.
+</div>
+
+_TIP: After you’ve pressed “Submit”, that doesn’t mean that it’s the end of it. You can keep adding to the prompt - a
+new instruction, section, or add to the Article itself._
+
+So I’ve added _“## SEO keywords”_ under the output and pressed “Submit” to get a list of keywords.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  [...]
+  <br />
+  <br />
+  \## SEO keywords
+  <br />
+  -Test-driven development
+  <br />
+  -TDD
+  <br />
+  -Software development process
+  <br />
+  -Test cases
+  <br />
+  -Software testing
+  <br />
+  -Quality assurance
+</div>
+
+## Turn freeform writing into structured content
+
+![A painter freestyle on the wall](/articles/open-ai/the-current-state-of-ai-for-content-creators/a-painter-freestyle-on-the-wall.png)
+
+If you are a content creator, you know the struggle of brainstorming ideas and then trying to piece them together into a
+structured article. It can be frustrating when your brilliant ideas turn into an incoherent mess. However, with GPT-3
+you can take your freeform writing and turn it into structured content.
+
+The AI will analyze your writing and pick out key concepts and ideas. It will then organize these concepts into a
+structure that makes sense. This will save you time and energy in the brainstorming and drafting process. Additionally,
+it can help you to create more cohesive and well-organized articles.
+
+Since I don’t have brilliant ideas on the shelf that I can turn into an incoherent mess — In this next example I will
+use a transcription of a phone job interview.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  \#### Structure the following transcription about working at a company into a professional CV
+  entry
+  <br />
+  <br />
+  \## Phonecall
+  <br />
+  CV Maker (Interviewer): Can you tell me a bit about your previous work and what you did there?
+  <br />
+  Interviewee: I worked at a forex trading bot platform for about six months. It was quite challenging
+  for me. My job as a front-end developer was to create components using storybook and react then lego
+  them together in the main repository. The challenge wasn't the work itself though. It was management
+  that was too inexperienced in their jobs. Basically they made enough money through trading in forex,
+  but that didn't automatically translate into leadership skills when they started hiring employees.
+  So yeah, that's why I wanted to leave there. Because I wanted to make so much other things. They promised
+  that we could develop the first forex trading platform on the blockchain. So I've designed a technical
+  architecture to support such an idea. But it never came into fruition because legal department didn't
+  want the hassle of dealing with blockchain. And they cut the project. So that's why I wanted to leave.
+  <br />
+  <br />
+  \## CV entry
+</div>
+
+After pressing _“Submit”_ it generated the following.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  [...]
+  <br />
+  <br />
+  \## CV entry
+  <br />
+  \- \**FX Trading Platform** (6 months) - I worked on a forex trading bot platform for about six months.
+  My job as a front-end developer was to create components using storybook and react then stitch them
+  together in the main repository. I also designed a technical architecture to support an idea for a
+  forex trading platform on the blockchain, but the project never came to fruition.
+</div>
+
+## Combine multiple topics into a single topic
+
+![An abstract combination of shapes](/articles/open-ai/the-current-state-of-ai-for-content-creators/an-abstract-combination-of-shapes.png)
+
+If you have written everything you can about a single topic, then the next step might be that you want to integrate it
+with a completely different topic to create something new and fresh. With GPT-3, you can do just that!
+
+First enter the instruction of what you intend to do, following the first topic, then the second topic (both topics must
+have a little bit of overlap for this to prevent odd results) and GPT-3 will automatically start combining both topics
+for you.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  \#### Combine these different topics into an entirely new topic
+  <br />
+  <br />
+  \## Topic 1: Smart homes
+  <br />
+  Smart homes are houses equipped with technology that allows the home's systems to be controlled remotely.
+  This can include things like thermostats, security systems, and lighting. Smart homes often use voice-activated
+  assistants like Amazon's Alexa or Google Home to make controlling the house more convenient.
+  <br />
+  One benefit of smart homes is that they can save energy by automatically adjusting heating and cooling
+  based on occupancy and temperature outside. They can also improve home security by allowing homeowners
+  to monitor their property remotely and receive alerts if there is unusual activity.
+  <br />
+  <br />
+  \## Topic 2: Cruelty-free zoo
+  <br />
+  A cruelty-free zoo is a zoo that does not keep animals in captivity. Instead, they focus on
+  conservation and education. These zoos often have more naturalistic habitats for the animals and
+  may also rescue animals from abusive situations.
+  <br />
+  One advantage of cruelty-free zoos is that the animals are not confined to small spaces or put on
+  display for humans to gawk at. They are also typically not subjected to cruel training methods or
+  other abuse. This can result in a happier and healthier animal population overall.
+  <br />
+  <br />
+  \## Combined topic: How a smart zoo can create a cruelty-free home for animals
+  <br />
+</div>
+
+_TIP: You don’t have to write your own description of these individual topics. You can let the AI do it, at least I did
+for this example._
+
+I hope that you’re as curious as I am how these subject will combine. Let’s press the _“Submit”_ button to see what it
+generates.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  [...]
+  <br />
+  <br />
+  \## Combined topic: How a smart zoo can create a cruelty-free home for animals
+  <br />
+  A smart zoo is a cruelty-free zoo that uses technology to create naturalistic habitats for animals.
+  This can include things like sensors that track the animals’ movements and environmental conditions,
+  and virtual reality that allows visitors to experience the habitat without actually being there.
+  <br />
+  The benefits of a smart zoo include improved animal welfare due to less confinement and fewer harmful
+  training methods or other forms of abuse. The technology can also help with conservation efforts by
+  providing data about animal behavior and populations.
+</div>
+
+## Dall-e
+
+![Dall-e](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle.jpeg)
+
+Did you enjoy the images in this blog? Well do I have news for you. All these images are generated by Dall-e, OpenAI’s
+large-scale artificial intelligence model for generating images from natural language descriptions.
+
+That way you can quickly turn your thoughts into images by writing prompts for Dall-e. (Dall-e can be found at
+https://labs.openai.com - currently it's in _invite only_)
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera
+</div>
+
+![15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-kitten.png)
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  a man in a business suit holding a briefcase and a cat
+</div>
+
+![a man in a business suit holding a briefcase and a cat](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-man-with-cat.png)
+
+Why not combine GPT-3 and Dall-e by letting GPT-3 describe something intangable and complex like hope.
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  \#### Write a short prompt of a picture that displays hope
+  <br />
+  <br />a group of people of different races and genders holding hands in front of a sun setting over
+  a cityscape
+</div>
+
+![a group of people of different races and genders holding hands in front of a sun setting over a cityscape](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-hope.png)
+
+<div className="bg-io_rouge-100 p-4 font-mono">
+  \#### Write a short prompt of a picture that displays consciousness
+  <br />
+  <br />a person floating in space with their eyes closed and a thought bubble above their head containing
+  a image of a brain
+</div>
+
+![a person floating in space with their eyes closed and a thought bubble above their head containing a image of a brain](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-consciousness.png)
+
+Here are some examples of cute cats and its prompts.
+
+![a cute cat](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-cat.jpeg)
+
+## Conclusion
+
+In this blog post, we have looked at some of the ways that GPT-3 can be used by content creators to improve their
+workflow. We have also provided some tips on how to get started with using GPT-3 for your own projects. We have used
+OpenAI’s Playground to try out some of the features of GPT-3.
+
+If you are a content creator, then we hope that you found this blog post helpful. GPT-3 is a powerful tool that can
+help you to save time and improve the quality of your content.
