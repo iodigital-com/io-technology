@@ -1,10 +1,11 @@
+import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const Talk = ({ title, summary, author, tags }) => {
+const Talk = ({ title, summary, author, tags, video, slides }) => {
   const { theme } = useBrandingTheme()
 
   return (
@@ -51,6 +52,20 @@ const Talk = ({ title, summary, author, tags }) => {
                 </div>
               ))}
           </div>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          {video && (
+            <>
+              <dt className="sr-only">Video</dt>
+              <dd>
+                <SocialIcon kind="youtube" href={video} size="5" title="Video" />
+              </dd>
+              <dt className="sr-only">Slides</dt>
+              <dd>
+                <SocialIcon kind="slide-deck" href={slides} size="8" title="Slides" />
+              </dd>
+            </>
+          )}
         </div>
       </div>
     </li>
