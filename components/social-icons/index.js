@@ -5,6 +5,7 @@ import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
 import Twitter from './twitter.svg'
 import Web from './web.svg'
+import SlideDeck from './slide-deck.svg'
 
 // Icons taken from: https://simpleicons.org/
 
@@ -16,8 +17,9 @@ const components = {
   linkedin: Linkedin,
   twitter: Twitter,
   website: Web, // from material ui icons
+  'slide-deck': SlideDeck, // from material ui icons
 }
-const SocialIcon = ({ kind, href, size = 8, children, classNames }) => {
+const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
@@ -29,6 +31,7 @@ const SocialIcon = ({ kind, href, size = 8, children, classNames }) => {
       target="_blank"
       rel="noopener noreferrer"
       href={href}
+      title={title}
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
