@@ -1,7 +1,7 @@
 ---
 title: 'How to use _matchMedia_ to create a performant custom viewport hook'
 date: '2022-09-16'
-tags: ['frontend']
+tags: ['frontend', 'react']
 images: ['/articles/match-media/match-media.jpg']
 summary: 'Unfortunately, sometimes you need to write viewport-based logic in your JavaScript code. Usually, this is done with a listener on the window for a resize. Let’s look at a better way.'
 authors: ['dave-bitter']
