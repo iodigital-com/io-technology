@@ -43,26 +43,21 @@ could write about, based on your input.
 
 _TIP: Don’t add a space or a new line at the end of your prompt, always end the prompt with your last character._
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  I am a travel blogger visiting Japan, here are some topics I want to write about:
-  <br />-
-</div>
+```text
+I am a travel blogger visiting Japan, here are some topics I want to write about:
+-
+```
 
 After pressing _“Submit”_, GPT-3 completed the prompt for me and suggested the following topics.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  I am a travel blogger visiting Japan, here are some topics I want to write about:
-  <br />
-  -The best places to visit in Japan
-  <br />
-  -The best food to eat in Japan
-  <br />
-  -What to expect when visiting Japan
-  <br />
-  -A guide to Japanese culture
-  <br />
-  -The top things to do in Japan
-</div>
+```text
+I am a travel blogger visiting Japan, here are some topics I want to write about:
+- The best places to visit in Japan
+- The best food to eat in Japan
+- What to expect when visiting Japan
+- A guide to Japanese culture
+- The top things to do in Japan
+```
 
 ## Summurize other articles and get keywords
 
@@ -77,67 +72,51 @@ new lines and a copy of the article that you want to summarize.
 _TIP: Using 2 hashtags is the most optimized way for GPT-3 to indicate different sections and 4 hashtags to indicate an
 instruction._
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  \#### Summurize this technical article for me
-  <br />
-  <br />
-  \## Article
-  <br />
-  Test-driven development (TDD) is a software development process relying on software requirements being
-  converted to test cases before software is fully developed, and tracking all software development by
-  repeatedly testing the software against all test cases. This is as opposed to software being developed
-  first and test cases created later.
-  <br />
-  Software engineer Kent Beck, who is credited with having developed or "rediscovered" the technique,
-  stated in 2003 that TDD encourages simple designs and inspires confidence.
-  <br />
-  Test-driven development is related to the test-first programming concepts of extreme programming, begun
-  in 1999, but more recently has created more general interest in its own right.
-  <br />
-  Programmers also apply the concept to improving and debugging legacy code developed with older techniques.
-  <br />
-  <br />
-  \## Summary
-</div>
+```text
+#### Summurize this technical article
+
+## Article
+Test-driven development (TDD) is a software development process relying on software requirements being converted to test cases before software is fully developed, and tracking all software development by repeatedly testing the software against all test cases. This is as opposed to software being developed first and test cases created later.
+
+Software engineer Kent Beck, who is credited with having developed or "rediscovered" the technique, stated in 2003 that TDD encourages simple designs and inspires confidence.
+
+Test-driven development is related to the test-first programming concepts of extreme programming, begun in 1999, but more recently has created more general interest in its own right.
+
+Programmers also apply the concept to improving and debugging legacy code developed with older techniques.
+
+
+## Summary
+```
 
 Go ahead and press _“Submit”_ and GPT-3 will automatically generate a summary of the article for you that you can use in
 your own content. Your summary will look different than mine.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  [...]
-  <br />
-  <br />
-  \## Summary
-  <br />
-  Test-driven development is a software development process in which test cases are created before software
-  is developed, and all software development is tracked by repeatedly testing the software against those
-  test cases. The goal of TDD is to encourage simple designs and inspire confidence in the code being
-  developed.
-</div>
+```text
+[...]
+
+
+## Summary
+
+Test-driven development is a software development process in which test cases are created before software is developed, and all software development is tracked by repeatedly testing the software against those test cases. The goal of TDD is to encourage simple designs and inspire confidence in the code being developed.
+```
 
 _TIP: After you’ve pressed “Submit”, that doesn’t mean that it’s the end of it. You can keep adding to the prompt - a
 new instruction, section, or add to the Article itself._
 
 So I’ve added _“## SEO keywords”_ under the output and pressed “Submit” to get a list of keywords.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  [...]
-  <br />
-  <br />
-  \## SEO keywords
-  <br />
-  -Test-driven development
-  <br />
-  -TDD
-  <br />
-  -Software development process
-  <br />
-  -Test cases
-  <br />
-  -Software testing
-  <br />
-  -Quality assurance
-</div>
+```text
+[...]
+
+
+## SEO keywords
+-Test-driven development
+-TDD
+-Software development process
+-Test cases
+-Software testing
+-Quality assurance
+```
 
 ## Turn freeform writing into structured content
 
@@ -154,42 +133,28 @@ it can help you to create more cohesive and well-organized articles.
 Since I don’t have brilliant ideas on the shelf that I can turn into an incoherent mess — In this next example I will
 use a transcription of a phone job interview.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  \#### Structure the following transcription about working at a company into a professional CV
-  entry
-  <br />
-  <br />
-  \## Phonecall
-  <br />
-  CV Maker (Interviewer): Can you tell me a bit about your previous work and what you did there?
-  <br />
-  Interviewee: I worked at a forex trading bot platform for about six months. It was quite challenging
-  for me. My job as a front-end developer was to create components using storybook and react then lego
-  them together in the main repository. The challenge wasn't the work itself though. It was management
-  that was too inexperienced in their jobs. Basically they made enough money through trading in forex,
-  but that didn't automatically translate into leadership skills when they started hiring employees.
-  So yeah, that's why I wanted to leave there. Because I wanted to make so much other things. They promised
-  that we could develop the first forex trading platform on the blockchain. So I've designed a technical
-  architecture to support such an idea. But it never came into fruition because legal department didn't
-  want the hassle of dealing with blockchain. And they cut the project. So that's why I wanted to leave.
-  <br />
-  <br />
-  \## CV entry
-</div>
+```text
+#### Structure the following transcription about working at a company into a professional CV entry
+
+## Phonecall
+CV Maker (Interviewer): Can you tell me a bit about your previous work and what you did there?
+
+Interviewee: I worked at a forex trading bot platform for about six months. It was quite challenging for me. My job as a front-end developer was to create components using storybook and react then lego them together in the main repository. The challenge wasn't the work itself though. It was management that was too inexperienced in their jobs. Basically they made enough money through trading in forex, but that didn't automatically translate into leadership skills when they started hiring employees. So yeah, that's why I wanted to leave there. Because I wanted to make so much other things. They promised that we could develop the first forex trading platform on the blockchain. So I've designed a technical architecture to support such an idea. But it never came into fruition because legal department didn't want the hassle of dealing with blockchain. And they cut the project. So that's why I wanted to leave.
+
+
+## CV entry
+-
+```
 
 After pressing _“Submit”_ it generated the following.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  [...]
-  <br />
-  <br />
-  \## CV entry
-  <br />
-  \- \**FX Trading Platform** (6 months) - I worked on a forex trading bot platform for about six months.
-  My job as a front-end developer was to create components using storybook and react then stitch them
-  together in the main repository. I also designed a technical architecture to support an idea for a
-  forex trading platform on the blockchain, but the project never came to fruition.
-</div>
+```text
+[...]
+
+
+## CV entry
+- **FX Trading Platform** (6 months) - I worked on a forex trading bot platform for about six months. My job as a front-end developer was to create components using storybook and react then stitch them together in the main repository. I also designed a technical architecture to support an idea for a forex trading platform on the blockchain, but the project never came to fruition.
+```
 
 ## Combine multiple topics into a single topic
 
@@ -202,35 +167,22 @@ First enter the instruction of what you intend to do, following the first topic,
 have a little bit of overlap for this to prevent odd results) and GPT-3 will automatically start combining both topics
 for you.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  \#### Combine these different topics into an entirely new topic
-  <br />
-  <br />
-  \## Topic 1: Smart homes
-  <br />
-  Smart homes are houses equipped with technology that allows the home's systems to be controlled remotely.
-  This can include things like thermostats, security systems, and lighting. Smart homes often use voice-activated
-  assistants like Amazon's Alexa or Google Home to make controlling the house more convenient.
-  <br />
-  One benefit of smart homes is that they can save energy by automatically adjusting heating and cooling
-  based on occupancy and temperature outside. They can also improve home security by allowing homeowners
-  to monitor their property remotely and receive alerts if there is unusual activity.
-  <br />
-  <br />
-  \## Topic 2: Cruelty-free zoo
-  <br />
-  A cruelty-free zoo is a zoo that does not keep animals in captivity. Instead, they focus on
-  conservation and education. These zoos often have more naturalistic habitats for the animals and
-  may also rescue animals from abusive situations.
-  <br />
-  One advantage of cruelty-free zoos is that the animals are not confined to small spaces or put on
-  display for humans to gawk at. They are also typically not subjected to cruel training methods or
-  other abuse. This can result in a happier and healthier animal population overall.
-  <br />
-  <br />
-  \## Combined topic: How a smart zoo can create a cruelty-free home for animals
-  <br />
-</div>
+```text
+#### Combine these different topics into an entirely new topic
+
+## Topic 1: Smart homes
+Smart homes are houses equipped with technology that allows the home's systems to be controlled remotely. This can include things like thermostats, security systems, and lighting. Smart homes often use voice-activated assistants like Amazon's Alexa or Google Home to make controlling the house more convenient.
+
+One benefit of smart homes is that they can save energy by automatically adjusting heating and cooling based on occupancy and temperature outside. They can also improve home security by allowing homeowners to monitor their property remotely and receive alerts if there is unusual activity.
+
+## Topic 2: Cruelty-free zoo
+A cruelty-free zoo is a zoo that does not keep animals in captivity. Instead, they focus on conservation and education. These zoos often have more naturalistic habitats for the animals and may also rescue animals from abusive situations.
+
+One advantage of cruelty-free zoos is that the animals are not confined to small spaces or put on display for humans to gawk at. They are also typically not subjected to cruel training methods or other abuse. This can result in a happier and healthier animal population overall.
+
+
+## Combined topic: How a smart zoo can create a cruelty-free home for animals
+```
 
 _TIP: You don’t have to write your own description of these individual topics. You can let the AI do it, at least I did
 for this example._
@@ -238,20 +190,15 @@ for this example._
 I hope that you’re as curious as I am how these subject will combine. Let’s press the _“Submit”_ button to see what it
 generates.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  [...]
-  <br />
-  <br />
-  \## Combined topic: How a smart zoo can create a cruelty-free home for animals
-  <br />
-  A smart zoo is a cruelty-free zoo that uses technology to create naturalistic habitats for animals.
-  This can include things like sensors that track the animals’ movements and environmental conditions,
-  and virtual reality that allows visitors to experience the habitat without actually being there.
-  <br />
-  The benefits of a smart zoo include improved animal welfare due to less confinement and fewer harmful
-  training methods or other forms of abuse. The technology can also help with conservation efforts by
-  providing data about animal behavior and populations.
-</div>
+```text
+[...]
+
+
+## Combined topic: How a smart zoo can create a cruelty-free home for animals
+A smart zoo is a cruelty-free zoo that uses technology to create naturalistic habitats for animals. This can include things like sensors that track the animals’ movements and environmental conditions, and virtual reality that allows visitors to experience the habitat without actually being there.
+
+The benefits of a smart zoo include improved animal welfare due to less confinement and fewer harmful training methods or other forms of abuse. The technology can also help with conservation efforts by providing data about animal behavior and populations.
+```
 
 ## Dall-e
 
@@ -263,35 +210,33 @@ large-scale artificial intelligence model for generating images from natural lan
 That way you can quickly turn your thoughts into images by writing prompts for Dall-e. (Dall-e can be found at
 https://labs.openai.com - currently it's in _invite only_)
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera
-</div>
+```text
+15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera
+```
 
 ![15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-kitten.png)
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  a man in a business suit holding a briefcase and a cat
-</div>
+```text
+a man in a business suit holding a briefcase and a cat
+```
 
 ![a man in a business suit holding a briefcase and a cat](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-man-with-cat.png)
 
 Why not combine GPT-3 and Dall-e by letting GPT-3 describe something intangable and complex like hope.
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  \#### Write a short prompt of a picture that displays hope
-  <br />
-  <br />a group of people of different races and genders holding hands in front of a sun setting over
-  a cityscape
-</div>
+```text
+#### Write a short prompt of a picture that displays hope
+
+a group of people of different races and genders holding hands in front of a sun setting over a cityscape
+```
 
 ![a group of people of different races and genders holding hands in front of a sun setting over a cityscape](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-hope.png)
 
-<div className="bg-io_rouge-100 p-4 font-mono">
-  \#### Write a short prompt of a picture that displays consciousness
-  <br />
-  <br />a person floating in space with their eyes closed and a thought bubble above their head containing
-  a image of a brain
-</div>
+```text
+#### Write a short prompt of a picture that displays consciousness
+
+a person floating in space with their eyes closed and a thought bubble above their head containing a image of a brain
+```
 
 ![a person floating in space with their eyes closed and a thought bubble above their head containing a image of a brain](/articles/open-ai/the-current-state-of-ai-for-content-creators/dalle-consciousness.png)
 
