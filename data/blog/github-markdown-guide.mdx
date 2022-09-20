@@ -1,6 +1,6 @@
 ---
 title: 'Markdown Guide'
-date: '2019-10-11'
+date: '2025-10-11'
 tags: ['github', 'guide']
 authors: ['default']
 draft: true
@@ -153,6 +153,46 @@ function fancyAlert(arg) {
 And here's how it looks - nicely colored with styled code titles!
 
 ```js:fancyAlert.js
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+
+Other options include highlighting lines:
+
+````
+```js {1,3-4}
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+````
+
+```js {1,3-4}
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+
+Or showing line numbers:
+
+````
+```js showLineNumbers
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+````
+
+```js showLineNumbers
 function fancyAlert(arg) {
   if (arg) {
     $.facebox({ div: '#foo' })
