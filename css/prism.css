@@ -1,13 +1,13 @@
 /**
  * CSS Styles for code highlighting.
- * Feel free to customize token styles 
+ * Feel free to customize token styles
  * by copying from a prismjs compatible theme:
  * https://github.com/PrismJS/prism-themes
  */
 
 /* Code title styles */
 .remark-code-title {
-  @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200;
+  @apply -mx-4 rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 md:-mx-12;
 }
 
 .remark-code-title + div > pre {
