@@ -3,7 +3,7 @@ import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
-import { getLatestJobs } from '@/lib/jobs'
+import { getRelatedJobs } from '@/lib/jobs'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
 
@@ -41,7 +41,8 @@ export async function getStaticProps({ params }) {
     fs.writeFileSync('./public/feed.xml', rss)
   }
 
-  const { jobs } = await getLatestJobs(4)
+  const searchString = authorDetails.reduce((acc, author) => acc + author.occupation + ' ', '')
+  const { jobs } = await getRelatedJobs(4, searchString)
 
   const theme = post.frontMatter.theme || 'orange'
 
