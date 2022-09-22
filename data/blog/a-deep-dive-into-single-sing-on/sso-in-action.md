@@ -1,6 +1,6 @@
 ---
 title: 'SSO in action'
-date: '2020-02-26'
+date: '2021-02-26'
 tags: ['security']
 summary: 'SSO solutions can be implemented to tackle a great number of use cases'
 authors: ['daan-beulen', 'mark-van-der-linden']
