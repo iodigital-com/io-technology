@@ -25,7 +25,7 @@ const Pre = (props) => {
       ref={textInput}
       onMouseEnter={onEnter}
       onMouseLeave={onExit}
-      className="relative -mx-4 md:-mx-32"
+      className="relative -mx-4 md:-mx-12"
     >
       {hovered && (
         <button
@@ -68,7 +68,7 @@ const Pre = (props) => {
         </button>
       )}
 
-      <pre className="px-4 md:px-32">{props.children}</pre>
+      <pre className="px-4 md:px-12 md:py-8">{props.children}</pre>
     </div>
   )
 }
