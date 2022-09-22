@@ -1,6 +1,6 @@
 ---
 title: 'An overview of SSO products'
-date: '2022-08-16'
+date: '2020-10-15'
 tags: ['security']
 summary: 'What products provide out-of-the-box SSO solutions and how do they differ from each other?'
 authors: ['daan-beulen', 'mark-van-der-linden']
