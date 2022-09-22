@@ -3,7 +3,12 @@ import kebabCase from '@/lib/utils/kebabCase'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 const Tag = ({ text }) => {
-  const { theme } = useBrandingTheme()
+  let { theme } = useBrandingTheme()
+
+  if (theme === 'default') {
+    theme = 'black'
+  }
+
   return (
     <Link href={`/tags/${kebabCase(text)}`}>
       <a

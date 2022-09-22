@@ -27,7 +27,11 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
       />
       <ScrollTop />
       <article>
-        <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
+        <div
+          className={`bg-io_${theme}-500 pb-14 pt-24 text-white ${
+            images?.length > 0 ? 'mb-72' : 'mb-12'
+          }`}
+        >
           <div className="container mx-auto">
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
@@ -62,6 +66,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   width={1280}
                   height={720}
                   layout="responsive"
+                  objectFit="cover"
                   priority={true}
                 />
               </div>
@@ -90,7 +95,27 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                     )}
                     <dl className="whitespace-nowrap text-sm font-medium leading-7">
                       <dt className="sr-only">Name</dt>
-                      <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                      <dd className="text-gray-900 dark:text-gray-100">
+                        <Link>
+                          <a
+                            href={`/authors/${author.slug[0]}`}
+                            className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
+                          >
+                            {author.name}
+                          </a>
+                        </Link>
+                      </dd>
+
+                      {author.linkedin && (
+                        <>
+                          <dt className="sr-only">LinkedIn</dt>
+                          <dd>
+                            <SocialIcon kind="linkedin" href={author.linkedin} size="5">
+                              {author.name}
+                            </SocialIcon>
+                          </dd>
+                        </>
+                      )}
                       {author.twitter && (
                         <>
                           <dt className="sr-only">Twitter</dt>
