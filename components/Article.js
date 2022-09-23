@@ -14,10 +14,14 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
       <div className="grid grid-cols-12">
         {authors && (
           <div className="hidden md:col-span-3 md:block xl:col-span-5">
-            <div className="flex flex-col xl:flex-row">
-              <div className="flex-0 relative overflow-hidden rounded-full md:mb-4 md:h-16 md:w-16 xl:mr-7 xl:mb-0 xl:h-32 xl:w-32">
-                {authors.slice(0, 1).map((author) => {
-                  return (
+            <div className="flex flex-col gap-4 xl:flex-row">
+              <div className="flex items-center -space-x-6 xl:-space-x-12">
+                {authors.map((author, index) => (
+                  <div
+                    key={author.name}
+                    className="flex-0 relative overflow-hidden rounded-full border-4 border-white md:mb-4 md:h-16 md:w-16 xl:h-32 xl:w-32"
+                    style={{ zIndex: authors.length - index }}
+                  >
                     <Image
                       key={author.name}
                       src={author.avatar}
@@ -27,21 +31,23 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
                       objectFit="cover"
                       className="rounded-full"
                     />
-                  )
-                })}
+                  </div>
+                ))}
               </div>
-              <div className="text-body-xs">
-                <p className="mb-0">
-                  <Link>
-                    <a
-                      href={`/authors/${authors[0].slug[0]}`}
-                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                    >
-                      {authors[0].name}
-                    </a>
-                  </Link>
-                </p>
-                <p className="mb-0">{authors[0].occupation}</p>
+              <div>
+                {authors.map((author) => (
+                  <div className="text-body-xs mb-2" key={author.name}>
+                    <p className="mb-0">
+                      <Link
+                        href={`/authors/${author.slug[0]}`}
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                      >
+                        {author.name}
+                      </Link>
+                    </p>
+                    <p className="mb-0">{author.occupation}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
