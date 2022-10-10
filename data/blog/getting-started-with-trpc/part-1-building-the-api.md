@@ -10,7 +10,7 @@ theme: 'rouge'
 
 # Getting started with tRPC v10 by building a todo app part 1
 
-[tRPC](https://trpc.io/) is a lightweight library that allows you to create fully typesafe APIs without schemas or code generation. It provides end-to-end typing, which means that types can be shared between server and client(s). This results in fewer bugs and less boilerplate code.
+[tRPC](https://trpc.io/) is a lightweight library that allows you to create fully typesafe APIs without schemas or code generation. It provides end-to-end typing, which means that types can be shared between the server and client(s). This results in fewer bugs and less boilerplate code.
 
 In this two-part series, we'll be building a todo app using tRPC. In the first part, we'll start by creating a simple backend API using tRPC, and then in the second part, we'll create a (React Native) frontend UI that consumes the API. By the end of this series, you'll have a fully functioning todo app!
 
@@ -67,12 +67,12 @@ export const todoRouter = t.router({
 })
 ```
 
-We create a tRPC router by calling the `router()` method and passing an object containing the different endpoints and their procedure as argument. tRPC knows two procedures:
+We create a tRPC router by calling the `router()` method and passing an object containing the different endpoints and their procedure as an argument. tRPC knows two procedures:
 
 - Query: Equivalent to a REST `Get` call
 - Mutation: Used for creating, updating, and deleting data. Equivalent to the REST `POST`, `PATCH`, `PUT`, and `DELETE` calls.
 
-In the code snippet above, we are first importing our tRPC instance, and after, that we are creating a todos array which will be used to store our todos. After creating our todo's array, we create our `todoRouter` that currently has one `query` procedure called `all`, which will return all our stored todo's.
+In the code snippet above, we are first importing our tRPC instance, and after, that we are creating a todos array which will be used to store our todos. After creating our todo's array, we create our `todoRouter` which currently has one `query` procedure called `all`, which will return all our stored todo's.
 
 Now, let's create a new file, `index.ts` in the same `server/src/routers/` folder of our project, and add the following code:
 
@@ -147,7 +147,7 @@ Start by navigating to the project folder in the terminal and running `npm run d
 }
 ```
 
-As you can see, we are getting result from the server, but the issue is, the data array is empty. Let's fix that! Let's jump back to our `todo.ts` file in the `server/src/routers` directory. If you look at the following line `const todos: any[] = [];`, you will see that we are initializing `todos` an empty array. Let's change that by adding some data: `const todos: any[] = ["todo1", "todo2", "todo3"];`. Now, go back to your browser and refresh the page. If everything went well, you would see the following response:
+As you can see, we are getting result from the server, but the issue is, the data array is empty. Let's fix that! Let's jump back to our `todo.ts` file in the `server/src/routers` directory. If you look at the following line `const todos: any[] = [];`, you will see that we are initializing `todos` as an empty array. Let's change that by adding some data: `const todos: any[] = ["todo1", "todo2", "todo3"];`. Now, go back to your browser and refresh the page. If everything went well, you would see the following response:
 
 ```json
 {
@@ -182,7 +182,7 @@ As you can see, we added a new mutation procedure called add, and all it's respo
 
 ### Testing our first mutation
 
-To test if this is working, let's open `Postman` (or any other API testing tool), and simply hit our new `todo.add` using the following url: http://localhost:3000/trpc/todo.add. The request body can simply be:
+To test if this is working, let's open `Postman` (or any other API testing tool), and simply hit our new `todo.add` using the following URL: http://localhost:3000/trpc/todo.add. The request body can simply be:
 
 ```json
 {
@@ -200,7 +200,7 @@ After hitting our new `todo.add` endpoint, you should've gotten the following re
 }
 ```
 
-As you can see, it's adding `null` to our data array. This is happening due to us not specifying to tRPC what the body of our incoming request will look like, and therefore tRPC fails to parse the incoming request into useable data. There are several ways we can fix this, but we will fix this by simpely declaring a specific input format for our `todo.add` procedure. Let's jump back to our todo router file, and modify our code to match the following code:
+As you can see, it's adding `null` to our data array. This is happening due to us not specifying to tRPC what the body of our incoming request will look like, and therefore tRPC fails to parse the incoming request into usable data. There are several ways we can fix this, but we will fix this by simply declaring a specific input format for our `todo.add` procedure. Let's jump back to our todo router file, and modify our code to match the following code:
 
 ```ts
 // Import our input validation tool
@@ -310,7 +310,7 @@ Since we configured a default value when creating our `todo` schema with `Zod`, 
 
 ## Creating our update and delete mutation
 
-Let's continue by creating our update and delete mutations. Our delete mutation will be pretty straightforward. All it will do is take a todo's id as an input and, using that id, filter out the correct todo from the todos array. Take a look at the updated `todoRouter`:
+Let's continue by creating our update and delete mutations. Our delete mutation will be pretty straightforward. All it will do is take a todo's id as input and, using that id, filter out the correct todo from the todos array. Take a look at the updated `todoRouter`:
 
 ```ts
 // Import Zod
@@ -438,7 +438,7 @@ And finally, let's delete one of them
 
 ![Testing our APIs: deleting todos](/articles/getting-started-with-trpc/testing-our-apis-deleting-todos.png)
 
-Tada 🥳! Everything is working like it should!
+Tada 🥳! Everything is working as it should!
 
 ## Conclusion
 
