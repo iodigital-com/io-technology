@@ -9,7 +9,7 @@ import kebabCase from '@/lib/utils/kebabCase'
 
 const Experiment = ({ title, images, demo, code, authors, content, border = true }) => {
   const { theme } = useBrandingTheme()
-  const id = `#${kebabCase(title)}`
+  const id = kebabCase(title)
 
   return (
     <article className={`border-gray-300 py-12 ${border && 'border-t'}`}>
@@ -23,7 +23,7 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
         </div>
 
         <div className={`col-span-full md:col-start-4 xl:col-start-7`}>
-          <Link href={id} id={id}>
+          <Link href={`#${id}`} name={id}>
             <h2 className="teaser-title mb-4 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
           </Link>
 
