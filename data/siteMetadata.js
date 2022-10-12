@@ -2,7 +2,7 @@ const siteMetadata = {
   title: 'iO tech_hub',
   author: 'iO tech_hub',
   headerTitle: 'tech_hub',
-  description: 'Articles, videos and podcast by iO Developers',
+  description: 'Articles, videos and experiments by iO Developers',
   language: 'en-us',
   theme: 'light', // system, dark or light
   siteUrl: 'https://techhub.iodigital.com',
