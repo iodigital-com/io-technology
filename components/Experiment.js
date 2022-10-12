@@ -14,7 +14,7 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
   return (
     <article className={`border-gray-300 py-12 ${border && 'border-t'}`}>
       <div className="grid grid-cols-12">
-        <div className="hidden md:col-span-3 md:block xl:col-span-5">
+        <div className="hidden md:col-span-3 md:mr-8 md:block xl:col-span-5">
           {images.map((image) => (
             <div className="responsive-image-container mb-2" key={image}>
               <Image src={image} alt="Image" layout="fill" />
@@ -29,14 +29,16 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
 
           {authors.map((author) => (
             <div key={author.name} className="mb-2 flex">
-              <Image
-                src={author.avatar}
-                width={50}
-                height={50}
-                alt="avatar"
-                objectFit="cover"
-                className="rounded-full"
-              />
+              <div className="w-50 h-50">
+                <Image
+                  src={author.avatar}
+                  width={50}
+                  height={50}
+                  alt="avatar"
+                  objectFit="cover"
+                  className="rounded-full"
+                />
+              </div>
               <div className="ml-2">
                 <p className="mb-0">
                   <Link
