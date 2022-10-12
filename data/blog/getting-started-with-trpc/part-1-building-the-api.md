@@ -1,5 +1,5 @@
 ---
-title: 'Getting started with tRPC v10 by building a todo app - part 1'
+title: 'Getting started with tRPC v10 by building a todo app
 date: '2022-10-10'
 tags: ['frontend', 'react', 'trpc', 'react native']
 images: ['/articles/getting-started-with-trpc/hero.png']
@@ -8,8 +8,6 @@ authors: ['zjerlondy-ferero']
 theme: 'rouge'
 serie: 'getting-started-with-trpc'
 ---
-
-# Getting started with tRPC v10 by building a todo app part 1
 
 [tRPC](https://trpc.io/) is a lightweight library that allows you to create fully typesafe APIs without schemas or code generation. It provides end-to-end typing, which means that types can be shared between the server and client(s). This results in fewer bugs and less boilerplate code.
 
