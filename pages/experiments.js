@@ -46,10 +46,12 @@ export default function Experiments({ experiments }) {
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-8 xl:row-start-1">
               <Image
                 src={'/experiments.jpg'}
+                alt="hackathon"
                 width={816}
                 height={816}
                 layout="responsive"
                 className="rounded-full"
+                objectFit="cover"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-3 xl:col-span-4 xl:col-start-3">
