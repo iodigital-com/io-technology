@@ -1,6 +1,6 @@
 ---
 title: 'Getting started with tRPC v10 by building a todo app
-date: '2022-10-10'
+date: '2022-10-13'
 tags: ['frontend', 'react', 'trpc', 'react native']
 images: ['/articles/getting-started-with-trpc/hero.png']
 summary: "There's nothing quite like the feeling of finally getting your front-end and back-end types to match up. After hours of slacking, emailing, and going through documentation, you finally have it! But that feeling doesn't last long, because you realize the back-end had some type changes, which broke your front-end again! Well, here is where tRPC comes into play."
@@ -11,13 +11,15 @@ serie: 'getting-started-with-trpc'
 
 [tRPC](https://trpc.io/) is a lightweight library that allows you to create fully typesafe APIs without schemas or code generation. It provides end-to-end typing, which means that types can be shared between the server and client(s). This results in fewer bugs and less boilerplate code.
 
-In this two-part series, we'll be building a todo app using tRPC. In the first part, we'll start by creating a simple backend API using tRPC, and then in the second part, we'll create a (React Native) frontend UI that consumes the API. By the end of this series, you'll have a fully functioning todo app!
+In this two-part series, we'll be building a todo app using tRPC. In the first part, we'll start by creating a backend API using tRPC, and then in the second part, we'll create a (React Native) frontend UI that consumes the API. By the end of this series, you'll have a fully functioning todo app!
+
+// Add info about v10 being WIP
 
 ![what we are creating](/articles/getting-started-with-trpc/what-we-are-creating.png)
 
 ## Prerequisites
 
-- [Node](https://nodejs.org/en/) installed
+- (Minimum) [Node](https://nodejs.org/en/) v8 installed
 - [React (Native)](https://reactnative.dev/docs/environment-setup) development environment
 - Basic React (Native) / Typescript knowledge
 
@@ -25,15 +27,15 @@ We won't be focusing on installing and setting up Typescript in this article; th
 
 ## Setting up our Express/tRPC backend
 
-In this article, we will be using tRPC in conjunction with [ExpressJS](https://expressjs.com/). tRPC has a nice ExpressJS adapter that handles some of the tRPC magic for us, thus making setting up our tRPC backend very easy. Even though we use ExpressJS, tRPC can be used in combination with any (Node) backend that supports Typescript.
+We will use tRPC in conjunction with [ExpressJS] (https://expressjs.com/) in this article. tRPC is frequently used in conjunction with Next.js, but for this article, I chose ExpressJS to demonstrate tRPC's power in conjunction with ExpressJS. tRPC has a nice ExpressJS adapter that handles some of the tRPC magic for us, thus making setting up our tRPC backend very easy. Even though we use ExpressJS, tRPC can be used in combination with any (Node) backend that supports Typescript.
 
 ### Installing dependecies
 
 Let's start by using the terminal to navigate to the `server` directory in our project directory, and install the following dependecies:
 
-`yarn add @trpc/server@next zod`
+`cd server && npm install @trpc/server@next zod`
 
-As you can see, we install the `@trpc/server` package, but also a package named `Zod`. [Zod](https://github.com/colinhacks/zod) is a library that makes input validation very simple by using schema-based validation. With Zod, tRPC can validate incoming requests against a predefined schema, keeping our handler function clean and free of any unnecessary validation checks. tRPC has out-of-the-box support for different scheme validation tools such as [Yup](https://github.com/jquense/yup) and [Superstruct](https://github.com/ianstormtaylor/superstruct).
+As you can see, we install the `@trpc/server` package, but also a package named `Zod`. [Zod](https://github.com/colinhacks/zod) is a library that makes input validation very simple by using schema-based validation. With Zod, tRPC can validate incoming requests against a predefined schema, keeping our handler function clean and free of any unnecessary validation checks. tRPC has out-of-the-box support for different schema validation tools such as [Yup](https://github.com/jquense/yup) and [Superstruct](https://github.com/ianstormtaylor/superstruct).
 
 ### Initializing tRPC and creating our first router
 
@@ -57,7 +59,7 @@ import { t } from '../trpc'
 // For now, we will use the type `any[]`, but this will be changed later on.
 let todos: any[] = []
 
-// Create our todo router, and add a query (equivalent of a REST Get request) procedure called `all`,
+// Create our todo router, and add a query procedure (equivalent of a REST Get request) called `all`,
 // which will be responsible for returning all the stored todo's
 export const todoRouter = t.router({
   all: t.procedure.query(() => {
@@ -66,7 +68,7 @@ export const todoRouter = t.router({
 })
 ```
 
-We create a tRPC router by calling the `router()` method and passing an object containing the different endpoints and their procedure as an argument. tRPC knows two procedures:
+We create a tRPC router by calling the `router()` method and passing an object containing the different endpoints and their procedures as an argument. tRPC knows two procedures:
 
 - Query: Equivalent to a REST `Get` call
 - Mutation: Used for creating, updating, and deleting data. Equivalent to the REST `POST`, `PATCH`, `PUT`, and `DELETE` calls.
@@ -100,7 +102,7 @@ Lastly, we export the type `AppRouter`, so that we can use it later on in the fr
 
 ### Creating our server
 
-Now that we have created our router, we would want to have a way to make calls to that router, so let's start by creating a simple Express server. In the `server/src` folder of our project, we will be creating a new file called `index.ts` which contains the following code:
+Now that we have created our router, we would want to have a way to make calls to that router, so let's start by creating a Express server. In the `server/src` folder of our project, we will be creating a new file called `index.ts` which contains the following code:
 
 ```ts
 // Import the tRPC Express Adatper
@@ -232,7 +234,7 @@ export const todoRouter = t.router({
 })
 ```
 
-If you look closely at our `add` procedure, you will notice we added a new method called `input()`. This `input()` method takes an input validation schema that defines what our incoming request body should look like. Like mentioned before, tRPC supports a handful of input validators, but we have decided to use `Zod`. If you look closely, you can see that all we are doing is telling tRPC that our request body should exist of an object containing a title that is a string. Let's jump back to Postman and hit our `todo.add` API again to test this out.
+If you look closely at the `add` procedure, you will notice we added a new method called `input()`. This `input()` method takes an input validation schema that defines what our incoming request body should look like. tRPC supports a handful of input validators, but we have decided to use `Zod`. If you look closely, you can see that all we are doing is telling tRPC that our request body should exist of an object containing a title that is a string. Let's jump back to Postman and hit our `todo.add` API again to test this out.
 
 As you can see, the data array is now correctly populated:
 
@@ -272,6 +274,8 @@ export type Todo = z.infer<typeof todoSchema>;
 ```
 
 In the code snippet above, we are leveraging Zod to create a `todoSchema`. To get a detailed explanation of Zod, I recommend you look at their documentation.
+
+Take note that we are using Zod's `z.infer` function to create a new `Todo` type from our `todoSchema`. `z.infer` is a really powerful tool you can use to extract Typescript types from Zod schemas.
 
 Now, jump back to our todo router and modify our `input()` method to use the newly created todoSchema
 
@@ -443,6 +447,6 @@ Tada 🥳! Everything is working as it should!
 
 In this article, we looked at what tRPC is by building a simple todo API. tRPC is a library that allows you to set up end-to-end typing, which leads to fewer bugs and a better development experience! tRPC can be used in conjunction with many front-end frameworks such as React, React Native, Vue, and even Svelte! For more information, take a look at the [tRPC docs](https://trpc.io/docs/v10/). The code used in this article can be found in this GitHub repo.
 
-In the second part of this two-part series, we will be showcasing the power of having end-to-end typing by consuming our newly created todo API!
+In the second part of this two-part series, we will be showcasing the power of having end-to-end typing by consuming our newly created todo API in our React Native frontend!
 
 _Thank you for reading!_
