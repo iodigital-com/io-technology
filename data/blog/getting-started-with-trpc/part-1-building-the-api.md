@@ -13,9 +13,9 @@ serie: 'getting-started-with-trpc'
 
 In this two-part series, we'll be building a todo app using tRPC. In the first part, we'll start by creating a backend API using tRPC, and then in the second part, we'll create a (React Native) frontend UI that consumes the API. By the end of this series, you'll have a fully functioning todo app!
 
-// Add info about v10 being WIP
-
 ![what we are creating](/articles/getting-started-with-trpc/what-we-are-creating.png)
+
+_Note: at the time this article was written, tRPC v10 was still in beta; therefore, some of the provided code examples might not work anymore._
 
 ## Prerequisites
 
