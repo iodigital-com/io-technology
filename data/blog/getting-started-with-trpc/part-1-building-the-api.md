@@ -27,7 +27,7 @@ We won't be focusing on installing and setting up Typescript in this article; th
 
 ## Setting up our Express/tRPC backend
 
-We will use tRPC in conjunction with [ExpressJS] (https://expressjs.com/) in this article. tRPC is frequently used in conjunction with Next.js, but for this article, I chose ExpressJS to demonstrate tRPC's power in conjunction with ExpressJS. tRPC has a nice ExpressJS adapter that handles some of the tRPC magic for us, thus making setting up our tRPC backend very easy. Even though we use ExpressJS, tRPC can be used in combination with any (Node) backend that supports Typescript.
+We will use tRPC in conjunction with [ExpressJS](https://expressjs.com/) in this article. tRPC is frequently used in conjunction with Next.js, but for this article, I chose ExpressJS to demonstrate tRPC's power in conjunction with ExpressJS. tRPC has a nice ExpressJS adapter that handles some of the tRPC magic for us, thus making setting up our tRPC backend very easy. Even though we use ExpressJS, tRPC can be used in combination with any (Node) backend that supports Typescript.
 
 ### Installing dependecies
 
@@ -445,7 +445,7 @@ Tada 🥳! Everything is working as it should!
 
 ## Conclusion
 
-In this article, we looked at what tRPC is by building a simple todo API. tRPC is a library that allows you to set up end-to-end typing, which leads to fewer bugs and a better development experience! tRPC can be used in conjunction with many front-end frameworks such as React, React Native, Vue, and even Svelte! For more information, take a look at the [tRPC docs](https://trpc.io/docs/v10/). The code used in this article can be found in this GitHub repo.
+In this article, we looked at what tRPC is by building a simple todo API. tRPC is a library that allows you to set up end-to-end typing, which leads to fewer bugs and a better development experience! tRPC can be used in conjunction with many front-end frameworks such as React, React Native, Vue, and even Svelte! For more information, take a look at the [tRPC docs](https://trpc.io/docs/v10/). The code used in this article can be found in this [Github repo](https://github.com/LondyF/getting-started-with-trpc).
 
 In the second part of this two-part series, we will be showcasing the power of having end-to-end typing by consuming our newly created todo API in our React Native frontend!
 

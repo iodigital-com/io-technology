@@ -2,7 +2,7 @@
 title: 'Getting started with tRPC v10 by building a todo app'
 date: '2022-10-14'
 tags: ['frontend', 'react', 'trpc', 'react native']
-images: ['/articles/getting-started-with-trpc/hero.png']
+images: ['/articles/getting-started-with-trpc/hero-part2.png']
 summary: "There's nothing quite like the feeling of finally getting your front-end and back-end types to match up. After hours of slacking, emailing, and going through documentation, you finally have it! But that feeling doesn't last long, because you realize the back-end had some type changes, which broke your front-end again! Well, here is where tRPC comes into play."
 authors: ['zjerlondy-ferero']
 theme: 'rouge'
@@ -19,7 +19,7 @@ The code for this series can be found on Github.
 
 ## Getting started
 
-If you have followed the first part of this series, you will already have a project folder containing a client and server folder set up. If not, you can head over to Github and clone the branch `second-part` from the repo.
+If you have followed the first part of this series, you will already have a project folder containing a client and server folder set up. If not, you can head over to [Github](https://github.com/LondyF/getting-started-with-trpc) and clone the project, and follow along using the `part2-starter` folder.
 
 Let's take a look inside the `client` folder of our project. As you can see, the `client` folder contains a basic React Native project that was generated using the React Native CLI.
 
@@ -1046,6 +1046,6 @@ There ya go! An fully functional full stack todo app 🥳
 
 ## Conclusion
 
-In this two-part series, we looked at what tRPC is by building a full-stack Todo application. tRPC is a library that allows you to set up end-to-end typing, which leads to fewer bugs and a better development experience! tRPC can be used in conjunction with many front-end frameworks such as React, React Native, Vue, and even Svelte! For more information, take a look at the tRPC docs. The code used in this series can be found in this GitHub repo.
+In this two-part series, we looked at what tRPC is by building a full-stack Todo application. tRPC is a library that allows you to set up end-to-end typing, which leads to fewer bugs and a better development experience! tRPC can be used in conjunction with many front-end frameworks such as React, React Native, Vue, and even Svelte! For more information, take a look at the tRPC docs. The code used in this series can be found in this [Github repo](https://github.com/LondyF/getting-started-with-trpc).
 
 _Thank you for reading!_
