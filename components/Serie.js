@@ -15,9 +15,13 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
         {authors && (
           <div className="hidden md:col-span-3 md:block xl:col-span-5">
             <div className="flex flex-col xl:flex-row">
-              <div className="flex-0 relative overflow-hidden rounded-full md:mb-4 md:h-16 md:w-16 xl:mr-7 xl:mb-0 xl:h-32 xl:w-32">
-                {authors.slice(0, 1).map((author) => {
-                  return (
+              <div className="flex items-center -space-x-6 xl:-space-x-12">
+                {authors.map((author, index) => (
+                  <div
+                    key={author.name}
+                    className="flex-0 relative overflow-hidden rounded-full border-4 border-white md:mb-4 md:h-16 md:w-16 xl:h-32 xl:w-32"
+                    style={{ zIndex: authors.length - index }}
+                  >
                     <Image
                       key={author.name}
                       src={author.avatar}
@@ -27,8 +31,8 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
                       objectFit="cover"
                       className="rounded-full"
                     />
-                  )
-                })}
+                  </div>
+                ))}
               </div>
               <div className="text-body-xs">
                 <p className="mb-0">

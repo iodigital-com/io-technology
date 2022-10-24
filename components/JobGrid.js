@@ -15,7 +15,10 @@ const JobGrid = ({ jobs }) => {
         >
           <article>
             <header>
-              <h3 className="text my-1.5 text-xl font-medium">{job.title}</h3>
+              <h3
+                className="text my-1.5 text-xl font-medium"
+                dangerouslySetInnerHTML={{ __html: job.title }}
+              ></h3>
             </header>
             <p className="mb-2 font-serif text-sm font-light">{job.location}</p>
             <svg style={{ width: 24, height: 24 }} className="text-gray-400" viewBox="0 0 24 24">

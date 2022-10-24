@@ -1,5 +1,4 @@
 ---
-draft: true
 title: 'How do I set up _linting_, _unit_, _snapshot_ and _visual regression testing_?'
 date: '2022-08-31'
 tags: ['frontend']
