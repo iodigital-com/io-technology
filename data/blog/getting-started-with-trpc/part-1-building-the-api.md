@@ -1,5 +1,5 @@
 ---
-title: 'Getting started with tRPC v10 by building a todo app'
+title: 'Getting started with tRPC v10 by building a todo app - Backend'
 date: '2022-10-13'
 tags: ['frontend', 'react', 'trpc', 'react native']
 images: ['/articles/getting-started-with-trpc/hero.png']
