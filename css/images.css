@@ -1,0 +1,15 @@
+.responsive-image-container {
+  width: 100%;
+  position: relative;
+}
+
+.responsive-image-container > span {
+  position: unset !important;
+}
+
+.responsive-image-container img {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}

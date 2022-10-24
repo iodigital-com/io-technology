@@ -17,6 +17,7 @@ import SeriePlaylist from '@/components/SeriePlaylist'
 export default function PostLayout({ frontMatter, authorDetails, serie, next, prev, children }) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
+  const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
 
   return (
     <>
@@ -27,19 +28,17 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
       />
       <ScrollTop />
       <article>
-        <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
+        <div
+          className={`bg-io_${theme}-500 pb-14 pt-24 text-white ${
+            images?.length > 0 ? 'mb-72' : 'mb-12'
+          }`}
+        >
           <div className="container mx-auto">
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
             </h1>
             <div className="my-4 divide-x">
-              {authorDetails.slice(0, 1).map((author) => {
-                return (
-                  <p key={author.name} className="inline pr-2 text-xl font-light">
-                    By {author.name}
-                  </p>
-                )
-              })}
+              <p className="inline pr-2 text-xl font-light">By {authorNames}</p>
               <time className="inline px-2 font-light" dateTime={date}>
                 {formatDate(date)}
               </time>
@@ -62,6 +61,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   width={1280}
                   height={720}
                   layout="responsive"
+                  objectFit="cover"
                   priority={true}
                 />
               </div>
@@ -106,9 +106,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                           <dt className="sr-only">LinkedIn</dt>
                           <dd>
                             <SocialIcon kind="linkedin" href={author.linkedin} size="5">
-                              {author.linkedin
-                                .replace('https://www.linkedin.com/in/', '')
-                                .replace('/', '')}
+                              {author.name}
                             </SocialIcon>
                           </dd>
                         </>

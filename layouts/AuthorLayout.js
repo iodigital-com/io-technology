@@ -38,7 +38,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                     <dt className="sr-only">LinkedIn</dt>
                     <dd>
                       <SocialIcon kind="linkedin" href={linkedin} size="5">
-                        {linkedin.replace('https://www.linkedin.com/in/', '').replace('/', '')}
+                        {name}
                       </SocialIcon>
                     </dd>
                   </>
@@ -110,9 +110,11 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             Talks by <span className="font-serif font-light">{name}</span>
           </SectionTitle>
           <section className="container mx-auto max-w-2xl">
-            {talks.map((talk) => {
-              return <Talk key={talk.title} author={frontMatter} {...talk} />
-            })}
+            <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
+              {talks.map((talk) => {
+                return <Talk key={talk.title} {...talk} authors={[]} />
+              })}
+            </ul>
           </section>
         </>
       )}

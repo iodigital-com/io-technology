@@ -1,10 +1,11 @@
+import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const Talk = ({ title, summary, author, tags }) => {
+const Talk = ({ title, summary, authors, tags, video, slides }) => {
   const { theme } = useBrandingTheme()
 
   return (
@@ -16,32 +17,35 @@ const Talk = ({ title, summary, author, tags }) => {
         </div>
 
         <div className="flex flex-grow flex-col justify-end">
-          <div className="mt-2 mb-3 flex items-center text-lg">
-            <div className="flex-0 relative mr-3 inline-block h-10 w-10 overflow-hidden rounded-full">
-              <Image
-                key={author.name}
-                src={author.avatar || '/authors/io.jpg'}
-                width="100%"
-                height="100%"
-                alt={`avatar ${author.name}`}
-                objectFit="cover"
-                className="rounded-full"
-              />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-black">
-                <Link>
-                  <a
-                    href={`/authors/${author.slug[0]}`}
-                    className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                  >
-                    {author.name}
-                  </a>
-                </Link>
-              </p>
-              <p className="text-sm text-black">{author.occupation}</p>
-            </div>
-          </div>
+          {authors &&
+            authors.map((author) => (
+              <div className="mt-2 mb-3 flex items-center text-lg" key={author.name}>
+                <div className="flex-0 relative mr-3 inline-block h-10 w-10 overflow-hidden rounded-full">
+                  <Image
+                    key={author.name}
+                    src={author.avatar || '/authors/io.jpg'}
+                    width="100%"
+                    height="100%"
+                    alt={`avatar ${author.name}`}
+                    objectFit="cover"
+                    className="rounded-full"
+                  />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-black">
+                    <Link>
+                      <a
+                        href={`/authors/${author.slug[0]}`}
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                      >
+                        {author.name}
+                      </a>
+                    </Link>
+                  </p>
+                  <p className="text-sm text-black">{author.occupation}</p>
+                </div>
+              </div>
+            ))}
 
           <div className="mb-3 flex flex-nowrap gap-1 line-clamp-1">
             {tags.length > 0 &&
@@ -51,6 +55,20 @@ const Talk = ({ title, summary, author, tags }) => {
                 </div>
               ))}
           </div>
+        </div>
+        <div className="flex flex-wrap gap-4">
+          {video && (
+            <>
+              <dt className="sr-only">Video</dt>
+              <dd>
+                <SocialIcon kind="youtube" href={video} size="5" title="Video" />
+              </dd>
+              <dt className="sr-only">Slides</dt>
+              <dd>
+                <SocialIcon kind="slide-deck" href={slides} size="8" title="Slides" />
+              </dd>
+            </>
+          )}
         </div>
       </div>
     </li>
