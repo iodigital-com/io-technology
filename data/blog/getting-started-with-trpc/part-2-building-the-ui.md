@@ -23,9 +23,9 @@ If you have followed the first part of this series, you will already have a proj
 
 Let's take a look inside the `client` folder of our project. As you can see, the `client` folder contains a basic React Native project that was generated using the React Native CLI.
 
-### Installing our dependecies
+### Installing our dependencies
 
-Let's get started by using the terminal to navigate to the `client` directory in our project directory, and install the following dependecies:
+Let's get started by using the terminal to navigate to the `client` directory in our project directory, and install the following dependencies:
 
 `cd client && npm install @trpc/client@next @trpc/server@next @trpc/react@next @tanstack/react-query`
 

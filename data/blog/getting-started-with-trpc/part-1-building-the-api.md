@@ -29,9 +29,9 @@ We won't be focusing on installing and setting up Typescript in this article; th
 
 We will use tRPC in conjunction with [ExpressJS](https://expressjs.com/) in this article. tRPC is frequently used in conjunction with Next.js, but for this article, I chose ExpressJS to demonstrate tRPC's power in conjunction with ExpressJS. tRPC has a nice ExpressJS adapter that handles some of the tRPC magic for us, thus making setting up our tRPC backend very easy. Even though we use ExpressJS, tRPC can be used in combination with any (Node) backend that supports Typescript.
 
-### Installing dependecies
+### Installing dependencies
 
-Let's start by using the terminal to navigate to the `server` directory in our project directory, and install the following dependecies:
+Let's start by using the terminal to navigate to the `server` directory in our project directory, and install the following dependencies:
 
 `cd server && npm install @trpc/server@next zod`
 
