@@ -1,38 +1,38 @@
 ---
 title: 'Vue 3 composition API in a nutshell'
 date: '2022-10-25'
-tags: ['developtment', 'frontend', 'vue']
+tags: ['development', 'frontend', 'Vue 2', 'Vue 3']
 images: ['/articles/vue3-composition-api-in-a-nutshell/header.png']
-summary: ''
+summary: 'Vue 3 has been launched with the composition API. In this article we dive deeper into this subject and compare it with the options API (old way).'
 authors: ['lars-janssen']
 theme: 'black'
 ---
 
-Vue 3 has been released on Monday, February 7, 2022. Since the release of vue 3 the ecosystem got a boost (with for example Vite) and
-the options API has been introduced. In this article I will explain some core concepts of the options API.
+Vue 3 has been released on Monday, February 7, 2022. Since the release of Vue 3 the ecosystem got a boost (for example with Vite) and
+the composition API has been introduced. In this article I will explain some core concepts of the composition API.
 
-## What's the composition API?
+## What is the composition API?
 
 With the arrival of Vue 3 we can declare components with the `options API` (old way) or the `composition API` (new way). The composition API is a set of APIs that allows us to author Vue components using imported functions instead of declaring options.
 
-With the composition API the vue components are more structured and readable, this can be very helful especially when components grow. The following image displays more structured components.
+With the composition API the Vue components are more structured and readable, this can be very helpful especially when components grow. The following image displays more structured components.
 
 ![vue3-options-api-composition-api](/articles/vue3-composition-api-in-a-nutshell/options-api-composition-api.png)
 
-According to the official vue documentation the most important benefits are:
+According to the official Vue documentation, the most important benefits are:
 
-- Better logic Reuse;
+- Better reusability of logic;
 - More flexible code organization;
 - Better type inference;
 - Smaller production bundle and less overhead.
 
 ### Setup
 
-With the composition API we can declare our vue template in 2 different ways:
+With the composition API we can declare our Vue template in 2 different ways:
 
 Method 1:
 
-```js
+```ts
 <script setup>const aProperty: string = 'Test';</script>
 ```
 
@@ -52,8 +52,7 @@ Method 2:
 </script>
 ```
 
-Both methods are working but in practise most developer use method 1, because
-it's more readable and less code is needed.
+Both methods are working in practice most developer use method 1, it's more readable and less code is needed.
 
 ### Hooks
 
@@ -92,7 +91,7 @@ watch(() => {
 
 ### Props
 
-Vue 3 has been rewritten in typescript. We notice this well as typescript can be better integrated into our application. Props are a good example of this. With the options API:
+Vue 3 has been rewritten in Typescript. The integration of Vue in our TypeScript application is now more smooth since Vue 3 is rewritten in TypeScript. Props are a good example of this. With the options API:
 
 ```js
 props: {
@@ -103,29 +102,29 @@ props: {
 }
 ```
 
-In vue 2 you could already define a type, but this was still quite limited. You now have the option to use interfaces. With the composition API:
+In Vue 2 you could already define a type, but this was still quite limited. You now have the option to use interfaces. With the composition API:
 
-```js
+```ts
 interface Props {
-  dogNames: Array<String>;
+  dogNames: Array<String>
 }
 
 let props = withDefaults(defineProps<Props>(), {
   dogNames: [],
-});
+})
 ```
 
 ### Events
 
-When dispatching events to our parent components we notice the increased typescript support aswel. Types
-can be declared so the developer knows if a incorrect value is being passed. Composition API:
+When dispatching events to our parent components we notice the better Typescript support as well. Types
+can be declared so the developer knows if an incorrect value is being passed. Composition API:
 
-```js
+```ts
 const emit = defineEmits<{
-  (event: "dogNames", value: Array<string>): void;
-}>();
+  (event: 'dogNames', value: Array<string>): void
+}>()
 
-emit('dogNames', ['Snuffel']);
+emit('dogNames', ['Snuffel'])
 ```
 
 With the options API:
@@ -134,31 +133,52 @@ With the options API:
 $emit('dogNames', ['Snuffel'])
 ```
 
-### Multiple v-models
+### Code reusage with hooks
 
-One of the most requested features was multiple `v-models`, with vue3 it's finally there. Before we had to pass additional
-data as props.
+With the options API duplicate code is prevented with `mixins`. When using multiple mixins you quickly lose the overview and are often wondering where data or logic comes from. With the composition API we can use our own hooks for this.
 
-```js
-<AnimalComponent v-model="dogNames" catNames="catNames" />
+```ts
+const useGetPreferences = () => {
+  return useQuery(['Preference'], async () =>
+    PreferencesService.getPreferences().then(({ data }) => data)
+  )
+}
+
+export { useGetPreferences }
 ```
 
-Now we can use multiple `v-models` like this:
+It's used like this:
 
-```js
-<AnimalComponent v-model:dogNames="dogNames" v-model:catNames="catNames" />
+```ts
+const { data: preferences } = useGetPreferences()
 ```
 
-In the child component (`AnimalComponent`) we can emit the value back to our parent. Vue is listening for a default naming convention
-`update:<name>`.
+With the options API:
 
 ```js
-const emit = defineEmits<{
-  (event: "update:dogNames", value: Array<string>): void;
-  (event: "update:catNames", value: Array<string>): void;
-}>();
+var mixin = {
+  methods: {
+    useGetPreferences() {
+      return useQuery(['Preference'], async () =>
+        PreferencesService.getPreferences().then(({ data }) => data)
+      )
+    },
+  },
+}
 ```
 
-### Final thoughts
+It's used like this:
 
-Vue 3 has been a huge update compared to Vue 2. You could almost see it as a new framework rather than an update. Within IO, a number of projects are now done in vue3, in which I participate. In the beginning I had to get used to the new structure of vue and the composition API. Now I see the benefits more and more, and understand why this update was necessary. Especially the typescript integration is very good, and with hooks we reuse our code more easily and is it more readable.
+```js
+new Vue({
+  mixins: [mixin],
+})
+```
+
+## Composition API and options API together
+
+Maybe you are wondering if it is possible to use these API's together? Yes, that's possible! If you want to migrate a project to the composition api, this is very useful. However, for the future, the composition API will become the standard.
+
+## Final thoughts
+
+Vue 3 has been a huge update compared to Vue 2. You could almost see it as a new framework rather than an update. Within iO, a number of projects are now done in Vue 3, in which I participate. In the beginning I had to get used to the new structure of Vue and the composition API. Now I see the benefits more and more, and understand why this update was necessary. Especially the Typescript integration is very good, and with hooks we reuse our code more easily and is it more readable.
