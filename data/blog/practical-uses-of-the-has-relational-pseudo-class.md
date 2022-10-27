@@ -1,6 +1,6 @@
 ---
 title: 'Practical uses of the :has() relational pseudo class'
-date: '2022-10-26'
+date: '2022-10-27'
 tags: ['frontend', 'css']
 images:
   ['/articles/practical-uses-of-the-has-relational-pseudo-class/has-relational-pseudo-class.png']
