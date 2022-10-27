@@ -1,6 +1,6 @@
 ---
 title: 'Getting started with tRPC v10 by building a todo app - Frontend'
-date: '2022-10-24'
+date: '2022-10-26'
 tags: ['frontend', 'react', 'trpc', 'react native']
 images: ['/articles/getting-started-with-trpc/hero-part2.png']
 summary: "There's nothing quite like the feeling of finally getting your front-end and back-end types to match up. After hours of slacking, emailing, and going through documentation, you finally have it! But that feeling doesn't last long, because you realize the back-end had some type changes, which broke your front-end again! Well, here is where tRPC comes into play."
@@ -23,9 +23,9 @@ If you have followed the first part of this series, you will already have a proj
 
 Let's take a look inside the `client` folder of our project. As you can see, the `client` folder contains a basic React Native project that was generated using the React Native CLI.
 
-### Installing our dependecies
+### Installing our dependencies
 
-Let's get started by using the terminal to navigate to the `client` directory in our project directory, and install the following dependecies:
+Let's get started by using the terminal to navigate to the `client` directory in our project directory, and install the following dependencies:
 
 `cd client && npm install @trpc/client@next @trpc/server@next @trpc/react@next @tanstack/react-query`
 
