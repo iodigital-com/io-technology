@@ -1,6 +1,6 @@
 ---
 title: 'Vue 3 composition API in a nutshell'
-date: '2022-10-25'
+date: '2022-11-01'
 tags: ['development', 'frontend', 'Vue 2', 'Vue 3']
 images: ['/articles/vue3-composition-api-in-a-nutshell/header.png']
 summary: 'Vue 3 has been launched with the composition API. In this article we dive deeper into this subject and compare it with the options API (old way).'
