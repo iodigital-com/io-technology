@@ -33,3 +33,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Contributing
 
 Check the guidelines in the [Wiki](https://github.com/iodigital-com/io-technology/wiki)
+
+## Contributors
+
+Thank you to all our [contributors](https://github.com/iodigital-com/io-technology/graphs/contributors) ❤️
+
+<a href="https://github.com/iodigital-com/io-technology/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=iodigital-com/io-technology" />
+</a>
