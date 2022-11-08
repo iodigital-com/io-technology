@@ -194,7 +194,7 @@ free certificate limitations:
 - Is **not exportable**.
 - Is not supported on **App Service Environment** (ASE).
 - Is not supported with root domains that are integrated with Traffic Manager.
-- If a certificate is for a CNAME-mapped domain, the CNAME must be mapped directly to <app-name>.azurewebsites.net.
+- If a certificate is for a CNAME-mapped domain, the CNAME must be mapped directly to `<app-name>`.azurewebsites.net.
 
 ## autoscale
 
