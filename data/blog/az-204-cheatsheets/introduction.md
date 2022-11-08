@@ -1,6 +1,6 @@
 ---
 title: 'Introduciton to (AZ-204) certification exam Cheatsheets'
-date: '2022-10-01'
+date: '2022-11-08'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam']
 images: ['/articles/az-204-cheatsheets/hero.webp']
 summary: ''

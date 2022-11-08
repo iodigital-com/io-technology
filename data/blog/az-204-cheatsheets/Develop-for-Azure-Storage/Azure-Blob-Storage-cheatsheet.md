@@ -6,6 +6,7 @@ summary: ''
 authors: ['saeed-salehi']
 theme: 'blue'
 serie: 'az-204-cheatsheets'
+hideInArticleList: true
 ---
 
 # Develop solutions that use Blob storage
