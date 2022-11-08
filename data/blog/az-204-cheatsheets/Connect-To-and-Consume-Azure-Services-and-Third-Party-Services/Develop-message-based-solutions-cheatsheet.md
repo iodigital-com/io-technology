@@ -1,6 +1,6 @@
 ---
 title: 'Develop message-based solutions Cheatsheets'
-date: '2022-11-07'
+date: '2022-11-07 15:40:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']

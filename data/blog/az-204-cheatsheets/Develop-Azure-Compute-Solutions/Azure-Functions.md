@@ -1,6 +1,6 @@
 ---
 title: 'Azure Functions Cheatsheets'
-date: '2022-10-28'
+date: '2022-11-07 14:10:00'
 tags: ['azure', 'function', 'serverless', 'az-204', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']

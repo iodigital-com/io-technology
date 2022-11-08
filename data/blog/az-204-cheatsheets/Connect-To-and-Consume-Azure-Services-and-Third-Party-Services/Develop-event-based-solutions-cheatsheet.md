@@ -1,6 +1,6 @@
 ---
 title: 'Develop event-based solutions Cheatsheets'
-date: '2022-11-06'
+date: '2022-11-07 15:50:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'event']
 summary: ''
 authors: ['saeed-salehi']
@@ -26,16 +26,16 @@ Event Schema
 ```json
 [
   {
-    "topic": string,//Not Required
-    "subject": string,
-    "id": string,
-    "eventType": string,
-    "eventTime": string,
-    "data":{ //Not Required
-      object-unique-to-each-publisher
+    "topic": "Not Required",
+    "subject": "string",
+    "id": "string",
+    "eventType": "string",
+    "eventTime": "string",
+    "data": {
+      //object-unique-to-each-publisher (not required )
     },
-    "dataVersion": string,//Not Required
-    "metadataVersion": string//Not Required
+    "dataVersion": "Not Required",
+    "metadataVersion": "Not Required"
   }
 ]
 ```

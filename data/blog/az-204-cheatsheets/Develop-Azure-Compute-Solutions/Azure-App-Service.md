@@ -1,6 +1,6 @@
 ---
 title: 'Azure App Service Cheatsheets'
-date: '2022-10-29'
+date: '2022-11-07 14:20:00'
 tags: ['azure', 'az-204', 'app service', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']

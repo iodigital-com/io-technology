@@ -1,6 +1,6 @@
 ---
 title: 'Microsoft Identity platform Cheatsheet'
-date: '2022-11-02'
+date: '2022-11-07 15:10:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'security']
 summary: ''
 authors: ['saeed-salehi']

@@ -1,6 +1,6 @@
 ---
 title: 'Develop solutions that use Blob storage Cheatsheets'
-date: '2022-10-30'
+date: '2022-11-07 14:40:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'storage']
 summary: ''
 authors: ['saeed-salehi']
