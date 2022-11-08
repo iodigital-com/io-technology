@@ -1,6 +1,6 @@
 ---
 title: 'Develop solutions that use Azure Cosmos DB Cheatsheets'
-date: '2022-10-31'
+date: '2022-11-07 15:00:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'storage', 'database']
 summary: ''
 authors: ['saeed-salehi']

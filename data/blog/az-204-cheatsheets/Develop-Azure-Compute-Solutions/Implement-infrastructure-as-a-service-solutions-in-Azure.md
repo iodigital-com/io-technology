@@ -1,6 +1,6 @@
 ---
 title: 'Implement IaaS in Azure Cheatsheets'
-date: '2022-10-27'
+date: '2022-11-07 14:00:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']

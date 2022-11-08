@@ -1,6 +1,6 @@
 ---
 title: 'Implement Azure Security Cheatsheet'
-date: '2022-11-01'
+date: '2022-11-07 15:00:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'security']
 summary: ''
 authors: ['saeed-salehi']

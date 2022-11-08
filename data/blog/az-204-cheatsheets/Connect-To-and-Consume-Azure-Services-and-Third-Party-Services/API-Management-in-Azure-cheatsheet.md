@@ -1,6 +1,6 @@
 ---
 title: 'API Management in Azure Cheatsheets'
-date: '2022-11-05'
+date: '2022-11-07 16:00:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam', 'api']
 summary: ''
 authors: ['saeed-salehi']

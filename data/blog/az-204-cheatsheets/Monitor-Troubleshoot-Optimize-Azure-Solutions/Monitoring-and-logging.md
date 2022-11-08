@@ -1,6 +1,6 @@
 ---
 title: 'Monitoring And logging in Azure Cheatsheets'
-date: '2022-11-03'
+date: '2022-11-07 15:20:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']

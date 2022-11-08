@@ -1,6 +1,6 @@
 ---
 title: 'Azure Cache for Redis Cheatsheets'
-date: '2022-11-04'
+date: '2022-11-07 15:30:00'
 tags: ['azure', 'az-204', 'cheatsheet', 'certification', 'exam']
 summary: ''
 authors: ['saeed-salehi']
