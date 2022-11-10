@@ -158,3 +158,28 @@ private const string _clientId = "APPLICATION_CLIENT_ID";
             Console.WriteLine($"Token:\t{result.AccessToken}");
         }
 ```
+
+# Shared Access Signatures (SAS)
+
+A shared access signature (SAS) is a signed URI that points to one or more storage resources and includes a token that contains a special set of query parameters.
+
+### Types of shared access signatures
+
+- **User delegation SAS**: A user delegation SAS is secured with **Azure Active Directory credentials and also by the permissions specified for the SAS**. A user delegation SAS applies to **Blob storage only**.
+
+- **Service SAS**: A service SAS is secured with the storage account key. A service SAS delegates access to a resource in the following Azure Storage services: **Blob storage**, **Queue storage**, **Table storage**, or **Azure Files**.
+
+- **Account SAS**: An account SAS is secured with the **storage account** key. An account SAS delegates access to resources in one or more of the storage services. All of the operations available via a service or user delegation SAS are also available via an account SAS.
+
+### Creating a stored access policy
+
+```
+az storage container policy create \
+    --name <stored access policy identifier> \
+    --container-name <container name> \
+    --start <start time UTC datetime> \
+    --expiry <expiry time UTC datetime> \
+    --permissions <(a)dd, (c)reate, (d)elete, (l)ist, (r)ead, or (w)rite> \
+    --account-key <storage account key> \
+    --account-name <storage account name> \
+```

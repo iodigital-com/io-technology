@@ -13,12 +13,12 @@ hideInArticleList: true
 
 App Service can also host web apps natively on Linux for supported application stacks.
 
-App Service on Linux limitations:
+App Service on **Linux limitations**:
 
 - App Service on Linux is not supported on Shared pricing tier.
-- You can't mix Windows and Linux apps in the same App Service plan.
-- you could not mix Windows and Linux apps in the same resource group. However, all resource groups created on or after January 21, 2021 do support this scenario. Support for resource groups created before January 21, 2021 will be rolled out across Azure regions (including National cloud regions) soon.
-- The Azure portal shows only features that currently work for Linux apps. As features are enabled, they're activated on the portal.
+- You **can't mix Windows and Linux** apps in the **same App Service plan**.
+- you **could not mix Windows and Linux** apps in the **same resource group**.
+- The Azure portal shows only features that currently work for Linux apps. As features are enabled,
 
 `az webapp list-runtimes --os-type linux`
 
@@ -54,6 +54,44 @@ deployment:
   - CLI `az webapp up`
   - Zip Deploy `curl`
   - FTPS/s
+
+### Sample reference
+
+1. az group create
+2. az appservice plan create
+3. az webapp create
+4. az webapp deployment source / az webapp config container set / ...
+
+#### Github
+
+```
+az webapp deployment source config --name $webapp --resource-group $resourceGroup --repo-url $gitrepo --branch master --git-token $token
+```
+
+#### DockerHub
+
+```
+az webapp config container set --docker-custom-image-name $dockerHubContainerPath --name $webApp --resource-group $resourceGroup
+```
+
+### Slot
+
+1. az group create
+2. az appservice plan create
+3. az webapp create
+4. az webapp deployment slot create
+5. az webapp deployment source config
+6. az webapp deployment slot swap
+
+#### deploy Private Endpoint
+
+1. Create a VNet `az network vnet create.`
+2. Configure the Subnet `az network vnet subnet update:`
+3. Create the private endpoint `az network private-endpoint create`
+4. Configure the private zone
+   1. `az network private-dns zone create`
+   2. `az network private-dns link vnet create`
+   3. `az network private-endpoint dns-zone-group create`
 
 ## authentication and authorization
 
@@ -123,6 +161,10 @@ Query `possibleOutboundIpAddresses ` used for find all possible outbound IP addr
 ## Create the web app
 
 `az webapp up -g $resourceGroup -n $appName --html`
+
+## CORS
+
+`az webapp cors add --allowed-origins https://myapps.com --name MyWebApp --resource-group MyResourceGroup --subscription MySubscription`
 
 ### Configure application settings
 
@@ -225,6 +267,12 @@ A **scale-out** action **increases the number of instances**
 _cool down period_ , _threshold_ , **avoid "flapping" **
 
 Not all pricing tiers support **autoscaling**. The development pricing tiers are either limited to a single instance **(the F1 and D1 tiers)**, or they only provide manual scaling **(the B1 tier)**. If you've selected one of these tiers, you must first scale up to the **S1** or any of the P** level production tiers**.
+
+Autoscale supported on pricing tiers:
+
+- **Standard**
+- **Premium**
+- **Isolated**
 
 ## Deployment Slots
 

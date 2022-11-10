@@ -57,7 +57,7 @@ consider using **Storage queues** when:
 | Ability to scale workload up and down | N/A                            |
 | Message size up to 100 MB             | Message size up to 256 KB      |
 
-### Key Concetps:
+### Key Concetps
 
 ### Queues
 
@@ -81,6 +81,23 @@ consumers **don't receive messages directly from the topic**. Instead,consumers 
 ### Rules and actions
 
 While Service Bus subscriptions see all messages sent to the topic, you can only copy a subset of those messages to the virtual subscription queu
+
+## Topic filters and actions
+
+All rules **without actions** are **combined using an OR condition** and result in a single message on the subscription even if you have **multiple** matching rules.
+
+Each rule **with an action** produces a **copy of the message**. This message will have a property called `RuleName` where the value is the name of the matching rule.
+
+Filters:
+Service Bus supports three filter conditions:
+
+- **SQL Filters**: SQL-like conditional expression that is evaluated in the broker against the arriving messages' **user-defined** properties and **system** properties. All system properties must be prefixed with `sys`.
+- **Boolean filters** - The **TrueFilter** and **FalseFilter** either cause all arriving messages (true) or none of the arriving messages (false) to be selected for the subscription. These two filters **derive from the SQL filter**.
+
+- **Correlation Filters** : holds a set of conditions that are matched against one or more of an arriving message's user and system properties.
+
+Actions:
+With SQL filter conditions, you can define an action that can **annotate the message by adding, removing, or replacing properties and their values**.
 
 ## Service Bus message payloads and serialization
 

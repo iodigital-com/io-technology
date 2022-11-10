@@ -60,11 +60,11 @@ consistency levels are region-agnostic and are guaranteed for all operations
 
 consistency models:
 
-- strong : guarantees that reads get the most recent version of an item
-- bounded staleness: guarantees that a read hax a max lag (either version or time)
-- session: guarantees that a client session will read its own writes
-- consistent prefix: guarantees that updates are returned in order
-- eventual : no guarantees for order
+- **strong** : guarantees that reads get the most recent version of an item
+- **bounded staleness**: guarantees that a read hax a max lag (either version or time)
+- **session**: guarantees that a client session will read its own writes
+- **consistent prefix**: guarantees that updates are returned in order
+- **eventual** : no guarantees for order
 
 **Strong** and **Bounded staleness** will consume **twice** the normal RU for a request
 
@@ -111,6 +111,23 @@ Cassandra Query Language (CQL)
 
 stores data in key/value format
 Table API only supports OLTP scenarios.
+
+```
+az cosmosdb create \
+    --resource-group $resourceGroupName \
+    --name $accountName \
+    --locations regionName=$location
+    --capabilities EnableTable
+```
+
+C# Implementation
+
+| Class              | Description                                                                                                                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| TableServiceClient | This client class provides a client-side logical representation for the Azure Cosmos DB service. The client object is used to configure and execute requests against the service.                |
+| TableClient        | This client class is a reference to a table that may, or may not, exist in the service yet. The table is validated server-side when you attempt to access it or perform an operation against it. |
+| ITableEntity       | This interface is the base interface for any items that are created in the table or queried from the table. This interface includes all required properties for items in the API for Table.      |
+| TableEntity        | This class is a generic implementation of the ITableEntity interface as a dictionary of key-value pairs.                                                                                         |
 
 ### Gremlin API
 
