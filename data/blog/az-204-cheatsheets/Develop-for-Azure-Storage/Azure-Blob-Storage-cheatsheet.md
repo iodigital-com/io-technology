@@ -28,8 +28,8 @@ designed for:
 ## Access tiers
 
 - **Hot** : highest storage costs, but the lowest access costs
-- **Cool** : storing large amounts of data that is infrequently accessed and stored for at least 30 days
-- **Archive** : most cost-effective option for storing data, but accessing that data is more expensive than accessing data in the hot or cool tiers
+- **Cool** : storing large amounts of data that is infrequently accessed and stored for at **least 30 days**
+- **Archive** : most **cost-effective** option for storing data, but accessing that data is more expensive than accessing data in the hot or cool tiers
 
 ## Blobs
 
@@ -55,6 +55,14 @@ Redundancy in a secondary region
 - **Geo-redundant storage (GRS)** copies your data synchronously three times within a single physical location in the primary region using **LRS**. It then copies your data asynchronously to a **single physical location in the secondary region**.
 
 - **Geo-zone-redundant storage (GZRS)** copies your data synchronously across three Azure availability zones in the primary region using **ZRS**. It then copies your data asynchronously to a **single physical location in the secondary region**. Within the secondary region, your data is copied synchronously three times using **LRS**.
+
+### Data Proctection
+
+- **Container soft delete**
+- **Blob versioning** (every write operation to a blob in that account results in the creation of a new version.)
+- **Blob soft delete**, to restore a blob, snapshot, or version that has been deleted (When blob soft delete is enabled, overwriting a blob automatically creates a soft-deleted snapshot)
+
+**_Versioning is not supported for accounts that have a hierarchical namespace._**
 
 Create the block blob storage account
 

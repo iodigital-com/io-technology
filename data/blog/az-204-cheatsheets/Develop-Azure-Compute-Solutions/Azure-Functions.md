@@ -60,6 +60,42 @@ host.json file contains runtime-specific configuration
 - **Trigger**: what cause a function to run. **must have** exactly 1 trigger!
 - **Binding**: way of connecting another resource (input bindings, output bindings, or both)
 
+  Sample
+
+```json
+{
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "direction": "in",
+      "name": "order",
+      "queueName": "myqueue-items",
+      "connection": "MY_STORAGE_ACCT_APP_SETTING"
+    },
+    {
+      "type": "table",
+      "direction": "out",
+      "name": "$return",
+      "tableName": "outTable",
+      "connection": "MY_TABLE_STORAGE_ACCT_APP_SETTING"
+    }
+  ]
+}
+```
+
+Types of binding expressions (`path` parameter in `function.json`)
+
+- app settings (`% sign`)
+  - The `connection` property of triggers and bindings is a special case and **automatically resolves values as app settings**, without percent signs.
+- filename `{filename}`
+- Trigger metadata
+- JSON payloads
+- Dot notation
+- Create GUIDs `{rand-guid}`
+- Current time `{DateTime}`
+
+Return Value using `$return` in `function.json`
+
 ### Connect functions to Azure services
 
 Environment variables default configuration provider
