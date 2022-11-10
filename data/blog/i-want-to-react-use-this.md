@@ -8,17 +8,17 @@ authors: ['dave-bitter']
 theme: 'blue'
 ---
 
-There’s quite a bit of chatter lately about an experimental hook caller `React.use()`. This will fundamentally change the way you work with [React.js](https://reactjs.org/). Let’s have a look at what it is, why you would want to `React.use()` it and how it works!
+There’s quite a bit of chatter lately about an experimental hook called `React.use()`. This will fundamentally change the way you work with [React.js](https://reactjs.org/). Let’s have a look at what it is, why you would want to `React.use()` it and how it works!
 
 ## What is `React.use()`?
 
-`React.use()` is an experimental hook that offers first-class support for promises and async/await. In essence, it means that you can then await asynchronous code in the root of your components.
+`React.use()` is an experimental hook that offers first-class support for promises and async/await. In essence, it means that you can await asynchronous code in the root of your components.
 
 Couldn’t you already do that? Nope! Sure you could have promises in React.js for, for instance, data fetching, but you always used something like `useEffect` for this. The component, or rather function that returns some JSX, always just ran. There was no way to pause it to await some asynchronous code. Until now.
 
 ## Why would I want to `React.use()` this?
 
-The ability to now await some asynchronous code will for instance have a big effect on how you load data into your component. Previously, you would have to resort to `useEffect` to fetch data. You would then have to add some state where you store the data and potentially show a spinner while it the data is being fetched. This could look something like this:
+The ability to now await some asynchronous code will for instance have a big impact on how you load data into your component. Previously, you would have to resort to `useEffect` to fetch data. You would then have to add some state where you store the data and potentially show a spinner while the data is being fetched. This could look something like this:
 
 ```jsx
 import React, { useEffect, useState } from 'react'
@@ -96,7 +96,7 @@ Firstly, you got rid of the `useEffect` and `useState` hooks. Even better, you g
 
 Secondly, you simplified the logic. As you don’t need the before-mentioned hooks and callbacks, the code is drastically simplified. Now, this is a simple demo component, but you can imagine more complex components really benefitting from this.
 
-Finally, you could remove any of the loading state. Because of the `use` hook waited on, the rest of the code will never be executed before it’s done. Of course, you still have to handle the state where there is no data returned from the endpoint, but you can forget about any loading feedback.
+Finally, you could remove any of the loading state. Because of the `use` hook waited on, the rest of the code will never be executed before it’s done. Of course, you still have to handle the state where there's no data returned from the endpoint, but you can forget about any loading feedback.
 
 ### So, no more data fetching in the `useEffect` hook?
 
