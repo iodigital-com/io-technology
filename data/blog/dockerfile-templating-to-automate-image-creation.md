@@ -9,6 +9,7 @@ images:
 summary: "If we take a look at the repository for the official Node.js Docker images we can see that the source contains a Dockerfile for each image variant. Imagine having to add a package to all of these images. That's a lot of manual edits, but it's manageable. Now imagine adding a package to only specific versions of the image and a different package depending on the Linux distro."
 authors: ['luud-janssen']
 theme: 'orange'
+canonicalUrl: 'https://www.iodigital.com/en/history/isaac/dockerfile-templating-to-automate-image-creation'
 ---
 
 A lot of open source projects distribute multiple versions of their Docker images on Docker Hub. For example, Node.js has [a set of officially supported images](https://hub.docker.com/_/node/) for each Node.js use case. For starters, they have a Docker image for each patch version of the runtime, but even those are [split up into multiple images based on different distributions of Linux](https://github.com/nodejs/docker-node#image-variants). I take Node.js as an example here, but this is a very common pattern across official Docker images.
