@@ -24,6 +24,12 @@ requires general Azure Storage Account
 For Azure Functions, you develop orchestrations **by writing code** and using the Durable Functions extension.
 For Logic Apps, you create orchestrations by using a **GUI or editing configuration files** (workflow).
 
+#### Logic Apps:
+
+- **ogic App code View**: extend definitions you use Logic App code View
+- **Integrate the workflow**: Enterprise Integration Pack
+-
+
 ### Hosting Plans
 
 - **Consumption plan** : Default, only pay for compute resources when your functions are running (1.5 GB or memory / 1 CPU )
@@ -144,34 +150,23 @@ a.k.a **stateful functions**
 
   timeouts and compensation logic
 
-### Orchestrator functions
+### Durable Functions types and features
 
-Orchestrator functions describe how actions are executed and the order in which actions are executed
+- **Orchestrator functions** describe how actions are executed and the order in which actions are executed
 
-- Activity Function
+  - different types of actions, including **activity functions**, **sub-orchestrations**, **waiting for external events**, **HTTP**, and **timers**.
 
-  basic unit of work in a durable function
-  `DurableActivityContext` as a parameter
+- **Activity Function** : basic unit of work in a durable function. `DurableActivityContext` as a parameter
+  Activity functions can only have a single value passed to them (Array / Tuple supported!).
+  activity functions only guarantee _at least once execution_.
+  You can trigger an activity function only from an **orchestrator function**.
 
-  Activity functions can only have a single value passed to them (Array / Tuple supported!)
+- **Entity functions**: reading and updating state . Entities are accessed via a unique identifier Operations on entities require that you specify the `Entity ID` of the target entity, and the `Operation name`,
 
-- Entity functions
-
-  reading and updating state
-
-  Entities are accessed via a unique identifier
-
-  Operations on entities require that you specify the Entity ID of the target entity, and the Operation name,
-
-- Client functions
-
-  The primary way to deliver these messages is by using an orchestrator client binding, or an entity client binding
-
-  Any non-orchestrator function can be a client function.
-
-  What makes a function a client function is its use of the **durable client output binding**
-
-  orchestrator and entity functions cannot be triggered directly using the buttons
+- **Client functions**: The primary way to deliver these messages is by using an orchestrator client binding, or an entity client binding.
+  Any **non-orchestrator function** can be a **client function**.
+  What makes a function a client function is its use of the `durable client output binding`
+  **Orchestrator** and **entity** functions **cannot be triggered directly using the buttons** in Azure Portal
 
 ### Task hubs
 
