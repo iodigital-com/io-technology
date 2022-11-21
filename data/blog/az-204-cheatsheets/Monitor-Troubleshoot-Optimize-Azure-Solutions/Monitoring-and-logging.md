@@ -58,3 +58,11 @@ Troubleshoot app performance
 - Components can be separate Application Insights instrumentation keys (even if subscriptions are different) or different roles reporting to a single Application Insights instrumentation key.
 
 progressive discovery of the components
+
+## Alert type
+
+- **Metric alert**: Metric data is stored in the system already **pre-computed**. Metric alerts are useful when you want to be **alerted** about data that requires little or no manipulation. We recommend using metric alerts if the data you want to monitor is available in metric data. (**stateful - only notifying once when alert is fired and once when alert is resolved**)
+
+- **Log alert**: Log alerts allow you to perform **advanced logic operations** on your data. (KQL for data manipulation using log alerts).
+- **Activity Log alert**: Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a **specific event happens** to a resource, for example, a restart, a shutdown, or the creation or deletion of a resource. (Stateless)
+- **Prometheus alerts (preview)** : Prometheus alerts are primarily used for alerting on performance and health of Kubernetes clusters (including AKS).
