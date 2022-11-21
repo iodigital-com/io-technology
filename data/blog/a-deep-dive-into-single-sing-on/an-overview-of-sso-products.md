@@ -6,7 +6,7 @@ summary: 'What products provide out-of-the-box SSO solutions and how do they dif
 authors: ['daan-beulen', 'mark-van-der-linden']
 theme: 'blue'
 serie: 'a-deep-dive-into-single-sing-on'
-canonicalUrl: 'https://www.iodigital.com/nl/history/isaac/an-overview-of-sso-products'
+canonicalUrl: 'https://www.iodigital.com/en/history/isaac/an-overview-of-sso-products'
 ---
 
 After a technical introduction to Single Sign-On, we're going to take a look at some of the SSO products available in the space in the second part of the series. Comparing them on a couple of key functionalities that are important when choosing a product to work with. Our aim is to provide pointers that can be used when making your choice for a SSO solution, regardless of the product you're currently looking at. We'll be taking a look at the following products:
