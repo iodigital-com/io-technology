@@ -184,27 +184,34 @@ aborts pipeline execution and returns either a default or custom response to the
 
 ## Secure APIs
 
-- subscription keys
+- **subscription keys**
 
   A subscription key is a unique auto-generated key that can be passed through in the headers of the client request or as a query string parameter
 
   subscription scopes are:
 
-  - All APIs
-  - Single API
-  - Product
+  - **All APIs**
+  - **Single API**
+  - **Product**
 
   Every subscription has two keys, a primary and a secondary. Having two keys makes it easier when you do need to regenerate a key
 
-- OAuth2.0
-- Client certificates and
-- IP allow listing.
+- **OAuth2.0**
+- **Client certificates**
+- IP allow listing
 
 ### Call an API with the subscription key
 
 must include a valid key in all HTTP request
 
 The default header name is `Ocp-Apim-Subscription-Key`, and the default query string is `subscription-key`.
+
+### Authentication policies
+
+- **Authenticate with Basic**: This policy effectively sets the `HTTP Authorization header` to the value corresponding to the credentials provided in the policy
+- **Authenticate with client certificate**: The certificate needs to be installed into _API Management_ first and is identified by its `thumbprint` or `certificate ID` (resource name).
+
+**Authenticate with managed identity** - This policy essentially uses the managed identity to obtain an access token from Azure Active Directory
 
 ### Secure APIs by using certificates
 
