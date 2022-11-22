@@ -1,6 +1,6 @@
 ---
 title: 'I want to _React.use()_ this!'
-date: '2022-11-03'
+date: '2022-11-22'
 tags: ['react', 'frontend']
 images: ['/articles/i-want-to-react-use-this/i-want-to-react-use-this.jpg']
 summary: 'A big part of working with React.js is fetching data and displaying the results. Let’s see how the new React.use() hook can can help you!'
