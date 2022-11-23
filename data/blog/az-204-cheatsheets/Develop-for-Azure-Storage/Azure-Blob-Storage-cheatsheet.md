@@ -11,7 +11,7 @@ hideInArticleList: true
 
 # Develop solutions that use Blob storage
 
-designed for:
+**Designed for**:
 
 - Serving images or documents directly to a browser.
 - Storing files for distributed access.
@@ -27,9 +27,9 @@ designed for:
 
 ## Access tiers
 
-- **Hot** : highest storage costs, but the lowest access costs
+- **Hot** : highest _storage costs_, but the lowest _access costs_
 - **Cool** : storing large amounts of data that is infrequently accessed and stored for at **least 30 days**
-- **Archive** : most **cost-effective** option for storing data, but accessing that data is more expensive than accessing data in the hot or cool tiers
+- **Archive** : most **cost-effective** option for storing data, but accessing that data is more _expensive than accessing_ data in the hot or cool tiers
 
 ## Blobs
 
@@ -72,9 +72,9 @@ az storage account create --resource-group az204-blob-rg --name \
 --kind BlockBlobStorage --sku Premium_LRS
 ```
 
-data lifecycle
+### Data lifecycle
 
-Azure Blob storage lifecycle management offers a rich, rule-based policy for General Purpose v2 and Blob storage accounts.
+Azure Blob storage lifecycle management offers a rich, rule-based policy for _General Purpose v2_ and _Blob storage_ accounts.
 
 - Transition blobs to a cooler storage tier (hot to cool, hot to archive, or cool to - archive) to optimize for performance and cost
 - Delete blobs at the end of their lifecycles
@@ -124,7 +124,7 @@ Sample Rule
 
 If you define more than one action on the same blob, lifecycle management applies the least expensive action to the blob.
 
-### add a lifecycle management policy with Azure CLI
+### Add a lifecycle management policy with Azure CLI
 
 ```
 az storage account management-policy create \
@@ -142,17 +142,128 @@ Rehydration priority
 
 `x-ms-rehydrate-priority` header
 
-- Standard priority : may take up to 15 hours.
-- High priority: in under one hour for objects under 10 GB in size.
+- Standard priority : may take up to **15 hours**.
+- High priority: in **under one hour** for objects under 10 GB in size.
 
-Changing a blob's tier doesn't affect its last modified time
+Changing a blob's tier doesn't affect its _last modified time_
 
-## Create Blob storage resources by using the .NET client library
+### Create Blob storage resources by using the .NET client library
 
 create a storage account
 
-Your storage account name must be unique within Azure.
+Your storage account name must be _unique_ within Azure.
 
-```console
+```
 az storage account create --resource-group az204-blob-rg --name <myStorageAcct> --location <myLocation> --sku Standard_LRS
 ```
+
+Classes in the Azure.Storage.Blobs namespace
+
+- `BlobClient`
+- `BlobClientOptions`
+- `BlobContainerClient`
+- `BlobContainerClient`
+- `BlobUriBuilder`
+
+```csharp
+BlobServiceClient blobServiceClient = new BlobServiceClient(storageConnectionString);
+```
+
+Create the container and return a container client object
+
+```csharp
+BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+```
+
+Get a reference to the blob
+
+```csharp
+BlobClient blobClient = containerClient.GetBlobClient(fileName);
+```
+
+List the blobs in a container
+
+```csharp
+containerClient.GetBlobsAsync()
+```
+
+Download the blob's contents
+
+```csharp
+BlobDownloadInfo download = await blobClient.DownloadAsync();
+```
+
+Retrieve container properties
+
+```csharp
+var properties = await container.GetPropertiesAsync();
+```
+
+Set container properties
+
+```csharp
+IDictionary<string, string> metadata = new Dictionary<string, string>();
+
+// Add some metadata to the container.
+metadata.Add("docType", "textDocuments");
+metadata.Add("category", "guidance");
+
+// Set the container's metadata.
+await container.SetMetadataAsync(metadata);
+```
+
+```csharp
+// Set the container's metadata.
+await container.SetMetadataAsync(metadata);
+
+var properties = await container.GetPropertiesAsync();
+```
+
+### Set and retrieve properties and metadata for _blob_ resources by using REST
+
+`x-ms-meta-name:string-value `
+
+**Retrieving properties and metadata**
+For Containers:
+
+```
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer?restype=container
+```
+
+For blobs:
+
+```
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+```
+
+**Setting Metadata Headers**
+
+For Containers:
+
+```
+PUT https://myaccount.blob.core.windows.net/mycontainer?comp=metadata&restype=container
+```
+
+for Blobs:
+
+```
+PUT https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+```
+
+HTTP headers supported **on containers**
+
+- **ETag**
+- **Last-Modified**
+
+headers supported on blobs include
+
+- **ETag**
+- **Last-Modified**
+- Content-Length
+- Content-Type
+- Content-MD5
+- Content-Encoding
+- Content-Language
+- Cache-Control
+- Origin
+- Range

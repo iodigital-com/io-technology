@@ -26,8 +26,8 @@ For Logic Apps, you create orchestrations by using a **GUI or editing configurat
 
 #### Logic Apps:
 
-- **ogic App code View**: extend definitions you use Logic App code View
-- **Integrate the workflow**: Enterprise Integration Pack
+- **Logic App code View**: extend definitions you use Logic App code View
+- **Integrate the workflow**: Enterprise Integration Pack (_EIP_)
 -
 
 ### Hosting Plans
@@ -113,9 +113,9 @@ Environment variables default configuration provider
 
 ### Authorization Levels
 
-- Anonymous - No Api Key required.
-- function - a funciton-specific API key is required (default)
-- Admin - the master key is required
+- **Anonymous** - No Api Key required.
+- **function** - a funciton-specific API key is required (default)
+- **Admin** - the _master key_ is required
 
 ## Durable Functions
 
@@ -123,28 +123,28 @@ a.k.a **stateful functions**
 
 ### Application patterns
 
-- Function chaining
+- **Function chaining**:
 
   a **_sequence of functions_** executes in a specific orde
 
   the output of one function is applied to the input of another function
 
-- Fan-out/fan-in
+- **Fan-out/fan-in**:
 
   execute multiple functions in **_parallel_** and then wait for all functions to finish
 
-- Async HTTP APIs
+- **Async HTTP APIs**:
 
   HTTP endpoint trigger the long-running action. Then, redirect the client to a status endpoint that the **_client polls_** to learn when the operation is
   finished
 
   Function must include `DurableClient` input binding
 
-- Monitor
+- **Monitor**:
 
   recurring process in a **_workflow_**. An example is polling until specific conditions are met
 
-- Human interaction
+- **Human interaction**:
 
   Involving humans in an automated process
 

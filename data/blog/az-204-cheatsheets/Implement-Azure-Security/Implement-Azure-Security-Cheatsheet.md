@@ -17,8 +17,8 @@ Supports **vaults** and managed **hardware security module(HSM)** pools
 
 service tiers:
 
-- Standard: encrypts with a software key
-- Premium: hardware security module(HSM)-protected keys
+- **Standard**: encrypts with a software key
+- **Premium**: hardware security module(HSM)-protected keys
 
 ### Authentication
 
@@ -42,7 +42,7 @@ retrieve the secret
 
 # Managed identities
 
-types of managed identities:
+Types of managed identities:
 
 - **system-assigned** managed identity
 - **user-assigned** managed identity (independent lifecycle than a Azure resource)
@@ -83,13 +83,13 @@ az vm identity assign \
     --identities <USER ASSIGNED IDENTITY>
 ```
 
-# Azure App Configuration
+## Azure App Configuration
 
-Azure App Configuration encrypts sensitive information at rest using a 256-bit AES encryption key provided by Microsoft.
+Azure App Configuration encrypts sensitive information at rest using a _256-bit AES_ encryption key provided by Microsoft.
 
 `*`, `,`, and `\.` These characters are reserved
 
-Key values in App Configuration can **optionally** have a **label** attribut
+Key values in App Configuration can **optionally** have a **label** attribute
 
 ### Version key values
 
@@ -97,7 +97,7 @@ App Configuration **doesn't version** key values automatically as they're modifi
 
 ### Query key values
 
-Each key value is uniquely identified by its key plus a label that can be null
+Each key value is uniquely identified by its key plus a label that can be `null`
 
 ### Values
 
@@ -109,10 +109,39 @@ Values assigned to keys are also unicode strings.
 - **Feature manager**: A feature manager is an application package that handles the lifecycle of all the feature flags in an application
 - **Filter**: A filter is a rule for evaluating the state of a feature flag.
 
-## Security
+## Secure app configuration data
 
-- customer-managed keys: encrypts sensitive information at rest using a **256-bit AES** encryption key
-- private endpoints for Azure App Configuration : allow clients on a **virtual network (VNet)** to securely access data over a private link
-- Private endpoints for App Configuration ( If you have multiple App Configuration stores, you need a separate private endpoint for each store)
-- DNS changes for private endpoints
-- Managed Identities
+### Encrypt configuration data by using customer-managed keys
+
+Requirements:
+
+- **Standard tier** Azure App Configuration instance
+- Azure Key Vault with **soft-delete** and **purge-protection** features enabled
+- An `RSA` or `RSA-HSM` key within the Key Vault: The key must not be expired, it must be enabled, and it must have both wrap and unwrap capabilities enabled
+
+Allow Azure App Configuration to use the Key Vault key:
+
+1. Assign a **managed identity** to the Azure App Configuration instance
+2. Grant the identity `GET`, `WRAP`, and `UNWRAP` permissions in the target _Key Vault's access policy_.
+
+### Use private endpoints for Azure App Configuration
+
+Allow clients on a virtual network (VNet) to securely access data over a private link.
+
+### Managed identities
+
+A managed identity from Azure Active Directory (AAD) allows Azure App Configuration to easily access other _AAD-protected_ resources, such as _Azure Key Vault_.
+
+The identity is managed by the Azure platform. It does not require you to provision or rotate any secrets.
+
+Add a system-assigned identity
+
+`az appconfig identity assign`
+
+Assign the new user-assigned identity to the myTestAppConfigStore configuration store:
+
+```
+az appconfig identity assign --name myTestAppConfigStore \
+    --resource-group myResourceGroup \
+    --identities /subscriptions/[subscription id]/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity
+```

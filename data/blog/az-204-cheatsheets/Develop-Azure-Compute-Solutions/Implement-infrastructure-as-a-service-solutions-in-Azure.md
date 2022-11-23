@@ -32,8 +32,8 @@ Create and deploy virtual machine, deploy resources using Azure Resource Manager
 
 Physically separated within in a region, _3 availablily zone per region_
 
-- Zonal Service : resource pinned to a specific zone
-- Zone-Redundant : Azure automatically replicates accross zones
+- **Zonal Service**: resource pinned to a specific zone
+- **Zone-Redundant**: Azure automatically replicates accross zones
 
 ### Availability sets
 
@@ -41,9 +41,8 @@ Each availability set can be configured with up to **3 fault domains** and **20 
 
 logical grouping of VMs. protect against hardware failures and updates safely.
 
-- Fault domains:
-  group of underlying hardware that share a common power source and network switch
-- Update Domain : ensures that at least one instance of your application always remains running
+- **Fault domains**: group of underlying hardware that _share_ a common power source and network switch
+- **Update Domain** : ensures that at least one instance of your application always remains running
 
 ### Virtual machine scale sets
 
@@ -177,8 +176,8 @@ Sample
 
 ### deployment mode
 
-- Complete mode: **_deletes_** resources that exist in the resource group that aren't specified in the template.
-- Incremental mode: **_leaves unchanged_** resources that exist in the resource group but aren't specified in the template. (default mode is incremental)
+- **Complete mode**: **_deletes_** resources that exist in the resource group that aren't specified in the template.
+- **Incremental mode**: **_leaves unchanged_** resources that exist in the resource group but aren't specified in the template. (default mode is incremental)
 
 ### Deploy Using Azure CLI
 
@@ -196,25 +195,25 @@ managed, private Docker registry service based on the open-source Docker Registr
 
 service tiers:
 
-- Basic: Cost-optmized for lower usage scenarios
-- Standard: ncreased included storage and image throughput
-- Premium: geo-replication,content trust
+- **Basic**: _Cost-optmized_ for lower usage scenarios
+- **Standard**: Increased storage and image throughput
+- **Premium**: _Geo-replication_,content trust
 
-storage capabilities
+storage capabilities:
 
 - Encryption-at-rest
 - Regional storage
-- Zone redundancy (premium)
+- Zone redundancy (**premium**)
 - Scalable storage
 
-ACR Tasks
+ACR Tasks:
 
 - Quick task: `docker build` and `docker push` in clouds
 - Automatically triggered tasks :
   - source code update `az acr task create`
   - base image update
   - schedule
-- Multi-step task: yaml based config file
+- Multi-step task: `yaml` based config file
 
 ### Create an Azure Container Registry
 
@@ -225,7 +224,7 @@ az acr create --resource-group az204-acr-rg \
     --name <myname> --sku Basic
 ```
 
-build docker image using acr
+build docker image using ACR
 
 `az acr build --image saeed:v1 --registry <myname> --file Dockerfile .`
 
@@ -262,7 +261,7 @@ only supported in linux containers
 
 ### Networking
 
-containers within the group share an IP and port namespace
+containers within the group _share an IP and port namespace_
 
 ### Storage
 
@@ -329,69 +328,3 @@ az container create \
     --azure-file-volume-share-name $ACI_PERS_SHARE_NAME \
     --azure-file-volume-mount-path /aci/logs/
 ```
-
-### Create Blob storage resources by using the .NET client library
-
-```csharp
-// Create a client that can authenticate with a connection string
-BlobServiceClient blobServiceClient = new BlobServiceClient(storageConnectionString);
-```
-
-Create the container and return a container client object
-
-```csharp
-BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
-```
-
-Get a reference to the blob
-
-```csharp
-BlobClient blobClient = containerClient.GetBlobClient(fileName);
-```
-
-List the blobs in a container
-
-```csharp
-containerClient.GetBlobsAsync()
-```
-
-Download the blob's contents
-
-```csharp
-BlobDownloadInfo download = await blobClient.DownloadAsync();
-```
-
-Fetch some container properties and write out their values.
-
-```csharp
-var properties = await container.GetPropertiesAsync();
-```
-
-```csharp
-// Set the container's metadata.
-await container.SetMetadataAsync(metadata);
-
-var properties = await container.GetPropertiesAsync();
-```
-
-### set and get metadata by REST
-
-`x-ms-meta-name:string-value `
-
-HTTP headers supported **on containers**
-
-- **ETag**
-- **Last-Modified**
-
-headers supported on blobs include
-
-- **ETag**
-- **Last-Modified**
-- Content-Length
-- Content-Type
-- Content-MD5
-- Content-Encoding
-- Content-Language
-- Cache-Control
-- Origin
-- Range
