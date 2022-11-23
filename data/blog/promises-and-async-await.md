@@ -6,6 +6,7 @@ images: []
 summary: 'The Promise, a fundamental tool in the asynchronous language that is javascript.'
 authors: ['ralph-leermakers']
 theme: 'orange'
+canonicalUrl: 'https://www.iodigital.com/en/history/isaac/promises-and-async-await'
 ---
 
 # Promises and async/await
