@@ -23,7 +23,7 @@ I've made a summarized version of all stuffs you need to know in following categ
   - [Azure-Functions](Develop-Azure-Compute-Solutions/Azure-Functions)
   - [Azure-App-Service](Develop-Azure-Compute-Solutions/Azure-App-Service)
 - Develop For Azure Storage _(15-20%)_
-  - [Blob Storage](Develop-for-Azure-Storage/Azure-Blob-Storage)
+  - [Blob Storage](Develop-for-Azure-Storage/Azure-Blob-Storage-cheatsheet)
   - [Cosmos DB](Develop-for-Azure-Storage/Azure-CosmosDb-Cheatsheet)
 - Implement Azure security _(20-25%)_
   - [Azure Security](Implement-Azure-Security/Implement-Azure-Security-Cheatsheet)
