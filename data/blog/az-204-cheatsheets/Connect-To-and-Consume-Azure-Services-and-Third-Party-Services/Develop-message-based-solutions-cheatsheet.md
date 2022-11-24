@@ -11,17 +11,17 @@ hideInArticleList: true
 
 # Develop message-based solutions
 
-Azure supports two types of queue mechanisms: Service Bus queues and Storage queues.
+Azure supports two types of queue mechanisms: **Service Bus queues** and **Storage queues**.
 
-consider using **Service Bus queues** when:
+Consider using **Service Bus queues** when:
 
-- receive messages **without having to poll** the queue ( **long-polling** receive operation using the **TCP-based** protocols)
-- guaranteed first-in-first-out (**FIFO**) ordered delivery (**Message Session** )
-- automatic duplicate detection
-- parallel long-running streams -
-- messages that can exceed 64 KB but won't likely approach the 256-KB limit.
+- Receive messages **without having to poll** the queue ( **long-polling** receive operation using the **TCP-based** protocols)
+- Guaranteed first-in-first-out (**FIFO**) ordered delivery (**Message Session** )
+- Automatic duplicate detection
+- Parallel long-running streams -
+- Messages that can exceed 64 KB but won't likely approach the 256-KB limit.
 
-consider using **Storage queues** when:
+Consider using **Storage queues** when:
 
 - store over 80 gigabytes of messages in a queue.
 - track progress for processing a message in the queue
@@ -67,14 +67,14 @@ A related benefit is **load-leveling**, which enables producers and consumers to
 
 #### Receive modes
 
-- Receive and delete (marks the message as being consumed and returns it to the consumer application)
-- Peek lock (two-stage)
+- **Receive and delete** (marks the message as being consumed and returns it to the consumer application)
+- **Peek lock (two-stage)**
   - Finds the **next message** to be consumed, **locks** it to prevent other consumers from receiving it, and then, return the message to the application.
-  - After the application finishes processing the message, it requests the Service Bus service to complete the second stage of the receive process. Then, the service** marks the message as being consumed**. otherwise (abandon / unlock)
+  - After the application finishes processing the message, it requests the Service Bus service to complete the second stage of the receive process. Then, the service **marks the message as being consumed**. otherwise (`abandon` / `unlock`)
 
 ### Topics and subscriptions
 
-topics and subscriptions provide a one-to-many form of communication in a publish and subscribe pattern
+topics and subscriptions provide a `one-to-many` form of communication in a publish and subscribe pattern
 
 consumers **don't receive messages directly from the topic**. Instead,consumers receive messages from **subscriptions of the topic**
 
@@ -88,7 +88,7 @@ All rules **without actions** are **combined using an OR condition** and result 
 
 Each rule **with an action** produces a **copy of the message**. This message will have a property called `RuleName` where the value is the name of the matching rule.
 
-Filters:
+**Filters:**
 Service Bus supports three filter conditions:
 
 - **SQL Filters**: SQL-like conditional expression that is evaluated in the broker against the arriving messages' **user-defined** properties and **system** properties. All system properties must be prefixed with `sys`.
@@ -110,11 +110,11 @@ The **broker properties** are predefined by the system.
 
 patterns:
 
-- Simple request/reply: A publisher sends a message into a queue and expects a reply from the message consumer. To receive the reply, the publisher owns a queue into which it expects replies to be delivered. The address of that queue is expressed in the `ReplyTo` property of the `outbound message`. When the consumer responds, it **copies** the `MessageId` of the handled message into the `CorrelationId` property of the reply message and delivers the message to the destination indicated by the `ReplyTo` property. **One message can yield multiple replies, depending on the application context**.
+- **Simple request/reply**: A publisher sends a message into a queue and expects a reply from the message consumer. To receive the reply, the publisher owns a queue into which it expects replies to be delivered. The address of that queue is expressed in the `ReplyTo` property of the `outbound message`. When the consumer responds, it **copies** the `MessageId` of the handled message into the `CorrelationId` property of the reply message and delivers the message to the destination indicated by the `ReplyTo` property. **One message can yield multiple replies, depending on the application context**.
 
-- Multicast request/reply: a publisher sends the message into a **topic** and multiple subscribers become eligible to consume the message. This pattern is used in **discovery** or **roll-call** scenarios. If `ReplyTo` points to a **topic** can be **distributed** to an audience.
-- Multiplexing This session feature enables multiplexing of streams of related messages through a **single queue** or subscription such that each session (or group) of related messages, identified by matching `SessionId` values, is routed to a specific receiver while the receiver holds the session under lock.
-- Multiplexed request/reply: This session feature enables multiplexed replies, allowing several **publishers to share a reply queue**. By setting `ReplyToSessionId`, the publisher can instruct the consumer(s) to copy that value into the `SessionId` property of the **reply message**. The publishing queue or topic **does not need to be session-aware**. As the message is sent, the publisher can then specifically wait for a session with the given `SessionId` to materialize on the queue by conditionally accepting a session receiver.
+- **Multicast request/reply**: a publisher sends the message into a **topic** and multiple subscribers become eligible to consume the message. This pattern is used in **discovery** or **roll-call** scenarios. If `ReplyTo` points to a **topic** can be **distributed** to an audience.
+- **Multiplexing** This session feature enables multiplexing of streams of related messages through a **single queue** or subscription such that each session (or group) of related messages, identified by matching `SessionId` values, is routed to a specific receiver while the receiver holds the session under lock.
+- **Multiplexed request/reply**: This session feature enables multiplexed replies, allowing several **publishers to share a reply queue**. By setting `ReplyToSessionId`, the publisher can instruct the consumer(s) to copy that value into the `SessionId` property of the **reply message**. The publishing queue or topic **does not need to be session-aware**. As the message is sent, the publisher can then specifically wait for a session with the given `SessionId` to materialize on the queue by conditionally accepting a session receiver.
 
 ### Payload serialization
 
@@ -176,7 +176,7 @@ await processor.StartProcessingAsync();
 
 storing large numbers of messages
 
-components:
+ژomponents:
 
 - URL format
 - Storage account

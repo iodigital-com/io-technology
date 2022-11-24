@@ -11,7 +11,7 @@ hideInArticleList: true
 
 # Azure Cache for Redis
 
-common patterns:
+Common patterns:
 
 - Data cache
 - Content cache
@@ -93,7 +93,7 @@ static async Task Main(string[] args)
 }
 ```
 
-# Develop for storage on CDNs
+## Develop for storage on CDNs
 
 Limitations:
 
