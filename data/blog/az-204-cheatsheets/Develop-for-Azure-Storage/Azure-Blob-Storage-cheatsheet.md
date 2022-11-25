@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Develop solutions that use Blob storage
-
 **Designed for**:
 
 - Serving images or documents directly to a browser.
@@ -22,20 +20,20 @@ hideInArticleList: true
 
 ## Types of storage accounts
 
-- **Standard** : Standard general-purpose v2
-- **Premium** : higher performance by using solid-state drives
+- **Standard**: Standard general-purpose v2
+- **Premium**: higher performance by using solid-state drives
 
 ## Access tiers
 
-- **Hot** : highest _storage costs_, but the lowest _access costs_
-- **Cool** : storing large amounts of data that is infrequently accessed and stored for at **least 30 days**
-- **Archive** : most **cost-effective** option for storing data, but accessing that data is more _expensive than accessing_ data in the hot or cool tiers
+- **Hot**: highest _storage costs_, but the lowest _access costs_
+- **Cool**: storing large amounts of data that is infrequently accessed and stored for at **least 30 days**
+- **Archive**: most **cost-effective** option for storing data, but accessing that data is more _expensive than accessing_ data in the hot or cool tiers
 
 ## Blobs
 
-- **Block blobs** : store text and binary data, up to **about 190.7 TB**
-- **Append blobs** : logging data from virtual machines
-- **Page blobs** : store random access files **up to 8 TB** in size,store virtual hard drive (VHD) files and serve as **disks for Azure virtual machines**.
+- **Block blobs**: store text and binary data, up to **about 190.7 TB**
+- **Append blobs**: logging data from virtual machines
+- **Page blobs**: store random access files **up to 8 TB** in size,store virtual hard drive (VHD) files and serve as **disks for Azure virtual machines**.
 
 Storage **encryption for data at rest**
 
@@ -77,7 +75,7 @@ az storage account create --resource-group az204-blob-rg --name \
 Azure Blob storage lifecycle management offers a rich, rule-based policy for _General Purpose v2_ and _Blob storage_ accounts.
 
 - Transition blobs to a cooler storage tier (hot to cool, hot to archive, or cool to - archive) to optimize for performance and cost
-- Delete blobs at the end of their lifecycles
+- Delete blobs at the end of their lifecycle
 - Define rules to be run once per day at the storage account level
 - Apply rules to containers or a subset of blobs (using prefixes as filters)
 
@@ -142,7 +140,7 @@ Rehydration priority
 
 `x-ms-rehydrate-priority` header
 
-- Standard priority : may take up to **15 hours**.
+- Standard priority: may take up to **15 hours**.
 - High priority: in **under one hour** for objects under 10 GB in size.
 
 Changing a blob's tier doesn't affect its _last modified time_

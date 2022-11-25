@@ -9,10 +9,7 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Develop solutions that use Azure Cosmos DB
-
-Key benefits
-multi-master replication protocol
+Key benefits of multi-master replication protocol:
 
 - Unlimited elastic write and read scalability.
 - 99.999% read and write availability all around the world.
@@ -27,10 +24,10 @@ maximum of **50 Azure Cosmos accounts** under an Azure subscription
 hierarchy of different entities in an Azure Cosmos DB account:
 
 - Database Account
-  - Datab ase
+  - Database
     - Container (Collection, Table, Graph, ...)
       - Stored Procedure
-      - User-defined functtions
+      - User-defined functions
       - triggers
       - conflicts
       - merge procedures
@@ -60,21 +57,21 @@ consistency levels are region-agnostic and are guaranteed for all operations
 
 consistency models:
 
-- **strong** : guarantees that reads get the most recent version of an item
+- **strong**: guarantees that reads get the most recent version of an item
 - **bounded staleness**: guarantees that a read hax a max lag (either _version_ or _time_)
 - **session**: guarantees that a client session will read its own writes
 - **consistent prefix**: guarantees that updates are returned in order
-- **eventual** : no guarantees for order
+- **eventual**: no guarantees for order
 
 **Strong** and **Bounded staleness** will consume **twice** the normal RU for a request
 
 Consider the following points if your application is built using SQL API or Table API:
 
 - For many real-world scenarios, _session consistency_ is optimal and it's the recommended option.
-- If you need stricter consistency : _bounded staleness_ consistency level.
-- If you need less strict consistency : _consistent prefix_ consistency level.
+- If you need stricter consistency: _bounded staleness_ consistency level.
+- If you need less strict consistency: _consistent prefix_ consistency level.
 - If you need the highest throughput and the lowest latency,: _eventual consistency_ level.
-- If you need even higher data durability : _custom consistency level_ at the application layer.
+- If you need even higher data durability: _custom consistency level_ at the application layer.
 
 Consistency guarantees:
 

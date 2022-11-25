@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Monitoring And logging in Azure
-
 - Metrics
 - Logs
 - Distributed traces
@@ -27,26 +25,26 @@ hideInArticleList: true
 - Diagnostic trace logs
 - Custom events and metrics
 
-ways to get started monitoring and analyzing app performance:
+Ways to get started monitoring and analyzing app performance:
 
 - **At run time**: without change in code
 - **At development time**: add to code
 - **Instrument your web pages** (client-side telemetry)
 - **Analyze mobile app usage** (Visual Studio App Center)
-- **Availability tests** : ping regularly from azure servers.
+- **Availability tests**: ping regularly from azure servers
 
 ## log-based metrics
 
-- **log-based metrics** : **_Kusto queries_** from stored events (require processig to produce the result)
-- **Standard metrics** : pre-aggregated time series. (near real time)
+- **log-based metrics**: **_Kusto queries_** from stored events (require processing to produce the result)
+- **Standard metrics**: pre-aggregated time series. (near real time)
 
 ## Availability test
 
-up to 100 availability tests per Application Insights resource
+Up to 100 availability tests per Application Insights resource
 
 - URL ping test (classic): relies on the DNS infrastructure of the public internet
 - Standard test (Preview):
-- Custom TrackAvailability test: use `TrackAvailability()` method to sned data to Applicaiton Insight
+- Custom TrackAvailability test: use `TrackAvailability()` method to send data to Application Insight
 - Multi-step test: Only available from visual studio , multi request or authentication test scenarios (Custom TrackAvailability works as well)
 
 ## Application Map
@@ -57,7 +55,7 @@ Troubleshoot app performance
 - Components run on any number of server/role/container instances.
 - Components can be separate Application Insights instrumentation keys (even if subscriptions are different) or different roles reporting to a single Application Insights instrumentation key.
 
-progressive discovery of the components
+Progressive discovery of the components
 
 ## Alert type
 
@@ -65,4 +63,4 @@ progressive discovery of the components
 
 - **Log alert**: Log alerts allow you to perform **advanced logic operations** on your data. (KQL for data manipulation using log alerts).
 - **Activity Log alert**: Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a **specific event happens** to a resource, for example, a restart, a shutdown, or the creation or deletion of a resource. (Stateless)
-- **Prometheus alerts (preview)** : Prometheus alerts are primarily used for alerting on performance and health of Kubernetes clusters (including AKS).
+- **Prometheus alerts (preview)**: Prometheus alerts are primarily used for alerting on performance and health of Kubernetes clusters (including AKS).

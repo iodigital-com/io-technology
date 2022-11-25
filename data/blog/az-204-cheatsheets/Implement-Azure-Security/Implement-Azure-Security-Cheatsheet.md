@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Implement Azure Security
-
 ## Azure Key Vault
 
 Supports **vaults** and managed **hardware security module(HSM)** pools
@@ -40,7 +38,7 @@ retrieve the secret
 
 `az keyvault secret show --name "ExamplePassword" --vault-name $myKeyVault`
 
-# Managed identities
+## Managed identities
 
 Types of managed identities:
 

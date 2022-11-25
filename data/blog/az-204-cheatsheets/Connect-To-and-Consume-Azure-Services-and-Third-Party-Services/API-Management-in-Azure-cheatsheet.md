@@ -9,11 +9,9 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# API Management in Azure
-
 API Management helps organizations publish APIs to external.
 
-## components:
+## Components
 
 - **API gateway**
 
@@ -24,7 +22,7 @@ API Management helps organizations publish APIs to external.
   - Caches backend responses where set up.
   - Logs call metadata for analytics purposes.
 
-- **Azure portal** : administrative interface
+- **Azure portal**: administrative interface
 
   - Define or import API schema.
   - Package APIs into products.
@@ -47,11 +45,11 @@ API Management helps organizations publish APIs to external.
 
 - **Administrators**: Azure subscription administrators , manage API Management service instances
 - **Developers**: Authenticated developer portal users,the customers that build applications using your APIs
-- **Guests** : Unauthenticated developer portal users,can be granted certain read-only access, such as the ability to view APIs but not call them
+- **Guests**: Unauthenticated developer portal users,can be granted certain read-only access, such as the ability to view APIs but not call them
 
 API gateways
 
-- **Gateway routing** : reverse proxy to route requests to **one or more backend services** using layer 7 routing.
+- **Gateway routing**: reverse proxy to route requests to **one or more backend services** using layer 7 routing.
 - **Gateway aggregation**: Use the gateway to aggregate multiple individual requests into a single request. This pattern applies when a single operation requires calls to multiple backend services
 - **Gateway Offloading**: Use the gateway to offload functionality from individual services to the gateway, like SSL termination,
   Authentication,
@@ -122,7 +120,7 @@ forwards the incoming request to the backend service specified in the request co
 
 ### Limit concurrency
 
-revents enclosed policies from executing by more than the specified number of requests at any time
+Events enclosed policies from executing by more than the specified number of requests at any time
 `429 Too Many Requests status code`
 
 ```
@@ -144,7 +142,7 @@ saving selected request or response context information
 
 ### Mock response
 
-Aborts normal pipeline execution and returns a mocked response to the calle
+Aborts normal pipeline execution and returns a mocked response to the calls
 
 It generates sample responses from schemas, when schemas are provided and examples are not. If neither examples or schemas are found, responses with no content are returned
 

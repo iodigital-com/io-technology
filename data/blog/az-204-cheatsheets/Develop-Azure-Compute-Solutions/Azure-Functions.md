@@ -9,36 +9,32 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Azure Functions
-
-Azure Functions lets you develop serverless applications on Microsoft Azure
-
-requires general Azure Storage Account
+Azure Functions lets you develop serverless applications on Microsoft Azure requires general Azure Storage Account
 
 - Azure Blob
 - Queue
 - Files and Table storage.
 
-### Difference with Azure Logic Apps
+## Difference with Azure Logic Apps
 
 For Azure Functions, you develop orchestrations **by writing code** and using the Durable Functions extension.
 For Logic Apps, you create orchestrations by using a **GUI or editing configuration files** (workflow).
 
-#### Logic Apps:
+### Logic Apps
 
 - **Logic App code View**: extend definitions you use Logic App code View
 - **Integrate the workflow**: Enterprise Integration Pack (_EIP_)
 -
 
-### Hosting Plans
+## Hosting Plans
 
-- **Consumption plan** : Default, only pay for compute resources when your functions are running (1.5 GB or memory / 1 CPU )
+- **Consumption plan**: Default, only pay for compute resources when your functions are running (1.5 GB or memory / 1 CPU )
 - **Premium plan**: pre-warmed workers
-- **Dedicated plan**: run your funciton within a AppService - price can be _predetive_, Best for long-running (Always on should be enabled!)
+- **Dedicated plan**: run your function within a AppService - price can be _predictive_, Best for long-running (Always on should be enabled!)
 
-### Deployment
+## Deployment
 
-- AppService Envrionment (ASE)
+- AppService Environment (ASE)
 - Kubernetes (KEDA)
 
 ## Scaling
@@ -49,7 +45,7 @@ latency of scaling from zero to one - cold start
 ### Scaling behaviors
 
 - **Maximum instances: 200**
-- **New instance rate:** new instances allocated HTTP : once per second / Non-Http: once on every 30 seconds
+- **New instance rate:** new instances allocated HTTP: once per second / Non-Http: once on every 30 seconds
 
 limit scale out by setting `functionAppScaleLimit` parameter to 0 / null or a valid number
 
@@ -107,14 +103,14 @@ Return Value using `$return` in `function.json`
 Environment variables default configuration provider
 
 - Application Settings in azure function service
-- lcoal setting file
+- local setting file
 
 **_Identity-based connections are not supported with Durable Functions._**
 
 ### Authorization Levels
 
 - **Anonymous** - No Api Key required.
-- **function** - a funciton-specific API key is required (default)
+- **function** - a function-specific API key is required (default)
 - **Admin** - the _master key_ is required
 
 ## Durable Functions
@@ -156,7 +152,7 @@ a.k.a **stateful functions**
 
   - different types of actions, including **activity functions**, **sub-orchestrations**, **waiting for external events**, **HTTP**, and **timers**.
 
-- **Activity Function** : basic unit of work in a durable function. `DurableActivityContext` as a parameter
+- **Activity Function**: basic unit of work in a durable function. `DurableActivityContext` as a parameter
   Activity functions can only have a single value passed to them (Array / Tuple supported!).
   activity functions only guarantee _at least once execution_.
   You can trigger an activity function only from an **orchestrator function**.
@@ -175,12 +171,12 @@ logical container for durable storage resources
 Task Hub in Azure Storage resources:
 
 - 1 or more control queue
-- 1 work-item quque
+- 1 work-item queue
 - 1 history table
 - 1 instance table
 - 1 storage container (1 or more lease BLOB)
 
-### durable orchestrations
+### Durable orchestrations
 
 - define function workflows using procedural code
 - call other durable functions synchronously and asynchronously

@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Azure Event Grid
-
 Concepts
 
 - **Events** - What happened.
@@ -42,16 +40,16 @@ Event Schema
 
 Azure Event Grid natively supports events in the JSON implementation of **CloudEvents v1.0** and **HTTP protocol binding**
 
-### Event Delivery
+## Event Delivery
 
 retry doesn't happen:
 
-- Azure Resources : (`400 Bad Request`, `413 Request Entity Too Large`, `403 Forbidden`)
-- Webhok : (`400 Bad Request`, `413 Request Entity Too Large`, `403 Forbidden`, `404 Not Found`, `401 Unauthorized`)
+- Azure Resources(`400 Bad Request`, `413 Request Entity Too Large`, `403 Forbidden`)
+- Webhook: (`400 Bad Request`, `413 Request Entity Too Large`, `403 Forbidden`, `404 Not Found`, `401 Unauthorized`)
 
 If Dead-Letter isn't configured for an endpoint, events will be dropped when the above errors happen.
 
-### Retry policy
+## Retry policy
 
 - **Maximum number of attempts** - The value must be an integer between 1 and 30. The default value is 30.
 - **Event time-to-live (TTL)** - The value must be an integer between 1 and 1440. The default value is 1440 minutes
@@ -66,12 +64,12 @@ az eventgrid event-subscription create \
 
 ```
 
-### Output batching
+## Output batching
 
 - **Max events per batch** - Maximum number of events Event Grid will deliver per batch.
 - **Preferred batch size in kilobytes** - Target ceiling for batch size in kilobytes. Similar to max events,
 
-### Dead-letter events
+## Dead-letter events
 
 Event Grid **dead-letters** an event when one of the following conditions is met.
 
@@ -82,7 +80,7 @@ If Event Grid receives a `400 (Bad Request)` or `413 (Request Entity Too Large)`
 
 There is a **five-minute** delay between the last attempt to deliver an event and when it is delivered to the dead-letter location.
 
-### Control access to events
+## Control access to events
 
 - Event Grid Subscription Reader
 - Event Grid Subscription Contributor
@@ -91,12 +89,12 @@ There is a **five-minute** delay between the last attempt to deliver an event an
 
 You must have the **Microsoft.EventGrid/EventSubscriptions/Write** permission on the resource that is the **event source**.
 
-### Endpoint validation with Event Grid events
+## Endpoint validation with Event Grid events
 
-- **Synchronous handshake** : At the time of event subscription creation using a event with a `validationCode ` property.
-- **Asynchronous handshake:** : Event Grid sends a `validationUrl` property in the data portion of the subs
+- **Synchronous handshake**: At the time of event subscription creation using a event with a `validationCode ` property.
+- **Asynchronous handshake:**: Event Grid sends a `validationUrl` property in the data portion of the subs
 
-### Filter events
+## Filter events
 
 options for filtering:
 
@@ -139,7 +137,7 @@ options for filtering:
 }
 ```
 
-### using Azure CLI
+## using Azure CLI
 
 Register the Event Grid resource provider
 
@@ -176,7 +174,7 @@ az eventgrid event-subscription create \
     --endpoint $endpoint
 ```
 
-### Send an event to your custom topic
+## Send an event to your custom topic
 
 Retrieve URL and key for the custom topic.
 
@@ -192,7 +190,7 @@ event='[ {"id": "'"$RANDOM"'", "eventType": "recordInserted", "subject": "myapp/
 curl -X POST -H "aeg-sas-key: $key" -d "$event" $topicEndpoint
 ```
 
-# Azure Event Hubs
+## Azure Event Hubs
 
 key concepts:
 
@@ -216,7 +214,6 @@ A single throughput unit allows **1 MB per second** or **1000 events per second*
 ### Scaling
 
 **Partition ownership tracking**
-
 Ownership of partitions is evenly distributed among all the active event processor instances associated with an event hub and consumer group combination.
 
 **Checkpointing**

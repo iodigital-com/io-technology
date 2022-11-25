@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Azure Cache for Redis
-
 Common patterns:
 
 - Data cache
@@ -21,18 +19,18 @@ Common patterns:
 
 ### Service tiers
 
-- **Basic** : OSS Redis cache running on **a single VM**
+- **Basic**: OSS Redis cache running on **a single VM**.
 - **Standard**: OSS Redis cache running on **two VMs** in a **replicated** configuration.
 - **Premium**: High-performance OSS Redis caches.
-- **Enterprise**: **Redis Enterprise software**. This tier supports Redis modules including **RediSearch**, **RedisBloom**, and **RedisTimeSeries**
-- **Enterprise Flash**: Cost-effective large caches powered by Redis Labs' Redis Enterprise software ( It reduces the overall **per-GB memory cost.**)
+- **Enterprise**: **Redis Enterprise software**. This tier supports Redis modules including **RediSearch**, **RedisBloom**, and **RedisTimeSeries**.
+- **Enterprise Flash**: Cost-effective large caches powered by Redis Labs' Redis Enterprise software (it reduces the overall **per-GB memory cost.**).
 
 ### Pricing tier
 
 - **Basic**: Basic cache ideal for development/testing. Is limited to a single server, **53 GB of memory**, **and 20,000 connections**. There is **no SLA** for this service tier.
 - **Standard**: Production cache which supports replication and includes **an SLA**. It supports **two servers**, and has the same memory/connection limits as the Basic tier.
-- **Premium**: (Virtual Network support
-  ,Clustering support)Enterprise tier which builds on the Standard tier and includes persistence, clustering, and scale-out cache support. This is the highest performing tier with up to **530 GB of memory** and **40,000 simultaneous connections**.persist data :
+- **Premium**: (Virtual Network support, Clustering support) Enterprise tier which builds on the Standard tier and includes persistence, clustering, and scale-out cache support. This is the highest performing tier with up to **530 GB of memory** and **40,000 simultaneous connections**.
+  Data persistence:
   - **RDB** persistence takes a periodic snapshot.
   - **AOF** persistence saves every write operation to a log that is saved at least once per second.
 
