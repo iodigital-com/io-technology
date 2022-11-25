@@ -7,12 +7,10 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export const POSTS_PER_PAGE = 10
 
-function canShowInArticleList(frontMatter, index, arr) {
-  if (frontMatter.hideInArticleList == undefined && !frontMatter.hideInArticleList) return true
-}
-
 export async function getStaticProps() {
-  const posts = (await getAllFilesFrontMatter('blog')).filter(canShowInArticleList)
+  const posts = (await getAllFilesFrontMatter('blog')).filter(
+    (frontMatter) => !frontMatter.hideInArticleList
+  )
 
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
