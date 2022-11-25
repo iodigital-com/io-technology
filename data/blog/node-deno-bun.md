@@ -1,6 +1,6 @@
 ---
 title: 'Portability of applications between Node, Deno & Bun'
-date: '2022-09-30'
+date: '2022-11-25'
 tags: ['backend', 'fullstack', 'node', 'deno', 'bun', 'express', 'nuxt', 'next', angular]
 images: ['/articles/node-deno-bun/node-deno-bun.jpg']
 summary: 'Ever since the introduction of Bun there are three runtimes to choose from when wanting to develop and run a JavaScript server. Node was the one that started it all and most applications are designed to run on that, but how would those applications fare running on the other runtimes, are they really a drop-in replacement?'
