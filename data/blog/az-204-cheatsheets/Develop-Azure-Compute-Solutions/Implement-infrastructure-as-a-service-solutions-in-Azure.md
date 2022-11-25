@@ -9,15 +9,13 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Implement IaaS in Azure
-
 Create and deploy virtual machine, deploy resources using Azure Resource Manager templates, and manage and deploy containers
 
-### Design considerations for virtual machine creation
+## Design considerations for virtual machine creation
 
 - Availability: Service Level Agreement of 99.9% (three-nines)
 - VM Size: processing power, memory, and storage capacity
-- VM limits : subscription has default quota limits. (Current: 20 VMs per region)
+- VM limits: subscription has default quota limits. (Current: 20 VMs per region)
 - VM image: `az vm image list`
 - VM disks
 
@@ -28,31 +26,31 @@ Create and deploy virtual machine, deploy resources using Azure Resource Manager
   - Managed disks: managed by Azure , Easy to scale-out , up to 4 terabytes
   - Unmanaged disks: you’re responsible for the storage accounts, fixed-rate limit of 20,000 IO operation per second
 
-### Availability Zone:
+## Availability Zone
 
-Physically separated within in a region, _3 availablily zone per region_
+Physically separated within in a region, _3 availability zone per region_
 
 - **Zonal Service**: resource pinned to a specific zone
-- **Zone-Redundant**: Azure automatically replicates accross zones
+- **Zone-Redundant**: Azure automatically replicates across zones
 
-### Availability sets
+## Availability sets
 
 Each availability set can be configured with up to **3 fault domains** and **20 update domains.**
 
 logical grouping of VMs. protect against hardware failures and updates safely.
 
 - **Fault domains**: group of underlying hardware that _share_ a common power source and network switch
-- **Update Domain** : ensures that at least one instance of your application always remains running
+- **Update Domain**: ensures that at least one instance of your application always remains running
 
-### Virtual machine scale sets
+## Virtual machine scale sets
 
 load balanced VMs based on defined schedule or response to demand.
 
-### Azure Load Balancer
+## Azure Load Balancer
 
 Layer-4 (TCP, UDP) load balancer , distributing incoming traffic among healthy VMs ( load balancer health probe monitors a given port on each VM )
 
-### Azure CLI
+## Azure CLI
 
 Login to azure
 
@@ -195,7 +193,7 @@ managed, private Docker registry service based on the open-source Docker Registr
 
 service tiers:
 
-- **Basic**: _Cost-optmized_ for lower usage scenarios
+- **Basic**: _Cost-optimized_ for lower usage scenarios
 - **Standard**: Increased storage and image throughput
 - **Premium**: _Geo-replication_,content trust
 
@@ -245,27 +243,27 @@ az acr run --registry <myname> \
     --cmd '$Registry/saeed:v1' /dev/null
 ```
 
-# Azure Container Instances (ACI)
+## Azure Container Instances (ACI)
 
-offers the fastest and simplest way to run a container in Azure , billed by the second
+Offers the fastest and simplest way to run a container in Azure, billed by the second.
 
-## container group
+### container group
 
-collection of containers that shares lifecycle, resources, local network, and storage volumes. like **_POD_** in kubernetes
-only supported in linux containers
+Collection of containers that shares lifecycle, resources, local network, and storage volumes. Like **_POD_** in Kubernetes
+only supported in Linux containers.
 
-### Deployment:
+### Deployment
 
 - ARM Template
 - YAML file (pass `--file filename.yml`)
 
 ### Networking
 
-containers within the group _share an IP and port namespace_
+Containers within the group _share an IP and port namespace_.
 
 ### Storage
 
-Supported voulmes to mount :
+Supported volumes to mount:
 
 - Azure file share
 - Secret
@@ -294,7 +292,7 @@ az container show --resource-group rg-test \
 
 ### restart policies
 
-- **Always** : default
+- **Always**: default
 - **Never** - one container must run within a group
 - **OnFailure**: The containers are run **at least once**
 
@@ -310,7 +308,7 @@ fully managed file shares in the cloud that are accessible via the industry stan
 
 Limitations:
 
-- only availbale for **_Linux containers_**.
+- only available for **_Linux containers_**.
 - requires the Linux container **_run as root_**.
 - limited to **_CIFS support_**.
 

@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Develop message-based solutions
-
 Azure supports two types of queue mechanisms: **Service Bus queues** and **Storage queues**.
 
 Consider using **Service Bus queues** when:
@@ -27,7 +25,7 @@ Consider using **Storage queues** when:
 - track progress for processing a message in the queue
 - server side logs of all of the transactions
 
-### Advanced features
+## Advanced features
 
 | Feature               | Description                                                                                                                                                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -57,7 +55,7 @@ Consider using **Storage queues** when:
 | Ability to scale workload up and down | N/A                            |
 | Message size up to 100 MB             | Message size up to 256 KB      |
 
-### Key Concetps
+### Key Concepts
 
 ### Queues
 
@@ -80,7 +78,7 @@ consumers **don't receive messages directly from the topic**. Instead,consumers 
 
 ### Rules and actions
 
-While Service Bus subscriptions see all messages sent to the topic, you can only copy a subset of those messages to the virtual subscription queu
+While Service Bus subscriptions see all messages sent to the topic, you can only copy a subset of those messages to the virtual subscription queue
 
 ## Topic filters and actions
 
@@ -94,7 +92,7 @@ Service Bus supports three filter conditions:
 - **SQL Filters**: SQL-like conditional expression that is evaluated in the broker against the arriving messages' **user-defined** properties and **system** properties. All system properties must be prefixed with `sys`.
 - **Boolean filters** - The **TrueFilter** and **FalseFilter** either cause all arriving messages (true) or none of the arriving messages (false) to be selected for the subscription. These two filters **derive from the SQL filter**.
 
-- **Correlation Filters** : holds a set of conditions that are matched against one or more of an arriving message's user and system properties.
+- **Correlation Filters**: holds a set of conditions that are matched against one or more of an arriving message's user and system properties.
 
 Actions:
 With SQL filter conditions, you can define an action that can **annotate the message by adding, removing, or replacing properties and their values**.
@@ -176,7 +174,7 @@ await processor.StartProcessingAsync();
 
 storing large numbers of messages
 
-ژomponents:
+components:
 
 - URL format
 - Storage account

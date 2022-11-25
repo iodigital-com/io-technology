@@ -9,8 +9,6 @@ serie: 'az-204-cheatsheets'
 hideInArticleList: true
 ---
 
-# Azure App Service
-
 App Service can also host web apps natively on Linux for supported application stacks.
 
 App Service on **Linux limitations**:
@@ -24,7 +22,7 @@ App Service on **Linux limitations**:
 
 ## App Service plans
 
-Azure Functions also has the option of running in an App Service plan
+Azure Functions also has the option of running in an App Service plan.
 
 Each App Service plan defines:
 
@@ -178,18 +176,18 @@ general settings:
 
 - Stack settings: language and SDK versions
 - Platform settings
-  - Bitness : 32 / 64 BIT
+  - Bitness: 32 / 64 BIT
   - WebSocket Protocol: SignalR or socket.io
-  - Always On : By default, Always On is not enabled (required for WebJobs)
+  - Always On: By default, Always On is not enabled (required for WebJobs)
   - Managed pipeline version (IIS Pipeline mode)
   - Http Version
   - ARR Affinity (ensure that the client is routed to the same instance for the life of the session,can set this option to Off for stateless applications)
 - Debugging: This option turns off automatically after 48 hours.
-- Incoming client certificates : TLS mutual authentication
+- Incoming client certificates: TLS mutual authentication
 
 ### path mappings
 
-- Windows apps (uncontainerized)
+- Windows apps (un-containerized)
   - Customize **IIS handler mappings** and **virtual applications** and **directories**
 - Linux and containerized apps
   - Azure Storage Mount
@@ -230,7 +228,7 @@ free managed certificate:
 
 your App Service plan must be in the **Basic**, **Standard**, **Premium**, or **Isolated** tier. **Custom SSL** is not supported in the **F1** or **D1** tier.
 
-free certificate limitations:
+Free certificate limitations:
 
 - Does not support **wildcard** certificates.
 - Does not support usage as a client certificate by **certificate thumbprint**.
@@ -239,7 +237,7 @@ free certificate limitations:
 - Is not supported with root domains that are integrated with Traffic Manager.
 - If a certificate is for a CNAME-mapped domain, the CNAME must be mapped directly to `<app-name>`.azurewebsites.net.
 
-## autoscale
+## Autoscale
 
 Autoscaling can be triggered according to a **schedule**, or by assessing whether the **system is running short on resources**
 
@@ -264,9 +262,9 @@ only changes the number of web servers.
 A **scale-out** action **increases the number of instances**
 **scale-in** action reduces the instance count
 
-_cool down period_ , _threshold_ , **avoid "flapping" **
+_cool down period_ , _threshold_ , **avoid "flapping"**
 
-Not all pricing tiers support **autoscaling**. The development pricing tiers are either limited to a single instance **(the F1 and D1 tiers)**, or they only provide manual scaling **(the B1 tier)**. If you've selected one of these tiers, you must first scale up to the **S1** or any of the P** level production tiers**.
+Not all pricing tiers support **autoscaling**. The development pricing tiers are either limited to a single instance **(the F1 and D1 tiers)**, or they only provide manual scaling **(the B1 tier)**. If you've selected one of these tiers, you must first scale up to the **S1** or any of the **P level production tiers**.
 
 Autoscale supported on pricing tiers:
 
