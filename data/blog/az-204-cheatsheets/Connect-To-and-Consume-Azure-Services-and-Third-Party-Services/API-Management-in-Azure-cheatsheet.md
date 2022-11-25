@@ -11,11 +11,11 @@ hideInArticleList: true
 
 # API Management in Azure
 
-API Management helps organizations publish APIs to external, partner
+API Management helps organizations publish APIs to external.
 
 ## components:
 
-- API gateway
+- **API gateway**
 
   - Accepts API calls and routes them to your backend(s).
   - Verifies API keys, JWT tokens, certificates, and other credentials.
@@ -24,7 +24,7 @@ API Management helps organizations publish APIs to external, partner
   - Caches backend responses where set up.
   - Logs call metadata for analytics purposes.
 
-- Azure portal : administrative interface
+- **Azure portal** : administrative interface
 
   - Define or import API schema.
   - Package APIs into products.
@@ -32,28 +32,28 @@ API Management helps organizations publish APIs to external, partner
   - Get insights from analytics.
   - Manage users.
 
-- Developer portal :
+- **Developer portal**:
   - Read API documentation.
   - Try out an API via the interactive console.
   - Create an account and subscribe to get API keys.
   - Access analytics on their own usage.
 
-Products:
+**Products**:
 
-- Open:
-- Protected: must be **subscribed** to before they can be used
+- Open
+- Protected (must be **subscribed** to before they can be used)
 
-Groups:
+**Groups**:
 
-- Administrators: Azure subscription administrators , manage API Management service instances
-- Developers: Authenticated developer portal users,the customers that build applications using your APIs
-- Guests : Unauthenticated developer portal users,can be granted certain read-only access, such as the ability to view APIs but not call them
+- **Administrators**: Azure subscription administrators , manage API Management service instances
+- **Developers**: Authenticated developer portal users,the customers that build applications using your APIs
+- **Guests** : Unauthenticated developer portal users,can be granted certain read-only access, such as the ability to view APIs but not call them
 
 API gateways
 
-- Gateway routing : reverse proxy to route requests to one or more backend services using layer 7 routing.
-- Gateway aggregation: Use the gateway to aggregate multiple individual requests into a single request. This pattern applies when a single operation requires calls to multiple backend services
-- Gateway Offloading: Use the gateway to offload functionality from individual services to the gateway, like SSL termination,
+- **Gateway routing** : reverse proxy to route requests to **one or more backend services** using layer 7 routing.
+- **Gateway aggregation**: Use the gateway to aggregate multiple individual requests into a single request. This pattern applies when a single operation requires calls to multiple backend services
+- **Gateway Offloading**: Use the gateway to offload functionality from individual services to the gateway, like SSL termination,
   Authentication,
   IP allow/block list,
   Client rate limiting (throttling),
@@ -144,7 +144,7 @@ saving selected request or response context information
 
 ### Mock response
 
-aborts normal pipeline execution and returns a mocked response to the calle
+Aborts normal pipeline execution and returns a mocked response to the calle
 
 It generates sample responses from schemas, when schemas are provided and examples are not. If neither examples or schemas are found, responses with no content are returned
 
@@ -170,7 +170,7 @@ The retry policy executes its child policies once and then retries their executi
 
 ### Return response
 
-aborts pipeline execution and returns either a default or custom response to the caller. Default response is 200 OK with no body
+Aborts pipeline execution and returns either a default or custom response to the caller. Default response is 200 OK with no body
 
 ```xml
 <return-response response-variable-name="existing context variable">
