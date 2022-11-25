@@ -3,7 +3,7 @@ name: Saeed Salehi
 avatar: /authors/saeed-salehi.jpeg
 occupation: Senior Backend Developer .Net Team
 twitter: https://twitter.com/1saeedsalehi
-linkedin: https://www.linke din.com/in/1saeedsalehi/
+linkedin: https://www.linkedin.com/in/1saeedsalehi/
 github: https://github.com/1saeedsalehi
 website: https://1saeed.dev
 ---
