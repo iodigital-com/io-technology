@@ -18,7 +18,9 @@ import Image2 from '../public/iO-technology-blog2.png'
 const MAX_BLOG_POSTS = 5
 
 export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog')
+  const posts = (await getAllFilesFrontMatter('blog')).filter(
+    (frontMatter) => !frontMatter.hideInArticleList
+  )
   const { videos } = await getLatestVideos(6)
   const { jobs } = await getLatestJobs(9)
   const authors = await getAuthors(posts)
