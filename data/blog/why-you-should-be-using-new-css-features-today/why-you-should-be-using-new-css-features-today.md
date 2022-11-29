@@ -1,5 +1,5 @@
 ---
-title: 'Why you should be using new CSS feature today'
+title: 'Why you should be using new CSS features today'
 date: '2022-11-30'
 tags: ['frontend', 'css']
 images: ['/articles/why-you-should-be-using-new-css-features-today/new-css-features-1.png']
