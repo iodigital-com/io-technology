@@ -12,7 +12,7 @@ theme: 'rouge'
 
 Because of [interop 2022/2023](https://web.dev/interop-2022/) browsers are working together to make our life easier. They have a list of new CSS features they want to release by the end of the year. Although some browsers favor one over the other. Safari for instance is very far ahead when it comes to the CSS color module level 5, while Firefox is implementing subgrid and Chrome is a step ahead on new pseudo selectors and scroll timelines.
 
-When using new CSS features, it’s all about knowing which browser you want to support, especially, which versions. For the sake of this article (and the world), I won’t be mentioning Internet Explorer as this ended its lifecycle on June 15, 2022.
+When using new CSS features, it’s all about knowing which browsers you want to support, especially, which versions. For the sake of this article (and the world), I won’t be mentioning Internet Explorer as this ended its lifecycle on June 15, 2022.
 
 As Safari is now considered an evergreen browser as well (with auto-updates). We will consider most fallbacks based on (close-to) latest releases of browsers.
 
@@ -28,7 +28,7 @@ CSS cascade layers really released with a bang. Currently it has [full support i
 
 However.. When it comes to cascade layers there is a problem, and it’s quite a big one. When using them to full extent they are completely breaking for browsers that don’t support them. There is no graceful downgrade here and that could potentially be a big issue. Thankfully, we can use [this polyfill for postCSS](https://www.npmjs.com/package/@csstools/postcss-cascade-layers) in case you need to support older browsers. Later on when more people have updated to versions that support these layers, we can just remove the polyfill and see our full layers in action in our built CSS.
 
-The polyfill will of course just rebuild your CSS to a version without cascade layers and this is how it works: It looks for any layer @-rules and records the order in which the layer is defined. The most specific selector gets remembered as well and with those two elements in place it will determine the specificity adjustments for each layer before it transforms the CSS. It will create some “fake extra specificity” and add meaningless :not() pseudos to make it all work. Not the prettiest output, but it works perfectly.
+The polyfill will of course just rebuild your CSS to a version without cascade layers and this is how it works: It looks for any layer @-rules and records the order in which the layer is defined. The most specific selector gets remembered as well and with those two elements in place it will determine the specificity adjustments for each layer before it transforms the CSS. It will create some “fake extra specificity” by adding meaningless :not() pseudos to make it all work. Not the prettiest output, but it works perfectly.
 
 ```css
 div {
@@ -65,9 +65,9 @@ Not sure what cascade layers are? You can check out [this article by Dave Bitter
 
 ### Container queries
 
-This is in my opinion one of the harder things to polyfill at the moment and let me tell you why. At the moment of writing, there isn’t any[ support for this in Firefox and Opera](https://caniuse.com/?search=container%20queries) which means we **have** to use a polyfill if we want great support.
+This is in my opinion one of the harder things to polyfill at the moment. There isn’t any[ support for this in Firefox and Opera](https://caniuse.com/?search=container%20queries) for now, which means we **have** to use a polyfill if we want great support.
 
-Yes, there is a [polyfill by Chromelabs](https://github.com/GoogleChromeLabs/container-query-polyfill) which can be found here but there are some issues with it that can’t go unnoticed.
+There is a [polyfill by Chromelabs](https://github.com/GoogleChromeLabs/container-query-polyfill) which can be found here but there are some issues with it that can’t go unnoticed.
 
 The author of the polyfill states: “For the best user experience, it's recommended that you initially only use the polyfill for content below-the-fold” and that comes with a reason.
 
