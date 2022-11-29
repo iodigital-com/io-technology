@@ -10,7 +10,7 @@ theme: 'rouge'
 
 ## The main benefits of using the latest CSS features
 
-Is it because they are cool, new and shiny? No, there is a lot more going on than that. Some of the latest things happening in CSS solve some of the biggest frustrations in web development. Just imagine some of the recent features that are starting to see the light of day, such as container queries, :has(), cascade layers, logical properties, masonry and scroll animations. Although some are more supported than others, they can really reduce the usage of client side JavaScript in your projects and speed up your performance.
+Is it because they are cool, new and shiny? No, there is a lot more going on than that. Some of the latest things happening in CSS solve some of the biggest frustrations in web development. Just imagine some of the recent features that are starting to see the light of day, such as [container queries](https://techhub.iodigital.com/articles/container-queries-the-next-step-towards-a-truly-modular-css), [:has()](https://techhub.iodigital.com/articles/practical-uses-of-the-has-relational-pseudo-class), [cascade layers](https://techhub.iodigital.com/articles/you-need-css-cascade-layers), logical properties, masonry and scroll animations. Although some are more supported than others, they can really reduce the usage of client side JavaScript in your projects and speed up your performance.
 
 A lot of JS frameworks have become real powerhouses of the last years and it’s time you should be using them for what they do best and keep everything “layout” in CSS. Remove the hacky “useEffect” hooks from your React applications and start using things that a browser knows as the browser is your friend, never forget that.
 
