@@ -1,6 +1,6 @@
 ---
 title: 'Why you should be using new CSS feature today'
-date: '2022-30-11'
+date: '2022-11-30'
 tags: ['frontend', 'css']
 images: ['/articles/why-you-should-be-using-new-css-features-today/new-css-features-1.png']
 summary: 'Unless you have no affinity with CSS at all or have been living under a rock for the last year, you should have noticed that new CSS features are skyrocketing like never before. Although this is a good thing, it might get frustrating to get a grasp on all these new playthings because every time you add something new in your styling toolbox, the next best thing is just around the corner.'
@@ -171,7 +171,7 @@ Yes, no real tips and tricks here yet, but stay tuned for part 2! I wrote this b
 - Maybe I should start reading a bit more about all this new CSS stuff?
 - Maybe I should style my buttons by using custom properties for my next project?
 - Maybe I should comment on Slack that Brecht is a diluted idiot who lives in a fantasy where time and money doesn’t matter?
-- “CSS IS AWESOME!” (no, YOU are awesome!)
+- “CSS IS AWESOME!” (no, _YOU_ are awesome!)
 
 In no case, am I assaulting any use of frameworks, libraries and maybe tools that can purge your CSS from unneeded selectors. It’s about reflecting on how we can take our CSS game to the next level by evolving as a developer and maybe even become a fully fledged CSS-developer.
 
