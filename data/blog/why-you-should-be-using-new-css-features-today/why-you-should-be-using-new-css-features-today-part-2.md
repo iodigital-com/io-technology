@@ -7,6 +7,7 @@ summary: "In the previous part of this article, I tried to tickle your brain a b
 authors: ['brecht-de-ruyte']
 theme: 'rouge'
 draft: true
+serie: 'why-you-should-be-using-new-css-features-today'
 ---
 
 ## Let’s talk browsers
