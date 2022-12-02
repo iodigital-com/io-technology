@@ -1,5 +1,5 @@
 import SocialIcon from '@/components/social-icons'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'

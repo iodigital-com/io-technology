@@ -1,6 +1,6 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import { getAuthors } from '@/lib/authors'

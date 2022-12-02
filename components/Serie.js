@@ -1,5 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from '@/components/Link'
 import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
