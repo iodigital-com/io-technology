@@ -4,7 +4,6 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
-import Image from '@/components/Image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export async function getStaticProps() {

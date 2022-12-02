@@ -1,5 +1,5 @@
 import SocialIcon from '@/components/social-icons'
-import Image from '@/components/Image'
+import Image from 'next/image'
 import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'

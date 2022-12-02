@@ -1,5 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Image from '@/components/Image'
+import Image from 'next/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'

@@ -1,4 +1,4 @@
-import Image from '@/components/Image'
+import Image from 'next/image'
 import Link from '@/components/Link'
 
 const VideoCard = ({ video, playButton = true }) => {

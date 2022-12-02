@@ -2,9 +2,8 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
-import Image from '@/components/Image'
+import Image from 'next/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import SocialIcon from '@/components/social-icons'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()

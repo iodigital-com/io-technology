@@ -4,7 +4,7 @@ import { PageSEO } from '@/components/SEO'
 import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
-import Image from '@/components/Image'
+import Image from 'next/image'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
