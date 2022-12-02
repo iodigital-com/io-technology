@@ -47,8 +47,8 @@ export default function Experiments({ experiments }) {
               <Image
                 src={'/experiments.jpg'}
                 alt="hackathon"
-                width={816}
-                height={816}
+                width={1200}
+                height={1200}
                 layout="responsive"
                 className="rounded-full"
                 objectFit="cover"

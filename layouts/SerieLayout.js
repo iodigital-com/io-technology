@@ -82,8 +82,8 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                     {author.avatar && (
                       <Image
                         src={author.avatar}
-                        width="100px"
-                        height="100px"
+                        width={100}
+                        height={100}
                         alt="avatar"
                         className="flex-grow-0 rounded-full"
                       />
@@ -91,13 +91,11 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                     <dl className="whitespace-nowrap text-sm font-medium leading-7">
                       <dt className="sr-only">Name</dt>
                       <dd className="text-gray-900 dark:text-gray-100">
-                        <Link>
-                          <a
-                            href={`/authors/${author.slug[0]}`}
-                            className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
-                          >
-                            {author.name}
-                          </a>
+                        <Link
+                          href={`/authors/${author.slug[0]}`}
+                          className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
+                        >
+                          {author.name}
                         </Link>
                       </dd>
                       {author.linkedin && (

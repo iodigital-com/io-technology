@@ -16,11 +16,7 @@ const CustomLink = ({ href, ...rest }) => {
   const classNames = `!text-io_${theme}-600`
 
   if (isInternalLink) {
-    return (
-      <Link href={href} className={classNames}>
-        <a {...rest} />
-      </Link>
-    )
+    return <Link href={href} {...rest}></Link>
   }
 
   if (isAnchorLink) {

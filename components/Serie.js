@@ -36,13 +36,11 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
               </div>
               <div className="text-body-xs">
                 <p className="mb-0">
-                  <Link>
-                    <a
-                      href={`/authors/${authors[0].slug[0]}`}
-                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                    >
-                      {authors[0].name}
-                    </a>
+                  <Link
+                    href={`/authors/${authors[0].slug[0]}`}
+                    className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                  >
+                    {authors[0].name}
                   </Link>
                 </p>
                 <p className="mb-0">{authors[0].occupation}</p>

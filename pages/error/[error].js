@@ -10,16 +10,19 @@ const getContentForError = (error) => {
         action: (
           <>
             Take a small detour, go back to
-            <Link href={'/'}>
-              <a className="text-gray-400 hover:text-gray-500"> homepage</a>
+            <Link href={'/'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              homepage
             </Link>
             ,
-            <Link href={'/articles'}>
-              <a className="text-gray-400 hover:text-gray-500"> articles</a>
+            <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              articles
             </Link>{' '}
             or check our
-            <Link href={'/videos'}>
-              <a className="text-gray-400 hover:text-gray-500"> videos.</a>
+            <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              videos.
             </Link>
           </>
         ),
@@ -32,16 +35,19 @@ const getContentForError = (error) => {
         action: (
           <>
             Go back to
-            <Link href={'/'}>
-              <a className="text-gray-400 hover:text-gray-500"> homepage</a>
+            <Link href={'/'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              homepage
             </Link>
             ,
-            <Link href={'/articles'}>
-              <a className="text-gray-400 hover:text-gray-500"> articles</a>
+            <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              articles
             </Link>
             or check our
-            <Link href={'/videos'}>
-              <a className="text-gray-400 hover:text-gray-500"> videos.</a>
+            <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
+              {' '}
+              videos.
             </Link>
           </>
         ),

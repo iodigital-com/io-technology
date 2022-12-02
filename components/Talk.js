@@ -24,8 +24,8 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
                   <Image
                     key={author.name}
                     src={author.avatar || '/authors/io.jpg'}
-                    width="100%"
-                    height="100%"
+                    width={100}
+                    height={100}
                     alt={`avatar ${author.name}`}
                     objectFit="cover"
                     className="rounded-full"
@@ -33,13 +33,11 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-black">
-                    <Link>
-                      <a
-                        href={`/authors/${author.slug[0]}`}
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                      >
-                        {author.name}
-                      </a>
+                    <Link
+                      href={`/authors/${author.slug[0]}`}
+                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                    >
+                      {author.name}
                     </Link>
                   </p>
                   <p className="text-sm text-black">{author.occupation}</p>
