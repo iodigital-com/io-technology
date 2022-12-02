@@ -1,6 +1,6 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import { getAuthors } from '@/lib/authors'
@@ -49,9 +49,13 @@ export default function Experiments({ experiments }) {
                 alt="hackathon"
                 width={1200}
                 height={1200}
-                layout="responsive"
                 className="rounded-full"
-                objectFit="cover"
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                }}
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-3 xl:col-span-4 xl:col-start-3">

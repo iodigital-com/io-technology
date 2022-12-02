@@ -1,5 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
@@ -17,7 +17,7 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
         <div className="hidden md:col-span-3 md:mr-8 md:block xl:col-span-5">
           {images.map((image) => (
             <div className="responsive-image-container mb-2" key={image}>
-              <Image src={image} alt="Image" layout="fill" />
+              <Image src={image} alt="Image" fill sizes="100vw" />
             </div>
           ))}
         </div>
@@ -35,8 +35,12 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
                   width={50}
                   height={50}
                   alt="avatar"
-                  objectFit="cover"
                   className="rounded-full"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                  }}
                 />
               </div>
               <div className="ml-2">

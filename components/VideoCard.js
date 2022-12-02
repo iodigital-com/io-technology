@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from '@/components/Link'
 
 const VideoCard = ({ video, playButton = true }) => {
@@ -20,8 +20,12 @@ const VideoCard = ({ video, playButton = true }) => {
           width={1280}
           height={720}
           unoptimized={true}
-          objectFit="cover"
-          layout="responsive"
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+            objectFit: 'cover',
+          }}
         />
 
         {playButton && (

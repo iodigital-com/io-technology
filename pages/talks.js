@@ -4,7 +4,7 @@ import { PageSEO } from '@/components/SEO'
 import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
@@ -34,9 +34,13 @@ export default function Talks({ talks, authors }) {
                 src={'/talks.jpg'}
                 width={1192}
                 height={1192}
-                layout="responsive"
                 className="rounded-full"
                 alt=""
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">

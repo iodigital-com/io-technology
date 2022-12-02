@@ -1,5 +1,5 @@
 import SocialIcon from '@/components/social-icons'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
@@ -24,8 +24,12 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                 src={avatar}
                 width={800}
                 height={800}
-                layout="responsive"
                 className="rounded-full"
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
 
@@ -80,7 +84,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
         </div>
       </section>
 
-      {posts.length && (
+      {posts.length > 0 ? (
         <>
           <SectionTitle>
             Articles by <span className="font-serif font-light">{name}</span>
@@ -102,9 +106,9 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             })}
           </section>
         </>
-      )}
+      ) : null}
 
-      {talks.length && (
+      {talks.length > 0 ? (
         <>
           <SectionTitle>
             Talks by <span className="font-serif font-light">{name}</span>
@@ -117,7 +121,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             </ul>
           </section>
         </>
-      )}
+      ) : null}
     </>
   )
 }

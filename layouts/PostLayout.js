@@ -2,7 +2,7 @@ import MarkdownRenderer from 'react-markdown-renderer'
 import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Share from '@/components/Share'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
@@ -60,9 +60,13 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   alt={title}
                   width={1280}
                   height={720}
-                  layout="responsive"
-                  objectFit="cover"
                   priority={true}
+                  sizes="100vw"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                  }}
                 />
               </div>
             )}
@@ -86,6 +90,10 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                         height={100}
                         alt="avatar"
                         className="flex-grow-0 rounded-full"
+                        style={{
+                          maxWidth: '100%',
+                          height: 'auto',
+                        }}
                       />
                     )}
                     <dl className="whitespace-nowrap text-sm font-medium leading-7">

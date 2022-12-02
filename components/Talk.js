@@ -1,5 +1,5 @@
 import SocialIcon from '@/components/social-icons'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
@@ -27,8 +27,12 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
                     width={100}
                     height={100}
                     alt={`avatar ${author.name}`}
-                    objectFit="cover"
                     className="rounded-full"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'cover',
+                    }}
                   />
                 </div>
                 <div>

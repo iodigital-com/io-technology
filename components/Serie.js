@@ -1,5 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from '@/components/Link'
 import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
@@ -28,8 +28,12 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
                       width={200}
                       height={200}
                       alt="avatar"
-                      objectFit="cover"
                       className="rounded-full"
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                        objectFit: 'cover',
+                      }}
                     />
                   </div>
                 ))}

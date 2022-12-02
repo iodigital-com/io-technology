@@ -4,7 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import JobGrid from '@/components/JobGrid'
 import VideoCarousel from '@/components/VideoCarousel'
 import { getAuthors } from '@/lib/authors'
@@ -47,10 +47,13 @@ export default function Home({ posts, videos, jobs, authors }) {
                   src={Image1}
                   width={2160}
                   height={2160}
-                  layout="responsive"
-                  sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
+                  sizes="(min-width: 768px) 20vw, 33vw"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
                 />
               </div>
               <div className="w-1/2">
@@ -58,11 +61,14 @@ export default function Home({ posts, videos, jobs, authors }) {
                   src={Image2}
                   width={2160}
                   height={2160}
-                  layout="responsive"
-                  sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
                   className="rounded-full"
+                  sizes="(min-width: 768px) 20vw, 33vw"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
                 />
               </div>
             </div>

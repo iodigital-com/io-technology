@@ -2,7 +2,7 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export async function getStaticProps() {
@@ -32,8 +32,12 @@ export default function Videos({ videos }) {
                 src={'/meetup.jpg'}
                 width={1192}
                 height={1192}
-                layout="responsive"
                 className="rounded-full"
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
