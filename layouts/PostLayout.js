@@ -175,7 +175,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Tags
                   </h2>
-                  <div className="mt-2 flex flex-wrap">
+                  <div className="mt-2 flex flex-wrap gap-3">
                     {tags.map((tag) => (
                       <Tag key={tag} text={tag} />
                     ))}

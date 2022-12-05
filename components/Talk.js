@@ -47,10 +47,10 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
               </div>
             ))}
 
-          <div className="mb-3 flex flex-nowrap gap-1 line-clamp-1">
+          <div className="mb-3 flex flex-wrap gap-3">
             {tags.length > 0 &&
               tags.map((tag) => (
-                <div key={tag} className="inline-block">
+                <div key={tag} className="inline-block whitespace-nowrap">
                   <Tag key={tag} text={tag} />
                 </div>
               ))}
