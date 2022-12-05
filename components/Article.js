@@ -62,7 +62,7 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
               <time dateTime={date}>{formatDate(date)}</time>
             </dd>
           </dl>
-          <div className="mb-6 flex flex-wrap">
+          <div className="mb-6 flex flex-wrap gap-3">
             {tags.map((tag) => (
               <Tag key={tag} text={tag} />
             ))}
