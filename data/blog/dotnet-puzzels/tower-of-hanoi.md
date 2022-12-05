@@ -1,16 +1,15 @@
 ---
-title: 'Coding problems Tower of Hanoi'
+title: 'Coding challenge Tower of Hanoi'
 date: '2022-12-05'
-tags: ['puzzle', 'dot-net', 'code-challenge', 'coding-problems', 'tower-of-hanoi']
+tags: ['puzzle', 'dot-net', 'code-challenge']
 summary: ''
 authors: ['ahmed-ali']
 ---
 
-Hello everyone I am Ahmed Ali a Dotnet developer who loves coding and challenges.
 As developers, we spend much time fixing bugs and doing routine work. We often have tricky problems, but problem-solving is a crucial skill for a developer.
 Therefore in this article, I want to share with you one of the first coding challenges I faced, and give you the challenge to come up with a proper code solution.
 
-### Tower of Hanoi
+## Tower of Hanoi
 
 The Tower of Hanoi is also known as the Tower of Brahma or the Lucas tower, as the French mathematician Edouard Lucas introduced it back in 1883. Solving Tower of Hanoi is a well-known coding challenge. You have three pegs with disks of different sizes on one of them;
 The objective of the puzzle is to move all the disks from the leftmost peg to the rightmost peg.
