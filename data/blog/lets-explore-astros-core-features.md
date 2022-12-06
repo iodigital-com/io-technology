@@ -20,7 +20,7 @@ Astro delivers zero JavaScript to the client by default, resulting in 100% stati
 
 ## What are Astro Islands?
 
-Astro islands are parts of the website that are built on the client side using javascript rather than delivered statically. This allows us to keep the majority of the site static while adding interactive elements. This strategy combines the best of both worlds: high performance and responsiveness.
+Astro islands are parts of the website that are built on the client side using JavaScript rather than delivered statically. This allows us to keep the majority of the site static while adding interactive elements. This strategy combines the best of both worlds: high performance and responsiveness.
 
 The architecture behind Astro Islands is called the Islands Architecture, whereby interactive UI components are hydrated with the [partial/progressive hydration technique](https://www.patterns.dev/posts/progressive-hydration/).
 
@@ -95,7 +95,7 @@ Next.js renders your website with React. Astro is more adaptable: you can create
 
 Astro websites will typically load much faster than Next.js websites. This is due to the fact that Astro automatically removes unnecessary JavaScript from the page, hydrating only the individual components that require it (Partial Hydration).
 
-Because NextJS does not yet support partial hydration, your website will be less performant because it will include a lot of unnecessary javascript.
+Because NextJS does not yet support partial hydration, your website will be less performant because it will include a lot of unnecessary JavaScript.
 
 Both NextJS and Astro are excellent website-building tools, however NextJS truly shines when it comes to applications, whereas Astro really shines when it comes to webpages with static content.
 
@@ -179,7 +179,7 @@ const contents = await res.json()
 ---
 ```
 
-### ************\*\*\*\*************The component template:************\*\*\*\*************
+### The component template:
 
 This is where you write your html, in this part you can reference variables, imports etc from the the component script. If you're familiar with ReactJS, this should feel familiar to JSX.
 
@@ -194,7 +194,7 @@ This is where you write your html, in this part you can reference variables, imp
 
 ```
 
-The most important aspect of Astro components is that they render to HTML by default during the build process. Even if you run JavaScript code within your components, it will all be executed ahead of time and removed from the final HTML that you send to your users. As a result, the site loads faster and has no JavaScript footprint by default. If you need client side javascript you can make use of a `<script/>` tag in the component’s template
+The most important aspect of Astro components is that they render to HTML by default during the build process. Even if you run JavaScript code within your components, it will all be executed ahead of time and removed from the final HTML that you send to your users. As a result, the site loads faster and has no JavaScript footprint by default. If you need client side JavaScript you can make use of a `<script/>` tag in the component’s template
 
 ### Adding interactivity
 
@@ -271,7 +271,7 @@ As we can see, slots are quite helpful for reducing repetition in your code, and
 
 Astro was created to make styling and CSS writing as simple as possible. You can write your own CSS directly inside an Astro component, import your preferred CSS library like Tailwind, or use advanced styling languages like Sass.
 
-Using the `<style/>` tag, you can begin writing styles in your astro component.
+Using the `<style/>` tag, you can begin writing styles in your Astro component.
 
 ```jsx
 ---
@@ -352,7 +352,7 @@ In this instance, the `h1` is given the title class, and the center class is onl
 
 Astro uses **file-based routing** to generate your routes URLs based on the files in your `src/pages/` directory. When a file (`.astro` or `.md`) is added to the `src/pages` directory of your project, it is automatically available as a route based on its filename.
 
-### ******\*\*\*\*******Static Routes******\*\*\*\*******
+### Static Routes
 
 As mentioned before every `.astro` or `.md` file in the `src/pages` directory becomes a page on your website:
 
@@ -364,13 +364,13 @@ src/pages/about/me           -> mysite.com/about/me
 
 The content returned by each of these routes will always be the same because they are static. But what if we need the content to alter depending on a route parameter? **dynamic routes** solves this problem for us.
 
-### ******\*\*\*\*******Dynamic Routes******\*\*\*\*******
+### Dynamic Routes
 
 An Astro page file can specify dynamic route parameters in its filename to generate matching pages. For example, you might create a file `users/[userId].astro` this will create a route for every specified userId.
 
 Astro pages are constructed at build time by default; with this in mind, you must specify a list of userIds for Astro to generate the corresponding pages.
 
-******\*\*\*\*******SSG Mode (default)******\*\*\*\*******
+**SSG Mode (default)**
 
 Because all pages are built at build time, dynamic routes must exports a `getStaticPaths()` function, which returns an array of objects with the param property. So if we create a new dynamic page `users/[userId].astro` that exports the following function:
 
@@ -414,7 +414,7 @@ const { user } = Astro.props;
 <h1>{user.name}</h1>
 ```
 
-******\*\*\*\*******SSR Mode******\*\*\*\*******
+**SSR Mode**
 
 In this mode, dynamic routes are also defined by making a new file in the `src/pages`
 directory, for example: `/src/pages/games/[gameId]`.
@@ -433,7 +433,7 @@ const user = await userService.getUserById(id)
 
 Endpoints can also be created with AstroJS to serve data; Static File and SSR endpoints are defined similarly, but SSR endpoints support additional features.
 
-************\*\*\*\*************Static File Endpoints (SSG Mode)************\*\*\*\*************
+**Static File Endpoints (SSG Mode)**
 
 To create a custom endpoint, add a `.js` or `.ts` file to the `/pages` directory. The extension will be removed during the build process, so the name of the file should include the extension of the data you want to create. For example, `src/pages/data.json.ts` will build a `/data.json` endpoint.
 
@@ -457,7 +457,7 @@ export function getStaticPaths() {
 
 This get function will be called at build time and use the content of this body property to generate the file. Since these files are getting created at build time we have to also return a `getStaticPaths` function incase we want to make use of params
 
-**********\*\***********Server Endpoints (SSR Mode)**********\*\***********
+**Server Endpoints (SSR Mode)**
 
 Returning a static file is also conceivable in SSR mode, although in this case the endpoint will be built upon request, opening up new functionalities like listening to requests and running code.
 
@@ -484,6 +484,8 @@ export async function get({ params }) {
 }
 ```
 
-endpoints can also return other HTTP methods functions for example `create`, `update`, `del` (delete).
+Endpoints can also return other HTTP methods functions for example `create`, `update`, `del` (delete).
+
+## Conclusion
 
 If you believe Astro is deserving of its recent surge in popularity and want to give it a try, I would gladly refer you to their website and documentation at [https://astro.build/](https://astro.build/).
