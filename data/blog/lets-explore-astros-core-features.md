@@ -20,9 +20,9 @@ Astro delivers zero JavaScript to the client by default, resulting in 100% stati
 
 ## What are Astro Islands?
 
-Astro islands are parts of the website that are built on the client side using JavaScript rather than delivered statically. This allows us to keep the majority of the site static while adding interactive elements. This strategy combines the best of both worlds: high performance and responsiveness.
+Astro islands are UI components that are initially rendered server-side, and as developers, we choose which UI component should be hydrated. This allows us to keep the majority of the site static while adding interactive elements. The advantage of this approach in terms of performance is that we only ship JavaScript for the components that require it.
 
-The architecture behind Astro Islands is called the Islands Architecture, whereby interactive UI components are hydrated with the [partial/progressive hydration technique](https://www.patterns.dev/posts/progressive-hydration/).
+The architecture behind Astro Islands is called the Islands Architecture, whereby interactive UI components are hydrated with the [partial/progressive hydration technique](https://www.patterns.dev/posts/progressive-hydration/).ß
 
 ![example of an Astro islands](/articles/lets-explore-astros-core-features/AstroIslands.png)
 
@@ -70,6 +70,7 @@ If you want the component to be hydrated you have to pass a "Client Directive", 
 //client:only={string} skips HTML server-rendering, and renders only on the client.
 //It acts similar to client:load in that it loads, renders and hydrates the component immediately on page load.
 <SomeReactComponent client:only="react" />
+
 ```
 
 ## The two modes of Astro
