@@ -68,11 +68,11 @@ Not sure what cascade layers are? You can check out [this article by Dave Bitter
 
 This is in my opinion one of the harder things to polyfill at the moment. There isn’t any [support for this in Firefox and Opera](https://caniuse.com/?search=container%20queries) for now, which means we **have** to use a polyfill if we want to use it.
 
-There is a [polyfill by Chromelabs](https://github.com/GoogleChromeLabs/container-query-polyfill) which can be found here but there are some issues with it that can’t go unnoticed.
+There is a [polyfill by Chromelabs which can be found here](https://github.com/GoogleChromeLabs/container-query-polyfill) but there are some issues with it that can’t go unnoticed.
 
 The author of the polyfill states: “For the best user experience, it's recommended that you initially only use the polyfill for content below-the-fold” and that comes with a reason.
 
-The polyfill only triggers after the DOM has loaded and when the browser loads the javascript based on the support flag. You will notice a layout shift when this happens and I’m not really happy to see things like that happen on an evergreen browser. Sure, when firefox has support and you only use it to target older versions, it might be a good idea. But for now, maybe it’s best to use this when implementing something extra for browsers that support it? I’ll leave that up to you. You can always use a support flag in CSS for this:
+The polyfill only triggers after the DOM has loaded and when the browser loads the javascript based on the support flag. You will notice a layout shift when this happens and I’m not really happy to see things like that happen on an evergreen browser. Sure, when firefox has support and you only use it to target older versions, it might be a good idea. But for now, maybe it’s best to use this when implementing something extra for browsers that support it? I’ll leave that up to you. You can always use a feature query in CSS for this:
 
 ```css
 @supports (container-type: inline-size) {
