@@ -1,6 +1,6 @@
 ---
 title: 'Solving Tower of Hanoi coding challenge'
-date: '2022-12-16'
+date: '2022-12-19'
 tags: ['puzzle', 'dot-net', 'code-challenge']
 summary: ''
 authors: ['ahmed-ali']
