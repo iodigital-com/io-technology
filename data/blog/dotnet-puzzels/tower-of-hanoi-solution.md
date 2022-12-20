@@ -7,7 +7,7 @@ authors: ['ahmed-ali']
 ---
 
 In the previous article on the Tower of Hanoi coding challenge, we discussed the Tower of Hanoi as a mathematical problem that we need to solve using code. We were introduced to the Tower of Hanoi puzzle and the rules to solve it. If you haven't read the previous article yet, I suggest you do so.  
-[Coding challenge Tower of Hanoi] (tower-of-hanoi).
+[Coding challenge Tower of Hanoi](tower-of-hanoi).
 
 In this article, we are going to explore together how to solve this coding challenge.
 
