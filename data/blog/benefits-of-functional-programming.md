@@ -3,10 +3,7 @@ title: 'Benefits of functional programming'
 date: '2022-12-20'
 tags: ['frontend', 'functional programming', 'javascript']
 images: ['/articles/benefits-of-functional-programming/pexels-pixabay-270557.jpg']
-summary:
-  [
-    'Writing code in a functional way can help to solve complex problems in a efficient and in a reusable manner, for creating clean and maintainable software.',
-  ]
+summary: ['Writing code in a functional way can help to solve complex problems in a efficient and in a reusable manner, for creating clean and maintainable software.']
 authors: ['ravindre-ramjiawan']
 theme: 'blue'
 ---
@@ -14,9 +11,9 @@ theme: 'blue'
 ## Background
 
 The [functional programming](https://en.wikipedia.org/wiki/Functional_programming) [paradigm](https://en.wikipedia.org/wiki/Programming_paradigm) has been around since the early 1930s.
-It has its roots in mathematical theory called [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) which is a notation for describing mathematical functions and programs.
-In lambda calculus functions are [first class citizens](https://en.wikipedia.org/wiki/First-class_citizen), meaning functions can be used as input or returned as output.
-JavaScript also treats functions as first class citizens which is the reason as to why we can apply functional programming in JavaScript.
+It has its roots in a mathematical theory called [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) which is a notation for describing mathematical functions and programs.
+In lambda calculus functions are [first-class citizens](https://en.wikipedia.org/wiki/First-class_citizen), meaning functions can be used as input or returned as output.
+JavaScript also treats functions as first-class citizens which is the reason why we can apply functional programming in JavaScript.
 
 ## Imperative vs Declarative
 
@@ -49,7 +46,7 @@ console.log(imperativeDoubleMap([2, 3, 4])) // [4, 6, 8]
 ```javascript
 // Focuses on what should be done
 // The map function loops over the numbers array for us and creates a new array based on what is returned
-// Arrow functions have a implicit return
+// Arrow functions have an implicit return
 const declarativeDoubleMap = (numbers) => numbers.map((number) => number * 2)
 
 // Results in our numbers being doubled
@@ -70,7 +67,7 @@ const imperativeDoubleMap = (numbers) => {
 
   for (let i = 0; i < numbers.length; i += 1) {
     // The logic for doubling numbers is inside the for loop
-    // Not really reusable unless you put it in a (you guessed it) function
+    // Not reusable unless you put it in a (you guessed it) function
     doubledNumbers.push(numbers[i] * 2)
   }
 
@@ -110,7 +107,7 @@ console.log(declarativeDoubleMap([2, 3, 4])) // [4, 6, 8]
 ## Point-free
 
 Another benefit of functional programming is the [point-free](https://en.wikipedia.org/wiki/Tacit_programming) programming style.
-This means that you are able to omit function arguments if they match the parameters of the function you pass it to.
+This means that you can omit function arguments if they match the parameters of the function you pass it to.
 
 ```javascript
 const double = (number) => number * 2
@@ -126,7 +123,7 @@ console.log(declarativeDoubleMap([2, 3, 4])) // [4, 6, 8]
 ## Higher-order function
 
 Another benefit of functional programming is the concept of a [higher-order function](https://en.wikipedia.org/wiki/Higher-order_function).
-This means a function that takes a function as argument and/or returns a function as its output.
+This means a function that takes a function as an argument and/or returns a function as its output.
 
 ```javascript
 const double = (number) => number * 2
@@ -163,9 +160,9 @@ console.log(double(2)) // 4
 ### Impure
 
 A function that has [side effects](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) is called impure.
-This means a function that relies on external dependencies such as global variables, shared state and mutates or produces randomized values.
+This means a function that relies on external dependencies such as global variables or shared states and mutates or produces randomized values.
 This makes impure functions [nondeterministic](https://en.wikipedia.org/wiki/Nondeterministic_algorithm) and are harder to test.
-Side effects can lead to unexpected results, frustrations and bugs.
+Side effects can lead to unexpected results, frustrations, and bugs.
 
 ```javascript
 // Some global state
@@ -273,7 +270,7 @@ Often these intermediate values are not used further in the program and just add
 ### Before
 
 ```javascript
-// Some methods comprising of our program
+// Some methods comprising our program
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -316,10 +313,7 @@ This allows for a natural reading experience (at least in the western hemisphere
 
 ```javascript
 // The pipe function will normally be provided by a functional programming library
-const pipe =
-  (...funcs) =>
-  (value) =>
-    funcs.reduce((currentValue, func) => func(currentValue), value)
+const pipe = (...funcs) => (value) => funcs.reduce((currentValue, func) => func(currentValue), value)
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -338,10 +332,7 @@ Compose reflects exactly how functions would execute if you would not use compos
 
 ```javascript
 // The compose function will normally be provided by a functional programming library
-const compose =
-  (...funcs) =>
-  (value) =>
-    funcs.reduceRight((currentValue, func) => func(currentValue), value)
+const compose = (...funcs) => (value) => funcs.reduceRight((currentValue, func) => func(currentValue), value)
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -363,11 +354,10 @@ or when you want to pass a function with a smaller number of arguments to anothe
 
 ```javascript
 // The curry function will normally be provided by a functional programming library
-const curry = (func) =>
-  function curried(...args) {
+const curry = (func) => function curried(...args) {
     if (args.length >= func.length) return func(...args)
     return (...moreArgs) => curried(...args, ...moreArgs)
-  }
+}
 
 // Add function with multiple arguments
 const add = (a, b, c) => a + b + c
@@ -383,7 +373,7 @@ console.log(curriedAdd(1, 2, 3)) // 6
 
 ## In closing
 
-I hope this gives a better understanding of how functional programming can help reduce code complexity in a code base and allow for reliable, efficient, reusable and maintainable code.
-For further insight on the topic I highly recommend checking out some popular functional programming libraries such as [Lodash](https://lodash.com) or [Ramda](https://ramdajs.com)
+I hope this gives a better understanding of how functional programming can help reduce code complexity in a code base and allow for reliable, efficient, reusable, and maintainable code.
+For further insight on the topic, I highly recommend checking out some popular functional programming libraries such as [Lodash](https://lodash.com) or [Ramda](https://ramdajs.com)
 which provide a large number of utility functions that are optimized for performance and conciseness.
 More information about the theoretical side of functional programming can be found by checking out [this website](https://sanderv1992.github.io/fp/).
