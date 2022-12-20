@@ -3,7 +3,10 @@ title: 'Benefits of functional programming'
 date: '2022-12-20'
 tags: ['frontend', 'functional programming', 'javascript']
 images: ['/articles/benefits-of-functional-programming/pexels-pixabay-270557.jpg']
-summary: ['Writing code in a functional way can help to solve complex problems in a efficient and in a reusable manner, for creating clean and maintainable software.']
+summary:
+  [
+    'Writing code in a functional way can help to solve complex problems in a efficient and in a reusable manner, for creating clean and maintainable software.',
+  ]
 authors: ['ravindre-ramjiawan']
 theme: 'blue'
 ---
@@ -192,7 +195,7 @@ const something = () => add(1, 2) + 5
 // A compiler could swap out the add function call for its return value
 const something2 = () => 3 + 5
 
-// Both methods give the same output
+// Both functions return the same output
 console.log(something()) // 8
 console.log(something2()) // 8
 ```
@@ -270,7 +273,7 @@ Often these intermediate values are not used further in the program and just add
 ### Before
 
 ```javascript
-// Some methods comprising our program
+// Some functions comprising our program
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -313,7 +316,10 @@ This allows for a natural reading experience (at least in the western hemisphere
 
 ```javascript
 // The pipe function will normally be provided by a functional programming library
-const pipe = (...funcs) => (value) => funcs.reduce((currentValue, func) => func(currentValue), value)
+const pipe =
+  (...funcs) =>
+  (value) =>
+    funcs.reduce((currentValue, func) => func(currentValue), value)
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -332,7 +338,10 @@ Compose reflects exactly how functions would execute if you would not use compos
 
 ```javascript
 // The compose function will normally be provided by a functional programming library
-const compose = (...funcs) => (value) => funcs.reduceRight((currentValue, func) => func(currentValue), value)
+const compose =
+  (...funcs) =>
+  (value) =>
+    funcs.reduceRight((currentValue, func) => func(currentValue), value)
 const double = (number) => number * 2
 const square = (number) => number * number
 const subtract = (number) => number - 1
@@ -354,10 +363,11 @@ or when you want to pass a function with a smaller number of arguments to anothe
 
 ```javascript
 // The curry function will normally be provided by a functional programming library
-const curry = (func) => function curried(...args) {
+const curry = (func) =>
+  function curried(...args) {
     if (args.length >= func.length) return func(...args)
     return (...moreArgs) => curried(...args, ...moreArgs)
-}
+  }
 
 // Add function with multiple arguments
 const add = (a, b, c) => a + b + c
