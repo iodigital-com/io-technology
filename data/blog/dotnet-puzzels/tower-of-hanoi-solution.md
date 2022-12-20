@@ -135,7 +135,7 @@ static void MoveDisk(int n, char startPeg, char endPeg, char tempPeg)
     if (n > 0)
     {
         MoveDisk(n - 1, startPeg, tempPeg, endPeg);
-        Console.WriteLine("move disk " + n + " from peg " + startPeg + " to peg " + endPeg);
+        Console.WriteLine("Move disk " + n + " from peg " + startPeg + " to peg " + endPeg);
         MoveDisk(n - 1, tempPeg, endPeg, startPeg);
     }
 }
@@ -144,11 +144,11 @@ static void MoveDisk(int n, char startPeg, char endPeg, char tempPeg)
 **Output**
 
 ```
-move disk 1 from peg A to peg C
-move disk 2 from peg A to peg B
-move disk 1 from peg C to peg B
-move disk 3 from peg A to peg C
-move disk 1 from peg B to peg A
-move disk 2 from peg B to peg C
-move disk 1 from peg A to peg C
+Move disk 1 from peg A to peg C
+Move disk 2 from peg A to peg B
+Move disk 1 from peg C to peg B
+Move disk 3 from peg A to peg C
+Move disk 1 from peg B to peg A
+Move disk 2 from peg B to peg C
+Move disk 1 from peg A to peg C
 ```
