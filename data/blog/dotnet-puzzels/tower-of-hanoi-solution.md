@@ -1,19 +1,19 @@
 ---
 title: 'Solving Tower of Hanoi coding challenge'
-date: '2022-12-19'
+date: '2022-12-20'
 tags: ['puzzle', 'dot-net', 'code-challenge']
 summary: ''
 authors: ['ahmed-ali']
 ---
 
-In the previous article of Tower of Hanoi coding challenge, we disscused about the Tower of hanoi as a mathmatical proplem that we need to solve using code. We were introuduced to Tower of Hanoi puzzle and the rules to solve it. If you haven't read the previous article yet, I suggest you do so.  
-[Coding challenge Tower of Hanoi](tower-of-hanoi).
+In the previous article on the Tower of Hanoi coding challenge, we discussed the Tower of Hanoi as a mathematical problem that we need to solve using code. We were introduced to the Tower of Hanoi puzzle and the rules to solve it. If you haven't read the previous article yet, I suggest you do so.  
+[Coding challenge Tower of Hanoi] (tower-of-hanoi).
 
-In this article we are going to explore together how to solve this coding cahllenge.
+In this article, we are going to explore together how to solve this coding challenge.
 
 ## Algorithm for Tower of Hanoi
 
-One general way to solve the Tower of Hanoi is a recursive algorithm. First, we need to decide on two pegs as the source and destination, and the spare peg would be a temporary.
+One general way to solve the Tower of Hanoi is a recursive algorithm. First, we need to decide on two pegs as the source and destination, and the spare peg would be temporary.
 
 Here are the steps to solve the Tower of Hanoi puzzle:
 
@@ -21,7 +21,7 @@ Here are the steps to solve the Tower of Hanoi puzzle:
 - Afterward, move the nth disk from the source peg to the destination peg.
 - Finally, move the rest n-1 disks from the helper peg to the destination peg.
 
-### How to solve Tower of Hanoi Puzzle
+### How to solve the Tower of Hanoi Puzzle
 
 Let’s illustrate the algorithm for three disks and consider peg A as the source, peg B as the helper, and peg C as the destination
 
