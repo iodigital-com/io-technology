@@ -24,7 +24,7 @@ JavaScript also treats functions as first-class citizens which is the reason why
 
 ## Imperative vs. Declarative
 
-A benefit of writing code in a functional way is that functional programming focuses on what should be done rather than on how it should be done.
+The benefit of writing code in a functional way is that functional programming focuses on what should be done rather than on how it should be done.
 This is also known as imperative[^5] and declarative[^6] programming, where imperative does it in a procedural[^7] style and declarative in a functional style.
 It can also be described as explicit and implicit programming.
 
@@ -65,7 +65,7 @@ As shown above, both programming paradigms yield the same result but which one i
 
 ## Reuse
 
-Another benefit of functional programming is the reuse[^8] of logic.
+In functional programming the focus on the reuse[^8] of logic is a very important concept.
 Reusing functions avoids writing code from scratch and adheres to the DRY principle[^23].
 
 ### Before
@@ -115,7 +115,7 @@ console.log(declarativeDoubleMap([2, 3, 4])) // [4, 6, 8]
 
 ## Point-free
 
-Another benefit of functional programming is the point-free[^9] programming style.
+Functional programming allows for the ability to write code in point-free[^9] programming style.
 This means that you can omit function arguments if they match the parameters of the function you pass it to.
 
 ```javascript
@@ -133,7 +133,7 @@ console.log(declarativeDoubleMap([2, 3, 4])) // [4, 6, 8]
 
 ## Higher-order function
 
-Another benefit of functional programming is the concept of a higher-order function[^10].
+Functional programming has the concept of higher-order functions[^10].
 This means a function that takes a function as an argument and/or returns a function as its output.
 
 ```javascript
@@ -157,7 +157,7 @@ console.log(multiplyBy3(4)) // 12
 
 ## Purity
 
-Another benefit of functional programming is that functions are expected to be pure[^11].
+In functional programming functions are expected to be pure[^11].
 This means a function that has no external dependencies other than its given inputs and always produces the same output.
 This makes pure functions deterministic[^12] and are easier to test.
 
@@ -195,7 +195,7 @@ console.log(double(2)) // 12
 
 ## Referential Transparency
 
-Another benefit of functional programming are referentially transparent[^15] functions.
+Another positive aspect of functional programming are referentially transparent[^15] functions.
 This means that the output of a function can be replaced by its value directly without having any influence on the program.
 This is only possible if a function is pure. This allows for compilers[^16] to perform code optimizations[^24]
 by swapping out function calls with their return values.
@@ -235,7 +235,7 @@ console.log(factorial(10)) // 3628800
 
 ## Memoization
 
-Another benefit of functional programming is called memoization[^18].
+Functional programming allows for a technique called memoization[^18].
 Since functions are expected to be pure and therefore deterministic we can cache the output of computationally expensive function calls.
 
 ```javascript
@@ -294,7 +294,7 @@ console.log(memoizedFibonacci(40)) // 102334155 - Time taken: 0 milliseconds
 
 ## Intermediate values
 
-Another benefit of functional programming is that it can eliminate intermediate values.
+Functional programming enables us to eliminate intermediate values.
 An intermediate value is often a temporary variable created to store partial results for the next step in a process leading up to the final output.
 Often these intermediate values are not used further in the program and just add syntactic noise[^19] to the code.
 
@@ -337,7 +337,7 @@ The downside is that this can quickly become unreadable and can lead to callback
 
 ## Pipe & Compose
 
-Another benefit of functional programming is the concept of piping and composing. Pipe executes functions in succession from left to right.
+In functional programming there is the concept of piping and composing. Pipe executes functions in succession from left to right.
 This allows for a natural reading experience (at least in the western hemisphere) when trying to follow the execution[^21] flow.
 Compose executes functions in succession from right to left. Compose reflects exactly how functions would execute if you would not use compose at all,
 namely from the innermost function to the outermost function as seen in the previous example.
