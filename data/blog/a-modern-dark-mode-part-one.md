@@ -1,6 +1,6 @@
 ---
 title: 'A modern dark mode - part one'
-date: '2022-12-19'
+date: '2022-12-21'
 tags: ['a11y', 'accessibility']
 summary: 'I’ve wanted to implement dark mode for quite a while now. But, I just didn’t want to ship a part of it. I had to include a perfect dark theme, together with the perfect accessible toggle. However, two things have happened last month that changed my perspective on this approach.'
 authors: ['frank-van-eldijk']
