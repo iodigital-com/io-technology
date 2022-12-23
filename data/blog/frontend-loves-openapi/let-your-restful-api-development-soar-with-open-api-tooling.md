@@ -7,6 +7,12 @@ authors: ['maarten-van-hoof']
 serie: 'frontend-loves-openapi'
 ---
 
+In the previous parts of this series, we introduced you to the OpenAPI specification, how to describe an API provider in an OpenAPI document, the approaches we can take incorporating it on workflows how it can help us build RESTful APIs. In this part, we will discuss the tooling that is available to optimise our OpenAPI workflows.
+
+<br/>
+
+![OpenAPI tooling](/articles/frontend-loves-openapi/frontend-loves-openapi-tools-all.svg)
+
 ## Documentation
 
 The most popular type of tooling for the OpenAPI specification is documentation generation. It allows us to take the information of an OpenAPI document and present it in a tailored fashion. For example, non-technical users might not be familiar with reading JSON or YAML-based files. With documentation generation, we can give every stakeholder of our project insights into how the data from and to an API provider flows.
@@ -24,6 +30,10 @@ With the Code First workflow, the API provider will likely generate the OpenAPI 
 With code generation, we don't have to write API clients anymore. The entire API description is translated into tailored SDKs for our API providers and consumers.
 
 Paths, endpoints, parameters, request bodies, etc., are transformed into methods, functions, types, interfaces, etc., of our desired programming language.
+
+### Cross-programming language end-to-end type safety
+
+![OpenAPI tooling](/articles/frontend-loves-openapi/frontend-loves-openapi-tools-sdk-langs.svg)
 
 Because an OpenAPI document also describes the types and formats of our dataflow, we have the opportunity to translate this to types and interfaces for typed programming languages. The OpenAPI specification is, therefore, a way to create **full cross-programming language end-to-end type safety** between API providers and consumers, just like GraphQL and tRPC give us.
 
@@ -59,10 +69,18 @@ Analogue to how we would lint our JavaScript code with ESLint, we can analyse ou
 
 As with every software project, automation can benefit our workflow.
 
-We already mentioned putting an OpenAPI document in a Git repository to enable versioning of our API description. By utilising Git submodules and adding our OpenAPI document repository to our provider's and consumer's repositories as a submodule, we can have a form of language-agnostic dependency management via Git. Each commit of the provider or consumer repository is tied precisely to a specific commit of the OpenAPI repository. Pull or Merge Requests are linted by CI/CD to check for code quality before merging it into our Single Source of Truth.
+![OpenAPI tooling](/articles/frontend-loves-openapi/frontend-loves-openapi-tools-automation.svg)
+
+We already mentioned putting an OpenAPI document in a Git repository to enable **versioning** of our API description. By utilising **Git submodules** and adding our OpenAPI document repository to our provider's and consumer's repositories as a submodule, we can have a form of language-agnostic dependency management via Git. Each commit of the provider or consumer repository is tied precisely to a specific commit of the OpenAPI repository. Pull or Merge Requests are linted by CI/CD to check for code quality before merging it into our Single Source of Truth.
 
 We can automate the generation of API client code at each start of the development environment so that our team is always using the latest version of the described API. Our IDEs immediately notice breaking changes, compilations steps, or CI/CD builds.
 
 Our development environments include a step that will automatically run a local mocking server, or a shared mocking server is automatically deployed when the main version of the OpenAPI document has changed.
 
+## Conclusion
+
 Treating an OpenAPI document as a Single Source of Truth, utilising the right tools and providing automation with those tools gives our teams superpowers. We will spend less time trying to integrate and more time on the things that matter, like User Experiences, for example.
+
+By using OpenAPI, we create full cross-programming language end-to-end type safety between API providers and consumers.
+
+In next part of this series, we will take a look of a real-world example of how we can use OpenAPI in a front-end project.
