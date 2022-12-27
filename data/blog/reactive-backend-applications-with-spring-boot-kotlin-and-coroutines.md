@@ -4,18 +4,18 @@ date: '2022-12-26'
 tags: ['reactive', 'backend', 'spring', 'kotlin', 'coroutines', 'java']
 images:
   ['/articles/reactive-backend-applications-with-spring-boot-kotlin-and-coroutines/headline.jpg']
-summary: 'This article is about going from a traditional MVC-style Spring Boot application written in Java to a modern, functional, reactive Spring Boot application using Kotlin and Coroutines.'
+summary: 'This 2-part article is about going from a traditional MVC-style Spring Boot application written in Java to a modern, functional, reactive Spring Boot application using Kotlin and Coroutines.'
 authors: ['leo-schneider', 'mehmet-akif-tutuncu']
 theme: 'black'
 ---
 
-Spring Framework is one of the most popular choices for web applications. It comes with a great ecosystem, tooling and support. Spring applications are mainly written in Java. While they can serve quite well in many different domains and use cases, they may not be a good fit for modern day applications which require low-latency and high-throughput. This is where reactive programming paradigm could help. Spring already supports reactive programming via [Project Reactor](https://projectreactor.io).
+Spring Framework is one of the most popular choices for web applications. It comes with a great ecosystem, tooling, and support. Spring applications are mainly written in Java. While they can serve quite well in many different domains and use cases, they may not be a good fit for modern-day applications which require low-latency and high-throughput. This is where the reactive programming paradigm could help. Spring already supports reactive programming via [Project Reactor](https://projectreactor.io).
 
-Let's start by an introduction to reactive programming.
+This will be a 2-part article. In this first part, let's start with an introduction to reactive programming.
 
 ## 1. Introduction to Reactive Programming
 
-Reactive programming is a paradigm which focuses on non-blocking and asynchronous processing of tasks. One set of specifications/abstractions for reactive programming on JVM is called [Reactive Streams](https://www.reactive-streams.org). Project Reactor is a message driven, type-safe and functional implementation of Reactive Streams, and it is used by Spring (via [spring-webflux](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) module) to enable reactive web applications. Reactive streams model the data processing as a stream with one end producing the values and one end consuming them.
+Reactive programming is a paradigm that focuses on non-blocking and asynchronous processing of tasks. One set of specifications/abstractions for reactive programming on JVM is called [Reactive Streams](https://www.reactive-streams.org). Project Reactor is a message-driven, type-safe and functional implementation of Reactive Streams, and it is used by Spring (via [spring-webflux](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) module) to enable reactive web applications. Reactive streams model the data processing as a stream with one end producing the values and one end consuming them.
 
 There are a few basic building blocks with which you should be familiar.
 
@@ -27,7 +27,7 @@ public interface Publisher<T> {
 }
 ```
 
-This is the interface is where values are emitted and subscribers can subscribe to those values. It represents the value producing end of a reactive stream.
+This is the interface where values are emitted and subscribers can subscribe to those values. It represents the value-producing end of a reactive stream.
 
 ### `org.reactivestreams.Subscriber`
 
@@ -40,7 +40,7 @@ public interface Subscriber<T> {
 }
 ```
 
-This is the interface is where the progress of the reactive stream is defined. There can be new values, errors or completion signals. It represents the value consuming end of the reactive stream.
+This is the interface where the progress of the reactive stream is defined. There can be new values, errors, or completion signals. It represents the value-consuming end of the reactive stream.
 
 ### `org.reactivestreams.Subscription`
 
@@ -59,7 +59,7 @@ This is an implementation of a Reactive Stream where there can be 0 or 1 element
 
 ### `reactor.core.publisher.Flux<T>`
 
-This is very similar to `Mono<T>` but it can emit 0 or more element (not limited to 1) of type `T`.
+This is very similar to `Mono<T>` but it can emit 0 or more elements (not limited to 1) of type `T`.
 
 ## 2. How to Get Started?
 
@@ -67,7 +67,7 @@ For demonstration purposes, let's first create a traditional, MVC-style Spring a
 
 ### Creating Spring Web Project
 
-You can use [start.spring.io](https://start.spring.io) to generate a project using Java 17, Gradle, Spring Web, Spring Data JPA and H2 Database. Here's what the build file of our project should look like:
+You can use [start.spring.io](https://start.spring.io) to generate a project using Java 17, Gradle, Spring Web, Spring Data JPA, and H2 Database. Here's what the build file of our project should look like:
 
 ```kotlin
 plugins {
@@ -205,7 +205,7 @@ Now let's run our application in a terminal
 gradle bootRun --console=plain
 ```
 
-and send a request to test our application.
+and send a request to test it.
 
 ```bash
 # Gets nothing because DB is empty
@@ -442,11 +442,11 @@ dependencies {
 }
 ```
 
-Now we'll need to adjust our controller, service and repository layers respectively until our application compiles again and makes use of reactive components and types.
+Now we'll need to adjust our controller, service, and repository layers respectively until our application compiles again and makes use of reactive components and types.
 
 As a rule of thumb, we'll replace single values of `A` with `Mono<A>` and multiple values `List<A>` with `Flux<A>`.
 
-Updating controller is straightforward. Our `WeatherController` becomes:
+Updating the controller is straightforward. Our `WeatherController` becomes:
 
 ```java
 package com.iodigital.weather;
@@ -471,7 +471,7 @@ public class WeatherController {
 }
 ```
 
-Since service code will need to change a bit to make use of `Mono`s and `Flux`es, let's handle the rest of the changes first and leave the service to the end.
+Since the service code will need to change a bit to make use of `Mono`s and `Flux`es, let's handle the rest of the changes first and leave the service to the end.
 
 `WeatherInfo` entity becomes (note the annotations, no more Jakarta/JPA annotations):
 
@@ -667,6 +667,12 @@ curl localhost:8080/weather
 
 It works! We now have a reactive application that's non-blocking at every layer.
 
-## 3. Summary
+The key point in reactive applications is to use reactive types and operators defined on them to achieve the result we want. This follows the principles of functional programming too because the (immutable) values we're building are actually descriptions of our program. This means nothing is run while we're building our stream. We build small building blocks and combine them into a larger program. It is eventually run when there is a subscription to our stream. For this application, it is taken care of by Spring WebFlux.
 
-TODO
+## 3. Next Steps
+
+To recap this first part of the article, we started with a traditional MVC-style Spring Boot application and we converted it into a modern, reactive one step-by-step.
+
+In the second part, we'll take things further by converting the application to Kotlin and adding coroutines support.
+
+You can find the source code of this application at [github.com/iodigital-com/reactive-kotlin-weather-api](https://github.com/iodigital-com/reactive-kotlin-weather-api)
