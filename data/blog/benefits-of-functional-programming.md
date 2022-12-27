@@ -1,6 +1,6 @@
 ---
 title: 'Benefits of functional programming'
-date: '2022-12-20'
+date: '2022-12-27'
 tags: ['frontend', 'functional programming', 'javascript']
 images: ['/articles/benefits-of-functional-programming/pexels-pixabay-270557.jpg']
 summary: [
