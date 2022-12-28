@@ -1,12 +1,7 @@
 ---
 name: Léo Schneider
 avatar: /authors/leo-schneider.jpg
-occupation: TODO
+occupation: Software Engineer
 email: leo.schneider@iodigital.com
-website: https://TODO
-github: https://github.com/TODO
-linkedin: https://linkedin.com/in/TODO
-twitter: https://twitter.com/TODO
+linkedin: https://www.linkedin.com/in/léo-schneider-utt-it/
 ---
-
-TODO
