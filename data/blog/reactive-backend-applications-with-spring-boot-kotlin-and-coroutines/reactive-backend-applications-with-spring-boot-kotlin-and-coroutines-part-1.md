@@ -61,9 +61,18 @@ This is an implementation of a Reactive Stream where there can be 0 or 1 element
 
 This is very similar to `Mono<T>` but it can emit 0 or more elements (not limited to 1) of type `T`.
 
-## 2. How to Get Started?
+## 2. Getting Started
 
-For demonstration purposes, let's first create a traditional, MVC-style Spring application for weather information. We will then update this application into being a reactive application.
+Before going forward, it is worth taking a moment to think about the time and effort to be invested in converting an application to reactive. Here's an overall view and comparison between traditional and reactive approaches:
+
+| **Topic**            | **Traditional** MVC Application               | **Reactive** Application                                            |
+| -------------------- | --------------------------------------------- | ------------------------------------------------------------------- |
+| Resource Utilization | May block resources causing under utilization | Better at utilizing resources due to non-blocking nature            |
+| Scalability          | Bounded by operating system level threads     | Much better scalability and performance even with limited resources |
+| Developer Experience | Easier to learn, teach and maintain           | Requires some getting used to reactive and functional programming   |
+| Debugging/Tooling    | Easier to debug with better tooling           | Harder to debug and tooling is limited at the moment                |
+
+To follow along with the rest of the article and for demonstration purposes, let's first create a traditional, MVC-style Spring application for weather information. We will then update this application into a reactive application.
 
 ### Creating Spring Web Project
 
