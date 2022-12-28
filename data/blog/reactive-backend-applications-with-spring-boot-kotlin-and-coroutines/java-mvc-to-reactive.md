@@ -682,6 +682,6 @@ The key point in reactive applications is to use reactive types and operators de
 
 To recap this first part of the article, we started with a traditional MVC-style Spring Boot application and we converted it into a modern, reactive one step-by-step.
 
-In the second part, we'll take things further by converting the application to Kotlin and adding coroutines support.
+You can find the source code of this application at [github.com/iodigital-com/reactive-kotlin-weather-api](https://github.com/iodigital-com/reactive-kotlin-weather-api).
 
-You can find the source code of this application at [github.com/iodigital-com/reactive-kotlin-weather-api](https://github.com/iodigital-com/reactive-kotlin-weather-api)
+In [the second part](/articles/reactive-backend-applications-with-spring-boot-kotlin-and-coroutines/reactive-java-to-kotlin-coroutines), we'll take things further by converting the application to Kotlin and adding coroutines support.
