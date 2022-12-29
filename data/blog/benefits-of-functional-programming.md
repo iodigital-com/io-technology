@@ -333,7 +333,7 @@ console.log(calculateNumber(4)) // 63
 
 This demonstrates the flow of intermediate values going from input to output from one function to the next.
 This is also known as function composition[^20].
-The downside is that this can quickly become unreadable and can lead to callback hell[^25] if we keep adding more functionality.
+The downside is that this can quickly become unreadable if we keep nesting[^25] more functions.
 
 ## Pipe & Compose
 
@@ -449,4 +449,4 @@ More information about the theoretical side of functional programming can be fou
 [^22]: https://en.wikipedia.org/wiki/Currying
 [^23]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [^24]: https://en.wikipedia.org/wiki/Program_optimization
-[^25]: https://en.wiktionary.org/wiki/callback_hell
+[^25]: https://en.wikipedia.org/wiki/Nested_function
