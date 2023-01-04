@@ -5,10 +5,11 @@ import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
+import shuffle from '@/lib/shuffle'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
-  const talksShuffled = talks.sort(() => (Math.random() > 0.5 ? 1 : -1))
+  const talksShuffled = shuffle(talks)
   const authors = await getAuthors(talks)
 
   return { props: { talks: talksShuffled, authors, theme: 'black' } }
