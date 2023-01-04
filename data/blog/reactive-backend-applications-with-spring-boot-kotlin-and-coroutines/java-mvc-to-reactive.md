@@ -678,6 +678,39 @@ It works! We now have a reactive application that's non-blocking at every layer.
 
 The key point in reactive applications is to use reactive types and operators defined on them to achieve the result we want. This follows the principles of functional programming too because the (immutable) values we're building are actually descriptions of our program. This means nothing is run while we're building our stream. We build small building blocks and combine them into a larger program. The entire program is eventually run when there is a subscription to our stream. For this application, it is taken care of by Spring WebFlux.
 
+### Verifying That Our Application Is Actually Not Blocking
+
+There is a great tool called [Blockhound](https://github.com/reactor/BlockHound) we can use to detect if/when we have a blocking call in our application. This way, we can ensure that we don't break the non-blocking nature of our application by mistake while developing new features. Setting it up is fairly straightforward.
+
+Add following under `dependencies` in `build.gradle.kts`:
+
+```kotlin
+testImplementation("io.projectreactor.tools:blockhound:1.0.6.RELEASE")
+```
+
+and then install it statically in the `WeatherApplication`:
+
+```java
+package com.iodigital.weather;
+
+// ...
+import reactor.blockhound.BlockHound;
+
+@EnableR2dbcRepositories
+@SpringBootApplication
+public class WeatherApplication {
+    static {
+        BlockHound
+            .builder()
+            // .allowBlockingCallsInside("Class", "method")
+            .install();
+    }
+    // ...
+}
+```
+
+and that's it. Now Blockhound will throw an exception if it detects a blocking call anywhere.
+
 ## 3. Next Steps
 
 To recap this first part of the article, we started with a traditional MVC-style Spring Boot application and we converted it into a modern, reactive one step-by-step.
