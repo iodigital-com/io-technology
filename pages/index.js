@@ -14,6 +14,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
 import Image1 from '../public/iO-technology-blog1.png'
 import Image2 from '../public/iO-technology-blog2.png'
+import ContributorsGrid from '@/components/ContributorsGrid'
 
 const MAX_BLOG_POSTS = 5
 
@@ -30,6 +31,7 @@ export async function getStaticProps() {
 
 export default function Home({ posts, videos, jobs, authors }) {
   const { theme } = useBrandingTheme()
+  const contributors = Object.values(authors)
 
   return (
     <>
@@ -41,9 +43,10 @@ export default function Home({ posts, videos, jobs, authors }) {
               Is technology your window of{' '}
               <span className="font-serif font-light">infinite opportunity</span>?
             </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:-mt-6 xl:col-span-7">
+            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
               <div className="w-1/2">
                 <Image
+                  alt="Illustration"
                   src={Image1}
                   width={2160}
                   height={2160}
@@ -55,6 +58,7 @@ export default function Home({ posts, videos, jobs, authors }) {
               </div>
               <div className="w-1/2">
                 <Image
+                  alt="Illustration"
                   src={Image2}
                   width={2160}
                   height={2160}
@@ -83,6 +87,10 @@ export default function Home({ posts, videos, jobs, authors }) {
               </li>
               <li className="mb-4 flex items-center last:mb-0">
                 <a href="#videos">Our latest videos</a>
+                <Arrow className="mt-1 ml-2 rotate-90" />
+              </li>
+              <li className="mb-4 flex items-center last:mb-0">
+                <a href="#people">Our writers &amp; speakers</a>
                 <Arrow className="mt-1 ml-2 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
@@ -137,6 +145,15 @@ export default function Home({ posts, videos, jobs, authors }) {
         Our latest <span className="font-serif font-light">videos</span>
       </SectionTitle>
       <VideoCarousel videos={videos} />
+
+      <SectionTitle id="people">
+        Our amazing <br />
+        <span className="font-serif font-light">writers</span> &amp;{' '}
+        <span className="font-serif font-light">speakers</span>
+      </SectionTitle>
+      <div className="container mx-auto">
+        <ContributorsGrid contributors={contributors} />
+      </div>
 
       <SectionTitle id="jobs">
         Some of our <span className="font-serif font-light">jobs</span>
