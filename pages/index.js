@@ -141,11 +141,6 @@ export default function Home({ posts, videos, jobs, authors }) {
         </div>
       )}
 
-      <SectionTitle id="videos">
-        Our latest <span className="font-serif font-light">videos</span>
-      </SectionTitle>
-      <VideoCarousel videos={videos} />
-
       <SectionTitle id="people">
         Our amazing <br />
         <span className="font-serif font-light">writers</span> &amp;{' '}
@@ -154,6 +149,11 @@ export default function Home({ posts, videos, jobs, authors }) {
       <div className="container mx-auto">
         <ContributorsGrid contributors={contributors} />
       </div>
+
+      <SectionTitle id="videos">
+        Our latest <span className="font-serif font-light">videos</span>
+      </SectionTitle>
+      <VideoCarousel videos={videos} />
 
       <SectionTitle id="jobs">
         Some of our <span className="font-serif font-light">jobs</span>
