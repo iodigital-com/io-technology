@@ -208,14 +208,14 @@ We can now have the best of both worlds.
 
 If you want to keep your code just the way it is with the project Reactor and benefit from its specific APIs,
 then you can simply wrap everything in Kotlin code, just the way you had it in Java.
+
+because of the interoperability in between libraries, you can use `asFlow()` and `asFlux()` to change your code.
+This is especially valuable if you intend to do some migration. Because in that case, you can do it step by step.
+
 You can benefit from the quality of life offered by Kotlin and keep your reactor-specific code just how it is.
 But that wouldn't be a good reason to migrate the whole project.
 
-Because of the similarity of the libraries, they in the end all implement some kind of framework,
-so you can navigate from one to the other.
-
-because of the interoperability in between frameworks, you can use `asFlow()` and `asFlux()` to change your code.
-This is especially valuable if you intend to do some migration. Because in that case, you can do it step by step.
+It is interesting to know that this is possible, but what we really want is to use coroutines as it will reduce significantly the complexity of the code that you read.
 
 ### Coroutines Migrations
 
