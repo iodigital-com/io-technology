@@ -12,11 +12,10 @@ const Contributor = ({ contributor }) => {
     >
       <div className="flex-0 md:h-34 md:w-34 relative h-28 w-28 overflow-hidden rounded-full border-4 border-white md:mb-2 lg:h-40 lg:w-40 xl:h-44 xl:w-44">
         <Image
-          key={contributor.name}
           src={contributor.avatar}
           width={200}
           height={200}
-          alt="avatar"
+          alt={`Avatar of ${contributor.name}`}
           objectFit="cover"
           className="rounded-full"
         />
