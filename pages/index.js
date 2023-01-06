@@ -7,7 +7,7 @@ import { getLatestJobs } from '@/lib/jobs'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import VideoCarousel from '@/components/VideoCarousel'
-import { getAuthors } from '@/lib/authors'
+import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
@@ -24,14 +24,19 @@ export async function getStaticProps() {
   )
   const { videos } = await getLatestVideos(6)
   const { jobs } = await getLatestJobs(9)
-  const authors = await getAuthors(posts)
 
-  return { props: { posts, videos, jobs, authors, theme: 'orange' } }
+  const contributors = (await getAllAuthors()).filter((author) => author.slug[0] !== 'default')
+
+  return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
 }
 
-export default function Home({ posts, videos, jobs, authors }) {
+export default function Home({ posts, videos, jobs, contributors }) {
   const { theme } = useBrandingTheme()
-  const contributors = Object.values(authors)
+
+  const authors = contributors.reduce((acc, author) => {
+    acc[author.slug[0]] = author
+    return acc
+  }, {})
 
   return (
     <>
@@ -146,7 +151,7 @@ export default function Home({ posts, videos, jobs, authors }) {
         <span className="font-serif font-light">writers</span> &amp;{' '}
         <span className="font-serif font-light">speakers</span>
       </SectionTitle>
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-8">
         <ContributorsGrid contributors={contributors} />
       </div>
 
