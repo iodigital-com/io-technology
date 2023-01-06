@@ -15,6 +15,7 @@ import Article from '@/components/Article'
 import Image1 from '../public/iO-technology-blog1.png'
 import Image2 from '../public/iO-technology-blog2.png'
 import ContributorsGrid from '@/components/ContributorsGrid'
+import shuffle from '@/lib/shuffle'
 
 const MAX_BLOG_POSTS = 5
 
@@ -25,7 +26,8 @@ export async function getStaticProps() {
   const { videos } = await getLatestVideos(6)
   const { jobs } = await getLatestJobs(9)
 
-  const contributors = (await getAllAuthors()).filter((author) => author.slug[0] !== 'default')
+  const allAuthors = await getAllAuthors()
+  const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
   return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
 }

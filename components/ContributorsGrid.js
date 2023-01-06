@@ -1,5 +1,4 @@
 import Contributor from '@/components/Contributor'
-import shuffle from '@/lib/shuffle'
 
 const ContributorsGrid = ({ contributors }) => {
   return (
