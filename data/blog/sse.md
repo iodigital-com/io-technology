@@ -38,9 +38,11 @@ const poll = async () => {
 
 ![WebSockets](/articles/sse/websockets.webp)
 
-For real-time updates, polling is not a valid option due to the HTTP overhead of opening and closing the connection. For this WebSockets were created and standardized in 2011. Based on TCP but different from HTTP WebSockets use their native protocols `ws` and `wss`. WebSockets enable interaction between client and server with lower overhead alternatives like polling. The socket connection remains open and both client and server have event-based listeners for reacting to any data sent over and forth.
+For real-time updates, polling is not a valid option due to the HTTP overhead of opening and closing the connection. For this WebSockets were created and standardized in 2011. Based on TCP but different from HTTP. WebSockets use their native protocols `ws` and `wss`. WebSockets enable interaction between client and server with lower overhead alternatives like polling. The socket connection remains open and both client and server have event-based listeners for reacting to any data sent over and forth.
 
 To establish a WebSocket connection, the client sends a WebSocket handshake request, for with the server returns a WebSocket response. The request has the `Upgrade: websocket` header to indicate that a WebSocket connection is requested. The method of setting up a WebSocket allows the server to handle both HTTP requests and WebSocket connections on the same port. Once the handshake is complete, communication switches to the bidirectional WebSocket protocol.
+
+Setting up WebSockets and implementing the server part is complex relative to HTTP. Luckily libraries are available for both client and server but they come at the cost of additional bytes and possible security issues.
 
 WebSocket requests are not restricted by the same-origin policy as regular HTTP requests are. The server needs to validate the `origin` header during the HTTP handshake to avoid cross-site hijacking attacks.
 
@@ -77,6 +79,8 @@ socket.onerror = (event) => {
 ![sse-single-client](/articles/sse/sse-single-client.webp)
 
 Server-sent events (SSE for short) are a low-overhead technique for sending data from a server in real-time once the client establishes the connection. They are commonly used to send updates or continuous data to one or multiple clients using the browser's `EventSource` API. The biggest differences between WebSockets and SSE are that SSE is server-to-client communication only and that SSE is based on HTTP and as such is as secure as HTTP is.
+
+Servers can send messages when needed but SSE does not allow for client-to-server communication. You can however always send a new request to incorporate bi-directional communication but this has more overhead compared to WebSockets.
 
 The mimetype for SSE is `text/event-stream`, indicating that only text-based data can be send.
 
@@ -161,4 +165,6 @@ clients.forEach((client) => {
 
 ## Wrap-up
 
-Classic HTTP connections are closed after the response is sent. To get updated data the client can request new data over and over again (polling) or by setting up a special WebSocket connection. WebSockets are bi-directional but not based on HTTP. Server-sent events (SSE) are HTTP connections using the `text/event-stream` mimetype that do not close. Servers can send messages when needed but SSE does not allow for client-to-server communication.
+Classic HTTP connections are closed after the response is sent. To get updated data the client can request new data over and over again (polling) or by setting up a special WebSocket connection.
+WebSockets are bi-directional but not based on HTTP. Setting up WebSockets and implementing the server part is complex relative to HTTP. Luckily libraries are available for both client and server but they come at the cost of additional bytes and possible security issues.
+Server-sent events (SSE) are HTTP connections using the `text/event-stream` mimetype that do not close. Servers can send messages when needed but SSE does not allow for client-to-server communication. You can however always send a new request to incorporate bi-directional communication but this has more overhead compared to WebSockets.
