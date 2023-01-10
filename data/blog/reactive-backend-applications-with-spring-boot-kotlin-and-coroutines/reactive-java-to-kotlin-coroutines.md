@@ -1,6 +1,6 @@
 ---
 title: 'Reactive Backend Applications with Spring Boot, Kotlin and Coroutines (Part 2)'
-date: '2023-01-09'
+date: '2023-01-10'
 tags: ['java', 'kotlin', 'reactive', 'backend', 'coroutines', 'spring']
 images:
   ['/articles/reactive-backend-applications-with-spring-boot-kotlin-and-coroutines/cascade.jpg']
