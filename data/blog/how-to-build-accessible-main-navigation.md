@@ -1,8 +1,7 @@
 ---
 title: 'How to build accessible main navigation?'
 date: '2023-01-09'
-tags: ['a11y', 'accessibility', 'frontend', 'css', 'js', 'voiceover']
-images: ['/articles/how-to-build-accessible-navigation/cover.jpg', Photo by <a href="https://unsplash.com/@ruben_christen">Ruben Christen</a> on <a href="https://unsplash.com/photos/bjUU99NhR08">Unsplash</a>]
+tags: ['frontend', 'a11y', 'accessibility']
 summary: 'This article contains a guide to build an accessible main navigation of a website. The key takeaways of this guide are: HTML semantics, WAI-ARIA, CSS and JS for accessibility.'
 authors: ['tim-dujardin']
 theme: 'orange'
@@ -22,7 +21,7 @@ For this article, I will be using the [VoiceOver](https://support.apple.com/en-g
 These are some terms used alternatively throughout the article:
 
 | Abbreviation | Term                 |
-|--------------|----------------------|
+| ------------ | -------------------- |
 | a11y         | Accessibility        |
 | AT           | Assistive Technology |
 | SR           | Screen reader        |
@@ -59,11 +58,11 @@ To identify the navigation region on a webpage, I use the `<nav>` element.
 
 ### 2. Communicate the list of navigation items and its size
 
-As a regular user, I see that the navigation consists out of a list of 4 links, but a SR user won't hear a *"List"*
+As a visual user, I see that the navigation consists out of a list of 4 links, but a SR user won't hear a _"List"_
 announcement since the markup doesn't represent that. To create an equal experience for both users, wrap the navigation
 links in a `<ul>` element.
 
-> AT info: When SRs navigate to a list element such as `<ul>` or `<ol>`, they will announce *"List # items"*. The same
+> AT info: When SRs navigate to a list element such as `<ul>` or `<ol>`, they will announce _"List # items"_. The same
 > could be achieved through using WAI-ARIA role `list` and `listitem`, but the rule of thumb is "use ARIA as a last
 > resort". More information on ["When should you use ARIA?"](https://gomakethings.com/when-should-you-use-aria/).
 
@@ -87,12 +86,13 @@ Multi-level support can be provided through 5 changes:
    another element. The visual representation is the arrow icon (`<svg>`) in this scenario, since it's only visual I
    hide it for AT through `aria-hidden="true"`.
 3. The element expanding through interaction with the button is referenced by the `aria-controls` attribute.
-4. This is the first time JavaScript comes into play, to toggle the right `aria-expanded` value and to move the focus to the
+4. Now is the first time JavaScript comes into play: I use it to toggle the right `aria-expanded` value and to move the focus to the
    first actionable element within the referenced element.
 5. Closing the referenced element must be done via the `ESC` key, which is the industry standard.
 
-> AT info: The SR will now announce *"Products, collapsed, button"* on focusing the initial state of the button. When
-> you click the button, it will announce *"Products, expanded, button"*
+> AT info: The SR will now announce _"Products, collapsed, button"_ on focusing the initial state of the button. When
+> you click the button, it will announce _"Products, expanded, button"_ and move the focus dynamically to the referenced
+> content.
 
 ```HTML
   <nav>
@@ -117,30 +117,74 @@ Multi-level support can be provided through 5 changes:
 ```
 
 ```JavaScript
-[...document.querySelectorAll('nav button[aria-expanded]')].forEach((button) => {
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
+class ExpandButton {
+  el: HTMLElement
 
-    const isExpanded = button.getAttribute('aria-expanded') === 'true'
-    const controls = document.getElementById(button.getAttribute('aria-controls'))
-    
-    // toggle expanded state on the button
-    button.setAttribute('aria-expanded', !isExpanded)
-    // show the ref element
-    controls.classList.toggle('hidden')
-    // focus on first actionable element within the ref element
-    controls.querySelector('a:first-child, button:first-child').focus();
-  })
-})
+  private isAriaExpanded: boolean
+  private ariaControlsElement: HTMLElement | null
+  private firstActionElement: HTMLElement | null
+  private hiddenClass: string = 'hidden'
+
+  constructor(el: HTMLElement | null, customHiddenClass?: string) {
+    if (!el) return
+    this.el = el
+
+    this.isAriaExpanded = this.el.getAttribute('aria-expanded') === 'true'
+    this.ariaControlsElement = document.getElementById(this.el.getAttribute('aria-controls') || '')
+
+    if (!this.ariaControlsElement) return
+
+    this.firstActionElement = this.ariaControlsElement
+      .querySelectorAll('a[href]:not([disabled]), button:not([disabled])')
+      .item(0) as HTMLElement
+
+    if (customHiddenClass) {
+      this.hiddenClass = customHiddenClass
+    }
+
+    this.initListeners()
+  }
+
+  initListeners(): void {
+    this.el.addEventListener('click', (e) => {
+      e.preventDefault()
+      this.toggle()
+    })
+  }
+
+  toggle(): void {
+    if (this.isAriaExpanded) {
+      this.collapse()
+    } else {
+      this.expand()
+      // focus on first actionable element within the ref element
+      this.firstActionElement?.focus()
+    }
+  }
+
+  expand(): void {
+    this.el.setAttribute('aria-expanded', 'true')
+    this.ariaControlsElement?.classList.remove(this.hiddenClass)
+  }
+
+  collapse(): void {
+    this.el.setAttribute('aria-expanded', 'false')
+    this.ariaControlsElement?.classList.add(this.hiddenClass)
+  }
+}
+
+const menuItemButtons = Array.from(document.querySelectorAll('nav button[aria-expanded]')).map(
+  (button) => new ExpandButton(button)
+)
 
 window.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') {
-    const button = document.querySelector('button[aria-expanded="true"]')
-    const controls = document.getElementById(button.getAttribute('aria-controls'))
-    
-    controls.classList.add('hidden')
-    button.setAttribute('aria-expanded', false)
-    button.focus();
+  if (e.key === 'Escape') {
+    menuItemButtons.forEach((expandButton: ExpandButton) => {
+      if (document.activeElement?.closest('ul')?.closest('li')?.contains(expandButton.el)) {
+        expandButton.collapse()
+        expandButton.el.focus()
+      }
+    })
   }
 })
 ```
@@ -152,7 +196,7 @@ window.addEventListener('keydown', (e) => {
 Most websites provide an active state styling for current page links, but this will only cover the visual part of
 communicating this information. On a semantic level, I need to make use of an ARIA attribute called `aria-current`.
 
-> AT info: The anchor element with attribute `aria-current="page"` will be announced as *"Current page, link, About us"* by the
+> AT info: The anchor element with attribute `aria-current="page"` will be announced as _"Current page, link, About us"_ by the
 > VoiceOver screen reader.
 
 ```HTML
@@ -182,8 +226,8 @@ communicating this information. On a semantic level, I need to make use of an AR
 When the webpage contains a multi-level main navigation, you can use the `title` attribute on the parent link to
 announce that a sublevel item is the current page.
 
-> AT info: Now, when I navigate to the 'Products' link via my screen reader, I will hear *"Products, link, Contains
-> current page link"* to indicate that the current page is inside its submenu.
+> AT info: Now, when I navigate to the 'Products' link via my screen reader, I will hear _"Products, link, Contains
+> current page link"_ to indicate that the current page is inside its submenu.
 
 ```HTML
   <nav>
@@ -207,8 +251,8 @@ announce that a sublevel item is the current page.
   </nav>
 ```
 
->Important: Be careful with the usage of the `title` though, more info in the ["Title attribute use and
->abuse"](https://www.tpgi.com/html5-accessibility-chops-title-attribute-use-and-abuse/) article.
+> Important: Be careful with the usage of the `title` though, more info in the ["Title attribute use and
+> abuse"](https://www.tpgi.com/html5-accessibility-chops-title-attribute-use-and-abuse/) article.
 
 ### 5. Provide mobile support
 
@@ -217,7 +261,7 @@ navigation in step 3.
 
 ```HTML
 <header>
-  <button class="mobile-menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <button class="mobile-menu-button" aria-expanded="false" aria-controls="main-nav">Mobile menu</button>
   <nav id="main-nav" class="hidden-mobile">
     <ul>
       <li><a href="/about-us" aria-current="page">About us</a></li>
@@ -237,12 +281,23 @@ navigation in step 3.
       <li><a href="/contact">Contact</a></li>
     </ul>
   </nav>
-</header>    
+</header>
 ```
+
+The easy part of using the `ExpandButton` class is that you can reuse it for the mobile menu button which triggers the
+visibility of the mobile navigation.
+
+```JavaScript
+const mobileMenuButton = new ExpandButton(document.querySelector('.mobile-menu-button'), "hidden-mobile");
+```
+
+## CodePen
+
+You can find the full code example on CodePen: [Accessible main navigation](https://codepen.io/timdujardin/pen/bGjWNNo).
 
 ## Tips and tricks
 
-- focus state: <https://matthiasott.com/notes/focus-visible-is-here>
+- focus state: Mathias Sot -> focus visible is here
 - multiple `<nav>`
 - skip link
 - animations
