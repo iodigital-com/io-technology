@@ -117,32 +117,51 @@ Multi-level support can be provided through 5 changes:
 ```
 
 ```JavaScript
+class ExpandButtonFactory {
+  public static instances: ExpandButton[] = []
+
+  static create(selector: string, customHiddenClass?: string) {
+    this.instances = [
+      ...this.instances,
+      ...Array.from(document.querySelectorAll(selector)).map((el: Element) => {
+        if (!(el instanceof Element)) {
+          throw new Error('No element found.')
+        }
+
+        return new ExpandButton(el, customHiddenClass)
+      }),
+    ]
+  }
+}
+
 class ExpandButton {
-  el: HTMLElement
+  el: Element
 
   private isAriaExpanded: boolean
-  private ariaControlsElement: HTMLElement | null
-  private firstActionElement: HTMLElement | null
+  private ariaControlsElement: Element | null
+  private firstActionElement: Element | null
   private hiddenClass: string = 'hidden'
 
-  constructor(el: HTMLElement | null, customHiddenClass?: string) {
-    if (!el) return
+  constructor(el: Element, customHiddenClass?: string) {
     this.el = el
 
     this.isAriaExpanded = this.el.getAttribute('aria-expanded') === 'true'
     this.ariaControlsElement = document.getElementById(this.el.getAttribute('aria-controls') || '')
 
-    if (!this.ariaControlsElement) return
+    if (!(this.ariaControlsElement instanceof HTMLElement)) {
+      throw new Error('No referenced element found.')
+    }
 
-    this.firstActionElement = this.ariaControlsElement
-      .querySelectorAll('a[href]:not([disabled]), button:not([disabled])')
-      .item(0) as HTMLElement
+    this.firstActionElement = Array.from(
+      this.ariaControlsElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled])')
+    )[0] as HTMLElement
 
     if (customHiddenClass) {
       this.hiddenClass = customHiddenClass
     }
 
     this.initListeners()
+    this.collapseOnBlur()
   }
 
   initListeners(): void {
@@ -153,36 +172,46 @@ class ExpandButton {
   }
 
   toggle(): void {
+    this.isAriaExpanded = !this.isAriaExpanded
+    this.el.setAttribute('aria-expanded', this.isAriaExpanded.toString())
+    this.ariaControlsElement?.classList.toggle(this.hiddenClass)
+
     if (this.isAriaExpanded) {
-      this.collapse()
-    } else {
-      this.expand()
-      // focus on first actionable element within the ref element
-      this.firstActionElement?.focus()
+      setTimeout(() => {
+        // focus on first actionable element within the ref element
+        ;(this.firstActionElement as HTMLElement)?.focus()
+      }, 30)
     }
   }
 
-  expand(): void {
-    this.el.setAttribute('aria-expanded', 'true')
-    this.ariaControlsElement?.classList.remove(this.hiddenClass)
-  }
-
   collapse(): void {
+    this.isAriaExpanded = false
     this.el.setAttribute('aria-expanded', 'false')
     this.ariaControlsElement?.classList.add(this.hiddenClass)
   }
+
+  collapseOnBlur(): void {
+    ;(this.ariaControlsElement as HTMLElement).addEventListener('focusout', (e: Event) => {
+      const currentTarget = e.currentTarget as HTMLElement
+
+      requestAnimationFrame(() => {
+        if (!currentTarget.contains(document.activeElement)) {
+          this.collapse()
+        }
+      })
+    })
+  }
 }
 
-const menuItemButtons = Array.from(document.querySelectorAll('nav button[aria-expanded]')).map(
-  (button) => new ExpandButton(button)
-)
+const mobileMenuButton = ExpandButtonFactory.create('.mobile-menu-button', 'hidden-mobile')
+const menuItemButtons = ExpandButtonFactory.create('.expand-button')
 
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    menuItemButtons.forEach((expandButton: ExpandButton) => {
+    ExpandButtonFactory.instances.forEach((expandButton: ExpandButton) => {
       if (document.activeElement?.closest('ul')?.closest('li')?.contains(expandButton.el)) {
         expandButton.collapse()
-        expandButton.el.focus()
+        ;(expandButton.el as HTMLElement).focus()
       }
     })
   }
@@ -284,11 +313,127 @@ navigation in step 3.
 </header>
 ```
 
-The easy part of using the `ExpandButton` class is that you can reuse it for the mobile menu button which triggers the
+The easy part of using the `ExpandButton` class is that I can reuse it for the mobile menu button which triggers the
 visibility of the mobile navigation.
 
 ```JavaScript
 const mobileMenuButton = new ExpandButton(document.querySelector('.mobile-menu-button'), "hidden-mobile");
+```
+
+Finally I add some styling to make it look more like usual website navigation.
+
+```SCSS
+header {
+  font-family: Arial;
+
+  .mobile-menu-button {
+    @media (min-width: 48em) {
+      display: none;
+    }
+  }
+
+  nav {
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &:not(.hidden-mobile) {
+      opacity: 1;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      > li {
+        margin-left: 0;
+
+        > button {
+          appearance: none;
+          background: none;
+          border: 0;
+
+          + ul {
+            transition: opacity 0.3s, visibility 0.3s;
+          }
+
+          &[aria-expanded="true"] {
+            > svg {
+              transform: rotate(180deg);
+            }
+
+            + ul {
+              opacity: 1;
+            }
+          }
+
+          &[aria-expanded="false"] + ul {
+            opacity: 0;
+            height: 0;
+          }
+        }
+      }
+    }
+
+    > ul {
+      margin-right: -0.5rem;
+      margin-left: -0.5rem;
+      flex-wrap: wrap;
+      display: flex;
+
+      > li {
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+
+        @media (max-width: 48em) {
+          width: 100%;
+        }
+
+        > a,
+        > button {
+          font-size: 1.25rem;
+        }
+
+        a,
+        button {
+          display: inline-block;
+          padding: 0.25rem;
+          color: inherit;
+
+          &[aria-current="page"] {
+            color: blue;
+          }
+
+          &[aria-current="true"] {
+            background-color: lightgrey;
+          }
+
+          &:hover,
+          &:focus-visible {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+
+        a {
+          &:not(:hover):not(:focus-visible) {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.hidden-mobile {
+  @media (max-width: 48em) {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+}
 ```
 
 ## CodePen
