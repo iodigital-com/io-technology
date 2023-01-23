@@ -1,6 +1,6 @@
 ---
 title: 'Server-sent events (SSE)'
-date: '2023-01-06'
+date: '2023-01-23'
 tags: ['network', 'frontend', 'communication']
 summary: "With Server-sent events, you don't need to ask the server if an event has happened. SSE is sent when the server wants to."
 authors: ['lucien-immink']
