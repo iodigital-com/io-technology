@@ -14,7 +14,7 @@ export default function ListLayout({
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter) => {
     const searchContent =
-      removeMarkdown(frontMatter.title) + frontMatter.summary + frontMatter.tags.join(' ')
+      removeMarkdown(frontMatter.title) + frontMatter.summary + frontMatter.tags?.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
