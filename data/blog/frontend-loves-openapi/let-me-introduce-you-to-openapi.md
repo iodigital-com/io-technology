@@ -46,15 +46,15 @@ webhooks: ...
 
 On the first level, we describe a few general sections and properties. First, we need to declare our **OpenAPI version**. This is to ensure compatibility with certain types of tooling.
 
-Then we can declare some **general information** with the **info** property. Who has written this document, where to contact the authors, etc.
+Next, we can declare some **general information** with the **info** property. Who has written this document, where to contact the authors, etc.
 
 In the **servers** section, we can declare multiple base URLs on which the API will be available. For instance, when you have various environments available.
 
 The first major section of a typical OpenAPI document is the **paths** section. Here we describe our operations, which are a combination of paths and HTTP methods. These operations describe the required data that the consumer has or can provide, like query string parameters, URL parameters, request bodies and the data that the API can respond with, status codes, content types, and data formats.
 
-The second major section is the **components** section. The OpenAPI specification extends the JSON schema specification. It allows us to reuse parts of our internal and external documents with the power of JSON schema references. In the components section, we can abstract and define data models that we can then refer to from our operations.
+The second major section is the **components** section. The OpenAPI specification extends the JSON schema specification. It allows us to reuse parts of our internal and external documents with the power of JSON schema references. In the components section, we can abstract and define data models that we can refer to from our operations.
 
-We define the security mechanisms to which our API validates the consumer in the **security** section, and we can then link each mechanism to the operations needing a specific mechanism.
+We define the security mechanisms to which our API validates the consumer in the **security** section, and link each mechanism to the operations needing a specific mechanism.
 
 In the **tags** section, we can add taxonomy to group our operations, provide links to external documentation and declare webhooks where the API now becomes a consumer itself.
 
@@ -78,7 +78,7 @@ paths:
       #...
 ```
 
-In paths, we first declare the URL the operation is available on, then the HTTP method. The combination of a URL and an HTTP method is called an **operation** in the OpenAPI context.
+In paths, we first declare the URL the operation is available on, next the HTTP method. The combination of a URL and an HTTP method is called an **operation** in the OpenAPI context.
 
 ### Operations
 
@@ -144,7 +144,7 @@ We declare an operation **response** by stating a **status code** or the keyword
 
 Then we declare the **Content-Type** with which the provider will respond. RESTful APIs aren't limited by responding only in JSON. XML, plain text, HTML, and also binaries are possible Content-Types one can define.
 
-Then, we'll define the data model with which our API provider will respond. This can be the entire definition of a component at once or a reference to a component defined in the root-level section Components.
+Next, we'll define the data model with which our API provider will respond. This can be the entire definition of a component at once or a reference to a component defined in the root-level section Components.
 
 The OpenAPI specification extends the JSON schema specification and allows us to use one of its powerful features: References. With references, we can refer to other parts of the document or refer to parts of external documents. References are declared with the `$ref` keyword.
 
@@ -212,7 +212,7 @@ components:
         $ref: '#/components/schemas/Pet'
 ```
 
-For example, we describe our Pet as an object. It has the properties id, name, image, and tag. All, except id, are described as values of the type string. Id is defined as a 64-bit integer. Id and name are described as required, meaning API consumers should consider that the image and tag value could not be in the returned data. We can then reuse our Pet component to create a Pets component, an array of the Pet component.
+For example, we describe our Pet as an object. It has the properties id, name, image, and tag. All, except id, are described as values of the type string. Id is defined as a 64-bit integer. Id and name are described as required, meaning API consumers should consider that the image and tag value could not be in the returned data. We can reuse our Pet component to create a Pets component, an array of the Pet component.
 
 ## Conclusion
 
