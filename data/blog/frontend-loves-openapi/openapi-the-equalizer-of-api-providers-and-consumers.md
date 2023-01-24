@@ -19,7 +19,7 @@ This workflow is useful when you have an existing RESTful API provider with plan
 
 ## Design First
 
-![OpenAPI Design First visualization](/articles/frontend-loves-openapi/frontend-loves-openapi-code-first.svg)
+![OpenAPI Design First visualization](/articles/frontend-loves-openapi/frontend-loves-openapi-design-first.svg)
 
 With the Design First approach, we start with the OpenAPI document. The OpenAPI document is the **Single Source of Truth** for your API definitions.
 
