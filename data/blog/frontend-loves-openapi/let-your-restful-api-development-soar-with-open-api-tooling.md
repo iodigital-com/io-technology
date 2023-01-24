@@ -71,7 +71,7 @@ As with every software project, automation can benefit our workflow.
 
 ![OpenAPI tooling](/articles/frontend-loves-openapi/frontend-loves-openapi-tools-automation.svg)
 
-We already mentioned putting an OpenAPI document in a Git repository to enable **versioning** of our API description. By utilising **Git submodules** and adding our OpenAPI document repository to our provider's and consumer's repositories as a submodule, we can have a form of language-agnostic dependency management via Git. Each commit of the provider or consumer repository is tied precisely to a specific commit of the OpenAPI repository. Pull or Merge Requests are linted by CI/CD to check for code quality before merging it into our Single Source of Truth.
+We already mentioned putting an OpenAPI document in a Git repository to enable **versioning** of our API description. By utilising [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) and adding our OpenAPI document repository to our provider's and consumer's repositories as a submodule, we can have a form of language-agnostic dependency management via Git. Each commit of the provider or consumer repository is tied precisely to a specific commit of the OpenAPI repository. Pull or Merge Requests are linted by CI/CD to check for code quality before merging it into our Single Source of Truth.
 
 We can automate the generation of API client code at each start of the development environment so that our team is always using the latest version of the described API. Our IDEs immediately notice breaking changes, compilations steps, or CI/CD builds.
 
