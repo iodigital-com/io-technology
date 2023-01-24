@@ -1,5 +1,5 @@
 ---
-title: 'Let us introduce you to OpenAPI'
+title: 'Let me introduce you to OpenAPI'
 date: '2022-12-22'
 tags: ['frontend', 'API', 'Architecture']
 summary: 'OpenAPI allows us to improve effeciency between teams and interdependent projects. It allows us to describe our API in a single document. In this part of the series, we will take you through the most important parts of an OpenAPI document.'
