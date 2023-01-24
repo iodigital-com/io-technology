@@ -13,7 +13,7 @@ I've created a [demo repository](https://github.com/vanhoofmaarten/openapi-monor
 
 The project is set up as a monorepo. Each domain lives as a separate entity in the packages folder, but because they are very much interdependent, they are within the same repository.
 
-The OpenAPI document is fetched from a different repository using Git Submodules. It contains its own linting rules and own automation. We include it in our project to refer to the OpenAPI document itself.
+The OpenAPI document is fetched from a different repository using [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). It contains its own linting rules and own automation. We include it in our project to refer to the OpenAPI document itself.
 
 The `sdk` folder only contains the configuration and scripts for generating a TypeScript-based API client by [openapi-typescript-codegen](https://github.com/ferdikoomen/openapi-typescript-codegen/). Git ignores generated files.
 
