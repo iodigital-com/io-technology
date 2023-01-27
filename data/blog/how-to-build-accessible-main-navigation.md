@@ -331,7 +331,46 @@ The full code example is available on CodePen: [Accessible main navigation](http
 
 ## Tips and tricks
 
-- focus state: Mathias Sot -> focus visible is here
-- multiple `<nav>`
-- skip link
-- animations
+### Handling multiple `<nav>`
+
+If the webpage contains multiple `<nav>` elements, each `<nav>` needs an `aria-label` element to provide screen reader
+users with clear distinction.
+
+> AT info: SRs will list the following 2 landmarks respectively as "Main navigation" and "Product navigation", instead
+> of 2 times "Navigation".
+
+<figure>
+  <img src="https://i.imgur.com/CPSOm9H.png" />
+  <figcaption>
+    The default list of navigation landmarks identified by VoiceOver.
+  </figcaption>
+</figure>
+<figure>
+  <img src="https://i.imgur.com/pLJKDIa.png" />
+  <figcaption>
+    List of navigation landmarks identified by VoiceOver that contain
+    an additional `aria-label` attribute.
+  </figcaption>
+</figure>
+
+```HTML
+// Main navigation
+<nav aria-label="Main">
+  <ul>
+    <li><a href="/about-us">About us</a></li>
+    <li><a href="/products" aria-current="page">Products</a></li>
+    <li><a href="/insights">Insights</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+// Product navigation
+<nav aria-label="Product">
+  <ul>
+    <li><a href="/product1">Product 1</a></li>
+    <li><a href="/product2">Product 2</a></li>
+    <li><a href="/product3">Product 3</a></li>
+    <li><a href="/product4">Product 4</a></li>
+  </ul>
+</nav>
+```
