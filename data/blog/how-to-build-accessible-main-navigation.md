@@ -1,8 +1,8 @@
 ---
 title: 'How to build accessible main navigation?'
-date: '2023-01-09'
+date: '2023-01-27'
 tags: ['frontend', 'a11y', 'accessibility']
-summary: 'This article contains a guide to build an accessible main navigation of a website. The key takeaways of this guide are: HTML semantics, WAI-ARIA, CSS and JS for accessibility.'
+summary: 'This article contains a guide to building an accessible main navigation of a website in 5 steps. The key takeaways of this guide are HTML semantics, WAI-ARIA, CSS, and JS for accessibility.'
 authors: ['tim-dujardin']
 theme: 'orange'
 ---
@@ -10,15 +10,16 @@ theme: 'orange'
 ## Introduction
 
 Structuring a webpage is based on using the right semantic HTML, these semantics will provide all kinds of information
-necessary to process to page. Assistive technology is one of these page processing tools, so it's important to make sure
-everything is communicated in the right way.
+necessary to process the page. Most of us know that semantics make a big difference on a level of SEO, but it also has a huge impact on people with disabilities. They use assistive technology (AT) to
+process all that information, so it's essential to make sure everything is communicated in the right way.
 
-In this article I will zoom into the main navigation region of a webpage while keeping the assistive technology in
-mind. An example of assistive technology through computer software is a screen reader, for more examples of assistive technology take a look at [the AT list on atia.org](https://www.atia.org/home/at-resources/what-is-at/).
+In this article, I will zoom into the main navigation region of a webpage while keeping assistive technology in
+mind. An example of assistive technology through computer software is a screen reader. I will be using
+[VoiceOver](https://support.apple.com/en-gb/guide/voiceover/vo2682/mac), the default screen reader on Mac, to illustrate examples.
 
-For this article, I will be using the [VoiceOver](https://support.apple.com/en-gb/guide/voiceover/vo2682/mac) screen reader on Mac to illustrate examples.
+If you are interested in more examples of assistive technology take a look at [the AT list on atia.org](https://www.atia.org/home/at-resources/what-is-at/).
 
-These are some terms used alternatively throughout the article:
+Finally, these are some terms I use alternatively throughout the article:
 
 | Abbreviation | Term                 |
 | ------------ | -------------------- |
@@ -29,14 +30,14 @@ These are some terms used alternatively throughout the article:
 ## Screen readers
 
 Screen readers use [the accessibility tree instead of the regular DOM tree](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree), which is basically the DOM tree from a
-(meaningful) semantic point of view. If you want to view the a11y tree yourself, you can take a look at the ["What is an accessibility tree and how do I view it?"](https://accessibleweb.com/question-answer/what-is-an-accessibility-tree-and-how-do-i-view-it) article.
+(meaningful) semantic point of view. If you want to know how to inspect the a11y tree, you can take a look at the ["What is an accessibility tree and how do I view it?"](https://accessibleweb.com/question-answer/what-is-an-accessibility-tree-and-how-do-i-view-it) article.
 
 ## Accessible in 5 steps
 
 These are the steps I will guide you through:
 
 1. Identify the navigation region(s)
-2. Communicate the list of navigation items and its size
+2. Communicate the list of navigation items and their size
 3. Add multiple levels
 4. Highlight the active (sub)page
 5. Provide mobile support
@@ -44,8 +45,6 @@ These are the steps I will guide you through:
 ### 1. Identify the navigation region(s)
 
 To identify the navigation region on a webpage, I use the `<nav>` element.
-
-> AT info: SRs have [shortcuts and gestures](https://dequeuniversity.com/screenreaders/) to navigate by landmarks, so they don't need to go through the whole webpage over and over again when discovering a website.
 
 ```HTML
 <nav>
@@ -56,10 +55,16 @@ To identify the navigation region on a webpage, I use the `<nav>` element.
 </nav>
 ```
 
-### 2. Communicate the list of navigation items and its size
+> AT info: SRs have [shortcuts and gestures](https://dequeuniversity.com/screenreaders/) to navigate by landmarks, so they don't need to go through the whole webpage over and over again when discovering a website.
 
-As a visual user, I see that the navigation consists out of a list of 4 links, but a SR user won't hear a _"List"_
-announcement since the markup doesn't represent that. To create an equal experience for both users, wrap the navigation
+<figure>
+  <img style={{ maxWidth: '25rem' }} src="https://i.imgur.com/vK0vMfr.png" alt="List of landmarks identified by VoiceOver, focused on 'Main navigation' landmark." />
+  <figcaption>List of landmarks identified by VoiceOver, focused on 'Main navigation' landmark. The ['banner' landmark](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header#:~:text=The%20%3Cheader%3E%20element%20has%20an%20identical%20meaning%20to%20the%20site%2Dwide%20banner%20landmark%20role%2C%20unless%20nested%20within%20sectioning%20content.%20Then%2C%20the%20%3Cheader%3E%20element%20is%20not%20a%20landmark.) corresponds to the `<header>` element.</figcaption>
+</figure>
+
+### 2. Communicate the list of navigation items and their size
+
+As a visual user, I see that the navigation consists of a list of 4 links, but a screen reader user won't hear a _"List"_ announcement since the markup doesn't represent that. To create an equal experience for both users, wrap the navigation
 links in a `<ul>` element.
 
 > AT info: When SRs navigate to a list element such as `<ul>` or `<ol>`, they will announce _"List # items"_. The same
@@ -81,18 +86,12 @@ links in a `<ul>` element.
 
 Multi-level support can be provided through 5 changes:
 
-1. Replace the `<a>` by a `<button>` since the purpose of 'Products' is no longer navigation, but toggling the submenu. More info in the ["Buttons vs links"](https://css-tricks.com/buttons-vs-links/) article.
+1. Replace the `<a>` with a `<button>` since the purpose of 'Products' is no longer navigation, but toggling the
+   submenu. More info is in the ["Buttons vs links"](https://css-tricks.com/buttons-vs-links/) article.
 2. Add `aria-expanded="false"` to the `<button>` element to let the SR know that interacting with the button will expand
    another element. The visual representation is the arrow icon (`<svg>`) in this scenario, since it's only visual I
    hide it for AT through `aria-hidden="true"`.
 3. The element expanding through interaction with the button is referenced by the `aria-controls` attribute.
-4. Now is the first time JavaScript comes into play: I use it to toggle the right `aria-expanded` value and to move the focus to the
-   first actionable element within the referenced element.
-5. Closing the referenced element must be done via the `ESC` key, which is the industry standard.
-
-> AT info: The SR will now announce _"Products, collapsed, button"_ on focusing the initial state of the button. When
-> you click the button, it will announce _"Products, expanded, button"_ and move the focus dynamically to the referenced
-> content.
 
 ```HTML
   <nav>
@@ -101,9 +100,7 @@ Multi-level support can be provided through 5 changes:
       <li>
         <button aria-expanded="false" aria-controls="products-level-2">
           Products
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="12" height="9" viewBox="0 0 12 9">
-           <polygon points="1 0, 11 0, 6 8"></polygon>
-          </svg>
+          <svg aria-hidden="true">...</svg>
         </button>
         <ul id="products-level-2" class="hidden">
           <li><a href="/products/product1">Product 1</a></li>
@@ -116,106 +113,81 @@ Multi-level support can be provided through 5 changes:
   </nav>
 ```
 
+4. Here is the first time JS comes into play: I use it to toggle the right `aria-expanded` value and to move the focus to the
+   first actionable element within the referenced element.
+5. Closing the referenced element must be done via the `ESC` key, which is the industry standard for keyboard accessibility.
+
 ```JavaScript
-class ExpandButtonFactory {
-  public static instances: ExpandButton[] = []
-
-  static create(selector: string, customHiddenClass?: string) {
-    this.instances = [
-      ...this.instances,
-      ...Array.from(document.querySelectorAll(selector)).map((el: Element) => {
-        if (!(el instanceof Element)) {
-          throw new Error('No element found.')
-        }
-
-        return new ExpandButton(el, customHiddenClass)
-      }),
-    ]
-  }
-}
-
 class ExpandButton {
-  el: Element
-
-  private isAriaExpanded: boolean
-  private ariaControlsElement: Element | null
-  private firstActionElement: Element | null
-  private hiddenClass: string = 'hidden'
-
-  constructor(el: Element, customHiddenClass?: string) {
-    this.el = el
-
-    this.isAriaExpanded = this.el.getAttribute('aria-expanded') === 'true'
-    this.ariaControlsElement = document.getElementById(this.el.getAttribute('aria-controls') || '')
-
-    if (!(this.ariaControlsElement instanceof HTMLElement)) {
-      throw new Error('No referenced element found.')
-    }
-
-    this.firstActionElement = Array.from(
-      this.ariaControlsElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled])')
-    )[0] as HTMLElement
-
-    if (customHiddenClass) {
-      this.hiddenClass = customHiddenClass
-    }
-
-    this.initListeners()
-    this.collapseOnBlur()
+  get isAriaExpanded() {
+    return this._isAriaExpanded;
   }
 
-  initListeners(): void {
-    this.el.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.toggle()
-    })
-  }
-
-  toggle(): void {
-    this.isAriaExpanded = !this.isAriaExpanded
-    this.el.setAttribute('aria-expanded', this.isAriaExpanded.toString())
-    this.ariaControlsElement?.classList.toggle(this.hiddenClass)
+  set isAriaExpanded(value) {
+    this._isAriaExpanded = value;
+    this.el.setAttribute("aria-expanded", this.isAriaExpanded.toString());
 
     if (this.isAriaExpanded) {
+      this.ariaControlsElement?.classList.remove(this.hiddenClass);
+
       setTimeout(() => {
         // focus on first actionable element within the ref element
-        ;(this.firstActionElement as HTMLElement)?.focus()
-      }, 30)
+        this.firstActionElement?.focus();
+      }, 30);
+    } else {
+      this.ariaControlsElement?.classList.add(this.hiddenClass);
     }
   }
 
-  collapse(): void {
-    this.isAriaExpanded = false
-    this.el.setAttribute('aria-expanded', 'false')
-    this.ariaControlsElement?.classList.add(this.hiddenClass)
+  initListeners() {
+    // Correctly toggle aria-expanded based on click interaction
+    this.clickHandler();
+    // Collapse the aria-controls element when blurred
+    this.collapseOnBlurHandler();
   }
 
-  collapseOnBlur(): void {
-    ;(this.ariaControlsElement as HTMLElement).addEventListener('focusout', (e: Event) => {
-      const currentTarget = e.currentTarget as HTMLElement
+  collapse() {
+    this.isAriaExpanded = false;
+  }
 
-      requestAnimationFrame(() => {
-        if (!currentTarget.contains(document.activeElement)) {
-          this.collapse()
-        }
-      })
-    })
+  expand() {
+    this.isAriaExpanded = true;
+  }
+
+  clickHandler() {
+    this.el.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.isAriaExpanded ? this.collapse() : this.expand();
+    });
+  }
+
+  collapseOnBlurHandler() {
+    (this.ariaControlsElement as HTMLElement).addEventListener(
+      "focusout",
+      (e: Event) => {
+        const currentTarget = e.currentTarget as HTMLElement;
+
+        requestAnimationFrame(() => {
+          if (!currentTarget.contains(document.activeElement)) {
+            this.collapse();
+          }
+        });
+      }
+    );
   }
 }
+```
 
-const mobileMenuButton = ExpandButtonFactory.create('.mobile-menu-button', 'hidden-mobile')
-const menuItemButtons = ExpandButtonFactory.create('.expand-button')
+To instantiate the `ExpandButton` class I have used an `ExpandButtonFactory` (more info in [CodePen](https://codepen.io/timdujardin/pen/bGjWNNo)), this factory keeps track of all the
+`ExpandButton` instances and adds a window `keydown` listener for the `ESC` key. This listener will provide the
+necessary collapsing mechanism when navigating by keyboard.
 
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    ExpandButtonFactory.instances.forEach((expandButton: ExpandButton) => {
-      if (document.activeElement?.closest('ul')?.closest('li')?.contains(expandButton.el)) {
-        expandButton.collapse()
-        ;(expandButton.el as HTMLElement).focus()
-      }
-    })
-  }
-})
+> AT info: The SR will now announce _"Products, collapsed, button"_ on focusing the initial state of the button. When
+> I click the button, it will announce _"Products, expanded, button"_ and move the focus dynamically to the referenced
+> content.
+
+```JavaScript
+const menuItemButtons = ExpandButtonFactory.create(".expand-button");
 ```
 
 ### 4. Highlight the active (sub)page
@@ -252,7 +224,7 @@ communicating this information. On a semantic level, I need to make use of an AR
 
 #### 4.2 Active subpage
 
-When the webpage contains a multi-level main navigation, you can use the `title` attribute on the parent link to
+When the webpage contains multi-level main navigation, I can use the `title` attribute on the parent link to
 announce that a sublevel item is the current page.
 
 > AT info: Now, when I navigate to the 'Products' link via my screen reader, I will hear _"Products, link, Contains
@@ -317,128 +289,45 @@ The easy part of using the `ExpandButton` class is that I can reuse it for the m
 visibility of the mobile navigation.
 
 ```JavaScript
-const mobileMenuButton = new ExpandButton(document.querySelector('.mobile-menu-button'), "hidden-mobile");
+const mobileMenuButton = ExpandButtonFactory.create(
+  ".mobile-menu-button",
+  "hidden-mobile"
+);
 ```
 
-Finally I add some styling to make it look more like usual website navigation.
+## The final touch
+
+The nice thing about using `aria` attributes is that I don't need the extra `is-active` classes to provide some
+styling. Just by targeting `[aria-expanded]` I have a selector that provides me with the necessary information.
+
+Same for `[aria-current="page"]` and `[aria-current="true"]`, to style active navigation menu items when they respectively are or
+contain the current page link.
 
 ```SCSS
-header {
-  font-family: Arial;
-
-  .mobile-menu-button {
-    @media (min-width: 48em) {
-      display: none;
-    }
+...
+button {
+  &[aria-expanded="true"] > svg {
+    transform: rotate(180deg);
   }
 
-  nav {
-    transition: opacity 0.3s, visibility 0.3s;
-
-    &:not(.hidden-mobile) {
-      opacity: 1;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-
-      > li {
-        margin-left: 0;
-
-        > button {
-          appearance: none;
-          background: none;
-          border: 0;
-
-          + ul {
-            transition: opacity 0.3s, visibility 0.3s;
-          }
-
-          &[aria-expanded="true"] {
-            > svg {
-              transform: rotate(180deg);
-            }
-
-            + ul {
-              opacity: 1;
-            }
-          }
-
-          &[aria-expanded="false"] + ul {
-            opacity: 0;
-            height: 0;
-          }
-        }
-      }
-    }
-
-    > ul {
-      margin-right: -0.5rem;
-      margin-left: -0.5rem;
-      flex-wrap: wrap;
-      display: flex;
-
-      > li {
-        margin-right: 0.5rem;
-        margin-left: 0.5rem;
-
-        @media (max-width: 48em) {
-          width: 100%;
-        }
-
-        > a,
-        > button {
-          font-size: 1.25rem;
-        }
-
-        a,
-        button {
-          display: inline-block;
-          padding: 0.25rem;
-          color: inherit;
-
-          &[aria-current="page"] {
-            color: blue;
-          }
-
-          &[aria-current="true"] {
-            background-color: lightgrey;
-          }
-
-          &:hover,
-          &:focus-visible {
-            text-decoration: underline;
-            cursor: pointer;
-          }
-        }
-
-        a {
-          &:not(:hover):not(:focus-visible) {
-            text-decoration: none;
-          }
-        }
-      }
-    }
-  }
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.hidden-mobile {
-  @media (max-width: 48em) {
-    visibility: hidden;
+  &[aria-expanded="false"] + ul {
     opacity: 0;
     height: 0;
   }
 }
+...
 ```
 
 ## CodePen
 
-You can find the full code example on CodePen: [Accessible main navigation](https://codepen.io/timdujardin/pen/bGjWNNo).
+Finally, I add some styling to make it look more like the usual website navigation.
+The full code example is available on CodePen: [Accessible main navigation](https://codepen.io/timdujardin/pen/bGjWNNo).
+
+<iframe height="300" style={{ width: '100%' }} scrolling="no" title="Accessible main navigation" src="https://codepen.io/timdujardin/embed/preview/bGjWNNo?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/timdujardin/pen/bGjWNNo">
+  Accessible main navigation</a> by Tim Dujardin (<a href="https://codepen.io/timdujardin">@timdujardin</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 ## Tips and tricks
 
