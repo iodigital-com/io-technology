@@ -1,29 +1,30 @@
 ---
-title: 'Firebase Functions'
+title: 'Firebase Functions in a nutshell'
 date: '2023-01-31'
 tags: ['Web Development', 'cloud functions', 'firebase functions']
 authors: ['mohsen-mahabadi']
+summary: 'Firebase Functions is a powerful tool that allows developers to build and run backend code for their applications.'
 theme: 'blue'
 ---
 
-### Introduction
+Before we begin, it is important to note that this is only a brief overview of Firebase Functions and that you are already familiar with it.
 
-Before we begin, it is important to understand that this is only a brief introduction to Firebase Functions and that you are already familiar with.
+Let's look at the Firebase Functions definition provided by Google:
 
-Let's look at the Firebase Functions definition provided by Google. “Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features and HTTPS requests. Your JavaScript or TypeScript code is stored in Google's cloud and runs in a managed environment. There's no need to manage and scale your own servers.”
+> Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features and HTTPS requests. Your JavaScript or TypeScript code is stored in Google's cloud and runs in a managed environment. There's no need to manage and scale your own servers.
 
 We no longer need to create, distribute, and maintain backend APIs thanks to Firebase Functions. For instance, when a new user signs up with Firebase Authentication and we want to store a record in our database, we also don't want to allow write access to our database from the front end, so we write and deploy a cloud function to handle that task instead.
 
 ![The image shows a simple flow of using firebase functions.](/articles/firebase-functions/overview.png)
 
-### Setup your project
+## Setup your project
 
-Make sure Node.js and firebase-tools are set up on your computer before moving on because Firebase functions run in a Node.js environment.
+Make sure `Node.js` and `firebase-tools` are set up on your computer before moving on because Firebase functions run in a Node.js environment.
 Open the terminal and navigate to the folder where you want to create the project.
 
 1. Run `firebase login`
 2. Run `firebase init firestore`
-3. Run `firebase init function`
+3. Run `firebase init functions`
 
 After these commands complete successfully, your project structure looks like this:
 
@@ -57,23 +58,23 @@ import * as admin from 'firebase-admin'
 admin.initializeApp()
 ```
 
-### Trigger Firebase Functions
+## Trigger Firebase Functions
 
-There are two methods for calling Firebase functions. The functions can be called directly by the “HTTP Triggers” method or as part of an event called “Background Triggers".
+There are two methods for calling Firebase functions. The functions can be called directly by the **_HTTP Triggers_** method or as part of an event called **_Background Triggers_**.
 
 ![The image shows methods for calling firebase functions](/articles/firebase-functions/triggers.png)
 
 We can trigger some functions when a user signs up, or trigger a function by adding, updating, or deleting a record from the database. It can be run when the database event occurs.
 
-## HTTP Triggers
+### HTTP Triggers
 
-There are two ways to invoke a cloud function through the HTTP protocol: <b>Endpoint requests</b> and <b>Callable functions</b>.
+There are two ways to invoke a cloud function through the HTTP protocol: **Endpoint requests** and **Callable functions**.
 
-### Endpoint request
+#### Endpoint request
 
 Endpoint requests allow you to trigger a function by making an HTTP request to a specific URL. This is useful for integrating with other services, or for triggering a function from a web or mobile app.
 
-1. #### Request functions
+##### 1. Request functions
 
 Add the following code to the index file we previously created:
 
@@ -91,7 +92,7 @@ Firebase deploy --only functions
 
 Then, in Firebase's functions section, you can see the function.
 
-<b>Invoke an HTTP function</b>
+###### Invoke an HTTP function
 
 After you deploy an HTTP function, you can invoke it using its own unique URL. The URL includes the following, in order:
 
@@ -104,7 +105,7 @@ For example, the URL to invoke helloWorld() looks like this:
 
 `https://us-central1-<project-id>.cloudfunctions.net/helloWorld`
 
-2. #### Redirecting
+##### 2. Redirecting
 
 ```javascript
 exports.toGoogle = functions.https.onRequest((req, res) => {
@@ -114,7 +115,7 @@ exports.toGoogle = functions.https.onRequest((req, res) => {
 
 You will be redirected to `google.com` whenever you access this URL, such as `www.mydomain.com/toGoogle`.
 
-### Callable Functions
+#### Callable Functions
 
 Callable functions provide a simple, secure way to invoke a function from a client app. They handle authentication and data serialization and allow you to return a response to the client directly, without the need for additional client-side code.
 
@@ -138,7 +139,7 @@ button.addEventListener('click', (e) => {
 })
 ```
 
-#### Checking user authentication:
+##### Checking user authentication:
 
 If in callable function we need to check whether the user is logged in or not, we can use following code:
 
@@ -152,18 +153,18 @@ exports.doSomething = functions.https.onCall((data, context) => {
 })
 ```
 
-## Background Triggers
+### Background Triggers
 
 Background triggers refer to events that trigger a Firebase Function without an explicit request from a client. These triggers can be triggered by events such as changes to a Firebase Realtime Database, or the creation of a new user, and so on.
 
-### Auth Events
+#### Auth Events
 
 These triggers allow you to respond to events related to user authentication, such as the creation of a new user account, the deletion of an existing user account, or a user signing in or signing out.
 
-1. #### User onCreate:
+##### 1. User onCreate:
 
 This function will be triggered after adding a user.
-<b>Note that you must return a value or promise for background triggers.</b>
+**Note that you must return a value or promise for background triggers.**
 
 ```javascript
 exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
@@ -171,8 +172,9 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
 })
 ```
 
-2. #### User onDelete:
-   This function is triggered when a user is deleted.
+##### 2. User onDelete:
+
+This function is triggered when a user is deleted.
 
 ```javascript
 exports.deleteUser = functions.auth.user().onDelete((user) => {
@@ -181,28 +183,11 @@ exports.deleteUser = functions.auth.user().onDelete((user) => {
 })
 ```
 
-3. #### onAuthStateChanged:
-   When the user's state changes, this observer is triggered. For instance, the onAuthStateChanged observer is called when the user logs in.
+##### 3. onAuthStateChanged:
 
-```javascript
-const loginForm = document.getElementById('login-form')
+When the user's state changes, this observer is triggered. For instance, the onAuthStateChanged observer is called when the user logs in.
 
-loginForm.addEventListener('submit', () => {
-  const email = loginForm.email.value
-  const password = loginForm.password.value
-
-  firebase
-    .auth()
-    .signInWidthEmailAndPassword(email, password)
-    .then((user) => {
-      console.log('logged in', user)
-      loginForm.reset()
-    })
-    .catch((err) => {
-      console.error(err.message)
-    })
-})
-
+```javascript filename
 //Auth listener
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -214,14 +199,14 @@ firebase.auth().onAuthStateChanged((user) => {
 })
 ```
 
-### Storge Events
+#### Storge Events
 
 With regard to specific Cloud Firestore events, you can create callback functions for
 
-- <b>onCreate</b>: triggered when a document is written for the first time.
-- <b>onUpdate</b>: triggered when a document already exists and has any value changed.
-- <b>onDelete</b>: triggered when a document with data is deleted.
-- <b>onWrite</b>: triggered when onCreate, onUpdate, or onDelete is triggered.
+- **onCreate**: triggered when a document is written for the first time.
+- **onUpdate**: triggered when a document already exists and has any value changed.
+- **onDelete**: triggered when a document with data is deleted.
+- **onWrite**: triggered when onCreate, onUpdate, or onDelete is triggered.
 
 For instance, we'd like to know when the user collection was last updated:
 
@@ -245,7 +230,7 @@ exports.updateLastUpdated = functions.firestore
   })
 ```
 
-<b>Firestore onSnapshot</b>
+**Firestore onSnapshot**
 
 This method allows you to listen to a document. A document snapshot will be created after calling the callback function. Then, another call updates the document snapshot each time the contents change. You can use this function, for example, to display an exchange list and the changes over time without refreshing the page.
 
@@ -257,14 +242,14 @@ firebase.firestore().collection("exchanges")
  });
 ```
 
-### Database Events
+#### Database Events
 
 When events occur in your Firebase Realtime Database, you can use Firebase Functions to trigger other functions. As an example, you can use a function to automatically send a push notification to all users whenever a new message is added to a specific chat room in your database. These events include when data is written, updated, or deleted:
 
-- <b>onWrite</b>: which triggers when data is created, updated, or deleted in Realtime Database.
-- <b>onCreate</b>: which triggers when new data is created in Realtime Database.
-- <b>onUpdate</b>: which triggers when data is updated in Realtime Database.
-- <b>onDelete</b>: which triggers when data is deleted from Realtime Database.
+- **onWrite**: which triggers when data is created, updated, or deleted in Realtime Database.
+- **onCreate**: which triggers when new data is created in Realtime Database.
+- **onUpdate**: which triggers when data is updated in Realtime Database.
+- **onDelete**: which triggers when data is deleted from Realtime Database.
 
 ```javascript
 import * as functions from 'firebase-functions'
@@ -295,7 +280,7 @@ it gets the message value from the snapshot `snapshot.val()`, and the chatRoomId
 
 Please be aware that you need to set up the Firebase Cloud Messaging service to be able to send push notifications.
 
-### Analytics Events
+#### Analytics Events
 
 For mobile and web apps, Firebase Analytics is a free, unlimited analytics tool that offers information on user engagement and app usage. Firebase Functions can be triggered in response to events in Firebase Analytics, allowing you to automate tasks based on user behavior. For instance, you can use a function to send a push notification to users who haven't opened your app in a certain amount of time.
 
@@ -328,7 +313,7 @@ In conclusion, Firebase Functions is a powerful and flexible tool that allows de
 With its serverless architecture, it eliminates the need for managing infrastructure and allows developers to focus on building great apps. Whether you're a seasoned developer or just starting out, Firebase Functions is a valuable tool to add to your toolkit.
 
 <hr/>
-<b>Resources</b>
+**Resources**
 
 - [Firebase Functions Tutorial](https://youtu.be/udHm7I_OvJs) by The Net Ninja
 - [Cloud functions documentation](https://firebase.google.com/docs/functions) by Firebase
