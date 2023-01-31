@@ -1,7 +1,7 @@
 ---
 title: 'Firebase Functions'
-date: '2023-02-01'
-tags: ['firebase', 'serverless', 'javascript', 'cloud functions', 'firebase functions']
+date: '2023-01-31'
+tags: ['Web Development', 'cloud functions', 'firebase functions']
 authors: ['mohsen-mahabadi']
 theme: 'blue'
 ---
