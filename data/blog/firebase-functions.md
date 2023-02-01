@@ -7,19 +7,24 @@ summary: 'Firebase Functions is a powerful tool that allows developers to build 
 theme: 'blue'
 ---
 
-Before we begin, it is important to note that this is only a brief overview of Firebase Functions and that you are already familiar with it.
+Before we begin, it should be noted that if you are not familiar with Firebase Functions, this article will get you right up to speed! If you are experienced with them, there might be some interesting pieces that you are unaware of.
 
 Let's look at the Firebase Functions definition provided by Google:
 
 > Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features and HTTPS requests. Your JavaScript or TypeScript code is stored in Google's cloud and runs in a managed environment. There's no need to manage and scale your own servers.
 
-We no longer need to create, distribute, and maintain backend APIs thanks to Firebase Functions. For instance, when a new user signs up with Firebase Authentication and we want to store a record in our database, we also don't want to allow write access to our database from the front end, so we write and deploy a cloud function to handle that task instead.
+## Why do we need Firebase Functions
+
+We no longer need to create, distribute, and maintain backend APIs thanks to Firebase Functions. For instance, when a new user signs up with Firebase Authentication and we want to store a record in our database, we also don't want to allow write access to our database from the front end, so we write and deploy a cloud function to handle that task instead. You can see more scenarios [here](https://firebase.google.com/docs/functions/use-cases).
 
 ![The image shows a simple flow of using firebase functions.](/articles/firebase-functions/overview.png)
 
 ## Setup your project
 
-Make sure `Node.js` and `firebase-tools` are set up on your computer before moving on because Firebase functions run in a Node.js environment.
+Make sure [`Node.js`](https://nodejs.org/en/) and [`firebase-tools`](https://firebase.google.com/docs/functions/get-started#set-up-node.js-and-the-firebase-cli) are set up on your computer before moving on because Firebase Functions run in a Node.js environment.
+
+### Initialize your project
+
 Open the terminal and navigate to the folder where you want to create the project.
 
 1. Run `firebase login`
@@ -60,7 +65,7 @@ admin.initializeApp()
 
 ## Trigger Firebase Functions
 
-There are two methods for calling Firebase functions. The functions can be called directly by the **_HTTP Triggers_** method or as part of an event called **_Background Triggers_**.
+There are two methods for calling Firebase Functions. The functions can be called directly by the **HTTP Triggers** method or as part of an event called **Background Triggers**.
 
 ![The image shows methods for calling firebase functions](/articles/firebase-functions/triggers.png)
 
@@ -84,7 +89,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 });
 ```
 
-You must first log into Firebase before you can publish functions to it. Then, run the following command:
+To publish the function to Firebase, use the following command:
 
 ```
 Firebase deploy --only functions
@@ -92,9 +97,13 @@ Firebase deploy --only functions
 
 Then, in Firebase's functions section, you can see the function.
 
-###### Invoke an HTTP function
+![The image displays Firebase Functions' section on Firebase console](/articles/firebase-functions/firebase-functions-section.png)
 
-After you deploy an HTTP function, you can invoke it using its own unique URL. The URL includes the following, in order:
+After you deploy an HTTP function, you can invoke it using its own unique URL. The URL can be found by going to the functions section.
+
+![The image shows where you can find function's URL](/articles/firebase-functions/function-url.png)
+
+The URL includes the following, in order:
 
 - The region (or regions) to which you deployed your function. Some production functions may need to explicitly set the location to minimize network latency.
 - Your Firebase project ID
