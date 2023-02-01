@@ -1,6 +1,6 @@
 ---
 title: 'Firebase Functions in a nutshell'
-date: '2023-01-31'
+date: '2023-02-01'
 tags: ['Web Development', 'cloud functions', 'firebase functions']
 authors: ['mohsen-mahabadi']
 summary: 'Firebase Functions is a powerful tool that allows developers to build and run backend code for their applications.'
