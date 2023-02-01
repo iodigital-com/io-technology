@@ -15,7 +15,7 @@ Let's look at the Firebase Functions definition provided by Google:
 
 ## Why do we need Firebase Functions
 
-We no longer need to create, distribute, and maintain backend APIs thanks to Firebase Functions. For instance, when a new user signs up with Firebase Authentication and we want to store a record in our database, we also don't want to allow write access to our database from the front end, so we write and deploy a cloud function to handle that task instead. If you interested you can see more use cases [here](https://firebase.google.com/docs/functions/use-cases).
+We no longer need to create, distribute, and maintain backend APIs thanks to Firebase Functions. For instance, when a new user signs up with Firebase Authentication and we want to store a record in our database, we also don't want to allow write access to our database from the front end, so we write and deploy a cloud function to handle that task instead. More use cases can be found [here](https://firebase.google.com/docs/functions/use-cases) if you're interested.
 
 ![The image shows a simple flow of using firebase functions.](/articles/firebase-functions/overview.png)
 
