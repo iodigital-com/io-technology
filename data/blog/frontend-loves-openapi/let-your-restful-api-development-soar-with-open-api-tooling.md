@@ -1,6 +1,6 @@
 ---
 title: 'Let your RESTful API development soar with OpenAPI tooling'
-date: '2023-01-05'
+date: '2023-02-01'
 tags: ['frontend', 'API', 'Architecture']
 summary: 'Because the OpenAPI specification is a specification, just like the EcmaScript, HTML or CSS specification, we can reliably build tooling upon it. This tooling allows us to optimise our OpenAPI workflows and let us save precious time.'
 authors: ['maarten-van-hoof']
