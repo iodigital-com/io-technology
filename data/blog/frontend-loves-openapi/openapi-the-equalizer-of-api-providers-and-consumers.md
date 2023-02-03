@@ -1,6 +1,6 @@
 ---
 title: 'OpenAPI, the equalizer of API providers and consumers'
-date: '2022-12-27'
+date: '2023-01-31'
 tags: ['frontend', 'API', 'Architecture']
 summary: "How would you incorporate OpenAPI within your project? In this chapter, we'll explore the two main approaches to using OpenAPI and the benefits of each workflow."
 authors: ['maarten-van-hoof']

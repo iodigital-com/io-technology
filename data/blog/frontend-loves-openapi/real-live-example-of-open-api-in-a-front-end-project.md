@@ -1,6 +1,6 @@
 ---
 title: 'Real live example of OpenAPI in a front-end project'
-date: '2023-01-12'
+date: '2023-02-03'
 tags: ['frontend', 'API', 'Architecture']
 summary: ''
 authors: ['maarten-van-hoof']
