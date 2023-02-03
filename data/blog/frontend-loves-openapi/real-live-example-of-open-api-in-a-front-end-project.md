@@ -7,6 +7,8 @@ authors: ['maarten-van-hoof']
 serie: 'frontend-loves-openapi'
 ---
 
+In the previous parts of this series, we introduced you to the OpenAPI specification, how to describe an API provider in an OpenAPI document, the approaches we can take incorporating it on workflows helping us build and integrate with RESTful APIs, and the tooling that is available to optimise our OpenAPI workflows. In this final part of the series, we will show you how we can use OpenAPI in a front-end monorepo project.
+
 I've created a [demo repository](https://github.com/vanhoofmaarten/openapi-monorepo-demo) showing the power of OpenAPI and automation in a front-end project.
 
 [vanhoofmaarten/openapi-monorepo-demo](https://github.com/vanhoofmaarten/openapi-monorepo-demo) (github.com)

@@ -7,7 +7,7 @@ authors: ['maarten-van-hoof']
 serie: 'frontend-loves-openapi'
 ---
 
-In the previous parts of this series, we introduced you to the OpenAPI specification, how to describe an API provider in an OpenAPI document, the approaches we can take incorporating it on workflows how it can help us build RESTful APIs. In this part, we will discuss the tooling that is available to optimise our OpenAPI workflows.
+In the previous parts of this series, we introduced you to the OpenAPI specification, how to describe an API provider in an OpenAPI document, the approaches we can take incorporating it on workflows helping us build and integrate with RESTful APIs. In this part, we will discuss the tooling that is available to optimise our OpenAPI workflows.
 
 <br/>
 
