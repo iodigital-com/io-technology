@@ -10,7 +10,8 @@ theme: 'orange'
 ## Introduction
 
 Structuring a webpage is based on using the right semantic HTML, these semantics will provide all kinds of information
-necessary to process the page. Most of us know that semantics make a big difference on a level of SEO, but it also has a huge impact on people with disabilities. They use assistive technology (AT) to
+necessary to process the page. Most of us know that semantics make a big difference on a level of SEO, but it also has a
+huge impact on accessibility. People with certain disabilities use assistive technology (AT) to
 process all that information, so it's essential to make sure everything is communicated in the right way.
 
 In this article, I will zoom into the main navigation region of a webpage while keeping assistive technology in
@@ -19,7 +20,7 @@ mind. An example of assistive technology through computer software is a screen r
 
 If you are interested in more examples of assistive technology take a look at [the AT list on atia.org](https://www.atia.org/home/at-resources/what-is-at/).
 
-Finally, these are some terms I use alternatively throughout the article:
+These are some terms I use alternatively throughout the article:
 
 | Abbreviation | Term                 |
 | ------------ | -------------------- |
@@ -58,7 +59,7 @@ To identify the navigation region on a webpage, I use the `<nav>` element.
 > AT info: SRs have [shortcuts and gestures](https://dequeuniversity.com/screenreaders/) to navigate by landmarks, so they don't need to go through the whole webpage over and over again when discovering a website.
 
 <figure>
-  <img style={{ maxWidth: '25rem' }} src="https://i.imgur.com/vK0vMfr.png" alt="List of landmarks identified by VoiceOver, focused on 'Main navigation' landmark." />
+  <img style={{ maxWidth: '25rem' }} src="https://i.imgur.com/EGAVf7b.png" alt="List of landmarks identified by VoiceOver, focused on 'navigation' landmark." />
   <figcaption>List of landmarks identified by VoiceOver, focused on 'Main navigation' landmark. The ['banner' landmark](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header#:~:text=The%20%3Cheader%3E%20element%20has%20an%20identical%20meaning%20to%20the%20site%2Dwide%20banner%20landmark%20role%2C%20unless%20nested%20within%20sectioning%20content.%20Then%2C%20the%20%3Cheader%3E%20element%20is%20not%20a%20landmark.) corresponds to the `<header>` element.</figcaption>
 </figure>
 
@@ -116,6 +117,10 @@ Multi-level support can be provided through 5 changes:
 4. Here is the first time JS comes into play: I use it to toggle the right `aria-expanded` value and to move the focus to the
    first actionable element within the referenced element.
 5. Closing the referenced element must be done via the `ESC` key, which is the industry standard for keyboard accessibility.
+
+> AT info: The SR will announce _"Products, collapsed, button"_ on focusing the initial state of the button. When
+> I click the button, it will announce _"Products, expanded, button"_ and move the focus dynamically to the referenced
+> content.
 
 ```JavaScript {6-20}
 class ExpandButton {
@@ -178,13 +183,9 @@ class ExpandButton {
 }
 ```
 
-To instantiate the `ExpandButton` class I have used an `ExpandButtonFactory` (more info in [CodePen](https://codepen.io/timdujardin/pen/bGjWNNo)), this factory keeps track of all the
+To instantiate the `ExpandButton` class I have used an `ExpandButtonFactory` (full code example in [CodePen](https://codepen.io/timdujardin/pen/bGjWNNo)), this factory keeps track of all the
 `ExpandButton` instances and adds a window `keydown` listener for the `ESC` key. This listener will provide the
 necessary collapsing mechanism when navigating by keyboard.
-
-> AT info: The SR will now announce _"Products, collapsed, button"_ on focusing the initial state of the button. When
-> I click the button, it will announce _"Products, expanded, button"_ and move the focus dynamically to the referenced
-> content.
 
 ```JavaScript
 const menuItemButtons = ExpandButtonFactory.create(".expand-button");
@@ -253,7 +254,7 @@ announce that a sublevel item is the current page.
 
 ### 5. Provide mobile support
 
-The mobile navigation has a burger button to trigger the `<nav>`, so I used the same approach as with the multi-level
+The mobile navigation has a mobile menu button to trigger the `<nav>`, so I used the same approach as with the multi-level
 navigation in step 3.
 
 ```HTML
@@ -279,7 +280,7 @@ const mobileMenuButton = ExpandButtonFactory.create(
 The nice thing about using `aria` attributes is that I don't need the extra `is-active` classes to provide some
 styling. Just by targeting `[aria-expanded]` I have a selector that provides me with the necessary information.
 
-Same for `[aria-current="page"]` and `[aria-current="true"]`, to style active navigation menu items when they respectively are or
+Same for `[aria-current="page"]` and `[aria-current="true"]` to style active navigation menu items when they respectively are or
 contain the current page link.
 
 ```SCSS
@@ -316,7 +317,7 @@ If the webpage contains multiple `<nav>` elements, each `<nav>` needs an `aria-l
 users with clear distinction.
 
 > AT info: SRs will list the following 2 landmarks respectively as "Main navigation" and "Product navigation", instead
-> of 2 times "Navigation".
+> of 2 times "navigation".
 
 <figure>
   <img src="https://i.imgur.com/CPSOm9H.png" alt="The default list of navigation landmarks identified by VoiceOver." />
