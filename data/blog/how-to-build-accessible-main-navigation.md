@@ -93,7 +93,7 @@ Multi-level support can be provided through 5 changes:
    hide it for AT through `aria-hidden="true"`.
 3. The element expanding through interaction with the button is referenced by the `aria-controls` attribute.
 
-```HTML
+```HTML {5-12}
   <nav>
     <ul>
       <li><a href="/about-us">About us</a></li>
@@ -120,22 +120,22 @@ Multi-level support can be provided through 5 changes:
 ```JavaScript
 class ExpandButton {
   get isAriaExpanded() {
-    return this._isAriaExpanded;
+    return this.#isAriaExpanded;
   }
 
   set isAriaExpanded(value) {
-    this._isAriaExpanded = value;
+    this.#isAriaExpanded = value;
     this.el.setAttribute("aria-expanded", this.isAriaExpanded.toString());
 
     if (this.isAriaExpanded) {
-      this.ariaControlsElement?.classList.remove(this.hiddenClass);
+      this.#ariaControlsElement?.classList.remove(this.#hiddenClass);
 
       setTimeout(() => {
         // focus on first actionable element within the ref element
-        this.firstActionElement?.focus();
-      }, 30);
+        this.#firstActionElement?.focus();
+      }, 10);
     } else {
-      this.ariaControlsElement?.classList.add(this.hiddenClass);
+      this.#ariaControlsElement?.classList.add(this.#hiddenClass);
     }
   }
 
@@ -150,19 +150,19 @@ class ExpandButton {
     this.isAriaExpanded = false;
   }
 
-  expand() {
-    this.isAriaExpanded = true;
+  toggle() {
+    this.isAriaExpanded = !this.isAriaExpanded
   }
 
   clickHandler() {
     this.el.addEventListener("click", (e) => {
       e.preventDefault();
-      this.isAriaExpanded ? this.collapse() : this.expand();
+      this.toggle();
     });
   }
 
   collapseOnBlurHandler() {
-    (this.ariaControlsElement as HTMLElement).addEventListener(
+    (this.#ariaControlsElement as HTMLElement).addEventListener(
       "focusout",
       (e: Event) => {
         const currentTarget = e.currentTarget as HTMLElement;
@@ -340,13 +340,14 @@ users with clear distinction.
 > of 2 times "Navigation".
 
 <figure>
-  <img src="https://i.imgur.com/CPSOm9H.png" />
+  <img src="https://i.imgur.com/CPSOm9H.png" alt="The default list of navigation landmarks identified by VoiceOver." />
   <figcaption>
     The default list of navigation landmarks identified by VoiceOver.
   </figcaption>
 </figure>
 <figure>
-  <img src="https://i.imgur.com/pLJKDIa.png" />
+  <img src="https://i.imgur.com/pLJKDIa.png" alt="List of navigation landmarks identified by VoiceOver that contain
+    an additional `aria-label` attribute." />
   <figcaption>
     List of navigation landmarks identified by VoiceOver that contain
     an additional `aria-label` attribute.
