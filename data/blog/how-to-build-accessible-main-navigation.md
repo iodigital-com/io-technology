@@ -117,7 +117,7 @@ Multi-level support can be provided through 5 changes:
    first actionable element within the referenced element.
 5. Closing the referenced element must be done via the `ESC` key, which is the industry standard for keyboard accessibility.
 
-```JavaScript
+```JavaScript {6-20}
 class ExpandButton {
   get isAriaExpanded() {
     return this.#isAriaExpanded;
