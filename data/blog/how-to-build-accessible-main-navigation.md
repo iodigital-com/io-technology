@@ -200,16 +200,14 @@ communicating this information. On a semantic level, I need to make use of an AR
 > AT info: The anchor element with attribute `aria-current="page"` will be announced as _"Current page, link, About us"_ by the
 > VoiceOver screen reader.
 
-```HTML
+```HTML {3}
   <nav>
     <ul>
       <li><a href="/about-us" aria-current="page">About us</a></li>
       <li>
         <button aria-expanded="false" aria-controls="products-level-2">
           Products
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="12" height="9" viewBox="0 0 12 9">
-           <polygon points="1 0, 11 0, 6 8"></polygon>
-          </svg>
+          <svg aria-hidden="true">...</svg>
         </button>
         <ul id="products-level-2" class="hidden">
           <li><a href="/products/product1">Product 1</a></li>
@@ -230,16 +228,14 @@ announce that a sublevel item is the current page.
 > AT info: Now, when I navigate to the 'Products' link via my screen reader, I will hear _"Products, link, Contains
 > current page link"_ to indicate that the current page is inside its submenu.
 
-```HTML
+```HTML {5,10}
   <nav>
     <ul>
       <li><a href="/about-us">About us</a></li>
       <li>
         <button aria-expanded="true" aria-controls="products-level-2" title="Contains current page link">
           Products
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="12" height="9" viewBox="0 0 12 9">
-           <polygon points="1 0, 11 0, 6 8"></polygon>
-          </svg>
+          <svg aria-hidden="true">...</svg>
         </button>
         <ul id="products-level-2">
           <li><a href="/products/product1" aria-current="page">Product 1</a></li>
@@ -262,26 +258,9 @@ navigation in step 3.
 
 ```HTML
 <header>
-  <button class="mobile-menu-button" aria-expanded="false" aria-controls="main-nav">Mobile menu</button>
-  <nav id="main-nav" class="hidden-mobile">
-    <ul>
-      <li><a href="/about-us" aria-current="page">About us</a></li>
-      <li>
-        <button aria-expanded="false" aria-controls="products-level-2">
-          Products
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="12" height="9" viewBox="0 0 12 9">
-           <polygon points="1 0, 11 0, 6 8"></polygon>
-          </svg>
-        </button>
-        <ul id="products-level-2" class="hidden">
-          <li><a href="/products/product1">Product 1</a></li>
-          <li><a href="/products/product2">Product 2</a></li>
-        </ul>
-      </li>
-      <li><a href="/insights">Insights</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+  <button
+    class="mobile-menu-button" aria-expanded="false" aria-controls="main-nav">Mobile menu</button>
+  <nav id="main-nav" class="hidden-mobile">...</nav>
 </header>
 ```
 
