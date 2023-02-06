@@ -60,7 +60,7 @@ To identify the navigation region on a webpage, I use the `<nav>` element.
 
 <figure>
   <img style={{ maxWidth: '25rem' }} src="https://i.imgur.com/EGAVf7b.png" alt="List of landmarks identified by VoiceOver, focused on 'navigation' landmark." />
-  <figcaption>List of landmarks identified by VoiceOver, focused on 'Main navigation' landmark. The ['banner' landmark](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header#:~:text=The%20%3Cheader%3E%20element%20has%20an%20identical%20meaning%20to%20the%20site%2Dwide%20banner%20landmark%20role%2C%20unless%20nested%20within%20sectioning%20content.%20Then%2C%20the%20%3Cheader%3E%20element%20is%20not%20a%20landmark.) corresponds to the `<header>` element.</figcaption>
+  <figcaption>List of landmarks identified by VoiceOver, focused on 'navigation' landmark. The ['banner' landmark](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header#:~:text=The%20%3Cheader%3E%20element%20has%20an%20identical%20meaning%20to%20the%20site%2Dwide%20banner%20landmark%20role%2C%20unless%20nested%20within%20sectioning%20content.%20Then%2C%20the%20%3Cheader%3E%20element%20is%20not%20a%20landmark.) corresponds to the `<header>` element.</figcaption>
 </figure>
 
 ### 2. Communicate the list of navigation items and their size
