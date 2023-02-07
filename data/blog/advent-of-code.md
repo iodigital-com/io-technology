@@ -1,6 +1,6 @@
 ---
 title: 'Advent Of Code 2022'
-date: '2023-02-06'
+date: '2023-02-08'
 tags: ['advent of code', 'java']
 images: []
 summary: 'Advent Of Code is a set of puzzles that will test your problem-solving skills using your favourite programming language. You do not need extensive programming skills, but the knowledge of some standard algorithms is a pre. Plus, it is a lot of fun and a very exciting way to challenge yourself.'
