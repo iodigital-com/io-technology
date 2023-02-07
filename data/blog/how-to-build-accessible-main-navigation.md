@@ -156,17 +156,28 @@ class ExpandButton {
   }
 
   toggle() {
-    this.isAriaExpanded = !this.isAriaExpanded
+    this.isAriaExpanded = !this.isAriaExpanded;
   }
 
   clickHandler() {
-    this.el.addEventListener("click", (e) => {
+    this.el.addEventListener("mousedown", (e) => {
       e.preventDefault();
       this.toggle();
+    });
+
+    this.el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === "Space") {
+        e.preventDefault();
+        this.toggle();
+      }
     });
   }
 
   collapseOnBlurHandler() {
+    if (this.el.classList.contains("mobile-menu-button")) {
+      return;
+    }
+
     (this.#ariaControlsElement as HTMLElement).addEventListener(
       "focusout",
       (e: Event) => {
