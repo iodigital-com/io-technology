@@ -16,13 +16,22 @@ It would be a big and boring blog if I post every puzzle here and explain how di
 
 ## Experience
 
+### Puzzle Format
+
+- Every puzzle has two parts. Part 1 is usually where I was thinking "Oh, I got it!", and Part 2 usually comes with a surprise :-) Solving one part of the puzzle rewards you with a Star. Solving a complete puzzle rewards you with two Stars. You need 50 stars to complete Advent Of Code.
+- Every puzzle has a test example.
+- Every participant of Advent Of Code gets personalized input to the puzzle. If you run this input through your program and the result is correct you will get a Star.
+- There is a Global Leaderboard with rankings; if you want to compete with the whole world! But you can also join any of the Private Leaderboards. I joined a small group of iO colleagues and we had our own Private Leaderboard.
+
 ### Time
 
 The first few days when I started, it took me around 30 minutes or quicker to find the solutions. So I could just wake up a bit earlier before going to work. As complexity increased almost every day, it took me more than an hour or two. I had to use my lunch breaks for it and time in the evenings. And then there were a couple of problems that took me more than a day to solve. But roughly, I think I spent on average 2-3 hours per puzzle. That is 50-70 hours in total! That is a lot! And it won't go unnoticed. My advice, make an agreement with your friends, partner or with yourself if you want to find some time for it.
 
 ### Typing skills
 
-After typing hundreds of for-loops, I wish I could think and type as quickly as [Victor Rentea](https://www.youtube.com/watch?v=cK19rE2V9UY), and I wish I watched his videos before. That would save me so much time. Something to learn for the next time!
+After typing hundreds of for-loops, I wish I could think and type as quickly as **Victor Rentea** and I wish I watched his videos before. That would save me so much time. Something to learn for the next time!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cK19rE2V9UY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ### Programming language
 
@@ -70,7 +79,7 @@ Every puzzle provides you with a sample input and the answer for that input. It 
 
 ```
 
-One more thing to mention here. Starting from Day 5 I am using parameterized unit tests. I figured out how to extend my JUnit framework using ArgumentsProvider interface, I have removed duplicate code that reads sample files for my test cases. My code became at least 2x shorter and cleaner after that:
+One more thing to mention here. Starting from Day 5, I am using parameterized unit tests. I came across this [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5) to figure out how to extend my JUnit framework using ArgumentsProvider interface. I have removed duplicate code that reads sample files for my test cases. My code became at least 2x shorter and cleaner after that:
 
 ```java
 class Day08Test {
@@ -97,15 +106,15 @@ class Day08Test {
 
 ## Classes of problems
 
-## Integer overflow
+### Integer overflow
 
 Many of the problems include operations where int-type values become too large. 32-bit representation is not enough and the value overflows. I did not get any runtime exceptions, the result of the calculations is just wrong. Looking at the result I could see a large or negative value. This is usually a hint that I have to check if there are any operations where the number could overflow. There are a few approaches to this problem: use long-type, use mod-operations, and find common dividers to reduce the value range.
 
-## Parsing (Nested) Expressions
+### Parsing (Nested) Expressions
 
 Every puzzle starts with input data that you have to parse before you can use it in your puzzle. But a few of the puzzles go further than that, for example, when input contains a math expression and you need to evaluate it. I have not found a generic way to do that, so I reinvented the wheel every time. I've made a note for myself to do some more research about it the next time.
 
-## NP-Complexity
+### NP-Complexity
 
 NP term comes from the complexity theory of algorithms and is short for Nondeterministic Polynomial time problems. It is an exciting area of research, probably the most extensive one in computer science at the moment, especially with a related study of Quantum Computing. You can check out more about it [here](<https://en.wikipedia.org/wiki/NP_(complexity)>) or [here](https://www.youtube.com/watch?v=e2cF8a5aAhE&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O&index=72). But if you want to skip all theoretical stuff, the most important you need to know is that NP problems are decision graphs that require exponential computational time and often large memory space. Using the traditional approach might take years of calculations even for small-size graphs. To overcome these difficulties, requires some creativity, such as:
 
