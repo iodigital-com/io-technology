@@ -14,7 +14,17 @@ One of the key elements of a DevOps culture is its focus on continuous improveme
 
 Another important aspect of the DevOps culture is transparency and openness. Teams are encouraged to share information and knowledge and make processes and tools visible to others. This improves collaboration and communication and builds trust between her members of the team.
 
-A DevOps culture also fosters a sense of shared ownership and ownership of the software delivery process. Teams are encouraged to work together to identify and resolve any issues that may arise during the software development and delivery process. This requires a culture of trust where team members are willing to take risks and rely on each other to achieve common objective.
+DevOps is required in organizations because it brings together two key aspects of software development namely development and operations. Traditionally, these two functions have operated in silos, but as software systems become more complex and the need for faster, more reliable software delivery is recognized, these functions work more closely together.
+
+#### The major reasons why devOps is needed are:
+
+- Faster time to market
+- Improved collaboration
+- More reliable software
+- Better scalability
+- Increased efficiency
+
+DevOps is essential for organizations that want to remain competitive in today's fast-paced business environment. By bringing together development and operations teams, DevOps can help organizations deliver software faster, more reliably, and with greater efficiency.
 
 My personal experience as a software engineer trying to imbibe the devOps culture involves helping out in areas like setting up environment on staging and production, setting up and maintaining continuous delivery pipeline using circleCI, researching and proposing ways to improve the system which will ease the development to production process, monitoring production environment and troubleshooting errors that may arise.
 
@@ -44,7 +54,17 @@ To soak up the DevOps culture and gain expertise in this area, I created a perso
 
 - `Problem solving and critical thinking`: DevOps engineers must be able to detect, troubleshoot and resolve issues quickly and effectively.
 
-To enable a DevOps culture, the above skills are not just for operations teams to build, they are the responsibility of all parties (development and operations teams) from development to production lifecycle of an application. A DevOps culture includes a state of continuous learning and improvement rather than the final state of the application lifecycle.
+Adopting a devOps culture can be a big change for your organization, but it's essential to staying competitive in today's fast-paced software development environment as a devOps culture includes a state of continuous learning and improvement rather than the final state of the application lifecycle.
+
+#### Here are some steps you can take as an organization to start adopting a DevOps culture:
+
+- `Start with a pilot project`: When adopting DevOps practices, it's often a good idea to start small. Choose a pilot that is not overly complicated and has clear business goals. This allows you to test your DevOps practices in a controlled environment before scaling.
+- `Break down silos`: DevOps requires a culture of collaboration between development and operations teams. Encourage teams to collaborate and share knowledge, and avoid creating silos in which teams work independently.
+- `Automate processes`: Automation is an important part of DevOps. Find ways to automate manual tasks like testing and deployment to speed up the development process and reduce the risk of human error.
+- `Emphasize continuous testing`: Continuous testing is a fundamental principle of DevOps. Make sure that testing is an integral part of the development process and that testing is automated and run regularly.
+- `Encourage experimentation`: DevOps culture values ​​experimentation and innovation. Encourage teams to try new ideas and technologies, and learn from both successes and failures.
+- `Implement feedback loops`: DevOps is about continuous improvement. Establishing feedback loops allows teams to learn from their mistakes and make iterative improvements to processes and products.
+- `Foster a culture of learning`: DevOps requires a culture of continuous learning and improvement. Encourage teams to learn new skills and stay up to date with the latest technologies and trends.
 
 ### Conclusion
 
