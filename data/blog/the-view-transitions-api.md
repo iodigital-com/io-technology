@@ -1,6 +1,6 @@
 ---
 title: 'The View Transitions API: Enhancing the feel of the web'
-date: '2023-03-29'
+date: '2023-04-06'
 tags: ['frontend']
 images: ['/articles/view-transitions-api/view-transitions-api-demo.webp']
 summary: 'The View Transitions API has landed in Chrome. Let’s have a look at how the API works and why it will change the feel of the web.'
@@ -14,11 +14,11 @@ As a developer, I am always on the lookout for new tools and technologies to mak
 
 The View Transitions API is a powerful tool that simplifies the process of creating view transitions on the web. It provides a set of built-in transition effects that can be easily customized and combined to create more complex transitions to transition from one page to another.
 
-What I love about this API is that it is a quick and easy way to enhance the user experience by adding a small layer to a website. It's a great way to create dynamic and interactive web experiences that will take the websites you build to the next level.
+I love how this API can easily improve the user experience by adding a small layer to a website. It's a great way to create dynamic and interactive web experiences that will take the websites you build to the next level.
 
 ## A practical use case
 
-For my demo of the View Transitions API, I created a fictitious sneaker company in the future called _Neon Sole Society_. All content, including the company name, product brands, product pricing, product descriptions, and even product images, are generated with AI. This is a fun way to make your demo’s more realistic
+For my demo of the View Transitions API, I created a fictitious sneaker company in the future called _Neon Sole Society_. All content, including the company name, product brands, product pricing, product descriptions, and even product images, are generated with AI. This is a fun way to make your demo’s more realistic.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
 <img src='/articles/view-transitions-api/view-transitions-api-demo.gif' alt='Screen recording of the demo showing an overview with sneakers and a transition to a detailed view of a pair of sneakers'  />
