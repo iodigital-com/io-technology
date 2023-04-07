@@ -3,6 +3,7 @@ import '@/css/prism.css'
 import '@/css/font.css'
 import '@/css/post-layout.css'
 import '@/css/images.css'
+import '@/css/animations.css'
 import '@/css/logo.css'
 // import 'katex/dist/katex.css'
 import asciiLogo from '@/lib/io'
@@ -29,7 +30,15 @@ if (!isDevelopment) {
 }
 
 export default function App({ Component, pageProps }) {
-  const theme = pageProps.theme || 'default'
+  const { useLayoutWrapper = true, theme = 'default' } = pageProps
+
+  const pageContent = useLayoutWrapper ? (
+    <LayoutWrapper>
+      <Component {...pageProps} />
+    </LayoutWrapper>
+  ) : (
+    <Component {...pageProps} />
+  )
 
   return (
     <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
@@ -37,9 +46,7 @@ export default function App({ Component, pageProps }) {
         <Head />
         {isDevelopment && isSocket && <ClientReload />}
         <Analytics />
-        <LayoutWrapper>
-          <Component {...pageProps} />
-        </LayoutWrapper>
+        {pageContent}
       </BrandingThemeProvider>
     </ThemeProvider>
   )
