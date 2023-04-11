@@ -1,6 +1,6 @@
 ---
 title: 'The View Transitions API: Enhancing the feel of the web'
-date: '2023-04-06'
+date: '2023-04-11'
 tags: ['frontend']
 images: ['/articles/view-transitions-api/view-transitions-api-demo.webp']
 summary: 'The View Transitions API has landed in Chrome. Let’s have a look at how the API works and why it will change the feel of the web.'
