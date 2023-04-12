@@ -19,7 +19,7 @@ const components = {
   website: Web, // from material ui icons
   'slide-deck': SlideDeck, // from material ui icons
 }
-const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
+const SocialIcon = ({ kind, href, size = 8, title, children, classNames, textClassNames }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
@@ -37,7 +37,7 @@ const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
       <SocialSvg
         className={`fill-current h-${size} w-${size} text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 ${classNames}`}
       />
-      {children && <span className="ml-1">{children}</span>}
+      {children && <span className={`ml-1 ${textClassNames}`}>{children}</span>}
     </a>
   )
 }

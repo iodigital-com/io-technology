@@ -47,6 +47,18 @@ const colors = {
     800: '#131313',
     900: '#0f0f0f',
   },
+  io_cow: {
+    50: '#f6edf4',
+    100: '#eddbe8',
+    200: '#e3c9dd',
+    300: '#dab7d1',
+    400: '#d1a5c6',
+    500: '#c892ba',
+    600: '#bf80af',
+    700: '#c0639a',
+    800: '#a34a8c',
+    900: '#7e396c',
+  },
 }
 
 const safelist = Object.entries(colors).reduce((acc, [name, tints]) => {
