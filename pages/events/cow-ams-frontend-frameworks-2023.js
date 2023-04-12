@@ -39,14 +39,14 @@ const RaffleBlock = ({ children, numberOfTickets, href }) => {
   )
 }
 
-export default function Experiments() {
+export default function COWAMSFrontendFrameworks2023() {
   const { theme } = useBrandingTheme()
 
   return (
     <>
       <PageSEO
         title="Events - Coven of Wisdom Amsterdam - Frontend Frameworks - 2023"
-        description="What is going on with all these new frameworks like Astro, Qwik, RedwoodJS and SolidJS?"
+        description="What is going on with all these new frameworks like Astro, Qwik, React Server Components, RedwoodJS and SolidJS?"
       />
       <div
         className={`bg-io_${theme}-700  overflow-hidden bg-cover`}
@@ -62,7 +62,7 @@ export default function Experiments() {
             <p>Frontend Frameworks 2023</p>
             <img
               src="/images/cow/cow-mascotte.png"
-              alt=""
+              alt="Graphic design of a mythical creature holding an orb and hovering back and forth"
               className="animate-pulse-slowly max-w-xs"
             />
           </header>
