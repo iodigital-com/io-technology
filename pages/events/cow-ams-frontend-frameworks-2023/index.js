@@ -3,6 +3,8 @@ import QRCode from 'react-qr-code'
 import { PageSEO } from '@/components/SEO'
 import SocialIcon from '@/components/social-icons'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import { getBaseUrl } from '@/lib/utils/getBaseUrl'
+
 export const getStaticProps = () => {
   return {
     props: {
@@ -16,7 +18,7 @@ const RaffleBlock = ({ children, numberOfTickets, href }) => {
   const { theme } = useBrandingTheme()
 
   return (
-    <div className="flex flex-col justify-center gap-4">
+    <a href={href} className="flex flex-col justify-center gap-4">
       <h2 className="text-center text-4xl text-white">{children}</h2>
       <div className={`bg-io_${theme}-900 relative rounded-full p-16`}>
         <QRCode
@@ -35,7 +37,7 @@ const RaffleBlock = ({ children, numberOfTickets, href }) => {
           </p>
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 
@@ -67,26 +69,43 @@ export default function COWAMSFrontendFrameworks2023() {
             />
           </header>
           <main className="mb-24 flex flex-col items-center justify-center gap-36 lg:flex-row">
-            <RaffleBlock href="https://techhub.iodigital.com" numberOfTickets={2}>
+            <RaffleBlock
+              href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/js-nation-amsterdam-2023`}
+              numberOfTickets={2}
+            >
               JSNation Amsterdam
               <br />
               Raffle
             </RaffleBlock>
-            <RaffleBlock href="https://techhub.iodigital.com" numberOfTickets={1}>
+            <RaffleBlock
+              href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/vue-js-londen-2023`}
+              numberOfTickets={1}
+            >
               Vue.js London
               <br />
               Raffle
             </RaffleBlock>
           </main>
-          <footer className="flex w-screen flex-col items-center justify-center gap-4 px-4 lg:flex-row lg:justify-end lg:px-16">
+          <footer className="flex w-screen flex-col items-center justify-center gap-4 px-4  lg:flex-row lg:justify-between lg:px-16">
+            <div className="hidden lg:block">
+              <SocialIcon
+                textClassNames={'text-white font-semibold'}
+                classNames={'fill-white'}
+                kind="website"
+                href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023`}
+                size="5"
+              >
+                {getBaseUrl()}/events/cow-ams-frontend-frameworks-2023
+              </SocialIcon>
+            </div>
             <ul className="flex flex-col items-center justify-center gap-4 font-semibold text-white lg:flex-row">
               <li>
                 <SocialIcon
                   kind="linkedin"
                   href="https://techhub.iodigital.com"
                   size="5"
-                  classNames="fill-white"
-                  textClassNames="text-white"
+                  textClassNames={'text-white font-semibold'}
+                  classNames={'fill-white'}
                 >
                   techhub.iodigital.com
                 </SocialIcon>
@@ -96,8 +115,8 @@ export default function COWAMSFrontendFrameworks2023() {
                   kind="linkedin"
                   href="https://youtube.com/@io-technology"
                   size="5"
-                  classNames="fill-white"
-                  textClassNames="text-white"
+                  textClassNames={'text-white font-semibold'}
+                  classNames={'fill-white'}
                 >
                   youtube.com/@io-technology
                 </SocialIcon>
