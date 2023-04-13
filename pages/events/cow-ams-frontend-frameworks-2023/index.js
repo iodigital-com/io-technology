@@ -101,7 +101,7 @@ export default function COWAMSFrontendFrameworks2023() {
             <ul className="flex flex-col items-center justify-center gap-4 font-semibold text-white lg:flex-row">
               <li>
                 <SocialIcon
-                  kind="linkedin"
+                  kind="website"
                   href="https://techhub.iodigital.com"
                   size="5"
                   textClassNames={'text-white font-semibold'}
@@ -112,7 +112,7 @@ export default function COWAMSFrontendFrameworks2023() {
               </li>
               <li>
                 <SocialIcon
-                  kind="linkedin"
+                  kind="youtube"
                   href="https://youtube.com/@io-technology"
                   size="5"
                   textClassNames={'text-white font-semibold'}

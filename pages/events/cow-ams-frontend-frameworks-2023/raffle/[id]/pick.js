@@ -132,7 +132,7 @@ export default function Raffle({ event, title, multipleWinnersAllowed, allCandid
             <ul className="flex flex-col items-center justify-center gap-4 font-semibold text-white lg:flex-row">
               <li>
                 <SocialIcon
-                  kind="linkedin"
+                  kind="website"
                   href="https://techhub.iodigital.com"
                   size="5"
                   classNames="fill-white"
@@ -143,7 +143,7 @@ export default function Raffle({ event, title, multipleWinnersAllowed, allCandid
               </li>
               <li>
                 <SocialIcon
-                  kind="linkedin"
+                  kind="youtube"
                   href="https://youtube.com/@io-technology"
                   size="5"
                   classNames="fill-white"
