@@ -1,6 +1,6 @@
 ---
 title: 'Project Fugu'
-date: '2023-04-07'
+date: '2023-04-14'
 tags: ['frontend', 'web-capabilities', 'project-fugu']
 images: ['/articles/project-fugu/header.webp']
 summary: Cross-platform development is hard. Each platform has its specific implementation of an API and you end up with separate apps for each platform. Multiple frameworks try to fix this issue by creating an abstract between the platform and the application. Browser vendors are doing the same and it's called Project Fugu.
@@ -167,6 +167,10 @@ Some of the features that are being developed or considered at the moment
 - Remote desktop control
 - Call dialer/answering/control
 
+## ...but what about the other one?
+
+Project Fugu can offer a great experience, but only if the browser supports these APIs. Safari (and thus iOS and iPad OS) are not actively part of project fugu and have been slow with implementing APIs that extend the functionality of the web, like service worker and push notifications. Perhaps that will change, but it might not. Who knows if Apple will ever allow (is forced to) other browser engines on iOS and iPadOS. Having APIs fully specced and tested has a positive effect on browsers without an implementation since they can follow what has been laid out before them.
+
 ## Closing thoughts
 
 Cross-platform development is hard. Features and capabilities of an application require you to think about how it needs to be implemented in different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a contact picker for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.
@@ -176,3 +180,5 @@ So what can you do?
 Progressive Web Apps (PWAs) bring offline support and _app-like_ experiences to the web. Extending the PWA principle with APIs to include more native APIs while keeping the principles of the web (trust, privacy and security) is the core of Project Fugu 🐡.
 
 Some of these APIs are readily available and should be considered when that feature is needed, like for example the async clipboard API. Other APIs though are only available in certain browsers, like the webOTP API so handle them with care and consult the online references.
+
+Who knows if Apple will ever allow (is forced to) other browser engines on iOS and iPadOS. Having APIs fully specced and tested has a positive effect on browsers without an implementation since they can follow what has been laid out before them.
