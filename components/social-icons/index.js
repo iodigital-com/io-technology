@@ -19,7 +19,7 @@ const components = {
   website: Web, // from material ui icons
   'slide-deck': SlideDeck, // from material ui icons
 }
-const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
+const SocialIcon = ({ kind, href, size = 8, title, children, classNames, textClassNames }) => {
   if (!href || (kind === 'mail' && !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href)))
     return null
 
@@ -27,7 +27,9 @@ const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
 
   return (
     <a
-      className="flex items-center text-gray-500 transition hover:text-gray-600"
+      className={`h flex  items-center transition ${
+        textClassNames ? textClassNames : 'text-gray-700 hover:text-gray-800'
+      }`}
       target="_blank"
       rel="noopener noreferrer"
       href={href}
@@ -35,9 +37,11 @@ const SocialIcon = ({ kind, href, size = 8, title, children, classNames }) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`fill-current h-${size} w-${size} text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 ${classNames}`}
+        className={`h-${size} w-${size} text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400 ${
+          classNames ? classNames : 'fill-current'
+        }`}
       />
-      {children && <span className="ml-1">{children}</span>}
+      {children && <span className={`ml-1`}>{children}</span>}
     </a>
   )
 }

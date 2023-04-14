@@ -5,7 +5,7 @@ on:
     branches:
       - develop
   schedule:
-    - cron: "0 7 * * 2,4" # At 07:00 on Tuesday and Thursday
+    - cron: '0 7 * * 2,4' # At 07:00 on Tuesday and Thursday
 
 jobs:
   build:
@@ -13,6 +13,8 @@ jobs:
 
     env:
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      SUPABASE_PROJECT_URL: ${{ secrets.SUPABASE_PROJECT_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
 
     steps:
       - name: Checkout current repository to Master branch
@@ -20,7 +22,7 @@ jobs:
       - name: Setup NodeJs 16.x
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x"
+          node-version: '16.x'
       - name: Cache dependencies and build outputs to improve workflow execution time.
         uses: actions/cache@v1
         with:
