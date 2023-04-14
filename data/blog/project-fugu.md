@@ -3,18 +3,18 @@ title: 'Project Fugu'
 date: '2023-04-14'
 tags: ['frontend', 'web-capabilities', 'project-fugu']
 images: ['/articles/project-fugu/header.webp']
-summary: Cross-platform development is hard. Each platform has its specific implementation of an API and you end up with separate apps for each platform. Multiple frameworks try to fix this issue by creating an abstract between the platform and the application. Browser vendors are doing the same and it's called Project Fugu.
+summary: Cross-platform software development is hard. Each platform has its specific implementation of an API and you end up with separate apps for each platform. Multiple frameworks try to fix this issue by creating an abstract between the platform and the application. Browser vendors are doing the same and it's called Project Fugu.
 authors: ['lucien-immink']
 theme: 'rouge'
 ---
 
-Cross-platform development is hard. Features and capabilities of an application require you to think about how it needs to be implemented in different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a contact picker for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.
+Cross-platform software development is hard. Features and capabilities of an application require you to think about how it needs to be implemented on different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a piece of software, that allows you to access and choose a contact, let's call it a contact picker, for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.
 
 So what can you do?
 
-What about an abstraction layer between the OS native API and a common top layer, which is preferably written in a well-known set of languages that can handle UIs with a breeze, like HTML, CSS and JavaScript? Here we are describing a framework like Apache Cordova, previously known as PhoneGap. These _hybrid_ applications combine web languages with a wrapper for the OS native APIs. Hybrid cause they use web technology packaged as apps for distribution and have access to native device APIs.
+What about an abstraction layer between the OS native API and a common top layer, which is preferably written in a well-known set of languages that can handle UIs with a breeze, like HTML, CSS and JavaScript? Here we are describing a framework like Apache Cordova, Ionic's Capacitor, Electron or Tauri. These _hybrid_ applications combine web languages with a wrapper for the OS native APIs. Hybrid cause they use web technology packaged as apps for distribution and have access to native device APIs.
 
-While technology like Apache Cordova enables developers to build one UI for multiple platforms they still have to build the application for all the platforms they want to support and sometimes the support for a platform or specific feature is a bit flaky.
+While these hybrid frameworks enable developers to build one UI for multiple platforms they still have to build the application for all the platforms they want to support. The support for a platform or platform specific feature can often be flaky.
 
 But what about the web platform itself? Progressive Web Apps (PWAs) bring offline support and _app-like_ experiences to the web. Extending the PWA principle with APIs to include more native APIs while keeping the principles of the web (trust, privacy and security) is the core of Project Fugu 🐡.
 
@@ -159,7 +159,7 @@ Support for webOTP has been added since Chrome 93, Edge 93. Firefox and Safari h
 
 ## Features in the pipeline
 
-Some of the features that are being developed or considered at the moment
+Some of the features that are being developed or considered at the moment:
 
 - Changing system settings API
 - Geofencing
@@ -169,11 +169,11 @@ Some of the features that are being developed or considered at the moment
 
 ## ...but what about the other one?
 
-Project Fugu can offer a great experience, but only if the browser supports these APIs. Safari (and thus iOS and iPad OS) are not actively part of project fugu and have been slow with implementing APIs that extend the functionality of the web, like service worker and push notifications. Perhaps that will change, but it might not. Who knows if Apple will ever allow (is forced to) other browser engines on iOS and iPadOS. Having APIs fully specced and tested has a positive effect on browsers without an implementation since they can follow what has been laid out before them.
+Project Fugu can offer a great experience, but only if the browser supports these APIs. Safari (and thus iOS and iPad OS) are not actively part of Project Fugu and have been slow with implementing APIs that extend the functionality of the web. Eg. support for service workers and push notifications. If Safari and Apple will ever actively contribute to Project Fugu, remains an open question. On the one hand, the fact that Apple does not allow other browser engines from their mobile platforms is one of the main reasons why web apps are still considered less than native apps. On the other, EU regulators have noticed this as well and are actively in debate if this 'browser ban' is considered to be legal. For more information concerning this specific topic, check out [open-web-advocacy](https://open-web-advocacy.org/).
 
 ## Closing thoughts
 
-Cross-platform development is hard. Features and capabilities of an application require you to think about how it needs to be implemented in different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a contact picker for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.
+Cross-platform software development is hard. Features and capabilities of an application require you to think about how it needs to be implemented on different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a piece of software, that allows you to access and choose a contact, let's call it a contact picker, for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.
 
 So what can you do?
 
@@ -181,4 +181,4 @@ Progressive Web Apps (PWAs) bring offline support and _app-like_ experiences to 
 
 Some of these APIs are readily available and should be considered when that feature is needed, like for example the async clipboard API. Other APIs though are only available in certain browsers, like the webOTP API so handle them with care and consult the online references.
 
-Who knows if Apple will ever allow (is forced to) other browser engines on iOS and iPadOS. Having APIs fully specced and tested has a positive effect on browsers without an implementation since they can follow what has been laid out before them.
+If Safari and Apple will ever actively contribute to Project Fugu, remains an open question. On the one hand, the fact that Apple does not allow other browser engines from their mobile platforms is one of the main reasons why web apps are still considered less than native apps. On the other, EU regulators have noticed this as well and are actively in debate if this 'browser ban' is considered to be legal. For more information concerning this specific topic, check out [open-web-advocacy](https://open-web-advocacy.org/).
