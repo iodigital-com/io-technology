@@ -9,7 +9,8 @@ module.exports = {
   content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
   safelist: [
     {
-      pattern: /(bg|text)-io_(blue|orange|rouge|black)-(50|100|200|300|400|500|600|700|800|900)/,
+      pattern:
+        /(bg|text)-io_(blue|orange|rouge|black|cow)-(50|100|200|300|400|500|600|700|800|900)/,
       variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
   ],
