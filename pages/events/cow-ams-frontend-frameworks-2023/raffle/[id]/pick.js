@@ -24,7 +24,7 @@ export const getServerSideProps = async ({ params }) => {
       useLayoutWrapper: false,
       title: sentenceCase(id),
       event: id,
-      multipleWinnersAllowed: id === 'js-nation-amsterdam-2023',
+      multipleWinnersAllowed: id === 'react-summit-amsterdam-2023',
       allCandidates: candidates || [],
     },
   }
