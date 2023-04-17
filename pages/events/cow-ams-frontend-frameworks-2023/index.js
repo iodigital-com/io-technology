@@ -70,12 +70,12 @@ export default function COWAMSFrontendFrameworks2023() {
           </header>
           <main className="mb-24 flex flex-col items-center justify-center gap-36 lg:flex-row">
             <RaffleBlock
-              href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/js-nation-amsterdam-2023`}
+              href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/react-summit-amsterdam-2023`}
               numberOfTickets={2}
             >
-              JSNation Amsterdam
+              React Summit
               <br />
-              Raffle
+              Amsterdam Raffle
             </RaffleBlock>
             <RaffleBlock
               href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/vue-js-londen-2023`}
