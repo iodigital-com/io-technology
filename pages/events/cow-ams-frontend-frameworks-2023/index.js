@@ -79,7 +79,7 @@ export default function COWAMSFrontendFrameworks2023() {
             </RaffleBlock>
             <RaffleBlock
               href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/vue-js-londen-2023`}
-              numberOfTickets={3}
+              numberOfTickets={1}
             >
               Vue.js London
               <br />
