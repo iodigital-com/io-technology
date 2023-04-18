@@ -43,7 +43,6 @@ export default function Raffle({ event, title, multipleWinnersAllowed, allCandid
     let cyclesDone = 0
     let maxCycles = 5
     const updateHighlightedCandidates = () => {
-      console.log(index)
       setHighlightedCandidates(candidates.slice(index, index + 3))
 
       if (index === candidates.length) {
@@ -70,6 +69,31 @@ export default function Raffle({ event, title, multipleWinnersAllowed, allCandid
     updateHighlightedCandidates()
   }
 
+  const [numberOfParticipants, setNumberOfParticipants] = useState(null)
+
+  useEffect(() => {
+    const updateStats = () => {
+      fetch(`${getBaseUrl()}/api/events/raffle/${event}/get`)
+        .then((res) => res.json())
+        .then((participants) => {
+          setNumberOfParticipants(participants?.length)
+        })
+        .catch((err) => {
+          console.error(err)
+          setNumberOfParticipants(null)
+        })
+    }
+    const interval = setInterval(() => {
+      updateStats()
+    }, 10000)
+
+    updateStats()
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+
   return (
     <>
       <PageSEO
@@ -94,8 +118,21 @@ export default function Raffle({ event, title, multipleWinnersAllowed, allCandid
               className="animate-pulse-slowly max-w-xs"
             />
           </header>
-          <main className="my-36 flex flex-col items-center justify-center gap-8 ">
-            <h2 className="text-center text-4xl uppercase text-white">{title}</h2>
+          <main className="my-36 flex flex-col items-center justify-center gap-8">
+            <h2 className="relative text-center text-4xl uppercase text-white">
+              {title}
+              {numberOfParticipants >= 0 && (
+                <span
+                  className={`text-io_${theme}-900 absolute right-1/2 -top-4 flex origin-bottom-left -translate-y-full translate-x-1/2 items-center justify-center rounded-full bg-white  px-2 text-center text-xs font-bold lg:-top-10 lg:right-2 lg:translate-x-full lg:translate-y-0 lg:-rotate-[16deg]`}
+                >
+                  <span
+                    className="block h-12 w-12"
+                    style={{ backgroundImage: `url('/images/cow/participants.svg')` }}
+                  ></span>
+                  <span className="mr-4 text-lg">{numberOfParticipants}</span>
+                </span>
+              )}
+            </h2>
 
             <ul
               style={{ minWidth: '60vw' }}
