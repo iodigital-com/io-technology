@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code'
 
 import { PageSEO } from '@/components/SEO'
@@ -14,13 +15,48 @@ export const getStaticProps = () => {
   }
 }
 
-const RaffleBlock = ({ children, numberOfTickets, href }) => {
+const RaffleBlock = ({ children, numberOfTickets, href, event }) => {
   const { theme } = useBrandingTheme()
+  const [numberOfParticipants, setNumberOfParticipants] = useState(null)
+
+  useEffect(() => {
+    const updateStats = () => {
+      fetch(`${getBaseUrl()}/api/events/raffle/${event}/get`)
+        .then((res) => res.json())
+        .then((participants) => {
+          setNumberOfParticipants(participants?.length)
+        })
+        .catch((err) => {
+          console.error(err)
+          setNumberOfParticipants(null)
+        })
+    }
+    const interval = setInterval(() => {
+      updateStats()
+    }, 10000)
+
+    updateStats()
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   return (
     <a href={href} className="flex flex-col justify-center gap-4">
       <h2 className="text-center text-4xl text-white">{children}</h2>
       <div className={`bg-io_${theme}-900 relative rounded-full p-16`}>
+        {numberOfParticipants >= 0 && (
+          <p
+            className={`text-io_${theme}-900 absolute top-0 right-0 flex origin-bottom-left  -rotate-[16deg] items-center justify-center rounded-full bg-white px-2 text-center text-xs font-bold`}
+          >
+            <span
+              className="block h-12 w-12"
+              style={{ backgroundImage: `url('/images/cow/participants.svg')` }}
+            ></span>
+            <span className="mr-4 text-lg">{numberOfParticipants}</span>
+          </p>
+        )}
         <QRCode
           size={200}
           bgColor="transparent"
@@ -71,6 +107,7 @@ export default function COWAMSFrontendFrameworks2023() {
           <main className="mb-24 flex flex-col items-center justify-center gap-36 lg:flex-row">
             <RaffleBlock
               href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/react-summit-amsterdam-2023`}
+              event="react-summit-amsterdam-2023"
               numberOfTickets={2}
             >
               React Summit
@@ -79,6 +116,7 @@ export default function COWAMSFrontendFrameworks2023() {
             </RaffleBlock>
             <RaffleBlock
               href={`${getBaseUrl()}/events/cow-ams-frontend-frameworks-2023/raffle/vue-js-londen-2023`}
+              event="vue-js-londen-2023"
               numberOfTickets={1}
             >
               Vue.js London
