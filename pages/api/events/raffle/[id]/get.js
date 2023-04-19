@@ -62,8 +62,6 @@ const raffleSubmission = async (req, res) => {
       return
     }
 
-    console.log(allEmailsData)
-
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(allEmailsData.map(({ name }) => name)))
