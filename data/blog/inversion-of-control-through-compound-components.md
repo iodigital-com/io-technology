@@ -62,25 +62,23 @@ const getPeters = (users) => {
 Naturally, it doesn’t make sense to duplicate so much code for every possible filter so you might create a reusable function like this:
 
 ```jsx
-const getUsers = (users, attributes) => {
+const filterUsers = (users, attribute, value) => {
   return users.filter((user) => {
-    return attributes.every((attribute) => {
-      return user[attribute.key] === attribute.value
-    })
+    return user[attribute] === value
   })
 }
 
-const english = getUsers(users, [{ key: 'country', value: 'England' }])
+const english = filterUsers(users, 'country', 'England')
 
-const thirtyYearOlds = getUsers(users, [{ key: 'age', value: 30 }])
+const thirtyYearOlds = filterUsers(users, 'age', 30)
 
-const peters = getUsers(users, [{ key: 'name', value: 'Peter' }])
+const peters = filterUsers(users, 'name', 'Peter')
 ```
 
-Now this seems fine, but what if I want to get all French hikers? As hobbies is an array, I need to refactor the `getUsers` function to also be able to filter for that:
+Now this seems fine, but what if I want to get all French hikers? As hobbies is an array, I need to refactor the `filterUsers` function to also be able to filter for that:
 
 ```jsx {3-5}
-const getUsers = (users, attribute, value) => {
+const filterUsers = (users, attribute, value) => {
   return users.filter((user) => {
     if (Array.isArray(user[attribute])) {
       return user[attribute].includes(value)
@@ -91,26 +89,26 @@ const getUsers = (users, attribute, value) => {
 }
 
 const getFrenchReaders = (users) => {
-  return getUsers(users, 'country', 'France')
+  return filterUsers(users, 'country', 'France')
 }
 ```
 
 You can imagine this function getting more and more complex when new requirements come in. The user of this function doesn’t have control and therefore I need to keep adding logic for new use cases. Let’s invert that and let the user have full control:
 
 ```jsx {0-3}
-const getUsers = (users, filterFn) => {
+const filterUsers = (users, filterFn) => {
     return users.filter(user => !!user && filterFn(user);
 )};
 
-const englishSwimmers = getUsers(users, user => {
+const englishSwimmers = filterUsers(users, user => {
     return user.country === 'England' && user.hobbies.includes('swimming');
 });
 
-const frenchReaders = getUsers(users, user => {
+const frenchReaders = filterUsers(users, user => {
     return user.country === 'France' && user.hobbies.includes('reading');
 });
 
-const americanHikers = getUsers(users, user => {
+const americanHikers = filterUsers(users, user => {
     return user.country === 'USA' && user.hobbies.includes('hiking');
 });
 ```
@@ -176,7 +174,7 @@ const SelectList = ({ options, value, onChange, keepOpenAfterSelection }) => {
 }
 ```
 
-Now, imagine ten other requirements coming in in the coming months. What happens is you enter the “aprocalypse”. Not only will your component handle a vast number of props, it becomes very complex very quickly.
+Now, imagine ten other requirements coming in in the coming months. What happens is you enter the [“apropcalypse”](https://twitter.com/gurlcode/status/1002110517094371328?lang=en). Not only will your component handle a vast number of props, it becomes very complex very quickly.
 
 ### Accepting a state reducer
 
@@ -185,9 +183,9 @@ The real issue in the simplified example above is that the `handleSelect` functi
 ```jsx
 import React, { useReducer } from 'react'
 
-const stateReducerDefaultReducer = (state, changes) => ({ ...state, ...changes })
+const defaultStateReducer = (state, changes) => ({ ...state, ...changes })
 
-const SelectList = ({ options, value, onChange, stateReducer = stateReducerDefaultReducer }) => {
+const SelectList = ({ options, value, onChange, stateReducer = defaultStateReducer }) => {
   const [{ isOpen }, setState] = useReducer(stateReducer, { isOpen: false })
 
   const handleSelect = (option) => {
@@ -385,7 +383,7 @@ The benefits of rendering the SelectList like this are:
 - Implementation logic is moved outside of the component making it easier to fit your needs
   - For instance, what if you need to render the toggle underneath the items instead of above them? Just render it there!
 - The options are not passed as a configuration anymore
-  - What if you also want to add an icon in front of the list item? Just render that in through React children next to the label
+  - What if you also want to add an icon in front of the list item? Just render that in through React.js children next to the label
   - The component needs fewer features and updates, but can handle whatever you throw at it
 - It’s clear how this component works
   - You don’t have to open it and scroll to lines of JSX and figure out what happens
@@ -404,7 +402,9 @@ Well…
 
 Look at some of the reusable functions and components in your codebase. What is one of the functions or components that you often have to fight against or have to make more complex every time you work with it? Usually, that’s a good start.
 
-For functions with many parameters for different use cases, I think you should use Inversion of Control to simplify them and empower the developer using them. For components, I showed two main ways of inverting control. When you feel you’re battling state often, try to see if passing a state reducer can help you out. For components where you feel you’re battling the rendering logic often, try to see if Compound Components can resolve those issues.
+- **Functions with many parameters for different use cases**: use Inversion of Control to simplify them and empower the developer using them.
+- **Components where you're battling state**: pass a state reducer
+- **Components where you’re battling the rendering logic**: use Compound Components
 
 ## Final thoughts
 
