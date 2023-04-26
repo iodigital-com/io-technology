@@ -1,5 +1,5 @@
 ---
-title: 'The View Transitions API: Enhancing the feel of the web'
+title: 'The _View Transitions API_: Enhancing the feel of the web'
 date: '2023-04-11'
 tags: ['frontend']
 images: ['/articles/view-transitions-api/view-transitions-api-demo.webp']
