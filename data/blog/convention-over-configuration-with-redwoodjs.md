@@ -30,11 +30,10 @@ are. You usually also take into consideration how they are regarded by peers, ho
 a good fit for your project right now, but also in the long run when your app and your team needs to scale. But maybe
 most important: how fun it is to work with. Remember; We went to great lengths just so we don't have to write jQuery anymore.
 
-All these decisions are not trivial! They affect real people, so it is worth it. This ceremony of setting up your
-project can take weeks. Sure, some of us work smart and create starter templates as a base for our projects. But
+All these decisions are not trivial! They affect real people, so it is worth it. This ceremony of setting up a new project can take weeks. Sure, some of us work smart and create starter templates as a base for our projects. But
 take into consideration that with that hundreds, potentially thousands of developers have built a bunch of similar React starter boilerplate projects.
 
-By standing on the shoulders of able to build great things. However, in JS-land we somehow too often feel the need to
+By standing on the shoulders of giants we are able to build great things. However, in JS-land we somehow too often feel the need to
 construct our own giants first.
 
 ## Convention over Configuration
@@ -52,7 +51,7 @@ notably [AdonisJS](https://adonisjs.com/), [BlitzJS](https://blitzjs.com/), and 
 Redwood feels like the one I have been longing for. They started development in 2020
 and released their 1.0 around April 2022. To me, they hit the right balance of being opinionated, yet remaining flexible
 enough. This full-stack framework is built on top of React, GraphQL, Fastify and Prisma. It is a batteries-included framework
-that comes with a lot of features out of the box. Not to fancy, new or cutting edge, but just the right tools to build
+that comes with a lot of features out of the box. Nothing to fancy, new or cutting edge, mature and proven tools to build
 quality applications that are still considered modern.
 
 Besides that, the community is really great! They have an active Discord, a community forum and organize online events
@@ -98,9 +97,9 @@ yarn redwood setup dbAuth
 
 The `dbAuth` argument is the argument used to indicate the auth provider you want to use (self-hosted in the dbAuth case).
 Redwood supports a number of auth providers out of the box, including Auth0, Firebase, Supabase and SuperTokens.
-But the framework also exposes interface for integrating a custom auth provider.
+But the framework also exposes interfaces for integrating a custom auth provider.
 
-The generator commands are vey useful. If you want, you can quickly generate login, registration and password reset pages with:
+The generator commands are vey useful. If you want, you can quickly generate login, registration and password-reset pages with:
 
 ```bash
 yarn redwood generate dbAuth
@@ -122,7 +121,7 @@ Checking authorization is done with roles. To protect sections of your app for a
 </Router>
 ```
 
-To controlling access to GraphQL queries and mutations you pass the roles as an argument to the `requireAuth()` directive:
+To control access to GraphQL queries and mutations you pass the roles as an argument to the `requireAuth()` directive:
 
 ```graphql
 type Mutation {
@@ -132,7 +131,7 @@ type Mutation {
 }
 ```
 
-Redwood secures the GraphQL api by default. When you omit the `requireAuth()` directive, it will still apply it to queries
+Redwood secures its GraphQL api by default. When you omit the `requireAuth()` directive, it will still apply it to queries
 and mutations in the background for you. They are not accessible, unless you deliberately annotate them with the
 `skipAuth()` directive.
 
@@ -147,7 +146,7 @@ of the conventions. But it's packed with the right decisions and tools for the m
 your toolbelt is likely to pay off in the long run.
 
 It's also worth mentioning that while building CRUD apps with Redwood is a breeze, you might want to evaluate whether the
-pre-rendering feature is sufficient for your use case when server side rendering is your primary concern. There might be
+prerender feature is sufficient for your use case when server side rendering is your primary concern. There might be
 better options out there.
 
 Finally, while I think their docs are great, there are not that many resources out there that are suitable for complete
