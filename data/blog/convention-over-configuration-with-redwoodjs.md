@@ -51,7 +51,7 @@ notably [AdonisJS](https://adonisjs.com/), [BlitzJS](https://blitzjs.com/), and 
 Redwood feels like the one I have been longing for. They started development in 2020
 and released their 1.0 around April 2022. To me, they hit the right balance of being opinionated, yet remaining flexible
 enough. This full-stack framework is built on top of React, GraphQL, Fastify and Prisma. It is a batteries-included framework
-that comes with a lot of features out of the box. Nothing to fancy, new or cutting edge, mature and proven tools to build
+that comes with a lot of features out of the box. Nothing to fancy, new or cutting edge. But mature and proven tools to build
 quality applications that are still considered modern.
 
 Besides that, the community is really great! They have an active Discord, a community forum and organize online events
@@ -66,7 +66,7 @@ Once you initialise a new Redwood project, you get a mono repo with Yarn Workspa
 
 ### Mapping
 
-Within the API director you find a **_db_** folder in which Prisma ORM related files reside. The subdirectories within the **_src_** directory:
+Within the api directory you find a **_db_** folder in which Prisma ORM related files reside. The subdirectories within the **_src_** directory:
 
 - _**directives**_ - GraphQL directives
 - _**functions**_ - serverless functions
