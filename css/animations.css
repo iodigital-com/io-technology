@@ -1,0 +1,21 @@
+@keyframes pulse-slowly {
+  0% {
+    transform: translate(-1.25rem, -1.25rem);
+  }
+  25% {
+    transform: translate(1.25rem, -1rem);
+  }
+  50% {
+    transform: translate(1rem, 1rem);
+  }
+  75% {
+    transform: translate(-1rem, 1rem);
+  }
+  100% {
+    transform: translate(-1.25rem, -1.25rem);
+  }
+}
+
+.animate-pulse-slowly {
+  animation: pulse-slowly 15s ease-in-out infinite alternate;
+}
