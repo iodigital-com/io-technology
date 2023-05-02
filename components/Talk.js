@@ -63,6 +63,10 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
               <dd>
                 <SocialIcon kind="youtube" href={video} size="5" title="Video" />
               </dd>
+            </>
+          )}
+          {slides && (
+            <>
               <dt className="sr-only">Slides</dt>
               <dd>
                 <SocialIcon kind="slide-deck" href={slides} size="8" title="Slides" />
