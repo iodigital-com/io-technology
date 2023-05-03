@@ -1,6 +1,6 @@
 ---
 title: 'Import maps in JavaScript'
-date: '2023-05-01'
+date: '2023-05-03'
 tags: ['frontend', 'web-capabilities', 'javascript']
 summary:
 authors: ['sander-borgman']
