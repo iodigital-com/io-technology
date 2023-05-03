@@ -12,7 +12,7 @@ GitHub is often one of the more overlooked social platforms that developers use.
 
 ## Why should I care
 
-As developers, it’s important to share what we do on GitHub. Let’s say you’re interviewing for a new job. While resumes are important, often the best way to review a developer is to see what they build. What choices do they make, what level do they operate on, what area of development do they focus on? These are just some questions that can be answered with a combination of having a good resume and a GitHub profile. Next to that, having projects publicly available can help fellow developers to learn how you solved a problem. In short, it can be a mirror of you as a developer.
+As developers, it’s important to share what we do on GitHub. I'm a consultant which means I’m mostly working for clients. Whenever I have an interview with a client, I want to show what I can do. While resumes are important, often the best way to review a developer is to see what they build. What choices do they make, what level do they operate on, what area of development do they focus on? These are just some questions that can be answered with a combination of having a good resume and a GitHub profile. Next to that, having projects publicly available can help fellow developers to learn how you solved a problem. In short, it can be a mirror of you as a developer.
 
 ## The basics
 
@@ -63,7 +63,9 @@ This is just a small selection of the projects you can find on [my GitHub](https
 
 ### Eliminate time lost starting up
 
-A lot of the projects I do are quickly set up using, for instance, this [template repository](https://github.com/DaveBitter/next-boilerplate). Template repositories are great to eliminate losing time when starting up. Learn more on template repositories in [my article](https://www.davebitter.com/quick-bits/github-template-repositories) or [YouTube video](https://www.youtube.com/watch?v=zCKwIApdNXw).
+I tend to do a lot of side projects because I like to try out and explore instead of just reading about something. This leads to quite a few public and private repositories on my GitHub (at the time of writing ~110). Most of these never see the light of day, but still require a project set up to get started. I like to have a few things like frameworks, linting, testing etc. setup. To be able to do that I make use of my [template repository](https://github.com/DaveBitter/next-boilerplate).
+
+Template repositories are great to eliminate losing time when starting up. They let you create a full project in a separate repository that serves as the template. It then makes it easy to start a create a new repository that is basically a clone of the template without things like the Git history. Learn more about template repositories in [my article](https://www.davebitter.com/quick-bits/github-template-repositories) or [YouTube video](https://www.youtube.com/watch?v=zCKwIApdNXw).
 
 ### Write a proper project Readme
 
@@ -93,7 +95,9 @@ That is already starting to look better! There is one step we can take however t
 
 ![A screenshot of my GitHub Profile Readme where I introduce myself](/articles/how-to-make-your-github-profile-stand-out/github-profile-readme.png)
 
-In essence, a GitHub Profile Readme is a markdown file that will be shown above your pinned repositories. The easiest way to do this is to create a new repository with the same name as your GitHub username. In my case, that will be [https://github.com/DaveBitter/DaveBitter](https://github.com/DaveBitter/DaveBitter). There, you add a Readme file at the root of the project with any content you want. For more information, you can read my article on the [GitHub Profile Readme](https://www.davebitter.com/quick-bits/github-profile-readme) or watch my [YouTube video](https://www.youtube.com/watch?v=ewtT4NJX6NA) explaining it. In the YouTube video, I go over some amazingly creative examples as well so be sure to check it out!
+In essence, a GitHub Profile Readme is a markdown file that will be shown above your pinned repositories. The easiest way to do this is to create a new repository with the same name as your GitHub username. In my case, that will be [https://github.com/DaveBitter/DaveBitter](https://github.com/DaveBitter/DaveBitter). There, you add a Readme file at the root of the project with any content you want. For more information, you can read my article on the [GitHub Profile Readme](https://www.davebitter.com/quick-bits/github-profile-readme) or watch my [YouTube video](https://www.youtube.com/watch?v=ewtT4NJX6NA) explaining it. In the YouTube video, I go over some amazingly creative examples listed on [this page](https://github.com/abhisheknaiidu/awesome-github-profile-readme) as well so be sure to check it out!
+
+Also make sure to check out [GitHub Blocks](https://blocks.githubnext.com/) which allows you to add custom, interactive blocks to your Readme. You can add blocks like live statistics on your repositories, create custom data visualizations and more!
 
 ### Taking it to the final level
 
