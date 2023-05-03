@@ -2,12 +2,10 @@
 title: 'Import maps in JavaScript'
 date: '2023-05-03'
 tags: ['frontend', 'web-capabilities', 'javascript']
-summary:
+summary: Traditionally, developers have used build tools like Webpack or Rollup to bundle and optimize their code for production. These build processes can be time-consuming to set up and make development more complicated. With native JavaScript modules now widely supported in modern web browsers, there is a need to map JavaScript packages to their source files.
 authors: ['sander-borgman']
 theme: 'blue'
 ---
-
-Traditionally, developers have used build tools like Webpack or Rollup to bundle and optimize their code for production. These build processes can be time-consuming to set up and make development more complicated. With native JavaScript modules now widely supported in modern web browsers, there is a need to map JavaScript packages to their source files.
 
 Let's say we have the following JavaScript module on our page:
 
