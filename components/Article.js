@@ -3,7 +3,6 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
-import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 const Article = ({ slug, date, title, summary, tags, authors, border = true }) => {
@@ -72,9 +71,6 @@ const Article = ({ slug, date, title, summary, tags, authors, border = true }) =
               <Tag key={tag} text={tag} />
             ))}
           </div>
-          <Link href={`/articles/${slug}`}>
-            <Arrow className="w-6" />
-          </Link>
         </div>
       </div>
     </article>
