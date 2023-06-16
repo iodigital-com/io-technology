@@ -4,7 +4,6 @@ import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
 import Image from '@/components/Image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import SocialIcon from '@/components/social-icons'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
@@ -35,6 +34,7 @@ export default function Videos({ videos }) {
                 height={1192}
                 layout="responsive"
                 className="rounded-full"
+                alt="meetup"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
