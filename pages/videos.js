@@ -35,6 +35,7 @@ export default function Videos({ videos }) {
                 height={1192}
                 layout="responsive"
                 className="rounded-full"
+                alt="meetup"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
