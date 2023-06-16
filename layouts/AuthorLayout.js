@@ -26,6 +26,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                 height={800}
                 layout="responsive"
                 className="rounded-full"
+                alt="avatar"
               />
             </div>
 
