@@ -4,7 +4,6 @@ import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
 import Image from '@/components/Image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import SocialIcon from '@/components/social-icons'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
