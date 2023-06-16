@@ -87,7 +87,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
           </SectionTitle>
           <section className="container mx-auto max-w-2xl">
             {posts.map((fm, index) => {
-              const { slug, date, title, tags } = fm
+              const { slug, date, title, summary, tags } = fm
 
               return (
                 <Article
@@ -95,6 +95,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                   slug={slug}
                   date={date}
                   title={title}
+                  summary={summary}
                   tags={tags}
                   border={index !== 0}
                 />

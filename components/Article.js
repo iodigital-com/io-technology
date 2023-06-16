@@ -6,7 +6,7 @@ import Tag from '@/components/Tag'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const Article = ({ slug, date, title, tags, authors, border = true }) => {
+const Article = ({ slug, date, title, summary, tags, authors, border = true }) => {
   const { theme } = useBrandingTheme()
 
   return (
@@ -54,7 +54,12 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
         )}
         <div className={`col-span-full ${authors ? 'md:col-start-4 xl:col-start-7' : ''}`}>
           <Link href={`/articles/${slug}`}>
-            <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
+            <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
+            <div className="mb-3 hidden md:block">
+              <h3 className="hyphens-auto line-clamp-3">
+                {<MarkdownRenderer markdown={summary} />}
+              </h3>
+            </div>
           </Link>
           <dl className="mb-4">
             <dt className="sr-only">Published on</dt>
