@@ -32,10 +32,9 @@ const markdownParser = new MarkdownIt()
       return
     }
 
-    // const content = sanitizeHtml(markdownParser.render(fm.content))
-    const content = sanitizeHtml(
-      fm.content.replaceAll('/articles/', `${siteMetadata.siteUrl}/articles/`)
-    )
+    let content = fm.content.replaceAll('/articles/', `${siteMetadata.siteUrl}/articles/`)
+    content = sanitizeHtml(markdownParser.render(content))
+
     const slug = file.replace('data/blog', '/articles').replace(/\.(mdx|md)/, '')
 
     feed.item({
