@@ -38,12 +38,13 @@ const markdownParser = new MarkdownIt()
 
     feed.item({
       title: removeMarkdown(fm.data.title),
-      description: fm.data.summary,
+      // description: fm.data.summary,
+      description: content,
       url: siteMetadata.siteUrl + slug,
       guid: siteMetadata.siteUrl + slug,
       categories: fm.data.tags,
       date: new Date(fm.data.date).toUTCString(),
-      custom_elements: [{ 'content:encoded': content }],
+      // custom_elements: [{ 'content:encoded': content }],
     })
   })
 
