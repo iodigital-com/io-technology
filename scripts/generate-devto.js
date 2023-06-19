@@ -33,18 +33,19 @@ const markdownParser = new MarkdownIt()
     }
 
     // const content = sanitizeHtml(markdownParser.render(fm.content))
-    let content = fm.content.replaceAll('/articles/', `${siteMetadata.siteUrl}/articles/`)
+    const content = sanitizeHtml(
+      fm.content.replaceAll('/articles/', `${siteMetadata.siteUrl}/articles/`)
+    )
     const slug = file.replace('data/blog', '/articles').replace(/\.(mdx|md)/, '')
 
     feed.item({
       title: removeMarkdown(fm.data.title),
-      // description: fm.data.summary,
-      description: content,
+      description: fm.data.summary,
       url: siteMetadata.siteUrl + slug,
       guid: siteMetadata.siteUrl + slug,
       categories: fm.data.tags,
       date: new Date(fm.data.date).toUTCString(),
-      // custom_elements: [{ 'content:encoded': content }],
+      custom_elements: [{ 'content:encoded': content }],
     })
   })
 
