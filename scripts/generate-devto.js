@@ -33,7 +33,7 @@ const markdownParser = new MarkdownIt()
     }
 
     let content = fm.content.replaceAll('/articles/', `${siteMetadata.siteUrl}/articles/`)
-    content = sanitizeHtml(markdownParser.render(content))
+    content = markdownParser.render(content)
 
     const slug = file.replace('data/blog', '/articles').replace(/\.(mdx|md)/, '')
 
