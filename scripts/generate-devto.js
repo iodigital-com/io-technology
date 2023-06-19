@@ -23,7 +23,7 @@ const markdownParser = new MarkdownIt()
   })
 
   const blogFiles = await globby(['data/blog/**/*.mdx', 'data/blog/**/*.md'])
-  blogFiles.forEach((file, index) => {
+  blogFiles.slice(0, 5).forEach((file) => {
     const source = fs.readFileSync(file, 'utf8')
     const fm = matter(source)
 
