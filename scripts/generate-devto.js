@@ -5,6 +5,7 @@ const globby = require('globby')
 const matter = require('gray-matter')
 const sanitizeHtml = require('sanitize-html')
 const MarkdownIt = require('markdown-it')
+const removeMarkdown = require('markdown-to-text').default
 
 const siteMetadata = require('../data/siteMetadata')
 const distPath = 'public/devto.xml'
@@ -35,7 +36,7 @@ const markdownParser = new MarkdownIt()
     const slug = file.replace('data/blog', '/articles').replace(/\.(mdx|md)/, '')
 
     feed.item({
-      title: fm.data.title,
+      title: removeMarkdown(fm.data.title),
       description: fm.data.summary,
       url: siteMetadata.siteUrl + slug,
       guid: siteMetadata.siteUrl + slug,
