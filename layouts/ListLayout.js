@@ -71,6 +71,8 @@ export default function ListLayout({
         <ul>
           {!filteredBlogPosts.length && 'No articles found.'}
           {displayPosts.map((frontMatter, index) => {
+            console.log({ frontMatter })
+
             const { slug, date, title, summary, tags } = frontMatter
             const authorsResolved = frontMatter.authors.map((author) => {
               return authors[author]
