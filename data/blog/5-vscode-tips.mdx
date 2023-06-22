@@ -2,28 +2,46 @@
 title: '5 Quick Tips to Boost Your Productivity in VSCode'
 date: '2023-06-21'
 tags: ['VSCode', 'Productivity', 'Shortcuts', 'Frontend']
-summary: "As a developer, maximizing productivity is crucial to accomplishing tasks efficiently. In this blog post, we will explore five tips to boost your productivity in Visual Studio Code. These tips will help you save time and reduce the need for excessive clicking. Let's dive in!."
+summary: "As developers, we aim to be as efficient as possible. That's why we will explore five tips to boost your productivity in Visual Studio Code (VSCode). These tips will help you save time and reduce the need for excessive clicking. Let's dive in!"
 authors: ['zakaria-taissate']
-theme: 'orange'
+theme: 'blue'
 ---
 
 ## 1. Remove Unused Imports with Ease
 
-Especially when refactoring, a file can end up with a lot of unused imports. VSCode provides a handy shortcut to remove unused imports swiftly. Simply press `CMD + Option + O` (or `Shift + Alt + O` on Windows). This will remove any unnecessary imports, decluttering your codebase. Alternative: I've also seen developers put this in an auto-fixable ESLint rule instead.
+Especially when refactoring, a file can end up with a lot of unused imports. VSCode provides a handy shortcut to remove unused imports. Simply press `CMD + Option + O ` (the letter O). Or `Shift + Alt + O` on Windows. This will remove any unnecessary imports, decluttering your codebase. Alternative: I've also seen developers put this in an auto-fixable ESLint rule instead.
 
-## 2. Rename Variables Effortlessly
+## 2. Rename Variables without effort
 
 Renaming variables can be a tedious and error-prone task, especially when you have multiple usages. In VSCode, you can simplify this process by utilizing the `F2` key. Place your cursor on the variable you want to rename and press `F2`. VSCode will automatically update all instances of the variable throughout your code, ensuring consistency and saving you valuable time.
 
+<Image
+  src="/articles/5-vscode-tips/renamingf2.gif"
+  width={438}
+  height={72}
+  style={{ borderRadius: 8 }}
+/>
+
 ## 3. Create Custom Shortcuts for Frequent Actions
 
-Do you find yourself repeatedly performing a specific action in VSCode? You can create your own custom shortcuts to streamline your workflow. For instance, if you frequently use a particular command or extension, you can assign a keyboard shortcut to it. To do this, go to the VSCode settings (`Code` > `Preferences` > `Keyboard Shortcuts`) and search for the desired action. Once found, click on the pencil icon and set your preferred shortcut. This way, you can quickly trigger the action without the need for manual navigation.
+Do you find yourself repeatedly performing a specific action in VSCode? If you frequently use a particular command or extension, you can assign a keyboard shortcut to it to streamline your workflow. To do this, go to `Code` > `Preferences` > `Keyboard Shortcuts` and search for the desired action. Once found, double-click on the shortcut column and set your preferred shortcut. This way, you can quickly trigger the action without the need for manual navigation.
 
-## 4. Custom shortcut: Swiftly Fix ESLint Issues
+You can also open the `keybindings.json` file directly by clicking on the file icon in the top right corner of the keyboard shortcuts settings. This file contains all your custom shortcuts.
 
-Integrating ESLint into your development workflow helps maintain code quality and adhere to coding standards. I'm assuming you already use ESLint, and hopefully, you are combining it with prettier too. You probably have it set up so that ESLint's autofix runs on save, but I like to quickly execute this manually as well.
+<Image
+  src="/articles/5-vscode-tips/keybindings-json.gif"
+  width={864}
+  height={608}
+  style={{ borderRadius: 8 }}
+/>
 
-Open the keyboard shortcuts settings as mentioned earlier and open the keybindings.json JSON file by clicking on the file icon in the top right corner. Copy the below code and assign a key combination of your choice (e.g., `Ctrl + ,`, that's what I use) to instantly trigger the ESLint auto-fix feature. Especially helpful if you have ESLint setup in a way that it does a lot of things automatically, like fixing the import order.
+## 4. Custom shortcut idea: Swiftly Fix ESLint Issues
+
+Integrating ESLint into your development workflow helps maintain code quality and adhere to coding standards. I hope you already use ESLint, and even better, combined it with Prettier. If you don't know what ESLint or Prettier is, read more about them here: [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/). Amazing tools! They're usually set up in CI/CD pipelines, you don't want to find out that your code doesn't pass the linting checks after the fact, right?
+
+In all projects I've worked on, we had it set up so that ESLint's auto-fix runs on save, but I like to be able to quickly execute this manually as well.
+
+Open the keyboard shortcuts settings as mentioned in the third tip and open the `keybindings.json` JSON file by clicking on the file icon in the top right corner. Copy the below code and assign a key combination of your choice (I use `Ctrl + .`) to instantly trigger the ESLint auto-fix feature. Especially helpful if you have ESLint set up in a way that it does a lot of things automatically, like fixing the import order.
 
 ```json
 [
@@ -43,11 +61,13 @@ Open the keyboard shortcuts settings as mentioned earlier and open the keybindin
   style={{ borderRadius: 8 }}
 />
 
-Adding imports manually can be repetitive and time-consuming, even with the auto-import functionality (quick-fix -> add all missing imports.). To automate this process, you can create a shortcut for the "Quick Fix: add all missing
+This one is my favourite. Adding imports manually can be repetitive and time-consuming,
+even with the auto-import functionality (`quick-fix` > `add all missing imports`).
+To automate this process, you can create a shortcut for the "Quick Fix: add all missing
 imports" command. For instance, you can set it to `CMD + '`. This way, whenever you
-encounter an unresolved import, you can simply use the shortcut to automatically
+encounter unresolved imports, you can simply use the shortcut to automatically
 add the necessary imports, saving you the hassle of searching, typing, and importing
-manually. Add the following to the keybindings.json file, the same as in the previous
+manually. Add the following to the `keybindings.json` file, just like in the previous
 tip.
 
 ```json
