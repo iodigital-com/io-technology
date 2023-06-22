@@ -59,9 +59,19 @@ There really isn’t such a thing, it’s just a method of working and using an 
 
 We could potentially run into some specificity problems by declaring a new button below our hover state. By declaring our buttons inside of a layer, we make sure that doesn’t happen as unlayered styles in CSS are read last.
 
-[You can view the example of these layered buttons on CodePen](https://codepen.io/utilitybend/pen/eYPbYYK)
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/eYPbYYK" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
-I know I’ve taken a shortcut for this first example, but I didn’t want to repeat an article I’ve written before. If you want an in-depth explanation of this, I suggest you [read about this smart button system on my blog](https://utilitybend.com/blog/the-button-case-using-custom-properties-for-a-smart-button-system). I’ve got quite a few more things I’d like to cover here so, let’s get on with it.
+If you want an in-depth explanation of this button system, I suggest you [read about this smart button system on my blog](https://utilitybend.com/blog/the-button-case-using-custom-properties-for-a-smart-button-system).
+
+This idea of private custom properties and the blueprint for this button system was also introduced to me by [Lea Verou at CSS Day 2022](https://www.youtube.com/watch?v=ZuZizqDF4q8). If you haven't seen it, it's an amazing talk where she also does a lot of fun stuff with "invalid at computed value time", which I'm not going to cover here (it's really cool, but a bit "hacky").
 
 ## Creating a smart grid system
 
@@ -115,11 +125,19 @@ And the CSS:
 
 By adding this scoped variable `--gap` we can now position our pseudo element by giving it a negative `inset-inline-end` by using the `calc()` function in CSS and adjust the size as well.
 
-[Find this example on CodePen](https://codepen.io/utilitybend/pen/yLRQEzb)
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/yLRQEzb" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
 ### Think outside the box with this inheriting
 
-I hope you now have some understanding that these custom properties can easily be overwritten and we can use this for many things when it comes to positioning elements as well. But even if you use them as constants for your colors, they can be overwritten to create a dark theme for your project:
+Now that we have some understanding that these custom properties can easily be overwritten, we can use this for many things when it comes to positioning elements as well. If you use them as constants for your colors, they can be overwritten to create a dark theme for your project:
 
 ```css
 :root {
@@ -234,11 +252,19 @@ document.addEventListener('mousemove', (event) => {
 
 The formula to calculate the axis is pretty easy: we just use the axis from our event and subtract half the width of our spotlight itself.
 
-[And this is how we create a moving spotlight with custom properties](https://codepen.io/utilitybend/pen/JjvoYGj)
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/JjvoYGj" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
 ## Using :has() and container style queries to create booleans
 
-We’re still waiting on some more browser support for these two features (come on Firefox…). But especially with the new and upcoming features, using custom properties really seems to click. I’m currently working on a lot of demo’s with about this but wanted to share at least one of them.
+Especially with the new and upcoming features such as container queries and `:has()`, using custom properties really seems to click. I’m currently working on a lot of demo’s that combine these exciting features and wanted to share one of them.
 
 ![Select with below a list that contains fruit and vegetable names](/articles/going-beyond-constants-with-custom-properties/fruits-veggies.png)
 
@@ -297,17 +323,43 @@ We’re actually just using CSS custom properties as booleans here, pretty sweet
 
 For the record, I know that you could probably do this by just using `:has()`, But by showing it to you this way, you also get a feel of the power that container queries have to offer. This way, you could easily enhance this demo by adding more boolean dependent items such as showing a carrot or apple based on the container query, the choice is yours
 
-[Here you can find a little demo of this select with custom properties](https://codepen.io/utilitybend/pen/KKGMMZx)
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/KKGMMZx" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
-But remember, this might not be the best practice.
+But remember, this might not be the best practice, as doing a lot of heavy calculations with `:has()` on a `:root` level could affect your overall performance. So, it's ok to use it, as long as you don't **over**use it.
 
 I [created a theme selector](https://codepen.io/utilitybend/pen/PoymmWJ) as well that uses the same technique, but might be a bit more complicated if you want to check it out. Who knows, I might write a full explainer about that one later.
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/PoymmWJ" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
 ## What about @property?
 
 This is probably on top of my list of "features I really wish were cross browser" (poor Firefox..). In short, it gives custom properties some superpowers. I’m not going to get into it but still wanted to show off what you can do with them by sharing a demo I created for the first iO CodePen challenge, by using `@property` to animate the hue of an `hsl()` color and rotating a conic gradient.
 
-[Here’s my demo for the iO Challenge](https://codepen.io/utilitybend/pen/vYQYNEL)
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/utilitybend/full/vYQYNEL" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
 
 [But don’t forget to look at some of the other pens popping up](https://codepen.io/tag/io-challenge)
 
