@@ -157,7 +157,7 @@ Now that we have some understanding that these custom properties can easily be o
 }
 ```
 
-In this example we just change the color of a background and the text based on a darkest and lightest color, which are custom properties as well.
+In this example we just change the color of a background and the text based on a darkest and lightest color, which in themselves are custom properties as well.
 
 ## Custom properties can contain anything you want
 
@@ -173,13 +173,13 @@ button.transparent {
 }
 ```
 
-Although we probably won’t need to do this anymore when we have some more of the [color-module-5](https://www.w3.org/TR/css-color-5/) in CSS in all modern browsers (for example `color-mix()`), this could help our workflow for now.
+Although we probably won’t have the need to do this anymore for long with upcoming CSS features included in [color-module-5](https://www.w3.org/TR/css-color-5/) (for example `color-mix()`). Still, this could help our workflow for now.
 
 ### How about using custom properties for progressive enhancement
 
-These new HD colors in CSS are really beautiful, I absolutely adore them. And there is quite some browser support for them, but unfortunately we’re still stuck for the moment in providing a fallback. Checkout [gradient.style](https://gradient.style/) if you want to play around with them.
+These new HD colors in CSS are really beautiful, I absolutely adore them. And there is quite a bit of browser support for them, but unfortunately we’re still stuck for the moment in providing a fallback. Checkout [gradient.style](https://gradient.style/) if you want to play around with them.
 
-But there is more than just using the HD colors themselves. Even using a normal gradient in an sRGB space can give a completely different effect depending on the color mode you are drawing it in. The effect being that your gradient will mostly look a bit smoother and more natural. We can easily use progressive enhancement with custom properties for these kind of gradients.
+But there is more than just using the HD colors themselves. Even using a normal gradient with sRGB color can give a completely different effect depending on the color mode you are drawing it in. The effect being that your gradient will mostly look a bit smoother and more natural. We can easily use progressive enhancement with custom properties for these kind of gradients.
 
 Remember, custom properties can contain anything you want. So why not use a space?
 
