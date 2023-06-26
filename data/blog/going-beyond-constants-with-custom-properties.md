@@ -3,7 +3,7 @@ title: 'Going beyond constants with custom properties'
 date: '2023-06-26'
 tags: ['frontend', 'css']
 images: ['/articles/going-beyond-constants-with-custom-properties/custom-properties.png']
-summary: 'If you love CSS, you’ve probably heard of custom properties (a.k.a. CSS variables) before. Still, a lot of people seem to use these variables as constants for their CSS. In this article, I will try to give you some more insights on how you can use these custom properties to create some smart systems or even use them as booleans in CSS and create easy progressive enhancements.'
+summary: 'If you love CSS, you’ve probably heard of custom properties (a.k.a. CSS variables) before. Still, a lot of people seem to use them as constants for their CSS. In this article, I will try to give you some more insights on how you can use these custom properties to create some smart systems or even use them as booleans in CSS and create easy progressive enhancements.'
 authors: ['brecht-de-ruyte']
 theme: 'rouge'
 ---
@@ -12,13 +12,13 @@ theme: 'rouge'
 
 One of the best places to start is of course… BUTTONS! When we create buttons, we’re usually relying on mixins when using SASS or even some other tricks with CSS-in-JS. But what if I told you that custom properties can really create some clean code that’s easily maintainable as well?
 
-Using mixins by only using SASS variables will create quite a large output for our buttons. Say - for example - we want to style these 4 buttons:
+Using mixins combined with only SASS variables will create quite a large output for our buttons. Say - for example - we want to style these 4 buttons:
 
 ![4 buttons, a primary, secondary and outline variants](/articles/going-beyond-constants-with-custom-properties/the-button-case.png)
 
 Each of these buttons have a hover state as well, [you can see them on this codepen](https://codepen.io/utilitybend/pen/JjmKWKb) with the SASS output as CSS
 
-By using some modern CSS we can easily create these same buttons by using Custom Properties:
+By using some modern CSS we can easily create these same buttons by using custom Properties:
 
 ```css
 /* default buttons layer */
