@@ -5,7 +5,7 @@ tags: ['frontend', 'css', 'conference']
 images: ['/articles/css-day-2022-a-small-recap/css-day-2022-a-small-recap.jpg']
 summary: 'After a long break because of Covid-19, CSS Day is back. In a new location at the Zuiderkerk in Amsterdam. Once again trying to create the perfect line-up for everything design and CSS, and boy, they delivered just that.'
 authors: ['brecht-de-ruyte']
-theme: 'orange'
+theme: 'electric_blue'
 canonicalUrl: 'https://utilitybend.com/blog/css-day-2022-a-small-recap'
 ---
 

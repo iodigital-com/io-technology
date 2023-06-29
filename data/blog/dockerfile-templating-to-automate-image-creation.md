@@ -8,7 +8,7 @@ images:
   ]
 summary: "If we take a look at the repository for the official Node.js Docker images we can see that the source contains a Dockerfile for each image variant. Imagine having to add a package to all of these images. That's a lot of manual edits, but it's manageable. Now imagine adding a package to only specific versions of the image and a different package depending on the Linux distro."
 authors: ['luud-janssen']
-theme: 'orange'
+theme: 'electric_blue'
 canonicalUrl: 'https://www.iodigital.com/en/history/isaac/dockerfile-templating-to-automate-image-creation'
 ---
 

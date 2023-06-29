@@ -44,7 +44,7 @@ export async function getStaticProps({ params }) {
   const searchString = authorDetails.reduce((acc, author) => acc + author.occupation + ' ', '')
   const { jobs } = await getRelatedJobs(4, searchString)
 
-  const theme = post.frontMatter.theme || 'orange'
+  const theme = post.frontMatter.theme || 'electric_blue'
 
   return { props: { post, authorDetails, prev, next, jobs, serie, theme } }
 }
