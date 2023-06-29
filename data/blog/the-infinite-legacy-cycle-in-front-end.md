@@ -5,7 +5,7 @@ tags: ['frontend']
 images: ['/articles/the-infinite-legacy-cycle-in-front-end/interview.jpg']
 summary: 'Projects often become legacy in a incredibly short time. I have spoken to people in technology with a variety of skills, experience and roles. Time to find out how they think about this, what tips they have to prevent these issues and more.'
 authors: ['dave-bitter']
-theme: 'electric_blue'
+theme: 'energetic_blue'
 ---
 
 As a front-end developer and consultant, It seems like many of the existing projects I join have the same issues. Generally, within the first week, you hear one of the following quotes:

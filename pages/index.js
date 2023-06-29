@@ -30,7 +30,7 @@ export async function getStaticProps() {
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
   // return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
-  return { props: { posts, videos, jobs, contributors, theme: 'electric_blue' } }
+  return { props: { posts, videos, jobs, contributors, theme: 'energetic_blue' } }
 }
 
 export default function Home({ posts, videos, jobs, contributors }) {
