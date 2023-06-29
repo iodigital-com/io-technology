@@ -5,7 +5,7 @@ tags: ['frontend', 'css', 'js']
 images: ['/articles/the-future-of-page-transitions-with-shared-element-transitions/header.jpg']
 summary: 'The Shared Element Transitions API allows creating page transitions using a browser API that can provide users with a better visual connection between page-a and page-b by transitioning shared elements on both pages.'
 authors: ['milan-vogels']
-theme: 'electric_blue'
+theme: 'energetic_blue'
 ---
 
 In native mobile app development transitioning from one page/state to another is something that has been supported for a long time. For example, you can do this using [Activity transitions](https://developer.android.com/training/transitions/start-activity) for Android. For the web, however, things aren't all that easy.
@@ -16,7 +16,7 @@ The [Shared Element Transition](https://github.com/WICG/shared-element-transitio
 
 ---
 
-<div className="p-4 bg-io_electric_blue-100 font-serif">[Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is under active development and the specification is likely to change during its development.</div>
+<div className="p-4 bg-io_energetic_blue-100 font-serif">[Shared Element Transition](https://github.com/WICG/shared-element-transitions/) is under active development and the specification is likely to change during its development.</div>
 
 ---
 

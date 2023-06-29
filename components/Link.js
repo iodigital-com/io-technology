@@ -4,7 +4,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 // TODO: add these classes to the safelist
 // !text-io_blue-600
-// !text-io_electric_blue-600
+// !text-io_energetic_blue-600
 // !text-io_orange-600
 // !text-io_rouge-600
 // !text-io_black-600

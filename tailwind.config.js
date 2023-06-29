@@ -10,7 +10,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text)-io_(blue|electric_blue|orange|rouge|black|cow)-(50|100|200|300|400|500|600|700|800|900)/,
+        /(bg|text)-io_(blue|energetic_blue|orange|rouge|black|cow)-(50|100|200|300|400|500|600|700|800|900)/,
       variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
   ],
@@ -38,7 +38,7 @@ module.exports = {
       },
       colors: {
         // primary: brandColors.colors.io_orange,
-        primary: brandColors.colors.io_electric_blue,
+        primary: brandColors.colors.io_energetic_blue,
         gray: colors.neutral,
         ...brandColors.colors,
       },

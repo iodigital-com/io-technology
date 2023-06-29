@@ -1,5 +1,5 @@
 const colors = {
-  // Todo: remove this theme after debugging and rename "io_electric_blue" to "io_blue"
+  // Todo: remove this theme after debugging and rename "io_energetic_blue" to "io_blue"
   io_blue: {
     50: '#f5f7fd',
     100: '#ebeffb',
@@ -13,7 +13,7 @@ const colors = {
     900: '#1a2f6a',
   },
   // Todo: search for "bg-io_" usage and add comments where it is used: DONE!
-  io_electric_blue: {
+  io_energetic_blue: {
     50: '#e5e7eb',
     100: '#d8dff6',
     200: '#9caee9',
