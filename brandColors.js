@@ -1,4 +1,5 @@
 const colors = {
+  // Todo: remove this theme after debugging and rename "io_electric_blue" to "io_blue"
   io_blue: {
     50: '#f5f7fd',
     100: '#ebeffb',
@@ -11,6 +12,27 @@ const colors = {
     800: '#203982',
     900: '#1a2f6a',
   },
+  // Todo: search for "bg-io_" usage and add comments where it is used: DONE!
+  io_electric_blue: {
+    50: '#e5e7eb',
+    100: '#d8dff6',
+    200: '#9caee9',
+    300: '#868ada',
+    400: '#6380da',
+    500: '#0017ee',
+    600: '#3156c3', // -> this color is copypasted from io_blue color theme
+    700: '#2947a3', // -> this color is copypasted from io_blue color theme
+    800: '#203982', // -> this color is copypasted from io_blue color theme
+    900: '#1a2f6a', // -> this color is copypasted from io_blue color theme
+    // Todo: these are the colors from iO main website, remove them after debugging
+    51: '#e5e7eb', // rgb(229, 231, 235) limiter
+    101: '#d8dff6', // --color-tertiary-2d
+    201: '#9caee9', // --color-tertiary-2c
+    301: '#868ada', // --color-secondary-lavendel
+    401: '#6380da', // --color-tertiary-4c
+    501: '#0017ee', // --color-primary-blue rgb(0, 23, 238) main
+  },
+  // Todo: add info where my colors come from into PR description
   io_orange: {
     50: '#fef9f6',
     100: '#fdf2ee',

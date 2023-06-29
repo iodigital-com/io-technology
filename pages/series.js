@@ -22,7 +22,7 @@ export async function getStaticProps() {
       series,
       pagination,
       authors,
-      theme: 'orange',
+      theme: 'electric_blue',
     },
   }
 }
