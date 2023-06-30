@@ -27,6 +27,8 @@ When I was a lead frontend consultant at NPO Radio, both developers and UXers we
 - [NPO Soul & Jazz](https://soulenjazz.nl)
 - [NPO SterrenNL](https://www.nporadio5.nl/sterrennl)
 
+All of the applications were maintained within one monorepo.
+
 ### A monorepo for multiple brands
 
 A [monorepo](https://en.wikipedia.org/wiki/Monorepo) is a single repository that contains multiple applications. This is a great solution for white labeling because it allows you to share code between brands, and it makes it easy to update and deploy the applications separately.
@@ -55,13 +57,13 @@ So it wasn't just slapping a new logo and color on the application and calling i
 
 ## Let's get started!
 
-With the following do's and dont's, I will give you guidelines on when to use which solution. At NPO we used React and [Styled Components](https://styled-components.com/), but these guidelines are applicable to any framework. It should also work just as well with SASS, CSS modules, or any other styling solution.
+At NPO we used React and [Styled Components](https://styled-components.com/), but the guidelines here are applicable to any framework. It should also work just as well with SASS, CSS modules, or any other styling solution.
 
 I'll cover 3 parts you'll have to think about when creating a white-label product in your front-end:
 
 1. Structuring your theme
 2. Component and file structure
-3. Difference in data
+3. Data differences
 
 ## Part 1. Structuring your theme
 
@@ -123,8 +125,7 @@ That would look something like this:
 
 #### With Styled Components
 
-```tsx
-// Location: shared/components/PageHeader/PageHeader.styles.ts
+```tsx:shared/components/PageHeader/PageHeader.styles.ts
 const StyledPageHeader = styled.header`
   /* Reference to a global variable instead of creating a new custom variable */
   /* So DON'T do props.theme.colors.pageHeaderColor, instead...: */
@@ -136,8 +137,7 @@ const StyledPageHeader = styled.header`
 
 #### With regular CSS
 
-```scss
-// Location: shared/components/PageHeader/PageHeader.styles.scss
+```scss:shared/components/PageHeader/PageHeader.styles.scss
 .page-header {
   background-color: var(--color-secondary);
 }
@@ -224,8 +224,7 @@ In the below example, you can see what it can look like if I extended the shared
 
 With styled components:
 
-```typescript
-// Location:  /brand2/components/PageHeader/Pageheader.styles.ts
+```typescript:brand2/components/PageHeader/Pageheader.styles.ts
 import { PageHeaderBase } from '@/shared/components/PageHeader/PageHeader.styles'
 
 export const StyledPageHeader = styled(PageHeaderBase)`
@@ -236,8 +235,7 @@ export const StyledPageHeader = styled(PageHeaderBase)`
 
 Here is the same idea but with CSS:
 
-```scss
-// Location:  /brand2/components/PageHeader/Pageheader.styles.scss
+```scss:brand2/components/PageHeader/Pageheader.styles.scss
 @import '@shared/components/PageHeader/PageHeader.styles.scss';
 
 .page-header {
@@ -252,8 +250,7 @@ With this approach, you can keep the shared component as clean as possible, and 
 
 Here's a final example that shows how you can add different elements to a specific brand. You can import and extend the baseline component (PageHeader), and pass some components to it as children. Styled components are used here:
 
-```jsx
-// Location: /brand2/components/PageHeader/PageHeader.tsx
+```jsx:brand2/components/PageHeader/PageHeader.tsx
 import { PageHeaderBase } from '@/shared/components/PageHeader/PageHeader.styles'
 
 // First, we apply the brand-specific styling to the baseline component like explained in previous examples.
@@ -276,7 +273,7 @@ const PageHeader = () => (
 
 For regular CSS, just imagine that instead of a `StyledPageHeader`, you have a regular HTML element with a class called `.page-header`.
 
-## Part 3. Differences in data. Conditions are okay now
+## Part 3. Data differences: Conditions are okay now
 
 Sometimes, the behaviour of a component or view changes based on the incoming data from the backend/API.
 
@@ -333,9 +330,9 @@ const Card = ({ data }) => {
 }
 ```
 
-While I realize this is the simplest example, you'll have to keep this approach in mind for more complex data structures and differences as well. Your components will become hard to maintain if you add conditional logic per brand. You won't remember what brand uses what logic. Instead of worrying about that, focus on the component design itself.
+While I realise this is the simplest example, you'll have to keep this approach in mind for more complex data structures and differences as well. Your components will become hard to maintain if you add conditional logic per brand. You won't remember what brand uses what logic. Instead of worrying about that, focus on the component design itself.
 
-Also, be aware that this is not a silver bullet. If you have a lot of conditional logic in your components based on differences in data, it might be a good idea to start splitting up the component per brand and extending/composing as I mentioned in part 2.
+Also, be aware that this is not a silver bullet. If you have a lot of conditional logic in your components based on data differences, it might be a good idea to start splitting up the component per brand and extending/composing as I mentioned in part 2.
 
 Finally, you'll have to make sure the data itself is structured in a way that makes sense. This will require some collaboration with your backend team.
 
