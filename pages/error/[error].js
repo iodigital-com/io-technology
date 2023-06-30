@@ -70,5 +70,5 @@ export default function ErrorPage({ error }) {
 }
 
 ErrorPage.getInitialProps = ({ res, err, params }) => {
-  return { theme: 'black' }
+  return { theme: 'green' }
 }

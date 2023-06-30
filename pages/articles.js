@@ -19,7 +19,7 @@ export async function getStaticProps() {
   }
   const authors = await getAuthors(posts)
 
-  return { props: { initialDisplayPosts, posts, pagination, authors, theme: 'rouge' } }
+  return { props: { initialDisplayPosts, posts, pagination, authors, theme: 'beige' } }
 }
 
 export default function Articles({ posts, initialDisplayPosts, pagination, authors }) {

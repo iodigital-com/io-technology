@@ -3,11 +3,10 @@ import Link from 'next/link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 // TODO: add these classes to the safelist
+// !text-io_green-600
+// !text-io_beige-600
 // !text-io_blue-600
-// !text-io_energetic_blue-600
-// !text-io_orange-600
-// !text-io_rouge-600
-// !text-io_black-600
+// !text-io_pink-600
 
 const CustomLink = ({ href, ...rest }) => {
   const isInternalLink = href && href.startsWith('/')

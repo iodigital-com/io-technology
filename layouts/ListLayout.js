@@ -2,6 +2,7 @@ import { useState } from 'react'
 import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
 import Article from '@/components/Article'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export default function ListLayout({
   posts,
@@ -22,7 +23,8 @@ export default function ListLayout({
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
 
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
+  const { fontColor } = useBrandingTheme()
+  const textClass = `text-${fontColor}`
 
   return (
     <>

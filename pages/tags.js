@@ -10,7 +10,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
 
-  return { props: { tags, theme: 'rouge' } }
+  return { props: { tags, theme: 'beige' } }
 }
 
 export default function Tags({ tags }) {

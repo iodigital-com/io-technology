@@ -23,7 +23,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       video,
-      theme: 'black',
+      theme: 'green',
     },
   }
 }

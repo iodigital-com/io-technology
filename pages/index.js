@@ -29,12 +29,12 @@ export async function getStaticProps() {
   const allAuthors = await getAllAuthors()
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
-  // return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
-  return { props: { posts, videos, jobs, contributors, theme: 'energetic_blue' } }
+  return { props: { posts, videos, jobs, contributors, theme: 'green' } }
 }
 
 export default function Home({ posts, videos, jobs, contributors }) {
-  const { theme } = useBrandingTheme()
+  const { theme, fontColor } = useBrandingTheme()
+  const textClass = `text-${fontColor}`
 
   const authors = contributors.reduce((acc, author) => {
     acc[author.slug[0]] = author
@@ -44,7 +44,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500 text-white`}>
+      <div className={`bg-io_${theme}-500 ${textClass}`}>
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
@@ -142,7 +142,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
           <Link
             href="/articles"
             aria-label="all posts"
-            className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+            className="hover:const { theme, fontColor } = useBrandingTheme() relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black"
           >
             <span>All Posts</span>
             <Arrow className="ml-4 w-6" />
