@@ -9,8 +9,8 @@ import Talk from '@/components/Talk'
 export default function AuthorLayout({ children, frontMatter, posts, talks }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
 
-  const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
+  const { theme, fontColor } = useBrandingTheme()
+  const textClass = `text-${fontColor}`
 
   return (
     <>

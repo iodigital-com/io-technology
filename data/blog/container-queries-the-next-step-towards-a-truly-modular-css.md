@@ -11,7 +11,7 @@ authors: ['maarten-van-hoof']
 
 ---
 
-<div className="p-4 bg-io_energetic_blue-100 font-serif">The [container query specification](https://drafts.csswg.org/css-contain-3/) is a Working Draft and under active development. Be aware that the information in the article below is prone to change.</div>
+<div className="p-4 bg-io_blue-100 font-serif">The [container query specification](https://drafts.csswg.org/css-contain-3/) is a Working Draft and under active development. Be aware that the information in the article below is prone to change.</div>
 
 ---
 
@@ -189,7 +189,7 @@ Size container feature are:
 - **aspect/ratio**
 - **orientation**
 
-<div className="p-4 bg-io_energetic_blue-100 font-serif mb-4">Browser vendors have indicated to first focus and ship the inline-size container feature. Other container features will follow later.</div>
+<div className="p-4 bg-io_blue-100 font-serif mb-4">Browser vendors have indicated to first focus and ship the inline-size container feature. Other container features will follow later.</div>
 <br />
 
 ##### Style container features
@@ -207,7 +207,7 @@ Style container features can be used for querying computed values. With this, we
 }
 ```
 
-<div className="p-4 bg-io_energetic_blue-100 font-serif mb-4">The style container queries proposal might be deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/7020</div>
+<div className="p-4 bg-io_blue-100 font-serif mb-4">The style container queries proposal might be deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/7020</div>
 <br />
 
 ##### State container features
@@ -229,7 +229,7 @@ header {
 }
 ```
 
-<div className="p-4 bg-io_energetic_blue-100 font-serif mb-4">The state container queries proposal has been deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/6402</div>
+<div className="p-4 bg-io_blue-100 font-serif mb-4">The state container queries proposal has been deferred to the next level of the contain specification. See: https://github.com/w3c/csswg-drafts/issues/6402</div>
 <br />
 
 #### Container-name

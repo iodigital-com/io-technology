@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
       initialDisplaySeries,
       pagination,
       authors,
-      theme: 'energetic_blue',
+      theme: 'blue',
     },
   }
 }

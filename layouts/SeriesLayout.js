@@ -2,6 +2,7 @@ import { useState } from 'react'
 import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
 import Serie from '@/components/Serie'
+import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 export default function ListLayout({
   series,
@@ -22,7 +23,8 @@ export default function ListLayout({
   const displaySeries =
     initialDisplaySeries.length > 0 && !searchValue ? initialDisplaySeries : filteredSeries
 
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
+  const { fontColor } = useBrandingTheme()
+  const textClass = `text-${fontColor}`
 
   return (
     <>

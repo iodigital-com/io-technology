@@ -32,7 +32,7 @@ const LayoutWrapper = ({ children }) => {
   }, [])
   const { theme } = useBrandingTheme()
   const themeBg = theme === 'default' ? 'white' : theme
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
+  const textClass = 'text-black'
 
   return (
     <>
@@ -54,7 +54,7 @@ const LayoutWrapper = ({ children }) => {
                   <Player
                     autoplay
                     src="/logo.json"
-                    className={`logo theme-${theme} -translate-x-3 sm:translate-x-0`}
+                    className={`logo theme-default -translate-x-3 sm:translate-x-0`}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (

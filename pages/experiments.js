@@ -25,8 +25,8 @@ export async function getStaticProps() {
 }
 
 export default function Experiments({ experiments }) {
-  const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
+  const { theme, fontColor } = useBrandingTheme()
+  const textClass = `text-${fontColor}`
 
   return (
     <>

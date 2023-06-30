@@ -4,7 +4,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 const Head = () => {
   let { theme } = useBrandingTheme()
   if (theme === 'default') {
-    theme = 'black'
+    theme = 'green'
   }
 
   return (
