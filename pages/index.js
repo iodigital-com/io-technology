@@ -142,7 +142,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
           <Link
             href="/articles"
             aria-label="all posts"
-            className="hover:const { theme, fontColor } = useBrandingTheme() relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black"
+            className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
           >
             <span>All Posts</span>
             <Arrow className="ml-4 w-6" />
