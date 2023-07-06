@@ -23,7 +23,7 @@ export async function getStaticProps() {
   const posts = (await getAllFilesFrontMatter('blog')).filter(
     (frontMatter) => !frontMatter.hideInArticleList
   )
-  const { videos } = await getLatestVideos(6)
+  const { videos } = await getLatestVideos(10)
   const { jobs } = await getLatestJobs(9)
 
   const allAuthors = await getAllAuthors()
@@ -33,8 +33,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts, videos, jobs, contributors }) {
-  const { theme, fontColor } = useBrandingTheme()
-  const textClass = `text-${fontColor}`
+  const { theme } = useBrandingTheme()
 
   const authors = contributors.reduce((acc, author) => {
     acc[author.slug[0]] = author
@@ -44,7 +43,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500 ${textClass}`}>
+      <div className={`bg-io_${theme}-500`}>
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">

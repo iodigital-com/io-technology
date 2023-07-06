@@ -1,13 +1,9 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
 import { PageSEO } from '@/components/SEO'
-import siteMetadata from '@/data/siteMetadata'
-import formatDate from '@/lib/utils/formatDate'
 import ScrollTop from '@/components/ScrollTop'
 
-export default function StaticPageLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { date, title, name } = frontMatter
+export default function StaticPageLayout({ frontMatter, children }) {
+  const { title } = frontMatter
 
   return (
     <>

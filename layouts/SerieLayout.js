@@ -28,11 +28,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
       />
       <ScrollTop />
       <article>
-        <div
-          className={`bg-io_${theme}-500 pb-14 pt-24 text-white ${
-            images?.length > 0 ? 'mb-72' : 'mb-12'
-          }`}
-        >
+        <div className={`bg-io_${theme}-500 pb-14 pt-24 ${images?.length > 0 ? 'mb-72' : 'mb-12'}`}>
           <div className="container mx-auto">
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
