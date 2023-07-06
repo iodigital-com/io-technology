@@ -5,7 +5,7 @@ tags: ['development', 'frontend', 'Vue 2', 'Vue 3']
 images: ['/articles/vue3-composition-api-in-a-nutshell/header.png']
 summary: 'Vue 3 has been launched with the composition API. In this article we dive deeper into this subject and compare it with the options API (old way).'
 authors: ['lars-janssen']
-theme: 'black'
+theme: 'green'
 ---
 
 Vue 3 has been released on Monday, February 7, 2022. Since the release of Vue 3 the ecosystem got a boost (for example with Vite) and

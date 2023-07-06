@@ -5,7 +5,7 @@ tags: ['astro', 'web framework', 'NextJS', 'SSR', 'SSG']
 images: ['/articles/lets-explore-astros-core-features/hero.png']
 summary: "When it comes to creating websites, performance is crucial, but how do you achieve a performant website? This is why Astro was created; let's look at how it works and why it's so effective."
 authors: ['zjerilon-ferero']
-theme: 'rouge'
+theme: 'beige'
 ---
 
 Astro has been steadily increasing in popularity, but why? And what exactly is Astro? And how does it pile up against other web frameworks? Let's find out together by exploring Astro's core features.

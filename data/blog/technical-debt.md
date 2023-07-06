@@ -5,7 +5,7 @@ tags: ['development', 'code-quality']
 images: ['/articles/technical-debt/technical-debt.jpg']
 summary: 'Are you tired of seeing good websites go to waste? Do you want to keep your codebase clean, but you have no idea where to start? Ever wondered how a small change request or simple bugfix turned into an endless game of whack-a-mole? Monitoring technical debt can provide a way out.'
 authors: ['niels-matthijs']
-theme: 'orange'
+theme: 'blue'
 ---
 
 There are many holy grails in the web development community, but one of our boldest challenges is building websites that _increase_ in quality over time. Too many projects have inexcusably short lifespans, as neither clients nor developers find themselves able to deal with the scrambled chaos websites inevitably become. Despite everybody's best intentions, websites are often on life support by the time they are effectively launched, which is a far stretch from the quality we aspire to deliver.

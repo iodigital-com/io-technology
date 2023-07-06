@@ -5,7 +5,7 @@ tags: ['frontend']
 images: ['/articles/view-transitions-api/view-transitions-api-demo.webp']
 summary: 'The View Transitions API has landed in Chrome. Let’s have a look at how the API works and why it will change the feel of the web.'
 authors: ['dave-bitter']
-theme: 'black'
+theme: 'green'
 ---
 
 As a developer, I am always on the lookout for new tools and technologies to make my work easier and more efficient, but simultaneously increase the user experience of it. That's why I was excited to explore the View Transitions API, which is now stable in Chrome and see how it could simplify the process of creating view transitions on the web.

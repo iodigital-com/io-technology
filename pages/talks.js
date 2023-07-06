@@ -12,7 +12,7 @@ export async function getStaticProps() {
   const talksShuffled = shuffle(talks)
   const authors = await getAuthors(talks)
 
-  return { props: { talks: talksShuffled, authors, theme: 'black' } }
+  return { props: { talks: talksShuffled, authors, theme: 'pink' } }
 }
 
 export default function Talks({ talks, authors }) {
@@ -21,7 +21,7 @@ export default function Talks({ talks, authors }) {
   return (
     <>
       <PageSEO title={`Talks - ${siteMetadata.author}`} description={siteMetadata.description} />
-      <section className={`bg-io_${theme}-500 text-white`}>
+      <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pt-8 pb-24 md:pb-32">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
