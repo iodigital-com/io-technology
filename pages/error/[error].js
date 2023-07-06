@@ -60,7 +60,7 @@ export default function ErrorPage({ error }) {
       <div className="lg:flex">
         <Player autoplay loop src={Number(error) === 404 ? '/404.json' : '/500.json'} />
 
-        <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center bg-gray-50 p-4">
+        <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center p-4">
           <h1 className="text-4xl xl:text-5xl">{title}</h1>
           <p className="mt-4 text-lg xl:text-2xl">{action}</p>
         </div>

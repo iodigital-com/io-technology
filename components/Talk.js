@@ -17,35 +17,34 @@ const Talk = ({ title, summary, authors, tags, video, slides }) => {
         </div>
 
         <div className="flex flex-grow flex-col justify-end">
-          {authors &&
-            authors.map((author) => (
-              <div className="mt-2 mb-3 flex items-center text-lg" key={author.name}>
-                <div className="flex-0 relative mr-3 inline-block h-10 w-10 overflow-hidden rounded-full">
-                  <Image
-                    key={author.name}
-                    src={author.avatar || '/authors/io.jpg'}
-                    width="100%"
-                    height="100%"
-                    alt={`avatar ${author.name}`}
-                    objectFit="cover"
-                    className="rounded-full"
-                  />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-black">
-                    <Link>
-                      <a
-                        href={`/authors/${author.slug[0]}`}
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                      >
-                        {author.name}
-                      </a>
-                    </Link>
-                  </p>
-                  <p className="text-sm text-black">{author.occupation}</p>
-                </div>
+          {authors?.map((author) => (
+            <div className="mt-2 mb-3 flex items-center text-lg" key={author.name}>
+              <div className="flex-0 relative mr-3 inline-block h-10 w-10 overflow-hidden rounded-full">
+                <Image
+                  key={author.name}
+                  src={author.avatar || '/authors/io.jpg'}
+                  width="100%"
+                  height="100%"
+                  alt={`avatar ${author.name}`}
+                  objectFit="cover"
+                  className="rounded-full"
+                />
               </div>
-            ))}
+              <div>
+                <p className="text-sm font-medium">
+                  <Link>
+                    <a
+                      href={`/authors/${author.slug[0]}`}
+                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                    >
+                      {author.name}
+                    </a>
+                  </Link>
+                </p>
+                <p className="text-sm">{author.occupation}</p>
+              </div>
+            </div>
+          ))}
 
           <div className="mb-3 flex flex-wrap gap-3">
             {tags.length > 0 &&

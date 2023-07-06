@@ -32,7 +32,6 @@ const LayoutWrapper = ({ children }) => {
   }, [])
   const { theme } = useBrandingTheme()
   const themeBg = theme === 'default' ? 'white' : theme
-  const textClass = 'text-black'
 
   return (
     <>
@@ -40,7 +39,7 @@ const LayoutWrapper = ({ children }) => {
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
           scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
-        } py-4 px-4 ${textClass} xl:bg-io_${themeBg}-500`}
+        } py-4 px-4 text-black xl:bg-io_${themeBg}-500`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
@@ -80,7 +79,7 @@ const LayoutWrapper = ({ children }) => {
                   className={`font-semibold ease-out sm:mt-2 sm:p-4 ${
                     navigationIsOpen
                       ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
-                      : `${textClass} duration-200 dark:text-gray-100
+                      : `text-black duration-200 dark:text-gray-100
                       ${
                         scrolledPassedHeader
                           ? 'pointer-events-none -translate-y-4 opacity-0'

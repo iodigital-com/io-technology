@@ -6,7 +6,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         </Head>
-        <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
+        <body className="bg-white text-black antialiased">
           <Main />
           <NextScript />
         </body>
