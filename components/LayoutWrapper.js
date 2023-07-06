@@ -53,7 +53,7 @@ const LayoutWrapper = ({ children }) => {
                   <Player
                     autoplay
                     src="/logo.json"
-                    className={`logo theme-default -translate-x-3 sm:translate-x-0`}
+                    className={`logo -translate-x-3 sm:translate-x-0`}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
