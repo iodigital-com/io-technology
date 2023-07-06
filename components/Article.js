@@ -39,7 +39,7 @@ const Article = ({ slug, date, title, summary, tags, authors, border = true }) =
                     <p className="mb-0">
                       <Link
                         href={`/authors/${author.slug[0]}`}
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-800`}
                       >
                         {author.name}
                       </Link>

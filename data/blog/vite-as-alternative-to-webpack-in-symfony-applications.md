@@ -5,7 +5,7 @@ tags: ['frontend', 'vite', 'symfony']
 images: ['/articles/vite-as-alternative-to-webpack-in-symfony-applications/hero.webp']
 summary: 'Vite (French word for "quick", pronounced /vit/, like "veet") is the fastest frontend build tool at the moment. Webpack-encore integrates perfectly with symfony applications. What if we could have both'
 authors: ['yves-maerschalck']
-theme: 'orange'
+theme: 'blue'
 ---
 
 Whenever you create a new Symfony application, there will be a moment you have to set up your frontend tooling to build your CSS and JavaScript. The easiest way to do this would be to just follow the instructions on the [Symfony docs](https://symfony.com/doc/current/frontend.html).
@@ -13,7 +13,7 @@ This will set up Webpack-encore for you, which is a great way to build frontend 
 
 But sometimes you may want something different. You've heard a lot of good things about Vite, you maybe went to a conference where everybody seemed to be using this tool. Or maybe you just want to join all the cool kids and use the hottest tool of the moment.
 
-<div className="p-4 bg-io_orange-100 font-serif">All examples used in this blogpost will be using [Vue](https://vuejs.org/), but Vite can be used with a variety of frameworks.</div>
+<div className="p-4 bg-io_blue-100 font-serif">All examples used in this blogpost will be using [Vue](https://vuejs.org/), but Vite can be used with a variety of frameworks.</div>
 
 The following setup will only be usefull for developers who work in a hybrid symfony/javascript environment where you render your page in twig and you spawn your [SPA](https://en.wikipedia.org/wiki/Single-page_application) or Vue component on this page.
 
@@ -104,7 +104,7 @@ And likewise for CSS:
 
 In the Twig extension folder (normally `src/Twig/Extension`), we'll create a new class
 
-<div className="p-4 bg-io_orange-100 text-io_orange-800">This example uses <b>.ts</b> files. Just change this to <b>.js</b> if you don't use Typescript</div>
+<div className="p-4 bg-io_blue-100 text-io_blue-800">This example uses <b>.ts</b> files. Just change this to <b>.js</b> if you don't use Typescript</div>
 
 ```php
 <?php

@@ -44,7 +44,7 @@ export async function getStaticProps({ params }) {
 
   const { jobs } = await getLatestJobs(4)
 
-  const theme = serie.frontMatter.theme || 'orange'
+  const theme = serie.frontMatter.theme || 'blue'
 
   return { props: { serie, posts, authorDetails, prev, next, jobs, theme } }
 }
