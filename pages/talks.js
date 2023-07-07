@@ -5,14 +5,14 @@ import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
-import shuffle from '@/lib/shuffle'
+import sortCreation from '@/lib/utils/sortCreation'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
-  const talksShuffled = shuffle(talks)
+  const talksSorted = talks.sort(sortCreation)
   const authors = await getAuthors(talks)
 
-  return { props: { talks: talksShuffled, authors, theme: 'pink' } }
+  return { props: { talks: talksSorted, authors, theme: 'pink' } }
 }
 
 export default function Talks({ talks, authors }) {

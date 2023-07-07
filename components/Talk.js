@@ -4,16 +4,27 @@ import Tag from '@/components/Tag'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import Arrow from '@/data/arrow.svg'
 
-const Talk = ({ title, summary, authors, tags, video, slides }) => {
+const Talk = ({ title, summary, authors, tags, video, slides, slug }) => {
   const { theme } = useBrandingTheme()
 
   return (
     <li className="flex border-b-2 border-gray-100 pb-10">
       <div className="flex flex-col">
-        <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
+        <Link href={`/talks/${slug}`} className="inline-flex">
+          <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
+        </Link>
         <div className="text-body-xs mb-3">
-          <p>{summary}</p>
+          <p className="line-clamp-3">{summary}</p>
+          <Link
+            href={`/talks/${slug}`}
+            aria-label={`Read more about ${title}`}
+            className="inline-flex py-2"
+          >
+            <span>Read more</span>
+            <Arrow className="ml-2 w-6" />
+          </Link>
         </div>
 
         <div className="flex flex-grow flex-col justify-end">
