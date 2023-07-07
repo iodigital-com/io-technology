@@ -17,7 +17,6 @@ import jumbo from 'public/images/clients/jumbo.png'
 import klm from 'public/images/clients/klm.png'
 import kpn from 'public/images/clients/kpn.png'
 import nn from 'public/images/clients/nn.png'
-import rabobank from 'public/images/clients/rabobank.png'
 
 export async function getStaticProps() {
   const talkTitles = [
@@ -106,8 +105,8 @@ export default function Talks({ talks, authors, clients }) {
         Amazing <span className="font-serif font-light">clients</span> we work for
       </SectionTitle>
 
-      <div className="container mx-auto">
-        <ul className="relative grid gap-y-10 md:gap-x-4 lg:grid-cols-4 lg:gap-y-12 xl:grid-cols-7 xl:gap-x-6">
+      <div className="container mx-auto mb-12">
+        <ul className="relative grid grid-cols-2 items-center gap-6 md:gap-x-4 lg:grid-cols-3 lg:gap-x-12 xl:grid-cols-6 xl:gap-x-12">
           <li>
             <Image src={bol} fill alt="Bol.com" />
           </li>
@@ -125,9 +124,6 @@ export default function Talks({ talks, authors, clients }) {
           </li>
           <li>
             <Image src={nn} fill alt="Nationale Nederlanden" />
-          </li>
-          <li>
-            <Image src={rabobank} fill alt="Rabobank" />
           </li>
         </ul>
       </div>
