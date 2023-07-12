@@ -80,7 +80,16 @@ Using Tailwind this implementation can be reduced to only writing a few classes,
 <div class="flex grid-cols-3 flex-col md:grid"></div>
 ```
 
-First of all, we have less code to write, and secondly, we do not even need to worry for even a second about coming up with unique class names for our elements. Also in teams, over time class names can become inconsistent with changing developers. Where `layout` is still an easy class, every developer knows that in growing applications naming stuff can grow into one of the hardest parts of software development.. 😉 Never worrying about coming up with a class name anymore, is a big upside for me.
+### Never worry about...
+
+So first of all, we can write less code, awesome! Secondly, we do not even need to worry for even a second about coming up with correct class names. Also in teams, over time class names can become inconsistent with changing developers. Where `layout` is still an easy class, every developer knows that in growing applications naming stuff can grow into one of the hardest parts of software development.. 😉 Consider
+
+- What naming conventions do I use throughout the project?
+- Do we name after e.g. the appearance or the function?
+- Is the class used more than once?
+- If I use this again, how does that (slightly different) usage affect the class name?
+
+Never worrying about coming up with a class name anymore, is a big upside for me.
 
 ![Ryan Florence, creator of React Router and Remix about Tailwind benefits](/articles/tailwind-for-productivity/twitter-ryan-florence.png)
 
@@ -162,6 +171,8 @@ In general Tailwind, or rather every Atomic CSS framework, tends to have better 
 > Tailwind CSS is incredibly performance focused and aims to produce the smallest CSS file possible by only generating the CSS you are *actually using* in your project.
 > **- Tailwind documentation**
 
+With tools like CSSNano and usE optimisation via e.g. Brotli or Gzip, the production output can be reduced even more due to repeating patterns.
+
 - [See **“Optimizing for Production”**](https://tailwindcss.com/docs/optimizing-for-production)
 
 ### Benefits for teams
@@ -193,7 +204,7 @@ All tooling and techniques have different tradeoffs. Use Java over C and you los
 - Tailwind is not a native API, so a build step is required. This means that there’s some extra overhead while creating a web page.
 - The "ugly" class name problem. Even Tailwind themselves state in the docs that it might not be the best solution at first sight. Messy HTML isn't just aesthetics. But it can be seen as technical debt that will make your styles harder to read and maintain.
   > Now I know what you’re thinking, **“this is an atrocity, what a horrible mess!”** and you’re right, it’s kind of ugly. In fact it’s just about impossible to think this is a good idea the first time you see it — you have to actually try it. **- Tailwind documentation**
-- Tailwind can’t do everything. This means that from time to time, you may have to add some inline styles or create some custom classes alongside Tailwind to get things done. With arbitrary values, you can use values that are not built into Tailwind like `border-b-[1px]` (a 1px border is not a default Tailwind value). Or with a custom theme, you can also extend or overwrite the default behaviour. You can even use CSS or SASS/LESS files alongside Tailwind. Is this terrible? Not really, but it does mean that Tailwind isn’t the silver bullet, yet.
+- Tailwind can’t do everything. This means that from time to time, you may have to add some inline styles or create some custom classes alongside Tailwind to get things done. With arbitrary values, you can use values that are not built into Tailwind like `border-b-[1px]` (a 1px border is not a default Tailwind value). Or with a custom theme, you can also extend or overwrite the default behaviour. You can even use CSS or SASS/LESS files alongside Tailwind. Is this terrible? Not really, but it does mean that Tailwind might not be the silver bullet for you, just yet. Especially with a lot of custom styles, I find the Tailwind config file becoming harder to maintain.
 
 ### Quick tips
 
@@ -205,7 +216,7 @@ If you do not use Prettier, this [VSCode plugin Headwind](https://marketplace.vi
 
 #### Auto completion
 
-Editors like [WebStorm do Tailwind autocompletion by default](https://www.jetbrains.com/help/webstorm/tailwind-css.html). But when you're using VSCode you're making your life a lot easier by installing [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) to autocomplete your Tailwind classes.
+Editors like [WebStorm do Tailwind autocompletion by default](https://www.jetbrains.com/help/webstorm/tailwind-css.html). But when you're using VSCode you're making your life a lot easier by installing [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) to autocomplete your Tailwind classes. [Github Copilot](https://github.com/features/copilot) also does a great job of understanding and autocompleting Tailwind.
 
 #### Cheatsheet
 
