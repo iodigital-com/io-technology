@@ -7,7 +7,7 @@ authors: ['ronny-rook']
 theme: 'blue'
 ---
 
-_Using Tailwind is already a highly debated topic, I would like to emphasize that the following statements are just my and based on my experience. I hope you'll learn something_
+_Using Tailwind is already a highly debated topic, I would like to emphasize that the following statements are just my and based on my experience. I hope you'll learn something._
 
 There has been, and probably always will be, a lot of discussion about using Tailwind for styling. Some people will say it’s bad, simply because it makes your code look ugly and messy, resulting in code that’s harder to read. Also ignoring principles like separation of concerns is a big downside for people arguing against Tailwind.
 
@@ -50,13 +50,13 @@ Whether you use Angular, React, Svelte or Vue, because of the encapsulated styli
 }
 ```
 
-> My markup wasn't concerned with styling decisions, but my CSS was very concerned with my markup structure. Adam Wathan
+> My markup wasn't concerned with styling decisions, but my CSS was very concerned with my markup structure. - Adam Wathan
 
-Of course above CSS code doesn't take any semantic improvements (like BEM) into account. But recently I've found myself reaching for quick easy-to-implement styling notations like this quite often. In both CSS/SASS as well as using CSS-in-JS libraries like Styled Components or Emotion CSS I was rewriting parts of my HTML markup in CSS. Adam's blog post ["CSS Utility Classes and 'Separation of Concerns'"](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/) addresses more possible hurdles with separation of concerns and is worth reading.
+Of course above CSS code doesn't take any semantic improvements (like BEM) into account. But recently I've found myself reaching for quick easy-to-implement styling notations like this quite often. In CSS/SASS as well as using CSS-in-JS libraries (like Styled Components or Emotion CSS) I was rewriting parts of my HTML structure within CSS. Adam's blog post ["CSS Utility Classes and 'Separation of Concerns'"](https://adamwathan.me/css-utility-classes-and-separation-of-concerns/) addresses more possible hurdles with separation of concerns, and is worth reading.
 
 ### Writing less code
 
-Developers are known for taking the path of less resistance. Whether it used to be something like LESS, Sass or Stylus, preprocessors have tried to decrease the CSS code written by developers and make our lives easier. But although we could use nesting, create variables or remove every semicolon we had to write, at the end of the day you’d still write CSS. With any Atomic CSS framework, you’re able to reduce everything to only writing utility classes.
+Developers are known for taking the path of less resistance. Whether it used to be something like LESS, Sass or Stylus, one of the outcomes of preprocessors is the decreased CSS code written by developers. It makes our lives easier by extending the default capabilities of CSS with logic such as variables, nesting, inheritance, mixins and functions. But although we could use these advantages and even remove every semicolon we had to write, at the end of the day you’d still write CSS. With any Atomic CSS framework, you’re able to reduce everything to only writing utility classes.
 
 Consider for example this div changing from a flex to a grid layout relative to the viewport size.
 
@@ -182,7 +182,8 @@ Although it's still completely fine to write CSS in any way you prefer. I think 
 
 - Do you have resources to understand the CSS approach taken?
 - How do I assure I’m not duplicating styles?
-- Can I easily see the CSS applied per class (in Tailwind hovering a class shows the applied CSS)
+- Can I easily see the CSS applied per class?
+- Can I delete styles and know it won’t break other elements?
 
 ### Downsides
 
