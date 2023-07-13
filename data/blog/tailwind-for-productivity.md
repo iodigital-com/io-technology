@@ -1,13 +1,13 @@
 ---
 title: 'Tailwind for productivity'
-date: '2023-07-10'
+date: '2023-07-13'
 tags: ['Tailwind', 'CSS', 'Frontend', 'Productivity', 'DX']
 summary: "In general, developers don't find writing CSS the most fun part of software development. Although, in my opinion, Tailwind CSS makes it fun and efficient!"
 authors: ['ronny-rook']
 theme: 'blue'
 ---
 
-_Using Tailwind is already a highly debated topic, I would like to emphasize that the following statements are just my and based on my experience. I hope you'll learn something._
+_Using Tailwind is already a highly debated topic, I would like to emphasize that the following statements are just mine and based on my experience. I hope you'll learn something._
 
 There has been, and probably always will be, a lot of discussion about using Tailwind for styling. Some people will say it’s bad, simply because it makes your code look ugly and messy, resulting in code that’s harder to read. Also ignoring principles like separation of concerns is a big downside for people arguing against Tailwind.
 
@@ -200,7 +200,7 @@ Although it's still completely fine to write CSS in any way you prefer. I think 
 
 All tooling and techniques have different tradeoffs. Use Java over C and you lose the topnotch memory management. Choose Python over Java and you lose compile-time type checking. For Tailwind it's also not only a bed of roses.
 
-- The learning curve is relatively high. You have to learn a new abstraction and all the classes provided by Tailwind.
+- The learning curve is relatively high. You have to learn a new layer of abstraction and all the classes provided by Tailwind.
 - Tailwind is not a native API, so a build step is required. This means that there’s some extra overhead while creating a web page.
 - The "ugly" class name problem. Even Tailwind themselves state in the docs that it might not be the best solution at first sight. Messy HTML isn't just aesthetics. But it can be seen as technical debt that will make your styles harder to read and maintain.
   > Now I know what you’re thinking, **“this is an atrocity, what a horrible mess!”** and you’re right, it’s kind of ugly. In fact it’s just about impossible to think this is a good idea the first time you see it — you have to actually try it. **- Tailwind documentation**
@@ -221,3 +221,7 @@ Editors like [WebStorm do Tailwind autocompletion by default](https://www.jetbra
 #### Cheatsheet
 
 Although you're using Tailwind autocompletion within your favourite editor, you might find yourself searching through the documentation - looking for the corresponding Tailwind class to your desired CSS property - regularly. In my opinion, the docs are really good but focus on the why more than the how. When you Google [Tailwind Cheatsheet](https://nerdcave.com/tailwind-cheat-sheet) you will find more than one great overview to quickly find what you need.
+
+### Conclusion
+
+Whatever you think of Tailwind, I would encourage everyone to give it a try and embrace the advantages it can offer. In the end, everyone should use the technique most suitable for themselves, the project you currently have or the team you'll have to work with. If you don't mind the class strings and learning something I think, especially for working with teams and quickly prototyping, Tailwind can offer great benefits.
