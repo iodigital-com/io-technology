@@ -210,7 +210,7 @@ All tooling and techniques have different tradeoffs. Use Java over C and you los
 
 #### Auto sorting
 
-If you use Prettier, [pretter-plugin-tailwind](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier) delivers an auto sorting of class names. Besides not having to worry about the order, it makes the chosen order consistent as well. Besides it reducing the amount of CSS bugs (because order matters in CSS) and it will make scanning code during code reviews easier.
+If you use Prettier, [prettier-plugin-tailwind](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier) delivers an auto sorting of class names. Besides not having to worry about the order, it makes the chosen order consistent as well. Besides it reducing the amount of CSS bugs (because order matters in CSS) and it will make scanning code during code reviews easier.
 
 If you do not use Prettier, this [VSCode plugin Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind) delivers the same benefits.
 
