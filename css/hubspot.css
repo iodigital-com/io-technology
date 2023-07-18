@@ -1,0 +1,37 @@
+.hubspot fieldset {
+  max-width: none !important;
+}
+
+.hs-form-required {
+  display: none;
+}
+
+.hs-input {
+  width: 100% !important;
+}
+
+.hs-form-field {
+  margin-bottom: 20px;
+}
+
+.hs-input[type='checkbox'] {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+.hs-button {
+  border-radius: 9999px;
+  border: solid 1px black;
+  padding: 1rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.hs-button:hover {
+  background-color: transparent;
+  color: #000;
+}

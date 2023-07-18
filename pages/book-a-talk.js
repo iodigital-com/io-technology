@@ -10,6 +10,7 @@ import Contributor from '@/components/Contributor'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
+import { useEffect } from 'react'
 
 import bol from 'public/images/clients/bol.png'
 import ing from 'public/images/clients/ing.png'
@@ -24,20 +25,18 @@ export async function getStaticProps() {
     'react-server-components',
     'an-anything-to-anything-translation-device',
     'css-got-more-exciting',
-    'solid-js',
     'microfrontends-the-controversy',
+    'introduction-to-astro',
   ]
 
   const talks = await getAllFilesFrontMatter('talks')
   const talksList = talks.filter((talk) => talkTitles.includes(talk.slug)).sort(sortCreation)
   const authors = await getAuthors(talks)
 
-  const clients = ['KLM', 'Bol', 'ING', 'Rabobank', 'NN', 'Jumbo', 'KPN']
-
-  return { props: { talks: talksList, authors, clients, theme: 'green' } }
+  return { props: { talks: talksList, authors, theme: 'green' } }
 }
 
-export default function Talks({ talks, authors, clients }) {
+export default function Talks({ talks, authors }) {
   const { theme } = useBrandingTheme()
 
   const allAuthors = talks
@@ -45,6 +44,24 @@ export default function Talks({ talks, authors, clients }) {
     .flat()
     .filter((author, index, self) => self.indexOf(author) === index)
     .map((author) => authors[author])
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://js.hsforms.net/forms/v2.js'
+    document.body.appendChild(script)
+
+    script.addEventListener('load', () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          target: '#hubspotForm',
+
+          region: 'na1',
+          portalId: '513128',
+          formId: 'af6d8033-3c2c-4403-8c18-07a3e99f6bcf',
+        })
+      }
+    })
+  }, [])
 
   return (
     <>
@@ -59,14 +76,14 @@ export default function Talks({ talks, authors, clients }) {
                 your mind!
               </h1>
             </div>
-            <div className="col-start-1 col-end-12 mb-8 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
+            <div className="col-start-1 col-end-12 mt-20 mb-8 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               {allAuthors.map((author) => (
-                <Contributor key={author.slug[0]} contributor={author} size={100} />
+                <Contributor key={author.slug[0]} contributor={author} link={false} />
               ))}
             </div>
-            <div className="col-span-full md:col-span-5 xl:col-span-6">
+            <div className="col-span-full md:col-span-7 xl:col-span-6">
               <div className="xl:w-11/12">
-                <p className="mb-4 text-lg">
+                <p className="mb-10 text-lg">
                   Welcome to our impressive collection of talks! Explore a world where authority in
                   Frontend/Backend development converges with the latest trends. Our passionate
                   speakers will take you on a journey through the fascinating realm of technology,
@@ -74,6 +91,8 @@ export default function Talks({ talks, authors, clients }) {
                   top-tier clients, including enterprise environments, we are well-versed in what's
                   happening in the market.
                 </p>
+                <h2 className="mb-2 text-3xl">Let us reach out to plan a talk</h2>
+                <div id="hubspotForm" className="hubspot"></div>
               </div>
             </div>
           </div>
