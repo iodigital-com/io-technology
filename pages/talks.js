@@ -6,6 +6,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
 import sortCreation from '@/lib/utils/sortCreation'
+import { useEffect } from 'react'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
@@ -17,6 +18,24 @@ export async function getStaticProps() {
 
 export default function Talks({ talks, authors }) {
   const { theme } = useBrandingTheme()
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://js.hsforms.net/forms/v2.js'
+    document.body.appendChild(script)
+
+    script.addEventListener('load', () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          target: '#hubspotForm',
+
+          region: 'na1',
+          portalId: '513128',
+          formId: 'af6d8033-3c2c-4403-8c18-07a3e99f6bcf',
+        })
+      }
+    })
+  }, [])
 
   return (
     <>
@@ -40,19 +59,14 @@ export default function Talks({ talks, authors }) {
                 alt=""
               />
             </div>
-            <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
+            <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-6">
               <div className="xl:w-11/12">
                 <p className="mb-4 ">
-                  We have great experts that can deliver inspiring talks at your event! Feel free to
-                  reach out to{' '}
-                  <a
-                    className="underline underline-offset-2"
-                    href="mailto:business@iodigital.com?subject=Request%20for%20speaker%20(iO%20tech_hub)"
-                  >
-                    business@iodigital.com
-                  </a>{' '}
-                  to invite one of our speakers
+                  We have great experts that can deliver inspiring talks at your event.
+                  <br />
+                  Leave your details and we will reach out to you!
                 </p>
+                <div id="hubspotForm" className="hubspot"></div>
               </div>
             </div>
           </div>
