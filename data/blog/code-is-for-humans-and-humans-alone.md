@@ -173,12 +173,13 @@ This is way more readable. Both in code and in a natural language. The details a
 ```js
 // utils.js
 export const isFileValid = async (file) => {
-  const isSmallPDF = file.type === 'PDF' && file.size <= 42
+  const isPDF = file.type === 'PDF'
+  const isSmallPDF = isPDF && file.size <= 42
   const isRecentWordDocument =
     file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)
   const fileContains42 = (await file.text()).indexOf('42') !== -1
 
-  return file.type === 'PDF' || isSmallPDF || isRecentWordDocument || fileContains42
+  return !isPDF || isSmallPDF || isRecentWordDocument || fileContains42
 }
 ```
 
@@ -196,7 +197,7 @@ In English:
 
 > "If `myFile` is valid"
 
-Now this almost looks like English. As mentioned above, you don't need to know about the details when scanning the code, only if there is something wrong with the file validation. By hiding the validation logic away in a function with a sensible name we've made it easy to identify its intent and you are no longer stopped in your tracks. **Bonus**: the function is reuseable!
+Now this almost looks like English. As mentioned above, you don't need to know about the details when scanning the code, only if there is something wrong with the file validation. By hiding the validation logic away in a function with a sensible name we've made it easy to identify its intent and you are no longer stopped in your tracks. **Bonus**: the function is reuseable and testable!
 
 I do recommend going through all these steps when writing your code. First make it verbose. As a writer you _need_ to know the specifics. When it works, is unreadable, and you've properly tested it try and make it more readable.
 
@@ -234,7 +235,7 @@ Yuck! The `else` statement has a [logical operator](https://codeburst.io/javascr
 The idea behind this whole expression is to create a comma separated string of all file names in the `files` array-like. Because of the `Array.prototype.map` function will iterate over each and every element - even if it's just 1 - we don't need to check for the array-like's length before hand. Lets make this a bit more readable and in the mean time cover all cases.
 
 ```js
-// The more performant way
+// The more performant way (with 10.000.000+ items (arbitrary high number, perf test it first))
 const fileNameString = Array.from(files, (file) => file.name).join(', ') || ''
 
 // The more readable way
