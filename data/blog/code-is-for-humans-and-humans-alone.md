@@ -1,6 +1,6 @@
 ---
 title: 'Code Is For Humans And Humans Alone'
-date: '2023-07-18'
+date: '2023-07-19'
 tags: ['clean-code', 'dx', 'code-quality', 'productivity']
 images: ['/articles/code-is-for-humans-and-humans-alone/JavaScript-58acbb8a3df78c345bad32c2.webp']
 summary: 'Write code for human beings to improve developer experience, readability and maintainability'
@@ -24,7 +24,7 @@ But, I concur: we've all done it perfectly right more times than not. Keep it go
 
 Everything we read is translated into a natural language. Usually in the natural language the programming language is based on, which, in most cases, is English. This starts when writing code. In that case you are "translating" the requirements, written in a natural language, into code. Knowing that, it would make sense to write code as close to English as possible. Within the boundaries of the programming language, of course. I'll use the terms English and JavaScript from here on while it can be applied to any natural language and programming language, respectively.
 
-Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with the details which are applied by the logic. You want to keep scanning untill you've found what you're looking for. Scanning a file means identifying the intent of each statement. If you can't identify the intent of the statement you are stopped in your tracks to see if it relates to your goal. Being stopped in your tracks is annoying and wasted time. That's why it is important to write code as how you would read it.
+Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with the details which are applied by the logic. You want to keep scanning until you've found what you're looking for. Scanning a file means identifying the intent of each statement. If you can't identify the intent of the statement you are stopped in your tracks to see if it relates to your goal. Being stopped in your tracks is annoying and wasted time. That's why it is important to write code as how you would read it.
 
 Although JavaScript's keywords are in English, its syntax doesn't look like it. Its readability is in your own hands. Thankfully, there are a lot of everyday tools we can use for that. By changing the way we write our code we can help our future readers understand what they're looking at. Maybe, by the off chance, even make it comprehensible for them.
 
@@ -110,22 +110,22 @@ const somePackageConfig = {
 somePackage.configure(somePackageConfig)
 ```
 
-If the `somePackageConfig` object becomes too big you can move it into a distinct file and import it. Thtat we don't have to scan past the configuration and be distracted by it.
+If the `somePackageConfig` object becomes too big you can move it into a distinct file and import it. That way we don't have to scan past the configuration and be distracted by it.
 
 Sometimes it's just better to make a variable out of a statement so you can name it and describe its intent.
 
 ```js
 // Instead of
-const fourtyTwoDaysAgo = new Date(chosenDate - 1000 * 60 * 60 * 24 * 42)
+const fortyTwoDaysAgo = new Date(chosenDate - 1000 * 60 * 60 * 24 * 42)
 
 // Use
-const fourtyTwoDays = 3628800000 // 1000 * 60 * 60 * 24 * 42
-const fourtyTwoDaysAgo = new Date(chosenDate - fourtyTwoDays)
+const fortyTwoDays = 3628800000 // 1000 * 60 * 60 * 24 * 42
+const fortyTwoDaysAgo = new Date(chosenDate - fortyTwoDays)
 ```
 
 ### Conditionals
 
-For starters: [Please don't write confusing conditionals](https://dev.to/somedood/please-dont-write-confusing-conditionals-2n32). _Don't stay not affirmattive_.
+For starters: [Please don't write confusing conditionals](https://dev.to/somedood/please-dont-write-confusing-conditionals-2n32). _Don't stay not affirmative_.
 
 > "What?"
 >
@@ -140,7 +140,7 @@ const file = new File(/* upload from an input field */)
 if (
   file.type !== 'PDF' ||
   (file.type === 'PDF' && file.size <= 42) ||
-  (file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)) ||
+  (file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)) ||
   (await file.text()).indexOf('42') !== -1
 ) {
   doSomething()
@@ -156,7 +156,7 @@ Even in English that's hard to grasp. We can make this more readable by introduc
 ```js
 const file = new File(/* upload from an input field */)
 const isSmallPDF = file.type === 'PDF' && file.size <= 42
-const isRecentWordDocument = file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)
+const isRecentWordDocument = file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)
 const fileContains42 = (await file.text()).indexOf('42') !== -1
 
 if (file.type !== 'PDF' || isSmallPDF || isRecentWordDocument || fileContains42) {
@@ -170,21 +170,19 @@ In English
 
 This is way more readable. Both in code and in a natural language. The details are now "hidden" in variables with names that make sense. You don't need to know the specifics when scanning the code. Since the variables are still around, you can easily access them when necessary. But what if I told you we can go even further?
 
-```js
-// utils.js
+```js:utils.js
 export const isFileValid = async (file) => {
   const isPDF = file.type === 'PDF'
   const isSmallPDF = isPDF && file.size <= 42
   const isRecentWordDocument =
-    file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)
+    file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)
   const fileContains42 = (await file.text()).indexOf('42') !== -1
 
   return !isPDF || isSmallPDF || isRecentWordDocument || fileContains42
 }
 ```
 
-```js
-// app.js
+```js:app.js
 import { isFileValid } from './utils'
 const myFile = new File(/* upload from an input field */)
 
@@ -323,11 +321,11 @@ f.every(g => /* */)
 
 "Yeah, that's nice and all but what about ...?"
 
-Yes. You are right. There are always exceptions. Sometimes the problem you're solving is so complex it requires you write unreadable code. Or sometimes performance is way more important that you need to write something which is percievably repulsive. If that's your case, which is perfectly reasonable, always use comments to describe it. Never think that "they will understand". In these cases you'd rather use a comment too many than that the next one spends 5+ minutes trying to figure it out.
+Yes. You are right. There are always exceptions. Sometimes the problem you're solving is so complex it requires you write unreadable code. Or sometimes performance is way more important that you need to write something which is perceivably repulsive. If that's your case, which is perfectly reasonable, always use comments to describe it. Never think that "they will understand". In these cases you'd rather use a comment too many than that the next one spends 5+ minutes trying to figure it out.
 
 ### Bitwise operators
 
-Prime example. JavaScript's [bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators) (`&`, `|`, `~`, etc) can do some real good magic. Usually they're way faster than non-numerical counterparts. The problem with these is that they are numerical. Both operands are first coerced into a decimal number and then the oparator is applied, leaving a new decimal number.
+Prime example. JavaScript's [bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators) (`&`, `|`, `~`, etc) can do some real good magic. Usually they're way faster than non-numerical counterparts. The problem with these is that they are numerical. Both operands are first coerced into a decimal number and then the operator is applied, leaving a new decimal number.
 
 ```js
 // A common use was
@@ -337,7 +335,7 @@ const containsApples = ~fruitBasket.indexOf('apple')
 const containsApples = fruitBasket.indexOf('apple') !== -1
 ```
 
-Not a lot of people understand what is happening here (because nobody needs to use them) and it takes a few sentences in English to explain. The result of both expression is exactly the same, though. So, when would you use the bitwise operators? When you need to oparate on bits. And in some cases they're more performant then the alternatives, so when that's more important use them and add a comment.
+Not a lot of people understand what is happening here (because nobody needs to use them) and it takes a few sentences in English to explain. The result of both expression is exactly the same, though. So, when would you use the bitwise operators? When you need to operate on bits. And in some cases they're more performant then the alternatives, so when that's more important use them and add a comment.
 
 ## Summary
 
