@@ -10,7 +10,7 @@ theme: 'blue'
 
 # Code Is For Humans And Humans Alone
 
-Code is for humans and humans alone. There, I said it. The computer/<wbr />parser/<wbr />translator/<wbr />transpiler/<wbr />compiler/<wbr />_engine_ will understand anyway. More important is the human being reading it after you. Or even you in a few days/<wbr />weeks/<wbr />months time. The code's intent should be clear at first glance. This helps the reader navigate the code when adding a new feature, fix a bug, refactor it, or move it around. &lt;rant&gt;This is the main reason why I personally don't like atomic CSS&lt;/rant&gt;
+Code is for humans and humans alone. There, I said it. The computer/<wbr />parser/<wbr />translator/<wbr />transpiler/<wbr />compiler/<wbr />_engine_ will understand anyway. More important is the human being reading it after you. Or even you in a few days/<wbr />weeks/<wbr />months time. The code's intent should be clear at first glance. This helps the reader navigate the code when adding a new feature, fixing a bug, refactoring it, or moving it around. &lt;rant&gt;This is the main reason why I personally don't like atomic CSS&lt;/rant&gt;
 
 > “Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability”
 >
@@ -24,7 +24,7 @@ But, I concur: we've all done it perfectly correctly more times than not. Keep i
 
 Everything we read is translated into a natural language. In programming this is often based on the English language. It all starts with writing code. You are translating requirements from natural language into code. With this knowledge it makes sense to write code that is as close to English as possible. Within the boundaries of the programming language, of course. I'll use the terms English and JavaScript from here on while it can be applied to any natural language and programming language, respectively.
 
-Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with irrelevant details. Your purpose is to idendify the intent of these statement. If you can't understand the intention of the statement, you're stopped in your tracks, which is annoying and might end up wasting your time. That's why it is important to write code that people can read and understand.
+Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with irrelevant details. Your purpose is to identify the intent of these statements. If you can't understand the intention of the statement, you're stopped in your tracks, which is annoying and might end up wasting your time. That's why it is important to write code that people can read and understand.
 
 Although JavaScript's keywords are in English, its syntax doesn't look like it. Its readability is in your own hands. Thankfully, there are a lot of tools we can use for that. By changing the way we write our code we can help our future readers understand what they're looking at.
 
@@ -66,7 +66,7 @@ Here are a few examples of "unreadable" code and tips on how to make them readab
 
 ### Use Proper Naming
 
-The name of your variables, functions, classes, interface, types, etc. should describe their intent. Be aware that your code is probably subject to [minification](<https://en.wikipedia.org/wiki/Minification_(programming)>), so the length of your variables don't matter to the engine. One is short, the other is very much readable. (I know, we should use `Array.prototype.reduce` here)
+The name of your variables, functions, classes, interface, types, etc. should describe their intent. Be aware that your code is probably subject to [minification](<https://en.wikipedia.org/wiki/Minification_(programming)>), so the length of your variables doesn't matter to the engine. One is short, the other is very much readable. (I know, we should use `Array.prototype.reduce` here)
 
 ```js
 const cart = [
@@ -192,7 +192,7 @@ In English:
 
 > "If `myFile` is valid"
 
-Now this almost looks like English! You only need the details when something is wrong with the file validation. By moving the validation logic away in a sensibly named function we've made it easy to identify its intent and you are no longer slowed down. **Bonus**: the function is reuseable and testable!
+Now this almost looks like English! You only need the details when something is wrong with the file validation. By moving the validation logic away in a sensibly named function we've made it easy to identify its intent and you are no longer slowed down. **Bonus**: the function is reusable and testable!
 
 I recommend going through all these steps when writing your code. First make it verbose, because as a writer you _need_ to know all the specifics. Make the code work, test the implementation and allow it to be unreadable. Then improve the readability.
 
