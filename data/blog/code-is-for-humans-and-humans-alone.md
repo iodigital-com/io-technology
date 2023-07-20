@@ -1,6 +1,6 @@
 ---
 title: 'Code Is For Humans And Humans Alone'
-date: '2023-07-19'
+date: '2023-07-18'
 tags: ['clean-code', 'dx', 'code-quality', 'productivity']
 images: ['/articles/code-is-for-humans-and-humans-alone/JavaScript-58acbb8a3df78c345bad32c2.webp']
 summary: 'Write code for human beings to improve developer experience, readability and maintainability'
@@ -10,27 +10,27 @@ theme: 'blue'
 
 # Code Is For Humans And Humans Alone
 
-Code is for humans and humans alone. There, I said it. The computer/parser/translater/transpiler/compiler/_engine_ will understand anyway. More important is the human being reading it after you. Or even you in a few days/weeks/months time. The code's intent should be clear at first glance. This helps the reader navigate the code when adding a new feature, fix a bug, refactor it, or move it around. &lt;rant&gt;This is the main reason why I personally don't like atomic CSS&lt;/rant&gt;
+Code is for humans and humans alone. There, I said it. The computer/<wbr />parser/<wbr />translator/<wbr />transpiler/<wbr />compiler/<wbr />_engine_ will understand anyway. More important is the human being reading it after you. Or even you in a few days/<wbr />weeks/<wbr />months time. The code's intent should be clear at first glance. This helps the reader navigate the code when adding a new feature, fix a bug, refactor it, or move it around. &lt;rant&gt;This is the main reason why I personally don't like atomic CSS&lt;/rant&gt;
 
 > “Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability”
 >
 > ― [John F. Woods](https://groups.google.com/g/comp.lang.c++/c/rYCO5yn4lXw/m/oITtSkZOtoUJ), September 1991
 
-We've all read pieces of code which you had to read 7 times to understand its purpose. We've all seen this monstrous condition for an if statement using 9 variables over 4 line. We've all written these as well. Don't lie. All of us have written code which even you couldn't read anymore after a few weeks.
+All of us have seen pieces of code which you had to read 7 times to understand its purpose. A monstrous condition for an if statement using 9 variables over 4 lines. We've written these as well, including code you didn't understand a few weeks later. Don't lie.
 
-But, I concur: we've all done it perfectly right more times than not. Keep it going!
+But, I concur: we've all done it perfectly correctly more times than not. Keep it going!
 
 ## How Humans Read Code
 
-Everything we read is translated into a natural language. Usually in the natural language the programming language is based on, which, in most cases, is English. This starts when writing code. In that case you are "translating" the requirements, written in a natural language, into code. Knowing that, it would make sense to write code as close to English as possible. Within the boundaries of the programming language, of course. I'll use the terms English and JavaScript from here on while it can be applied to any natural language and programming language, respectively.
+Everything we read is translated into a natural language. In programming this is often based on the English language. It all starts with writing code. You are translating requirements from natural language into code. With this knowledge it maker rende to write code that is as close to English as possible. Within the boundaries of the programming language, of course. I'll use the terms English and JavaScript from here on while it can be applied to any natural language and programming language, respectively.
 
-Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with the details which are applied by the logic. You want to keep scanning until you've found what you're looking for. Scanning a file means identifying the intent of each statement. If you can't identify the intent of the statement you are stopped in your tracks to see if it relates to your goal. Being stopped in your tracks is annoying and wasted time. That's why it is important to write code as how you would read it.
+Usually when reading code you are scanning the file for anything that is related to the problem you're solving. You want to see the logic and not be bothered with irrelevant details. Your purpose is to idendity the intent of these statement. If you can't understand the intention of the statement, you're stopped in your tracks, which is annoying and might end up wasting your time. That's why it is important to write code that people can read and understand.
 
-Although JavaScript's keywords are in English, its syntax doesn't look like it. Its readability is in your own hands. Thankfully, there are a lot of everyday tools we can use for that. By changing the way we write our code we can help our future readers understand what they're looking at. Maybe, by the off chance, even make it comprehensible for them.
+Although JavaScript's keywords are in English, its syntax doesn't look like it. Its readability is in your own hands. Thankfully, there are a lot of tools we can use for that. By changing the way we write our code we can help our future readers understand what they're looking at.
 
 ### SQL
 
-Take a look at SQL (Structured Query Language). Its initial name was SEQUEL (Structured English Query Language). The idea behind the syntax was to make it as close to English as possible so anyone could read it. Even people that don't know the language. I'm not going into details about SQL but nearly anybody can read these CRUD operations and understand their intent at first glance.
+Take a look at SQL (Structured Query Language). Its initial name was SEQUEL (Structured English Query Language). The idea behind the syntax was to make it very similar to English as possible so anyone could read it. Even people who are unfamiliar with the language. I'm not going into details about SQL but nearly anybody can read these CRUD operations and understand their intent at first glance.
 
 ```sql
 -- CREATE
@@ -53,16 +53,16 @@ DELETE FROM authors WHERE name='Remy Parzinski';
 
 ### Gherkin
 
-The same principle was applied to [Gherkin](https://cucumber.io/docs/gherkin/). Gherkin is a testing language for testing software. The idea behind it is that the people who write the software's requirements write them in a specific syntax which the developers use to test the code they write. The language perfectly describes the software's [behaviour](https://cucumber.io/docs/bdd/). But more importantly, its intent. Unfortunately, it is only usable in a testing environment.
+The same principle was applied to [Gherkin](https://cucumber.io/docs/gherkin/), a language for testing software. It allows people to use its syntax to write feature requirements in a scenario-like way, which developers could directly use in their tests. The language perfectly describes the software's [behaviour](https://cucumber.io/docs/bdd/). But more importantly, its intent. Unfortunately, it is only usable in a testing environment.
 
 ## Examples and Tips
-
-Here are a few examples of "unreadable" code and tips on how to make them readable.
 
 ```js
 // Let there be light
 let there = 'light'
 ```
+
+Here are a few examples of "unreadable" code and tips on how to make them readable.
 
 ### Use Proper Naming
 
@@ -87,11 +87,7 @@ for (let index = 0; index < cart.length; index++) {
 }
 
 // Both get minified to
-let c = [
-    /*...*/
-  ],
-  i = 0
-for (let j = 0; j < cart.length; j++) i += c[j].amount
+// let c=[/*...*/],i=0;for(let j=0;j<cart.length;j++)i+=c[j].amount
 ```
 
 So you see, the engine will read the same thing regardless. So why not write it for a human being to read?
@@ -104,28 +100,28 @@ const x = {
 somePackage.configure(x)
 
 // Use
-const somePackageConfig = {
+const defaultConfig = {
   //...
 }
-somePackage.configure(somePackageConfig)
+somePackage.configure(defaultConfig)
 ```
 
-If the `somePackageConfig` object becomes too big you can move it into a distinct file and import it. That way we don't have to scan past the configuration and be distracted by it.
+If the `defaultConfig` object becomes too big you can move it into a distinct file and import it. Thtat we don't have to scan past the configuration and be distracted by it.
 
 Sometimes it's just better to make a variable out of a statement so you can name it and describe its intent.
 
 ```js
 // Instead of
-const fortyTwoDaysAgo = new Date(chosenDate - 1000 * 60 * 60 * 24 * 42)
+const fourtyTwoDaysAgo = new Date(chosenDate - 1000 * 60 * 60 * 24 * 42)
 
 // Use
-const fortyTwoDays = 3628800000 // 1000 * 60 * 60 * 24 * 42
-const fortyTwoDaysAgo = new Date(chosenDate - fortyTwoDays)
+const fourtyTwoDays = 1000 * 60 * 60 * 24 * 42
+const fourtyTwoDaysAgo = new Date(chosenDate - fourtyTwoDays)
 ```
 
 ### Conditionals
 
-For starters: [Please don't write confusing conditionals](https://dev.to/somedood/please-dont-write-confusing-conditionals-2n32). _Don't stay not affirmative_.
+For starters: [Please don't write confusing conditionals](https://dev.to/somedood/please-dont-write-confusing-conditionals-2n32). _Don't stay not affirmattive_.
 
 > "What?"
 >
@@ -140,7 +136,7 @@ const file = new File(/* upload from an input field */)
 if (
   file.type !== 'PDF' ||
   (file.type === 'PDF' && file.size <= 42) ||
-  (file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)) ||
+  (file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)) ||
   (await file.text()).indexOf('42') !== -1
 ) {
   doSomething()
@@ -155,34 +151,37 @@ Even in English that's hard to grasp. We can make this more readable by introduc
 
 ```js
 const file = new File(/* upload from an input field */)
-const isSmallPDF = file.type === 'PDF' && file.size <= 42
-const isRecentWordDocument = file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)
+const isPDF = file.type === 'PDF'
+const isSmallPDF = isPDF && file.size <= 42
+const isRecentWordDocument = file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)
 const fileContains42 = (await file.text()).indexOf('42') !== -1
 
-if (file.type !== 'PDF' || isSmallPDF || isRecentWordDocument || fileContains42) {
+if (!isPDF || isSmallPDF || isRecentWordDocument || fileContains42) {
   doSomething()
 }
 ```
 
 In English
 
-> "If it's NOT a PDF or a small PFD OR it's a recent Word document OR the file contains '42'"
+> If it's NOT a PDF or a small PDF OR it's a recent Word document OR the file contains '42'
 
 This is way more readable. Both in code and in a natural language. The details are now "hidden" in variables with names that make sense. You don't need to know the specifics when scanning the code. Since the variables are still around, you can easily access them when necessary. But what if I told you we can go even further?
 
-```js:utils.js
+```js
+// utils.js
 export const isFileValid = async (file) => {
   const isPDF = file.type === 'PDF'
   const isSmallPDF = isPDF && file.size <= 42
   const isRecentWordDocument =
-    file.type === 'DOCX' && file.lastModified <= new Date(fortyTwoDaysAgo)
+    file.type === 'DOCX' && file.lastModified <= new Date(fourtyTwoDaysAgo)
   const fileContains42 = (await file.text()).indexOf('42') !== -1
 
   return !isPDF || isSmallPDF || isRecentWordDocument || fileContains42
 }
 ```
 
-```js:app.js
+```js
+// app.js
 import { isFileValid } from './utils'
 const myFile = new File(/* upload from an input field */)
 
@@ -195,9 +194,9 @@ In English:
 
 > "If `myFile` is valid"
 
-Now this almost looks like English. As mentioned above, you don't need to know about the details when scanning the code, only if there is something wrong with the file validation. By hiding the validation logic away in a function with a sensible name we've made it easy to identify its intent and you are no longer stopped in your tracks. **Bonus**: the function is reuseable and testable!
+Now this almost looks like English! You only need the details when something is wrong with the file validation. By moving the validation logic away in a sensibly named function we've made it easy to identify its intent and you are no longer slowed down. **Bonus**: the function is reuseable and testable!
 
-I do recommend going through all these steps when writing your code. First make it verbose. As a writer you _need_ to know the specifics. When it works, is unreadable, and you've properly tested it try and make it more readable.
+I recommend going through all these steps when writing your code. First make it verbose, because as a writer you _need_ to know all the specifics. Make the code work, test the implementation and allow it to be unreadable. Then improve the readability.
 
 #### Ternary statements
 
@@ -205,10 +204,10 @@ Ternary statements are great! ...as long as you keep them ~~on 1 line~~ simple. 
 
 ```js
 // Instead of
-const className = isActive ? 'element--active' : (isFocussed ? 'element--focussed' : 'element')
+const className = isActive ? 'element--active' : (isFocused ? 'element--focused' : 'element')
 
 // Use
-const focusClass = isFocussed ? 'element--focussed' : 'element'
+const focusClass = isFocused ? 'element--focused' : 'element'
 const className = isActive ? 'element--active' : focusClass
 
 // Or
@@ -228,9 +227,9 @@ const fileNameString =
         .join(', ')
 ```
 
-Yuck! The `else` statement has a [logical operator](https://codeburst.io/javascript-what-is-short-circuit-evaluation-ff22b2f5608c) when truthiness is evaluated. This expression is perfectly fine, albeit not easy to read. There's even a case which is not supported in here. What about `files.length === 0`?
+Yuck! The `else` statement has a [logical operator](https://codeburst.io/javascript-what-is-short-circuit-evaluation-ff22b2f5608c) when truthiness is evaluated. This expression is perfectly fine, albeit not easy to read. There's even a case which is not supported in here. What if `files` holds no items?
 
-The idea behind this whole expression is to create a comma separated string of all file names in the `files` array-like. Because of the `Array.prototype.map` function will iterate over each and every element - even if it's just 1 - we don't need to check for the array-like's length before hand. Lets make this a bit more readable and in the mean time cover all cases.
+The idea behind this whole expression is to create a comma separated string of all file names in the `files` array-like. Because the `Array.prototype.map` function will iterate over each and every element - even if it's just 1 - we don't need to check for the array-like's length beforehand. Let's make this a bit more readable and in the meantime cover all cases.
 
 ```js
 // The more performant way (with 10.000.000+ items (arbitrary high number, perf test it first))
@@ -245,7 +244,7 @@ const fileNameString =
 
 #### Switch cases
 
-Most `switch` cases I've seen had the exact same operation with a different value based its `case`. The same applies to multiple `else if` blocks. Unless you have actually different operations per `case`/`else if`. Then you can use a `switch`.
+Most `switch` cases I've seen had the exact same operation with a different value based on its `case`. The same applies to multiple `else if` blocks. Unless you have actually different operations per `case`/`else if`. Then you can use a `switch`.
 
 ```js
 // Instead of
@@ -321,11 +320,11 @@ f.every(g => /* */)
 
 "Yeah, that's nice and all but what about ...?"
 
-Yes. You are right. There are always exceptions. Sometimes the problem you're solving is so complex it requires you write unreadable code. Or sometimes performance is way more important that you need to write something which is perceivably repulsive. If that's your case, which is perfectly reasonable, always use comments to describe it. Never think that "they will understand". In these cases you'd rather use a comment too many than that the next one spends 5+ minutes trying to figure it out.
+Yes. You are right. There are always exceptions. Sometimes the problem you're solving is so complex it requires you to write unreadable code. Maybe the performance is way more important so you again write code that is percievably repulsive. If that's the case, which is perfectly reasonable, always use comments to describe the case. Never assume that "they will understand". In these cases you'd rather use too many comments instead of the next developer spending 5+ minutes trying to figure it out.
 
 ### Bitwise operators
 
-Prime example. JavaScript's [bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators) (`&`, `|`, `~`, etc) can do some real good magic. Usually they're way faster than non-numerical counterparts. The problem with these is that they are numerical. Both operands are first coerced into a decimal number and then the operator is applied, leaving a new decimal number.
+Prime example. JavaScript's [bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#bitwise_operators) (`&`, `|`, `~`, etc) can do some real good magic. Usually they're way faster than non-numerical counterparts. The problem with these is that they are numerical. Both operands are first coerced into a decimal number and then the oparator is applied, leaving a new decimal number.
 
 ```js
 // A common use was
@@ -335,8 +334,8 @@ const containsApples = ~fruitBasket.indexOf('apple')
 const containsApples = fruitBasket.indexOf('apple') !== -1
 ```
 
-Not a lot of people understand what is happening here (because nobody needs to use them) and it takes a few sentences in English to explain. The result of both expression is exactly the same, though. So, when would you use the bitwise operators? When you need to operate on bits. And in some cases they're more performant then the alternatives, so when that's more important use them and add a comment.
+Not a lot of people understand what is happening here (because nobody needs to use them) and it takes a few sentences in English to explain. The result of both expressions is exactly the same. So, when would you use the bitwise operators? When you need to oparate on bits. And in some cases they're more performant than the alternatives, so when that's more important use them and add a comment.
 
 ## Summary
 
-Code Is For Humans And Humans Alone. Write it for humans to read. Take the mental load off. Help thy self. Help thy neighbour!
+Code Is For Humans And Humans Alone. Write it for humans to read. Take the mental load off. Help thyself. Help thy neighbour!
