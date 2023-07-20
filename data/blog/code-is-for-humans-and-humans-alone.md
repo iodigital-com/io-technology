@@ -1,6 +1,6 @@
 ---
 title: 'Code Is For Humans And Humans Alone'
-date: '2023-07-18'
+date: '2023-07-19'
 tags: ['clean-code', 'dx', 'code-quality', 'productivity']
 images: ['/articles/code-is-for-humans-and-humans-alone/JavaScript-58acbb8a3df78c345bad32c2.webp']
 summary: 'Write code for human beings to improve developer experience, readability and maintainability'
