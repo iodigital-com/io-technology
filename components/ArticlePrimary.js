@@ -26,7 +26,7 @@ const ArticlePrimary = ({ slug, title, summary, authors }) => {
             aria-label="Read whole article"
             className={`bg-io_${theme}-600 relative inline-flex rounded-full py-4 px-9 text-base font-bold leading-none text-white transition-colors delay-100 hover:bg-white hover:text-io_${theme}-600`}
           >
-            <span>Read whole article</span>
+            <span>Read the whole article</span>
           </Link>
         </div>
 
