@@ -1,7 +1,7 @@
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import siteMetadata from '@/data/siteMetadata'
 import { PageSEO } from '@/components/SEO'
-import { getAuthors } from '@/lib/authors'
+import { getAuthors, getAllAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
@@ -11,6 +11,7 @@ import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
 import { useEffect } from 'react'
+import shuffle from '@/lib/shuffle'
 
 import bol from 'public/images/clients/bol.png'
 import ing from 'public/images/clients/ing.png'
@@ -33,17 +34,24 @@ export async function getStaticProps() {
   const talksList = talks.filter((talk) => talkTitles.includes(talk.slug)).sort(sortCreation)
   const authors = await getAuthors(talks)
 
-  return { props: { talks: talksList, authors, theme: 'green' } }
+  const allAuthors = await getAllAuthors()
+  const highlightedAuthorsNames = [
+    'dave-bitter',
+    'ayo-ayco',
+    'vince-liem',
+    'mohamad-shiralizadeh',
+    'jafar-rezaei',
+    'lucien-immink',
+  ]
+  const highlightedAuthors = shuffle(
+    allAuthors.filter((author) => highlightedAuthorsNames.includes(author.slug[0]))
+  )
+
+  return { props: { talks: talksList, authors, highlightedAuthors, theme: 'green' } }
 }
 
-export default function Talks({ talks, authors }) {
+export default function Talks({ talks, authors, highlightedAuthors }) {
   const { theme } = useBrandingTheme()
-
-  const allAuthors = talks
-    .map((talk) => talk.authors)
-    .flat()
-    .filter((author, index, self) => self.indexOf(author) === index)
-    .map((author) => authors[author])
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -69,15 +77,16 @@ export default function Talks({ talks, authors }) {
       <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pt-8 pb-24 md:pb-32">
           <div className="grid grid-cols-12">
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+            <div className="col-start-1 col-end-12 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-8">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
-                Are you ready to be inspired? Discover{' '}
-                <span className="font-serif font-light">captivating talks</span> that will ignite
-                your mind!
+                Ready to be <span className="font-serif font-light">inspired</span>?
               </h1>
+              <p className="text-2xl md:text-2xl xl:text-3xl">
+                Discover captivating talks that will ignite your mind!
+              </p>
             </div>
-            <div className="col-start-1 col-end-12 mt-20 mb-8 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
-              {allAuthors.map((author) => (
+            <div className="col-start-1 col-end-12 mt-10 mb-8 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
+              {highlightedAuthors.map((author) => (
                 <Contributor key={author.slug[0]} contributor={author} link={false} />
               ))}
             </div>
@@ -99,7 +108,7 @@ export default function Talks({ talks, authors }) {
         </div>
       </section>
       <SectionTitle>
-        Some of our <span className="font-serif font-light">best talks</span>
+        Some of our <span className="font-serif font-light">most popular</span> talks
       </SectionTitle>
       <div className="container mx-auto pt-10 pb-4 lg:pt-16">
         <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">

@@ -2,7 +2,7 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const InnerContributor = ({ contributor, link = true }) => {
+const InnerContributor = ({ contributor }) => {
   return (
     <>
       <div className="flex-0 md:h-34 md:w-34 relative h-28 w-28 overflow-hidden rounded-full border-4 border-white md:mb-2 lg:h-40 lg:w-40 xl:h-44 xl:w-44">
@@ -16,6 +16,7 @@ const InnerContributor = ({ contributor, link = true }) => {
         />
       </div>
       <p>{contributor.name}</p>
+      <p className="text-sm text-gray-500">{contributor.occupation}</p>
     </>
   )
 }
