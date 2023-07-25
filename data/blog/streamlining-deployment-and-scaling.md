@@ -1,5 +1,5 @@
 ---
-title: 'Streamlining Deployment and Scaling: An Introduction to Kubernetes, Helm, and Terraform'
+title: 'Streamlining Deployment and Scaling: An Introduction to Kubernetes, Helm and Terraform'
 date: '2023-07-24'
 tags:
   ['Kubernetes', 'Minikube', 'k8s', 'Helm', 'Terraform', 'Dockerization', 'Kotlin', 'Springboot']
