@@ -48,7 +48,7 @@ We will be using [Minikube](https://minikube.sigs.k8s.io/docs/start) to be able 
 
 ## Get Started
 
-Let's get started with using these tools and deploy a very simple spring-boot application that stores data to a postgres DB and a publishing some data to a RabbitMQ. so let's get started.
+Let's get started with using these tools and deploy a very simple spring-boot application that stores data to a postgres DB and a publishing some data to a RabbitMQ.
 
 ### Our Spring-Boot Application
 
