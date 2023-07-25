@@ -1,7 +1,8 @@
 ---
 title: 'Streamlining Deployment and Scaling: An Introduction to Kubernetes, Helm, and Terraform'
 date: '2023-07-20'
-tags: ['Kubernetes', 'Minikube', 'k8s', 'Helm', 'Terraform', 'Dockerization']
+tags:
+  ['Kubernetes', 'Minikube', 'k8s', 'Helm', 'Terraform', 'Dockerization', 'Kotlin', 'Springboot']
 images: ['/articles/streamlining-deployment-and-scaling/Intro-Clouds.jpg']
 summary: 'A small go through to explore kubernetes, helm and terraform'
 authors: ['eyad-jarrar']
@@ -18,12 +19,18 @@ In this article, we will explore these technologies, their individual roles, and
 
 ## Terminology
 
-Before we go deeper into the technologies, lets start by giving a brief overview of each of them:
+Before we go deeper into the technologies, lets start by giving a brief overview and install them on our machine:
+
+### Docker
+
+[Docker](https://www.docker.com/why-docker/) is an open-source platform that enables developers to package applications and their dependencies into lightweight, self-contained units called containers. These containers can be easily deployed, run, and scaled across various environments, ensuring consistency and efficient resource utilization.
+
+If you don't already have a [docker desktop](https://docs.docker.com/desktop/install/windows-install/) running on your machine, it's a good idea to track our containers that will be created along this article.
 
 ### Kubernetes: Orchestrating Containerized Applications
 
-Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. It provides a highly flexible and robust infrastructure for automating the management of containers across a cluster of machines.
-Kubernetes offers features like automatic scaling, load balancing, self-healing, and rolling updates, ensuring high availability and fault tolerance.
+[Kubernetes](https://kubernetes.io/docs/home/), often abbreviated as K8s, is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. It provides a highly flexible and robust infrastructure for automating the management of containers across a cluster of machines.
+`Kubernetes` offers features like automatic scaling, load balancing, self-healing, and rolling updates, ensuring high availability and fault tolerance.
 
 #### Minikube
 
@@ -31,13 +38,13 @@ We will be using [Minikube](https://minikube.sigs.k8s.io/docs/start) to be able 
 
 ### Helm: Simplifying Application Packaging and Deployment
 
-Helm is a package manager for Kubernetes that simplifies the management of applications and their dependencies. It introduces the concept of "charts," which are pre-configured packages containing all the necessary resources required to run an application on Kubernetes.
-Helm enables developers to define, install, upgrade, and uninstall applications in a repeatable and consistent manner. With Helm, deploying complex applications with multiple components becomes more manageable, as it abstracts away the complexity of managing individual resources.
+[Helm](https://helm.sh/docs/intro/install/) is a package manager for `Kubernetes` that simplifies the management of applications and their dependencies. It introduces the concept of "charts," which are pre-configured packages containing all the necessary resources required to run an application on `Kubernetes`.
+`Helm` enables developers to define, install, upgrade, and uninstall applications in a repeatable and consistent manner. With `Helm`, deploying complex applications with multiple components becomes more manageable, as it abstracts away the complexity of managing individual resources.
 
 ### Terraform: Infrastructure as Code
 
-Terraform is an infrastructure provisioning tool that allows you to define and manage your infrastructure as code (IaC). It supports various cloud providers and infrastructure services, enabling you to create and manage resources such as virtual machines, networks, and storage.
-Terraform uses a declarative syntax to define your infrastructure configuration, allowing you to version control and manage it alongside your application code. By treating infrastructure as code, Terraform provides the ability to create reproducible infrastructure deployments, making it easier to maintain and scale complex architectures.
+[Terraform](https://developer.hashicorp.com/terraform/intro) is an infrastructure provisioning tool that allows you to define and manage your infrastructure as code (IaC). It supports various cloud providers and infrastructure services, enabling you to create and manage resources such as virtual machines, networks, and storage.
+`Terraform` uses a declarative syntax to define your infrastructure configuration, allowing you to version control and manage it alongside your application code. By treating infrastructure as code, `Terraform` provides the ability to create reproducible infrastructure deployments, making it easier to maintain and scale complex architectures.
 
 ## Get Started
 
@@ -50,26 +57,26 @@ We can start by creating our spring-boot application using [spring-boot-initiali
 While generating the project, here are some dependencies that we will need during our journey.
 
 ```xml
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+   <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-data-jpa</artifactId>
+   </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+   <dependency>
+     <groupId>org.postgresql</groupId>
+     <artifactId>postgresql</artifactId>
+     <scope>runtime</scope>
+   </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-        </dependency>
+   <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+   </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-        </dependency>
+   <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+   </dependency>
 ```
 
 These dependencies are added to integrate with postgres DB and RabbitMQ.
@@ -168,19 +175,7 @@ We also want to add a nice plugin to our pom file, to generate a docker image of
             </plugin>
 ```
 
-Now that our application is all set, let's move forward deploying our application, we will need few tools to install locally.
-
-### Docker
-
-If you don't already have a [docker desktop](https://docs.docker.com/desktop/install/windows-install/) running on your machine, it's a good idea to track our containers that will be created along this article.
-
-### Minikube
-
-We will need [Minikube](https://minikube.sigs.k8s.io/docs/start) to be installed on our machine to use kubernetes locally.
-
-### Helm
-
-As well as [Helm](https://helm.sh/docs/intro/install/) to configure and optimize our kubernetes deployment later on.
+Now that our application is all set, let's move forward deploying our application:
 
 ## Begin deploying
 
@@ -196,7 +191,7 @@ We should be able to see that our minikube has a docker container in docker desk
 
 ![Minikube container](/articles/streamlining-deployment-and-scaling/Minikube-start.png)
 
-now let's initialize our helm charts for this project:
+now let's initialize our helm charts for this project, navigate to the root folder in our project and :
 
 ```shell
 helm create ./helm/demo-chart
@@ -404,20 +399,20 @@ When we generated our helm chart, it is already pointing to the values.yml file 
 
 So the deployment.yml will look like this:
 
-```yml
+```yml:deployment.yml {36-38} showLineNumbers
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "testy-chart.fullname" . }}
+  name: {{ include "demo-chart.fullname" . }}
   labels:
-    {{- include "testy-chart.labels" . | nindent 4 }}
+    {{- include "demo-chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "testy-chart.selectorLabels" . | nindent 6 }}
+      {{- include "demo-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -425,13 +420,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "testy-chart.selectorLabels" . | nindent 8 }}
+        {{- include "demo-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "testy-chart.serviceAccountName" . }}
+      serviceAccountName: {{ include "demo-chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -473,15 +468,17 @@ spec:
       {{- end }}
 ```
 
-We want to set up the environment variables needed to configure the Docker client to use the Docker daemon inside the Minikube virtual machine by executing:
+As you can see in the configuration above we have updated our spring boot properties in line `37-38` to a new value to be able to connect to from minikube to our db created locally, you can do the same on any other property you have in your application to be overridden while deploying.
+
+We want to set up the environment variables needed to configure the Docker client to use the Docker daemon inside the `Minikube` virtual machine by executing:
 
 ```shell
 eval minikube docker-env
 ```
 
-now we can use the local Docker client to interact with the Minikube Kubernetes cluster, making it easier to build and deploy applications using containers directly to the Minikube cluster from our local development environment.
+now we can use the local Docker client to interact with the `Kubernetes` cluster, making it easier to build and deploy applications using containers directly to the `Minikube` cluster from our local development environment.
 
-After we have started our minikube and our helm chart, we can now prepare our application docker image by using the plugin we mentioned earlier, we will also use a tag '1.1' for our image, we will use it later to determine which image we want to deploy.
+After we have started our minikube and our helm chart, we can now prepare our application docker image by using the plugin we mentioned earlier, we will also use a tag '1.1' for our image `myimage`, we will use it later to determine which image we want to deploy.
 
 ```shell
 mvn compile jib:dockerBuild -Djib.to.tags=1.1
@@ -501,17 +498,32 @@ kubectl get pod
 
 it will give us:
 
-NAME READY STATUS RESTARTS AGE
-myimage-demo-chart-7ff95856db-txfdz 1/1 Running 0 7s
+| NAME                                | READY | STATUS  | RESTARTS | AGE |
+| ----------------------------------- | ----- | ------- | -------- | --- |
+| myimage-demo-chart-7ff95856db-txfdz | 1/1   | Running | 0        | 9s  |
 
-it says ready 1/1 because kubernetes checked our health and readiness path and it returned 200, therefore, it assumes the pod is alive.
+it shows ready 1/1 because kubernetes checked our health and readiness path and it returned 200, therefore, it assumes the pod is alive.
 which is our application. and to be able to see the logs of our pod we can use:
 
 ```shell
 kubectl logs -f myimage-demo-chart-7ff95856db-txfdz
 ```
 
-and by using any client to call our endpoints we will notice the database changes and our topic on rabbitmq is storing the messages.
+and by using any client to call our endpoints we will notice that the connection will not go through because we need to port-forward from our machine to the minikube docker so we need to do so by:
+
+```shell
+kubectl port-forward service/myimage-demo-chart 8080
+```
+
+or `||`
+
+```shell
+kubectl port-forward myimage-demo-chart-7ff95856db-txfdz 8080
+```
+
+in our case they both do the same thing which is port-forward from `8080` -> `8080`, except that the first one actually does port-forwarding for all the pods under our deployment, while the latter does the same but only for a specific pod.
+
+Now if we use a client to create an input in our endpoints we will notice the database changes and our topic on rabbitmq is storing the messages.
 
 ## Conclusion
 
@@ -521,4 +533,4 @@ By combining these three powerful tools, you have a comprehensive toolkit that f
 
 However, as with any technology stack, there are challenges to be aware of. It is crucial to invest time and effort into understanding each tool's intricacies and best practices. Ensuring your team has the necessary skills and knowledge to operate these technologies is essential to maximizing their potential.
 
-In conclusion, embracing Kubernetes, Helm, and Terraform with your Spring Boot applications opens up a world of possibilities in modern software development. The flexibility, scalability, and automation capabilities offered by these tools contribute to improved development cycles, reduced downtime, and enhanced collaboration among team members. As you embark on your journey with these technologies, always remember to stay updated with the latest advancements and leverage community support to overcome any hurdles that may arise. Happy deploying!
+In conclusion, embracing `Kubernetes`, `Helm`, and `Terraform` with your Spring Boot applications opens up a world of possibilities in modern software development. The flexibility, scalability, and automation capabilities offered by these tools contribute to improved development cycles, reduced downtime, and enhanced collaboration among team members. As you embark on your journey with these technologies, always remember to stay updated with the latest advancements and leverage community support to overcome any hurdles that may arise. Happy deploying!
