@@ -4,7 +4,7 @@ date: '2023-07-24'
 tags:
   ['Kubernetes', 'Minikube', 'k8s', 'Helm', 'Terraform', 'Dockerization', 'Kotlin', 'Springboot']
 images: ['/articles/streamlining-deployment-and-scaling/Intro-Clouds.jpg']
-summary: 'A small go through to explore kubernetes, helm and terraform'
+summary: 'A small go-through to explore Kubernetes, Helm and Terraform'
 authors: ['eyad-jarrar']
 theme: 'beige'
 ---
@@ -13,13 +13,13 @@ theme: 'beige'
 
 In the ever-evolving landscape of modern application development and deployment,
 managing complex infrastructures has become a critical challenge.
-Kubernetes, Helm, and Terraform are three powerful tools that work synergistic-ally to streamline the process of deploying and scaling applications in a reliable and efficient manner.
+Kubernetes, Helm, and Terraform are three powerful tools that work synergistically to streamline the process of deploying and scaling applications reliably and efficiently.
 
-In this article, we will explore these technologies, their individual roles, and how they complement each other to empower developers and operations teams.
+In this article, we will explore these technologies, their roles, and how they complement each other to empower developers and operations teams.
 
 ## Terminology
 
-Before we go deeper into the technologies, lets start by giving a brief overview and install them on our machine:
+Before we go deeper into the technologies, let's start by giving a brief overview and install them on our machine:
 
 ### Docker
 
@@ -34,7 +34,7 @@ If you don't already have a [docker desktop](https://docs.docker.com/desktop/ins
 
 #### Minikube
 
-We will be using [Minikube](https://minikube.sigs.k8s.io/docs/start) to be able to use kubernetes locally on our machine.
+We will be using [Minikube](https://minikube.sigs.k8s.io/docs/start) to be able to use `Kubernetes` locally on our machine.
 
 ### Helm: Simplifying Application Packaging and Deployment
 
@@ -48,38 +48,38 @@ We will be using [Minikube](https://minikube.sigs.k8s.io/docs/start) to be able 
 
 ## Get Started
 
-Let's get started with using these tools and deploy a very simple spring-boot application that stores data to a postgres DB and a publishing some data to a RabbitMQ.
+Let's get started with using these tools and deploy a very simple spring-boot application that stores data to a Postgres DB and publishes some data to a RabbitMQ.
 
 ### Our Spring-Boot Application
 
-We can start by creating our spring-boot application using [spring-boot-initializer](https://start.spring.io/) for this article I will be using kotlin as our main application language and maven for dependency management.
+We can start by creating our spring-boot application using [spring-boot-initializer](https://start.spring.io/) for this article I will be using `Kotlin` as our main application language and maven for dependency management.
 
 While generating the project, here are some dependencies that we will need during our journey.
 
 ```xml
    <dependency>
-     <groupId>org.springframework.boot</groupId>
-     <artifactId>spring-boot-starter-data-jpa</artifactId>
-   </dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
 
-   <dependency>
-     <groupId>org.postgresql</groupId>
-     <artifactId>postgresql</artifactId>
-     <scope>runtime</scope>
-   </dependency>
+<dependency>
+<groupId>org.postgresql</groupId>
+<artifactId>postgresql</artifactId>
+<scope>runtime</scope>
+</dependency>
 
-   <dependency>
-     <groupId>org.springframework.cloud</groupId>
-     <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-   </dependency>
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+</dependency>
 
-   <dependency>
-     <groupId>org.springframework.cloud</groupId>
-     <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-   </dependency>
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+</dependency>
 ```
 
-These dependencies are added to integrate with postgres DB and RabbitMQ.
+These dependencies are added to integrate with Postgres DB and RabbitMQ.
 
 Starting with the DB layer, we will create the entity and repository
 
@@ -106,27 +106,27 @@ We will move forward with our application's controller.
 @RequestMapping("demo")
 class DemoController(val demoRepository: DemoRepository, val streamBridge: StreamBridge) {
 
-    @GetMapping
-    fun getDemo(): List<String> = demoRepository.findAll().map { it.info }
+   @GetMapping
+   fun getDemo(): List<String> = demoRepository.findAll().map { it.info }
 
-    @PostMapping
-    fun createDemo(@RequestBody input: DemoInput): UUID =
-        demoRepository.save(DemoEntity(UUID.randomUUID(), input.data)).also { produceDemoCreatedMessage(DemoCreatedMessage(it.id, it.info)) }.id
+   @PostMapping
+   fun createDemo(@RequestBody input: DemoInput): UUID =
+      demoRepository.save(DemoEntity(UUID.randomUUID(), input.data)).also { produceDemoCreatedMessage(DemoCreatedMessage(it.id, it.info)) }.id
 
-    fun produceDemoCreatedMessage(demoCreatedMessage: DemoCreatedMessage) {
-        streamBridge.send("demoProduceQueue", demoCreatedMessage)
-    }
+   fun produceDemoCreatedMessage(demoCreatedMessage: DemoCreatedMessage) {
+      streamBridge.send("demoProduceQueue", demoCreatedMessage)
+   }
 
-    data class DemoInput(val data: String)
-    data class DemoCreatedMessage(val id: UUID, val info: String)
+   data class DemoInput(val data: String)
+   data class DemoCreatedMessage(val id: UUID, val info: String)
 }
 ```
 
-The final part of the application will be configuration
+The final part of the application will be the configuration
 
 #### Configuration
 
-Using [spring-cloud-stream](https://www.baeldung.com/spring-cloud-stream) we will be able to control the rabbitmq topics which we will use.
+Using [spring-cloud-stream](https://www.baeldung.com/spring-cloud-stream) we will be able to control the Rabbitmq topics which we will use.
 
 ```yaml
 spring:
@@ -160,7 +160,7 @@ spring:
                 virtual-host: /
 ```
 
-We also want to add a nice plugin to our pom file, to generate a docker image of our application dynamically, and we will call it myimage.
+We also want to add a cool plugin to our pom file, to generate a docker image of our application dynamically, and we will call it myimage.
 
 ```xml
             <plugin>
@@ -175,40 +175,40 @@ We also want to add a nice plugin to our pom file, to generate a docker image of
             </plugin>
 ```
 
-Now that our application is all set, let's move forward deploying our application:
+Now that our application is all set, let's move forward with deploying our application:
 
 ## Begin deploying
 
-Right now, our application is ready, we have installed all the tools that we need, it's time to bring our application live.
+Right now, our application is ready, we have installed all the tools that we need and it's time to bring our application live.
 
-First lets start our minikube locally, by opening a terminal and executing
+First let's start our `Minikube` locally, by opening a terminal and executing
 
 ```shell
 minikube start
 ```
 
-We should be able to see that our minikube has a docker container in docker desktop application
+We should be able to see that our `Minikube` has a Docker container using the Docker desktop application
 
 ![Minikube container](/articles/streamlining-deployment-and-scaling/Minikube-start.png)
 
-now let's initialize our helm charts for this project, navigate to the root folder in our project and :
+now let's initialize our `Helm` charts for this project, navigate to the root folder in our project and execute:
 
 ```shell
 helm create ./helm/demo-chart
 ```
 
-it will initialize the chart with all the configurations, we just have to change few of them based on our application needs.
+it will initialize the chart with all the configurations, we just have to change a few of them based on our application needs.
 
-Now to make sure that our application will perform as expected, we want to make sure that we have our postgresDB and rabbitMQ are running.
-to do so we will be using terraform to initialize and run them.
+Now to make sure that our application will perform as expected, we want to make sure that we have our PostgresDB and RabbitMQ running.
+to do so we will be using `Terraform` to initialize and run them.
 
 ### Terraform
 
-Dealing with terraform is really simple, we just need to create our IaC for both PostgresDB and RabbitMQ in one file as follows:
+Dealing with `Terraform` is really simple, we just need to create our IaC for both PostgresDB and RabbitMQ in one file as follows:
 
-1. go to any directory create your own terraform folder just to keep the terraform files and create a terraform file called main.tf using:
+1. go to any directory create your own `Terraform` folder just to keep the files organized and create a `Terraform` file called main.tf using:
    ` touch main.tf`
-   and then we need to add the necessary configuration plan to create both postgresDB and rabbitMQ, so inside the main.tf add the following json:
+   and then we need to add the necessary configuration plan to create both PostgresDB and RabbitMQ, so inside the main.tf add the following `JSON`:
 
 ```json
 terraform {
@@ -258,13 +258,13 @@ resource "docker_container" "postgres" {
 }
 ```
 
-This will actually describe our terraform IaC, so our provider will be docker and the resources we want to run are `postgres:latest` and `rabbitmq:3-management` with some additional information like the ports and DB credentials.
+This will actually describe our `Terraform` IaC, so our provider will be Docker and the resources we want to run are `postgres:latest` and `rabbitmq:3-management` with some additional information like the ports and DB credentials.
 
 2. Now after we have described our IaC we want to initialize it using:
-   `terraform init` [command](https://developer.hashicorp.com/terraform/cli/commands/init), it will do a lot of cool stuff but let's assume it loads the above configuration and environment setup and validate it.
+   `terraform init` [command](https://developer.hashicorp.com/terraform/cli/commands/init), will do a lot of cool stuff but let's assume it loads the above configuration and environment setup and validate it.
 
 3. Once we have our IaC initialized, we can run them by using:
-   `terraform apply` [command](https://developer.hashicorp.com/terraform/cli/commands/apply), we should now see what it is actually performing, as for our case it will be something like the below:
+   `terraform apply` [command](https://developer.hashicorp.com/terraform/cli/commands/apply), we should now see what it is performing, as for our case it will be something like the below:
 
 ```text
 docker_image.postgres: Refreshing state... [id=sha256:11a95ab93cf5794c4bb89ae2b7269a4663cc6696756aca8a2ce4860105184f96postgres:latest]
@@ -388,14 +388,14 @@ it also asks for the user confirmation on what exactly is going to happen, so on
 
 ### Final steps
 
-Now that we have created our resources using terraform, created our application and its docker image, we need to fix some configuration to match our setup, as our application docker image is on minikube we will need some port-forwarding and configuration changes. we are using minikube to run kubernetes locally. we will create the application image as a last step.
+Now that we have created our resources using `Terraform` and created our application and its docker image, we need to fix some configuration to match our setup, as our application's docker image is on `Minikube` we will need some port-forwarding and configuration changes. we are using `Minikube` to run `Kubernetes` locally. we will create the application image as a last step.
 
 Navigate to ./helm/demo-chart inside the values.yml file we will change two properties:
 
-1. repository: we will set it to the image name that we will create, for example `myimage`
-2. tag: it will be an empty string at first, but since we will create the image with name `myimage` and a `tag=1.1` for example while using the mvn command above, we also need to specify the tag here, in the actual deployment on cloud, this tag should be taken automatically from generated build.
+1. repository: we will set it to the image name that we will create, for example, `myimage`
+2. tag: it will be an empty string at first, but since we will create the image with the name `myimage` and a `tag=1.1` for example while using the mvn command above, we also need to specify the tag here, in the actual deployment on cloud, this tag should be taken automatically from the generated build.
 
-When we generated our helm chart, it is already pointing to the values.yml file to take these properties from. but we still need to change few things in the deployment.yml file, which are related to our application property such as the datasource_url since its running on minikube we will need to forward the ports to the local machine and some paths of our health and readiness to make sure that kubernetes understands when our pod is healthy and ready.
+When we generated our helm chart, it is already pointing to the values.yml file to take these properties from. but we still need to change a few lines in the deployment.yml file, which are related to our application property such as the datasource_url since its running on `Minikube` we will need to forward the ports to the local machine and some paths of our health and readiness to make sure that `Kubernetes` understands when our pod is healthy and ready.
 
 So the deployment.yml will look like this:
 
@@ -468,7 +468,7 @@ spec:
       {{- end }}
 ```
 
-As you can see in the configuration above we have updated our spring boot properties in line `37-38` to a new value to be able to connect to from minikube to our db created locally, you can do the same on any other property you have in your application to be overridden while deploying.
+As you can see in the configuration above we have updated our spring boot properties in lines `37-38` to a new value to be able to connect from `Minikube` to our db created locally, you can do the same on any other property you have in your application to be overridden while deploying.
 
 We want to set up the environment variables needed to configure the Docker client to use the Docker daemon inside the `Minikube` virtual machine by executing:
 
@@ -476,40 +476,40 @@ We want to set up the environment variables needed to configure the Docker clien
 eval minikube docker-env
 ```
 
-now we can use the local Docker client to interact with the `Kubernetes` cluster, making it easier to build and deploy applications using containers directly to the `Minikube` cluster from our local development environment.
+Now we can use the local Docker client to interact with the `Kubernetes` cluster, making it easier to build and deploy applications using containers directly to the `Minikube` cluster from our local development environment.
 
-After we have started our minikube and our helm chart, we can now prepare our application docker image by using the plugin we mentioned earlier, we will also use a tag '1.1' for our image `myimage`, we will use it later to determine which image we want to deploy.
+After we have started our `Minikube` and our helm chart, we can now prepare our application docker image by using the plugin we mentioned earlier, we will also use a tag '1.1' for our image `myimage`, we will use it later to determine which image we want to deploy.
 
 ```shell
 mvn compile jib:dockerBuild -Djib.to.tags=1.1
 ```
 
-lets run our application using helm, we should navigate to our main project directory and execute:
+Let's run our application using `Helm`, we should navigate to our main project directory and execute:
 
 ```shell
 helm install myimage ./helm/demo-chart
 ```
 
-This will actually create the kubernetes pod of our application on minikube and we can see that our pod is running by:
+This will create the `Kubernetes` pod of our application on `Minikube` and we can see that our pod is running by:
 
 ```shell
 kubectl get pod
 ```
 
-it will give us:
+It will return:
 
 | NAME                                | READY | STATUS  | RESTARTS | AGE |
 | ----------------------------------- | ----- | ------- | -------- | --- |
 | myimage-demo-chart-7ff95856db-txfdz | 1/1   | Running | 0        | 9s  |
 
-it shows ready 1/1 because kubernetes checked our health and readiness path and it returned 200, therefore, it assumes the pod is alive.
+it shows ready 1/1 because `Kubernetes` checked our health and readiness path and it returned 200, therefore, it assumes the pod is alive.
 which is our application. and to be able to see the logs of our pod we can use:
 
 ```shell
 kubectl logs -f myimage-demo-chart-7ff95856db-txfdz
 ```
 
-and by using any client to call our endpoints we will notice that the connection will not go through because we need to port-forward from our machine to the minikube docker so we need to do so by:
+And by using any client to call our endpoints we will notice that the connection will not go through because we need to port-forward from our machine to the `Minikube` docker so we need to do so by:
 
 ```shell
 kubectl port-forward service/myimage-demo-chart 8080
@@ -521,9 +521,9 @@ or `||`
 kubectl port-forward myimage-demo-chart-7ff95856db-txfdz 8080
 ```
 
-in our case they both do the same thing which is port-forward from `8080` -> `8080`, except that the first one actually does port-forwarding for all the pods under our deployment, while the latter does the same but only for a specific pod.
+In our case, they both do the same thing, which is port-forward from `8080` -> `8080`, except that the first one does port-forwarding for all the pods under our deployment, while the latter does the same but only for a specific pod.
 
-Now if we use a client to create an input in our endpoints we will notice the database changes and our topic on rabbitmq is storing the messages.
+Now if we use a client to create an input in our endpoints we will notice the database changes and our topic on RabbitMQ is storing the messages.
 
 ## Conclusion
 
