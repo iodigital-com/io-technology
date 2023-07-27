@@ -30,7 +30,7 @@ Although JavaScript's keywords are in English, its syntax doesn't look like it. 
 
 ### SQL
 
-Take a look at SQL (Structured Query Language). Its initial name was SEQUEL (Structured English Query Language). The idea behind the syntax was to make it very similar to English as possible so anyone could read it. Even people who are unfamiliar with the language. I'm not going into details about SQL but nearly anybody can read these CRUD operations and understand their intent at first glance.
+Take a look at SQL (Structured Query Language). Its initial name was SEQUEL (Structured English Query Language). The idea behind the syntax was to make it as similar to English as possible so anyone could read it. Even people who are unfamiliar with the language. I'm not going into details about SQL but nearly anybody can read these CRUD operations and understand their intent at first glance.
 
 ```sql
 -- CREATE
