@@ -14,9 +14,9 @@ Finite State Machines (FSMs) are a concept in programming that helps model compl
 
 An FSM is a model that consists of three main components:
 
-- States: the distinct stages or conditions an application can be in at any given moment
-- Transitions: the description of how the FSM moves from one stage to the other
-- Events: the triggers for a transition of state
+- **States**: the distinct stages or conditions an application can be in at any given moment
+- **Transitions**: the description of how the FSM moves from one stage to the other
+- **Events**: the triggers for a transition of state
 
 ### Example of an FSM
 
@@ -40,7 +40,7 @@ const updateOrderStatus = (event) => {
 
 Usually this is the moment I get a coffee to start figuring out what the business logic is in this function. As the codebase grows, more state transitions are added, leading to a convoluted and error-prone `updateOrderStatus` function. The lack of structure and clear separation between states and transitions make it challenging to maintain, debug, and extend the code.
 
-By using a Finite State Machine, we can significantly improve the code's clarity and maintainability. Let's see how the same order status functionality can be implemented with an FSM:
+By using an FSM, we can significantly improve the code's clarity and maintainability. Let's see how the same order status functionality can be implemented with an FSM:
 
 ```jsx
 const states = {
