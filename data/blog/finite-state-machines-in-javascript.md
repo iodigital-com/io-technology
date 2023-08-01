@@ -1,6 +1,6 @@
 ---
 title: '_Finite State Machines_ in JavaScript'
-date: '2023-07-26'
+date: '2023-08-01'
 tags: ['frontend', 'javascript']
 images: ['/articles/finite-state-machines-in-javascript/finite-state-machines-in-javascript.jpg']
 summary: 'Application state can make any application complex real quick. Let’s have a look at Finite State Machines in Javascript to resolve some of these complexities.'
@@ -76,6 +76,8 @@ const function updateOrderStatus => (event) {
 ```
 
 With the FSM implementation, the code becomes more structured and organised. When calling the `updateOrderStatus` function with `"ProcessOrder"` event, the state can only go to `"Processing"` if the current state is `"Pending"`. This is the same business logic as before, but states and transitions are clearly defined, making it easier to understand the system's behaviour.
+
+![Flow chart representing the transitions mentioned above](/articles/finite-state-machines-in-javascript/finite-state-machines-in-javascript-example-flow-chart.jpg)
 
 As the number of states and transitions increases, the code remains clean and maintainable. For example, if you want to add a cancelled order state, you simply update the states and transitions objects:
 
