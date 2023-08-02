@@ -14,6 +14,7 @@ import Article from '@/components/Article'
 import ArticlePrimary from '@/components/ArticlePrimary'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
+import BackgroundVideo from 'public/videos/i-twist-green_16x9-rechts.mp4'
 
 const MAX_BLOG_POSTS = 5
 
@@ -41,7 +42,12 @@ export default function Home({ posts, videos, jobs, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
+      <div className={`bg-io_${theme}-500 relative`}>
+        <div className="absolute top-0 right-0 bottom-0 left-0">
+          <video className="h-full w-full object-cover" autoPlay loop>
+            <source src={BackgroundVideo} type="video/mp4" />
+          </video>
+        </div>
         <section className="pb-14 pt-24">
           {posts.length &&
             posts.slice(0, 1).map((firstArticle) => {
