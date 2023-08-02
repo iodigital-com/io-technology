@@ -74,7 +74,8 @@ module.exports = withBundleAnalyzer({
     })
 
     // Fixme
-    //  This is pre-webpack5 way to load files
+    //  This is pre-webpack5 way to load files.
+    //  More info here: https://webpack.js.org/guides/asset-modules/
     // config.module.rules.push({
     //   test: /\.mp4$/,
     //   use: [
