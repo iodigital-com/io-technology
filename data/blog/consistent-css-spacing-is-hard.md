@@ -1,8 +1,8 @@
 ---
-title: 'No Margin For Error'
-date: '2023-08-01'
+title: 'Consistent CSS spacing is hard, but it does not have to be'
+date: '2023-08-15'
 tags: ['frontend', 'css']
-images: ['/articles/no-margin-for-error/whack-a-mole.jpg']
+images: ['/articles/consistent-css-spacing-is-hard/whack-a-mole.jpg']
 summary: 'Two simple guidelines is all it takes to prevent rampant spacing issues from turning your expertly crafted project into an endless game of whack-a-mole.'
 authors: ['niels-matthijs']
 theme: 'rouge'
@@ -96,7 +96,7 @@ It's a simple enough guideline, but it's also an easy one to sin against, not in
 indications of a component's factual boundaries. One thing that helped me tremendously was to include crop marks (the red crosses in the image below). They
 are relatively unobtrusive, yet a quick glance will reveal if unwanted spacing exists.
 
-![Example of crop marks](/articles/no-margin-for-error/cropmark.jpg)
+![Example of crop marks](/articles/consistent-css-spacing-is-hard/cropmark.jpg)
 
 ## Conclusion
 
