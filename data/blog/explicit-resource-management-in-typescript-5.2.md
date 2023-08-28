@@ -1,8 +1,8 @@
 ---
-title: 'ECMAScript Explicit Resource Management early implementation in Typescript 5.2'
+title: 'ECMAScript Explicit Resource Management early implementation in TypeScript 5.2'
 date: '2023-08-29'
 tags: ['typescript', 'web-development', 'javascript']
-summary: 'This adds support for the using and await using declarations from the TC39 Explicit Resource Management proposal, which is currently at Stage 3'
+summary: 'The TypeScript implementation of the `using` and `await using` declarations from the TC39 Explicit Resource Management proposal, which is currently at Stage 3'
 images:
   [
     '/articles/explicit-resource-management-in-typescript-5.2/explicit-resource-management-in-typescript-5.2.webp.webp',
@@ -12,15 +12,17 @@ theme: 'blue'
 canonicalUrl: 'https://medium.com/@bagherani/ecmascript-explicit-resource-management-early-implementation-in-typescript-5-2-5e4d08b2aee3'
 ---
 
-# ECMAScript Explicit Resource Management early implementation in Typescript 5.2
+# ECMAScript Explicit Resource Management early implementation in TypeScript 5.2
 
-Explicit Resource Management indicates a system whereby the lifetime of a “resource” is managed explicitly by the user either imperatively (by directly calling a method like Symbol.dispose) or declaratively (through a block-scoped declaration like using).
+This article on ECMAScript Explicit Resource Management implementation in TypeScript 5.2 should be learned by developers who are interested in managing resources explicitly in their JavaScript programs. It explains how this feature works and how it can simplify resource management code.
 
-A **Resource** is an object with a specific lifetime, at the end of which either a lifetime-sensitive operation should be performed or a non-garbage-collected reference (such as a file handle, socket, etc.) should be closed or freed.
+Explicit Resource Management indicates a system whereby the lifetime of a “resource” is managed explicitly by the user. This can be done either imperatively (by directly calling a method like `Symbol.dispose`) or declaratively (through a block-scoped declaration like using).
 
-At the moment of writing this article, the ECMAScript [proposal](https://github.com/tc39/proposal-explicit-resource-management) for Explicit Resource Management is at [stage 3 ](https://tc39.es/process-document/)which means it will be launched within a few months and this is the time that the TypeScript community has already implemented it in Typescript [version 5.2](https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-beta/#using-declarations-and-explicit-resource-management).
+A "Resource" is something that has a specific lifespan. When that lifespan is over, the program needs to perform a specific action, like closing a file or freeing up memory, so that the program can continue running smoothly. Examples of resources include file handles and network sockets.
 
-This implementation will add a feature to the javascript language that we had similar to in other languages such as C# [using](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#1314-the-using-statement) syntax, Python [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) syntax, or [try](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) in Java.
+At the moment of writing this article, the ECMAScript [proposal](https://github.com/tc39/proposal-explicit-resource-management) for Explicit Resource Management is at [stage 3](https://tc39.es/process-document/) which means it will be launched within a few months and this is the time that the TypeScript community has already implemented it in TypeScript [version 5.2](https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-beta/#using-declarations-and-explicit-resource-management).
+
+This implementation will add a feature to the JavvaScript language that we had similar to in other languages such as C# [using](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#1314-the-using-statement) syntax, Python [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) syntax, or [try](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) in Java.
 
 ```c#
 // C# example of the 'using' statement
@@ -43,21 +45,21 @@ try {
 }
 ```
 
-Now this can be written in this way in Typescript 5.2:
+Now this can be written in this way in TypeScript 5.2:
 
 ```javascript
 using obj = someResource();
 // ...
 ```
 
-Later when the execution of the program goes in outside scope of the place the obj has been defined, the `dispose` method will be called.
+When the program's execution goes outside of the block that the `obj` has been defined, the object will no longer be needed and the `dispose` method will be called.
 
-To tell the Typescript compiler how to translate the new `using` syntax into a `try/finally` that the current Javascript can interpret, Typescript came up with an interface called Disposable that can be implemented by your class that makes you to have a `[Symbol.dispose]` method in that class like below:
+TypeScript introduced an interface called `Disposable` that can be used to implement the using syntax. To do this, your class should implement the `Disposable` interface, which requires the class to have a [Symbol.dispose] method. This method is responsible for freeing up any resources used by the class when it is no longer needed. By implementing the `Disposable` interface, the TypeScript compiler knows how to translate the using syntax into a `try/finally` block that the current JavaScript engine can understand.
 
 ```typescript
 class MyResource implements Disposable {
     [Symbol.dispose]() {
-    // clean-up logic
+      // clean-up logic
     }
 }
 
@@ -65,7 +67,7 @@ using obj = new MyResource();
 // ...
 ```
 
-Or if you have a **function** instead of a **class**, your function should return and object that has the `Symbol.dispose` method:
+Or, if you have a **function** instead of a **class**, your function should return an object that has the `Symbol.dispose` method:
 
 ```typescript
 function myResource(): Disposable {
@@ -97,7 +99,7 @@ try {
 }
 ```
 
-As you can see, here the Typescript compiler has compiled the using syntax into the traditional `try/finally` pattern that I mentioned before and of course, with some simple functions to manage the allocated resources(`__addDisposableResource` and `__disposeResources` will be generated by the compiler in the output file).
+As you can see, here the TypeScript compiler has compiled the using syntax into the traditional `try/finally` pattern that I mentioned before and of course, with some simple functions to manage the allocated resources(`__addDisposableResource` and `__disposeResources` will be generated by the compiler in the output file).
 
 ### Nested scopes and using
 
@@ -116,13 +118,13 @@ work();
 // a.dispose()
 ```
 
-In this case, after leaving the scope, the dispose methods will be called respectively.
+In this case, after leaving the scope, the `dispose` methods will be called respectively.
 
 ### DisposableStack class
 
-Implementing the `Symbol.dispose` can be considered as a good pattern if you have a class or a function that needs to be disposed at someplace, but here is two problems: First, in some cases implementing this method might add too much abstraction to your code and second, there are a lot of libraries and modules that haven’t implemented the dispose method it yet. So, for using them, you have to wrap them up with another layer of abstraction and implement the clean-up code(dispose) by yourself.
+Implementing the `Symbol.dispose` method can be a good pattern to use when you have a class or function that needs to be disposed of at some point. However, there are a few potential problems to consider. Firstly, implementing the `dispose` method can add unnecessary abstraction to your code in some cases, which can make it more difficult to read and understand. Secondly, many existing libraries and modules may not have implemented the `dispose` method yet, in which case you will need to create a wrapper around them and implement the clean-up code (dispose) yourself. Keep these considerations in mind when deciding whether or not to implement the `dispose` method in your code.
 
-Here is an example from the Typescript blog:
+Here is an example from the TypeScript blog:
 
 ```typescript
 class TempFile implements Disposable {
@@ -148,7 +150,7 @@ function doSomeWork() {
 }
 ```
 
-This class has been implemented (with all of its sophistications that might have later) to only have a dispose method that would be called by the engine, but there is a simpler solution that Typescript comes up with: the `DisposableStack` class.
+This class has been implemented (with all of its sophistication that it might have later) to only have a `dispose` method that would be called by the engine, but there is a simpler solution that TypeScript comes up with the `DisposableStack` class.
 
 Here is how:
 
@@ -167,17 +169,18 @@ function doSomeWork() {
 }
 ```
 
-Here we’ve created an instance of `DisposableStack` right after opening the file; It has the defer method that accepts a callback function which is suitable for clean-up purpose that will be invoked at the moment of disposing the cleanup object. The compiled version of the above code will be in order that at the finally block the callback function passed to the defer method will be called.
+Here we’ve created an instance of `DisposableStack` right after opening the file; It has the defer method that accepts a callback function which is suitable for clean-up that will be invoked at the moment of disposing the clean-up object.  
+After the above code is compiled, the resulting JavaScript code will include a `finally` block. This `finally` block will call the callback function that was passed to the defer method. This ensures that the callback function is always executed, even if an error occurs in the try block.
 
 ### Async dispose method
 
-Sometimes for your **dispose** logic you might need to use asynchronous operations using `async/await`. In this case you can simply use the await before the using keyword:
+Sometimes for your **dispose** logic you might need to use asynchronous operations using `async/await`. In this case, you can simply use the await before the using keyword:
 
 ```typescript
 await using file = OpenFile('...');
 ```
 
-In this case in the `OpenFile` function or class you should implement the dispose method using `Symbol.asyncDispose` like below:
+In this case, in the `OpenFile` function or class, you should implement the dispose method using `Symbol.asyncDispose` like below:
 
 ```typescript
 import * as fs from 'fs'
@@ -199,23 +202,19 @@ function OpenFile(path): AsyncDisposable {
 Because this feature is so recent, most runtimes will not support it natively. To use it, you will need runtime polyfills for the following:
 
 - Symbol.dispose
-
 - Symbol.asyncDispose
-
 - DisposableStack
-
 - AsyncDisposableStack
-
 - SuppressedError
 
-Symbol.dispose and `Symbol.asyncDispose` can be polyfilled like this:
+`Symbol.dispose` and `Symbol.asyncDispose` can be polyfilled like this:
 
 ```javascript
 Symbol.dispose ??= Symbol('Symbol.dispose')
 Symbol.asyncDispose ??= Symbol('Symbol.asyncDispose')
 ```
 
-The compilation target in the tsconfig file should be es2022 or below and lib setting to either include “esnext” or “esnext.disposable”
+The compilation target in the `tsconfig` file should be es2022 or below and the library setting to either include `"esnext"` or `"esnext.disposable"`
 
 ```json
 {
