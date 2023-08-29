@@ -22,9 +22,9 @@ A "Resource" is something that has a specific lifespan. When that lifespan is ov
 
 At the moment of writing this article, the ECMAScript [proposal](https://github.com/tc39/proposal-explicit-resource-management) for Explicit Resource Management is at [stage 3](https://tc39.es/process-document/) which means it will be launched within a few months and this is the time that the TypeScript community has already implemented it in TypeScript [version 5.2](https://devblogs.microsoft.com/typescript/announcing-typescript-5-2-beta/#using-declarations-and-explicit-resource-management).
 
-This implementation will add a feature to the JavvaScript language that we had similar to in other languages such as C# [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#1314-the-using-statement) syntax, Python [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) syntax, or [`try`](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) in Java.
+This implementation will add a feature to the JavvaScript language that we had similar to in other languages such as C# `using` syntax [[link](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/statements#1314-the-using-statement)], Python `with` syntax [[link](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)], or `try` [[link](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html)] in Java.
 
-```c#
+```csharp
 // C# example of the 'using' statement
 using (var file = File.OpenRead(“path-to-file”))
 {
