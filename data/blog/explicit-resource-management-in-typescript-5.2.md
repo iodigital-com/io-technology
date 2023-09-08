@@ -1,6 +1,6 @@
 ---
 title: 'ECMAScript Explicit Resource Management early implementation in TypeScript 5.2'
-date: '2023-08-29'
+date: '2023-09-08'
 tags: ['typescript', 'web-development', 'javascript']
 summary: 'The TypeScript implementation of the `using` and `await using` declarations from the TC39 Explicit Resource Management proposal, which is currently at Stage 3'
 images:
