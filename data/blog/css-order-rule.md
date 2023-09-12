@@ -1,6 +1,6 @@
 ---
 title: 'TIL: The CSS `order` Property Requires Each Grid/Flex Item to be `order`ed'
-date: '2023-12-08'
+date: '2023-08-12'
 tags: ['css', 'flex', 'grid']
 summary: 'To use order on one element means using order on each of its siblings, too.'
 authors: ['remy-parzinski']
