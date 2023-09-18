@@ -15,29 +15,19 @@
 }
 
 .hubspot img {
-  margin-bottom: 20px;
+  padding: 0 2rem 2rem 2rem;
 }
 
-.hubspot .hs-main-font-element {
-  margin-bottom: 2rem;
-}
-
-.hubspot h1 {
+.hubspot h2 {
   font-size: 1.875rem;
   line-height: 2.25rem;
-  font-weight: 500;
+  margin-top: 2rem;
+  padding: 2rem 2rem 1rem;
 }
-@media (min-width: 640px) {
-  .hubspot h1 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-}
-@media (min-width: 768px) {
-  .hubspot h1 {
-    font-size: 4.5rem;
-    line-height: 1;
-  }
+
+.hubspot p,
+.hubspot .hs-submit {
+  padding: 0 2rem 1rem 2rem;
 }
 
 .hubspot .hs-input[type='checkbox'],
@@ -62,4 +52,19 @@
 .hubspot .hs-button:hover {
   background-color: transparent;
   color: #000;
+}
+
+.hubspot.quiz .form-columns-1,
+.hubspot.quiz .form-columns-2 {
+  padding: 0 2rem;
+}
+
+.hubspot.quiz h2,
+.hubspot.quiz p,
+.hubspot.quiz img,
+.hubspot.quiz .hs-fieldtype-radio,
+.hubspot.quiz .form-columns-1,
+.hubspot.quiz .form-columns-2,
+.hubspot.quiz .hs-submit {
+  background: #f4be80;
 }
