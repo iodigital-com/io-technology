@@ -6,7 +6,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
 import sortCreation from '@/lib/utils/sortCreation'
-import { useEffect } from 'react'
+import HubspotForm from '@/components/HubspotForm'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
@@ -18,24 +18,6 @@ export async function getStaticProps() {
 
 export default function Talks({ talks, authors }) {
   const { theme } = useBrandingTheme()
-
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/v2.js'
-    document.body.appendChild(script)
-
-    script.addEventListener('load', () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          target: '#hubspotForm',
-
-          region: 'na1',
-          portalId: '513128',
-          formId: 'af6d8033-3c2c-4403-8c18-07a3e99f6bcf',
-        })
-      }
-    })
-  }, [])
 
   return (
     <>
@@ -66,7 +48,7 @@ export default function Talks({ talks, authors }) {
                   <br />
                   Leave your details and we will reach out to you!
                 </p>
-                <div id="hubspotForm" className="hubspot"></div>
+                <HubspotForm portalId={'513128'} formId="af6d8033-3c2c-4403-8c18-07a3e99f6bcf" />
               </div>
             </div>
           </div>

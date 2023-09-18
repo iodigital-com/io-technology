@@ -10,8 +10,8 @@ import Contributor from '@/components/Contributor'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
-import { useEffect } from 'react'
 import shuffle from '@/lib/shuffle'
+import HubspotForm from '@/components/HubspotForm'
 
 import bol from 'public/images/clients/bol.png'
 import ing from 'public/images/clients/ing.png'
@@ -53,24 +53,6 @@ export async function getStaticProps() {
 export default function Talks({ talks, authors, highlightedAuthors }) {
   const { theme } = useBrandingTheme()
 
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/v2.js'
-    document.body.appendChild(script)
-
-    script.addEventListener('load', () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          target: '#hubspotForm',
-
-          region: 'na1',
-          portalId: '513128',
-          formId: 'af6d8033-3c2c-4403-8c18-07a3e99f6bcf',
-        })
-      }
-    })
-  }, [])
-
   return (
     <>
       <PageSEO title="Book a talk" description={siteMetadata.description} />
@@ -101,7 +83,7 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
                   happening in the market.
                 </p>
                 <h2 className="mb-2 text-3xl">Let us reach out to plan a talk</h2>
-                <div id="hubspotForm" className="hubspot"></div>
+                <HubspotForm portalId={'513128'} formId="af6d8033-3c2c-4403-8c18-07a3e99f6bcf" />
               </div>
             </div>
           </div>

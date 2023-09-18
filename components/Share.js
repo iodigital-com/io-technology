@@ -16,6 +16,7 @@ const Share = () => {
           href={`https://www.linkedin.com/sharing/share-offsite?url=${shareURL}`}
           target="_blank"
           rel="noreferrer"
+          title="LinkedIn"
         >
           <LinkedInIcon className="h-10 w-10 lg:h-14 lg:w-14" />
         </a>
@@ -25,6 +26,7 @@ const Share = () => {
           href={`https://twitter.com/intent/tweet?text=${shareURL}`}
           target="_blank"
           rel="noreferrer"
+          title="Twitter"
         >
           <TwitterIcon className="h-10 w-10 lg:h-14 lg:w-14" />
         </a>
@@ -34,12 +36,13 @@ const Share = () => {
           href={`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`}
           target="_blank"
           rel="noreferrer"
+          title="Facebook"
         >
           <FacebookIcon className="h-10 w-10 lg:h-14 lg:w-14" />
         </a>
       </li>
       <li className="m-0 p-0">
-        <a href={`mailto:?body=${shareURL}`} target="_blank" rel="noreferrer">
+        <a href={`mailto:?body=${shareURL}`} target="_blank" rel="noreferrer" title="Email">
           <EmailIcon className="h-10 w-10 lg:h-14 lg:w-14" />
         </a>
       </li>
