@@ -4,3 +4,5 @@ User-agent: *
 Allow: /*
 
 Disallow: /api/*
+Disallow: /devoxx-23-quiz-front-end
+Disallow: /devoxx-23-quiz-java
