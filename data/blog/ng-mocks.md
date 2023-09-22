@@ -1,19 +1,19 @@
 ---
 title: 'Speedup unit-tests development in Angular with NG-Mocks and CodiumAI'
 date: '2023-09-18'
-tags: ['frontend', 'angular', 'unit-tests', 'ng-mocks']
-summary: There are multiple ways to speedup unit-tests development in Angular. Let me show you couple of ways how to make that happen.
+tags: ['frontend', 'angular', 'unit-tests', 'ng-mocks', 'codiumai']
+summary: There are multiple ways to speedup unit-tests development in Angular. Let me show you couple of them.
 authors: ['alexey-ses']
 theme: 'blue'
 ---
 
 ## Why it takes so much time to create unit-tests?
 
-Unit-tests creation takes time. One of the things that takes a lot of that time is mocking all the dependencies. Angular CLI doesn't help you a lot, because it only generates initial `.spec` file with TestBed configuration for each entity. So how can you speedup unit-tests development in Angular?
+Unit-tests are important part of any application. But development of robust unit-tests takes time. One of the things that takes a lot of that time is mocking all the dependencies. Angular CLI doesn't help you a lot, because it only generates initial `.spec` file with default TestBed configuration. So how can you speedup unit-tests development in Angular?
 
 ## Mock the dependencies with NG-Mocks library
 
-[NG-Mocks](https://ng-mocks.sudo.eu/) is testing library which helps to mock all the dependencies. It has plenty of helper functions to speedup unit-tests development. Let's dive deep into some of those functions.
+[NG-Mocks](https://ng-mocks.sudo.eu/) is testing library which helps to mock all the dependencies. It has plenty of helper functions. Let's dive deep into some of those functions.
 
 ### Speedup TestBed module configuration with ngMocks.guts
 
@@ -86,7 +86,7 @@ beforeEach(() => {
 })
 ```
 
-Here's note from the official docs:
+Here's the note from the official docs:
 
 > ngMocks.guts works like that: it accepts 3 parameters, each one is optional.
 >
@@ -108,7 +108,7 @@ ngMocks.autoSpy('jasmine')
 
 ## Use Codium.Ai to generate unit-tests
 
-There is another tool that could further speedup unit-tests development using ChatGPT which is called [Codium.Ai](https://www.codium.ai/). I've tested it as plugin for two different IDEs: Intellij Idea and VS Code. It doesn't generate the whole class, but at least it provides specific tests to copy-paste into the `.spec` file.
+There is another tool that could further speedup unit-tests development using Ai which is called [Codium.Ai](https://www.codium.ai/). I've tested it as plugins for two different IDEs: Intellij Idea and VS Code. It doesn't generate the whole class, but at least it provides specific tests which you can then copy-paste into the `.spec` file.
 
 ### Codium.Ai and Intellij Idea
 
@@ -146,4 +146,4 @@ After that you can finally generate the tests:
 
 ## Conclusion
 
-I hope those tools would speedup unit-test development. Happy coding!
+I hope those tools would help you with unit-test development and improve your overall developer experience as you create Angular applications. Happy coding!
