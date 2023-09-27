@@ -18,15 +18,15 @@ I've recently tried unit tests generation with [CodiumAI](https://www.codium.ai/
 
 ### How to install CodiumAI in VS Code
 
-First of all, you need to install it. CodiumAi supports VS Code. Open VS Code Extensions section, search for "CodiumAI" and install it.
+First of all, you need to install it. CodiumAI supports VS Code. Open VS Code Extensions section, search for "CodiumAI" and install it.
 
-![How to install CodiumAi in VS Code](/articles/codiumai-for-unit-tests/codium-ai-install-vscode.webp)
+![How to install CodiumAI in VS Code](/articles/codiumai-for-unit-tests/codium-ai-install-vscode.webp)
 
 ### How to install CodiumAI in IntelliJ Idea
 
-To install CodiumAi in IntelliJ Idea, go to Settings -> Plugins -> search for "CodiumAI", install it and then restart IntelliJ Idea:
+To install CodiumAI in IntelliJ Idea, go to Settings -> Plugins -> search for "CodiumAI", install it and then restart IntelliJ Idea:
 
-![How to install CodiumAi in IntelliJ Idea](/articles/codiumai-for-unit-tests/codium-ai-install-intellij.webp)
+![How to install CodiumAI in IntelliJ Idea](/articles/codiumai-for-unit-tests/codium-ai-install-intellij.webp)
 
 ### How to generate unit tests
 
@@ -45,13 +45,13 @@ export class AuthService {
 }
 ```
 
-Tests generation with CodiumAi works similarly in VS Code and IntelliJ Idea. Here's how to do it in VS Code:
+Tests generation with CodiumAI works similarly in VS Code and IntelliJ Idea. Here's how to do it in VS Code:
 
-![How to generate unit tests with CodiumAi in VS Code](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-tests-vscode.gif)
+![How to generate unit tests with CodiumAI in VS Code](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-tests-vscode.gif)
 
 And here's how you can do the same thing in IntelliJ Idea:
 
-![How to generate unit tests with CodiumAi in IntelliJ Idea](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-tests-intellij.gif)
+![How to generate unit tests with CodiumAI in IntelliJ Idea](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-tests-intellij.gif)
 
 Starting from here I will use VS Code only for tests generation. It works similarly in IntelliJ Idea.
 
@@ -63,7 +63,7 @@ Let's say we need a custom unit test that would make our test users have name an
 
 We can generate that custom test using the Behaviours Coverage section:
 
-![How to generate custom unit test with CodiumAi](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-custom-test.gif)
+![How to generate custom unit test with CodiumAI](/articles/codiumai-for-unit-tests/codiumai-how-to-generate-custom-test.gif)
 
 Now, a custom unit test is generated and added to the list of tests.
 
@@ -73,17 +73,17 @@ Time to run the tests!
 
 That might require you to have one of the testing libraries (Jest, Mocha, Karma Jasmine, etc.) installed and configured in your project. The only available Test Framework from the Configuration section that worked without any configuration with my simple code example is "React Testing Library". Here's how it works:
 
-![How to run all unit tests with CodiumAi](/articles/codiumai-for-unit-tests/codiumai-how-to-run-tests.gif)
+![How to run all unit tests with CodiumAI](/articles/codiumai-for-unit-tests/codiumai-how-to-run-tests.gif)
 
 ### Fix the code with CodiumAI suggestions
 
 You might find one of the tests broken, due to edge case. CodiumAI would suggest you to fix the code. Here's one of CodiumAI's suggestions that could fix several edge cases:
 
-![Check CodiumAi code suggestions](/articles/codiumai-for-unit-tests/codiumai-code-suggestion.webp)
+![Check CodiumAI code suggestions](/articles/codiumai-for-unit-tests/codiumai-code-suggestion.webp)
 
 Now it's time to apply the code suggestion:
 
-![How to apply CodiumAi code suggestion](/articles/codiumai-for-unit-tests/codiumai-how-to-apply-code-suggestion.gif)
+![How to apply CodiumAI code suggestion](/articles/codiumai-for-unit-tests/codiumai-how-to-apply-code-suggestion.gif)
 
 Suggestion is applied, and all unit tests are generated. Now you can copy-paste unit tests into your project.
 
