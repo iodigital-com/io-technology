@@ -1,8 +1,9 @@
 ---
-title: 'Speedup unit-tests development in Angular with NG-Mocks and CodiumAI'
-date: '2023-09-18'
-tags: ['frontend', 'angular', 'unit-tests', 'ng-mocks', 'codiumai']
-summary: There are multiple ways to speedup unit-tests development in Angular. Let me show you couple of them.
+title: 'Speedup unit-tests development in Angular with NG-Mocks'
+date: '2023-09-28'
+tags: ['frontend', 'angular', 'unit-tests']
+images: ['/articles/ng-mocks/ng-mocks-cover.png']
+summary: 'There are multiple ways to speedup unit-tests development in Angular. Let me show you one of them.'
 authors: ['alexey-ses']
 theme: 'blue'
 ---
@@ -105,44 +106,6 @@ import { ngMocks } from 'ng-mocks'
 
 ngMocks.autoSpy('jasmine')
 ```
-
-## Use Codium.Ai to generate unit-tests
-
-There is another tool that could further speedup unit-tests development using Ai which is called [Codium.Ai](https://www.codium.ai/). I've tested it as plugins for two different IDEs: Intellij Idea and VS Code. It doesn't generate the whole class, but at least it provides specific tests which you can then copy-paste into the `.spec` file.
-
-### Codium.Ai and Intellij Idea
-
-To install CodiumAi in Intellij Idea, go to Settings -> Plugins -> search for it, install and restart Intellij Idea:
-
-![How to install CodiumAi in Intellij Idea](/articles/ng-mocks/codium-ai-install-intellij.webp)
-
-Now you have additional side panel in right part of the Intellij Idea and you have to Sign In to one of your accounts in order to use it.
-
-After that you can finally generate the tests:
-
-- (1) Click the text above the component/service name that you want your tests to be generated for
-- (2) Type "use "ng-mocks" testing library" in the "General instructions" input field
-- (3) Press "Regenerate" button
-- (4) Copy the result into the `.spec` file
-
-![CodiumAi usage in Intellij Idea](/articles/ng-mocks/codium-ai-usage-intellij.webp)
-
-### Codium.Ai and VS Code
-
-To install CodiumAi in VS Code, go to Extensions -> search for it and install:
-
-![How to install CodiumAi in VS Code](/articles/ng-mocks/codium-ai-install-vscode.webp)
-
-As soon as this extension is installed you have to Sign In to one of your accounts in order to use it.
-
-After that you can finally generate the tests:
-
-- (1) Click the text above the component/service name that you want your tests to be generated for
-- (2) Type "use "ng-mocks" testing library" in the "General instructions" input field
-- (3) Press "Regenerate" button
-- (4) Copy the result into the `.spec` file
-
-![CodiumAi usage in VS Code](/articles/ng-mocks/codium-ai-usage-vscode.webp)
 
 ## Conclusion
 
