@@ -261,6 +261,8 @@ describe('AuthService', () => {
 });
 ```
 
+Unit tests are updated and more maintainable.
+
 ## Conclusion
 
 I hope NG-Mocks would help you with unit-test development and improve your overall developer experience as you create Angular applications. Happy coding!
