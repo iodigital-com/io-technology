@@ -98,7 +98,7 @@ describe('AuthService', () => {
 
 At least two tests need to be added. Both of them would contain `spyOn` functions to detect when a specific method gets called on an instance of a specific class:
 
-```typescript:auth.service.spec.ts
+```typescript:auth.service.spec.ts {9-38}
 describe('AuthService', () => {
     let service: AuthService;
     let router: Router;
@@ -142,8 +142,7 @@ describe('AuthService', () => {
 
 Now let's replace the mock of OAuthService in TestBed with NG-Mocks `MockProvider` helper function:
 
-```typescript:auth.service.spec.ts
-
+```typescript:auth.service.spec.ts {4}
 beforeEach(() => {
     TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
@@ -160,7 +159,7 @@ beforeEach(() => {
 
 [ngMocks.autoSpy](https://ng-mocks.sudo.eu/extra/auto-spy) is an awesome feature if you want to get rid of all spied methods in your tests. In order to use it in the specific test, it needs to be added on top of the `.spec` file:
 
-```typescript:auth.service.spec.ts
+```typescript:auth.service.spec.ts {1}
 ngMocks.autoSpy('jasmine');
 
 describe('AuthService', () => {
@@ -170,7 +169,7 @@ describe('AuthService', () => {
 
 After that tests need to be updated:
 
-```typescript:auth.service.spec.ts
+```typescript:auth.service.spec.ts {1, 12, 21-38}
 ngMocks.autoSpy('jasmine');
 
 describe('AuthService', () => {
@@ -218,7 +217,7 @@ As you can see, now it's a bit less code in the tests.
 
 One more exciting thing from NG-Mocks is a proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically, specific arrangements need to be applied to specific tests so that each test is self-sufficient and does not rely on scoped variables:
 
-```typescript:auth.service.spec.ts
+```typescript:auth.service.spec.ts {5,11, 16-17, 26-28}
 ngMocks.autoSpy('jasmine');
 
 describe('AuthService', () => {
