@@ -1,5 +1,5 @@
 ---
-title: 'Speedup unit-tests development in Angular with NG-Mocks'
+title: 'Speedup unit tests development in Angular with NG-Mocks'
 date: '2023-10-03'
 tags: ['frontend', 'angular', 'unit-tests']
 images: ['/articles/ng-mocks/ng-mocks-cover.png']
