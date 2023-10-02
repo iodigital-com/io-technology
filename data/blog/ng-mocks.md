@@ -14,7 +14,7 @@ Unit-tests are important part of any application. But development of robust unit
 
 ## Mock the dependencies with NG-Mocks library
 
-[NG-Mocks](https://ng-mocks.sudo.eu/) is testing library which helps to mock all the dependencies. It has plenty of helper functions that would be useful as well.
+[NG-Mocks](https://ng-mocks.sudo.eu/) is testing library which helps to mock all the dependencies. It has plenty of helper functions that would be useful as well. I would like to show you two helper functions that might help you the most.
 
 ### Speedup TestBed module configuration with MockProvider function
 
