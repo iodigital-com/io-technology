@@ -14,7 +14,7 @@ Unit tests are an important part of any application. However, the development of
 
 ## Mock the dependencies with NG-Mocks library
 
-[NG-Mocks](https://ng-mocks.sudo.eu/) is a testing library that helps to mock all the dependencies. It has plenty of helper functions that would be useful as well. I would like to show you two helper functions that might help you the most.
+[NG-Mocks](https://ng-mocks.sudo.eu/) is a testing library that helps to mock all the dependencies. It has plenty of helper functions. I would like to show you two of them that might help you the most.
 
 ### Speedup TestBed module configuration with MockProvider function
 
@@ -140,7 +140,7 @@ describe('AuthService', () => {
 });
 ```
 
-Now let's replace the mock of OAuthService in TestBed with ng-mocks `MockProvider` helper function:
+Now let's replace the mock of OAuthService in TestBed with NG-Mocks `MockProvider` helper function:
 
 ```typescript:auth.service.spec.ts
 
@@ -216,7 +216,7 @@ As you can see, now it's a bit less code in the tests.
 
 ## Make tests more maintainable
 
-One more exciting thing from ng-mocks is a proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically, specific arrangements need to be applied to specific tests so that each test is self-sufficient and does not rely on scoped variables:
+One more exciting thing from NG-Mocks is a proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically, specific arrangements need to be applied to specific tests so that each test is self-sufficient and does not rely on scoped variables:
 
 ```typescript:auth.service.spec.ts
 ngMocks.autoSpy('jasmine');
