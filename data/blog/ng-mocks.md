@@ -3,22 +3,22 @@ title: 'Speedup unit-tests development in Angular with NG-Mocks'
 date: '2023-09-28'
 tags: ['frontend', 'angular', 'unit-tests']
 images: ['/articles/ng-mocks/ng-mocks-cover.png']
-summary: 'There are multiple ways to speedup unit-tests development in Angular. Let me show you one of them.'
+summary: 'There are multiple ways to speed up unit tests development in Angular. Let me show two of them using the NG-Mocks library.'
 authors: ['alexey-ses']
 theme: 'blue'
 ---
 
-## Why it takes so much time to create unit-tests?
+## Why does it take so much time to create unit tests?
 
-Unit-tests are important part of any application. But development of robust unit-tests takes time. One of the things that takes a lot of that time is mocking all the dependencies. Angular CLI doesn't help you a lot, because it only generates initial `.spec` file with default TestBed configuration. So how can you speedup unit-tests development in Angular?
+Unit tests are an important part of any application. However, the development of robust unit tests takes time. One of the things that takes a lot of that time is mocking all the dependencies. Angular CLI doesn't help you a lot, because it only generates the initial `.spec` file with default TestBed configuration. So how can you speed up unit test development in Angular?
 
 ## Mock the dependencies with NG-Mocks library
 
-[NG-Mocks](https://ng-mocks.sudo.eu/) is testing library which helps to mock all the dependencies. It has plenty of helper functions that would be useful as well. I would like to show you two helper functions that might help you the most.
+[NG-Mocks](https://ng-mocks.sudo.eu/) is a testing library that helps to mock all the dependencies. It has plenty of helper functions that would be useful as well. I would like to show you two helper functions that might help you the most.
 
 ### Speedup TestBed module configuration with MockProvider function
 
-Each component or service might depend on other components and services. Here's an example of service that depends on HttpClient, Router and OAuthService:
+Each component or service might depend on other components and services. Here's an example of a service that depends on HttpClient, Router and OAuthService:
 
 ```typescript:auth.service.ts
 @Injectable({
@@ -34,7 +34,7 @@ export class AuthService {
     }
 
     /**
-     * OAuthService needs to be configured in order to use it's Single Sign-On feature
+     * OAuthService needs to be configured in order to use its Single Sign-On feature
      */
     private configureSSO() {
         this.oauthService.configure(authConfig);
@@ -61,7 +61,7 @@ export class AuthService {
 }
 ```
 
-Let's implement tests config for that service. The default approach would be to use `TestBed.configureTestingModule()` function to configure all the dependencies. What needs be passed into that function:
+Let's implement the test config for that service. The default approach would be to use the `TestBed.configureTestingModule()` function to configure all the dependencies. What needs to be passed into that function:
 
 1. `HttpClientTestingModule`, which configures HttpClientTestingBackend used by HttpClient.
 2. Mock of `OAuthService`.
@@ -96,7 +96,7 @@ describe('AuthService', () => {
 });
 ```
 
-At least two tests needs to be added. Both of them would contain `spyOn` functions to detect when specific method gets called on instance of specific class:
+At least two tests need to be added. Both of them would contain `spyOn` functions to detect when a specific method gets called on an instance of a specific class:
 
 ```typescript:auth.service.spec.ts
 describe('AuthService', () => {
@@ -140,7 +140,7 @@ describe('AuthService', () => {
 });
 ```
 
-Now let's replace mock of OAuthService in TestBed with ng-mocks `MockProvider` helper function:
+Now let's replace the mock of OAuthService in TestBed with ng-mocks `MockProvider` helper function:
 
 ```typescript:auth.service.spec.ts
 
@@ -158,7 +158,7 @@ beforeEach(() => {
 
 ### Spy all methods of services using ngMocks.autoSpy
 
-[ngMocks.autoSpy](https://ng-mocks.sudo.eu/extra/auto-spy) is awesome feature if you want to get rid of all spied methods in your tests. In order to use it in the specific test, it needs to be added on top of the `.spec` file:
+[ngMocks.autoSpy](https://ng-mocks.sudo.eu/extra/auto-spy) is an awesome feature if you want to get rid of all spied methods in your tests. In order to use it in the specific test, it needs to be added on top of the `.spec` file:
 
 ```typescript:auth.service.spec.ts
 ngMocks.autoSpy('jasmine');
@@ -168,7 +168,7 @@ describe('AuthService', () => {
 })
 ```
 
-After that tests needs to be updated:
+After that tests need to be updated:
 
 ```typescript:auth.service.spec.ts
 ngMocks.autoSpy('jasmine');
@@ -216,7 +216,7 @@ As you can see, now it's a bit less code in the tests.
 
 ## Make tests more maintainable
 
-One more exciting thing from ng-mocks is proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically specific arrangements need to be applied to specific tests, so that each test is self-sufficient and does not rely on scoped variables:
+One more exciting thing from ng-mocks is a proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically, specific arrangements need to be applied to specific tests so that each test is self-sufficient and does not rely on scoped variables:
 
 ```typescript:auth.service.spec.ts
 ngMocks.autoSpy('jasmine');
@@ -265,4 +265,4 @@ Unit tests are updated and more maintainable.
 
 ## Conclusion
 
-I hope NG-Mocks would help you with unit-test development and improve your overall developer experience as you create Angular applications. Happy coding!
+I hope NG-Mocks will help you with unit test development and improve your overall developer experience as you create Angular applications. Happy coding!
