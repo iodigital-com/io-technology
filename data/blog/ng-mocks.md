@@ -217,7 +217,7 @@ As you can see, now it's a bit less code in the tests.
 
 One more exciting thing from NG-Mocks is a proposal on [how to make tests more maintainable](https://ng-mocks.sudo.eu/extra/how-to-write-tests). The idea is to write tests without scoped variables. Basically, specific arrangements need to be applied to specific tests so that each test is self-sufficient and does not rely on scoped variables:
 
-```typescript:auth.service.spec.ts {5,11, 16-17, 26-28}
+```typescript:auth.service.spec.ts {16-17, 26-28}
 ngMocks.autoSpy('jasmine');
 
 describe('AuthService', () => {
@@ -260,7 +260,7 @@ describe('AuthService', () => {
 });
 ```
 
-Unit tests are updated and more maintainable.
+As you can see now arrangements are applied to specific tests. That should make them more maintainable as we add other tests into that `.spec` file.
 
 ## Conclusion
 
