@@ -1,14 +1,11 @@
 ---
-title: 'I don't want to leave my terminal!'
-date: '2023-10-09'
+title: 'I want it in my terminal!'
+date: '2023-10-19'
 tags: ['terminal', 'development', 'geek']
-summary: 'Mastering the terminal can significantly enhance your productivity and open up a world of possibilities. In this article, we'll explore a few handy tools that can be accessed directly from the terminal, providing valuable information and shortcuts for various tasks.'
-images:
-  [
-    '/articles/i-dont-want-to-leave-my-terminal/hero.webp',
-  ]
+summary: 'Proficiency in the terminal enhances efficiency and opens up a world of opportunities with handy tools and quick commands.'
+images: ['/articles/i-dont-want-to-leave-my-terminal/hero.webp']
 authors: ['jafar-rezaei']
-theme: 'beige'
+theme: 'blue'
 canonicalUrl: 'https://medium.com/@sayjeyhi/i-dont-want-to-leave-my-terminal-8d7b20fa5f1a'
 ---
 
@@ -16,35 +13,36 @@ canonicalUrl: 'https://medium.com/@sayjeyhi/i-dont-want-to-leave-my-terminal-8d7
 
 The terminal, often called the command line or shell, is a powerful interface for interacting with your computer. While it may appear daunting to newcomers, mastering the terminal can significantly enhance your productivity and open up a world of possibilities. In this article, we'll explore a few handy tools that can be accessed directly from the terminal, providing valuable information and shortcuts for various tasks.
 
-
-## Cheat Sheets for Tools and Languages with `curl cht.sh`
+## Cheat Sheets for Tools and Languages
 
 Whether you're a programmer, developer, or system administrator, you often need quick access to syntax, commands, and documentation for various programming languages and tools. `curl cht.sh` offers an extensive collection of cheat sheets, making it easier to find the information you need without leaving the terminal.
 
 To access a cheat sheet, use the following command:
 
 ```bash
-curl cht.sh/[Tool-or-Language]
+curl cht.sh/[Tool or Language]
 ```
 
-Replace `[Tool-or-Language]` with the name of the programming language or tool you want a cheat sheet for. For example, to get a cheat sheet for Git, use:
+Replace `[Tool or Language]` with the name of the programming language or tool you want a cheat sheet for. For example, to get a cheat sheet for Git, use:
 
 ```bash
 curl cht.sh/git
 ```
 
-Get information about `aws-cli`` or `gcloud`:
+Get information about `aws-cli` or `gcloud`:
+
 ```bash
 curl cht.sh/aws
 curl cht.sh/gcloud
 ```
 
 You can get language-specific syntax quickly:
+
 ```bash
 curl cht.sh/go/web-server
 curl cht.sh/rust/loops
-curl cht.sh/typescript/generic-type 
-``` 
+curl cht.sh/typescript/generic-type
+```
 
 There can be many examples since this command will provide concise and relevant information about the language or tool, including commonly used commands, syntax, and examples. If you need assistance or more options, you can use the `:help` feature like this:
 
