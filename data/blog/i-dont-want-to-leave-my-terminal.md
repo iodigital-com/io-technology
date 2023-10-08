@@ -50,7 +50,7 @@ There can be many examples since this command will provide concise and relevant 
 curl cht.sh/:help
 ```
 
-## Weather Information with `curl wttr.in`
+## Weather Information
 
 Are you curious about the current weather in your city or planning a trip and need to check the forecast? The `curl` command and `wttr.in` can be your go-to tool.
 
@@ -68,11 +68,13 @@ curl wttr.in/Amsterdam
 
 This command will return a detailed weather report, including current conditions, temperature, humidity, wind speed, and more. If you need help or want to explore additional options, you can use the `:help` feature by appending it to the URL like this:
 
+![Amsterdam weather](/articles/i-dont-want-to-leave-my-terminal/weather.png 'Amsterdam weather')
+
 ```bash
 curl wttr.in/:help
 ```
 
-## Cryptocurrency Information with `curl rate.sx`
+## Cryptocurrency Information
 
 Cryptocurrency markets are known for their rapid fluctuations, and stay updated on the latest prices and trends is essential for traders and enthusiasts. `curl rate.sx` is a handy tool that allows you to retrieve cryptocurrency information directly from the terminal.
 
@@ -85,8 +87,11 @@ curl rate.sx/[Token]@[Date]
 Replace `[Token]` with the cryptocurrency symbol or name and `[Date]` with the date you want to check. For example, to get the price of XRP on October 1st, you can use:
 
 ```bash
+curl rate.sx/btc
 curl rate.sx/xrp@2023-10-01
 ```
+
+![BTC daily chart](/articles/i-dont-want-to-leave-my-terminal/crypto.png 'BTC daily')
 
 This command will provide historical data for the selected cryptocurrency on the specified date.
 
