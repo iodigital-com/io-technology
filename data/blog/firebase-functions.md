@@ -5,6 +5,7 @@ tags: ['Web Development', 'cloud functions', 'firebase functions']
 authors: ['mohsen-mahabadi']
 summary: 'Firebase Functions is a powerful tool that allows developers to build and run backend code for their applications.'
 theme: 'blue'
+canonicalUrl: 'https://medium.com/@mahabadi/firebase-functions-in-a-nutshell-a463c7442999'
 ---
 
 Before we begin, it should be noted that if you are not familiar with Firebase Functions, this article will get you right up to speed! If you are experienced with them, there might be some interesting pieces that you are unaware of.
