@@ -1,12 +1,11 @@
 ---
 title: 'I want it in my terminal!'
-date: '2023-10-19'
+date: '2023-10-10'
 tags: ['terminal', 'development', 'geek']
 summary: 'Proficiency in the terminal enhances efficiency and opens up a world of opportunities with handy tools and quick commands.'
 images: ['/articles/i-dont-want-to-leave-my-terminal/hero.webp']
 authors: ['jafar-rezaei']
 theme: 'blue'
-canonicalUrl: 'https://medium.com/@sayjeyhi/i-dont-want-to-leave-my-terminal-8d7b20fa5f1a'
 ---
 
 # I Don't Want to Leave My Terminal
