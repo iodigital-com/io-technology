@@ -5,7 +5,6 @@ tags: ['JavaScript', 'Module Systems', 'Frontend']
 authors: ['mohsen-mahabadi']
 summary: 'In this article, we are going to talk about different JS module systems, such as CommonJs, AMD, UMD, and ES Modules.'
 theme: 'blue'
-canonicalUrl: 'https://medium.com/@mahabadi/javascript-module-systems-ce7c35d8a35e'
 ---
 
 ## What is a JavaScript module?
@@ -376,8 +375,6 @@ SystemJS.import('app/main.js').then(function (module) {
 })
 ```
 
-## conclusion
+## Conclusion
 
-The landscape of JavaScript module systems is vast and varied, offering developers a range of options to structure, organize, and manage their code effectively. From the server-centric CommonJS to the browser-friendly AMD, the hybrid UMD, the modern ES6 Modules, and the versatile SystemJS, each system brings its own strengths and use cases. As applications continue to grow in complexity, the importance of understanding and leveraging these module systems becomes paramount.
-
-By choosing the right module system for a given project, developers can ensure better code organization, efficient dependency management, and enhanced performance, leading to more maintainable and scalable applications. Whether you're building for the web, the server, or both, there's a module system tailored to your needs.
+JavaScript has seen various module systems over the years, each with its unique strengths. However, ESM Modules stand out due to their efficiency and widespread adoption in modern frameworks. For developers aiming for streamlined and future-ready applications, using ESM Modules is a clear choice.
