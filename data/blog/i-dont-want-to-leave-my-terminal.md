@@ -76,7 +76,7 @@ curl wttr.in/:help
 
 ## Cryptocurrency Information
 
-Cryptocurrency markets are known for their rapid fluctuations, and stay updated on the latest prices and trends is essential for traders and enthusiasts. `curl rate.sx` is a handy tool that allows you to retrieve cryptocurrency information directly from the terminal.
+Cryptocurrency markets are known for their rapid fluctuations, and staying updated on the latest prices and trends is essential for traders and enthusiasts. `curl rate.sx` is a handy tool that allows you to retrieve cryptocurrency information directly from the terminal.
 
 To check the price of a specific cryptocurrency on a specific date, use the following command:
 
@@ -105,4 +105,4 @@ curl rate.sx/:help
 
 It's important to acknowledge the creator of these useful tools. All the tools mentioned in this article were built by [@igor_chubin](https://twitter.com/igor_chubin), who has contributed significantly to the open-source community by creating accessible and efficient terminal-based utilities.
 
-In conclusion, these terminal-based tools, courtesy of @igor_chubin, offer quick and convenient ways to access weather information, cheat sheets for various tools and languages, and cryptocurrency data. Mastering these commands and exploring their capabilities can enhance your command-line skills and streamline your daily tasks. So, embrace the terminal's power and make your computing experience more efficient and informative.
+In conclusion, these terminal-based tools, offer quick and convenient ways to access weather information, cheat sheets for various tools and languages, and cryptocurrency data. Mastering these commands and exploring their capabilities can enhance your command-line skills and streamline your daily tasks. So, embrace the terminal's power and make your computing experience more efficient and informative.
