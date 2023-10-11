@@ -1,6 +1,6 @@
 ---
 title: 'JavaScript Module Systems'
-date: '2023-10-10'
+date: '2023-10-11'
 tags: ['JavaScript', 'Module Systems', 'Frontend']
 authors: ['mohsen-mahabadi']
 summary: 'In this article, we are going to talk about different JS module systems, such as CommonJs, AMD, UMD, and ES Modules.'
