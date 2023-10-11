@@ -254,22 +254,19 @@ It is the native module system introduced in ECMAScript 6 (ES6), also known as E
 - **_[Module Caching:](https://medium.com/@mahabadi/understanding-the-statefulness-of-js-modules-2bc353af0e8e)_** If multiple modules import from a single module, that module will only be executed once. This ensures that side effects in a module (like setting up an event listener) don’t occur multiple times.
 - **_Tree shakeable:_** because of `static analysis` supported by ES6.
 
-#### How to use it?
+#### ES6 Modules Syntax
 
-**_Exporting from a module:_**
+**_Exporting and importing a module:_**
 
 ```js
 // math.js
-export const add = (a, b) => a + b
-export const subtract = (a, b) => a - b
-```
+export const PI = 3.14
+export const power = (a, b) => a ** b
 
-**_Importing into another module:_**
-
-```js
+// Importing into another module:
 // app.js
-import { add, subtract } from './module.js'
-console.log(add(2, 3)) // Outputs: 5
+import { PI, power } from './math.js'
+console.log(power(2, 3)) // Outputs: 8
 ```
 
 **_Using Default Exports:_**  
@@ -280,6 +277,11 @@ Each module can have one default export, which can be imported without curly bra
 export default function () {
   return 'Hello!'
 }
+//or
+const greeting = () => {
+  return 'Hello!'
+}
+export default greeting
 
 // app.js
 import greet from './greet.js'
@@ -309,6 +311,40 @@ const loadModule = async () => {
   const module = await import('./dynamicModule.js')
   module.someFunction()
 }
+```
+
+#### How to use ESM?
+
+**_Step 1:_**  
+Let's say you have a `math.js` file structured as follows:
+
+```js
+// math.js
+export const add = (a, b) => a + b
+export const subtract = (a, b) => a - b
+```
+
+**_Step 2:_**  
+You then utilize these functions in your `index.js`:
+
+```js
+import { add, subtract } from 'math'
+console.log(add(2, 3)) // Outputs: 5
+```
+
+**_Running the Code:_**  
+To execute this in a browser, you'll need to include the `index.js` script in your html file. It's crucial to specify `type="module"` within the script tag to inform the browser to treat our file as a module. Additionally, the `importmap` is necessary to facilitate the direct loading of JavaScript modules in the browser.
+
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "math": "./math.js"
+    }
+  }
+</script>
+
+<script type="module" src="./index.js"></script>
 ```
 
 ### 5. SystemJS
