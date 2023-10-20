@@ -33,7 +33,7 @@ Dependency management is clearer with modules, as dependencies are explicitly im
 
 Suppose you have three JavaScript files: `utility.js`, `dataProcessor.js`, and `app.js`. The `dataProcessor.js` file depends on a function from `utility.js`, and `app.js` depends on a function from `dataProcessor.js`.
 
-![The image shows an example of dependency management](/articles/javascript-module-systems/dependency-management.png)
+![The image shows an example of dependency management](/articles/javascript-module-systems/code-organization-Dependency.png)
 
 ## Available module systems in JavaScript
 
