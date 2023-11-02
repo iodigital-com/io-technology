@@ -1,6 +1,6 @@
 ---
 title: 'Interacting with ChatGPT through _Voice UI_ on the web'
-date: '2023-11-03'
+date: '2023-11-02'
 tags: ['frontend', 'ai', 'chat-gpt', 'voice']
 images: ['/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva.png']
 summary: 'How can I improve the way someone interacts with ChatGPT? How can I make it feel more natural than a dreadful “chatbot”? Can I create something cool? Those were some of the questions I asked myself recently while starting a two-day hackathon at iO. I’ll take you through what I build, how, and most importantly, why.'
@@ -138,10 +138,15 @@ Finally, I’ve created a `useConversation` hook that:
 
 - Keeps track of the conversation state
   - `"UNPERMITTED"` - there is no permission yet to listen to the user’s microphone
+    - ![calm visualisation of Aiva unpermitted](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-unpermitted.gif)
   - `"IDLING"` - the application is currently not listening or responding
+    - ![calm visualisation of Aiva idling](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-idling.gif)
   - `"LISTENING"` - the `useSpeechRecognition` hook is listening the to the user’s microphone
+    - ![more moving visualisation of Aiva listening](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-listening.gif)
   - `"RESPONDING"` - the `useSpeechSynthesis` hook is speaking to the user
+    - ![moving visualisation of Aiva unpermitted](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-responding.gif)
   - `"STOPPED"` the user stopped the application
+    - ![calm visualisation of Aiva stopped](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-stopped.gif)
 - Uses the utilities exposed by the `useSpeechRecognition` and `useSpeechSynthesis` hooks to create a turn-based conversation
 
 ![A schematic of the flow described above](/articles/interacting-with-chat-gpt-through-voice-ui-on-the-web/aiva-interaction-schematic.png)
@@ -215,16 +220,16 @@ With all the parts connected, I now have an application that caters a turn-based
 
 In this article I already highlighted a few use cases for demo purposes. The easy answer is that it can cater all use cases. If I boil down my application to its simplest form I created a nice input-output system for a conversation. Whatever the user wants to use it for they can tell the AI and it will, if appropriate, follow. A few more examples (which I naturally asked ChatGPT for):
 
-- Customer Support: ChatGPT can be used as a virtual customer support agent, handling common queries, providing information, and resolving issues.
-- Sales Assistance: ChatGPT can act as a virtual sales assistant, engaging with potential customers, answering questions about products or services, and providing recommendations.
-- Personal Assistant: ChatGPT can assist individuals in managing their schedules, setting reminders, making appointments, and helping with day-to-day tasks.
-- Content Creation: ChatGPT can generate blog posts, social media captions, or marketing copy, helping businesses with their content creation needs.
-- Language Translation: ChatGPT can facilitate real-time language translation, allowing users to communicate with individuals who speak different languages.
-- Lead Generation: ChatGPT can engage website visitors, qualify leads, and collect contact information, enhancing lead generation efforts for businesses.
-- Training and Education: ChatGPT can be utilized as a virtual tutor or trainer, providing personalized learning experiences, answering questions, and delivering educational content.
-- Market Research: ChatGPT can conduct surveys, gather feedback, and analyze customer preferences, helping businesses gain insights for market research purposes.
-- Virtual Event Host: ChatGPT can serve as a virtual event host, guiding attendees, answering questions, and providing information about the event agenda or sessions.
-- Personal Entertainment: ChatGPT can engage users in entertaining conversations, tell jokes, share interesting facts, or even play interactive storytelling games for personal enjoyment.
+- **Customer Support**: ChatGPT can be used as a virtual customer support agent, handling common queries, providing information, and resolving issues.
+- **Sales Assistance**: ChatGPT can act as a virtual sales assistant, engaging with potential customers, answering questions about products or services, and providing recommendations.
+- **Personal Assistant**: ChatGPT can assist individuals in managing their schedules, setting reminders, making appointments, and helping with day-to-day tasks.
+- **Content Creation**: ChatGPT can generate blog posts, social media captions, or marketing copy, helping businesses with their content creation needs.
+- **Language Translation**: ChatGPT can facilitate real-time language translation, allowing users to communicate with individuals who speak different languages.
+- **Lead Generation**: ChatGPT can engage website visitors, qualify leads, and collect contact information, enhancing lead generation efforts for businesses.
+- **Training and Education**: ChatGPT can be utilized as a virtual tutor or trainer, providing personalized learning experiences, answering questions, and delivering educational content.
+- **Market Research**: ChatGPT can conduct surveys, gather feedback, and analyze customer preferences, helping businesses gain insights for market research purposes.
+- **Virtual Event Host**: ChatGPT can serve as a virtual event host, guiding attendees, answering questions, and providing information about the event agenda or sessions.
+- **Personal Entertainment**: ChatGPT can engage users in entertaining conversations, tell jokes, share interesting facts, or even play interactive storytelling games for personal enjoyment.
 
 The sky(net) is the limit!
 
