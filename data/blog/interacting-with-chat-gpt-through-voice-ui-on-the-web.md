@@ -20,7 +20,7 @@ I’ve wanted to build a demo application that enables just that. A user can sta
 
 Being a developer for the web, I naturally gravitated to the techniques I would use there. As it turned out in the end, this gave a surprising advantage in the user experience. Here is a quick glimpse of the result called “Aiva”:
 
-[INSERT SHORT DEMO VIDEO]
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/z95qWSJoYGo?si=v0f4Mh_AEmN-yCjK&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## What techniques to use?
 
@@ -217,7 +217,7 @@ useEffect(() => {
 
 With all the parts connected, I now have an application that caters a turn-based conversation where the state of the conversation is visualised through an interactive data visualisation. All of that without the need of a single piece of text or required user interaction on the screen! To showcase how these conversation can go, I’ve recorded this short screencast:
 
-[INSERT SHOWCASE SCREENCAST]
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/dr-AfzgEcZQ?si=7w-Fshn5PGJYKKSS&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### What are some practical use cases?
 
