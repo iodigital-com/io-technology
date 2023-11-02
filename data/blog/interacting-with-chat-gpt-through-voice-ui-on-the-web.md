@@ -30,15 +30,15 @@ For front-end frameworks, any will do. I’m most comfortable with React.js and 
 
 For the input, I used the [SpeechRecognition Web API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition). Fun fact, I built an application over six years ago called [PresiParrot](https://presi-parrot.davebitter.com/) to automatically create captions when giving a presentation. What I find awesome about using web standards is that even after six years, the application still runs perfectly fine, perhaps even better, as it will always be supported by the browser.
 
-In essence, the SpeechRecognition Web API provides you with a way to use the user’s microphone to capture audio and once they’re done talking, provide you with a text string to use. You can even use interim results if needed.
+In essence, the SpeechRecognition Web API provides you with a way to use the user’s microphone to capture audio and once they’re done talking, provide you with a text string to use. You can even use interim, or live updated, results if needed.
 
 #### Why use this?
 
-A big upside for me is the before-mentioned benefit that you get with using a web standard. Another major benefit of using the API that is built into the browser is that it’s incredibly quick. This goes for the SpeechRecognition API (input) but especially for the SpeechSynthesis API (output) which we’ll look at in a bit. Your browser already ships with the logic and voices that you might need, mitigating the need for another service that takes time. This greatly benefits the performance which is always important. But as it turned out, it became a nice surprise while building the demo. Have you ever tried to talk with your Google/Apple/Amazon home device? Whenever you ask something, there is always a few seconds of delay. This takes you out of the illusion that you’re actually having a conversation. As this API is so quick and needs no loading time, it feels nearly instant helping to sell the conversation effect.
+A big upside for me is the before-mentioned benefit that you get with using a web standard. Another major benefit of using the Web API that is built into the browser is that it’s incredibly quick. This goes for the SpeechRecognition Web API (input) but especially for the SpeechSynthesis Web API (output) which we’ll look at in a bit. Your browser already ships with the logic and voices that you might need, mitigating the need for another service that takes time. This greatly benefits the performance which is always important. But as it turned out, it became a nice surprise while building the demo. Have you ever tried to talk with your Google/Apple/Amazon home device? Whenever you ask something, there is always a few seconds of delay. This takes you out of the illusion that you’re actually having a conversation. As this Web API is so quick and needs no loading time, it feels nearly instant helping to sell the conversation effect.
 
 #### How to use this?
 
-Using the SpeechRecognition Web API is fairly straightforward. You first see if the API is supported in the user’s browser:
+Using the SpeechRecognition Web API is fairly straightforward. You first see if the Web API is supported in the user’s browser:
 
 ```js
 if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
@@ -46,7 +46,7 @@ if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
 }
 ```
 
-Next, as seen in the example above, the API can either named `SpeechRecognition` or `webkitSpeechRecognition`. We assign it like this and set it up:
+Next, as seen in the example above, the Web API can either named `SpeechRecognition` or `webkitSpeechRecognition`. We assign it like this and set it up:
 
 ```jsx
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
@@ -72,36 +72,28 @@ recognition.onend = (event) => {
 }
 ```
 
-Now, for every interim result while the user is talking, you can do something with that transcript string once `onresult` is called. For instance, you show some live feedback on the screen with what text the API interpreted the user’s speech as. Once the user stops talking, the `onend` is called with the end result. Great! We now have turned speech into a text string to use as input!
+Now, for every interim result while the user is talking, you can do something with that transcript string once `onresult` is called. For instance, you show some live feedback on the screen with what text the Web API interpreted the user’s speech as. Once the user stops talking, the `onend` is called with the end result. Great! We now have turned speech into a text string to use as input!
 
 ### Output: SpeechSynthesis Web API
 
-What the SpeechRecognition Web API is for input, the [SpeechSynthesis Web API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) is for output. In it’s simplest form, the API allows your computer to read a text string out loud.
+What the SpeechRecognition Web API is for input, the [SpeechSynthesis Web API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) is for output. In it’s simplest form, the Web API allows your computer to read a text string out loud.
 
 #### Why use this?
 
-As mentioned before, this API comes with the browser already built-in! It’s not just the API itself, but also a wide range of voices to use. These voices can be from difference countries and even different accents.
+As mentioned before, this Web API comes with the browser already built-in! It’s not just the Web API itself, but also a wide range of voices to use. These voices can be from difference countries and even different accents.
 
 #### How to use this?
 
-Let’s make it read out a text string. First we check whether the user’s browser supports the API again:
+Let’s make it read out a text string. First we check whether the user’s browser supports the Web API again and create a constant to use later on. Finally, we need to make a `SpeechSynthesisUtterance` which is basically a unit of text that the Web API needs to read out loud:
 
 ```jsx
 if (!('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window)) {
   // handle fallback
 }
-```
 
-Next, we create a constant to use later on:
-
-```jsx
 const synth = window.speechSynthesis
-```
 
-Now we need to make a `SpeechSynthesisUtterance` which is basically a unit of text that the API needs to read out loud:
-
-```jsx
-const voices = window.speechSynthesis.getVoices()
+const voices = synth.getVoices()
 const preferredVoice = voices.find((voice) => voice.voiceURI === 'Karen')
 
 const utterance = new SpeechSynthesisUtterance('Hello from the computer!')
@@ -136,7 +128,7 @@ I’ve created a `useSpeechRecognition` hook that exposes utilities to:
 - get the interim result to display in the UI
 - check whether there is permission to use the microphone to show UI whether it is available or not
 - request listening permission to the user
-- know whether the API is currently listening the the user
+- know whether the Web API is currently listening the the user
 - start listening to the user
 - stop listening to the user
 
@@ -173,7 +165,7 @@ The user sends over a list of the whole conversation for context for the AI as i
 
 ### React Three Fiber Visualisation
 
-So yes, much like [the OpenAI solution](https://openai.com/blog/chatgpt-can-now-see-hear-and-speak), you can now speak with the conversation. Besides mine feeling a bit more natural in the sense that it responds a lot quicker (~800ms), it still feels like you are talking with an API. We’ve stripped the need for traditional UI like inputs and text on the screen, but created a great new opportunity to give some personality to Aiva and simultaneously provide the needed feedback to the user (is it listening, responding etc.).
+So yes, much like [the OpenAI solution](https://openai.com/blog/chatgpt-can-now-see-hear-and-speak), you can now speak with the conversation. Besides mine feeling a bit more natural in the sense that it responds a lot quicker (~800ms), it still feels like you are talking with a ChatGPT API. We’ve stripped the need for traditional UI like inputs and text on the screen, but created a great new opportunity to give some personality to Aiva and simultaneously provide the needed feedback to the user (is it listening, responding etc.).
 
 #### Why use this?
 
@@ -240,6 +232,6 @@ The sky(net) is the limit!
 
 ChatGPT, or AI in general, is being developer at an incredible pace. What we mustn’t forget is that we also need to take into account how the user interacts with AI. By creating a more natural conversation with the use of voice and sound we vastly improve the user experience in interacting with these products. By no means is a regular chat interface bad, it just is really good for quite some use cases. That doesn’t mean we shouldn’t explore other possibilities and create awesome new user experiences!
 
-I feel like the match between AI and voice is great! As mentioned earlier, I’ve created an application that used the SpeechRecognition API over six years ago and never since! Even though I found it cool, I hadn’t find the actual use case for the technique up until creating this demo application. Sometimes combining older techniques and principles with new state-of-the art technology can lead to some magic.
+I feel like the match between AI and voice is great! As mentioned earlier, I’ve created an application that used the SpeechRecognition Web API over six years ago and never since! Even though I found it cool, I hadn’t find the actual use case for the technique up until creating this demo application. Sometimes combining older techniques and principles with new state-of-the art technology can lead to some magic.
 
 Take my concept, think about some practical applications you might have (at your company) and try it out! Let’s make super cool products!
