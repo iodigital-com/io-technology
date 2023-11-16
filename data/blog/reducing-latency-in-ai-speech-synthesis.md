@@ -3,7 +3,7 @@ title: 'Reducing latency in _AI Speech Synthesis_'
 date: '2023-11-16'
 tags: ['frontend', 'ai', 'chat-gpt', 'voice']
 images: ['/articles/reducing-latency-in-ai-speech-synthesis/aiva.png']
-summary: 'AI-power speech synthesis is getting incredibly realistic. This opens up many possibilities to generate realistic audio based on the text you provide. Whilst relatively fast, the latency still isn’t low enough for “real-time synthesis”. Let’s optimise that!'
+summary: 'AI-powered speech synthesis is getting incredibly realistic. This opens up many possibilities to generate realistic audio based on the text you provide. Whilst relatively fast, the latency still isn’t low enough for “real-time synthesis”. Let’s optimise that!'
 authors: ['dave-bitter']
 theme: 'blue'
 ---
