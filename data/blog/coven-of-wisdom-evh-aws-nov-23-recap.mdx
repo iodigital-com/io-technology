@@ -1,0 +1,52 @@
+---
+title: 'Coven of Wisdom - EHV - AWS Sagemaker Workshop'
+date: '2023-11-16'
+tags: ['AWS', 'AI', 'coven of wisdom']
+summary: 'The Coven of Wisdom Eindhoven meetup on Nov. 16th, in partnership with AWS and the amazing Samuel Sopeju from AWS, was a total blast! The goal was simple: dive headfirst into the deep end of machine learning using Amazon SageMaker. And we did just that!'
+authors: ['maarten-van-hoof']
+theme: 'blue'
+---
+
+## TL;DR
+
+Participants got hands-on experience with Stable Diffusion on AWS, we learned how to conjure a Gen AI system via Amazon SageMaker to create high-res images at scale. Plus, we built a pipeline for auto-tuning models.
+
+<br />
+
+![Samuel Sopeju, Solutions Architect at AWS, taking us through the AWS Gen AI landscape](/articles/coven-of-wisdom-evh-aws-nov-23-recap/coven-of-wisdom-evh-aws-nov-23-recap-00001.jpg)
+
+## Stable Diffusion on AWS
+
+The evening kicked off with a peek at what the Stable Diffusion works in the AWS cloud, using the [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) based on Gradio and the [AWS Extensions](https://aws.amazon.com/campaigns/aigc/solutions/stable-diffusion-aws-extension/) for the Stable Diffusion UI that highly simplifies the integration between the AWS ecosystem and the Stable Diffusion Web UI project.
+
+We played with both positive and negative prompts and got creative with images and ControlNet, a way to reshape and repaint existing images with the help of Generative AI.
+
+<br />
+
+![Participant of the Coven of Wisdom, AWS Sagemaker Workshop, going through the steps of the workshop.](/articles/coven-of-wisdom-evh-aws-nov-23-recap/coven-of-wisdom-evh-aws-nov-23-recap-00002.jpg)
+
+## Building your own Gen AI REST API
+
+Next up, we started uploading and using different models, and even created our own Generative AI REST API. This involved AWS Lambdas and AWS SageMaker to create a RESTful API that makes generating new content a breeze. We learned to send prompts through request bodies and get an URL with the generated image stored in an S3 bucket in return.
+
+## Now, let's scale
+
+To wrap things up, we learned how to scale these solutions. We saw how a Gen AI solution wrapped in an AWS Lambda springs into action every time a new file is uploaded to a specific S3 bucket, uses a Jupyter script as instructions for a Gen AI system and stores the newly generated output in another bucket. This was a great way to see how to apply everything we learned this evening on a bigger scale.
+
+<br />
+
+![Samuel Sopeju, Solutions Architect at AWS, taking us through the AWS Gen AI landscape](/articles/coven-of-wisdom-evh-aws-nov-23-recap/coven-of-wisdom-evh-aws-nov-23-recap-00004.jpg)
+
+## Amazon Bedrock
+
+At the end we even got a sneak peek of [Amazon Bedrock](https://aws.amazon.com/bedrock/), a Gen AI ecosystem that enables us to setup GenAI models, APIs and other AI systems with far less configuration, which has been carefully abstracted away from a developers perspective.
+
+## Conclusion
+
+After the workshop all participants got together and enjoyed a delicious Persian meal catered by our good friends at [Saffraan](https://saffraanrestaurant.nl/). (Yes, I am mentioning the caterer, because oh boy, so good 🤤)
+
+In a nutshell, this AWS Immersion Day workshop was a total win. It was an afternoon full of learning, whether you're an ML pro or just dipping your toes in.
+
+<br />
+
+![Participants of the Coven of Wisdom AWS AI edition all smiling thanks to the great workshop and delicious food](/articles/coven-of-wisdom-evh-aws-nov-23-recap/coven-of-wisdom-evh-aws-nov-23-recap-00000.jpg)

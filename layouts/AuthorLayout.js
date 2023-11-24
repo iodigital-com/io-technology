@@ -10,13 +10,12 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
 
   const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
       <PageSEO title={`Author - ${name}`} description={`About me - ${name}`} />
 
-      <section className={`bg-io_${theme}-500 ${textClass}`}>
+      <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pt-8 pb-12">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
@@ -26,6 +25,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                 height={800}
                 layout="responsive"
                 className="rounded-full"
+                alt="avatar"
               />
             </div>
 
@@ -80,14 +80,14 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
         </div>
       </section>
 
-      {posts.length && (
+      {posts.length ? (
         <>
           <SectionTitle>
             Articles by <span className="font-serif font-light">{name}</span>
           </SectionTitle>
           <section className="container mx-auto max-w-2xl">
             {posts.map((fm, index) => {
-              const { slug, date, title, tags } = fm
+              const { slug, date, title, summary, tags } = fm
 
               return (
                 <Article
@@ -95,6 +95,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                   slug={slug}
                   date={date}
                   title={title}
+                  summary={summary}
                   tags={tags}
                   border={index !== 0}
                 />
@@ -102,9 +103,9 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             })}
           </section>
         </>
-      )}
+      ) : null}
 
-      {talks.length && (
+      {talks.length ? (
         <>
           <SectionTitle>
             Talks by <span className="font-serif font-light">{name}</span>
@@ -117,7 +118,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             </ul>
           </section>
         </>
-      )}
+      ) : null}
     </>
   )
 }

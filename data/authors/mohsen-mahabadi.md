@@ -1,6 +1,6 @@
 ---
 name: Mohsen Mahabadi
-avatar: /authors/mohsen-mahabadi.jpg
+avatar: /authors/mohsen-mahabadi-1.jpg
 occupation: Senior Frontend Developer
 linkedin: https://www.linkedin.com/in/mohsen-mahabadi/
 github: https://github.com/mmahabadi

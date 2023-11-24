@@ -5,7 +5,7 @@ tags: ['java', 'logging']
 images: ['/articles/separated-logging-with-filebeat-and-elk-stack/filebeat-elk-stack-diagram.png']
 summary: 'Why do we need separate to our logging mechanism in microservice architecture?'
 authors: ['ali-goktas']
-theme: 'rouge'
+theme: 'beige'
 ---
 
 Why do we need separate to our logging mechanism in microservice architecture?

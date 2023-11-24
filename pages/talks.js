@@ -5,14 +5,15 @@ import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Talk from '@/components/Talk'
 import Image from '@/components/Image'
-import shuffle from '@/lib/shuffle'
+import sortCreation from '@/lib/utils/sortCreation'
+import HubspotForm from '@/components/HubspotForm'
 
 export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
-  const talksShuffled = shuffle(talks)
+  const talksSorted = talks.sort(sortCreation)
   const authors = await getAuthors(talks)
 
-  return { props: { talks: talksShuffled, authors, theme: 'black' } }
+  return { props: { talks: talksSorted, authors, theme: 'pink' } }
 }
 
 export default function Talks({ talks, authors }) {
@@ -21,7 +22,7 @@ export default function Talks({ talks, authors }) {
   return (
     <>
       <PageSEO title={`Talks - ${siteMetadata.author}`} description={siteMetadata.description} />
-      <section className={`bg-io_${theme}-500 text-white`}>
+      <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pt-8 pb-24 md:pb-32">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
@@ -40,19 +41,14 @@ export default function Talks({ talks, authors }) {
                 alt=""
               />
             </div>
-            <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">
+            <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-6">
               <div className="xl:w-11/12">
                 <p className="mb-4 ">
-                  We have great experts that can deliver inspiring talks at your event! Feel free to
-                  reach out to{' '}
-                  <a
-                    className="underline underline-offset-2"
-                    href="mailto:business@iodigital.com?subject=Request%20for%20speaker%20(iO%20tech_hub)"
-                  >
-                    business@iodigital.com
-                  </a>{' '}
-                  to invite one of our speakers
+                  We have great experts that can deliver inspiring talks at your event.
+                  <br />
+                  Leave your details and we will reach out to you!
                 </p>
+                <HubspotForm portalId={'513128'} formId="af6d8033-3c2c-4403-8c18-07a3e99f6bcf" />
               </div>
             </div>
           </div>

@@ -41,7 +41,7 @@ export async function getStaticProps({ params }) {
 
   const authors = await getAuthors(allPosts)
 
-  return { props: { posts: filteredPosts, tag: params.tag, authors, theme: 'black' } }
+  return { props: { posts: filteredPosts, tag: params.tag, authors, theme: 'green' } }
 }
 
 export default function Tag({ posts, tag, authors }) {

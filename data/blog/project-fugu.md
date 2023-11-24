@@ -5,7 +5,7 @@ tags: ['frontend', 'web-capabilities', 'project-fugu']
 images: ['/articles/project-fugu/header.webp']
 summary: Cross-platform software development is hard. Each platform has its specific implementation of an API and you end up with separate apps for each platform. Multiple frameworks try to fix this issue by creating an abstract between the platform and the application. Browser vendors are doing the same and it's called Project Fugu.
 authors: ['lucien-immink']
-theme: 'rouge'
+theme: 'beige'
 ---
 
 Cross-platform software development is hard. Features and capabilities of an application require you to think about how it needs to be implemented on different platforms like Android, iOS, Web, Windows, MacOS and Linux. If you, for example, need to access the address details of a contact that is stored on a device you need to implement a piece of software, that allows you to access and choose a contact, let's call it a contact picker, for all the different platforms you want to support or you need to come up with a completely custom implementation. Custom implementations are probably not what you want to do. It can become quite messy quite fast.

@@ -6,7 +6,7 @@ const Tag = ({ text }) => {
   let { theme } = useBrandingTheme()
 
   if (theme === 'default') {
-    theme = 'black'
+    theme = 'green'
   }
 
   return (

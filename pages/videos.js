@@ -4,7 +4,6 @@ import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
 import Image from '@/components/Image'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import SocialIcon from '@/components/social-icons'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
@@ -13,13 +12,12 @@ export async function getStaticProps() {
 
 export default function Videos({ videos }) {
   const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
       <PageSEO title={`Videos - ${siteMetadata.author}`} description={siteMetadata.description} />
 
-      <section className={`bg-io_${theme}-500 ${textClass}`}>
+      <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pt-8 pb-24 md:pb-32">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
@@ -35,6 +33,7 @@ export default function Videos({ videos }) {
                 height={1192}
                 layout="responsive"
                 className="rounded-full"
+                alt="meetup"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-4 xl:col-span-4 xl:col-start-4">

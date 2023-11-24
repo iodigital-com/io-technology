@@ -1,0 +1,70 @@
+.hubspot fieldset {
+  max-width: none !important;
+}
+
+.hubspot .hs-form-required {
+  display: none;
+}
+
+.hubspot .hs-input {
+  width: 100% !important;
+}
+
+.hubspot .hs-form-field {
+  margin-bottom: 20px;
+}
+
+.hubspot img {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.hubspot h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin-top: 2rem;
+  padding: 2rem 2rem 1rem;
+}
+
+.hubspot p,
+.hubspot .hs-submit {
+  padding: 0 2rem 1rem 2rem;
+}
+
+.hubspot .hs-input[type='checkbox'],
+.hubspot .hs-input[type='radio'] {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  margin-right: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.hubspot .hs-button {
+  border-radius: 9999px;
+  border: solid 1px black;
+  padding: 1rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.hubspot .hs-button:hover {
+  background-color: transparent;
+  color: #000;
+}
+
+.hubspot.quiz .form-columns-1,
+.hubspot.quiz .form-columns-2 {
+  padding: 0 2rem;
+}
+
+.hubspot.quiz h2,
+.hubspot.quiz p,
+.hubspot.quiz img,
+.hubspot.quiz .hs-fieldtype-radio,
+.hubspot.quiz .form-columns-1,
+.hubspot.quiz .form-columns-2,
+.hubspot.quiz .hs-submit {
+  background: #f4be80;
+}

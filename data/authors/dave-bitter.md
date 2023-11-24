@@ -1,6 +1,6 @@
 ---
 name: Dave Bitter
-avatar: /authors/dave-bitter.jpg
+avatar: /authors/dave-bitter.png
 occupation: Google Developer Expert Web & Developer Advocate
 twitter: https://twitter.com/dave_bitter
 linkedin: https://www.linkedin.com/in/davebitter/

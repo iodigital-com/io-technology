@@ -23,13 +23,13 @@ export async function getStaticProps() {
   const posts = (await getAllFilesFrontMatter('blog')).filter(
     (frontMatter) => !frontMatter.hideInArticleList
   )
-  const { videos } = await getLatestVideos(6)
+  const { videos } = await getLatestVideos(10)
   const { jobs } = await getLatestJobs(9)
 
   const allAuthors = await getAllAuthors()
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
-  return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
+  return { props: { posts, videos, jobs, contributors, theme: 'green' } }
 }
 
 export default function Home({ posts, videos, jobs, contributors }) {
@@ -43,7 +43,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500 text-white`}>
+      <div className={`bg-io_${theme}-500`}>
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
@@ -116,7 +116,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
         {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, title, tags } = frontMatter
+          const { slug, date, title, summary, tags } = frontMatter
           const authorsResolved = frontMatter.authors.map((author) => {
             return authors[author]
           })
@@ -127,6 +127,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
               slug={slug}
               date={date}
               title={title}
+              summary={summary}
               tags={tags}
               authors={authorsResolved}
               border={index !== 0}

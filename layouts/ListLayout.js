@@ -22,11 +22,9 @@ export default function ListLayout({
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
 
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
-
   return (
     <>
-      <section className={`bg-io_${theme}-500 ${textClass}`}>
+      <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto mb-12 pt-0 pb-24">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
@@ -42,7 +40,7 @@ export default function ListLayout({
                       type="search"
                       name="search"
                       placeholder="Search articles"
-                      className="w-full px-5 py-5 text-black"
+                      className="w-full px-5 py-5"
                       onChange={(e) => setSearchValue(e.target.value)}
                     />
                     <svg
@@ -71,7 +69,7 @@ export default function ListLayout({
         <ul>
           {!filteredBlogPosts.length && 'No articles found.'}
           {displayPosts.map((frontMatter, index) => {
-            const { slug, date, title, tags } = frontMatter
+            const { slug, date, title, summary, tags } = frontMatter
             const authorsResolved = frontMatter.authors.map((author) => {
               return authors[author]
             })
@@ -83,6 +81,7 @@ export default function ListLayout({
                   slug={slug}
                   date={date}
                   title={title}
+                  summary={summary}
                   tags={tags}
                   authors={authorsResolved}
                   border={index !== 0}
