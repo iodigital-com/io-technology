@@ -37,7 +37,7 @@ I mean, you could! It might, however, be wise to look for a bit of an abstractio
 - [Lit](https://github.com/lit/lit)
 - [Stencil](https://stenciljs.com/)
 
-Like any set of frameworks, they both have their up- and downsides. There are many comparison articles online comparing them. Feel free to look it up after you finish this article. So which one did I choose? I decided to go for Lit. I told you this was going to be an opinionated series. The reason is that I’ve got experience using Lit already. Next to that, I like that it seems to be a bit more low-level and closer to the core which I always look out for. If you want to learn a bit more about Lit, head over to the article [Why lit is 🔥](/articles/why-lit-is-%F0%9F%94%A5) by my colleague Lucien Immink. To be fair, going with any of the mentioned options would be good.
+Like any set of frameworks, they both have their up- and downsides. There are many comparison articles online comparing them. Feel free to look it up after you finish this article. So which one did I choose? I decided to go for Lit. I told you this was going to be an opinionated series. The reason is that I’ve got experience using Lit already. Next to that, I like that it seems to be a bit more low-level and closer to the core which I always look out for. If you want to learn a bit more about Lit, head over to the article [Why lit is on-fire](/articles/why-lit-is-%F0%9F%94%A5) by my colleague Lucien Immink. To be fair, going with any of the mentioned options would be good.
 
 ### How do Web Components help me?
 

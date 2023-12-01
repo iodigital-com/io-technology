@@ -2,7 +2,7 @@
 title: 'Why lit is 🔥'
 date: '2022-06-17'
 tags: ['frontend']
-images: ['/articles/why-lit-is-🔥/header-image.png']
+images: ['/articles/why-lit-is-on-fire/header-image.png']
 summary: 'Every day a new JavaScript library is born, every week a new framework arrives and every month a front-end developer needs to rewrite a date picker 😢 LIT is a modern library for creating component libraries, design systems but also sites and apps. LIT components are web components and as such work anywhere you use HTML.'
 authors: ['lucien-immink']
 theme: 'blue'
@@ -10,7 +10,7 @@ theme: 'blue'
 
 In the fast-changing world of front-end development it's hard to keep up with all the new libraries and frameworks out there that promise to be the next big thing. Frameworks tend to do a lot of heavy lifting but also tend to not agree with each other. As a developer this means that you might have to rewrite code to swap out the old framework for the new. It becomes more of an issue if you must rewrite nearly _all_ of your code if the frameworks can't live together.
 
-![Schema of the elements of a URL](/articles/why-lit-is-🔥/standards.png)
+![Schema of the elements of a URL](/articles/why-lit-is-on-fire/standards.png)
 
 Luckily things are changing (again). With architectural choices like [micro frontends](https://www.iodigital.com/en/insights/technology/micro-frontend-future-frontend-development) it is possible to break up a complex and large code base in logical smaller parts. What if those parts share a few components? Which framework should you use? It should be interoperable and future ready. This is one example where _web components_ shine as you can use those [anywhere](https://caniuse.com/custom-elementsv1) you use HTML.
 
@@ -90,7 +90,7 @@ export class HelloWorld extends LitElement {
 
 This `<hello-world>` example comes in at _235 bytes_ with _6KB_ for LIT (minified and compressed).
 
-![Schema of the elements of a URL](/articles/why-lit-is-🔥/hello-world-bundle-size.png)
+![Schema of the elements of a URL](/articles/why-lit-is-on-fire/hello-world-bundle-size.png)
 
 Start saying hello to the world by cloning the [source code](https://github.com/lucienimmink/lit-hello-world).
 
