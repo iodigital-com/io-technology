@@ -78,7 +78,7 @@ Since our accent color is already defined in `oklch` it's quite easy to lighten 
 
 ```css
 .lighten-by-10 {
-  background-color: oklch(from var(--accent-color) calc(l + 0.10) c h);
+  background-color: oklch(from var(--accent-color) calc(l + 10) c h);
 }
 ```
 
@@ -100,7 +100,7 @@ Ah yes, when there is light there is dark!
 
 ```css
 .darken-by-10 {
-  background-color: oklch(from var(--accent-color) calc(l - 0.10) c h);
+  background-color: oklch(from var(--accent-color) calc(l - 10) c h);
 }
 ```
 
@@ -146,7 +146,7 @@ Accessible colors are a must and one way to achieve this is to add (if `accent-c
 ```css
 .contrast-accent-color {
   background-color: var(--accent-color);
-  color: oklch(from var(--accent-color) calc(l - 0.40) c h);
+  color: oklch(from var(--accent-color) calc(l - 40) c h);
 }
 ```
 
