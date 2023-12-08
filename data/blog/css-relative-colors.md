@@ -31,8 +31,7 @@ As an example, I'm going to use iO's primary accent color `#0017ee` which transl
 With the separate properties set, I can now easily add new colors based on those properties:
 
 ```css
---accent-hover: 
-  oklch(var(--accent-lightness + 10) var(--accent-chroma) var(--accent-hue));
+--accent-hover: oklch(var(--accent-lightness + 10) var(--accent-chroma) var(--accent-hue));
 ```
 
 Quite a lot of work and it's very error prone. Chrome 119 introduced CSS native relative colors which changes this syntax quite drastically.
@@ -40,7 +39,7 @@ Quite a lot of work and it's very error prone. Chrome 119 introduced CSS native 
 ```css
 :root {
   --accent-color: oklch(43.89% 0.291 264.18);
-  --accent-hover: oklch(from var(--accent-color) calc(l + 10) c h);
+  --accent-hover: oklch(from var(--accent-color) calc(l * 1.1) c h);
 }
 ```
 
@@ -63,7 +62,7 @@ oklch(from rgb(0 23 238) l c h)   /*  l=43.89%  c=0.291   h=264.18  */
 
 Converting color spaces can open up easier convertions. Changing lightness in `rgb` is harder than it is in `oklch` for example, but changing the `r` value directly is easier in `rgb`.
 
-*Tip*: You can even clone, mix and omit properties when calculating a new color based on the originating color:
+_Tip_: You can even clone, mix and omit properties when calculating a new color based on the originating color:
 
 ```css
 rgb(from(var(--accent-color)) g g g)  /* r=23 g=23  b=23 */
@@ -78,7 +77,7 @@ Since our accent color is already defined in `oklch` it's quite easy to lighten 
 
 ```css
 .lighten-by-10 {
-  background-color: oklch(from var(--accent-color) calc(l + 10) c h);
+  background-color: oklch(from var(--accent-color) calc(l * 1.1) c h);
 }
 ```
 
@@ -100,7 +99,7 @@ Ah yes, when there is light there is dark!
 
 ```css
 .darken-by-10 {
-  background-color: oklch(from var(--accent-color) calc(l - 10) c h);
+  background-color: oklch(from var(--accent-color) calc(l * 0.9) c h);
 }
 ```
 
@@ -122,8 +121,7 @@ To invert a color a trick is applied by converting the color to `rgb` and substr
 
 ```css
 .invert-accent-color {
-  background-color: 
-    rgb(from var(--accent-color) calc(1 - r) calc(1 - g) calc(1 - b));
+  background-color: rgb(from var(--accent-color) calc(1 - r) calc(1 - g) calc(1 - b));
 }
 ```
 
@@ -146,7 +144,7 @@ Accessible colors are a must and one way to achieve this is to add (if `accent-c
 ```css
 .contrast-accent-color {
   background-color: var(--accent-color);
-  color: oklch(from var(--accent-color) calc(l - 40) c h);
+  color: oklch(from var(--accent-color) calc(l * 0.6) c h);
 }
 ```
 
@@ -168,11 +166,11 @@ Making a palette can be done based on lightness, which is called a monochromatic
 
 ```css
 :root {
-  --lighter: oklch(from var(--accent-color) calc(l + 20) c h);
-  --light:   oklch(from var(--accent-color) calc(l + 10) c h);
-  --base:    var(--accent-color);
-  --dark:    oklch(from var(--accent-color) calc(l - 10) c h);
-  --darker:  oklch(from var(--accent-color) calc(l - 20) c h);
+  --lighter: oklch(from var(--accent-color) calc(l * 1.2) c h);
+  --light: oklch(from var(--accent-color) calc(l * 1.1) c h);
+  --base: var(--accent-color);
+  --dark: oklch(from var(--accent-color) calc(l * 0.9) c h);
+  --darker: oklch(from var(--accent-color) calc(l * 0.8) c h);
 }
 ```
 
@@ -192,9 +190,9 @@ If the hue is rotated instead an analogous palette is created:
 
 ```css
 :root {
-  --base:      var(--accent-color);
+  --base: var(--accent-color);
   --secondary: oklch(from var(--accent-color) l c calc(h - 45));
-  --tertiary:  oklch(from var(--accent-color) l c calc(h + 45));
+  --tertiary: oklch(from var(--accent-color) l c calc(h + 45));
 }
 ```
 
@@ -214,6 +212,6 @@ Loads more examples of palettes can be found on the [developer.chrome](https://d
 
 ## Wrapping things up
 
-Instead of defining color properties as variables, or even worse in JavaScript, it's now possible to use the CSS native relative color syntax. Using the `from` keyword the browser can convert the `originating color` to different color spaces and change the color properties. Use the conversion to easily change the color's properties. 
+Instead of defining color properties as variables, or even worse in JavaScript, it's now possible to use the CSS native relative color syntax. Using the `from` keyword the browser can convert the `originating color` to different color spaces and change the color properties. Use the conversion to easily change the color's properties.
 
 Relative colors are supported by Chromium and Safari as of writing. See [can-i-use](https://caniuse.com/?search=relative+colors).
