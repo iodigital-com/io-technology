@@ -72,6 +72,20 @@ recognition.onend = (event) => {
 }
 ```
 
+I've created this small demo so you can try it out yourself:
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/davebitter/full/vYbMxNL" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/davebitter/pen/vYbMxNL</small>
+
 Now, for every interim result while the user is talking, you can do something with that transcript string once `onresult` is called. For instance, you show some live feedback on the screen with what text the Web API interpreted the user’s speech as. Once the user stops talking, the `onend` is called with the end result. Great! We now have turned speech into a text string to use as input!
 
 ### Output: SpeechSynthesis Web API
@@ -104,6 +118,20 @@ if (preferredVoice) {
   utterance.voice = preferredVoice
 }
 ```
+
+I've created this small demo so you can try it out yourself:
+
+<div className="md:-mx-32 my-4">
+  <div className="relative aspect-w-16 aspect-h-9 border">
+    <iframe src="https://codepen.io/davebitter/full/QWYPpax" className="absolute inset-0" style={{
+      width: "166.66%",
+      height: "166.66%",
+      transform: "translate(-20%,-20%) scale(.6)",
+    }}></iframe>
+  </div>
+</div>
+
+<small>Source available on https://codepen.io/davebitter/pen/QWYPpax</small>
 
 As you can see, I can retrieve a list of all the supported voices on the user’s browser. I like the one named `"Karen"` so decided to store that one if found. Naturally, you can create a dropdown with voices for the user to select the one they like.
 
