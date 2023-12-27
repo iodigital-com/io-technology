@@ -6,7 +6,9 @@ import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/l
 import { getLatestJobs } from '@/lib/jobs'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
+import path from 'path'
 
+const root = process.cwd()
 const DEFAULT_LAYOUT = 'SerieLayout'
 
 export async function getStaticPaths() {
@@ -38,8 +40,10 @@ export async function getStaticProps({ params }) {
 
   // rss
   if (allSeries.length > 0) {
-    const rss = await generateRss(allSeries)
-    fs.writeFileSync('./public/feed.xml', rss)
+    const rss = await generateRss(allSeries, '/series/feed.xml')
+    const rssPath = path.join(root, 'public', 'series')
+    fs.mkdirSync(rssPath, { recursive: true })
+    fs.writeFileSync('./public/series/feed.xml', rss)
   }
 
   const { jobs } = await getLatestJobs(4)
