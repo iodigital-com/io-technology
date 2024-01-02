@@ -1,8 +1,8 @@
 ---
 title: 'What I learned from becoming CPACC'
-date: '2023-12-22'
+date: '2024-01-02'
 tags: ['a11y', 'accessibility', 'iaap', 'cpacc', 'certification', 'deque']
-summary: 'My personal experiences after successfully completing the IAAP Certified Professional in Accessibility Core Competencies exam.'
+summary: 'My personal experiences after completing the IAAP Certified Professional in Accessibility Core Competencies exam.'
 authors: ['tim-dujardin']
 theme: 'green'
 ---
@@ -12,7 +12,7 @@ theme: 'green'
 My last exam was at Howest (Kortrijk, Belgium) in 2015, so the experience of taking an exam was a long time ago.
 In July 2021, I discovered the digital accessibility courses of Deque University, which has been my mainstay in terms of
 accessibility training to this day.
-Of course, during the 3 years that I have put my personal focus on accessibility, I have come across a lot of
+Of course, during the 3 years that I have put my focus on accessibility, I have come across a lot of
 interesting insights from the most experienced people in this field.
 
 My personal favorites are [Karl Groves](https://twitter.com/karlgroves), [Sara Soueidan](https://twitter.com/SaraSoueidan), [Hidde de Vries](https://twitter.com/hdv) and [Jan Jaap de Groot](https://twitter.com/JanJaapdeGroot).
@@ -25,15 +25,14 @@ The acronyms I have used in this article:
 | ------- | --------------------------------------------------------- |
 | IAAP    | International Association of Accessibility Professionals  |
 | CPACC   | Certified Professional in Accessibility Core Competencies |
-| CDC     | Center for Disease Control and Prevention                 |
 
 ## The perception of the term 'disability'
 
 ### What it means to most of us?
 
-Most of the (able-bodied) people rely on the legal definition of disability, which means being eligible for government benefits (cfr.
+Most of the (able-bodied) people rely on the legal definition of disability, which means being eligible for government benefits (cf.
 economic model).
-That's why people with disabilities are negatively viewed as being "needy" members of society (cfr. charity model).
+That's why people with disabilities are negatively viewed as being "needy" members of society (cf. charity model).
 
 | Model          | Definition                                                                                                                                                                                                     |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -43,31 +42,42 @@ That's why people with disabilities are negatively viewed as being "needy" membe
 ### What it means to me?
 
 The way I looked at disabilities before diving into accessibility a few years ago, was very closely aligned with the
-economic and charity models. I thought of it as people that needed help from able-bodied people, financially and mentally.
+economic and charity models. I thought of it as people who needed help from able-bodied people, financially and mentally.
 
 But now, after 3 years of genuine interest in accessibility, my point of view has changed a lot.
 
-For me, the term "disability" is now very broad, not just refering to a subset of society. If you would ask me for a
+For me, the term "disability" is now very broad, not just referring to a subset of society. If you would ask me for a
 definition, I would say:
 
 > Anything that limits activity and/or interaction is a disability.
 
-For example: people wearing glasses is not referred to as people with a disability, but theoretically those people have a visual
-impairment. Society doesn't look at it that way, since it's a common phenomenon that is part of the aging process.
+For example: people wearing glasses are not referred to as people with a disability, but theoretically, those people have a visual
+impairment. Our society doesn't always look at it that way, since it's a common phenomenon that is part of the ageing
+process.
+
+If you want to see more examples, take a look at [The Inclusive Design Activity Cards of
+Microsoft](https://inclusive.microsoft.design/tools-and-activities/InclusiveActivityCards.pdf). They give a great overview of different disability persona showing how broad the term "disability" is.
+
+<figure>
+  <img src="https://i.imgur.com/i0mtl9b.png" alt="The 3 categories of persona related to touch: showing a person with one arm as permanent disability, a person with an arm injury as temporary disability and a new parent holding his/her child as a situational disability." />
+  <figcaption>
+    The disability persona related to touch, which is part of page 26 of The Inclusive Design Activity Cards of Microsoft.
+  </figcaption>
+</figure>
 
 ### What does it mean to you?
 
 So, ask yourself, what does "disability" mean to you? Do you think of disabilities in terms of non-functional body
-parts? Do you think of disabling conditions in the built environment, or in our culture, or in political systems? Are
+parts? Do you think of disabling conditions in the built environment, in our culture, or in political systems? Are
 disabilities normal? Should we pity people with disabilities? Are people with disabilities "inspirational" when they
 learn to work around their disabilities?
 
 The assumptions we make have a profound impact on the lives of people with disabilities. That's why there is a list of [theoretical models of
 disability](https://medium.com/offmessageorg/the-context-you-never-had-for-your-web-apps-the-7-theoretical-models-of-disability-b2cf0e0e4ed8),
-to categorize our assumptions and to examine the alternative pathways. In the previous section I mentioned the economic
-and charity model, which are part of that list.
+to categorize our assumptions and to examine the alternative pathways. In the previous section, I mentioned the economic
+and charity models, which are part of that list.
 
-## Why disability statistics are so variable
+## What leads to the variability in disability statistics?
 
 ### Definitions vary widely
 
@@ -75,25 +85,24 @@ The first thing to consider is how we define the term 'disability', definitions 
 disabilities as a narrow fact, then the statistics will represent a smaller percentage of people with a disability. The
 same applies in the other direction, a broad definition will result in a larger percentage.
 
-Traditionally, disability statistics has been conceived as a matter of counting people
+Traditionally, disability statistics have been conceived as a matter of counting people
 who fall into specific groups such as 'the blind', 'the deaf', 'wheelchair users', etc in order to
-determine who qualifies for benefits. With very limited purpose in mind, this
+determine who qualifies for benefits. With a very limited purpose in mind, this
 categorical approach gives a fragmented and distorted picture of disability since it
-suggests that person with disability fall neatly into a few categories with clear
+suggests that people with a disability fall neatly into a few categories with clear
 boundaries.
 
 ### Difference in how data is collected
 
-Some surveys rely on individuals to report their own disabilities, others rely on external observations.
-Some surveys are meant to collect data concerning "eligibility for governments benefits", which will obviously result in more people responding positively.
-Also, the wording of the questions in the survey can result in different statistics.
-Even phrasing a question like "Do you have a disability?" compared to "Do you experience difficulty seeing text well
-enough to read it?" has its impact on the meaningfulness of the collected data.
+Certain surveys depend on individuals self-reporting their disabilities, while others rely on external observations.
+Surveys designed to gather information about "eligibility for government benefits" may lead to more positive responses.
+
+Additionally, the formulation of survey questions can influence the obtained statistics. For instance, the wording of a question such as "Do you have a disability?" as opposed to "Do you experience difficulty seeing text well enough to read it?" can significantly affect the meaningfulness of the collected data.
 
 ### Publication bias
 
-Some countries, institutes or organisations are not eager to share information that could possibly have a negative
-impact on their public relations. Therefore, it can be impossible to get accurate data.
+Some countries, institutes or organisations are not eager to share information that could have a negative
+impact on their public relations. Therefore, it can be very difficult to get accurate data.
 
 ## Disability etiquette
 
@@ -110,24 +119,24 @@ early age, use sign language, but not all of them.
 
 ### Service animals
 
-Service animals (such as guide dogs) are doing a job. When they're in work mode, do not pet them, play with them, feed
-them, or draw their attention in any way. These animals are in service of their owner. Distracting service animals from
-their job makes it harder for the owner to control the animal's actions.
+Service animals, like guide dogs, have a specific job to perform. While they are on duty, it's important not to pet,
+play, feed, or otherwise distract them. These animals are focused on assisting their owners, and interfering with their
+work can make it challenging for the owner to manage the animal effectively.
 
-So, be sure to ask the owner first. Do not interact with the animal without the owner's knowledge and permission.
+Always seek the owner's permission before
+interacting with the service animal to ensure you do not disrupt their important tasks.
 
 ## Conclusion
 
-What I want you to remember from this article is 2 things:
+What I want to achieve with this blog post is to foster empathy, to illustrate that we should build our products and
+services regardless of a person's circumstances and foremost to think of people with disabilities as people, just like
+everyone else.
 
-- Think of people with disabilities first and foremost as people, just like everyone else. Challenge yourself, get to
-  know your target audience and let's develop products that provide equal access regardless of a person's circumstances.
-  Eventually, this will benefit all of us (more information: [universal design](https://uxplanet.org/universal-design-design-for-everyone-61ded4243658)).
--
+So challenge yourself, get to know your target audience, and go the extra mile. Eventually, this will benefit all of us ([Universal Design](https://uxplanet.org/universal-design-design-for-everyone-61ded4243658)).
 
 ## Exam preparation material
 
-I've used the following resources:
+I've used the following resources to study for the exam:
 
 - [IAAP CPACC Exam Preparation](https://dequeuniversity.com/online-courses/iaap-cpacc)
 - [IAAP CPACC Body of Knowledge](https://www.accessibilityassociation.org/resource/IAAP_CPACC_BOK_March2020)
