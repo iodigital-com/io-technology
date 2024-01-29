@@ -37,17 +37,17 @@ A perfect example that comes to mind is to align an icon or square with a title 
   <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-Notice how I did not use any positioning on the icon, this is just following along nicely with the font. Just as the all known `(r)em` values this unit can enhance the accessibility and usability of your web designs. It helps you to keep the layout scale-independent, ensuring that your users can interact with your content effectively regardless of their preferred font settings or device screen size. The same goes for all the following units on this list.
+Notice how I did not use any positioning on the icon, this is just following along nicely with the font. Just as the all-known `(r)em` values this unit can enhance the accessibility and usability of your web designs. It helps you to keep the layout scale-independent, ensuring that your users can interact with your content effectively regardless of their preferred font settings or device screen size. The same goes for all the following units on this list.
 
 ## ch
 
-The `ch` unit represents the advance measure of the character `0` (zero) in the font used to render it. It is an absolute length unit, though it scales with the font-size of the current element.
+The `ch` unit represents the advanced measure of the character `0` (zero) in the font used to render it. It is an absolute length unit, though it scales with the `font-size` of the current element.
 
-The `ch` unit was mostly used for sizing elements in monospace fonts, where all characters have the same width. This is because the advance measure of the character `0` is consistent for all monospace fonts. But even without actually using it with a monospace font, we can create some lovely responsive behavior with it. A fun thing to note though is that this works in multiple writing modes: when the inline axis is vertical on a webpage, the calculation is based on the height of the zero glyph.
+The `ch` unit was mostly used for sizing elements in monospace fonts, where all characters have the same width. This is because the advance measure of the character `0` is consistent for all monospace fonts. But even without using it with a monospace font, we can create some lovely responsive behavior with it. A fun thing to note though is that this works in multiple writing modes: when the inline axis is vertical on a webpage, the calculation is based on the height of the zero glyph.
 
-How about a one-liner responsive grid? [This little article says that the ideal reading length is between 50-60 characters](https://baymard.com/blog/line-length-readability) and I've read some other studies before in the past which gave it an average of about 45-75 characters. How about we play with that idea for a grid?
+How about a one-liner responsive grid? [This little article says that the ideal reading length is between 50-60 characters](https://baymard.com/blog/line-length-readability) and I've read some other studies before which gave it an average of about 45-75 characters. How about we play with that idea for a grid?
 
-Let’s say we only want a grid where items are only next to each other if they can at least fit 45 characters in one line. We could do this with CSS Grid and the `ch` unit
+Let’s say we want a grid where items are only next to each other if they can at least fit 45 characters in one line. We could do this with CSS Grid and the `ch` unit
 
 ```css
 .grid {
@@ -233,7 +233,8 @@ I couldn’t really create a demo of this to give it enough credit. But I did fo
   allowfullscreen="true"
 >
   See the Pen <a href="https://codepen.io/SitePoint/pen/JjemLPN">Using ic units</a> by SitePoint (
-  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>.
+  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>
+  .
 </iframe>
 
 ## lh
