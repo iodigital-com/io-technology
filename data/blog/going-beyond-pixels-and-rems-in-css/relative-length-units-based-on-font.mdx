@@ -3,7 +3,7 @@ title: 'Going beyond pixels and (r)ems in CSS - Relative length units based on f
 date: '2024-01-30'
 tags: ['frontend', 'css']
 images: ['/articles/going-beyond-pixels-and-rems-in-css/visual-pixel-fonts.png']
-summary: 'There are a lot of CSS units available at the moment and we mostly still rely on pixels and (r)ems for our sizing and fonts. I say it’s time to do a little freshening up. Instead of writing a list of which units are available in CSS that you can easily find on MDN as well, I thought I’d give some examples on where they could come in handy. I will create a mini series out of this and for the first part, let’s start off with relative length units based on font.'
+summary: 'There are a lot of CSS units available at the moment and we mostly still rely on pixels and (r)ems for our sizing and fonts. I say it’s time to do a little freshening up. Instead of writing a list of which units are available in CSS that you can easily find on MDN as well, I thought I’d give some examples of where they could come in handy. I will create a mini-series out of this and for the first part, let’s start off with relative length units based on font.'
 authors: ['brecht-de-ruyte']
 theme: 'beige'
 serie: 'going-beyond-pixels-and-rems-in-css'
@@ -19,7 +19,7 @@ The `cap` unit measures the distance from the baseline to the top of capital or 
 
 This unit is useful for creating layouts that are scale-independent and responsive to different fonts and font sizes. For instance, you can use the `cap` unit to set the height of headings and other elements, ensuring that they maintain their visual proportions regardless of the font choice.
 
-A perfect example that comes to mind is to align an icon or square with a title and give it the exactly the same height as a capital:
+A perfect example that comes to mind is to align an icon or square with a title and give it exactly the same height as a capital:
 
 <iframe
   height="300"
@@ -134,13 +134,13 @@ These are our media queries:
 }
 ```
 
-Now we both have an equivalent of `640px` in the (r)em values (16x40 = 640) and by no surprise, with the basic font-size in your browser, all of these will trigger at the same time:
+Now we both have an equivalent of `640px` in the (r)em values (16x40 = 640) and by no surprise, with the basic font size in your browser, all of these will trigger at the same time:
 
 ![Media queries trigger on 640px](/articles/going-beyond-pixels-and-rems-in-css/base-font-640px.png)
 
-But now let’s change the default `font-size` of the browser. In Chrome, go to `settings > appearance > Customize fonts` and change the default font-size to about `30` (**note**: zooming in the browser won’t work, this is a different behavior).
+But now let’s change the default `font-size` of the browser. In Chrome, go to `settings > appearance > Customize fonts` and change the default font size to about `30` (**note**: zooming in the browser won’t work, this is a different behavior).
 
-Now if we go size our screen to `640px`, the following will occur:
+Now if we size our screen to `640px`, the following will occur:
 
 ![Only pixel media query trigger on 640px](/articles/going-beyond-pixels-and-rems-in-css/large-font-640.png)
 
@@ -148,7 +148,7 @@ And when about `1200px` (or `40em` in this environment) we will get the followin
 
 ![all media queries trigger on 1200px](/articles/going-beyond-pixels-and-rems-in-css/large-font-1200.png)
 
-**So the question:** Is using (r)em values for media queries better for accessibility and user preferences? The answer - as always - it depends. This is hardly the article to do an in-depth about that discussion because it can easily become opinionated. Here is that demo if you want to try it out, don’t forget to play around with your default `font-size` for the full effect:
+**So the question:** Is using (r)em values for media queries better for accessibility and user preferences? The answer - as always - it depends. This is hardly the article to do an in-depth discussion about that because it can easily become opinionated. Here is that demo if you want to try it out, don’t forget to play around with your default `font-size` for the full effect:
 
 <iframe
   height="300"
@@ -173,7 +173,7 @@ The `ex` unit might sound like [Xzibit](https://www.youtube.com/watch?v=L6T2hu_p
 
 Yes, we’re getting into some serious typography territory here, but bear with me, it has some really practical use cases. Some great usages could be:
 
-- Set the line-height of paragraphs to 1.2 times the x-height
+- Set the line height of paragraphs to 1.2 times the x-height
 - Set the padding and margins of elements to multiples of the x-height
 - Create a baseline grid to align elements vertically
 
@@ -217,9 +217,9 @@ It might not be something we can use every day but it sure is nice to have these
 
 ## ic
 
-A unit that we probably won’t need in the western part of the world, it measures the width of a full-width character in the font used to render it. It is specifically designed for sizing elements in Chinese, Japanese, and Korean, where characters can have different widths depending on their complexity. It is based on the "水" glyph (water ideograph) because this character is the same across those languages.
+A unit that we probably won’t need in the Western part of the world, it measures the width of a full-width character in the font used to render it. It is specifically designed for sizing elements in Chinese, Japanese, and Korean, where characters can have different widths depending on their complexity. It is based on the "水" glyph (water ideograph) because this character is the same across those languages.
 
-I couldn’t really create a demo of this to give it enough credit. But I did found this demo by sitepoint:
+I couldn’t really create a demo of this to give it enough credit. But I did find this demo by sitepoint:
 
 <iframe
   height="300"
@@ -233,8 +233,7 @@ I couldn’t really create a demo of this to give it enough credit. But I did fo
   allowfullscreen="true"
 >
   See the Pen <a href="https://codepen.io/SitePoint/pen/JjemLPN">Using ic units</a> by SitePoint (
-  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>
-  .
+  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 ## lh
@@ -243,7 +242,7 @@ Equal to the computed value of the `line-height` property of the element on whic
 
 This can help us to achieve some great layout effects with our typography.
 
-I got inspired by [an lh demo at MDN](https://developer.mozilla.org/en-US/play), gave my own take on it and further enhanced it to show the power of this unit. Take a look at the following example:
+I got inspired by [an lh demo at MDN](https://developer.mozilla.org/en-US/play), gave my take on it, and further enhanced it to show the power of this unit. Take a look at the following example:
 
 <iframe
   height="300"
@@ -283,7 +282,7 @@ Another great idea for this unit could be to size the `padding` of a box based o
 
 Most of us have used the `rem` unit before, it is short for "root em" and measures the font size of an element relative to the font size of the root element. The root element, typically represented by the `<html>` element, has a default font size of `16px` in most browsers. Therefore, `1rem` is equivalent to `16px` if not changed by a reset.
 
-There are some front-end developers that swear by using rems as a value for media queries.
+Some front-end developers swear by using rems as a value for media queries.
 
 ```css
 @media (width <= 32rem) {
@@ -293,13 +292,13 @@ There are some front-end developers that swear by using rems as a value for medi
 }
 ```
 
-This takes some getting used to and actually still is the better metric for users that change their default font sizes. There are a few articles to be found on this subject “pixels vs (r)em for media queries”, but most of them are a bit too opinionated for my taste to add in this article.
+This takes some getting used to and still is the better metric for users that change their default font sizes. There are a few articles to be found on this subject “pixels vs (r)em for media queries”, but most of them are a bit too opinionated for my taste to add to this article.
 
-Speaking of root based units, we also have rlh, which is then based on the root `line-height`.
+Speaking of root-based units, we also have rlh, which is then based on the root `line-height`.
 
 ## New root units: rex, rch, ric
 
-The root elements for `ex`, `ch` and `ic` are now supported in most browsers, we’re still waiting a bit for firefox at the time I’m writing this. [Check out rch support here](https://caniuse.com/?search=rch%20unit).
+The root elements for `ex`, `ch`, and `ic` are now supported in most browsers, we’re still waiting a bit for Firefox at the time I’m writing this. [Check out rch support here](https://caniuse.com/?search=rch%20unit).
 
 So that’s it for our relative length units on fonts! I hope you do try some of these in your next project, even if it’s just for a little alert on a page. It’s these small steps in including them that can make them a good habit in the future. I had fun playing around with them while creating this article and I hope you will as well.
 
