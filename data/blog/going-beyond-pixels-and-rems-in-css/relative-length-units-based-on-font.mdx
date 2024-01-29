@@ -94,15 +94,15 @@ To show a special use case of this example, I thought the usage of media queries
 Imagine the following scenario: We have 3 `<div>` elements inside of the HTML, each containing three children, we give those wrappers a class based on the media query unit we’re going to trigger:
 
 ```html
-<div class="items px">
+<div class="px">
   <div class="item"></div>
   <div class="item"></div>
   <div class="item"></div>
 </div>
-<div class="items em">
+<div class="em">
   <!-- three item divs -->
 </div>
-<div class="items rem">
+<div class="rem">
   <!-- three item divs -->
 </div>
 ```
@@ -128,7 +128,7 @@ These are our media queries:
 }
 
 @media (min-width: 40rem) {
-  &.rem {
+  .rem {
     /* Same as we did for px */
   }
 }
@@ -233,8 +233,7 @@ I couldn’t really create a demo of this to give it enough credit. But I did fo
   allowfullscreen="true"
 >
   See the Pen <a href="https://codepen.io/SitePoint/pen/JjemLPN">Using ic units</a> by SitePoint (
-  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>
-  .
+  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 ## lh
