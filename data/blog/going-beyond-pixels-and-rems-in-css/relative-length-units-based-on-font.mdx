@@ -76,7 +76,23 @@ Let’s say we want a grid where items are only next to each other if they can a
   <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-Recently, Davy De Pauw from campus Ghent showed me an alternative method by even combining `clamp()` function inside of the `grid-template-columns`. It might become a bit heavy on the eyes, but it does show you just how powerful this `ch` unit can be in combination with grids.
+Recently, Davy De Pauw from campus Ghent showed me an alternative method by even combining `clamp()` function inside of the `grid-template-columns`. It might become a bit heavy on the eyes, but it does show you just how powerful this `ch` unit can be in combination with grids. But do note that browsers can have a hard time calculating the grids depending on the math:
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="Grid using min and clamp"
+  src="https://codepen.io/utilitybend/embed/preview/YzgEpKW?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen <a href="https://codepen.io/utilitybend/pen/YzgEpKW">Grid using min and clamp</a> by
+  utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 So in general if you want some width based on the approximate amount of characters inside of it, this is the unit for you.
 
@@ -86,7 +102,7 @@ If you want to learn a bit more about that grid technique in general, I created 
 
 The `em` unit - known by many - represents the current font size of the element it is applied to. It is a very versatile unit that can be used to define margins, paddings, font sizes, and other properties of an element relative to its parent element's `font-size`. It’s a very versatile unit that is easy to understand but can be hard to master.
 
-I know many people who are strong in using the `em` unit (and I applaud them!), but I've always found the relative size based on the parent a hard thing to master. Unless you are designing straight inside the browser and you don’t have a pixel-perfect designer looking over your shoulder… ;) \
+I know many people who are strong in using the `em` unit (and I applaud them!), but I've always found the relative size based on the parent a hard thing to master. Unless you are designing straight inside the browser and you don’t have a pixel-perfect designer looking over your shoulder… ;)
 Joking aside, I do believe it is an important unit to get the hang of even though I might need some practice myself.
 
 To show a special use case of this example, I thought the usage of media queries could be interesting.
@@ -233,7 +249,8 @@ I couldn’t really create a demo of this to give it enough credit. But I did fi
   allowfullscreen="true"
 >
   See the Pen <a href="https://codepen.io/SitePoint/pen/JjemLPN">Using ic units</a> by SitePoint (
-  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>.
+  <a href="https://codepen.io/SitePoint">@SitePoint</a>) on <a href="https://codepen.io">CodePen</a>
+  .
 </iframe>
 
 ## lh
