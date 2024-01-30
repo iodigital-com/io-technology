@@ -30,6 +30,11 @@
   hyphens: auto;
 }
 
+.simple-embed {
+  @apply h-full w-full;
+  aspect-ratio: 4/3;
+}
+
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
