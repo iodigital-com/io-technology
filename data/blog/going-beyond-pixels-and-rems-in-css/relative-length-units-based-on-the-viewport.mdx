@@ -32,8 +32,13 @@ The `vw` unit stands for viewport width. But let’s start off with a catch righ
 
 **The initial containing block** is a conceptual box serving as the root of the CSS box model. Its dimensions are tied to the layout viewport, with the top-left corner at (0,0). As the ICB is our root element, we can show it like this:
 
-```html
-html { width: 100%; height: 100%; outline: 10px solid hotpink; outline-offset: -10px; }
+```css
+html {
+  width: 100%;
+  height: 100%;
+  outline: 10px solid hotpink;
+  outline-offset: -10px;
+}
 ```
 
 To visualize this, look at this little pen, showing the layout viewport in green and the ICB in hotpink. When we scroll the page, we can see how they behave in correlation to each other:
@@ -53,8 +58,9 @@ To visualize this, look at this little pen, showing the layout viewport in green
   <a href="https://codepen.io/utilitybend/pen/xxBYNox">
     Layout viewport vs initial containing block
   </a>
-  &nbsp;by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
-  <a href="https://codepen.io">CodePen</a>.
+  &nbsp;by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
 </iframe>
 
 By giving the ICB a height of 100% we notice that the ICB follows along while the user scrolls, but the viewport will remain in place.
