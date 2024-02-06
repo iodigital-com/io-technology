@@ -1,0 +1,252 @@
+---
+title: 'Going beyond pixels and (r)ems in CSS - Relative length units based on the viewport'
+date: '2024-02-08'
+tags: ['frontend', 'css']
+images: ['/articles/going-beyond-pixels-and-rems-in-css/visual-pixel-viewport.jpg']
+summary: 'In this second part of the series, let’s talk about units based on the viewport also known as "the viewport-percentage length units". A lot of developers know these, but they can create some unexpected behavior, especially in combination with scrollbars and mobile behavior. Based on some articles and videos I picked up on the web from time to time, I''d like to explain some of the common pitfalls when using viewport units.'
+authors: ['brecht-de-ruyte']
+theme: 'beige'
+serie: 'going-beyond-pixels-and-rems-in-css'
+---
+
+If you read the previous article in this series, you might’ve remembered that I’m using a [list on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/length) as a template to create these articles, even if it’s just for the structure. But in contrast to the list on MDN, I will take a bit of a different approach with these particular units, as I want to focus a bit more on the most common pitfalls. Once again, I will start off with the theory and basics and then move on to examples or pitfalls. Now let’s get to it.
+
+## vw
+
+The `vw` unit stands for viewport width. But let’s start off with a catch right away. There are multiple things that we point at when talking about the viewport.
+
+**The layout viewport** is the visible area of a web page influenced by the browser window or device screen size. It determines the space available for rendering HTML content. If you positioned a fixed box around the window, that’s the viewport we’re talking about.
+
+```html
+<div class="viewport"></div>
+```
+
+```css
+.viewport {
+  position: fixed;
+  inset: 0;
+  outline: 10px dashed green;
+  outline-offset: -10px;
+}
+```
+
+**The initial containing block** is a conceptual box serving as the root of the CSS box model. Its dimensions are tied to the layout viewport, with the top-left corner at (0,0). As the ICB is our root element, we can show it like this:
+
+```html
+html { width: 100%; height: 100%; outline: 10px solid hotpink; outline-offset: -10px; }
+```
+
+To visualize this, look at this little pen, showing the layout viewport in green and the ICB in hotpink. When we scroll the page, we can see how they behave in correlation to each other:
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="Layout viewport vs initial containing block"
+  src="https://codepen.io/utilitybend/embed/preview/xxBYNox?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/utilitybend/pen/xxBYNox">
+    Layout viewport vs initial containing block
+  </a>{' '}
+  by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+By giving the ICB a height of 100% we notice that the ICB follows along while the user scrolls, but the viewport will remain in place.
+
+### So why is this relevant to the vw unit?
+
+Well, **according to spec:** The viewport-percentage lengths are relative to the size of the **initial containing block** - which is itself based on the size of either the viewport or the page area. When the height or width of the initial containing block is changed, they are scaled accordingly.
+
+So yes, still in general, this relative length unit represents a percentage of the viewport width as the ICB is initially scaled on the viewport. For example, if the viewport width is 1000 pixels, then `1vw` is equal to 10 pixels (1% of 1000 pixels). Still, it’s nice to know this little nuance.
+
+### 100vw and author frustration
+
+This is a common frustration for people writing CSS. When we position something absolute and give it a width of `100vw`, we sometimes come in a situation where we have a horizontal scroll. This behavior is only visible when scroll bars are fixed and not with the overlay type of scrollbar. To enable this on macOS, go to `system settings > appearance > show scroll bars` and set this to `always`. The default is based on whether a mouse is connected or a trackpad is used.
+
+**Hot tip:** I personally have this as a default, just so I can spot these kinds of issues while developing.
+
+It is a common frustration and the easy way out is to use a width of `100%`, if that isn’t an option, there are methods to calculate the width of the scroll bar, and you could calculate `100vw` and subtract the scroll bar width (I have hacked my way around that before).
+
+**The reason for this is in the spec:** In all cases, scrollbars are assumed not to exist. Note however that the initial containing block's size is affected by the presence of scrollbars on the viewport.
+
+This is a basic example on where it can go wrong, be sure to toggle your scrollbar to show if you’re on macOS.
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="100vw horizontal scroll example"
+  src="https://codepen.io/utilitybend/embed/preview/YzgLPQL?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/utilitybend/pen/YzgLPQL">100vw horizontal scroll example</a> by
+  utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+So what are `vw` units used for? Usually just sizing items, but they can be used as a `font-size` as well. Do notice that it can cause accessibility issues. One of the most interesting ways to use them for font-sizes is fluid typography when using the CSS `clamp()` function:
+
+```css
+body {
+  font-family: sans-serif;
+  font-size: clamp(1rem, 0.8696rem + 0.6522vw, 1.375rem);
+  line-height: 1.5;
+}
+```
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="Simple clamp() example"
+  src="https://codepen.io/utilitybend/embed/preview/bGZMbKq?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen <a href="https://codepen.io/utilitybend/pen/bGZMbKq">Simple clamp() example</a> by
+  utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+In this example, I’m using `vw` as an example to create the slope, but it could be any of the units. A great starting point for fluid typography is [utopia.fyi](https://utopia.fyi/) (this uses the `vi` unit, but we’ll get there). In some cases (for example portrait ratios), even a `vh` unit could make a lot of sense for fluid typography. So let's jump to that.
+
+## vh
+
+Just as the `vw` unit is for width, the `vh` unit stands for viewport height. It is a relative unit that represents a percentage of the viewport's height. For example, if you set an element's height to `50vh`, it will be half of the viewport's height. As previously mentioned, this is actually the height of the ICB, which is the size of the viewport by default.
+
+This behavior is all fine and dandy when we’re looking at our desktop browser, but from the moment we start using this unit on our mobile browser, “stuff happens” and it’s… not pretty.
+
+When we scroll on a mobile browser after page load we often get a particular behavior: some items start to move or collapse, such as the address bar.
+
+Let’s take it to the test. In our HTML, we add the following:
+
+```html
+<div class="vh">
+  <h2>This item is at the bottom of 100vh</h2>
+</div>
+```
+
+And in our CSS we do the following:
+
+```css
+.vh {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100vh;
+  background: skyblue;
+}
+
+body {
+  margin: 0;
+}
+```
+
+This results to the following behavior:
+
+**Desktop**
+
+![100vh on desktop](/articles/going-beyond-pixels-and-rems-in-css/vh-desktop.png)
+
+**Mobile Safari (iOS)**
+
+<div class="mx-auto w-1/2">
+  ![100vh on mobile Safari](/articles/going-beyond-pixels-and-rems-in-css/vh-mobile.png)
+</div>
+
+Notice, how our text is not aligned to the bottom on the mobile browser at page load. That’s because a `100vh` is `100%` of the viewport height when the address bar is collapsed. Which means it can result in unwanted behavior in some cases.
+
+Luckily, there is a solution for this, but let’s get the other default units first:
+
+## vb and vi: block and inline
+
+`vi` and `vb`, the new kids on the block (pun intended!). They are the logical counterparts to `vw` and `vh` to handle multilingual layouts flawlessly. These units will take the writing mode into account, for us in the west, the inline axis is horizontal, and the block axis is vertical. As mentioned before, [utopia.fyi](https://utopia.fyi/) also uses these logical variants.
+
+## vmin and vmax
+
+The `vmin` unit represents the smallest between the viewport width and height, while `vmax` represents the largest between the viewport width and height. This can be especially handy when switching between portrait and landscape situations.
+
+A quick visualization (play around with your window aspect ratio and size):
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="Untitled"
+  src="https://codepen.io/utilitybend/embed/preview/oNVdNLj?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen <a href="https://codepen.io/utilitybend/pen/oNVdNLj">Untitled</a> by utilitybend (
+  <a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+A really handy example for this could be gaps in a grid. For this, I will re-use the old ch unit demo from the [previous article](https://techhub.iodigital.com/articles/going-beyond-pixels-and-rems-in-css/relative-length-units-based-on-font), but now take a look at the gap property and once again play around with the window size and aspect ratio:
+
+<iframe
+  height="300"
+  class="simple-embed"
+  scrolling="no"
+  title="Using ch unit for responsive behaviour"
+  src="https://codepen.io/utilitybend/embed/preview/vYPWXMK?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/utilitybend/pen/vYPWXMK">Using ch unit for responsive behaviour</a> by
+  utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
+  <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+## Large, Small and Dynamic
+
+Let’s talk about the ~~drug~~ heroes for all our mobile browser frustrations. These modifiers or prefixes can be added to all of the above units in the form of `l`, `s`, or `d`.
+
+- `l` (large): Represents the viewport size, without any dynamic elements like address bars or toolbars that might be hidden or expanded.
+- `s` (small): Represents the viewport size with those dynamic elements factored in.
+- `d` (dynamic): Calculates the difference between the large and small viewports, offering a dynamic unit that adjusts as elements show or hide.
+
+This is an example of `svh` and `lvh` when viewed in mobile Safari. When scrolling down, you can notice that `lvh` is the size of the window height plus the address bar height. The green outline is wrapped around the two elements for better visualization.
+
+![100vh on mobile Safari](/articles/going-beyond-pixels-and-rems-in-css/lvh-svh-compare.jpg)
+
+[Here is a codepen link if you want to try it out on your phone](https://cdpn.io/pen/debug/ExMLxqK)
+
+## There is an excellent video
+
+If you want to get a bit more into detail, there is an excellent video by [Bramus](https://bram.us) and [Jake](https://jakearchibald.com/) about this and probably one of my favorite web-related videos of all time, it’s probably where I learned about the term “ICB” in the first place. Although it was released before the dynamic units were supported everywhere, it is still full of information and great examples. Always respect the source material ;) enjoy:
+
+<iframe
+  width="560"
+  height="315"
+  class="simple-embed"
+  src="https://www.youtube.com/embed/xl9R8aTOW_I?si=GH2CNV9juY-w6tiN"
+  title="It's viewports all the way down | HTTP 203"
+  frameborder="0"
+  loading="lazy"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+If you’d rather take a deep dive in the complete spec of all the level 4 units, you can always [check out the spec](https://drafts.csswg.org/css-values-4/).
+
+That’s it for part two! In part three we’re going a bit more modern with container units. Looking forward to creating some awesome demo’s with those.
