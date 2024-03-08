@@ -72,7 +72,7 @@ export default function Page() {
 }
 ```
 
-Oh no! Our page is now fully reliant on client-side JavaScript. This is how quickly these things sneak in. So what if we can pass a server-side React.js function to the form to handle the actual form POST request? First we create an `action.js` file with the `"use server"` directive where we export our server-side function that handles the form submission.
+Oh no! Our page is now fully reliant on client-side JavaScript. This is how quickly these things sneak in. So what if we can pass a server-side React.js function to the form to handle the actual form POST request? First, we create an `action.js` file with the `"use server"` directive where we export our server-side function that handles the form submission.
 
 ```jsx
 // actions.js
@@ -89,7 +89,7 @@ export async function handleSubmit(formData) {
 }
 ```
 
-Oh no! Our page is now fully reliant on client-side JavaScript. This is how quickly these things sneak in. So what if we can pass a server-side React.js function to the form to handle the actual form POST request? First we crea
+Oh no! Our page is now fully reliant on client-side JavaScript. This is how quickly these things sneak in. So what if we can pass a server-side React.js function to the form to handle the actual form POST request? First, we crea
 
 ```jsx
 // page.js
