@@ -89,7 +89,7 @@ export async function handleSubmit(formData) {
 }
 ```
 
-Oh no! Our page is now fully reliant on client-side JavaScript. This is how quickly these things sneak in. So what if we can pass a server-side React.js function to the form to handle the actual form POST request? First, we crea
+Then, we use that as the callback for the action attribute on the form.
 
 ```jsx
 // page.js
