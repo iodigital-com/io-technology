@@ -1,6 +1,6 @@
 ---
 title: '_Progressively Enhance_ Handling Your Forms With React.js _Server Actions_'
-date: '2024-03-07'
+date: '2024-03-08'
 tags: ['frontend', 'react', 'javascript']
 images:
   ['/articles/progressively-enhance-handling-your-forms-with-react-js-server-actions/hero.png']
