@@ -37,7 +37,7 @@ In my opinion, [Remix action functions](https://www.davebitter.com/articles/remi
 
 ## React.js Server Actions
 
-The React.js team has been working hard on server-side React.js for the past years. Next to being able to render your components server-side using [React.js Server Components](https://www.patterns.dev/react/react-js-server-components/), we are finally getting a way in React.js to handle forms on the server properly!
+The React.js team has been working hard on server-side React.js for the past years. Next to being able to render your components server-side using [React.js Server Components](https://www.patterns.dev/react/react-server-components/), we are finally getting a way in React.js to handle forms on the server properly!
 
 Imagine this form in your React.js web application:
 
