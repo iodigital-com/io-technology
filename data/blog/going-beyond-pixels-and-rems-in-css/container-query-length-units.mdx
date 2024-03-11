@@ -51,7 +51,7 @@ Ok, we’ve set our `container-type` and added some basic styling, It’s time t
 
 ## cqw
 
-The `cwq` unit stands for **1% of the containing element's width**. It allows you to define element sizes and spacing relative to the width of their container in contrast to the `vw` unit, which defines the spacing relative to the viewport. But just as viewport and font units, it can be used in any property that accepts `<length>` values, such as `font-size`, `width`, `padding`, `margin`, etc. The latter counts for every unit we will tackle in this article.
+The `cqw` unit stands for **1% of the containing element's width**. It allows you to define element sizes and spacing relative to the width of their container in contrast to the `vw` unit, which defines the spacing relative to the viewport. But just as viewport and font units, it can be used in any property that accepts `<length>` values, such as `font-size`, `width`, `padding`, `margin`, etc. The latter counts for every unit we will tackle in this article.
 
 Now, a demo says more than a thousand words, so let’s put it to the test. Let’s add a margin to our previous code for the `.item` inside of the container:
 
@@ -76,8 +76,9 @@ Now the item will have a margin based on its container. This is what you should 
   allowfullscreen="true"
 >
   See the Pen <a href="https://codepen.io/utilitybend/pen/jOJjbez">Basic container unit example</a>
-  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
-  <a href="https://codepen.io">CodePen</a>.
+  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
 </iframe>
 
 Now let’s make the effect stick out a bit more by making some other properties rely on the `cqw` unit.
@@ -107,8 +108,9 @@ Now we can see the effect on roids. If you add a few extra containers with diffe
   <a href="https://codepen.io/utilitybend/pen/dyrBYMB">
     Margins, padding and font-size with container units
   </a>
-  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
-  <a href="https://codepen.io">CodePen</a>.
+  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
 </iframe>
 
 **Note: What happens if we don’t define a `container-type` on any of the parents?**
@@ -285,8 +287,9 @@ For the banner, in general, we will take a `1rem` minimum font size and a maximu
   <a href="https://codepen.io/utilitybend/pen/xxBoRbr">
     Banner with container units and clamp() function for font-sizes
   </a>
-  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on{' '}
-  <a href="https://codepen.io">CodePen</a>.
+  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
 </iframe>
 
 We could, of course, apply this to margins and paddings as well. Resize the window to see how this behaves.
