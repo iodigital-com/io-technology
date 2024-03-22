@@ -1,0 +1,90 @@
+---
+title: 'Going beyond pixels and (r)ems in CSS - Absolute length units'
+date: '2024-03-22'
+tags: ['frontend', 'css']
+images: ['/articles/going-beyond-pixels-and-rems-in-css/visual-pixel.jpg']
+summary: 'Oh my, usually when writing a series like this, people tend to leave the best for last, but in this case, it seems that the best is behind us. But as I am a completionist, this last part of the CSS Units series will be about absolute units, the units you mostly - absolutely - want to avoid. But can help in certain cases.'
+authors: ['brecht-de-ruyte']
+theme: 'beige'
+serie: 'going-beyond-pixels-and-rems-in-css'
+---
+
+If you just landed on this page and find it strange that I’m talking about absolute CSS units in 2024, I suggest you start at the [beginning of this series](https://techhub.iodigital.com/series/going-beyond-pixels-and-rems-in-css). That being said, while generally **not recommended for responsive design and accessible experiences**, there are still a few reasons why you might use absolute length units in CSS instead of relative length units:
+
+## Reason 1: Specific pixel-perfect layouts
+
+In some cases, you might need a precise layout that remains consistent across different devices and screen sizes. Absolute units like pixels (`px`) offer this control, ensuring elements stay exactly the size you define them in pixels, regardless of the viewing device or page zoom. This can be useful for specific design elements like icons. But they can become even more interesting when creating an application specified for a certain screen (touch screen TVs in a shop for example). In those cases zooming is mostly physical or pinch zooming as users don’t have access to accessibility controls in the settings.
+
+## Reason 2: Working with external media
+
+When dealing with external media such as images or embedded content with specific dimensions, using absolute units based on those dimensions can help with the scaling of our layout. For example, if an image is `300px` wide, setting the element's width to `300px` ensures it displays at its intended size. In that case, we could opt for a grid with one column having an auto flow and the image contained column being fixed at `300px`:
+
+<iframe
+  height="300"
+  scrolling="no"
+  class="simple-embed"
+  title="Basic container unit example"
+  src="https://codepen.io/utilitybend/embed/preview/qBwOPrv?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen{' '}
+  <a href="https://codepen.io/utilitybend/pen/jOJjbez">Using absolute units for a grid</a>
+  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
+</iframe>
+
+## Reason 3: Print or fixed-size layouts
+
+For print layouts or applications with fixed-size outputs, absolute units like centimeters (`cm`), millimeters (`mm`), or inches (`in`) can be appropriate. These units are based on physical measurements and translate directly to the final printed output, ensuring consistent sizing across different printers and paper sizes. This is in my opinion, the only perfect reason to use absolute units these days.
+
+Let’s put that into an example. Some time ago, I created some demos for scroll-driven animations and I thought that this little timeline would be the perfect use case to create a printed version. It’s not perfect yet, but it does show you when to use these absolute units.
+
+Just open this demo in the CodePen debug panel and print it.
+
+<iframe
+  height="300"
+  scrolling="no"
+  class="simple-embed"
+  title="Basic container unit example"
+  src="https://codepen.io/utilitybend/embed/preview/JjVRgZd?default-tab=result&theme-id=dark"
+  frameborder="no"
+  loading="lazy"
+  allowtransparency="true"
+  allowfullscreen="true"
+>
+  See the Pen <a href="https://codepen.io/utilitybend/pen/jOJjbez">Print example</a>
+  &nbsp; by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">
+    CodePen
+  </a>.
+</iframe>
+
+## Following the MDN list
+
+Let’s go over the absolute units we can use in CSS. This time it will be just a list because there isn’t that much to talk about. Be sure to take a look at them if you have to create a print stylesheet.
+
+- **Pixels** (`px`) \
+  The most commonly used absolute unit, represents a single dot (pixel) on the display.
+- **Inches** (`in`) \
+  Represents one inch, useful for print layouts or specific size requirements.
+- **Centimeters** (`cm`): \
+  Represents one centimeter, another common unit for print layouts.
+- **Millimeters** (`mm`): \
+  Represents one millimeter, often used alongside centimeters for finer control in print layouts.
+- **Quarter of a Millimeter** (`Q`) \
+  The unit `Q` is very common in Japanese typesetting and all major professional typesetting systems used in Japan support this, for example, [InDesign's Japanese version](https://helpx.adobe.com/indesign/using/rulers-measurement-units.html) uses 'Q' as font size unit.
+- **Points** (`pt`) \
+  A unit equal to 1/72 of an inch, historically used in typography but less common now.
+- **Picas** (`pc`) \
+  A unit equal to 1/6 of an inch, is also used in typography but even less common than points.
+
+### A note on PDF documents
+
+One thing to note, print stylesheets are different from PDF documents. When creating a flexible PDF layout that needs to adjust based on zoom levels or different screen sizes within a PDF viewer you should still **avoid using absolute units and use relative ones instead**. This can be particularly relevant for documents with various content types or layouts that must remain readable across different viewing mediums. Consider the trade-offs between control and responsiveness when choosing your units in creating PDF documents.
+
+## The end of a series
+
+I had a blast creating these articles and playing around with those units. I created some demos that definitely gave me a better understanding of how to facilitate them on a day-to-day basis. It was a challenge for me to create these demos and I’m certain I’ve become just a little bit of a better developer by taking this challenge. Not sure what the next challenge will bring yet but for now, I’m happy to look back at this journey in CSS units. I hope some of you enjoyed reading about them and are maybe creating some demos as well. If so, show them, share them, and make more people go beyond pixels and (r)ems.
