@@ -4,7 +4,6 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
-import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
@@ -12,10 +11,10 @@ import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
-import Image1 from '../public/iO-technology-blog1.png'
-import Image2 from '../public/iO-technology-blog2.png'
+import ArticlePrimary from '@/components/ArticlePrimary'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
+import BackgroundVideo from 'public/videos/i-twist-green_16x9-rechts.mp4'
 
 const MAX_BLOG_POSTS = 5
 
@@ -43,79 +42,40 @@ export default function Home({ posts, videos, jobs, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
-        <div className="pb-14 pt-24">
-          <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window of{' '}
-              <span className="font-serif font-light">infinite opportunity</span>?
-            </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image1}
-                  width={2160}
-                  height={2160}
-                  layout="responsive"
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                />
-              </div>
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image2}
-                  width={2160}
-                  height={2160}
-                  layout="responsive"
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="rounded-full"
-                />
-              </div>
-            </div>
-            <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <p className="text-lg">
-                We are iO – a growing team of experts thriving on curiosity and explorers of all
-                things <span className="font-serif">new and exciting</span>. As an end-to-end agency
-                we <span className="font-serif">think big and work locally</span> in strategy,
-                creation, content, marketing & technology - across every industry imaginable.
-                Knowledge is the foundation of everything we undertake. Are you creative, curious
-                and hungry for knowledge? Feed your mind.
-              </p>
-            </span>
-            <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
-              <li className="mb-4 flex items-center last:mb-0">
-                <a href="#articles">Our latest articles</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <a href="#videos">Our latest videos</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <a href="#people">Our writers &amp; speakers</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <a href="#jobs">Some of our jobs</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
-              </li>
-            </ul>
-          </div>
+      <div className={`bg-io_${theme}-500 relative`}>
+        <div className="absolute top-0 right-0 bottom-0 left-0">
+          <video className="h-full w-full object-cover" autoPlay loop>
+            <source src={BackgroundVideo} type="video/mp4" />
+          </video>
         </div>
+        <section className="pb-14 pt-24">
+          {posts.length &&
+            posts.slice(0, 1).map((firstArticle) => {
+              const { slug, title, summary } = firstArticle
+              const authorsResolved = firstArticle.authors.map((author) => {
+                return authors[author]
+              })
+
+              return (
+                <ArticlePrimary
+                  key={slug}
+                  slug={slug}
+                  title={title}
+                  summary={summary}
+                  authors={authorsResolved}
+                />
+              )
+            })}
+        </section>
       </div>
 
       <SectionTitle id="articles">
-        Our latest <span className="font-serif font-light">articles</span>
+        More <span className="font-serif font-light">articles</span>
       </SectionTitle>
 
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
-        {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
+        {posts.slice(1, MAX_BLOG_POSTS).map((frontMatter, index) => {
           const { slug, date, title, summary, tags } = frontMatter
           const authorsResolved = frontMatter.authors.map((author) => {
             return authors[author]

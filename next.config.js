@@ -73,6 +73,29 @@ module.exports = withBundleAnalyzer({
       use: ['@svgr/webpack'],
     })
 
+    // Fixme
+    //  This is pre-webpack5 way to load files.
+    //  More info here: https://webpack.js.org/guides/asset-modules/
+    // config.module.rules.push({
+    //   test: /\.mp4$/,
+    //   use: [
+    //     {
+    //       loader: 'file-loader',
+    //       options: {
+    //         name: '[path][name].[ext]',
+    //       },
+    //     },
+    //   ],
+    //   type: 'javascript/auto',
+    // })
+
+    // Fixme
+    //  This is the modern way to load files
+    config.module.rules.push({
+      test: /\.mp4/,
+      type: 'asset/resource',
+    })
+
     if (!dev && !isServer) {
       // Replace React with Preact only in client production build
       Object.assign(config.resolve.alias, {
