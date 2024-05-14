@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const HubspotForm = ({ portalId, formId, className }) => {
+const HubspotForm = ({ portalId, formId, className, style }) => {
   useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://js.hsforms.net/forms/v2.js'
@@ -19,7 +19,7 @@ const HubspotForm = ({ portalId, formId, className }) => {
     })
   }, [])
 
-  return <div id="hubspotForm" className={`${className} hubspot`}></div>
+  return <div id="hubspotForm" className={`${className} hubspot`} style={style}></div>
 }
 
 export default HubspotForm
