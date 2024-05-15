@@ -298,7 +298,7 @@ As this is is a recursive function using `window.requestAnimationFrame` we first
 
 The above logic, combined with some extra application logic results in this demo:
 
-![Screencast of the demo in action](/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/demo.gif)
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/A6SdL_o4mXQ?si=GdQ9aqvKB59fW7EY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 As you can see, I take images for the three classes. One neutral, one with my phone in my hand and one with a coffee in my hand. Then when I click "Train & Predict" it trains in a fraction of a second. Finally, for each class, in real time you can see how confident it is that the class matches. Naturally, you can provide more diverse images so it gets better and better and classifying.
 
