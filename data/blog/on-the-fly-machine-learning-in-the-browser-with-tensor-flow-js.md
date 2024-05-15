@@ -10,6 +10,14 @@ theme: 'blue'
 
 I first came across [the teachable machine](https://teachablemachine.withgoogle.com/) while researching TensorFlow.js. Quite frankly, the idea of this working seemed insane to me. Are you telling me I can run machine learning in the browser where I can train the model on the fly? You sure can! Luckily, Google provides [a Codelab where you build a simple version](https://codelabs.developers.google.com/tensorflowjs-transfer-learning-teachable-machine) yourself which I followed loosely.
 
+## The demo I'm going to build
+
+I'm going to build a demo showing how you can apply transfer learning in the browser using TensorFlow.js in realtime:
+
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/A6SdL_o4mXQ?si=GdQ9aqvKB59fW7EY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+As you can see, I take images for the three classes. One neutral, one with my phone in my hand and one with a coffee in my hand. Then when I click "Train & Predict" it trains in a fraction of a second. Finally, for each class, in real time you can see how confident it is that the class matches. Naturally, you can provide more diverse images so it gets better and better and classifying.
+
 ## What is Tensorflow.js?
 
 TensorFlow.js is a JavaScript library developed by Google that allows you to define, train, and run machine learning models entirely in the browser, using JavaScript and a high-level layers API. It is part of the TensorFlow ecosystem, which includes a range of tools for machine learning applications. The advantage of TensorFlow.js is that it allows machine learning models to be run in the browser (or in Node.js), making machine learning more accessible to JavaScript developers and allowing for real-time interaction with the user.
@@ -30,7 +38,7 @@ A teachable machine basically takes an existing (or base) model and uses it on a
 
 There is a chance you might have never seen this type of tree before. Now that I showed you, find the willow tree in this image:
 
-![A picture of a willo tree in a forest](/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/willow-tree-in-forest.webp)
+![A picture of a willow tree in a forest](/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/willow-tree-in-forest.webp)
 
 You already have neurons in your brain that know how to identify objects that look like trees and long straight lines. You can use that knowledge to quickly classify the willow tree in this image as it is a tree, has long straight lines and you’ve learned that a willow tree looks like that.
 
@@ -44,12 +52,12 @@ For my demo, I bootstrapped a Next.js project and therefor the code examples mig
 
 ### Loading TensorFlow.js and MobileNet
 
-First, I added TensorFlow.js through NPM with the `[@tensorflow/tfjs](https://www.npmjs.com/package/@tensorflow/tfjs)` package. I then created a small hook where I load MobileNet:
+First, I added TensorFlow.js through NPM with the [@tensorflow/tfjs](https://www.npmjs.com/package/@tensorflow/tfjs) package. I then created a small hook where I load MobileNet:
 
 ```jsx
 export const useMobileNet = ({ tf, numberOfClasses }) => {
-  const model = useRef < any > null
-  const mobileNet = useRef < any > null
+  const model = useRef(null)
+  const mobileNet = useRef(null)
   const [readyToTrainAndPredict, setReadyToTrainAndPredict] = useState(false)
 
   useEffect(() => {
@@ -132,7 +140,7 @@ Next, I want to be able to gather images to use in the demo. I could just let th
 
 ```jsx
 export const useWebcam = () => {
-  const videoRef = useRef < HTMLVideoElement > null
+  const videoRef = useRef(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
 
   const toggleWebcam = async () => {
@@ -296,13 +304,7 @@ As this is is a recursive function using `window.requestAnimationFrame` we first
 
 ## The final result
 
-The above logic, combined with some extra application logic results in this demo:
-
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/A6SdL_o4mXQ?si=GdQ9aqvKB59fW7EY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-As you can see, I take images for the three classes. One neutral, one with my phone in my hand and one with a coffee in my hand. Then when I click "Train & Predict" it trains in a fraction of a second. Finally, for each class, in real time you can see how confident it is that the class matches. Naturally, you can provide more diverse images so it gets better and better and classifying.
-
-You can [try the demo out yourself here](https://tensorflow-transfer-learning.davebitter.com/) (probably best on desktop). The final code can be found [over at my GitHub](https://github.com/DaveBitter/tensorflow-transfer-learning).
+The above logic, combined with some extra application logic results in the demo you can [try out here](https://tensorflow-transfer-learning.davebitter.com/) (probably best on desktop). The final code can be found [over at my GitHub](https://github.com/DaveBitter/tensorflow-transfer-learning).
 
 ### Some things I noticed
 
