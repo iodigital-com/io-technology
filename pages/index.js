@@ -47,8 +47,8 @@ export default function Home({ posts, videos, jobs, contributors }) {
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window of{' '}
-              <span className="font-serif font-light">infinite opportunity</span>?
+              Is technology your window to{' '}
+              <span className="font-serif font-light">great experiences</span>?
             </h1>
             <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
               <div className="w-1/2">
@@ -79,12 +79,9 @@ export default function Home({ posts, videos, jobs, contributors }) {
             </div>
             <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
               <p className="text-lg">
-                We are iO – a growing team of experts thriving on curiosity and explorers of all
-                things <span className="font-serif">new and exciting</span>. As an end-to-end agency
-                we <span className="font-serif">think big and work locally</span> in strategy,
-                creation, content, marketing & technology - across every industry imaginable.
-                Knowledge is the foundation of everything we undertake. Are you creative, curious
-                and hungry for knowledge? Feed your mind.
+                We blend marketing, technology and creativity because we believe that creating the
+                ultimate customer experience requires a blend of these different skills to make an
+                impact on our clients' brand and business.
               </p>
             </span>
             <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
