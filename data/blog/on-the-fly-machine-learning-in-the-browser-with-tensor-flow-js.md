@@ -1,6 +1,6 @@
 ---
 title: 'On-the-Fly _Machine Learning_ in the Browser with TensorFlow.js'
-date: '2024-05-15'
+date: '2024-05-17'
 tags: ['frontend', 'machine-learning']
 images: ['/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/hero.webp']
 summary: 'TensorFlow.js is an incredibly powerful JavaScript library for training and deploying machine learning models in the browser and Node. js. Let’s explore this library by building a teachable machine!'
