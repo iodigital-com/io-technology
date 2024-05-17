@@ -16,7 +16,7 @@ I'm going to build a demo showing how you can apply transfer learning in the bro
 
 <iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/A6SdL_o4mXQ?si=GdQ9aqvKB59fW7EY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-As you can see, I take images for the three classes. One neutral, one with my phone in my hand and one with a coffee in my hand. Then when I click "Train & Predict" it trains in a fraction of a second. Finally, for each class, in real time you can see how confident it is that the class matches. Naturally, you can provide more diverse images so it gets better and better and classifying.
+As you can see, I take images for the three classes. One neutral, one with my phone in my hand and one with a coffee in my hand. Then when I click "Train & Predict" it trains in a fraction of a second. Finally, for each class, in real time you can see how confident it is that the class matches. Naturally, you can provide more diverse images so it gets better and better at classifying.
 
 ## What is Tensorflow.js?
 
@@ -36,7 +36,7 @@ A teachable machine basically takes an existing (or base) model and uses it on a
 
 ![A picture of a willow tree](/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/willow-tree.webp)
 
-There is a chance you might have never seen this type of tree before. Now that I showed you, find the willow tree in this image:
+There is a chance you might have never seen this type of tree before. Now that I have shown you, find the willow tree in this image:
 
 ![A picture of a willow tree in a forest](/articles/on-the-fly-machine-learning-in-the-browser-with-tensor-flow-js/willow-tree-in-forest.webp)
 
@@ -44,11 +44,11 @@ You already have neurons in your brain that know how to identify objects that lo
 
 ### Using the MobileNet base model
 
-We need a model that is trained at classifying objects that we can then use to teach new things. Luckily this base model exists. [MobileNet](https://keras.io/api/applications/mobilenet/) is a popular model that performs image recognition on 1000 different types of objects. It was trained on a huge dataset called [ImageNet](https://www.image-net.org/) which has millions of labeled images. This model learned to spot common features among 1000 objects during training. Many of these features, like lines, textures, and shapes, can help identify new objects it hasn't seen before.
+We need a model that is trained at classifying objects that we can then use to teach new things. Luckily this base model exists. [MobileNet](https://keras.io/api/applications/mobilenet/) is a popular model that performs image recognition on 1000 different types of objects. It was trained on a huge dataset called [ImageNet](https://www.image-net.org/) which has millions of labelled images. This model learned to spot common features among 1000 objects during training. Many of these features, like lines, textures, and shapes, can help identify new objects it hasn't seen before.
 
 ## Let’s start building
 
-For my demo, I bootstrapped a Next.js project and therefor the code examples might show React.js code. Naturally, this is just my preference for reactive web application and you can use any (or no) framework.
+For my demo, I bootstrapped a Next.js project and therefore the code examples might show React.js code. Naturally, this is just my preference for reactive web applications and you can use any (or no) framework.
 
 ### Loading TensorFlow.js and MobileNet
 
@@ -81,7 +81,7 @@ export const useMobileNet = ({ tf, numberOfClasses }) => {
 }
 ```
 
-It receives two props. `tf` (TensorFlow.js) and `numberOfClasses` which is the number of different classes it should detect and categorise in. Let’s dive into the `loadMobileNetFeatureModel` function:
+It receives two props. `tf` (TensorFlow.js) and `numberOfClasses` which is the number of different classes it should detect and categorise. Let’s dive into the `loadMobileNetFeatureModel` function:
 
 ```jsx
 async function loadMobileNetFeatureModel() {
@@ -99,7 +99,7 @@ async function loadMobileNetFeatureModel() {
 }
 ```
 
-I load the model from TFHub which is why I need to let TensorFlow.js know through `fromTFHub: true`. To warm the model up, I pass zeros with a few specific values. `1` is the batch size, `244` is both the width and the height of the image and `3` is the number of color channels (reg, green and blue). Once the MobileNet feature model is loaded I define the model head:
+I load the model from TFHub which is why I need to let TensorFlow.js know through `fromTFHub: true`. To warm the model up, I pass zeros with a few specific values. `1` is the batch size, `244` is both the width and the height of the image and `3` is the number of colour channels (reg, green and blue). Once the MobileNet feature model is loaded I define the model head:
 
 ```jsx
 loadMobileNetFeatureModel().then(() => {
@@ -132,7 +132,7 @@ loadMobileNetFeatureModel().then(() => {
 })
 ```
 
-Quite a few things are happening here. Let’s go over them. First, I'm setting up a model that learns patterns in data to make predictions. Then, I'm adding an input layer, which acts like a first step in understanding the data. I'm using 128 "neurons" to analyze the data, and I'm applying a function called ReLU to understand it better. Next, I'm creating the output layer where the model makes its predictions. It looks at the patterns it learned and makes guesses based on them. Here, I'm using a function called `softmax` to ensure it selects one option from all the possibilities. After that, I'm checking what the model looks like so far by generating a model summary. Finally, before the model starts learning, I'm setting up how it should learn. I'm instructing it to improve its guesses over time and defining how it can evaluate its performance, such as by checking its accuracy.
+Quite a few things are happening here. Let’s go over them. First, I'm setting up a model that learns patterns in data to make predictions. Then, I'm adding an input layer, which acts as a first step in understanding the data. I'm using 128 "neurons" to analyze the data, and I'm applying a function called ReLU to understand it better. Next, I'm creating the output layer where the model makes its predictions. It looks at the patterns it learned and makes guesses based on them. Here, I'm using a function called `softmax` to ensure it selects one option from all the possibilities. After that, I'm checking what the model looks like so far by generating a model summary. Finally, before the model starts learning, I'm setting up how it should learn. I'm instructing it to improve its guesses over time and defining how it can evaluate its performance, such as by checking its accuracy.
 
 ### Using the user’s webcam to gather training data
 
@@ -198,7 +198,7 @@ const { toggleWebcam, videoPlaying, videoRef } = useWebcam()
 ;<video ref={videoRef} />
 ```
 
-Next, for each class we add a button to the UI to capture data. Once the user clicks this button, I call the `gatherDataForClass` function:
+Next, for each class, we add a button to the UI to capture data. Once the user clicks this button, I call the `gatherDataForClass` function:
 
 ```jsx
 const [capturedImages, setCapturedImages] = useState({})
@@ -275,7 +275,7 @@ const trainAndPredict = async () => {
 }
 ```
 
-You can call the `trainAndPredict` function that will take the training data we stored before and pass it to the model. First we shuffle the training data to ensure that the order of the data does not cause any issues during training. Next I convert the outputs to tensors. I can then pass them to the `tf.oneHot()` function along with the max number of classes which in the case of my demo is 3. Next, I convert the input tensors to become regular 2D tensors using the `tf.stack()` function. I can now finally train the model head using the `model.fit()` function where I pass the tensors. Finally I can dispose of the created tensors as the model is trained and I don’t need them anymore.
+You can call the `trainAndPredict` function that will take the training data we stored before and pass it to the model. First, we shuffle the training data to ensure that the order of the data does not cause any issues during training. Next, I convert the outputs to tensors. I can then pass them to the `tf.oneHot()` function along with the max number of classes which in the case of my demo is 3. Next, I convert the input tensors to become regular 2D tensors using the `tf.stack()` function. I can now finally train the model head using the `model.fit()` function where I pass the tensors. Finally, I can dispose of the created tensors as the model is trained and I don’t need them anymore.
 
 Time to call the `predictLoop` function that will continuously grab a frame of the webcam, and predict in which class it falls:
 
@@ -300,7 +300,7 @@ function predictLoop() {
 }
 ```
 
-As this is is a recursive function using `window.requestAnimationFrame` we first check if we need to break out of the loop. Next we the current frame of the webcam similarly to how we previously grabbed images to gather data for the classes. Next we essentially call the `predict` method on the model to get a value for each class from 0 to 1 on how confident it is that the class matches. The results might look something like `[0.39075496792793274, 0.6091347932815552, 0.00011020545935025439]` indicating that this is most likely the second class with hints of the first class. Finally we take this values and store it so we can display progress bars under each class to visualise how certain it is that the current webcam frame is for that class.
+As this is a recursive function using `window.requestAnimationFrame` we first check if we need to break out of the loop. Next we grab the current frame of the webcam similarly to how we previously grabbed images to gather data for the classes. Next, we essentially call the `predict` method on the model to get a value for each class from 0 to 1 on how confident it is that the class matches. The results might look something like `[0.39075496792793274, 0.6091347932815552, 0.00011020545935025439]` indicating that this is most likely the second class with hints of the first class. Finally, we take these values and store them so we can display progress bars under each class to visualise how certain it is that the current webcam frame is for that class.
 
 ## The final result
 
@@ -308,11 +308,11 @@ The above logic, combined with some extra application logic results in the demo 
 
 ### Some things I noticed
 
-While building this demo, I noticed a few this. Firstly, this stuff is hard! I don’t have a machine learning background so many of the techniques and concepts I was not familiar with. While doing the Codelab I read things like _"Now it's time to define your model head, which is essentially a very minimal multi-layer perceptron."_ which didn’t fill me with much confidence that I was able to build this demo. Luckily, with the help of the codelab and TensorFlow.js’s documentation of there utilities to make this stuff easier for you, I was able to make something cool!
+While building this demo, I noticed a few things. Firstly, this stuff is hard! I don’t have a machine learning background so many of the techniques and concepts I was not familiar with. While doing the Codelab I read things like _"Now it's time to define your model head, which is essentially a very minimal multi-layer perceptron."_ which didn’t fill me with much confidence that I was able to build this demo. Luckily, with the help of the Codelab and TensorFlow.js’s documentation of their utilities to make this stuff easier for you, I was able to make something cool!
 
-I also noticed how accessible this actually is for developers. Being able to run this in the browser on a relatively "low-powered" machine like my laptop (in machine learning terms) is just amazing. I’m able to share a link to this static websites and let people play around with this and train models which is amazing!
+I also noticed how accessible this actually is for developers. Being able to run this in the browser on a relatively "low-powered" machine like my laptop (in machine learning terms) is just amazing. I’m able to share a link to this static website and let people play around with this and train models which is amazing!
 
-Finally, I noticed that this is a gateway into machine learning for me. It hits the right balance between having familiar concepts and being a bit out of my depth and wanting to learn about these techniques in this exciting field. Try one of these codelabs out. It might be a lot less daunting than you suspect.
+Finally, I noticed that this is a gateway into machine learning for me. It hits the right balance between having familiar concepts and being a bit out of my depth and wanting to learn about these techniques in this exciting field. Try one of these Codelabs out. It might be a lot less daunting than you suspect.
 
 ## Cool demo, what are actual use cases?
 
