@@ -1,6 +1,6 @@
 ---
 title: "WebAuthn: it's time to forget your passwords"
-date: '2024-05-27'
+date: '2024-05-28'
 tags: ['cybersecurity', 'authentication', 'web auth']
 images: ['/articles/its-time-to-forget-your-passwords/heading.png']
 summary: 'Dive into the browser standard of securing login and authentication using the WebAuthn browser API'
