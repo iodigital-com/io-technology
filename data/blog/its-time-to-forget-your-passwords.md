@@ -5,10 +5,17 @@ tags: ['cybersecurity', 'authentication', 'web auth']
 images: ['/articles/its-time-to-forget-your-passwords/heading.png']
 summary: 'Dive into the browser standard of securing login and authentication using the WebAuthn browser API'
 authors: ['jelle-biesemans']
-theme: 'red'
+theme: 'turquoise'
 ---
 
 # WebAuthn: it's time to forget your passwords
+
+Imagine a world where the hassle of remembering and resetting passwords is a thing of the past.
+In this article, we'll dive into WebAuthn, a web standard that eliminates passwords,
+replacing them with a more secure and convenient login experience.
+
+With WebAuthn, accessing your favorite websites becomes effortless, allowing you to focus on what truly matters.
+Step into a future where authentication is seamless and secure, liberating you from the burden of passwords.
 
 ## What is WebAuthn
 
@@ -17,7 +24,7 @@ the [W3C](https://venturebeat.com/security/w3c-approves-webauthn-as-the-web-stan
 that WebAuthn is the official web standard for password-free login.
 
 It is a browser-based API that allows web applications to simplify and secure user authentication.
-This is done by using registered devices (such as phones and laptops) or biometrics (such as fingerprint) as factors.
+This is done by using registered devices (such as phones and laptops) or biometrics (such as fingerprints) as factors.
 WebAuthn uses public key cryptography to protect users from advanced phishing attacks.
 
 ### Why do the current methods fail us?
@@ -35,7 +42,7 @@ rose.
 
 #### 2FA
 
-An extra authentication step was introduced with 2FA, or two-factor authentication.
+An extra authentication step was introduced with two-factor authentication (2FA).
 This extra step makes it harder for people with malicious intent to steal your password data and take over your
 accounts.
 
@@ -44,7 +51,7 @@ However, popular, low-assurance second factors like SMS and email are vulnerable
 ### Benefits of using WebAuthn
 
 Now, some benefits will be addressed.
-These will be split up by customers (web application users) and product owners and security teams
+These will be split up by customers (web application users), product owners, and security teams
 (web application owners).
 
 Let's see how WebAuthn provides both parties with its benefits.
@@ -61,8 +68,8 @@ Let's see how WebAuthn provides both parties with its benefits.
 
 #### Web-application owners
 
-1. Product owners care about the use of their application, removing customer-facing barriers,
-   like complex authentication, is one of their highest priorities.
+1. Product owners care about the use of their applications, and removing customer-facing barriers, such as complex
+   authentication, is one of their highest priorities.
    WebAuthn contributes to a better login experience.
 
 2. Security teams need to be less involved. Since the private key never leaves the user's device,
@@ -85,7 +92,7 @@ WebAuthn has three main components that make all the magic happen:
 Using those three components, the authentication process can be explained as follows:
 
 1. The user goes to the browser to initiate the login
-2. The web server receives this login request and creates a unique challenge and sends it to the authenticator
+2. The web server receives this login request, then creates a unique challenge and sends it to the authenticator
 3. The authenticator receives this challenge, including the domain name for the challenge
 4. The Authenticator receives biometric consent/passkey from the user
 5. The Authenticator generates a cryptographic signature (public-private keypair) which is sent back to the web server
@@ -100,7 +107,7 @@ More information about the technical specs can be found [here](https://www.w3.or
 I can already hear you think:
 "WebAuthn, okay, all nice.
 But what if I lose my device on which my private key is stored?"  
-The answer is simple: you will be locked out of your account, with no way to recover it.
+The answer is simple: **you will be locked out of your account, with no way to recover it.**
 
 That is why it is important to have some fallbacks.
 Here are some ways that might just prevent you from getting locked out of your account:
