@@ -327,7 +327,7 @@ I love how he simplified some examples because that’s important. Explaining th
 
 I need to be a bit honest here. After 2 days of CSS Day, closing off with more calls to action on the two masonry proposals wasn’t necessary for me. I think the talk was just as important as the others, maybe the timing was a bit off. Unfortunately, Nicole also didn’t have time for a Q&A.
 
-That being said, I believe that if the Masonry Debacle is still on while the videos are released, you definitely should watch this one as well.
+That being said, I believe that if the Masonry Debate is still on while the videos are released, you definitely should watch this one as well.
 
 ## The end of CSS Day and onwards to CSS Café
 
