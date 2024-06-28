@@ -126,7 +126,7 @@ I took a bunch of notes from this talk which I will share with colleagues and us
 </div>
 ```
 
-Also, check out her [Julia's awesome CodePen](https://codepen.io/miocene)
+Also, check out [Julia's awesome CodePen](https://codepen.io/miocene)
 
 ## Beyond Google Fonts
 
