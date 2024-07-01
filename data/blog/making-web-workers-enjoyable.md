@@ -24,8 +24,8 @@ Therefore, it is crucial to manage resources effectively to ensure a smooth and 
 
 ## Web Workers
 
-Web Workers[^3] were first published by the World Wide Web Consortium (W3C) and the Web Hypertext Application Technology Working Group (WHATWG) on April 3, 2009.
-The World Wide Web Consortium (W3C) and the Web Hypertext Application Technology Working Group (WHATWG) conceptualize web workers as scripts that operate continuously.
+Web Workers[^3] were first published by the World Wide Web Consortium (W3C)[^17] and the Web Hypertext Application Technology Working Group (WHATWG)[^18] on April 3, 2009.
+The W3C and the WHATWG conceptualize web workers as scripts that operate continuously.
 These scripts are designed to run without being disrupted by other scripts that react to user interactions such as clicks.
 By ensuring these workers are not interrupted by user activities, web pages can maintain their responsiveness while concurrently executing extensive tasks in the background.
 This approach allows for a smoother and more efficient user experience.
@@ -86,7 +86,7 @@ Normally when using `this` in the global execution context[^9] will refer to the
 
 ### Drawbacks of Web Worker communication
 
-Whilst the Web Worker API to send and receive gets the job done it is not very developer friendly because of its low-level API.
+Whilst the Web Worker API to send and receive messages gets the job done it is not very developer friendly because of its low-level API.
 It requires a lot of manual management of message routing and payload marshaling[^11].
 There are certain patterns that seem to work nicely with `postMessage()` such as the Flux[^12] pattern but there are better libraries out there that can make the use Web Workers a lot more enjoyable and intuitive.
 
@@ -96,7 +96,7 @@ Comlink[^13] is a tiny library developed by Google. Its primary function is to s
 It achieves this by adopting an RPC (Remote Procedure Call)[^14] style for message transmission and leveraging JavaScript Proxies[^15] that maintain a reference to the original target.
 In essence, Comlink enables seamless access to any element from the Main Thread within a Web Worker and vice versa.
 This bidirectional accessibility significantly enhances the developer experience.
-Furthermore, when used in conjunction with TypeScript[^16] it supports autocomplete features, making coding even more efficient and enjoyable.
+Furthermore when used together with TypeScript[^16] it supports autocomplete features, making coding even more efficient and enjoyable.
 
 ### How to use Comlink
 
@@ -150,3 +150,5 @@ This allows for the Main Thread to run as efficient and responsive as possible f
 [^14]: https://en.wikipedia.org/wiki/Remote_procedure_call
 [^15]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 [^16]: https://en.wikipedia.org/wiki/TypeScript
+[^17]: https://www.w3.org/
+[^18]: https://whatwg.org/
