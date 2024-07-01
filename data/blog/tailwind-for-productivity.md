@@ -142,7 +142,7 @@ Tailwind also offers support for selecting elements based on a parent or sibling
 ```html
 <div class="is-published group">
   <!-- Will add the `block` class based on .is-published being applied to the parent -->
-  <div class="group-[.is-published]:block hidden">Published</div>
+  <div class="hidden group-[.is-published]:block">Published</div>
 </div>
 ```
 
@@ -151,7 +151,7 @@ Tailwind also offers support for selecting elements based on a parent or sibling
   <label for="email">Email:</label>
   <input id="email" name="email" type="email" class="is-dirty peer" required />
   <!-- Will add the `block` class based the peer element being HTML required and having the class .is-dirty -->
-  <div class="peer-[.is-dirty]:peer-required:block hidden">This field is required.</div>
+  <div class="hidden peer-[.is-dirty]:peer-required:block">This field is required.</div>
 </form>
 ```
 
