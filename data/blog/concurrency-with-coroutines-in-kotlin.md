@@ -253,9 +253,9 @@ list.
 ```kotlin
 class TABLE : Tag("table") {
     fun tr(init: TR.() -> Unit) {
-        val tr = TR()              // create a new <tr> tag
-        tr.init()                  // add whatever the tr { ... } block contains to the <tr> tag
-        children += tr             // add the <tr> tag to (this) <table>'s "children" list
+        val tr = TR()   // create a new <tr> tag
+        tr.init()       // add the "tr { ... }" block contents to the <tr> tag
+        children += tr  // add the <tr> tag to (this) <table>'s "children" list
     }
 }
 ```
