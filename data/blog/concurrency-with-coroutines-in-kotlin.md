@@ -7,19 +7,19 @@ summary: 'Learn some Kotlin basics and how to easily use coroutines to write par
 authors: ['ruud-nimour']
 ---
 
-Sometimes, we need to do a lot of processing of data. When coding for a solution of all this processing, by default we
-code sequentially. Considering that practically every computer has multiple cores, it seems rather wasteful to
-not make use of them. Java has a way to do this using `Thread`s, and more recently
-introduced [Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html) to counter
-some of the shortcomings of Java's `Thread`s.
+Computers nowadays are blazingly fast. When they to do a really large amount of work though, it can still take a long
+time. If the work can be split up into smaller independent tasks which can be done in parallel however, we are in luck.
+We can leverage the fact that practically every computer has multiple cores to speed up this work by writing code that
+makes use of these extra cores. Writing such multithreaded code can be quite difficult, however, as it is easy to lose
+track of threads or run into race conditions.
 
-Kotlin has introduced so-called "coroutines" to make this easier. In this article, we will go over Java's multithreading
-possibilities, explain some of Kotlin's syntax and how it's used to make it very easy to write clear code according to
-structured concurrency.
+Kotlin has introduced so-called "coroutines" to make this easier. In this article, we will shortly go over some of
+Java's multithreading possibilities, then explain some of Kotlin's syntax, and finally see how it's used to make it very
+easy to write clean concurrent code according to _structured concurrency_.
 
 ## Java multithreading
 
-Java has multiple ways to do multithreading. The most direct way is by simply creating new Threads like so:
+Java has multiple ways to do multithreading. The most direct way is by simply creating and starting new Threads like so:
 
 ```java
 public static void main(String[] args) {
@@ -39,33 +39,29 @@ public static void main(String[] args) {
 }
 ```
 
-Now, this works fine for moderate amounts of threads, but on my machine, cranking the number of threads to a modest ten
-thousand already crashes the program at thread number ~9200 with error 'unable to create native thread: possibly out of
-memory or process/resource limits reached'.
+Now, this works fine for moderate amounts of threads. On my machine however, cranking the number of threads to a modest
+ten thousand already crashes the program at thread number ~9200 with error 'unable to create native thread: possibly out
+of memory or process/resource limits reached', even though the threads aren't even doing anything! This is because
+`Thread`s in Java are actually quite heavy (requiring several kilobytes of memory), and are bound to OS threads, which
+are limited in number.
 
-This is because `Thread`s in Java are actually quite heavy (requiring several kilobytes of memory), and bound to OS
-threads, which are limited in number. Fortunately, Java's [Project Loom](https://wiki.openjdk.org/display/loom/Main)
-introduces `VirtualThread`s, which are [now production-ready since Java 21](https://openjdk.org/jeps/444). Rather than
-each created `VirtualThread` also creating a new OS thread, instead, the JVM has several so-called "carrier threads"
-which actually run the virtual threads. This way, we can create many millions of virtual threads without problem.
-Because we use the same `Thread` API, the only code change necessary is the `new Thread(...` line above, which will
-become:
+Fortunately, Java's [Project Loom](https://wiki.openjdk.org/display/loom/Main) introduces `VirtualThread`s, which
+are [now production-ready since Java 21](https://openjdk.org/jeps/444). Rather than each created `VirtualThread` also
+creating a new OS thread, instead, the JVM has several so-called "carrier threads" which actually run the virtual
+threads. This way, we can create many millions of virtual threads without problem. Because we use the same `Thread` API,
+the only code change necessary is the `new Thread(...` line above, which will become:
 
 ```java
-Thread thread = Thread.ofVirtual().unstarted(() -> { /* ... */ };
+Thread thread = Thread.ofVirtual().unstarted(() -> {
 ```
 
 With this simple code change, I can now create more than 1 million virtual threads this way.
 This is already big improvement, but as we will discuss later, in Kotlin we can do this much more nicely, and moreover
-forces you to code following the principle of "_structured concurrency_", which I will explain later.
+forces you to code following the principle of _structured concurrency_, which I will explain later.
 
-It should also be noted however, that Java provides other ways of doing multithreading, such as using
-
-```java
-ExecutorService executor = Executors.newFixedThreadPool(10);
-```
-
-to create a limited number of threads. Another implementation of `ExecutorService`
+It should also be noted however, that Java provides other ways of doing multithreading. For example, rather than
+creating `Thread`s directly, you can submit `Runnable` tasks to an `ExecutorService` with a limited number of threads,
+see for instance `Executors.newFixedThreadPool(int nThreads)`. Another implementation of `ExecutorService`
 is [ForkJoinPool](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinPool.html),
 which uses a "work stealing algorithm". If a thread in such a `ForkJoinPool` is waiting for completion of its created
 subtasks, it will take work that other threads have in their work queue. This way, the work is distributed more evenly
@@ -82,10 +78,10 @@ you're already familiar with Kotlin, you can skip over this part.
 
 #### Variable definitions and String templates
 
-First of all, variables are declared using `val` or `var`, where `val` is immutable and `var` is mutable. Declaring the
-type in Kotlin is optional if it can be inferred by the compiler. If we do specify the type, it comes with a colon after
-the variable name, like so: `val name: String = "Ruud"`. Kotlin also has string interpolation, using a `$`. For example:
-`"my name is $name, and has ${name.length} letters"`. This way, you can easily insert variables (and any
+In Kotlin, variables are declared using `val` (immutable) or `var` (mutable). Type declaration in Kotlin is optional if
+it can be inferred by the compiler. If we do specify the type, it comes with a colon after the variable name, like
+so: `val name: String = "Ruud"`. Kotlin also has string interpolation, using a `$`.
+For example: `"my name is $name, and has ${name.length} letters"`. This way, you can easily insert variables (and any
 expressions!) into strings. As you can see, simple variable insertions do not need the `{}` curly braces, but if we want
 to do method calls on them, we do.
 
