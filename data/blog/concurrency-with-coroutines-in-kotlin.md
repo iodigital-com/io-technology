@@ -1,6 +1,6 @@
 ---
 title: 'Clear and Concise Concurrency with Coroutines in Kotlin'
-date: '2024-06-28'
+date: '2024-07-03'
 tags: ['kotlin', 'concurrency', 'coroutines', 'backend']
 images: ['/articles/concurrency-with-coroutines-in-kotlin/multithreaded.png']
 summary: 'Learn some Kotlin basics and how to easily use coroutines to write parallelized code cleanly according to structured concurrency.'
