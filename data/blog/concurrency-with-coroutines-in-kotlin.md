@@ -11,7 +11,7 @@ Sometimes, we need to do a lot of processing of data. When coding for a solution
 code sequentially. Considering that practically every computer has multiple cores, it seems rather wasteful to
 not make use of them. Java has a way to do this using `Thread`s, and more recently
 introduced [Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html) to counter
-some of the shortcomings of java's `Thread`s.
+some of the shortcomings of Java's `Thread`s.
 
 Kotlin has introduced so-called "coroutines" to make this easier. In this article, we will go over Java's multithreading
 possibilities, explain some of Kotlin's syntax and how it's used to make it very easy to write clear code according to
@@ -40,42 +40,42 @@ public static void main(String[] args) {
 ```
 
 Now, this works fine for moderate amounts of threads, but on my machine, cranking the number of threads to a modest ten
-thousand already crashes the program at thread number ~9200 with error 'unable
-to create native thread: possibly out of memory or process/resource limits reached'.
+thousand already crashes the program at thread number ~9200 with error 'unable to create native thread: possibly out of
+memory or process/resource limits reached'.
 
 This is because `Thread`s in Java are actually quite heavy (requiring several kilobytes of memory), and bound to OS
 threads, which are limited in number. Fortunately, Java's [Project Loom](https://wiki.openjdk.org/display/loom/Main)
-introduces `VirtualThread`s. Rather than each created `VirtualThread` also creating a new OS thread, instead, the JVM
-has several so-called "carrier threads" which actually run the virtual threads. This way, we can create many millions of
-virtual threads without problem. Because we use the same `Thread` API, the only code change necessary is
-the `new Thread(...` line above, which will become:
+introduces `VirtualThread`s, which are [now production-ready since Java 21](https://openjdk.org/jeps/444). Rather than
+each created `VirtualThread` also creating a new OS thread, instead, the JVM has several so-called "carrier threads"
+which actually run the virtual threads. This way, we can create many millions of virtual threads without problem.
+Because we use the same `Thread` API, the only code change necessary is the `new Thread(...` line above, which will
+become:
 
 ```java
 Thread thread = Thread.ofVirtual().unstarted(() -> { /* ... */ };
 ```
 
-With this simple code change (available since Java 21) I can now create more than 1 million virtual threads this way.
+With this simple code change, I can now create more than 1 million virtual threads this way.
 This is already big improvement, but as we will discuss later, in Kotlin we can do this much more nicely, and moreover
-forces you to code following the principle of "structured concurrency", which I will explain later.
+forces you to code following the principle of "_structured concurrency_", which I will explain later.
 
-It should also be noted, however, that Java provides other ways of doing multithreading, such as using
+It should also be noted however, that Java provides other ways of doing multithreading, such as using
 
 ```java
 ExecutorService executor = Executors.newFixedThreadPool(10);
 ```
 
-to create a limited number of threads,
-or [for example using](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinPool.html)
-`ForkJoinPool`, which is an another implementation of ExecutorService which makes use of a "Work Stealing algorithm". If
-a thread in such a `ForkJoinPool` is waiting for completion of its created subtasks, it will steal work from other
-threads. This way, the work is distributed more evenly among the threads, and the threads are kept busy as much as
-possible.
+to create a limited number of threads. Another implementation of `ExecutorService`
+is [ForkJoinPool](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinPool.html),
+which uses a "work stealing algorithm". If a thread in such a `ForkJoinPool` is waiting for completion of its created
+subtasks, it will take work that other threads have in their work queue. This way, the work is distributed more evenly
+among the threads, and the threads are kept busy as much as possible.
 
 ## Kotlin
 
 ### Some Syntax
 
-If you come from a pure Java background like me, it may be good to go over some Kotlin syntax, as it will be heavily
+If you come from a pure Java background like me, it may be good to go over some Kotlin syntax. It will be heavily
 used in the following examples, and has some differences with Java. I won't be going over everything here though!
 [Kotlin's own documentation](https://kotlinlang.org/docs/home.html) is very good and I recommend you to check it out. If
 you're already familiar with Kotlin, you can skip over this part.
@@ -94,7 +94,7 @@ to do method calls on them, we do.
 Another feature we will be using heavily, and the main reason I want to go over this syntax, is that the last ([or
 as they call it, trailing](https://kotlinlang.org/docs/lambdas.html#passing-trailing-lambdas)) lambda function of a
 method can be placed outside the brackets. This was quite puzzling to me, but after using it, I found that it creates
-very readable code. For example, from the kotlin standard library, we have the `repeat` function:
+very readable code. For example, from the Kotlin standard library, we have the `repeat` function:
 
 ```kotlin
 public inline fun repeat(times: Int, action: (Int) -> Unit) {
@@ -307,9 +307,9 @@ fun mergeSort(list: MutableList<Int>) {
 ```
 
 where the `merge` function simply takes the lists (`left` and `right`) and merges them into a single sorted list.
-Because `left` and `right` are already sorted, merging is very simple and fast. As you can see, this is a recursive
-algorithm, which calls itself twice. This is exactly where we can use coroutines to parallelize sorting the left and
-right halves of the lists, as these are independent tasks.
+Because `left` and `right` are already sorted, merging them into a sorted list is very simple and fast. As you can see,
+this is a recursive algorithm, which calls itself twice. This is exactly where we can use coroutines to parallelize
+sorting the left and right halves of the lists, as these are independent tasks.
 
 ### Adding coroutines
 
@@ -332,8 +332,8 @@ suspend fun coMergeSort(list: MutableList<Int>) {
 I introduced the `suspend` keyword to the function declaration so that we can use the `coroutineScope` function. It
 indicates that this function's execution can be suspended, for example when waiting for its spawned coroutines to
 complete. The `coroutineScope` function creates a new coroutine scope, in which we `launch` two new coroutines
-(asynchronously) to sort the left and right halves of the list\*. This means that the recursive calls to `coMergeSort` to
-sort the left and right halves of the list are now done in parallel. Note that we only exit the `coroutineScope`
+(asynchronously) to sort the left and right halves of the list\*. This means that the recursive calls to `coMergeSort`
+to sort the left and right halves of the list are now done in parallel. Note that we only exit the `coroutineScope`
 function when both launched coroutines complete, showing very clearly where coroutine execution ends, thus adhering to
 the principle of structured concurrency. This ensures that only after these two coroutines complete, the `merge`
 function is called.
@@ -382,8 +382,7 @@ lists), we get:
 
 Great success! We have increased the performance of our merge sort algorithm by a factor of about 3 to 4.
 It should be noted, however, that by incorrectly using them, we managed to actually _reduce_ the performance by about
-the
-same factor.
+the same factor.
 
 In conclusion, here we have seen a good example of how coroutines can be very powerful, but also how we must still think
 about how we use them. I had a blast learning about coroutines in Kotlin, and this is only the start. For example, we
