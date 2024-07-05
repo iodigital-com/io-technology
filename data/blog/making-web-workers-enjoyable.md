@@ -1,6 +1,6 @@
 ---
 title: 'Making Web Workers enjoyable'
-date: '2024-07-01'
+date: '2024-07-05'
 tags: ['frontend', 'web workers', 'javascript', 'typescript']
 images: ['/articles/making-web-workers-enjoyable/circuit-board-6557683_1280.jpg']
 summary: 'In a single threaded environment Web Workers allow for offloading intensive tasks to keep the main thread free and responsive.'
