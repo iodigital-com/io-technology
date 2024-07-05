@@ -14,11 +14,12 @@ theme: 'blue'
 
 ## Background
 
-In the ever-evolving landscape of web development, the pursuit of creating responsive applications is a shared objective among developers.
-The aim is typically to achieve a seamless user experience by maintaining a minimum of 60 frames per second, a standard set by the highly responsive[^1] mobile apps that users have grown accustomed to.
-However, this can often pose a significant challenge due to the single-threaded[^2] nature of JavaScript.
+In the dynamic and ever-evolving landscape of web development, developers universally strive to create responsive applications.
+The goal is to deliver a seamless user experience, maintaining a minimum of 60 frames per second, a benchmark set by the highly responsive[^1] mobile apps that users have become accustomed to.
+Furthermore, unhandled user input can lead to a subpar user experience, underscoring the importance of comprehensive input handling in the quest for optimal responsiveness.
+However, this can often present a significant challenge due to the single-threaded[^2] nature of JavaScript.
 
-In the current era, with an abundance of frontend libraries at our disposal, it’s increasingly easy to compromise on performance as these libraries consume substantial resources.
+In the current era, with an abundance of frontend libraries at our disposal, it’s increasingly easy to compromise on performance and responsiveness as these libraries consume substantial resources.
 This implies that when JavaScript is tasked with heavy computations or data processing, it can result in an unresponsive or janky user interface (UI), leading to user dissatisfaction.
 Therefore, it is crucial to manage resources effectively to ensure a smooth and responsive UI.
 
@@ -29,6 +30,9 @@ The W3C and the WHATWG conceptualize web workers as scripts that operate continu
 These scripts are designed to run without being disrupted by other scripts that react to user interactions such as clicks.
 By ensuring these workers are not interrupted by user activities, web pages can maintain their responsiveness while concurrently executing extensive tasks in the background.
 This approach allows for a smoother and more efficient user experience.
+
+Web Workers are not to be confused with Service Workers[^19]. Service Workers serve a different purpose and act as proxy server to enable offline experiences by intercepting network requests.
+Service Workers also run in a worker context meaning that they run in a separate thread.
 
 ### How to create a Web Worker
 
@@ -87,7 +91,7 @@ Normally when using `this` in the global execution context[^9] will refer to the
 ### Drawbacks of Web Worker communication
 
 Whilst the Web Worker API to send and receive messages gets the job done it is not very developer friendly because of its low-level API.
-It requires a lot of manual management of message routing and payload marshaling[^11].
+It requires a lot of manual management of message routing and payload marshalling[^11].
 There are certain patterns that seem to work nicely with `postMessage()` such as the Flux[^12] pattern but there are better libraries out there that can make the use Web Workers a lot more enjoyable and intuitive.
 
 ## Comlink
@@ -96,11 +100,15 @@ Comlink[^13] is a tiny library developed by Google. Its primary function is to s
 It achieves this by adopting an RPC (Remote Procedure Call)[^14] style for message transmission and leveraging JavaScript Proxies[^15] that maintain a reference to the original target.
 In essence, Comlink enables seamless access to any element from the Main Thread within a Web Worker and vice versa.
 This bidirectional accessibility significantly enhances the developer experience.
-Furthermore when used together with TypeScript[^16] it supports autocomplete features, making coding even more efficient and enjoyable.
+Furthermore, when used together with TypeScript[^16] it supports autocomplete features, making coding even more efficient and enjoyable.
 
 ### How to use Comlink
 
-Using Comlink is fairly straight forward as shown below:
+Comlink provides a set of functions that help connect the main thread to the Web Worker and vice versa is fairly straight forward as shown below.
+The `wrap()` function wraps the Worker and takes the other end of a Message Channel[^21] as an argument and returns a proxy.
+This proxy will have all properties and functions of the exposed value from the other thread.
+However, access to these properties and function invocations are inherently asynchronous.
+This means that a function that would normally return a number will now return a `Promise()`[^20] for a number.
 
 ```typescript
 import { wrap } from 'comlink'
@@ -112,8 +120,12 @@ const worker = new Worker('heavy-calculation-script.js')
 const wrappedWorker = wrap(worker)
 
 // Call any exposed methods from your Web Worker
-wrappedWorker.exposedMethod() // Logs: Hello from worker!
+// Since its a Promise you can use either await or then
+wrappedWorker.exposedMethod().then(console.log) // Logs: 5
 ```
+
+The `expose()` method from Comlink is used to make a local object available to the other end of the Message Channel.
+It can be viewed as the Comlink equivalent of `export`. This method takes an object and exposes it to the other thread, allowing the other thread to access its properties and methods.
 
 ```typescript
 // heavy-calculation-script.js Web Worker
@@ -121,11 +133,11 @@ import { expose } from 'comlink'
 
 const api = {
   exposedMethod() {
-    console.log('Hello from worker!')
+    return 5
   },
 }
 
-// Call expose from Comlink to expose anything you like to the Main Thread to have access to
+// Call expose from Comlink to expose anything you like for the Main Thread to have access to
 expose(api)
 ```
 
@@ -152,3 +164,6 @@ This allows for the Main Thread to run as efficient and responsive as possible f
 [^16]: https://en.wikipedia.org/wiki/TypeScript
 [^17]: https://www.w3.org/
 [^18]: https://whatwg.org/
+[^19]: https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+[^20]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[^21]: https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel
