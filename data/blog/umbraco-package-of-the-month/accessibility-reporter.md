@@ -1,5 +1,5 @@
 ---
-title: 'Package of the month: Accessibility Reporter'
+title: 'Umbraco package of the month: Accessibility Reporter'
 date: '2024-07-12'
 tags: ['umbraco', 'a11y', 'accessibility']
 summary: 'A quick look a Accessibility Reporter, wat is it and how does it work'
