@@ -30,9 +30,9 @@ But there are many aspects that it is possible to detect like:
 3. color contrast;
 4. and many more.
 
-![An overview page showing the statistics of the verious test done by Accessibility Reporter](/articles/july-accessibility-reporter/Accessibility_Reporter_overview.png)
+![An overview page showing the statistics of the verious test done by Accessibility Reporter](/articles/umbraco-package-of-the-month/accessibility-reporter/Accessibility_Reporter_overview.png)
 
-![An page where more detail is shown of the error's from the test on a specific tested page](/articles/july-accessibility-reporter/Accessibility_Reporter_detail.png)
+![An page where more detail is shown of the error's from the test on a specific tested page](/articles/umbraco-package-of-the-month/accessibility-reporter/Accessibility_Reporter_detail.png)
 
 ## Conclusion
 
