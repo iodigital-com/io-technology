@@ -2,12 +2,12 @@
 title: 'Umbraco package of the month: Accessibility Reporter'
 date: '2024-07-19'
 tags: ['umbraco', 'a11y', 'accessibility']
-summary: 'A quick look a Accessibility Reporter, wat is it and how does it work'
+summary: 'A quick look at the Umbraco package Accessibility Reporter, what is it and how does it work.'
 authors: ['jeroen-van-kempen']
 serie: umbraco-package-of-the-month
 ---
 
-While at Codegarden there was an award show for the best package, and I must say that I had not heard of most of them. That has nothing to do with the packages themselves, but in my day-to-day work I hardly use them only really using Usync, contentment and SEO checker. But after that it made me want to look more in-depth at some of the packages why were they nominated and why did Accessibility Reporter win? So, I had an idea and here we are, I want to investigate a package every month and write a short blog post about it. So where to start well the winner of this year, Accessibility Reporter made by Matt Begent and Jack Durcan.
+At Codegarden there was an award show and one of the categories was about the community packages, and while watching it I realised I hadn't heard of most of them. This wasn't because the packages weren't good; I just don't use many of them in my daily work, sticking mostly to Usync, Contentment, and SEO Checker. But seeing the awards made me curious. Why were these packages nominated, and why did Accessibility Reporter win? So, I decided to look into a different package each month to learn more about it and write a short blog post about it. Where else to start than this year’s winner, Accessibility Reporter, made by Matt Begent and Jack Durcan.
 
 ## What is it about?
 
