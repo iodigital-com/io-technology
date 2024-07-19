@@ -2,7 +2,7 @@
 title: 'Umbraco package of the month: Accessibility Reporter'
 date: '2024-07-19'
 tags: ['umbraco', 'a11y', 'accessibility']
-summary: 'A quick look at the Umbraco package Accessibility Reporter, what is it and how does it work.'
+summary: 'A quick look at the Umbraco package Accessibility Reporter. What is it and how does it work?'
 authors: ['jeroen-van-kempen']
 serie: umbraco-package-of-the-month
 ---
