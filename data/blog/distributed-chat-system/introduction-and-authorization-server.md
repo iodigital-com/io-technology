@@ -33,6 +33,8 @@ In this first part, we'll focus on the initial component: **The Authorisation Se
 
 ## Authorisation Server
 
+The Authorisation Server is the first component in our system, responsible for securing access to system resources using the OAuth 2.0 protocol. It handles the registration and authentication of user accounts and client applications, issues access and refresh tokens, and enforces access scopes. This ensures that only authorised parties can access and benefit from system resources. Let's break this down into specific functional requirements to better understand the functionality and ensure effective implementation and testing.
+
 ### Functional Requirements
 
 - Token-based authentication using [opaque tokens](https://auth0.com/docs/secure/tokens/access-tokens#opaque-access-tokens)
@@ -43,7 +45,7 @@ In this first part, we'll focus on the initial component: **The Authorisation Se
 
 - Java 21
 - Spring boot and Spring Data (3.3.2 the current latest release)
-- Spring Security with OAuth2 Authorization Server (6.3.1 the current latest release)
+- Spring Security with OAuth 2.0 Authorization Server (6.3.1 the current latest release)
 - Flyway
 - Postgres
 - Gradle
@@ -72,7 +74,7 @@ dependencies {
 }
 ```
 
-Next, we will add `AuthorizationServerConfiguration.java` and `SecurityConfiguration.java` to configure the security of our server.
+Next, we will add `AuthorizationServerConfiguration.java` and `SecurityConfiguration.java` to configure the security of our server:
 
 ```java
 @Configuration
@@ -165,7 +167,7 @@ Here, we configure the default `securityFilterChain` bean with the following:
 - `apiAuthenticationExceptionFilter` bean, which handles authentication exceptions.
 - `tokenIntrospector` bean, which make it possible to internally introspect and authenticate API calls to our authorisation server. In other words, the authorisation server also functions as a resource server.
 
-Next, we add `TokenConfiguration.java` configuration for access and refresh token generation and customization.
+Next, we add `TokenConfiguration.java` configuration for access and refresh token generation and customization:
 
 ```java
 @Configuration
@@ -193,7 +195,7 @@ public class TokenConfiguration {
 }
 ```
 
-We need to add `UserDetailsServiceImpl.java`, which implements `UserDetailsService` to retrieve user accounts by username from the database.
+We need to add `UserDetailsServiceImpl.java`, which implements `UserDetailsService` to retrieve user accounts by username from the database:
 
 ```java
 @Service
@@ -219,7 +221,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-Finally, we add `application.properties` file to define our server properties.
+Finally, we add `application.properties` file to define our server properties:
 
 ```properties
 server.port=9000
@@ -264,7 +266,7 @@ CREATE TABLE IF NOT EXISTS users (
 )
 ```
 
-Next, we add `User.java` as the user entity class.
+Next, we add `User.java` as the user entity class:
 
 ```java
 @Entity
@@ -289,7 +291,7 @@ public class User {
 
 **Note that passwords are defined as a byte array instead of a `String` object.** This improves security because `String` objects are immutable and remain in memory until garbage collection, making them vulnerable. Byte arrays can be cleared from memory immediately after use, reducing the risk of exposure. Additionally, once the password is validated, it will be encrypted, and no further string operations will be performed on it.
 
-Next, we will add `UserRepository.java` interface, extending Spring's `JpaRepository`.
+Next, we will add `UserRepository.java` interface, extending Spring's `JpaRepository`:
 
 ```java
 @Repository
@@ -298,7 +300,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 }
 ```
 
-And `RegistrationService.java`
+And `RegistrationService.java`:
 
 ```java
 @Service
@@ -331,7 +333,7 @@ public class RegistrationService {
 }
 ```
 
-Then `RegistrationController.java`
+Then `RegistrationController.java`:
 
 ```java
 @RestController
@@ -354,7 +356,7 @@ public class RegistrationController {
 }
 ```
 
-Finally, we add `SignupRequest.java`, which contains the account details to be created.
+Finally, we add `SignupRequest.java`, which contains the account details to be created:
 
 ```java
 public class SignupRequest {
