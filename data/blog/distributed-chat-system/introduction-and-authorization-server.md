@@ -1,6 +1,6 @@
 ---
 title: 'Introduction and the Authorisation Server'
-date: '2024-08-01'
+date: '2024-08-02'
 tags: ['java', 'spring boot', 'spring security', 'oauth2']
 images: ['/articles/distributed-chat-system/banner.png']
 summary: 'An introduction to the chat system, including the design and implementation of its authorisation server.'
