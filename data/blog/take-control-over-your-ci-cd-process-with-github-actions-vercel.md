@@ -15,7 +15,7 @@ You can choose either of two options when it comes to deploying your application
 
 ## Why would you need a custom integration?
 
-Why resort to a custom integration over the “zero-configuration git integration”? It makes sense if:
+Why resort to a custom integration over the “zero-configuration git integration”[^1]? It makes sense if:
 
 - you want full control over your CI/CD pipeline (e.g. linting and running tests)
 - you are using GitHub Enterprise and can’t leverage Vercel’s GitHub Integration
@@ -31,7 +31,7 @@ In this article I will show you how to set up your CI/CD pipelines using GitHub 
 
 ## Intro to Vercel
 
-Vercel is a very convenient hosting solution for modern javascript applications and lets you deploy your application in seconds. It is running on a managed infrastructure which means you don’t have to worry about maintaining it. Vercel offers out-of-the-box optimizations to enhance your security and performance. Their platforms supports a wide range of frameworks so there is a big chance Vercel is a very convenient way for you to host your application.
+Vercel is a very convenient hosting solution for modern JavasScript applications and lets you deploy your application in seconds. It is running on a managed infrastructure which means you don’t have to worry about maintaining it. Vercel offers out-of-the-box optimizations to enhance your security and performance. Their platforms supports a wide range of frameworks so there is a big chance Vercel is a very convenient way for you to host your application.
 
 One nice thing about Vercel is that it offers Previews of your development code. With every PR you create you could push your changes to Vercel and deploy a tailored preview environment which you can use to debug, collaborate and share your current state of development. Vercel will create a unique URL and attaches it to the environment.
 
@@ -46,7 +46,7 @@ Leveraging GitHub Actions is a very easy and straight forward tool if you know a
 - Events
 - Actions
 
-If you’d like to know more about the explanation of the terminology, please visit the GitHub Actions official documentation: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+If you’d like to know more about the explanation of the terminology, please visit the GitHub Actions official documentation[^2].
 
 ## A unified CI/CD integration
 
@@ -75,7 +75,7 @@ on:
 
 Let me take you through the above file. First we define a `name` for our Workflow, which will be displayed in the GitHub Actions user interface once we run it. Then we define a workflow environment variable called `NODE_VERSION` which you can re-use across any job in your file.
 
-Then we have to define a trigger for this workflow to be running. In our case we want to run whenever a pull request is being opened or synchronized: `on: pull_request`. You can configure this as per wish. Checkout the GitHub documentation to check which events are applicable for your workflow: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request).
+Then we have to define a trigger for this workflow to be running. In our case we want to run whenever a pull request is being opened or synchronized: `on: pull_request`. You can configure this as per wish. Checkout the GitHub documentation to check which events are applicable for your workflow [here](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request).
 
 ## Implement the Lint job
 
@@ -105,15 +105,15 @@ jobs:
         run: yarn lint
 ```
 
-Jobs are added by defining a line with `jobs:` which let you define a YAML specified list of jobs. In the above example you can see `Lint` on the next line, which is the ID of the first job we are going to define. Lastly you see a defined runner ([more info](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions#runners)): `runs-on: ubuntu-latest`, which in this case will run on the latest version of Ubuntu.
+Jobs are added by defining a line with `jobs:` which let you define a YAML specified list of jobs. In the above example you can see `Lint` on the next line, which is the ID of the first job we are going to define. Lastly you see a defined runner[^3]: `runs-on: ubuntu-latest`, which in this case will run on the latest version of Ubuntu.
 
 First we need to checkout our repository source code on our machine with `actions/checkout`. Then we will install a specific Node.js version on our runner, it uses the workflow environment variable we set earlier in the beginning of this file.
 
 ### Matching Vercel requirements
 
-As we are going to deploy our application to Vercel, it's recommended to have the runner (link to runner docs) match the Vercel build environment. In this example I am following the latest known requirements: A linux operating system that runs Node.js version 20.x
+As we are going to deploy our application to Vercel, it's recommended to have the runner[^4] match the Vercel build environment. In this example I am following the latest known requirements: A linux operating system that runs Node.js version 20.x.
 
-Read more about the requirements here: https://vercel.com/docs/deployments/build-image.
+Read more about the requirements [here](https://vercel.com/docs/deployments/build-image).
 
 ## Implement the Test job
 
@@ -151,9 +151,9 @@ By default jobs in our workflow file are being executed in parallel. This means 
 
 ## Implement the Build job
 
-Now we have the take care of the actual build of our project. Remember that this was the part that Vercel actually took care off. In order to make sure our project is built in the same environment we can configure our runner to run on the latest version of Ubuntu Linux and so it uses the latest required Node version so it matches the environment of Vercel.
+Now we have the take care of the actual build of our project. Remember that this was the part that Vercel actually took care off. In order to make sure our project is built in the same environment we can configure our runner to run on the latest version of Ubuntu Linux and so it uses the latest required Node.js version so it matches the environment of Vercel.
 
-Next we configure the GitHub action to checkout our repo source code on our runner and set the default Node version to the version that’s stored in the workflow ENV variables.
+Next we configure the GitHub action to checkout our repo source code on our runner and set the default Node.js version to the version that’s stored in the workflow ENV variables.
 
 Now that we’ve got the basic setup covered we can actually go and implement the build commands. For this we are going to use Vercel CLI which makes it easy for us to implement the build process in our pipeline.
 
@@ -526,4 +526,8 @@ While for my project it seemed logical to approach it this way it could mean som
 
 Thanks for reading.
 
+[^1]: https://vercel.com/docs/deployments/git
+[^2]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+[^3]: https://docs.github.com/en/actions/about-github-actions/understanding-github-actions#runners
+[^4]: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
 ---
