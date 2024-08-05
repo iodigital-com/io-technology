@@ -1,9 +1,9 @@
 ---
-title: 'Take control over your CI/CD process: Use Github Actions to deploy to Vercel'
+title: 'Take control over your CI/CD process: Use GitHub Actions to deploy to Vercel'
 date: '2024-08-05'
 tags: ['ci/cd', 'github actions', 'vercel']
-images: []
-summary: 'How do you take full advantage of Github when you deploy to Vercel? Let Github Actions take care of your pipelines and let Vercel do the hosting.'
+images: [/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-actions-workflow-runs.png]
+summary: 'How do you take full advantage of GitHub when you deploy to Vercel? Let GitHub Actions take care of your pipelines and let Vercel do the hosting.'
 authors: ['clarke-verdel']
 theme: 'blue'
 ---
@@ -13,19 +13,19 @@ You can choose either of two options when it comes to deploying your application
 - Go for the “zero-configuration git integration”
 - Go for the custom CI/CD approach
 
-## Why would you need a custom integration
+## Why would you need a custom integration?
 
 Why resort to a custom integration over the “zero-configuration git integration”? It makes sense if:
 
 - you want full control over your CI/CD pipeline (e.g. linting and running tests)
-- you are using Github Enterprise and can’t leverage Vercel’s Github Integration
+- you are using GitHub Enterprise and can’t leverage Vercel’s GitHub Integration
 
-In this article I will show you how to set up your CI/CD pipelines using Github Actions and deploy your application to Vercel.
+In this article I will show you how to set up your CI/CD pipelines using GitHub Actions and deploy your application to Vercel.
 
 ## Steps to take
 
 - Disable Vercel’s “zero-configuration git integration”
-- Create pipelines in Github Actions
+- Create pipelines in GitHub Actions
     - Test, lint & build (CI)
     - Deployment (CD)
 
@@ -35,28 +35,28 @@ Vercel is a very convenient hosting solution for modern javascript applications 
 
 One nice thing about Vercel is that it offers Previews of your development code. With every PR you create you could push your changes to Vercel and deploy a tailored preview environment which you can use to debug, collaborate and share your current state of development. Vercel will create a unique URL and attaches it to the environment.
 
-## Intro to Github Actions
+## Intro to GitHub Actions
 
-If your repository is already hosted on Github, it's a no-brainer to utilize Github Actions to automate our deployments to Vercel. Github Actions gives you the power to create CI/CD pipelines by creating YAML workflow files.
+If your repository is already hosted on GitHub, it's a no-brainer to utilize GitHub Actions to automate our deployments to Vercel. GitHub Actions gives you the power to create CI/CD pipelines by creating YAML workflow files.
 
-Leveraging Github Actions is a very easy and straight forward tool if you know a few key concepts:
+Leveraging GitHub Actions is a very easy and straight forward tool if you know a few key concepts:
 
 - Jobs
 - Runners
 - Events
 - Actions
 
-If you’d like to know more about the explanation of the terminology, please visit the Github Actions official documentation: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+If you’d like to know more about the explanation of the terminology, please visit the GitHub Actions official documentation: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
 
 ## A unified CI/CD integration
 
-With Github Actions you are able to create custom continuous integration workflows directly into your Github repository. It’s a very common practice to ensure your application is reliable and adheres to high standards. In this example we are going to add a linting and a testing step before we are going to build our application. Github Actions will report the status of every job in a workflow file below your PR. This gives you a unified CI/CD experience where you don’t have to switch between Github and Vercel to verify or debug your pipeline runs.
+With GitHub Actions you are able to create custom continuous integration workflows directly into your GitHub repository. It’s a very common practice to ensure your application is reliable and adheres to high standards. In this example we are going to add a linting and a testing step before we are going to build our application. GitHub Actions will report the status of every job in a workflow file below your PR. This gives you a unified CI/CD experience where you don’t have to switch between GitHub and Vercel to verify or debug your pipeline runs.
 
 ## Create a workflow for preview deployments
 
-First we start off by creating a workflow file in your Github Repository in order to deploy our application to Vercel on a preview environment.
+First we start off by creating a workflow file in your GitHub Repository in order to deploy our application to Vercel on a preview environment.
 
-Preview deployments are a powerful tool to deploy your application from a development branch to its own environment with its own URL. When you enable Vercel’s zero-configuration integration every commit you make will be pushed to their platform and a new environment will be spun up. Vercel will use the Github API to post back any status updates to your PR comments.
+Preview deployments are a powerful tool to deploy your application from a development branch to its own environment with its own URL. When you enable Vercel’s zero-configuration integration every commit you make will be pushed to their platform and a new environment will be spun up. Vercel will use the GitHub API to post back any status updates to your PR comments.
 
 Because we are not utilizing the zero-configuration integration we manually have to recreate the CI/CD pipelines that were previously running on Vercel.
 
@@ -73,9 +73,9 @@ on:
     types: [opened, synchronize]
 ```
 
-Let me take you through the above file. First we define a `name` for our Workflow, which will be displayed in the Github Actions user interface once we run it. Then we define a workflow environment variable called `NODE_VERSION` which you can re-use across any job in your file.
+Let me take you through the above file. First we define a `name` for our Workflow, which will be displayed in the GitHub Actions user interface once we run it. Then we define a workflow environment variable called `NODE_VERSION` which you can re-use across any job in your file.
 
-Then we have to define a trigger for this workflow to be running. In our case we want to run whenever a pull request is being opened or synchronized: `on: pull_request`. You can configure this as per wish. Checkout the Github documentation to check which events are applicable for your workflow: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request).
+Then we have to define a trigger for this workflow to be running. In our case we want to run whenever a pull request is being opened or synchronized: `on: pull_request`. You can configure this as per wish. Checkout the GitHub documentation to check which events are applicable for your workflow: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request).
 
 ## Implement the Lint job
 
@@ -107,7 +107,7 @@ jobs:
 
 Jobs are added by defining a line with `jobs:` which let you define a YAML specified list of jobs. In the above example you can see `Lint` on the next line, which is the ID of the first job we are going to define. Lastly you see a defined runner ([more info](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions#runners)): `runs-on: ubuntu-latest`, which in this case will run on the latest version of Ubuntu.
 
-First we need to checkout our repository source code on our machine with `actions/checkout`. Then we will install a specific node version on our runner, it uses the workflow environment variable we set earlier in the beginning of this file.
+First we need to checkout our repository source code on our machine with `actions/checkout`. Then we will install a specific Node.js version on our runner, it uses the workflow environment variable we set earlier in the beginning of this file.
 
 ### Matching Vercel requirements
 
@@ -153,7 +153,7 @@ By default jobs in our workflow file are being executed in parallel. This means 
 
 Now we have the take care of the actual build of our project. Remember that this was the part that Vercel actually took care off. In order to make sure our project is built in the same environment we can configure our runner to run on the latest version of Ubuntu Linux and so it uses the latest required Node version so it matches the environment of Vercel.
 
-Next we configure the Github action to checkout our repo source code on our runner and set the default Node version to the version that’s stored in the workflow ENV variables.
+Next we configure the GitHub action to checkout our repo source code on our runner and set the default Node version to the version that’s stored in the workflow ENV variables.
 
 Now that we’ve got the basic setup covered we can actually go and implement the build commands. For this we are going to use Vercel CLI which makes it easy for us to implement the build process in our pipeline.
 
@@ -193,7 +193,7 @@ jobs:
           path: .vercel/output
 ```
 
-First of all we need to set up the first steps for this Job again: checkout the source code, setting a node version and install the Vercel CLI. Now we can add a step to pull your Vercel project configuration and environment variables.
+First of all we need to set up the first steps for this Job again: checkout the source code, setting a Node.js version and install the Vercel CLI. Now we can add a step to pull your Vercel project configuration and environment variables.
 
 The next step is to actually build the project with the Vercel CLI. We set a parameter `--yes` which skips questions being asked by the CLI.  Then we set a parameter to tell the CLI to which environment this build should be deployed: `--environment=preview`.
 
@@ -209,20 +209,20 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 ```
 
-The only thing we have to do now is to create the repository secrets inside your Github Repo settings. The instructions to
+The only thing we have to do now is to create the repository secrets inside your GitHub Repo settings. The instructions to
 
 1. Copy your [Vercel Access Token](https://vercel.com/guides/how-do-i-use-a-vercel-api-access-token)
 2. Install the [Vercel CLI](https://vercel.com/cli) locally in your repository and run `vercel login`
 3. Then run `vercel link` to create a new Vercel project or link an existing one
 4. The Vercel CLI now generated a`.vercel` folder, copy over the `projectId` and `orgId` from the `project.json`
-5. Add these values as new repository secrets in Github: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
-    1. Navigate to your Github Repository Settings Tab
+5. Add these values as new repository secrets in GitHub: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+    1. Navigate to your GitHub Repository Settings Tab
     2. In the menu navigate to “Secrets and variables” —> “Actions”
     3. Click on the button “New repository secret” to add a new secret
 
 ## Implement the Deploy job
 
-Now that we have everything set up we can actually deploy our built application to Vercel. In order to do so we are going to create one last job in our Github Actions workflow file.
+Now that we have everything set up we can actually deploy our built application to Vercel. In order to do so we are going to create one last job in our GitHub Actions workflow file.
 
 We are going to call this job “Deploy” and make it dependent on the three jobs we’ve defined before: `needs: [Lint, Test, Build]`. This means this job will only be executed when all three of the jobs succeed.
 
@@ -279,7 +279,7 @@ environment:
 
 Which will look like the example below.
 
-![Github Preview Deployment CTA](/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-preview-deployment-cta.png)
+![GitHub Preview Deployment CTA](/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-preview-deployment-cta.png)
 
 ## Completed Preview Deployment workflow file
 
@@ -418,9 +418,9 @@ jobs:
 
 Commit your changes to the workflow file to your repository and open a PR. Once you open a PR you will notice that the pipelines will start running. This gives a great overview for developers to see what the progress is for every step it takes. Need to debug a failed step? Click on “details” and find out more.
 
-![Github PR checks executed by Github Actions](/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-pr-checks.png)
+![GitHub PR checks executed by GitHub Actions](/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-pr-checks.png)
 
-This is an example of a workflow jobs running in Github Actions.
+This is an example of a workflow jobs running in GitHub Actions.
 
 ## Workflow file for Production deployments
 
@@ -476,7 +476,8 @@ The `Build` job builds the project with the "production" configuration from your
 ### Deploy to production
 Lastly the `Deploy` step will take care off deploying your application to Vercel. In this example I already accounted for an additional job to deploy configuration to Firebase. One of the benefits of separate jobs is that the Deployment to Vercel & Firebase can now run paralell and reduces the time of mismatches between code and configuration.
 
-An example of the job can be found below.
+### Additional production deployment jobs
+Below I created an example of an additional deployment job that in my case removes the need for manually firing these commands as part of the production deployment.
 
 ```yml
 Deploy-Firebase:
@@ -501,12 +502,12 @@ Deploy-Firebase:
 
 ## Wrap up
 
-Creating your CI/CD pipelines with Github Actions is fairly easy and extremely convenient when you want to take more control. In this article I’ve showed you how you can lint, test and build your project on Github and ultimately deploy it to Vercel.
+Creating your CI/CD pipelines with GitHub Actions is fairly easy and extremely convenient when you want to take more control. In this article I’ve showed you how you can lint, test and build your project on GitHub and ultimately deploy it to Vercel.
 
 ### Benefits
-If you ask me there are quite some benefits creating your CI/CD pipelines in Github Actions:
+If you ask me there are quite some benefits creating your CI/CD pipelines in GitHub Actions:
 
-- Provide a better developer experience due to better feedback / integration, you have everything in one place: Github.
+- Provide a better developer experience due to better feedback / integration, you have everything in one place: GitHub.
 - Enforce code quality before merging a PR.
 - Ensure reliability by requiring successfully executed test suites.
 
