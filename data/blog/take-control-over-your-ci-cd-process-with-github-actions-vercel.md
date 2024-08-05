@@ -228,7 +228,7 @@ We are going to call this job “Deploy” and make it dependent on the three jo
 
 ```yaml
 jobs:
-	Deploy:
+  Deploy:
     needs: [Lint, Test, Build]
     name: Deploy to preview environment
     runs-on: ubuntu-latest
@@ -372,7 +372,7 @@ jobs:
           name: build
           path: .vercel/output
 
-	Deploy:
+  Deploy:
     needs: [Lint, Test, Build]
     name: Deploy to preview environment
     runs-on: ubuntu-latest
