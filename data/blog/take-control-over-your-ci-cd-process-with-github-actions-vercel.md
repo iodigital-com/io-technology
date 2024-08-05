@@ -197,7 +197,7 @@ First of all we need to set up the first steps for this Job again: checkout the 
 
 The next step is to actually build the project with the Vercel CLI. We set a parameter `--yes` which skips questions being asked by the CLI.  Then we set a parameter to tell the CLI to which environment this build should be deployed: `--environment=preview`.
 
-Because we are running this step in parallel with the linting and testing steps, we will store the output of the build in an artifact *(what’s an artifact explainer here*). We will later on use this artifact in the deployment job.
+Because we are running this step in parallel with the linting and testing steps, we will store the output of the build in an artifact [^5]. We will later on use this artifact in the deployment job.
 
 ### Connect the Vercel CLI to your project
 
@@ -530,4 +530,5 @@ Thanks for reading.
 [^2]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
 [^3]: https://docs.github.com/en/actions/about-github-actions/understanding-github-actions#runners
 [^4]: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+[^5]: https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/storing-workflow-data-as-artifacts
 ---
