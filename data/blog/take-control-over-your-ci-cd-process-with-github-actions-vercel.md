@@ -31,7 +31,7 @@ In this article I will show you how to set up your CI/CD pipelines using GitHub 
 
 ## Intro to Vercel
 
-Vercel is a very convenient hosting solution for modern JavasScript applications and lets you deploy your application in seconds. It is running on a managed infrastructure which means you don’t have to worry about maintaining it. Vercel offers out-of-the-box optimizations to enhance your security and performance. Their platforms supports a wide range of frameworks so there is a big chance Vercel is a very convenient way for you to host your application.
+Vercel is a very convenient hosting solution for modern JavaScript applications and lets you deploy your application in seconds. It is running on a managed infrastructure which means you don’t have to worry about maintaining it. Vercel offers out-of-the-box optimizations to enhance your security and performance. Their platforms supports a wide range of frameworks so there is a big chance Vercel is a very convenient way for you to host your application.
 
 One nice thing about Vercel is that it offers Previews of your development code. With every PR you create you could push your changes to Vercel and deploy a tailored preview environment which you can use to debug, collaborate and share your current state of development. Vercel will create a unique URL and attaches it to the environment.
 
