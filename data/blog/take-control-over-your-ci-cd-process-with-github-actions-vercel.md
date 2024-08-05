@@ -267,7 +267,7 @@ jobs:
         run: echo "url=$(tail -1 deploy.log)">> $GITHUB_OUTPUT
 ```
 
-In this Job we download the built artifact that we uploaded in the “Build” job. This avoids the runner to build the project once again. After downloading the artifact we now install the Vercel CLI and will we deploy the project build output to Vercel with `vercel deploy`. By passing the parameter `--prebuilt` we tell Vercel that we have already built the application and therefore Vercel don’t have to run any CI steps on their platform.
+In this Job we download the built artifact that we uploaded in the `Build` job. This avoids the runner to build the project once again. After downloading the artifact we now install the Vercel CLI and will we deploy the project build output to Vercel with `vercel deploy`. By passing the parameter `--prebuilt` we tell Vercel that we have already built the application and therefore Vercel don’t have to run any CI steps on their platform.
 
 We store the output of the `vercel deploy` command in a log file where it will store the newly created Preview Environment URL. In the second last step you can see we are grabbing the preview URL and save it in a variable to the “seturl” step. At the beginning of the job we defined `environment` which allows us to post a link to environment to our PR updates.
 
@@ -510,6 +510,12 @@ If you ask me there are quite some benefits creating your CI/CD pipelines in Git
 - Provide a better developer experience due to better feedback / integration, you have everything in one place: GitHub.
 - Enforce code quality before merging a PR.
 - Ensure reliability by requiring successfully executed test suites.
+
+### Downsides
+
+Of course with every approach there are downsides. These are the two biggest downsides I think are important to mention:
+- The "zero-configuration" integration from Vercel provides more features out of the box, you will have to integrate those manually. Such as Preview comments updates.
+- There is definitely some time investment involved when setting up your own pipelines in Github Actions, for smaller hobby projects this might be too much.
 
 ### Create your own plan
 
