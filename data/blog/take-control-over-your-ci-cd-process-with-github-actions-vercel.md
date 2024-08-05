@@ -2,7 +2,7 @@
 title: 'Take control over your CI/CD process: Use GitHub Actions to deploy to Vercel'
 date: '2024-08-05'
 tags: ['ci/cd', 'github actions', 'vercel']
-images: [/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-actions-workflow-runs.png]
+images: [/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel/github-actions-workflow-runs.jpg]
 summary: 'How do you take full advantage of GitHub when you deploy to Vercel? Let GitHub Actions take care of your pipelines and let Vercel do the hosting.'
 authors: ['clarke-verdel']
 theme: 'blue'
