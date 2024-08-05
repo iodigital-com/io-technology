@@ -229,42 +229,42 @@ We are going to call this job “Deploy” and make it dependent on the three jo
 ```yaml
 jobs:
 	Deploy:
-	    needs: [Lint, Test, Build]
-	    name: Deploy to preview environment
-	    runs-on: ubuntu-latest
-	    environment:
-	      name: preview
-	      url: ${{ steps.seturl.outputs.url }}
-	    steps:
-	      - uses: actions/checkout@v4
+    needs: [Lint, Test, Build]
+    name: Deploy to preview environment
+    runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ steps.seturl.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
 
-	      # Set node version
-	      - name: Use Node.js ${{ env.NODE_VERSION }}
-	        uses: actions/setup-node@v4
-	        with:
-	          node-version: ${{ env.NODE_VERSION }}
-	          cache: yarn
+      # Set node version
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
 
-	      # Download build artifcact
-	      - name: Download build artifact
-	        uses: actions/download-artifact@v4
-	        with:
-	          name: build
-	          path: .vercel/output/
+      # Download build artifcact
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: .vercel/output/
 
-	      # Install Vercel CLI
-	      - name: Install Vercel CLI
-	        run: yarn global add vercel@canary
+      # Install Vercel CLI
+      - name: Install Vercel CLI
+        run: yarn global add vercel@canary
 
-	      # Deploy
-	      - name: Deploy Project Artifacts to Vercel
-	        shell: bash
-	        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} | tee deploy.log
+      # Deploy
+      - name: Deploy Project Artifacts to Vercel
+        shell: bash
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} | tee deploy.log
 
-	      # Set preview url
-	      - id: seturl
-	        name: Set preview url
-	        run: echo "url=$(tail -1 deploy.log)">> $GITHUB_OUTPUT
+      # Set preview url
+      - id: seturl
+        name: Set preview url
+        run: echo "url=$(tail -1 deploy.log)">> $GITHUB_OUTPUT
 ```
 
 In this Job we download the built artifact that we uploaded in the “Build” job. This avoids the runner to build the project once again. After downloading the artifact we now install the Vercel CLI and will we deploy the project build output to Vercel with `vercel deploy`. By passing the parameter `--prebuilt` we tell Vercel that we have already built the application and therefore Vercel don’t have to run any CI steps on their platform.
@@ -426,9 +426,9 @@ This is an example of a workflow jobs running in Github Actions.
 
 Now that the Preview Deployment step is covered a new file for Production Deployments can be created. `.github/workflows/production-deployment.yml`. This workflow file is very similar to the workflow that handles Preview Deployments on your PR, but there are some slight differences that I'd like to take you through:
 
-- a different workflow trigger;
-- preparing a Vercel production build;
-- optional production release steps;
+- A different workflow trigger
+- Preparing a Vercel production build
+- Optional production release steps
 
 ```yaml
 name: Production Deployment to Vercel
@@ -479,23 +479,23 @@ Lastly the `Deploy` step will take care off deploying your application to Vercel
 An example of the job can be found below.
 
 ```yml
-  Deploy-Firebase:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: prod-build/
-      - uses: actions/setup-node@v3
-      - uses: w9jds/setup-firebase@main
-        with:
-          tools-version: 11.9.0
-          firebase_token: ${{ secrets.FIREBASE_TOKEN }}
-      - name: Deploy Firebase Security Rules
-        run: npm firebase-deploy-rules
+Deploy-Firebase:
+  needs: Build
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-artifacts
+        path: prod-build/
+    - uses: actions/setup-node@v3
+    - uses: w9jds/setup-firebase@main
+      with:
+        tools-version: 11.9.0
+        firebase_token: ${{ secrets.FIREBASE_TOKEN }}
+    - name: Deploy Firebase Security Rules
+      run: npm firebase-deploy-rules
 ```
 
 
@@ -507,15 +507,15 @@ Creating your CI/CD pipelines with Github Actions is fairly easy and extremely c
 If you ask me there are quite some benefits creating your CI/CD pipelines in Github Actions:
 
 - Provide a better developer experience due to better feedback / integration, you have everything in one place: Github.
-- Enforce code quality before merging a PR
-- Ensure reliability by requiring successfully executed test suites
+- Enforce code quality before merging a PR.
+- Ensure reliability by requiring successfully executed test suites.
 
 ### Create your own plan
 
 While for my project it seemed logical to approach it this way it could mean something different for your project. Think up front how you’d like your pipelines to run. It may depend on different factors and project size. I can give you a few tips:
 
-- Running jobs in parallel is powerful, but doesn't always make sense
-- Debug your workflow to see if you can improve execution time and efficiency
+- Running jobs in parallel is powerful, but doesn't always make sense.
+- Debug your workflow to see if you can improve execution time and efficiency.
 
 Thanks for reading.
 
