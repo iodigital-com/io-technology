@@ -21,7 +21,7 @@ const MobileNav = () => {
     <div className="pointer-events-auto sm:hidden">
       <button
         type="button"
-        className=" h-16 w-16 rounded-full border border-gray-100 bg-white p-5"
+        className="h-16 w-16 rounded-full border border-gray-100 bg-white p-5"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
