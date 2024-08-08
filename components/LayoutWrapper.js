@@ -17,6 +17,7 @@ const LayoutWrapper = ({ children }) => {
     const headerHeight = headerRef.current.scrollHeight
     const handleScroll = () => {
       const hasScrolledPasHeader = window.scrollY >= headerHeight
+
       setScrolledPassedHeader(hasScrolledPasHeader)
 
       if (!hasScrolledPasHeader) {
@@ -39,7 +40,7 @@ const LayoutWrapper = ({ children }) => {
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
           scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
-        } py-4 px-4 xl:bg-io_${themeBg}-500`}
+        } px-4 py-4 xl:bg-io_${themeBg}-500`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
@@ -66,7 +67,10 @@ const LayoutWrapper = ({ children }) => {
               </div>
             </Link>
           </div>
-          <div className="relative flex items-center text-base leading-5" ref={navigationItemsRef}>
+          <div
+            className={`relative flex items-center text-base leading-5`}
+            ref={navigationItemsRef}
+          >
             <div
               className={`hidden items-center rounded-full pl-2 sm:flex sm:pr-12 ${
                 navigationIsOpen ? 'pointer-events-auto border-white' : 'border-gray-200'
@@ -120,7 +124,7 @@ const LayoutWrapper = ({ children }) => {
                 </svg>
               </button>
               <span
-                className={`absolute top-0 right-0 bottom-0 -z-10 h-16 w-full rounded-full border border-gray-200 bg-white transition-all duration-300 ease-out ${
+                className={`absolute bottom-0 right-0 top-0 -z-10 h-16 w-full rounded-full border border-gray-200 bg-white transition-all duration-300 ease-out ${
                   navigationIsOpen ? `max-w-2xl` : 'max-w-[calc(72px)]'
                 }
                 ${scrolledPassedHeader ? 'sm:opacity-100' : 'opacity-0'}`}
