@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Ayo Ayco
 avatar: /authors/ayo-ayco.png
 occupation: Senior Frontend Developer

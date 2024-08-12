@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Jelle Biesemans
 avatar: /authors/jelle-biesemans.jpg
 occupation: JavaScript Developer

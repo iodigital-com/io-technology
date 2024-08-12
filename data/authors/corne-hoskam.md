@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Corné Hoskam
 avatar: /authors/corne-hoskam.jpg
 occupation: Software Engineer & Umbraco Domain Lead
