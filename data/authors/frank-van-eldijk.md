@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Frank van Eldijk-Smeding
 avatar: /authors/frank-van-eldijk.jpeg
 occupation: Senior Frontend Consultant & Lead Accessibility

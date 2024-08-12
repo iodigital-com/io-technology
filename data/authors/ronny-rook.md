@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Ronny Rook
 avatar: /authors/ronny-rook.jpg
 occupation: Front-end Developer

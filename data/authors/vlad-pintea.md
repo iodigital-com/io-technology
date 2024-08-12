@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Vlad Pintea-Gärtner
 avatar: /authors/vlad-pintea.jpeg
 occupation: Senior Frontend Consultant

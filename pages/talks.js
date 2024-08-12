@@ -58,6 +58,12 @@ export default function Talks({ talks, authors }) {
         <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">
           {talks.map((talk) => {
             const talkAuthors = talk.authors.map((author) => authors[author])
+            const hasArchivedAuthor = talkAuthors.find((author) => author.archived)
+
+            if (hasArchivedAuthor) {
+              return null
+            }
+
             return <Talk key={talk.title} {...talk} authors={talkAuthors} />
           })}
         </ul>

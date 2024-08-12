@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Albert Groothedde
 avatar: /authors/albert-groothedde.jpeg
 occupation: Software Engineer & Developer Advocate

@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Luuk Rijnbende
 avatar: /authors/luuk-rijnbende.jpg
 occupation: Senior Frontend Consultant

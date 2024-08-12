@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Roy Berris
 avatar: /authors/roy-berris.jpg
 occupation: Back-end Developer

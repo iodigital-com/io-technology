@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Mohamad Shiralizadeh
 avatar: /authors/mohamad-shiralizadeh.jpeg
 occupation: Senior Frontend Developer

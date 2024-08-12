@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Ali Göktaş
 avatar: /authors/ali-goktas.jpg
 occupation: Software Developer

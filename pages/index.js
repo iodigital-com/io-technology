@@ -40,6 +40,8 @@ export default function Home({ posts, videos, jobs, contributors }) {
     return acc
   }, {})
 
+  const activeContributors = contributors.filter((contributor) => !contributor.archived)
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -152,7 +154,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
         <span className="font-serif font-light">speakers</span>
       </SectionTitle>
       <div className="container mx-auto mt-8">
-        <ContributorsGrid contributors={contributors} />
+        <ContributorsGrid contributors={activeContributors} />
       </div>
 
       <SectionTitle id="videos">
