@@ -8,9 +8,9 @@ authors: ['michelle-van-der-linde']
 theme: 'blue'
 ---
 
-### Project approach
+## Project approach
 
-I started this project with the **aim** of learning `Kotlin`, `Kafka`, and `Docker` and wanted a great business idea as well.
+I started this project with the **aim** of learning Kotlin, Kafka, and Docker and wanted a great business idea as well.
 
 The aim is clear right, however, this was what I ended up spending most of my time on:
 
@@ -22,9 +22,9 @@ The aim is clear right, however, this was what I ended up spending most of my ti
 - Debugging to see where things went wrong
 
 Sounds familiar.... although the above is very important it did create a lot of overhead which derailed me from my main objective which was to learn cool technologies.
-So I took a `Minimum Business logic` approach while incorporating `Verification of Implementation` throughout the development process.
+So I took a Minimum Business logic approach while incorporating Verification of Implementation throughout the development process.
 
-For me, the `Minimum Business logic` was :
+For me, the Minimum Business logic was :
 
 - To create a single endpoint in the ProducerApp that accepts an object
 - Place that object on a topic in Kafka
@@ -36,13 +36,13 @@ This created a clear view of what I was busy with currently and if something bro
 After I configured the technologies to communicate with each other I could now proceed to implementing the business logic knowing that
 my base is well-defined.
 
-### Technology Integration
+## Technology Integration
 
-#### Kotlin
+### Kotlin
 
 `Kotlin is a programming language that makes coding concise, cross-platform, and fun`. To learn more https://kotlinlang.org/
 
-- I've been a Java developer for over 10 years, but I must admit the one thing that stands out for me the most is the ease of writing and reading the code
+- I've been a Java developer for over 10 years, but I must admit the one thing that stands out for me the most is the ease of writing and reading the code.
 - The `?` symbol has been my favorite up until now. It indicates that this field can be NULL or that this function could return a NULL object
 
 ```kotlin
@@ -83,9 +83,9 @@ class Consumer(private val yourService: YourService) {
 }
 ```
 
-#### Kafka
+### Kafka
 
-`Apache Kafka is a distributed event store and stream-processing platform`. To learn more https://kafka.apache.org/
+Apache Kafka is a distributed event store and stream-processing platform. To learn more https://kafka.apache.org/
 
 - Configuring Kafka in your projects
 
@@ -124,7 +124,7 @@ Kafka Dependencies required in both projects
 </dependency>
 ```
 
-#### Docker
+### Docker
 
 Consists of two files
 
@@ -190,9 +190,9 @@ services:
       - KAFKA_BOOTSTRAP_SERVER=kafka:9092
 ```
 
-#### Key things to mention here
+### Key things to mention here
 
-- To enable communication between your microservices and Kafka you have to supply it the config through the environment variables
+To enable communication between your microservices and Kafka you have to supply it the config through the environment variables
 
 ```yaml
 environment:
@@ -207,7 +207,7 @@ environment:
 build: /consumerApp/.
 ```
 
-### Conclusion
+## Conclusion
 
 When starting a new project to learn new technologies you only need the bare minimum business logic to be able to complete your learnings
 and remember to verify your implementation as you code. I hope that my experience assists you in how you can approach your next tech skill.
