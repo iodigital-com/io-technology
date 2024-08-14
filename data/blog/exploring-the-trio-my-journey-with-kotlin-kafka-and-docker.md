@@ -1,6 +1,6 @@
 ---
 title: 'Exploring the Trio: My Journey with Kotlin, Kafka, and Docker'
-date: '2024-07-16'
+date: '2024-08-14'
 tags: ['kotlin', 'kafka', 'docker', 'backend']
 images: ['/articles/exploring-the-trio-my-journey-with-kotlin-kafka-and-docker/the-trio.png']
 summary: 'In this blog, I share my experience of learning Kotlin, Kafka, and Docker while building a Spring-boot application. Join me on this journey as I explore these technologies and provide insights into my project approach, technology integration, and what i like to call the minimum business logic approach.'
