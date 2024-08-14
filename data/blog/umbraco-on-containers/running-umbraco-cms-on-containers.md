@@ -1,9 +1,9 @@
 ---
 title: 'Running Umbraco CMS on containers'
-date: '2024-07-23'
+date: '2024-08-15'
 tags: ['umbraco', 'docker', 'azure']
 summary: 'How to set up Umbraco CMS using Docker contaners'
-authors: ['Ivan-Nikolov']
+authors: ['ivan-nikolov']
 serie: umbraco-on-containers
 --- 
 
@@ -26,7 +26,7 @@ Let’s start with the steps to create an Umbraco CMS as a .Net application in a
 1. Install Docker Desktop for Windows/Linux/MacOS
 2. Install Umbraco Template and create the project
 
-```
+```Shell
 dotnet new install Umbraco.Templates::14.1.1
 
 dotnet new sln --name "UmbracoOnContainers"
@@ -39,6 +39,7 @@ dotnet run --project "Umbraco.Web"
 At this point, I have a running Umbraco website and completing the standard setup wizard will create also the Umbraco local database.
 
 3. Create Umbraco database in a container
+
 I have now a local database created, which could be moved to a container and accessed from the website container later on. A new folder called "Umbraco.Database" is created to store the Dockerfile and two additional scripts needed to run the database in a container.
 I have copied the database files (UmbracoDB.mdf and UmbracoDB_log.ldf) from Umbraco initial setup to the database folder since they will be needed to create the Umbraco database in the container. The folder structure should look like this:
 
@@ -46,11 +47,10 @@ I have copied the database files (UmbracoDB.mdf and UmbracoDB_log.ldf) from Umbr
 
 The Dockerfile contains a definition of what steps are needed to create a Docker image for our database:
 
-```
+```Dockerfile
 FROM mcr.microsoft.com/azure-sql-edge:latest
 
 ENV ACCEPT_EULA=Y
-ENV SA_PASSWORD=SQL_password123
 
 USER root
  
@@ -79,8 +79,8 @@ CMD [ "/opt/mssql/bin/sqlservr" ]
 
 It creates an SQL Server based on azure-sql-edge image and defines environmental variables to configure the paths to be used for databases. It also configures the ports to be exposed (1433) and copies two scripts into the container. These scripts are used to restore the database from the database files when the database container starts. That way when the website starts, it will already have a database in place and will not restore it (if already exists).
 
-setup.sql
-```
+setup.sql:
+```SQL
 USE [master]
 GO
 
@@ -97,8 +97,8 @@ USE UmbracoDb;
 ```
 
 
-startup.sh
-```
+startup.sh:
+```Shell
 #!/bin/bash
 set -e
 
@@ -124,9 +124,10 @@ exec "$@"
  
 
 4. Create Umbraco website in a container
+
 I have already Umbraco running locally, the next step is to create a container for it by defining a Docker image using the following Dockerfile (located in "Umbraco.Web" folder):
 
-```
+```Dockerfile
 # Use the SDK image to build and publish the website
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
@@ -142,11 +143,11 @@ COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Umbraco.Web.dll"]
 ```
 
-The Dockerfile starts with defining the base image, which contains .Net 8 SDK to compile and host the project. There are also instructions to copy the working project to the image, download the dependencies, and compile/publish the output of the project. In the end, it defines an entry point to the binary output of the main project to be able to run it.   
+The Dockerfile starts with defining the base image, which contains .Net 8 SDK to compile and host the project. There are also instructions to copy the working project to the image, download the dependencies, and compile/publish the output of the project. In the end, it defines an entry point to the binary output of the main project in order to run it.   
 
 To be able to connect to the database container, I will need to update Umbraco connection string in "appsettings.Development.json" file as follows:
 
-```
+```Shell
 "ConnectionStrings": {
   "umbracoDbDSN": "Server=umbraco_data;Database=UmbracoDb;User Id=UmbracoBlogUser;Password=VeryStrongPassword];TrustServerCertificate=true",
   "umbracoDbDSN_ProviderName": "Microsoft.Data.SqlClient"
@@ -155,15 +156,16 @@ To be able to connect to the database container, I will need to update Umbraco c
 
 
 5. Use Docker Compose to build and run the containers
+
 In the previous steps, I have defined two Docker images that need to be built and run the corresponding containers - Umbraco Database and Umbraco Web. Let's see how all the above goes together. I will use Docker Compose to deploy both containers using the same network.  
 Docker Compose is a tool used for defining and running multi-container Docker applications. It allows you to manage the configuration and orchestration of multiple Docker containers with a simple and declarative YAML file. This file, typically named docker-compose.yml, specifies the services (names of the container), networks, volumes, and environment variables required by each container.
 
-In my case, I created a docker-compose.yml file in the main folder of the project
+In my case, I created a docker-compose.yml file in the main folder of the project.
 
 ![Folder structure of the main project](/articles/umbraco-on-containers/running-umbraco-cms-on-containers/Folder-structure-main-project.png)
 
 
-```
+```Dockerfile
 version: '3.8'
 
 services:
@@ -225,30 +227,36 @@ networks:
 ```
 
 In the Docker compose file I define two services (containers)
- - umbraco_data - points to the image we defined earlier in Umbraco.Database Dockerfile
- - umbraco_web  - points to the image we defined earlier in Umbraco.Web Docker file
+ - umbraco_data - points to the image I defined earlier in Umbraco.Database Dockerfile
+ - umbraco_web  - points to the image I defined earlier in Umbraco.Web Dockerfile
 
-Between them I create a shared network they will use to communicate with each other. I also create volumes for the database, media, and logs files, so we have persistent storage (similarly, the same could be done for uSync for example, storing its config files). 
+Between them I create a shared network they will use to communicate with each other. I also create volumes for the database, media, and logs files to have persistent storage (similarly, the same could be done for uSync for example, storing its config files). 
 That would mean that deleting and recreating the containers will not remove the database and media files as they are stored in the physical file system of my PC and not in the container itself. 
 
 Now that I have everything described in the docker-compose, it is time to start things up using the following commands:
 
 
-```
+```Shell
 docker compose build
 ```
  
-This command will create the images, described in the docker-compose file. Once completed I can see them in Docker Desktop or by using the “docker images“ command in a terminal. 
+This command will create the images, described in the docker-compose file. Once completed I can see them in Docker Desktop or by using the “docker images“ command in a terminal.
+
+Docker images: 
 
 ![Docker images](/articles/umbraco-on-containers/running-umbraco-cms-on-containers/Docker-images.png)
 
-```
+```Shell
 docker compose up -d
 ```
  
 This command will run the containers based on the previously created images. It will also create the volumes for the Umbraco database and images files.
 
+Docker containers:
+
 ![Docker containers](/articles/umbraco-on-containers/running-umbraco-cms-on-containers/Docker-containers.png)
+
+Docker volumes:
 
 ![Docker volumes](/articles/umbraco-on-containers/running-umbraco-cms-on-containers/Docker-volumes.png)
 
