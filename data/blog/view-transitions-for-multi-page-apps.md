@@ -25,7 +25,7 @@ Consider this transition below:
 
 Before, you had to load the markup for the next page, put it on top of the card, make the animation, make sure to clean up the old view and finally update the URL. Quite a bit of effort for relatively simple transitions. Luckily, the View Transition API makes this incredibly easy.
 
-Read more on how this exactly is done technically in my article [_The View Transitions API: Enhancing the feel of the web_](https://www.notion.so/View-Transitions-for-Multi-page-Apps-0681373b90654451b98029ac4156acd8?pvs=21). This, however, only works with client-side navigation in a Single Page App (SPA)
+Read more on how this exactly is done technically in my article [_The View Transitions API: Enhancing the feel of the web_](/articles/the-view-transitions-api). This, however, only works with client-side navigation in a Single Page App (SPA)
 
 ### Between “views”
 
@@ -35,7 +35,7 @@ But of course, this doesn’t just apply to transitioning between two “pages�
 <img src='/articles/view-transitions-for-multi-page-apps/view-transitions-for-multi-page-apps-adding-animated.gif' alt='Screen recording showing an item being added and the grid of cards animate into place'  />
 </div>
 
-If you want to read more on how this is done, head over to my article [_Make awesome animated interactions with two lines of code_](https://www.notion.so/View-Transitions-for-Multi-page-Apps-0681373b90654451b98029ac4156acd8?pvs=21).
+If you want to read more on how this is done, head over to my article [_Make awesome animated interactions with two lines of code_](/articles/view-transitions-api-animated-interactions).
 
 ## So why the excitement for MPAs?
 
