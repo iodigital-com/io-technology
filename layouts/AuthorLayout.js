@@ -5,8 +5,9 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
 import SectionTitle from '@/components/SectionTitle'
 import Talk from '@/components/Talk'
+import Workshop from '@/components/Workshop'
 
-export default function AuthorLayout({ children, frontMatter, posts, talks }) {
+export default function AuthorLayout({ children, frontMatter, posts, talks, workshops }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
 
   const { theme } = useBrandingTheme()
@@ -114,6 +115,21 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
               {talks.map((talk) => {
                 return <Talk key={talk.title} {...talk} authors={[]} />
+              })}
+            </ul>
+          </section>
+        </>
+      ) : null}
+
+      {workshops.length ? (
+        <>
+          <SectionTitle>
+            Workshops by <span className="font-serif font-light">{name}</span>
+          </SectionTitle>
+          <section className="container mx-auto max-w-2xl">
+            <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
+              {workshops.map((workshop) => {
+                return <Workshop key={workshop.title} {...workshop} authors={[]} />
               })}
             </ul>
           </section>
