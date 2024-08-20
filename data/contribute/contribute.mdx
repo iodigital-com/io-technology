@@ -14,11 +14,11 @@ The iO tech blog has the following target audiences:
 
 ## What can I contribute?
 
-The iO tech_hub is a place for a variety of content. Whether you want to add a blog, video, podcast or talk, the tech_hub is the place to be. We share content through a variety of channels. Did you know we have an [iO technology YouTube channel](https://www.youtube.com/channel/UCNhy3hGzwMfbtX3Ei8Htcpg) as well?
+The iO tech_hub is a place for a variety of content. Whether you want to add a blog, video, talk or workshop, the tech_hub is the place to be. We share content through a variety of channels. Did you know we have an [iO technology YouTube channel](https://www.youtube.com/channel/UCNhy3hGzwMfbtX3Ei8Htcpg) as well?
 Whether you have content in the above form or a new one, reach out to us and we’ll guide you.
 Need to write your hours? Find the most relevant project of the Center of Excellence and create a Jira issue to write them. Reach out to Raymond Muilwijk if you need help.
 
-## How to write a blog?
+## Contributing a blog
 
 One of the most used forms of sharing knowledge on the iO tech_hub is writing blogs. You might already have an idea of what you want to write about. Generally, blogs on the iO tech_hub are not too long. It’s a collection of bite-size content that inspires people. Here are some tips and “rules” when contributing with a blog:
 
@@ -34,7 +34,7 @@ One of the most used forms of sharing knowledge on the iO tech_hub is writing bl
 - Make your code examples short and to the point and remove parts not relevant to the context
 - Did you include a (cover) image? Make sure it is copyright-free! Pexels, Unsplash and Pixabay offer free stock photos of high-quality.
 
-## How can I contribute with a blog?
+### How can I get my blog on the tech_hub?
 
 The steps for contributing with a blog are pretty minimal. The goal is to make it as easy as possible for you to contribute to the tech_hub. Excited? Here are the steps to contribute with a blog:
 
@@ -48,6 +48,7 @@ The steps for contributing with a blog are pretty minimal. The goal is to make i
   - Provide the metadata you want to share
   - Add an image of yourself to [public/authors](https://github.com/iodigital-com/io-technology/tree/develop/public/authors)
 - Add your blog in [data/blog](https://github.com/iodigital-com/io-technology/tree/develop/data/blog)
+  - Are you writing a series of blogs that belong together? You can then create a series under [data/series](https://github.com/iodigital-com/io-technology/tree/develop/data/series). Then, add a field to your blog with the value of that series (e.g. `series: my-series`). This will enhance the page with a series overview and more.
   - The filename will be the slug used (e.g. `top-front-end-frameworks.md` will be mapped to `/articles/top-front-end-frameworks`
   - Copy the content of one of the other markdown files to ensure you follow the Frontmatter structure
   - Fill in the required metadata of your article
@@ -59,16 +60,24 @@ The steps for contributing with a blog are pretty minimal. The goal is to make i
   - The folder name should match the slug you created earlier (e.g. `top-front-end-frameworks`
 - [Run the tech_hub locally](https://github.com/iodigital-com/io-technology) to see if you are satisfied with how the article looks
 - Open a pull request from your fork branch to the tech_hub `develop` branch
-  - Notify Dave Bitter or Brecht De Ruyte
+  - Notify [Dave Bitter](mailto:dave.bitter@iodigital.com) or [Brecht De Ruyte](mailto:brecht.deruyte@iodigital.com)
   - Get a pull request review
   - Get your blog merged and published
 - Share your blog on socials and relevant iO Slack channels
 - The blogs will become the property of iO after you contribute, credited with your name
 - Feel free to also post it on your own blog with a canonical url (preferable with message/link saying it was originally posted here)
 
-## How is a blog reviewed?
+### How is a blog reviewed?
 
 We try to keep contributing as easy as possible but we do like to do a small review. After submitting the PR we will ask you to find a colleague who can review the contents of your blog.
+
+## Contributing a talk or workshop
+
+Similar to contributing with a blog, you can also contribute with a talk or workshop. You'll follow the same steps, with the exception of the content being a talk in [data/talks](https://github.com/iodigital-com/io-technology/tree/develop/data/talks) or workshop in [data/workshops](https://github.com/iodigital-com/io-technology/tree/develop/data/workshops).
+
+### Does this mean I need to give the talk or workshop?
+
+No, you're never "forced" to give a talk or workshop. We merely use this as an overview for us to see what we could offer to events. Also, people organising events might find your talk or workshop interesting and reach out to us. We can then always discuss it with you.
 
 ## Who can I reach out to regarding the tech_hub?
 
