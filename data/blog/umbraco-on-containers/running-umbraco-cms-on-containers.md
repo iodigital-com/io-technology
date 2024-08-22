@@ -2,7 +2,7 @@
 title: 'Running Umbraco CMS on containers'
 date: '2024-08-15'
 tags: ['umbraco', 'docker', 'azure']
-summary: 'How to set up Umbraco CMS using Docker contaners'
+summary: 'How to set up Umbraco CMS using Docker containers'
 authors: ['ivan-nikolov']
 serie: umbraco-on-containers
 --- 
@@ -149,7 +149,7 @@ To be able to connect to the database container, I will need to update Umbraco c
 
 ```Shell
 "ConnectionStrings": {
-  "umbracoDbDSN": "Server=umbraco_data;Database=UmbracoDb;User Id=UmbracoBlogUser;Password=VeryStrongPassword];TrustServerCertificate=true",
+  "umbracoDbDSN": "Server=umbraco_data;Database=UmbracoDb;User Id=UmbracoBlogUser;Password=VeryStrongPassword;TrustServerCertificate=true",
   "umbracoDbDSN_ProviderName": "Microsoft.Data.SqlClient"
 }
 ```
