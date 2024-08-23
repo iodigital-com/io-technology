@@ -1,6 +1,6 @@
 ---
 title: 'Running Umbraco CMS on containers'
-date: '2024-08-15'
+date: '2024-08-22'
 tags: ['umbraco', 'docker', 'azure']
 summary: 'How to set up Umbraco CMS using Docker containers'
 authors: ['ivan-nikolov']
