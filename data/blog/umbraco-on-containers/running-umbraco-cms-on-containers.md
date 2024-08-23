@@ -79,8 +79,7 @@ CMD [ "/opt/mssql/bin/sqlservr" ]
 
 It creates an SQL Server based on azure-sql-edge image and defines environmental variables to configure the paths to be used for databases. It also configures the ports to be exposed (1433) and copies two scripts into the container. These scripts are used to restore the database from the database files when the database container starts. That way when the website starts, it will already have a database in place and will not restore it (if already exists).
 
-setup.sql:
-```SQL
+```SQL:setup.sql
 USE [master]
 GO
 
