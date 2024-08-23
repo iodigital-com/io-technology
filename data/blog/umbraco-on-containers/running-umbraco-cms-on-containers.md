@@ -97,8 +97,7 @@ USE UmbracoDb;
 ```
 
 
-startup.sh:
-```Shell
+```Shell:startup.sh
 #!/bin/bash
 set -e
 
