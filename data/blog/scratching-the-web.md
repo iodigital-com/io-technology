@@ -2,14 +2,15 @@
 title: 'Scratching the web'
 date: '2024-08-26'
 tags: ['frontend', 'js', 'Audio']
-summary: 'Using the Web Audio API to create a realtime turntable.'
+images: ['/articles/scratching-the-web/cover.png']
+summary: 'How can we use the Web Audio API to create a working realtime turntable? Read my approach and how you might make your own!'
 authors: ['pim-van-die']
 theme: 'blue'
 ---
 
-Browsers are awesome. The capabilities are almost endless with API's like WebRTC, WebGL, canvas, or the Web Audio API. This article will focus on the latter. And although it can do a lot, here I'm only going to touch the basics. Using it to control and reverse audio to create a working turntable.
+Browsers are awesome. The capabilities are almost endless with API's like WebRTC, WebGL, canvas, or the Web Audio API. This article will focus on the latter. Although the Web AUdio API can do a lot, I'm only going to cover the basics. I'll use it to load a track, control the playback speed, reverse it and eventually make a working turntable!
 
-The article will be in a few parts:
+This article will consist of a few parts:
 
 1.  The record: making it spin and able to drag cq. scratch
 2.  The audio: loading, reversing and controlling the playback speed
@@ -21,9 +22,11 @@ An example of what can be made: [The turntable](https://pimskie.github.io/scratc
 
 ## The record
 
-A real turntable consists of a multitude of elements, but for this article, I'll focus on the record.
+A real turntable consists of a multitude of elements. Like pitch control, an arm with a needle of course and maybe a strobe light. But for this article I'll focus on the record only.
 
 ### What should the record do?
+
+So first we need to determine what functionality the record should have. In essence, it comes down to these:
 
 - Rotate: Whether "by hand" or automatically.
 - Stop: When it is clicked, it should stop. Simulating a finger pressed on the record.
@@ -31,7 +34,7 @@ A real turntable consists of a multitude of elements, but for this article, I'll
 
 ### The Record implementation
 
-It should have some properties
+To implement the basic functionalities, a few properties need to be defined:
 
 - `angle`: a number which tracks the current rotation
 - `isDragging`: whether the user is dragging the record (eg. when I'm "scratching")
@@ -45,7 +48,7 @@ Some functions and listeners:
 
 Within the `pointerdown` listener I'll indicate that the record should not rotate automatically and set the starting drag position:
 
-```js
+```JS:Record.js
  onPointerDown(e: PointerEvent) {
   isDragging = true;
 
@@ -56,7 +59,7 @@ Within the `pointerdown` listener I'll indicate that the record should not rotat
 }
 ```
 
-```js
+```JS:Record.js
 onPointerUp() {
   isDragging = false;
 }
@@ -73,7 +76,7 @@ The difference between "AC" and "BC" is "D", the angle dragged.
 The three built-in functions needed for the calculations are `Math.atan2`, `Math.sin`, and `Math.cos`.
 With those 2 helper functions can be made:
 
-```JS
+```JS:Record.js
 const angleBetween = (vec1: Vector, vec2: Vector) = Math.atan2(vec2.y - vec1.y, vec2.x - vec1.x);
 const angleDifference = ({ x, y }: Vector) => Math.atan2(Math.sin(x - y), Math.cos(x - y));
 
@@ -92,7 +95,7 @@ onPointerMove({ x, y }) {
 
 Now the only thing needed is a looping function to update the record visual:
 
-```JS
+```JS:Record.js
 loop() {
   if (!isDragging) {
     setAngle(angle + 0.05);
@@ -122,7 +125,7 @@ With that data the actual playback speed can be calculated as follows:
 
 Altering the `loop` function, it should look something like this:
 
-```JS
+```JS:Record.js
 loop() {
   const currentTimestamp = performance.now();
   const differenceTimestamp = currentTimestamp - previousTimestamp;
@@ -146,7 +149,7 @@ loop() {
 
 Note that it calls the new function `autoRotate`:
 
-```js
+```JS:Record.js
 autoRotate(msElapsed: number) {
   const rotationSpeed = RADIANS_PER_MS * msElapsed;
 
@@ -162,7 +165,7 @@ Time to look at the audio.
 Loading the audio is pretty straightforward using a simple `fetch`.  
 The response, which will be an `ArrayBuffer`, is used to create an `AudioBuffer`. Once that is created, an `AudioBufferSourceNode` can be made which will be the actual sound source that can be controlled.
 
-```js
+```js:Audio.js
 const context = new AudioContext()
 
 const response = await fetch(url)
@@ -180,14 +183,14 @@ source.start()
 
 Setting the playback speed is pretty easy. An `AudioBufferSourceNode` as a `playbackRate` property to control the speed:
 
-```JS
+```JS:Audio.js
 // ✅ play at double the speed
 source.playbackRate.value = 2;
 ```
 
 But the value has to be positive. So to play a track in reverse isn't as simple as:
 
-```JS
+```JS:Audio.js
 // ❌ won't work
 source.playbackRate.value = -2;
 ```
@@ -196,13 +199,13 @@ source.playbackRate.value = -2;
 
 An audioBuffer has "channel data" which is a collection of "PCM data". Not interesting for now, but what is interesting, is the fact it is of type `Float32Array`:
 
-```js
+```JS:Audio.js
 const channelData: Float32Array = audioBuffer.getChannelData(0)
 ```
 
 And this is where the trick comes in. Like any array, a `Float32Array` can be reversed. And a new AudioBuffer can be created with a given ChannelData:
 
-```js
+```JS:Audio.js
 // copy and reverse
 const channelDataReversed = channelData.slice(0).reverse();
 
@@ -217,7 +220,7 @@ audioBufferReversed.getChannelData(0).set(channelDataReversed);
 
 So when two audio buffers are available, they can easily be switched depending on the playback speed. For example:
 
-```JS
+```JS:Audio.js
 const buffer = isReversed
   ? audioBufferReversed
   : audioBuffer;
@@ -247,22 +250,19 @@ An easy implementation is when "Record" updates (the "loop" function), it calls 
 
 For example:
 
-```JS
-// Record.js
+```JS:Record.js
 loop() {
   this.callbacks.onLoop({ speed, reversed, offset });
 }
 ```
 
-```JS
-// App.ts
+```JS:App.js
 record.callbacks.onLoop = (updatePayload) => {
   sampler.updateSpeed(updatePayload);
 };
 ```
 
-```JS
-// Audio.ts
+```JS:Audio.js
 updateSpeed({ playbackSpeed, reversed, secondsPlayed }) {
   if (reversed !== isReversed) {
     changeDirection(reversed, secondsPlayed);
@@ -275,5 +275,13 @@ updateSpeed({ playbackSpeed, reversed, secondsPlayed }) {
 }
 ```
 
-After making a quick "UI" representing the turntable, the final result:
-[A turntable](https://pimskie.github.io/scratch/)
+And there we have it! A working turntable, all with some good old plain javascript and the Web Audio API. Make sure to check out the final result:
+
+[The result](https://pimskie.github.io/scratch/)
+
+### Follow ups
+
+This gives an example on how to create a turntable. But what's cooler than one turntable? Two!  
+The next iteration could be making two turntables and put a mixer in between. Maybe with some extra `GainNode`?
+
+See you in the next one!
