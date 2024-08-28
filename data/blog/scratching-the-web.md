@@ -20,6 +20,8 @@ _For the sake of the length of the article, the provided code blocks are simplif
 
 An example of what can be made: [The turntable](https://pimskie.github.io/scratch/)
 
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/cuVeltZcfQ4?si=9hRla5ROES2uDnwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## The record
 
 A real turntable consists of a multitude of elements. Like pitch control, an arm with a needle of course and maybe a strobe light. But for this article I'll focus on the record only.
