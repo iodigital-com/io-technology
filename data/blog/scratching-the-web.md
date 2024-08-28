@@ -1,6 +1,6 @@
 ---
 title: 'Scratching the web'
-date: '2024-08-26'
+date: '2024-08-28'
 tags: ['frontend', 'js', 'Audio']
 images: ['/articles/scratching-the-web/cover.png']
 summary: 'How can we use the Web Audio API to create a working realtime turntable? Read my approach and how you might make your own!'
