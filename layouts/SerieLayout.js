@@ -3,6 +3,7 @@ import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
+import Share from '@/components/Share'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import Serie from '@/components/Serie'
@@ -13,8 +14,18 @@ import formatDate from '@/lib/utils/formatDate'
 import Arrow from '@/data/arrow.svg'
 import Clock from '@/data/clock.svg'
 import { Children } from 'react'
+import EventCalendar from '@/components/EventCalendar'
+import { hasFutureEvents } from '@/lib/events'
 
-export default function PostLayout({ frontMatter, authorDetails, posts, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  posts,
+  events,
+  next,
+  prev,
+  children,
+}) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
   const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
@@ -147,8 +158,20 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
               {Children.count > 0 && (
                 <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
                   {children}
+                  <hr className="my-24" />
+                  <div>
+                    {hasFutureEvents(events) && (
+                      <div className="mb-8">
+                        <h1>Upcoming events</h1>
+                        <EventCalendar events={events} />
+                      </div>
+                    )}
+                    <h1>Share</h1>
+                    <Share />
+                  </div>
                 </div>
               )}
+
               <div className="container mx-auto pb-8 ">
                 <ul>
                   {!posts.length && 'No articles found.'}

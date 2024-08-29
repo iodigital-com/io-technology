@@ -4,8 +4,10 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
+import { getLatestEvents } from '@/lib/events'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
+import EventCarousel from '@/components/EventCarousel'
 import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
@@ -25,14 +27,17 @@ export async function getStaticProps() {
   )
   const { videos } = await getLatestVideos(10)
   const { jobs } = await getLatestJobs(9)
+  const { events } = await getLatestEvents(9)
 
   const allAuthors = await getAllAuthors()
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
-  return { props: { posts, videos, jobs, contributors, theme: 'green' } }
+  return {
+    props: { posts, videos, jobs, events, contributors, theme: 'green' },
+  }
 }
 
-export default function Home({ posts, videos, jobs, contributors }) {
+export default function Home({ posts, videos, jobs, events, contributors }) {
   const { theme } = useBrandingTheme()
 
   const authors = contributors.reduce((acc, author) => {
@@ -161,6 +166,11 @@ export default function Home({ posts, videos, jobs, contributors }) {
         Our latest <span className="font-serif font-light">videos</span>
       </SectionTitle>
       <VideoCarousel videos={videos} />
+
+      <SectionTitle id="events">
+        Our latest <span className="font-serif font-light">events</span>
+      </SectionTitle>
+      <EventCarousel events={events} />
 
       <SectionTitle id="jobs">
         Some of our <span className="font-serif font-light">jobs</span>

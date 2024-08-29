@@ -34,6 +34,8 @@ jobs:
         run: node scripts/youtube.js
       - name: Update Jobs data
         run: node scripts/jobs.js
+      - name: Update Events data
+        run: node scripts/events.js
       - name: Commit and Push updated json files to the repository
         uses: EndBug/add-and-commit@v9
         with:

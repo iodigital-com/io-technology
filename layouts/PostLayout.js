@@ -13,8 +13,18 @@ import formatDate from '@/lib/utils/formatDate'
 import Arrow from '@/data/arrow.svg'
 import Clock from '@/data/clock.svg'
 import SeriePlaylist from '@/components/SeriePlaylist'
+import EventCalendar from '@/components/EventCalendar'
+import { hasFutureEvents } from '@/lib/events'
 
-export default function PostLayout({ frontMatter, authorDetails, serie, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  serie,
+  events,
+  next,
+  prev,
+  children,
+}) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
   const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
@@ -156,8 +166,15 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
             <div className="xl:col-span-2 xl:pb-0">
               <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
                 {children}
+
+                <hr className="my-24" />
                 <div>
-                  <hr className="my-24" />
+                  {hasFutureEvents(events) && (
+                    <div className="mb-8">
+                      <h1>Upcoming events</h1>
+                      <EventCalendar events={events} />
+                    </div>
+                  )}
                   <h1>Share</h1>
                   <Share />
                 </div>

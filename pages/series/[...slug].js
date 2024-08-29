@@ -4,6 +4,7 @@ import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 import { getLatestJobs } from '@/lib/jobs'
+import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
 import path from 'path'
@@ -48,12 +49,14 @@ export async function getStaticProps({ params }) {
 
   const { jobs } = await getLatestJobs(4)
 
+  const { events } = await getLatestEvents(3)
+
   const theme = serie.frontMatter.theme || 'blue'
 
-  return { props: { serie, posts, authorDetails, prev, next, jobs, theme } }
+  return { props: { serie, posts, authorDetails, prev, next, jobs, events, theme } }
 }
 
-export default function Serie({ posts, authorDetails, prev, next, jobs, serie }) {
+export default function Serie({ posts, authorDetails, prev, next, jobs, events, serie }) {
   const { mdxSource, toc, frontMatter } = serie
 
   return (
@@ -70,6 +73,7 @@ export default function Serie({ posts, authorDetails, prev, next, jobs, serie })
             next={next}
             serie={serie}
             posts={posts}
+            events={events}
           />
 
           <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
