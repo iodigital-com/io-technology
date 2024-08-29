@@ -17,7 +17,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
       <PageSEO title={`Author - ${name}`} description={`About me - ${name}`} />
 
       <section className={`bg-io_${theme}-500`}>
-        <div className="container mx-auto pt-8 pb-12">
+        <div className="container mx-auto pb-12 pt-8">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               <Image
@@ -30,7 +30,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
               />
             </div>
 
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-16 xl:mt-12">
               <h1 className="mb-2 text-4xl md:text-5xl xl:text-7xl">{name}</h1>
               <p className="mb-4 text-2xl">{occupation}</p>
               <div className="flex flex-wrap gap-4">

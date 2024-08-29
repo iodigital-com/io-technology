@@ -14,11 +14,11 @@ const EventCarousel = ({ events }) => {
         >
           <div className="relative flex h-full flex-col  bg-gray-100 p-8">
             <header>
-              <h3 className="mb-2 text-3xl font-medium line-clamp-2">{event.title}</h3>
+              <h3 className="mb-2 line-clamp-2 text-3xl font-medium">{event.title}</h3>
 
-              <p className="hyphens-auto text-lg line-clamp-3 ">{event.description}</p>
+              <p className="line-clamp-3 hyphens-auto text-lg ">{event.description}</p>
             </header>
-            <p className="m-0 mt-auto pt-6 text-xs line-clamp-2">
+            <p className="m-0 mt-auto line-clamp-2 pt-6 text-xs">
               <time
                 className={`font-bold ${isFutureEvent(event.dateTime) ? 'text-io_blue-600' : ''}`}
                 dateTime={new Intl.DateTimeFormat('en-US', {
@@ -39,7 +39,7 @@ const EventCarousel = ({ events }) => {
               href={event.eventUrl}
               target="_blank"
               rel="noreferrer"
-              className="absolute top-0 right-0 bottom-0 left-0 text-0"
+              className="absolute bottom-0 left-0 right-0 top-0 text-0"
             >
               Go to page for {event.title}
             </Link>

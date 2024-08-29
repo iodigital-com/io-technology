@@ -20,7 +20,7 @@ export default function Footer() {
             <div>{` • `}</div>
             <Link href="/">{siteMetadata.title}</Link>
           </div>
-          <div className="mb-4 flex flex-col space-y-2 text-center md:flex-row md:space-y-0 md:space-x-2">
+          <div className="mb-4 flex flex-col space-y-2 text-center md:flex-row md:space-x-2 md:space-y-0">
             {siteMetadata.legal.map((link, index) => {
               return (
                 <div key={link.title}>

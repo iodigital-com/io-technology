@@ -79,7 +79,7 @@ export default function PostLayout({
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}
         >
-          <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+          <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
             <dt className="sr-only">Authors</dt>
             <dd>
               <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
@@ -164,7 +164,7 @@ export default function PostLayout({
           </dl>
           <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
             <div className="xl:col-span-2 xl:pb-0">
-              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
+              <div className="container prose mx-auto pb-8 pt-10 dark:prose-dark ">
                 {children}
 
                 <hr className="my-24" />
@@ -235,7 +235,7 @@ export default function PostLayout({
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/articles"
-                className={`relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
+                className={`relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
               >
                 <Arrow className="mr-4 w-6 rotate-180" /> Back to all articles
               </Link>

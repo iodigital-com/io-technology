@@ -11,9 +11,9 @@ const EventCalendar = ({ events }) => {
           }`}
           key={event.id}
         >
-          <h3 className="m-0 text-lg font-medium line-clamp-2">{event.title}</h3>
-          <p className="m-0 text-sm line-clamp-2">{event.description}</p>
-          <p className="m-0 mt-auto pt-6 text-xs line-clamp-2">
+          <h3 className="m-0 line-clamp-2 text-lg font-medium">{event.title}</h3>
+          <p className="m-0 line-clamp-2 text-sm">{event.description}</p>
+          <p className="m-0 mt-auto line-clamp-2 pt-6 text-xs">
             <time
               className={`font-bold ${isFutureEvent(event.dateTime) ? 'text-io_blue-600' : ''}`}
               dateTime={new Intl.DateTimeFormat('en-US', {
@@ -34,7 +34,7 @@ const EventCalendar = ({ events }) => {
             href={event.eventUrl}
             target="_blank"
             rel="noreferrer"
-            className="absolute top-0 right-0 bottom-0 left-0 text-0"
+            className="absolute bottom-0 left-0 right-0 top-0 text-0"
           >
             Go to page for {event.title}
           </Link>

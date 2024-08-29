@@ -55,7 +55,7 @@ const Article = ({ slug, date, title, summary, tags, authors, border = true }) =
           <Link href={`/articles/${slug}`}>
             <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
             <div className="mb-3 hidden md:block">
-              <h3 className="hyphens-auto line-clamp-3">
+              <h3 className="line-clamp-3 hyphens-auto">
                 {<MarkdownRenderer markdown={summary} />}
               </h3>
             </div>

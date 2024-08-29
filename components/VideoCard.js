@@ -6,10 +6,10 @@ const VideoCard = ({ video, playButton = true }) => {
     <article className="relative flex flex-col-reverse items-center bg-gray-100 p-8">
       <div>
         <header>
-          <h3 className="mb-2 text-3xl font-medium line-clamp-2">
+          <h3 className="mb-2 line-clamp-2 text-3xl font-medium">
             <span dangerouslySetInnerHTML={{ __html: video.title }}></span>
           </h3>
-          <p className="hyphens-auto text-lg line-clamp-3 ">{video.description}</p>
+          <p className="line-clamp-3 hyphens-auto text-lg ">{video.description}</p>
         </header>
       </div>
 
@@ -25,7 +25,7 @@ const VideoCard = ({ video, playButton = true }) => {
         />
 
         {playButton && (
-          <div className="absolute top-1/2 left-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-full bg-io_blue-600 align-middle text-white shadow-lg">
+          <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-full bg-io_blue-600 align-middle text-white shadow-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="11"
@@ -43,7 +43,7 @@ const VideoCard = ({ video, playButton = true }) => {
           </div>
         )}
       </div>
-      <Link href={`/videos/${video.id}`} className="absolute top-0 right-0 bottom-0 left-0 text-0">
+      <Link href={`/videos/${video.id}`} className="absolute bottom-0 left-0 right-0 top-0 text-0">
         Go to page for {video.title}
       </Link>
     </article>

@@ -29,7 +29,7 @@ const Workshop = ({ title, summary, authors, tags, video, slides, slug }) => {
 
         <div className="flex flex-grow flex-col justify-end">
           {authors?.map((author) => (
-            <div className="mt-2 mb-3 flex items-center text-lg" key={author.name}>
+            <div className="mb-3 mt-2 flex items-center text-lg" key={author.name}>
               <div className="flex-0 relative mr-3 inline-block h-10 w-10 overflow-hidden rounded-full">
                 <Image
                   key={author.name}
