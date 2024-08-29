@@ -43,4 +43,4 @@ jobs:
           default_author: github_actions
           new_branch: 'develop'
           commit: '--no-verify'
-          message: 'chore(data): update YouTube and jobs files'
+          message: 'chore(data): update YouTube, jobs and events files'
