@@ -57,9 +57,9 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
     <>
       <PageSEO title="Book a talk" description={siteMetadata.description} />
       <section className={`bg-io_${theme}-500`}>
-        <div className="container mx-auto pt-8 pb-24 md:pb-32">
+        <div className="container mx-auto pb-24 pt-8 md:pb-32">
           <div className="grid grid-cols-12">
-            <div className="col-start-1 col-end-12 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-8">
+            <div className="col-start-1 col-end-12 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-8 xl:mt-12">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
                 Ready to be <span className="font-serif font-light">inspired</span>?
               </h1>
@@ -67,7 +67,7 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
                 Discover captivating talks that will ignite your mind!
               </p>
             </div>
-            <div className="col-start-1 col-end-12 mt-10 mb-8 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
+            <div className="col-start-1 col-end-12 mb-8 mt-10 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               {highlightedAuthors.map((author) => (
                 <Contributor key={author.slug[0]} contributor={author} link={false} />
               ))}
@@ -92,7 +92,7 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
       <SectionTitle>
         Some of our <span className="font-serif font-light">most popular</span> talks
       </SectionTitle>
-      <div className="container mx-auto pt-10 pb-4 lg:pt-16">
+      <div className="container mx-auto pb-4 pt-10 lg:pt-16">
         <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">
           {talks.map((talk) => {
             const talkAuthors = talk.authors.map((author) => authors[author])
@@ -104,7 +104,7 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
         <Link
           href="/talks"
           aria-label="all talks"
-          className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+          className="relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
         >
           <span>All Talks</span>
           <Arrow className="ml-4 w-6" />

@@ -58,7 +58,7 @@ export default function Video({ video }) {
           </div>
 
           <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
-            <div className="aspect-w-16 aspect-h-9 my-10">
+            <div className="aspect-h-9 aspect-w-16 my-10">
               <iframe
                 src={`https://www.youtube.com/embed/${video.id}`}
                 title="YouTube video player"

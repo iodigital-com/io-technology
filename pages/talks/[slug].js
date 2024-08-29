@@ -45,7 +45,7 @@ export default function Talk({ talk, authors }) {
       <PageSEO title={`${talk.title} - ${author.name}`} description={talk.summary} />
 
       <section className={`bg-io_${theme}-500`}>
-        <div className="container mx-auto pt-8 pb-12">
+        <div className="container mx-auto pb-12 pt-8">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 flex flex-col text-center md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               <Image
@@ -67,7 +67,7 @@ export default function Talk({ talk, authors }) {
               </div>
             </div>
 
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-16 xl:mt-12">
               <h1 className="mb-2 text-4xl md:text-5xl xl:text-7xl">
                 <MarkdownRenderer markdown={talk.title} />
               </h1>

@@ -76,7 +76,7 @@ export default function Serie({ posts, authorDetails, prev, next, jobs, events, 
             events={events}
           />
 
-          <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
+          <div className="container mx-auto space-y-2 pb-8 pt-6 md:space-y-5">
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
             </h2>

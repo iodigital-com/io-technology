@@ -94,19 +94,19 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
             <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
               <li className="mb-4 flex items-center last:mb-0">
                 <a href="#articles">Our latest articles</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
                 <a href="#videos">Our latest videos</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
                 <a href="#people">Our writers &amp; speakers</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
                 <a href="#jobs">Some of our jobs</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
             </ul>
           </div>
@@ -145,7 +145,7 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
           <Link
             href="/articles"
             aria-label="all posts"
-            className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+            className="relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
           >
             <span>All Posts</span>
             <Arrow className="ml-4 w-6" />
