@@ -13,8 +13,8 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "~16",
-    "npm": "~8"
+    "node": "~20",
+    "npm": "~10"
   },
   "dependencies": {
     "@fontsource/inter": "4.5.2",
