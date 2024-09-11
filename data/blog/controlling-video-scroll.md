@@ -1,6 +1,6 @@
 ---
 title: 'Controlling your video animations with _scroll-timeline_ and _animation-timeline_'
-date: '2024-09-02'
+date: '2024-09-11'
 tags: ['frontend']
 images: ['/articles/animations-scroll-timeline/airpods.jpg']
 summary: "Step into a (very near) future where you can control animations with pure CSS and without the need for any JavaScript? In this article, I'll show you how to control your animations with the new CSS properties scroll-timeline and animation-timeline."
