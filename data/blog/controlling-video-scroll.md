@@ -44,6 +44,9 @@ So my big idea was to create an animation that can be controlled by scrolling. T
 <img src='/articles/animations-scroll-timeline/result.gif' alt='Screen recording of the end result'  />
 </div>
 
+You can also check it out yourself on this [demo page](https://scroll.stevejonk.com/).
+_Disclaimer: at the moment of writing, this only works on chromium browsers._
+
 ### How is it done?
 
 The gist of it is actually:
