@@ -54,7 +54,7 @@ The gist of it is actually:
 
 I’ll explain steps 2 and 3 of this short summary with code examples. Don’t worry, the full repo of this demo is shared at the bottom of the article.
 
-**Create the CSS animation**
+#### Create the CSS animation**
 
 It might sound like video creation with extra steps (I hope you like this Rick & Morty reference), but to create the CSS animation we will recreate the original video sequence by changing the background-image of an element to the next frame (jpg file) for every step of the animation.
 
