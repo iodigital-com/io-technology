@@ -3,7 +3,7 @@ title: 'Controlling your video animations with _scroll-timeline_ and _animation-
 date: '2024-09-02'
 tags: ['frontend']
 images: ['/articles/animations-scroll-timeline/airpods.jpg']
-summary: "Step into a (very near) future where you can control animations with pure CSS and without the need for any JavaScript? In this article, I'll show you how to control your animations with the new CSS properties _scroll-timeline_ and _animation-timeline_."
+summary: "Step into a (very near) future where you can control animations with pure CSS and without the need for any JavaScript? In this article, I'll show you how to control your animations with the new CSS properties scroll-timeline and animation-timeline."
 authors: ['steve-jonk']
 theme: 'green'
 ---
@@ -24,7 +24,7 @@ Think of things like:
 - Sticky Elements with Animated Transitions
 - Scroll-triggered Video and Media Playback
 
-I’ve been wanting to do something like the second idea for some time already, so created a small demo project where an animation is controlled by scrolling. In this article I’ll explain this project in more detail and how it’s done!
+I’ve been wanting to do something like the second idea for some time already, so during our Google Day (a nice team hackathon) I created a small demo project where an animation is controlled by scrolling. In this article I’ll explain this project in more detail and how it’s done!
 
 _Short sidenote_ : Since this property is fresh off the press, at the time of writing it is not supported by every major browser yet. As always, an up-to-date report can be found at [CanIUse](https://caniuse.com/mdn-css_properties_scroll-timeline). I’ve tried this [polyfill](https://github.com/flackr/scroll-timeline) for it, but didn’t test it very extensively, so I can’t say too much about it.
 
@@ -54,7 +54,7 @@ The gist of it is actually:
 
 I’ll explain steps 2 and 3 of this short summary with code examples. Don’t worry, the full repo of this demo is shared at the bottom of the article.
 
-#### Create the CSS animation**
+#### Create the CSS animation\*\*
 
 It might sound like video creation with extra steps (I hope you like this Rick & Morty reference), but to create the CSS animation we will recreate the original video sequence by changing the background-image of an element to the next frame (jpg file) for every step of the animation.
 
@@ -103,7 +103,7 @@ Now that we have the animation, we can start controlling it. We start with this 
 
 And the CSS:
 
-```scss
+```css {5,26}
 .container {
   width: 100vw;
   max-height: 100vh;
@@ -171,3 +171,9 @@ I really really love this css feature. It performs very well, I dare to say even
 
 You can find the repo of this demo project [here](https://github.com/SteveJonk/scroll-timeline-try).
 Feel free to play around, fork, improve and create pr’s! Because ❤️ open source
+
+Because the end result is so nice, thought I'd share it once more here:
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+<img src='/articles/animations-scroll-timeline/result.gif' alt='Screen recording of the end result'  />
+</div>
