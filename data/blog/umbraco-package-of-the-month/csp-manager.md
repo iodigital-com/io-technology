@@ -1,6 +1,6 @@
 ---
 title: 'Umbraco package of the month: CSP Manager'
-date: '2024-09-27'
+date: '2024-10-04'
 tags: ['umbraco', 'csp']
 summary: 'Looking at CSP Manager that lets you control the CSP from Umbraco'
 authors: ['jeroen-van-kempen']
