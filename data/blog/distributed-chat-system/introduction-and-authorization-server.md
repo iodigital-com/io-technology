@@ -389,19 +389,19 @@ We will first try to create a new account with a valid request body and headers 
 
 Correct, we can expect a `403 Forbidden` exception since we did not provide any authentication.
 
-![signup-unauthenticated](/articles/distributed-chat-system/signup-unauthenticated.png)
+![signup-unauthenticated](/articles/distributed-chat-system/1/signup-unauthenticated.png)
 
 #### Test Case 2: Obtain access token with client credentials grant flow
 
 To avoid the exception we encountered in the first case, we need first to obtain an access token for the client application using the `client_credentials` grant flow, as we need to authenticate the client to call the API without involving any user account. We can do this by calling the `/oauth2/token` endpoint with `Authorization` header containing the client ID and secret, and setting `grant_type` to `client_credentials`.
 
-![client-credentials-success.png](/articles/distributed-chat-system/client-credentials-success.png)
+![client-credentials-success.png](/articles/distributed-chat-system/1/client-credentials-success.png)
 
 #### Test Case 3: Successful signup
 
 We can now retry the same call as in the first test case, but with the correct `Authorization` header. This time, we will be able to successfully create a new user account.
 
-![signup-success](/articles/distributed-chat-system/signup-success.png)
+![signup-success](/articles/distributed-chat-system/1/signup-success.png)
 
 ### Login
 
@@ -409,7 +409,7 @@ Now that we have covered account registration, we will use the newly created acc
 
 #### Test Case 1: Successful login
 
-![login-success](/articles/distributed-chat-system/login-success.png)
+![login-success](/articles/distributed-chat-system/1/login-success.png)
 
 The tokens can now be stored securely, preferably on the backend, and used to access system resources on behalf of the user. Note that the expiry date is also part of the response, so the client application knows in advance when the access token will no longer be valid
 
@@ -421,7 +421,7 @@ To further test our implementation, we will make the same call again but with an
 
 Correct again! We will get a `401 Unauthorized` exception since the credentials, in this case, the password, are not valid.
 
-![login-failure](/articles/distributed-chat-system/login-failure.png)
+![login-failure](/articles/distributed-chat-system/1/login-failure.png)
 
 ### Refresh Token
 
@@ -429,7 +429,7 @@ Correct again! We will get a `401 Unauthorized` exception since the credentials,
 
 To refresh the access token, we need to call the `/oauth2/token` endpoint with `Authorization` header containing the client ID and secret. Set `grant_type` to `refresh_token` and provide the refresh token that we securely saved earlier.
 
-![refresh-token-success](/articles/distributed-chat-system/refresh-token-success.png)
+![refresh-token-success](/articles/distributed-chat-system/1/refresh-token-success.png)
 
 Here, we have invalidated both the old access and refresh tokens; only the new ones are valid. I trust you now know where to securely store the new values.
 
@@ -437,7 +437,7 @@ Here, we have invalidated both the old access and refresh tokens; only the new o
 
 Finally, we can manually revoke the access token (i.e., logout) when needed. This will invalidate the access token, ensuring it can no longer be used even before its expiry date. To do this, we need to call the `/oauth2/revoke` endpoint with the `Authorization` header containing the client ID and secret, and the token parameter with the value of the token to be invalidated.
 
-![revoke-token-success](/articles/distributed-chat-system/revoke-token-success.png)
+![revoke-token-success](/articles/distributed-chat-system/1/revoke-token-success.png)
 
 With that complete, we have covered the basics of the functional requirements and tested our implementation to ensure it works as expected.
 
