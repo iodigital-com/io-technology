@@ -262,7 +262,7 @@ This should cover the desired functionality we have defined so far. Next, we wil
 - Managing own user profile
 - Search for or connect with existing users
 - List ongoing conversations or retrieve a specific conversation
-- Compose or retrieve a conversation messages
+- Compose or retrieve conversation messages
 
 ### Technologies
 
