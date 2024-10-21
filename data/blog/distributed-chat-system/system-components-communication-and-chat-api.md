@@ -174,7 +174,7 @@ public class SuccessfulRegistrationDTO {
 }
 ```
 
-Then `SuccessfulRegistrationProducer.java`:
+Then `SuccessfulRegistrationProducer.java`, which will be responsible for producing and publishing `SuccessfulRegistrationDTO` to a Kafka topic.
 
 ```java
 @Service
@@ -348,7 +348,7 @@ Here, we configure `securityFilterChain` bean with the following:
 - Configure `oauth2ResourceServer` with `introspectionUri`, which is the location of our authorisation server, and provide the `clientId` and `clientSecret` to identify the chat API as a client application.
 - Define the `tokenAuthenticationConverter` bean, which is responsible for converting a successful introspection result into an Authentication token.
 
-Then we add `application.properties` file to define properties:
+Then, we will add `application.properties` file to define properties:
 
 ```properties
 server.port=8088
@@ -423,7 +423,7 @@ public class SuccessfulRegistrationListener {
 }
 ```
 
-Then we will add `UserProfileService.java`:
+Then, we will add `UserProfileService.java`, which will be responsible for creating and managing user profiles. It will map registration data from a `SuccessfulRegistrationDTO` to a `UserProfile` entity and sets the necessary fields:
 
 ```java
 @Service
@@ -498,7 +498,7 @@ public class UserProfileController {
 }
 ```
 
-Next, we will add the additional functionality to `UserProfileService.java`:
+Next, we will extend `UserProfileService.java` to include functionality for finding and updating user profiles by username:
 
 ```java
 @Service
@@ -526,7 +526,7 @@ public class UserProfileService {
     UserProfile userProfile = userProfileRepository.findByUsername(username).orElse(null);
 
     if (userProfile == null) {
-      throw new UsernameNotFoundException("global.user.not.found");
+      throw new UsernameNotFoundException("Username cannot be found.");
     }
 
     return userProfile;
@@ -536,7 +536,7 @@ public class UserProfileService {
 }
 ```
 
-Finally, adjust `UserProfileRepository.java`:
+Finally, we will extend `UserProfileRepository.java` to support the functionality of finding user profiles by username:
 
 ```java
 @Repository
@@ -573,13 +573,15 @@ Users should also be able to update their own profiles. By calling the `/v1/user
 
 ![update-own-profile](/articles/distributed-chat-system/2/update-own-profile.png)
 
-Then, when trying to load the user profile again:
+Then when trying to load the user profile again:
 
 ![load-own-profile-updated](/articles/distributed-chat-system/2/load-own-profile-updated.png)
 
 ### Search for or connect with existing users
 
-While it's possible to chat with oneself, it's also enjoyable and will enhance the chatting experience to connect with others and have conversations or share information about common interests. To connect with others, we first need the ability to search for users. This is a new functionality that we can add:
+While it's possible to chat with oneself, it's also enjoyable and will enhance the chatting experience to connect with others and have conversations or share information about common interests. To connect with others, we first need the ability to search for users.
+
+We will extend `UserProfileController` with endpoints for searching user profiles by a `keyword` and for adding a connection to another user’s profile:
 
 ```java
 @RestController
@@ -611,7 +613,7 @@ public class UserProfileController {
 }
 ```
 
-Next, we will add the additional functionality to `UserProfileService.java`:
+Next, we can again extend `UserProfileService.java` with functionality that allows users to search for profiles they are not yet connected to, using a keyword, and to add new connections:
 
 ```java
 @Service
@@ -646,7 +648,7 @@ public class UserProfileService {
 }
 ```
 
-Finally, adjust `UserProfileRepository.java`:
+Finally, we will adjust `UserProfileRepository.java` to include search query:
 
 ```java
 @Repository
@@ -654,15 +656,21 @@ public interface UserProfileRepository extends JpaRepository<UserProfile, UUID> 
    ...
 
     @Query("SELECT u " +
-            "FROM UserProfile u " +
-            "WHERE (LOWER(u.firstname) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(u.lastname) LIKE LOWER(CONCAT('%', :keyword, '%'))) " +
-            "AND LOWER(u.username) <> LOWER(:loggedInUsername) " +
-            "AND u.username NOT IN (SELECT c.username FROM UserProfile currUser JOIN currUser.connections c WHERE LOWER(currUser.username) = LOWER(:loggedInUsername))")
+            "FROM UserProfile userprofile" +
+            "WHERE (LOWER(userprofile.firstname) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(userprofile.lastname) LIKE LOWER(CONCAT('%', :keyword, '%'))) " +
+            "AND LOWER(userprofile.username) <> LOWER(:loggedInUsername) " +
+            "AND userprofile.username NOT IN (SELECT connection.username FROM UserProfile currUser JOIN currUser.connections connection WHERE LOWER(currUser.username) = LOWER(:loggedInUsername))")
     List<UserProfile> searchUserProfiles(String keyword, String loggedInUsername);
 
     ...
 }
 ```
+
+In the above query, we are selecting user profile(s) from the database based on the following criteria:
+
+- Matches profiles where `firstname` or `lastname` contains the keyword (case-insensitive).
+- Excludes the logged-in user by checking their `username`.
+- Excludes profiles already connected to the logged-in user.
 
 #### Test Case 1: Search existing user profile
 
@@ -691,7 +699,7 @@ new-connection.topic=new-connection
 new-connection.consumer.group-id=new-connection-group
 ```
 
-Next, we introduce `ConversationService.java`:
+Next, we will introduce `ConversationService.java`, which will handle the creation of new conversations:
 
 ```java
 @Service
@@ -714,7 +722,39 @@ public class ConversationService {
 }
 ```
 
-Then `NewConnectionListener.java`:
+Then, we will add `NewConnectionProducer.java`, which will be responsible for creating `NewConnection` events and sending them to the specified Kafka topic:
+
+```java
+@Service
+public class NewConnectionProducer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewConnectionProducer.class);
+
+    protected final String topic;
+    protected final KafkaTemplate<String, NewConnectionDTO> producer;
+
+    protected NewConnectionAddedProducer(@Value("${new-connection.topic}") String topic,
+                                         KafkaTemplate<String, NewConnectionDTO> producer) {
+        this.topic = topic;
+        this.producer = producer;
+    }
+
+    public void send(NewConnectionDTO message) {
+        LOGGER.debug("Sending NewConnectionDTO to topic: {} value: {}", topic, JsonUtil.toJson(message));
+        ProducerRecord<String, NewConnectionDTO> producerRecord = new ProducerRecord<>(topic, message);
+        producer.send(producerRecord).whenComplete(this::handleSendResult);
+    }
+
+    private void handleSendResult(SendResult<String, NewConnectionDTO> result, Throwable throwable) {
+        if (throwable == null) {
+            LOGGER.debug("NewConnectionDTO sent successfully with offset: {}", result.getRecordMetadata().offset());
+        } else {
+            LOGGER.error("Sending NewConnectionDTO to topic: {} resulted to: {}", topic, throwable.getMessage(), throwable);
+        }
+    }
+}
+```
+
+And `NewConnectionListener.java`, which will handle incoming `NewConnection` events from a Kafka topic. It will process these events by retrieving the relevant user profiles and creating a new conversation between them:
 
 ```java
 @Service
@@ -752,39 +792,7 @@ public class NewConnectionListener {
 }
 ```
 
-And `NewConnectionProducer.java`:
-
-```java
-@Service
-public class NewConnectionProducer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(NewConnectionProducer.class);
-
-    protected final String topic;
-    protected final KafkaTemplate<String, NewConnectionDTO> producer;
-
-    protected NewConnectionAddedProducer(@Value("${new-connection.topic}") String topic,
-                                         KafkaTemplate<String, NewConnectionDTO> producer) {
-        this.topic = topic;
-        this.producer = producer;
-    }
-
-    public void send(NewConnectionDTO message) {
-        LOGGER.debug("Sending NewConnectionDTO to topic: {} value: {}", topic, JsonUtil.toJson(message));
-        ProducerRecord<String, NewConnectionDTO> producerRecord = new ProducerRecord<>(topic, message);
-        producer.send(producerRecord).whenComplete(this::handleSendResult);
-    }
-
-    private void handleSendResult(SendResult<String, NewConnectionDTO> result, Throwable throwable) {
-        if (throwable == null) {
-            LOGGER.debug("NewConnectionDTO sent successfully with offset: {}", result.getRecordMetadata().offset());
-        } else {
-            LOGGER.error("Sending NewConnectionDTO to topic: {} resulted to: {}", topic, throwable.getMessage(), throwable);
-        }
-    }
-}
-```
-
-Finally, we make a small adjustment to `UserProfileService.java`:
+Finally, we will make a small adjustment to `UserProfileService.java` to produce a `NewConnection` event once the connection has been added:
 
 ```java
 @Service
@@ -839,7 +847,7 @@ public class ConversationController {
 }
 ```
 
-Then, we extend the functionality of `ConversationService.java`:
+Then we will extend the functionality of `ConversationService.java` to allow retrieving conversations for the logged-in user:
 
 ```java
 @Service
@@ -852,7 +860,7 @@ public class ConversationService {
 }
 ```
 
-Finally, we add `ConversationRepository.java`:
+Finally, we will add `ConversationRepository.java`:
 
 ```java
 @Repository
@@ -865,13 +873,15 @@ public interface ConversationRepository extends JpaRepository<Conversation, UUID
 }
 ```
 
+The above query retrieves conversations in which the logged-in user is participating, identified by their ID, and orders the results in descending order based on the creation date.
+
 Now, by calling the newly created `/v1/conversations` endpoint with the correct `Authorization` header, the chat API will return user's ongoing conversations.
 
 ![ongoing-conversations](/articles/distributed-chat-system/2/ongoing-conversations.png)
 
 #### Test Case 3: Retrieve a specific conversation
 
-We can also add functionality to retrieve only one particular conversation by its ID. Adding the new endpoint:
+We will first add a new endpoint to retrieve a specific conversation by its ID:
 
 ```java
 @RestController
@@ -891,7 +901,7 @@ public class ConversationController {
 }
 ```
 
-And adjust `ConversationService.java` too:
+Then we will adjust `ConversationService.java` to allow retrieving a conversation by its ID, if the specified user is a participant in it.
 
 ```java
 @Service
@@ -925,7 +935,7 @@ We can verify the implementation by calling the newly created `/v1/conversations
 
 Now we need to start using the created conversation(s), right? After all, what's the point of having a conversation if we can't send any messages? Let's first add the missing functionality.
 
-We define first the new endpoint:
+We will define the new endpoint for posting a message:
 
 ```java
 @RestController
@@ -944,7 +954,7 @@ public class ConversationController {
 }
 ```
 
-Then, we will add `ConversationMessageService.java`:
+Then, we will add `ConversationMessageService.java`, which will handle posting messages to a conversation. It ensures the user is a participant, then creates a new `ConversationMessage` with the provided text and sender information, saving both the message and the updated conversation to the database.
 
 ```java
 @Service
@@ -964,7 +974,7 @@ public class ConversationMessageService {
 
     public void postMessage(String username, String conversationId, PostMessageRequest postMessage) {
         Conversation conversation = conversationRepository.findById(UUID.fromString(conversationId))
-                .orElseThrow(() -> new ConversationNotFoundException(conversationId, "global.conversations.not.found"));
+                .orElseThrow(() -> new ConversationNotFoundException("Conversation " + conversationId + " not found."));
 
         verifyUserInConversation(username, conversation);
 
@@ -989,8 +999,7 @@ public class ConversationMessageService {
                         .anyMatch(participant -> participant.equalsIgnoreCase(username));
 
         if (!userInConversationParticipants) {
-            throw new UserCannotPostMessageException(username, conversation.getId().toString(),
-                    "global.user.is.not.participating.conversation");
+            throw new UserCannotPostMessageException("User " + username + " is not a participant of conversation " + conversation.getId().toString());
         }
     }
 }
@@ -998,7 +1007,7 @@ public class ConversationMessageService {
 
 #### Test Case 1: Compose a new message
 
-We need to identify which conversation we want to send the message to, which we can retrieve from previous test cases. Then, we can post the message body to `/v1/conversations/{conversationId}/messages` along with the correct `Authorization` header, as you should already know by now.
+We need to identify which conversation we want to send the message to, which we can retrieve from previous test cases. Then we can post the message body to `/v1/conversations/{conversationId}/messages` along with the correct `Authorization` header, as you should already know by now.
 
 ![post-message](/articles/distributed-chat-system/2/post-message.png)
 
@@ -1031,7 +1040,7 @@ public class ConversationController {
 }
 ```
 
-Then, adjust `ConversationMessageService.java` too:
+Next, we will extend `ConversationMessageService.java` to include functionality for fetching a specific message by its ID:
 
 ```java
 @Service
@@ -1042,14 +1051,14 @@ public class ConversationMessageService {
               UUID.fromString(conversationId)).orElse(null);
 
       if (conversationMessage == null) {
-        throw new ConversationMessageNotFoundException(messageId, conversationId, "global.conversation.message.not.found");
+        throw new ConversationMessageNotFoundException("Conversation message " + messageId + " not found in conversation" + conversationId);
       }
 
       boolean userInConversationParticipants = conversationMessage.getConversation().getParticipants().stream()
               .anyMatch(participant -> username.equalsIgnoreCase(participant.getUsername()));
 
       if (!userInConversationParticipants) {
-        throw new ConversationNotFoundException(conversationId, "global.conversations.not.found");
+        throw new ConversationNotFoundException("Conversation " + conversationId + " not found.");
       }
 
       return conversationMessageMapper.toDTO(conversationMessage);
@@ -1058,7 +1067,7 @@ public class ConversationMessageService {
 }
 ```
 
-Finally, update `ConversationMessageRepository.java`:
+Finally, we will update `ConversationMessageRepository.java` to support fetching a specific message by its ID:
 
 ```java
 @Repository
