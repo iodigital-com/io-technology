@@ -1,6 +1,6 @@
 ---
 title: 'System components communication and the chat API'
-date: '2024-09-16'
+date: '2024-11-01'
 tags: ['java', 'spring boot', 'kafka', 'docker']
 images: ['/articles/distributed-chat-system/banner.png']
 summary: 'How the components of the chat system communicate, and what are the specifications of the chat API.'
