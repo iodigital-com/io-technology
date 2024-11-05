@@ -9,7 +9,7 @@ export async function getStaticProps() {
   return { props: { theme: 'beige' } }
 }
 
-export default function DevoxxJava() {
+export default function JfallJava() {
   const { theme } = useBrandingTheme()
 
   return (
