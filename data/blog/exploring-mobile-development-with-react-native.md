@@ -18,16 +18,16 @@ There are various reasons why you might want to target other platforms besides t
 
 I am not going to tell you that React Native is the best way to achieve those goals. Like with all technical decisions, there are trade-offs. However, there aren’t too many choices. Here are some of my considerations.
 
-|                                             | Pro                                                                              | Con                                                                                                         |
-| ------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **Native with SwiftUI and Jetpack compose** | Leverage the latest platform features                                            | Learning curve. I am not proficient with Swift and Kotlin to say the least                                  |
-| **Flutter**                                 | Lower learning curve than native                                                 | The Dart language. Probably not as native due to Skia rendering engine.                                     |
-| **Ionic (Capacitor)**                       | Same techniques im used to building web apps                                     | Outcome might not feel native to the trained eye unless using Ionics components (no Material 3 for Android) |
-| **Progressive web app (PWA)**               | Same techniques im used to building web apps                                     | Poor iOS support                                                                                            |
-| **Tauri 2**                                 | Security oriented, cutting edge                                                  | Using a Webview just like capacitor, Outcome might not feel native to the trained eye.                      |
-| **React Native**                            | Outcome is native native, familiar developer experience with typescript and HMR. | Quirky to use. Apps may have performance issues if you don’t know what you’re doing.                        |
+|                                             | Pro                                                                              | Con                                                                                                            |
+| ------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Native with SwiftUI and Jetpack compose** | Leverage the latest platform features.                                           | Learning curve. I am not proficient with Swift and Kotlin to say the least.                                    |
+| **Flutter**                                 | Lower learning curve than native and cross-platform.                             | The Dart language. Probably not as native due to the Skia rendering engine. Although Impeller looks promising. |
+| **Ionic (Capacitor)**                       | Same techniques im used to building web apps.                                    | Outcome might not feel native to the trained eye unless using Ionics components (no Material 3 for Android).   |
+| **Progressive web app (PWA)**               | Same techniques im used to building web apps.                                    | Poor iOS support.                                                                                              |
+| **Tauri 2**                                 | Security oriented, cutting edge.                                                 | Using a Webview just like capacitor, Outcome might not feel native to the trained eye.                         |
+| **React Native**                            | Outcome is native native, familiar developer experience with typescript and HMR. | Quirky to use. Apps may have performance issues if you don’t know what you’re doing.                           |
 
-Again, these are my personal considerations, and this whole thought process will probably change from project tot project. Truth be told; I just want to use SwiftUI and Jetpack, but as a full-time web developer I find the learning curve daunting. I'm afraid it might take a year before I get productive. I am hoping React Native will give me best of both worlds.
+Again, these are my personal considerations, and this whole thought process will probably change from project to project. Truth be told; I just want to use SwiftUI and Jetpack, but as a full-time web developer I find the learning curve daunting. I'm afraid it might take a year before I get productive. I am hoping React Native will give me best of both worlds.
 
 ## Getting started
 
@@ -57,7 +57,7 @@ There are a lot more details that I have to explore. Pseudo-selectors and media 
 
 ## Native look and feel
 
-Setting up a new project with Expo was straightforward, if you are curious about what that looks like refer to the [getting started guide](https://docs.expo.dev/get-started/create-a-project/). After that, I went on to configure routing using the React Navigation package and style configuration using NativeWind. I also made sure to support a dark color scheme by wrapping the Text and View core components. That ended up looking like this:
+Setting up a new project with Expo was straightforward, if you are curious about what that looks like refer to the [getting started guide](https://docs.expo.dev/get-started/create-a-project/). After that, I went on to configure routing using the React Navigation package and style configuration using [NativeWind](https://www.nativewind.dev/), which allows me to apply styles using Tailwind classes. I also made sure to support a dark color scheme by wrapping the Text and View core components. That ended up looking like this:
 
 ```jsx
 import React from "react";
@@ -74,7 +74,7 @@ export function ThemedText({ children, stylesheetStyles, tailwindClasses }) {
   )
 ```
 
-Once that was done, it was time for some interaction. My application allows users to enter their debt. I figured I could use the Button core component for that. At that point, I noticed my expectations were not met. See I was under the assumption that - just like with browser default styling - using React Natives’ core components would be enough to build a UI that looks native.
+Once that was done, it was time for some interaction. The debt-tracking application im working on allows users to enter their debt. I figured I could use the Button core component for that. At that point, I noticed my expectations were not met. See I was under the assumption that - just like with browser default styling - using React Natives’ core components would be enough to build a UI that looks native.
 
 While I was satisfied with the result on iOS, I noticed the look and feel of the Button was outdated on Android. Material 3 (Material You) is not used. For some reason, I thought that dropping in elements without any styling applied would assume the default styling for the platform, just like the browser.
 
@@ -86,7 +86,7 @@ I ended up sticking with what I had and make the UI with primitives. As long as 
 
 React Native apps have been criticized for their performance issues. Some of it has been attributed to React Native's underlying architecture. Something about a JavaScript runtime and a bridge. While I personally have not encountered these issues so far, I am glad to hear that these are soon issues of the past.
 
-Recently, [the new React Native architecture has been released](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here) and has been made available in Expo SDK 52 that [got released](https://expo.dev/changelog/2024/11-12-sdk-52) the second I initialized my exploration project. During this exploration however I remained an SDK 51-based project, And I noticed that I was somewhat caught in between the transition. Since the current stable when trying to install the Expo Router for handling navigation between screens, I noticed that the underlying dependency (React Navigation) was set to an incompatible version resulting in errors. I eventually worked around these errors by locking the React Navigation version to 6 instead of 7.
+Recently, [the new React Native architecture has been released](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here) and has been made available in Expo SDK 52 that [got released](https://expo.dev/changelog/2024/11-12-sdk-52) the second I initialized my exploration project. During this exploration however I remained an SDK 51-based project, and I was somewhat caught in between the transition. When trying to install the Expo Router for handling navigation between screens, I noticed that the underlying dependency (React Navigation) was set to an incompatible version resulting in errors. I eventually worked around these errors by locking the React Navigation version to 6 instead of 7.
 
 ## Building
 
@@ -96,7 +96,7 @@ I also played around with some Expo libraries such as `expo-audio` and `svg`. Lo
 
 During my project, I experienced what it's like doing some layout work, implementing navigation, and dark mode, building a button by wrapping the `Pressable` Core component, and working with the `CategoryList` Core component.
 
-The latter I'm not satisfied with because if content overflowing beyond the safe area. Even while wrapping this in the `<SafeArea>` Core component. This is particularly noticeable on iOS.
+The latter I'm not satisfied with because of content overflowing beyond the safe area. Even while wrapping this in the `<SafeArea>` Core component. This is particularly noticeable on iOS.
 
 ![ui.png](/articles/exploring-mobile-development-with-react-native/project.webp)
 
