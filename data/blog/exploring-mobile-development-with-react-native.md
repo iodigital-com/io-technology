@@ -122,4 +122,5 @@ I would like to share a couple of things related to this exploration;
 
 - [Talk by Dan Stepanov - Being a Good Platform Citizen (Chain React 2024)](https://www.youtube.com/watch?v=3UEQhdaWwus)
 - [Simon Grimm’s YouTube channel](https://www.youtube.com/@galaxies_dev)
+- [Galaxies.dev - React Native video courses where I learned a lot at a fast pace](https://galaxies.dev/)
 - [The project repository](https://github.com/ravenberg/react-native-exploration)
