@@ -3,27 +3,27 @@ title: 'The power of integrity in both work and life'
 date: '2025-01-06'
 tags: ['integrity', 'leadership', 'personal-development']
 images: ['/articles/the-power-of-integrity-in-both-work-and-life/banner.png']
-summary: 'In this article, I attempt to explain what has worked for me in being committed to being a person of integrity. Through sharing my personal experiences and insights, I hope to offer guidance that might also be helpful to you on your journey towards integrity in both personal and professional life.'
+summary: 'In this article, I explain how being a person of integrity has helped me. I share my experiences and tips to help you on your journey towards integrity in both personal and professional life.'
 authors: ['komeil-mehranfar']
 theme: 'blue'
 ---
 
 ## Introduction
 
-Eight months ago, I participated in a leadership course inspired by EST (Erhard Seminar Training), and it was a life-changing experience. It helped me improve in many areas: my relationship with my wife, my responsibilities at iO, my projects with Lyreco (an iO client), staying consistent with the gym (losing 10 kilos and staying fit), publishing my [Sudoku app](https://sudoku.best/), and even starting a basketball community for iO employees and clients. It was one of the best investments I've made, and it reinforced my goal of becoming a great leader. To get there, I know I need to first master self-leadership by staying organised and keeping my promises.
+Eight months ago, I took a leadership course inspired by EST (Erhard Seminar Training), and it changed my life. It helped me improve my relationship with my wife, my work at "iO", my project "Lyreco" (an iO client), staying fit, publishing my [Sudoku app](https://sudoku.best/), and starting a basketball community for iO employees and clients. It was one of the best investments I've made, and it reinforced my goal of becoming a great leader. To achieve this, I need to master self-leadership by staying organised and keeping my promises.
 
-On 18th December 2024, I gave a talk about integrity at the iO townhall and I decided to write about it in detail after getting feedback from the audience.
+On 18th December 2024, I gave a talk about integrity at the iO townhall and decided to write about it after receiving feedback from the audience.
 ![Komeil Mehranfar presenting about integrity at iO](/articles/the-power-of-integrity-in-both-work-and-life/komeil-mehranfar_integrity_iO.JPG)
 
-In this article, I'll share insights from publicly available resources, such as "[**Integrity: A Positive Model that Incorporates the Normative Phenomena of Morality, Ethics, and Legality**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=920625)," as well as my personal experiences from coaching sessions and daily leadership training. Over the past six months, I've committed two hours a day to journaling, leadership exercises, and self-reflection. While this routine works for me, you don't need to follow it exactly—I'll share practical steps that might work for you.
+In this article, I'll share insights from resources like "[**Integrity: A Positive Model that Incorporates the Normative Phenomena of Morality, Ethics, and Legality**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=920625)," as well as my personal experiences from coaching sessions and daily leadership training. Over the past six months, I've spent two hours a day journaling, doing leadership exercises, and reflecting. While this routine works for me, you don't need to follow it exactly—I'll share practical steps that might work for you.
 
-Integrity is at the heart of great leadership. Without it, leadership is meaningless.
+Integrity is essential for great leadership. Without it, leadership is meaningless.
 
-Yet, most of the time, I hear vague advice on social media, like: _"Great leaders have discipline," "You need integrity," "Be authentic."_
+Often, I hear vague advice on social media, like: _"Great leaders have discipline," "You need integrity," "Be authentic."_
 
-The problem is, just hearing or reading these messages (even from credible sources) doesn't give me access to _being_ someone with integrity. Simply put, it's not actionable advice.
+The problem is, just hearing or reading these messages doesn't help me become a person with integrity. It's not actionable advice.
 
-So, how do I create a tangible pathway to integrity? In this article, I'll introduce a conversational framework that provides direct access to integrity. I highly recommend reading the primary article I've linked above as well.
+So, how do I create a clear path to integrity? In this article, I'll introduce a conversational framework that provides direct access to integrity. I recommend reading the primary article I've linked above as well.
 
 Let's start with how integrity is defined in that document.
 
@@ -31,7 +31,7 @@ Let's start with how integrity is defined in that document.
 
 "Integrity is defined as _a state or condition of being whole, complete, unbroken, unimpaired, sound, and in perfect condition._"
 
-Alright, but what does _integrity_ mean for individuals?
+But what does _integrity_ mean for individuals?
 
 According to this model:
 
@@ -49,14 +49,14 @@ But what does it actually mean to "honour one's word"? Let's explore that.
 
 And, whenever you will not be keeping your word:
 
-1. Just as soon as you become aware that you will not be keeping your word (including not keeping your word on time) saying to everyone impacted
+2. Just as soon as you become aware that you will not be keeping your word (including not keeping your word on time) saying to everyone impacted
    1. that you will not be keeping your word, and
    2. that you will keep that word in the future, and by when, or that you won't be keeping that word at all, and
    3. what you will do to deal with the impact on others of the failure to keep your word (or to keep it on time)."
 
-From my experience, I was striving to keep my word but my world felt too small because I often overcommitted, leading to frequent procrastination.
+From my experience, I tried to keep my word but often overcommitted, leading to procrastination.
 
-The second "wing" is crucial for maintaining integrity. If you rely solely on the first wing, your world remains constrained. Imagine your word is to be in the office every day by 9 AM (Word type 3 - what's expected of you). To keep this promise without fail, you'd have to leave at 6 AM daily to account for any potential accidents or traffic.
+The second "wing" is crucial for maintaining integrity. If you rely only on the first wing, your world remains small. Imagine your word is to be in the office every day by 9 AM. To keep this promise without fail, you'd have to leave at 6 AM daily to account for any potential accidents or traffic.
 
 Another common scenario is when people ask about your task delivery timeline, and your responses are filled with conditions and vagueness like, "I can't say for sure. Maybe today or tomorrow. If there's no issue with the API or design, I'll deliver."
 
@@ -64,17 +64,17 @@ Another common scenario is when people ask about your task delivery timeline, an
 
 **Example:**
 
-You're assigned a task to implement a new authentication feature for an application, and you commit to completing it by the end of the week. You manage your time effectively, prioritise this task throughout the week, and finish the implementation by Friday, as promised. This fulfils the first wing of honouring your word—delivering on your commitment within the agreed timeframe.
+You are given a task to add a new login feature to an app and promise to finish it by the end of the week. You plan your time well, focus on this task all week, and complete it by Friday as you said you would. This shows you kept your promise and met the deadline.
 
 ### **2. Communicating When You Will Not Be Keeping Your Word:**
 
 **Example:**
 
-You're working on a feature update for a client, with a deadline set for Wednesday. Midway through the project, you encounter a critical bug that significantly delays progress. As soon as you realise you cannot meet the deadline, you promptly inform your project manager and the client. You explain:
+You're working on a feature update for a client, with a deadline set for Wednesday. Halfway through the project, you find a major bug that causes a big delay. As soon as you know you can't meet the deadline, you quickly tell your project manager and the client. You explain:
 
-1. That you will not be able to deliver the update by Wednesday.
-2. You provide a new completion date, explaining how long it will take to resolve the issue and complete the project.
-3. To mitigate the impact, you offer a temporary workaround or prioritise fixing the critical bug to minimise disruptions to the client until the full feature update is delivered.
+1. You won't be able to deliver the update by Wednesday.
+2. You give a new completion date, explaining how long it will take to fix the issue and finish the project.
+3. To lessen the impact, you offer a temporary solution or focus on fixing the critical bug to reduce disruptions for the client until the full update is ready.
 
 ## One's word definition
 
@@ -87,32 +87,26 @@ You're working on a feature update for a client, with a deadline set for Wednesd
 5. What You Stand For: What you stand for is fundamental to who you are for yourself and who you are for others. What you stand for is a declaration constituted by 1) who you hold yourself to be for yourself as that for which you can be counted on from yourself (whether specifically articulated by you or not), and 2) who you hold yourself out to be for others as that for which you can be counted on by others (or have allowed others to believe as that for which you can be counted on).
 6. Moral, Ethical And Legal Standards: The social moral standards, the group ethical standards and the governmental legal standards of right and wrong, good and bad behaviour, in the society, groups and state in which one enjoys the benefits of membership are also part of one's word (what one is expected to do) unless a) one has explicitly and publicly expressed an intention to not keep one or more of these standards, and b) one is willing to bear the costs of refusing to conform to these standards (the rules of the game one is in)."
 
-It's fascinating to realise that all six types of words are part of our language. Personally, I always took pride in being rebellious, not sticking to the rules, and setting my own path. But after diving into this, I recognised that this mindset was actually causing me to lose integrity.
-
-Type 1 was straightforward for me, but what I knew wasn't as clear. I assumed that honouring everything I knew would lead to burnout. However, I discovered writing down my beliefs about something until I've thoroughly explored and understood them, helping me find clarity and completeness.
-
-The 6 types of word is super important.
-
-I bring more examples for each one of them:
+Here are more examples for each one:
 
 1. **What You Said:**
-   - You promised your manager that you would complete the new feature implementation by next Friday.
-   - You committed to not deploying any code to production without a peer review.
+   - You told your manager you'd finish the new feature by next Friday.
+   - You promised not to release any code without a peer review.
 2. **What You Know:**
-   - You understand that you need to write unit tests for every new piece of code you develop to ensure reliability.
-   - You know not to merge your code into the main branch without resolving all flagged issues in the code review.
+   - You know you need to write tests for every new piece of code to make sure it works well.
+   - You know not to merge your code into the main branch until all issues from the review are fixed.
 3. **What Is Expected of You:**
-   - Your team expects you to attend daily stand-up meetings to provide updates on your progress.
-   - Your clients expect you to maintain application uptime during standard business hours as part of the service agreement.
+   - Your team expects you to join daily meetings to share your progress.
+   - Your clients expect you to keep the app running during business hours as agreed.
 4. **What You Say Is So:**
-   - You informed your team that the new module you integrated is fully compatible with the existing system architecture.
-   - You claimed that the recent bug in the software has been resolved, sharing the test results to support your statement.
+   - You told your team the new module works well with the current system.
+   - You said the recent software bug is fixed and showed test results to prove it.
 5. **What You Stand For:**
-   - You take a stand for delivering high-quality code, ensuring that every project you work on is free from preventable defects.
-   - You define yourself as someone who values teamwork and collaboration, consistently offering help to colleagues when needed.
+   - You believe in delivering high-quality code, making sure your projects are free from avoidable mistakes.
+   - You see yourself as someone who values teamwork, always ready to help colleagues.
 6. **Moral, Ethical, and Legal Standards:**
-   - You adhere to the company's ethical coding guidelines, ensuring that all software is developed without plagiarising open-source libraries without proper attribution.
-   - You comply with data protection laws, making sure user data is handled in accordance with GDPR regulations when developing applications for EU users.
+   - You follow the company's coding rules, making sure not to copy open-source code without giving credit.
+   - You follow data protection laws, ensuring user data is handled according to GDPR when working on apps for EU users.
 
 ## **Eleven hidden factors hiding out-of-integrity behaviour**
 
@@ -129,11 +123,11 @@ I bring more examples for each one of them:
 
    **Example:**
 
-   Alex is a software engineer known for being really good at coding. He thinks being a tech expert is who he is.
+   Alex is a software engineer who is very good at coding. He believes being a tech expert defines him.
 
-   Alex promises to finish a new software feature by the end of the month. But, he gets too focused on perfecting the code and misses the deadline. He thinks it's okay because he's the "expert."
+   Alex promises to finish a new software feature by the end of the month. But he gets too focused on perfecting the code and misses the deadline. He thinks it's okay because he's the "expert."
 
-   Alex forgets that keeping promises is important. By missing the deadline, people start to trust him less, no matter how good he is at coding. Not keeping his word affects how reliable he seems to others.
+   Alex forgets that keeping promises is important. By missing the deadline, people start to trust him less, no matter how good he is at coding. Not keeping his word makes him seem unreliable to others.
 
 2. **Living as if my Word is only What I Said (Word 1) and What I Assert Is True (Word 4)**
 
@@ -147,12 +141,11 @@ I bring more examples for each one of them:
    When we live (function in life) as though our word is limited to Word 1: What I Said and Word 4: What I say is so, we are virtually certain to be out of integrity with regard to our word as constituted in Words 2, 3, 5 and 6. In such cases, all the instances of our word (be it the word of an individual or organisation) that are not spoken or otherwise communicated explicitly are simply invisible as our word to such individuals or organisations. In our lives, all the instances of our Words 2, 3, 5 and 6 simply do not show up (occur) for us as our having given our word."
 
    **Example:**
+   Sarah thinks integrity is just about what she says and what she claims is true. For example, she tells her team she'll attend meetings and believes being honest about project status is enough.
 
-   Sarah always thinks her word is just what she says and what she claims is true. For example, she tells her team she'll attend meetings and believes her honesty about project status is enough.
+   But Sarah doesn't think about things she knows she should or shouldn't do (Word 2), what others expect from her (Word 3), her core values (Word 5), or ethical guidelines (Word 6). She misses deadlines even when she knows they're important (Word 2), ignores colleagues who expect her help with team tasks (Word 3), overlooks the importance of teamwork (Word 5), and doesn't follow company rules about transparency (Word 6).
 
-   But Sarah doesn't consider things she knows she should or shouldn't do (Word 2), what others expect from her (Word 3), her core values (Word 5), or ethical guidelines (Word 6). She skips deadlines even when she knows they're important (Word 2), she ignores colleagues who expect her to help in team tasks (Word 3), she overlooks the value of teamwork (Word 5), and she doesn't follow company rules about transparency (Word 6).
-
-   By focusing only on spoken words and claims, Sarah misses out on many parts of integrity. This makes people trust her less, even if she thinks she's being honest.
+   By focusing only on spoken words and claims, Sarah misses many parts of integrity. This makes people trust her less, even if she thinks she's being honest.
 
 3. **"Integrity is a virtue"**
 
@@ -162,11 +155,11 @@ I bring more examples for each one of them:
 
    **Example**:
 
-   Tom runs a small business. He thinks of integrity as being nice to have, like being polite. Tom believes having integrity is about looking good in front of others rather than being crucial for success.
+   Tom runs a small business. He thinks integrity is just about looking good, like being polite. He doesn't see it as important for success.
 
-   One day, Tom finds out he could make more money by breaking a small promise to a customer. He feels it's okay because no one will notice, and he thinks making money is more important here.
+   One day, Tom realizes he can make more money by breaking a small promise to a customer. He thinks it's okay because no one will notice, and making money seems more important.
 
-   For Tom, integrity is just a nice trait, not something essential for running his business well. So, he easily gives it up to gain a short-term advantage, just like he might overlook minor things like being polite when no one's watching.
+   For Tom, integrity is just a nice quality, not something necessary for his business. So, he easily gives it up for a quick gain, just like he might skip being polite when no one's watching.
 
 4. **Self-Deception about being out-of-integrity**
 
@@ -185,8 +178,7 @@ I bring more examples for each one of them:
    Integrity."
 
    **Example:**
-
-   Mark tells his friend he'll help move furniture on Saturday. When Saturday comes, he's too tired and stays home without explaining, thinking he must always keep his word but not acknowledging when he can't.
+   Mark promises to help his friend move furniture on Saturday. When Saturday arrives, he's too tired and stays home without telling his friend. He believes he must always keep his promises but doesn't admit when he can't.
 
 6. **Fear of acknowledging you are not going to keep your word**
 
@@ -201,7 +193,7 @@ I bring more examples for each one of them:
 
    **Example:**
 
-   Lisa promised to complete a project by Friday. Realising she won't finish in time, she avoids telling her boss out of fear of disappointment, causing more stress for everyone.
+   Lisa promised to finish a project by Friday. When she realizes she can't, she doesn't tell her boss because she's afraid of disappointing him. This makes things more stressful for everyone.
 
 7. **Integrity is not seen as a factor of production**
 
@@ -211,7 +203,7 @@ I bring more examples for each one of them:
 
    **Example**:
 
-   A company neglects quality checks to speed up production, believing integrity isn't crucial for success. When projects fail, they blame market trends instead of realising the lack of integrity affected performance.
+   A company skips quality checks to produce faster, thinking integrity doesn't matter. When projects fail, they blame market trends instead of seeing that their lack of integrity caused the problems.
 
 8. **_Not_ doing a cost/benefit analysis on _giving_ one's word**
 
@@ -219,7 +211,7 @@ I bring more examples for each one of them:
 
    **Example:**
 
-   Tom agrees to help with a friend's event planning without considering his busy schedule. When conflicts arise, he can't follow through, creating unnecessary disappointment and stress.
+   Tom says he'll help plan a friend's event but doesn't think about how busy he is. When his schedule gets too full, he can't help, causing disappointment and stress.
 
 9. **_Doing_ a cost/benefit analysis on _honouring_ one's word**
 
@@ -230,7 +222,7 @@ I bring more examples for each one of them:
 
    **Example:**
 
-   Sarah promises to volunteer if she has nothing better to do. When opportunities arise, she opts out, showing her promise wasn't genuine because it depended on convenience.
+   Sarah says she'll volunteer if she doesn't have anything else to do. When other things come up, she backs out, showing her promise wasn't sincere because it was based on convenience.
 
 10. **Integrity is a Mountain with No Top**
 
@@ -246,7 +238,7 @@ I bring more examples for each one of them:
 
     **Example**:
 
-    Paul believes he's always honest, yet ignores small lies he tells. He plans to address them eventually, thinking he'll reclaim integrity later, not realising maintaining integrity is an ongoing effort.
+    Paul thinks he's always honest but overlooks the small lies he tells. He plans to fix them later, believing he can regain his integrity, not realizing that maintaining integrity is a continuous effort.
 
 11. **Not having your word in existence when it comes time to keep your word**
 
@@ -258,57 +250,57 @@ I bring more examples for each one of them:
 
     **Example**:
 
-    Emma commits to submitting a report by Friday but doesn't set a reminder. She forgets, missing the deadline. Without planning, her promise wasn't effectively in place to be kept.
+    Emma promises to submit a report by Friday but forgets to set a reminder. She misses the deadline because she didn't plan properly.
 
 ## Tactics I use to maintain my integrity
 
 ### Calendar
 
-First and foremost, I stay fully committed to my calendars. I've combined all my calendars (Personal, iO, Lyreco) into my Mac calendar so I can view all events in one place. This helps me keep track of my commitments and recognise available time slots.
+I always stick to my calendars. I've combined all my calendars (Personal, iO, Lyreco) into my Mac calendar so I can see everything in one place. This helps me keep track of what I need to do and find free time.
 
-Magic: You'll notice how many of your events conflict and how overcommitted you might be.
+You'll be surprised to see how many events overlap and how busy you really are.
 
 ### Trello
 
-I use Trello, though any personal to-do tool will work. How do I use Trello? Simple: it only has three columns—Backlog, To-do, and Done.
+I use Trello, but any to-do list app will work. Trello is simple: it has three columns—Backlog, To-do, and Done.
 
-I jot down every task that pops into my head in the backlog as soon as it comes to mind. This results in a lot of tasks! Every day after work, I review my backlog and only move tasks to the to-do list if I've scheduled a time slot for them in my calendar. Otherwise, they just create pressure.
+I write down every task that comes to mind in the backlog. This means I have a lot of tasks! Every day after work, I look at my backlog and only move tasks to the to-do list if I've set a time for them in my calendar. Otherwise, they just add stress.
 
-When you do this, you'll see the magic—realising the commitments you've made don't fit with the available time slots according to the laws of physics! When I do find a slot, I assign a due date to the Trello task that matches the calendar event date.
+When you do this, you'll see how your commitments don't always fit into your schedule! When I find a time slot, I set a due date for the Trello task that matches the calendar event.
 
-Important: I don't calendar deadlines like "Deliver Task X." That creates pressure, especially if there are unknowns or dependencies. Instead, I calendar actions: "Ask person X about documentation," "Implement feature X," or "Read article Y on implementing feature X."
+Important: I don't set deadlines like "Finish Task X." That adds stress, especially if there are unknowns. Instead, I plan actions: "Ask person X about documentation," "Work on feature X," or "Read article Y about feature X."
 
-Tasks should be clear and refined. The clearer they are, the less likely you are to procrastinate. This way, your commitments stay organised.
+Tasks should be clear. The clearer they are, the less likely you are to procrastinate. This keeps your commitments organized.
 
-Here's the critical part: I don't do anything not on my calendar. If I want to, it must be scheduled. I've enabled phone calendar notifications to remind me of my commitments (events).
+Here's the key: I don't do anything that's not on my calendar. If I want to do something, it must be scheduled. I use phone notifications to remind me of my commitments.
 
-These form the first wing of honouring your word—if I realise I can't keep a promise (calendar events), I promptly inform those affected and reschedule.
+This is the first step to keeping your word—if I realize I can't keep a promise (calendar events), I quickly tell those involved and reschedule.
 
-Tip: Not doing this can make you anxious about unfinished tasks. Rescheduling them calms you and helps you feel more productive and responsible.
+Tip: Not doing this can make you anxious about unfinished tasks. Rescheduling them helps you feel more productive and responsible.
 
-You'll learn what constitutes a task versus a deadline by practising this method to avoid extra pressure.
+You'll learn what a task is versus a deadline by using this method to avoid extra stress.
 
-Dedicate time daily to organise your Trello tasks and plan for the week.
+Spend time every day organizing your Trello tasks and planning for the week.
 
-Even if you follow all my steps, you may still find you postpone promises repeatedly. When it happens more than three times, I know the issue isn't "What," "How," or "When" but "Why." It's clearly not a priority for me, so why did I commit to it? It's a fantastic question I contemplate in my daily journaling when something causes me to be out of integrity.
+Even if you follow all my steps, you might still delay promises. If it happens more than three times, I know the problem isn't "What," "How," or "When" but "Why." It's not a priority for me, so why did I agree to it? It's a great question I think about in my daily journaling when something makes me break my word.
 
-Writing a lot about it helps me uncover contradictions between my promises. For example, I once promised to do something for my wedding over the weekend but didn't follow through. Through journaling, I realised maintaining work-life balance is crucial to me. So, I adjusted the task to weekdays, which aligned with not opening my laptop on weekends.
+Writing about it helps me find contradictions in my promises. For example, I once promised to do something for my wedding over the weekend but didn't do it. Through journaling, I realized work-life balance is important to me. So, I moved the task to weekdays, which matched my goal of not using my laptop on weekends.
 
-Sometimes, procrastination stems from not being authentic when promising. For example, my manager asked me to do Task X, but I avoided it for days because I believed I shouldn't be doing it. I wasn't assertive enough to say so. Fear of confrontation or unexpressed emotions can lead to being out of integrity in my experience.
+Sometimes, procrastination happens because you're not being true when you promise. For example, my manager asked me to do Task X, but I avoided it because I felt I shouldn't be doing it. I wasn't confident enough to say so. Fear of confrontation or unspoken feelings can lead to breaking your word.
 
-Even if you don't try to discover what's genuinely important to you, you might not be authentic because you're pretending to be something you're not—not out of dishonesty but because you don't yet know what you truly want. This leads to promising things you don't want to do.
+Even if you don't try to find out what's really important to you, you might not be true to yourself because you're pretending to be something you're not—not out of dishonesty but because you don't know what you really want. This leads to promising things you don't want to do.
 
-Additionally, if you're unsure how to accomplish a promised task, you might need to plan some preparatory steps. It can be helpful to schedule a task specifically for clarifying what's expected of you. Sometimes, you might even need a pre-task for that clarification task. Continue organising in this way until your first step is clear and actionable.
+Also, if you're not sure how to do a promised task, you might need to plan some steps first. It can help to schedule a task just to figure out what's expected of you. Sometimes, you might even need a task before that one. Keep organizing until your first step is clear and doable.
 
-Tip: if there is a task that can be done less than 2 minutes (like messaging someone) I do it in the planning.
+Tip: if there's a task that takes less than 2 minutes (like messaging someone), I do it during planning.
 
 ## **Conclusion**
 
-Integrity is vital in all areas of life including personal and professional. They are not just about meeting deadlines or following rules; they're about genuinely honouring your word and ensuring your commitments align with your true values.
+Integrity is important in all parts of life, both personal and professional. It's not just about meeting deadlines or following rules; it's about truly keeping your word and making sure your commitments match your real values.
 
-if you want to participate in the same course about leadership, you can check out the [Landmark Worldwide](https://www.landmarkworldwide.com/) website.
+If you want to take the same leadership course, you can check out the [Landmark Worldwide](https://www.landmarkworldwide.com/) website.
 
-you can read more about integrity in the following references:
+You can read more about integrity in the following references:
 
 ## References
 
