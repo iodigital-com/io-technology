@@ -15,6 +15,7 @@ import Clock from '@/data/clock.svg'
 import SeriePlaylist from '@/components/SeriePlaylist'
 import EventCalendar from '@/components/EventCalendar'
 import { hasFutureEvents } from '@/lib/events'
+import HubspotForm from '@/components/HubspotForm'
 
 export default function PostLayout({
   frontMatter,
@@ -23,6 +24,7 @@ export default function PostLayout({
   events,
   next,
   prev,
+  contactForm,
   children,
 }) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
@@ -166,6 +168,26 @@ export default function PostLayout({
             <div className="xl:col-span-2 xl:pb-0">
               <div className="container prose mx-auto pb-8 pt-10 dark:prose-dark ">
                 {children}
+
+                {contactForm && (
+                  <>
+                    <hr className="my-24" />
+                    <div>
+                      <div className="mb-8">
+                        <h1>Let's solve your challenges together</h1>
+                        <p>
+                          Discover how our expertise can drive success for your unique needs. Reach
+                          out to us today and let's explore how we can elevate your next project
+                          together.
+                        </p>
+                        <HubspotForm
+                          portalId={'513128'}
+                          formId="ba87ba1f-8afd-478b-a7ef-031bdd16d286"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
 
                 <hr className="my-24" />
                 <div>
