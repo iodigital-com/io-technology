@@ -71,6 +71,7 @@ export default function Blog({ post, authorDetails, prev, next, jobs, events, se
             next={next}
             serie={serie}
             events={events}
+            contactForm={frontMatter.contactForm}
           />
 
           <div className="container mx-auto space-y-2 pb-8 pt-6 md:space-y-5">
