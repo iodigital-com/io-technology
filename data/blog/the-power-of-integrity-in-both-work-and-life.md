@@ -344,7 +344,7 @@ This is the first step to keeping your word—if I realize I can't keep a promis
 
 You'll learn what a task is versus a deadline by using this method to avoid extra stress.
 
-Spend time every day organizing your Trello tasks.
+#### Spend time every day organizing your Trello tasks.
 
 Even if you follow all my steps, you might still delay promises. If it happens more than three times, I know the problem isn't "What," "How," or "When" but "Why." It's not a priority for me, so why did I agree to it? It's a great question I think about in my daily journaling when something makes me break my word.
 
