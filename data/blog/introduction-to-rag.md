@@ -1,5 +1,5 @@
 ---
-title: 'An introduction to RAG'
+title: 'An Introduction to RAG'
 date: '2022-08-08'
 tags: ['rag', 'ai']
 images: []
@@ -12,37 +12,37 @@ canonicalUrl: 'https://www.iodigital.com/en/history/wouter/introduction-to-rag'
 
 ## Why RAG Matters
 
-Retrieval Augmented Generation (RAG) enhances AI by combining language models with external information retrieval. It improves **accuracy and relevance** by allowing AI to access up-to-date data from various sources when generating responses, overcoming the limitations of traditional language models.
+Retrieval Augmented Generation (RAG) is an innovative approach that enhances AI capabilities by seamlessly integrating language models with external information retrieval systems. This powerful combination allows AI to access and utilize up-to-date data from a wide range of sources when generating responses. By doing so, RAG significantly improves **the accuracy and relevance** of AI-generated content, effectively overcoming the inherent limitations of traditional language models that rely solely on pre-trained knowledge.
 
-## Making AI Smarter with Your Data
+## How does it work
 
-Under the hood, RAG typically uses vector databases to store embeddings and connects them to language models that generate the final responses. But the key thing to remember is that
+Under the hood, RAG typically uses vector databases to store embeddings and connects them to language models that generate the final responses. The key principle to remember is that:
 
-> It's all about giving AI access to the right information at the right time.
+_It's all about giving AI access to the right information at the right time._
 
 ### The Magic Happens in Two Steps:
 
 **The Retrieval Part**  
-Your documents are split into chunks and converted into embeddings (which we can call "semantic vectors"). When a question comes in, RAG finds the most relevant pieces from your documentation.
+Your documents are split into chunks and converted into embeddings (also known as "semantic vectors"). When a question comes in, RAG finds the most relevant pieces from your documentation.
 
-_The "most relevant pieces" are the chunks of text from your documentation that are semantically closest to the user's query. These pieces contain information that is most likely to be useful in answering the question or addressing the user's needs._
+_The "most relevant pieces" are chunks of text from your documentation that are semantically closest to the user's query. These pieces contain information that is most likely to be useful in answering the question or addressing the user's needs._
 
 **The Generation Part**  
-The AI model receives both the question and these relevant document pieces. Now it can generate answers using current, accurate information instead of just its training data.
+The AI model receives both the question and these relevant document pieces. It can then generate answers using current, accurate information instead of relying solely on its training data.
 
 ### Vector Database
 
-A working RAG (Retrieval-Augmented Generation) example requires a vector database containing retrievable data. Vector databases efficiently store and query high-dimensional vector representations of data, such as the semantic meanings of text or images.
+A working RAG (Retrieval-Augmented Generation) system requires a vector database containing retrievable data. Vector databases efficiently store and query high-dimensional vector representations of data, such as the semantic meanings of text or images.
 
 In RAG applications, these databases enable fast nearest-neighbor searches based on semantic similarity, which is crucial for retrieving relevant context when generating responses.
 
 **Similarity Comparisons Based on Vectors**
 
-![rag architecture](/articles/introduction-to-rag/embeddings.jpg)
+<img src="/articles/introduction-to-rag/embeddings.jpg" alt="RAG architecture" width="80%"/>
 
-For this example, we'll use ChromaDB, an open-source vector database designed for AI applications. ChromaDB offers efficient similarity search and easy integration with machine learning models, making it ideal for semantic search and recommendation systems.
+For this example, we'll use [ChromaDB](https://www.trychroma.com), an open-source vector database optimized for AI applications. It offers efficient similarity search and seamless integration with machine learning models, making it ideal for semantic search and recommendation systems.
 
-Let's create a ChromaDB instance and populate it with data to demonstrate a RAG architecture.
+Let's create a ChromaDB instance and populate it with data to demonstrate a RAG architecture:
 
 ```python
 import chromadb
@@ -50,14 +50,16 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Set up ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_or_create_collection(name="your_collection-name")
+collection = chroma_client.get_or_create_collection(name="your_collection_name")
 
-# Our story
+# Our story (This is just an example; you can get data from different sources,
+# such as a PDF about the story of the three little pigs)
 story = """Once upon a time, three little pigs left their mother and their home to seek their own fortunes and build their own houses.
 The three little pigs gathered materials for their houses.
 The first little pig chose to build his house from straw, the second little pig chose to build his house from sticks, and the third little pig chose to build his house from bricks."""
 
-# Split the text into chunks
+# Split the text into chunks of 100 characters with an overlap of 20
+# The overlap is necessary so the LLM can keep the context and prevent information loss
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
 chunks = text_splitter.split_text(story)
 
@@ -72,62 +74,64 @@ for i, chunk in enumerate(chunks):
 
 ### RAG Architecture
 
-Now we have a vector database with some data. Let's create a RAG system so we can ask how the third little pig built his house.
+Now that we have a vector database with some data, let's create a RAG system to ask how the third little pig built his house.
 
 ![rag architecture](/articles/introduction-to-rag/rag.png)
 
 ### 1. Query Input
 
-The process begins with a user query, which is the initial input to the system. This query is typically a question or a request for information that the user wants the AI to address.
+The process begins with a user query, which is the initial input to the system. This query is typically a question or a request for information that the user wants the AI to address:
 
 ```python
-query = 'How did the third little pig build his house?'
+question = 'How did the third little pig build his house?'
 ```
 
 ### 2. Embedding Model
 
-The query is passed through an embedding model, which transforms the text into a numerical vector representation. This process is crucial for enabling efficient similarity comparisons between the query and the stored knowledge.
+The question is passed through an embedding model, which transforms the text into a numerical vector representation. This process is crucial for enabling efficient similarity comparisons between the question and the stored knowledge.
 
-There are several options for embedding models: OpenAI's text-embeddings-3 models accessible through their API, Claude's embedding models via the Anthropic API, or open-source models from HuggingFace. Each option has different strengths in terms of quality, cost, and ease of use.
+There are several options for embedding models: OpenAI's text-embeddings-3 models accessible through their API, Claude's embedding models via the Anthropic API, or open-source models from [HuggingFace](https://huggingface.co/blog/getting-started-with-embeddings)
+. Each option offers different advantages in terms of quality, cost, and ease of use.
 
-In this example, we use the OpenAI embedding model.
+In this example, we use the OpenAI embedding model:
 
 ```python
 # Create embedding function
-def get_openai_embedding(query):
+def get_openai_embedding(question):
     response = openai.embeddings.create(
         model="text-embedding-ada-002",
-        input=query
+        input=question
     )
     return response.data[0].embedding
 
-# Use the embedding function with our query
-question_embedding = get_openai_embedding(query)
+# Use the embedding function with our question
+question_embedding = get_openai_embedding(question)
 ```
 
 ### 3. Vector Database Search (Context Retrieval)
 
-Now that we have an embedding of our query, we can search the vector database to retrieve relevant chunks of data based on their similarity to the query embedding.
+Once we have the question embedding, we can search the vector database to retrieve relevant chunks of data based on their similarity to the question embedding:
 
 ```python
 results = collection.query(
     query_embeddings=[question_embedding],
-    n_results=2,
+    n_results=5,
     where=where_filter
 )
 ```
 
 ### 4. Language Model Processing
 
-Now we have the query as an embedding and also two relevant chunks gathered from our vector database. It is time to put it all together in a prompt and ask OpenAI for the answer to our question. We really want to know how the third pig built his house.
+Now that we have both the question embedding and two relevant chunks from our vector database, we can combine them in a prompt and ask OpenAI for the answer to our question. We want to know how the third pig built his house.
 
-Besides the question, we also need a system prompt. This system prompt tells the LLM what to do with the data and how it should behave.
+Besides the question, we also need a system prompt. This system prompt instructs the LLM how to handle the data and how it should behave.
 
-When using RAG, it is better for the LLM to state that it did not find the answer based on the data you provided than to create a random answer. We can also give instructions on what format we would like to see the response. In this case, we want a well-structured JSON and we also ask the LLM to include information about the confidence of the answer.
+When using RAG, it's better for the LLM to state that it couldn't find an answer based on the provided data rather than generate a random response. We can also specify the desired response format. In this case, we want a well-structured JSON that includes information about the answer's confidence level:
 
 ```python
 def ask_question_prompt(
     documents: str,
+    metadata: Optional[List[Dict]] = None,
 ) -> str:
 
     system_prompt = f"""
@@ -136,12 +140,14 @@ def ask_question_prompt(
     Core Principles:
     1. Provide precise, document-sourced answers.
     2. NEVER use external or prior knowledge.
-    3. Ensure clear, structured, and valid JSON responses.
+    3. Maintain transparency about information sources and limitations.
+    4. Ensure clear, structured, and valid JSON responses.
 
     Response Structure Guidelines:
     {{
         "answer": "Comprehensive response directly from source documents.",
         "answer_confidence": "high|medium|low",
+        "direct_quotes": [{{"quote": "Direct quote", "page_index": <index>, "source": <source>}}],
     }}
 
     If NO relevant information is found:
@@ -152,6 +158,7 @@ def ask_question_prompt(
 
     Detailed Response Requirements:
     - Provide a comprehensive answer.
+    - List all relevant source documents.
 
     Confidence Level Guidelines:
     - high: Multiple direct quotes, clear context.
@@ -159,23 +166,22 @@ def ask_question_prompt(
     - low: Minimal or tangential information.
 
     Additional Guidelines:
-    - Ensure JSON is perfectly formatted.
     - Escape special characters.
     - Maintain a professional, objective tone.
 
     🔍 CONTEXT:
     Documents: {documents}
+    Metadata: {metadata}
     """
     return system_prompt
 
-# Use the function to create an system prompt for the LLM
-system_prompt = ask_question_prompt(results['documents'])
+# Use the function to create a system prompt for the LLM
+system_prompt = ask_question_prompt(results['documents'], results['metadatas'][0])
 ```
 
-Now we have the system prompt and question prompt, we can create a function that asks the LLM to give us the answer.
+Now that we have both the system prompt and question prompt, we can create a function that asks the LLM to provide an answer:
 
 ```python
-
 def ask_openai_chat_model(question, system_prompt):
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",  # You can replace this with any other model
@@ -188,10 +194,8 @@ def ask_openai_chat_model(question, system_prompt):
     return response.choices[0].message.content
 ```
 
-## Use Our RAG Backend
+## Using Our RAG Backend
 
-We have the RAG backend in Python ready. With this, we can create a frontend application to use it. For example, we can upload PDFs to ask questions about them.
+With our RAG backend ready in Python, we can create a frontend application to utilize it. For example, we can build an interface to upload PDFs and ask questions about their content. Using this system, we can finally confirm how the third little pig built his house: with bricks.
 
-## Why RAG is Your Next Must-Have Developer Skill
-
-[HuggingFace embedding models](https://huggingface.co/blog/getting-started-with-embeddings)
+![rag architecture](/articles/introduction-to-rag/rag-answer.png)
