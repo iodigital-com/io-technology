@@ -1,6 +1,6 @@
 ---
 title: 'The power of integrity in both work and life'
-date: '2025-01-06'
+date: '2025-01-07'
 tags: ['integrity', 'leadership', 'personal-development']
 images: ['/articles/the-power-of-integrity-in-both-work-and-life/banner.png']
 summary: 'In this article, I explain how being a person of integrity has helped me. I share my experiences and tips to help you on your journey towards integrity in both personal and professional life.'
