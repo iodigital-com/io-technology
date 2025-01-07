@@ -10,7 +10,7 @@ theme: 'blue'
 
 ## Introduction
 
-Eight months ago, I took a leadership course inspired by EST (Erhard Seminar Training), and it changed my life. It helped me improve my relationship with my wife, my work at "iO", my project "Lyreco" (an iO client), staying fit, publishing my [Sudoku app](https://sudoku.best/), and starting a basketball community for iO employees and clients. It was one of the best investments I've made, and it reinforced my goal of becoming a great leader. To achieve this, I need to master self-leadership by staying organised and keeping my promises.
+Eight months ago, I took a leadership course inspired by EST (Erhard Seminar Training), and it changed my life. It helped me improve my relationship with my wife, my work at iO, my project Lyreco (an iO client), staying fit, publishing my [Sudoku app](https://sudoku.best/), and starting a basketball community for iO employees and clients. It was one of the best investments I've made, and it reinforced my goal of becoming a great leader. To achieve this, I need to master self-leadership by staying organised and keeping my promises.
 
 On 18th December 2024, I gave a talk about integrity at the iO townhall and decided to write about it after receiving feedback from the audience.
 ![Komeil Mehranfar presenting about integrity at iO](/articles/the-power-of-integrity-in-both-work-and-life/komeil-mehranfar_integrity_iO.JPG)
@@ -271,11 +271,11 @@ Here's the key: I don't do anything that's not on my calendar. If I want to do s
 
 This is the first step to keeping your word—if I realize I can't keep a promise (calendar events), I quickly tell those involved and reschedule.
 
-Tip: Not doing this can make you anxious about unfinished tasks. Rescheduling them helps you feel more productive and responsible.
+**Tip:** Not doing this can make you anxious about unfinished tasks. Rescheduling them helps you feel more productive and responsible.
 
 You'll learn what a task is versus a deadline by using this method to avoid extra stress.
 
-Spend time every day organizing your Trello tasks and planning for the week.
+#### Spend time every day organizing your Trello tasks and planning for the week.
 
 Even if you follow all my steps, you might still delay promises. If it happens more than three times, I know the problem isn't "What," "How," or "When" but "Why." It's not a priority for me, so why did I agree to it? It's a great question I think about in my daily journaling when something makes me break my word.
 
@@ -287,7 +287,7 @@ Even if you don't try to find out what's really important to you, you might not 
 
 Also, if you're not sure how to do a promised task, you might need to plan some steps first. It can help to schedule a task just to figure out what's expected of you. Sometimes, you might even need a task before that one. Keep organizing until your first step is clear and doable.
 
-Tip: if there's a task that takes less than 2 minutes (like messaging someone), I do it during planning.
+**Tip:** If there's a task that takes less than 2 minutes (like messaging someone), I do it during planning.
 
 ## **Conclusion**
 
