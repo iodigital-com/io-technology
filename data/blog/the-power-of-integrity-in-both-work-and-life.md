@@ -55,15 +55,13 @@ The second "wing" is crucial for maintaining integrity. If you rely only on the 
 
 Another common scenario is when people ask about your task delivery timeline, and your responses are filled with conditions and vagueness like, "I can't say for sure. Maybe today or tomorrow. If there's no issue with the API or design, I'll deliver."
 
-### **1. Keeping Your Word (and on time):**
+Consider these examples:
 
-**Example:**
+**Example of Keeping Your Word (and on time):**
 
 You are given a task to add a new login feature to an app and promise to finish it by the end of the week. You plan your time well, focus on this task all week, and complete it by Friday as you said you would. This shows you kept your promise and met the deadline.
 
-### **2. Communicating When You Will Not Be Keeping Your Word:**
-
-**Example:**
+**Example Communicating When You Will Not Be Keeping Your Word:**
 
 You're working on a feature update for a client, with a deadline set for Wednesday. Halfway through the project, you find a major bug that causes a big delay. As soon as you know you can't meet the deadline, you quickly tell your project manager and the client. You explain:
 
