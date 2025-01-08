@@ -1,6 +1,6 @@
 ---
 title: 'An Introduction to RAG'
-date: '2022-08-08'
+date: '2025-01-14'
 tags: ['rag', 'ai']
 images: []
 summary: "Fed up with AI that makes up facts and can't keep up with your latest data? 
@@ -43,6 +43,8 @@ In RAG applications, these databases enable fast nearest-neighbor searches based
 For this example, we'll use [ChromaDB](https://www.trychroma.com), an open-source vector database optimized for AI applications. It offers efficient similarity search and seamless integration with machine learning models, making it ideal for semantic search and recommendation systems.
 
 Let's create a ChromaDB instance and populate it with data to demonstrate a RAG architecture:
+
+**Create a vectors database with some data**
 
 ```python
 import chromadb
