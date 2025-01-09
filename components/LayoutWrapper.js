@@ -1,11 +1,13 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
+import { Player } from './LottiePlayer'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import { Player } from '@lottiefiles/react-lottie-player'
 
 const LayoutWrapper = ({ children }) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false)
