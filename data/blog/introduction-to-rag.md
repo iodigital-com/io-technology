@@ -92,7 +92,7 @@ question = 'How did the third little pig build his house?'
 
 The question is passed through an embedding model, which transforms the text into a numerical vector representation. This process is crucial for enabling efficient similarity comparisons between the question and the stored knowledge.
 
-There are several options for embedding models: OpenAI's text-embeddings-3 models accessible through their API, Claude's embedding models via the Anthropic API, or open-source models from [HuggingFace](https://huggingface.co/blog/getting-started-with-embeddings)
+There are several options for embedding models: [OpenAI's text-embeddings-3](https://platform.openai.com/docs/guides/embeddings) accessible through their API, Claude's embedding models via the [Anthropic API](https://docs.anthropic.com/en/docs/build-with-claude/embeddings) embedding models via the Anthropic API, or open-source models from [HuggingFace](https://huggingface.co/blog/getting-started-with-embeddings)
 . Each option offers different advantages in terms of quality, cost, and ease of use.
 
 In this example, we use the OpenAI embedding model:
@@ -199,5 +199,7 @@ def ask_openai_chat_model(question, system_prompt):
 ## Using Our RAG Backend
 
 With our RAG backend ready in Python, we can create a frontend application to utilize it. For example, we can build an interface to upload PDFs and ask questions about their content. Using this system, we can finally confirm how the third little pig built his house: with bricks.
+
+Watch the RAG in action here:
 
 ![rag architecture](/articles/introduction-to-rag/rag-answer.png)
