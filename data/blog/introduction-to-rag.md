@@ -1,6 +1,6 @@
 ---
 title: 'An Introduction to RAG'
-date: '2025-01-14'
+date: '2025-01-10'
 tags: ['rag', 'ai']
 images: []
 summary: "Fed up with AI that makes up facts and can't keep up with your latest data? 
