@@ -65,6 +65,9 @@ The first little pig chose to build his house from straw, the second little pig 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
 chunks = text_splitter.split_text(story)
 
+# Add chunks to the collection
+for i, chunk in enumerate(chunks):
+
 # Get a numerical vector representation of the chunk by an embedding model.
 # Next in this article you can read more about the embedding model
     chunk_embedding = get_openai_embedding(chunk.page_content)
