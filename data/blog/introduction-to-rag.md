@@ -129,7 +129,7 @@ results = collection.query(
 
 ### 4. Language Model Processing
 
-Now that we have both the question embedding and two relevant chunks from our vector database, we can combine them in a prompt and ask OpenAI for the answer to our question. We want to know how the third pig built his house.
+Now that we have both the question embedding and relevant chunks from our vector database, we can combine them in a prompt and ask OpenAI for the answer to our question. We want to know how the third pig built his house.
 
 Besides the question, we also need a system prompt. This system prompt instructs the LLM how to handle the data and how it should behave.
 
