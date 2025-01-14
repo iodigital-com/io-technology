@@ -6,7 +6,7 @@ const EventCarousel = ({ events }) => {
     <ul className="my-12 mb-24 flex flex-col flex-wrap items-center md:snap-x md:flex-row md:flex-nowrap md:items-stretch md:gap-12 md:overflow-x-auto md:px-12">
       {events.map((event) => (
         <li
-          key={event.id}
+          key={event.title}
           className={`mb-8 shrink-0 md:mb-0 md:snap-center ${
             isFutureEvent(event.dateTime) ? '' : ' opacity-50'
           }`}
