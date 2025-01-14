@@ -302,19 +302,34 @@ Sarah says she'll volunteer if she doesn't have anything else to do. When other 
 
 ### 10. **Integrity is a Mountain with No Top**
 
-From the document: > People systematically believe that they are in integrity, or if by chance they are at the moment aware of being out of integrity, they believe that they will soon get back into integrity. > > In fact integrity is a mountain with no top. However, the combination of 1) generally not seeing our own out-of-integrity behaviour, 2) believing that we are persons of integrity, and 3) even when we get a glimpse of our own out-of-integrity behaviour, assuaging ourselves with the notion that we will soon restore ourselves to being a person of integrity keeps us from seeing that in fact integrity is a mountain with no top. > > To be a person of integrity requires that we recognise this and learn to enjoy climbing.
+From the document:
 
-    **Example**:
+> People systematically believe that they are in integrity, or if by chance they are at the moment aware of being out of integrity, they believe that they will soon get back into integrity.
+>
+> In fact integrity is a mountain with no top. However, the combination of
+>
+> 1.  generally not seeing our own out-of-integrity behaviour,
+> 2.  believing that we are persons of integrity, and
+> 3.  even when we get a glimpse of our own out-of-integrity behaviour, assuaging ourselves with the notion that we will soon restore ourselves to being a person of integrity keeps us from seeing that in fact integrity is a mountain with no top.
+>
+> To be a person of integrity requires that we recognise this and learn to enjoy climbing.
 
-    Paul thinks he's always honest but overlooks the small lies he tells. He plans to fix them later, believing he can regain his integrity, not realizing that maintaining integrity is a continuous effort.
+**Example**:
+Paul thinks he's always honest but overlooks the small lies he tells. He plans to fix them later, believing he can regain his integrity, not realizing that maintaining integrity is a continuous effort.
 
 ### 11. **Not having your word in existence when it comes time to keep your word**
 
-From the document: > People say "Talk is cheap" because most people do not honour their word when it comes time to keep their word. A major source of people not honouring their word, is that when it comes time for them to do so, their word does not exist for them in a way that gives them a reliable opportunity to honour their word. > > Most people have never given any thought to keeping their word in existence so that when it comes time for them to keep their word there is a reliable opportunity for them to honour their word. This is a major source of out-of-integrity behaviour for individuals, groups and organisations. > > In order to honour your word, you will need an extraordinarily powerful answer to the question, "Where Is My Word When It Comes Time For Me To Keep My Word?" If you don't have a way for your word to be powerfully present for you in the moment or moments that it is time for you to take action to honour your word, then you can forget about being a person of integrity, much less a leader.
+From the document:
 
-    **Example**:
+> People say, "Talk is cheap," because most people do not honour their word when it comes time to keep it. A major reason for this is that, at the moment of action, their word does not exist in a way that provides a reliable opportunity to honour it.
+>
+> Most individuals have never considered how to keep their word present, ensuring that when the time comes to act, they have a dependable chance to fulfil their commitments. This oversight is a significant source of out-of-integrity behaviour for individuals, groups, and organisations.
+>
+> To honour your word, you must have a powerful answer to the question, "Where is my word when it comes time for me to keep it?" If you lack a method to keep your word vividly present in the moments you need to act, you can forget about being a person of integrity, let alone a leader.
 
-    Emma promises to submit a report by Friday but forgets to set a reminder. She misses the deadline because she didn't plan properly.
+**Example:**
+
+Emma promises to submit a report by Friday but forgets to set a reminder. As a result, she misses the deadline due to inadequate planning.
 
 ## Tactics I use to maintain my integrity
 
