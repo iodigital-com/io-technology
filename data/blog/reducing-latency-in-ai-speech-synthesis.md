@@ -20,7 +20,7 @@ Instead of using the native SpeechSynthesis Web API, we now replace it with a ca
 
 ![Schema showing the turn based conversation flow of Aiva with sidestep to the ElevenLabs API](/articles/reducing-latency-in-ai-speech-synthesis/new-aiva-interaction-schematic.png)
 
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/y7rUfKh6PfE?si=juamdW07HQ2FCaF2&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/y7rUfKh6PfE?si=juamdW07HQ2FCaF2&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ## It’s slow!
 
@@ -44,4 +44,4 @@ As you can see, there is quite a bit of time while the audio is playing which I 
 
 That did the trick! The latency is now low enough to not intrude on the natural flow of the conversation:
 
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/zYguVD2_DSg?si=bWePsGv70thn3CJs&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/zYguVD2_DSg?si=bWePsGv70thn3CJs&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

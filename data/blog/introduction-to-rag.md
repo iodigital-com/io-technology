@@ -3,7 +3,7 @@ title: 'An Introduction to RAG'
 date: '2025-01-10'
 tags: ['rag', 'ai']
 images: []
-summary: "Fed up with AI that makes up facts and can't keep up with your latest data? 
+summary: "Fed up with AI that makes up facts and can't keep up with your latest data?
 That's where RAG (Retrieval-Augmented Generation) comes in – the clever technique that's changing how we build AI applications that actually work."
 authors: ['wouter-heldens']
 theme: 'green'
@@ -22,12 +22,12 @@ _It's all about giving AI access to the right information at the right time._
 
 ### The Magic Happens in Two Steps:
 
-**The Retrieval Part**  
+**The Retrieval Part**
 Your documents are split into chunks and converted into embeddings (also known as "semantic vectors"). When a question comes in, RAG finds the most relevant pieces from your documentation.
 
 _The "most relevant pieces" are chunks of text from your documentation that are semantically closest to the user's query. These pieces contain information that is most likely to be useful in answering the question or addressing the user's needs._
 
-**The Generation Part**  
+**The Generation Part**
 The AI model receives both the question and these relevant document pieces. It can then generate answers using current, accurate information instead of relying solely on its training data.
 
 ### Vector Database
@@ -207,4 +207,4 @@ With our RAG backend ready in Python, we can create a frontend application to ut
 
 Watch the RAG in action here:
 
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/U_QTy_-avAI?si=lTjy3qr9nq25pTT_&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/U_QTy_-avAI?si=lTjy3qr9nq25pTT_&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

@@ -6,8 +6,8 @@ import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
+import { Player } from './LottiePlayer'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import Image from './Image'
 
 const LayoutWrapper = ({ children }) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false)
@@ -53,7 +53,11 @@ const LayoutWrapper = ({ children }) => {
                 }`}
               >
                 <div className="mr-3 duration-150 ease-out sm:opacity-100">
-                  <Image src="/io.svg" className="logo" alt="" width={85} height={51} />
+                  <Player
+                    autoplay
+                    src="/logo.json"
+                    className={`logo -translate-x-3 sm:translate-x-0`}
+                  />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl">
