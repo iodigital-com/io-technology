@@ -11,9 +11,9 @@ const EventCalendar = ({ events }) => {
           }`}
           key={event.title}
         >
-          <h3 className="m-0 line-clamp-2 text-lg font-medium">{event.title}</h3>
-          <p className="m-0 line-clamp-2 text-sm">{event.description}</p>
-          <p className="m-0 mt-auto line-clamp-2 pt-6 text-xs">
+          <h3 className="line-clamp-2 m-0 text-lg font-medium">{event.title}</h3>
+          <p className="line-clamp-2 m-0 text-sm">{event.description}</p>
+          <p className="line-clamp-2 m-0 mt-auto pt-6 text-xs">
             <time
               className={`font-bold ${isFutureEvent(event.dateTime) ? 'text-io_blue-600' : ''}`}
               dateTime={new Intl.DateTimeFormat('en-US', {
