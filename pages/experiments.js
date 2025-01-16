@@ -48,9 +48,7 @@ export default function Experiments({ experiments }) {
                 alt="hackathon"
                 width={816}
                 height={816}
-                layout="responsive"
-                className="rounded-full"
-                objectFit="cover"
+                className="w-screen rounded-full object-cover"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-3 xl:col-span-4 xl:col-start-3">

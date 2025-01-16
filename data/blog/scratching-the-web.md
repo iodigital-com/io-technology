@@ -20,7 +20,7 @@ _For the sake of the length of the article, the provided code blocks are simplif
 
 An example of what can be made: [The turntable](https://pimskie.github.io/scratch/)
 
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/cuVeltZcfQ4?si=9hRla5ROES2uDnwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/cuVeltZcfQ4?si=9hRla5ROES2uDnwA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 ## The record
 

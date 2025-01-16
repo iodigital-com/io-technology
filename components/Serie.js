@@ -28,8 +28,7 @@ const Serie = ({ slug, date, title, tags, authors, border = true, subpath = 'art
                       width={200}
                       height={200}
                       alt="avatar"
-                      objectFit="cover"
-                      className="rounded-full"
+                      className="rounded-full object-cover"
                     />
                   </div>
                 ))}

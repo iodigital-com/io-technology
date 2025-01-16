@@ -27,8 +27,7 @@ const Article = ({ slug, date, title, summary, tags, authors, border = true }) =
                       width={200}
                       height={200}
                       alt="avatar"
-                      objectFit="cover"
-                      className="rounded-full"
+                      className="rounded-full object-cover"
                     />
                   </div>
                 ))}
