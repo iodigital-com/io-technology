@@ -64,10 +64,10 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
                   src={Image1}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
+                  className="w-screen"
                 />
               </div>
               <div className="w-1/2">
@@ -76,11 +76,10 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
                   src={Image2}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
-                  className="rounded-full"
+                  className="h-auto w-full rounded-full"
                 />
               </div>
             </div>

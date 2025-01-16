@@ -24,8 +24,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
                 src={avatar}
                 width={800}
                 height={800}
-                layout="responsive"
-                className="rounded-full"
+                className="h-auto w-full rounded-full"
                 alt="avatar"
               />
             </div>

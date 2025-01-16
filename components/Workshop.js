@@ -37,8 +37,7 @@ const Workshop = ({ title, summary, authors, tags, video, slides, slug }) => {
                   width="100%"
                   height="100%"
                   alt={`avatar ${author.name}`}
-                  objectFit="cover"
-                  className="rounded-full"
+                  className="rounded-full object-cover"
                 />
               </div>
               <div>

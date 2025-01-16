@@ -24,7 +24,7 @@ The part that’s important for us to know is that those API's expose certain in
 
 There are two pieces of information I want to focus on, and those are the `role` and the `name`. The `role` of the DOM object exposes its purpose. It could be a link, a button or something else like an image. The `name` of the DOM object gives its identity. It’s also referred as the [Accessible Name](https://www.w3.org/TR/accname-1.1/#dfn-accessible-name).
 
-<iframe height="400" width="100%" scrolling="no" title="Cards with &quot;read more&quot; links" src="https://codepen.io/beingfrankly/embed/oNGLQea?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowFullScreen="true">
+<iframe height="400" width="100%" scrolling="no" title="Cards with &quot;read more&quot; links" src="https://codepen.io/beingfrankly/embed/oNGLQea?default-tab=result&theme-id=dark" frameBorder="no" loading="lazy" allowtransparency="true" allowFullScreen="true">
   See the Pen <a href="https://codepen.io/beingfrankly/pen/oNGLQea">
   Cards with &quot;read more&quot; links</a> by Frank van Eldijk-Smeding (<a href="https://codepen.io/beingfrankly">@beingfrankly</a>)
   on <a href="https://codepen.io">CodePen</a>.
@@ -68,7 +68,7 @@ To give our new links a more accurate Accessible Name, we have to use either the
 
 Let’s check it out!
 
-<iframe height="400" width="100%" scrolling="no" title="Cards with &quot;read more&quot; links - possible fix" src="https://codepen.io/beingfrankly/embed/PoJGGyj?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowFullScreen="true">
+<iframe height="400" width="100%" scrolling="no" title="Cards with &quot;read more&quot; links - possible fix" src="https://codepen.io/beingfrankly/embed/PoJGGyj?default-tab=result&theme-id=dark" frameBorder="no" loading="lazy" allowtransparency="true" allowFullScreen="true">
   See the Pen <a href="https://codepen.io/beingfrankly/pen/PoJGGyj">
   Cards with &quot;read more&quot; links - possible fix</a> by Frank van Eldijk-Smeding (<a href="https://codepen.io/beingfrankly">@beingfrankly</a>)
   on <a href="https://codepen.io">CodePen</a>.

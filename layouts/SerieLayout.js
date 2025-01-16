@@ -67,8 +67,7 @@ export default function PostLayout({
                   alt={title}
                   width={1280}
                   height={720}
-                  layout="responsive"
-                  objectFit="cover"
+                  className="h-auto w-full object-cover"
                   priority={true}
                 />
               </div>
@@ -89,8 +88,8 @@ export default function PostLayout({
                     {author.avatar && (
                       <Image
                         src={author.avatar}
-                        width="100px"
-                        height="100px"
+                        width={100}
+                        height={100}
                         alt="avatar"
                         className="flex-grow-0 rounded-full"
                       />

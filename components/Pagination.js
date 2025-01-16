@@ -20,11 +20,11 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
         {prevPage && (
           <Link
             href={currentPage - 1 === 1 ? `/${subpath}/` : `/${subpath}/page/${currentPage - 1}`}
+            rel="previous"
+            className={btnClasses}
           >
-            <a rel="previous" className={btnClasses}>
-              <Arrow className="mr-4 w-6 rotate-180" />
-              <span>Previous</span>
-            </a>
+            <Arrow className="mr-4 w-6 rotate-180" />
+            <span>Previous</span>
           </Link>
         )}
         <span className="py-4 text-base font-bold leading-none">
@@ -37,11 +37,9 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
           </button>
         )}
         {nextPage && (
-          <Link href={`/${subpath}/page/${currentPage + 1}`}>
-            <a rel="next" className={btnClasses}>
-              <span>Next</span>
-              <Arrow className="ml-4 w-6" />
-            </a>
+          <Link href={`/${subpath}/page/${currentPage + 1}`} rel="next" className={btnClasses}>
+            <span>Next</span>
+            <Arrow className="ml-4 w-6" />
           </Link>
         )}
       </nav>
