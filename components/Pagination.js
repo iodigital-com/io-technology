@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from './Link'
 import Arrow from '@/data/arrow.svg'
 
 export default function Pagination({ totalPages, currentPage, subpath = 'articles' }) {

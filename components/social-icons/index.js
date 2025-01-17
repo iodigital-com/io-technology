@@ -6,6 +6,7 @@ import Linkedin from './linkedin.svg'
 import Twitter from './twitter.svg'
 import Web from './web.svg'
 import SlideDeck from './slide-deck.svg'
+import Link from '../Link'
 
 // Icons taken from: https://simpleicons.org/
 
@@ -26,7 +27,7 @@ const SocialIcon = ({ kind, href, size = 8, title, children, classNames, textCla
   const SocialSvg = components[kind]
 
   return (
-    <a
+    <Link
       className={`h flex  items-center transition ${
         textClassNames ? textClassNames : 'text-gray-700 hover:text-gray-800'
       }`}
@@ -42,7 +43,7 @@ const SocialIcon = ({ kind, href, size = 8, title, children, classNames, textCla
         }`}
       />
       {children && <span className={`ml-1`}>{children}</span>}
-    </a>
+    </Link>
   )
 }
 

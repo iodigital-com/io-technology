@@ -17,7 +17,7 @@ const Experiment = ({ title, images, demo, code, authors, content, border = true
         <div className="hidden md:col-span-3 md:mr-8 md:block xl:col-span-5">
           {images.map((image) => (
             <div className="responsive-image-container mb-2" key={image}>
-              <Image src={image} alt="Image" />
+              <Image src={image} alt="Image" width={100} height={100} />
             </div>
           ))}
         </div>

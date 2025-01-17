@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from './Link'
 import kebabCase from '@/lib/utils/kebabCase'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 

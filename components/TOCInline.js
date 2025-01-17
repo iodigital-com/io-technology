@@ -1,3 +1,4 @@
+import Link from './Link'
 /**
  * @typedef TocHeading
  * @prop {string} value
@@ -41,7 +42,7 @@ const TOCInline = ({
     <ul>
       {filteredToc.map((heading) => (
         <li key={heading.value} className={`${heading.depth >= indentDepth && 'ml-6'}`}>
-          <a href={heading.url}>{heading.value}</a>
+          <Link href={heading.url}>{heading.value}</Link>
         </li>
       ))}
     </ul>
