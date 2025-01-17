@@ -57,7 +57,16 @@ module.exports = withBundleAnalyzer({
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
   images: {
-    domains: ['i.ytimg.com'],
+    localPatterns: [
+      {
+        // local images
+        pathname: '**',
+      },
+      {
+        // remote images
+        pathname: 'i.ytimg.com',
+      },
+    ],
   },
   async headers() {
     return [
