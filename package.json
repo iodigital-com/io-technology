@@ -34,7 +34,7 @@
     "markdown-it": "13.0.2",
     "markdown-to-text": "0.1.1",
     "marked": "9",
-    "mdx-bundler": "9.2.1",
+    "mdx-bundler": "10.0.3",
     "next": "15.1.4",
     "next-themes": "0.4.4",
     "node-html-parser": "6.1.13",
