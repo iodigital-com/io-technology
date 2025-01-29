@@ -1,0 +1,74 @@
+---
+title: 'A visit to the worlds most performant conference: performance.now()'
+date: '2025-29-01'
+tags: ['performance', 'core web vitals', 'RUM', 'performance.now()', 'monitoring', 'conference']
+images: [/articles/a-visit-to-performance-now-conference-2024-amsterdam/entrance-badge.jpg]
+summary: 'I had the pleasure of attending the performance.now() conference in Amsterdam. Here are some of the highlights from the event.'
+authors: ['clarke-verdel']
+theme: 'blue'
+---
+
+Hi, my name is Clarke Verdel and I work as a Senior Frontend Consultant at iO. On the 14th & 15th of November 2024, I visited the fifth edition of performance.now(), the worlds most prominent web performance conference.
+
+## My Passion for Performance
+
+Optimizing web experiences is something that I love to do. It forces me to dive deep into the web core fundamentals and try to really understand why and how we are building the web for our end users. For me, this was the ultimate opportunity to learn from leaders in the field and have inspiring conversations with people who love to do the same.
+
+## The Importance of Performance
+
+A thing we often neglect is how performance can be a big bottleneck for our visitors. That's not too crazy when you think about the fact that we like to work on a high-end laptop with blazing fast internet speeds, especially developers in more developed countries. Performance is often considered an afterthought as we don't experience the pain of a slow website like a big or small part of your visitors do.
+
+## A Comprehensive Two-Day Programme
+
+![Entrance Badge](/articles/a-visit-to-performance-now-conference-2024-amsterdam/entrance-badge.jpg)
+
+The conference offered a two-day programme with in total 14 speakers, which all had a high quality and were very enjoyable to listen to. I especially liked the opening talk of [Harry Roberts: Site-Speed That Sticks](https://www.youtube.com/watch?v=b18Y1fUydC8&list=PLjnstNlepBvOxZeta4-yAFDllxfW-A5EC&index=3). Man, I love his energy on stage! I can recommend any (performance) consultant to watch his talk as you might learn one or two things from him.
+
+Some of the talks were amazing to watch as a strong case on how they tackled performance for their software products, [Jason Williams & Paul Williams](https://www.youtube.com/watch?v=y1MCLZm8yAY&list=PLjnstNlepBvOxZeta4-yAFDllxfW-A5EC&index=14) talked about how Bloomberg built their own browser, wow! While others were more insightful in their creative way of problem solving, for example on how to deal with third party scripts: [Third Party Woes by Jason Grigsby](https://www.youtube.com/watch?v=wI5frInvfQM&list=PLjnstNlepBvOxZeta4-yAFDllxfW-A5EC&index=7).
+
+## Key insights
+
+While there were many speakers during the two days at the Performance.now() conference I would like to highlight a few of the most important insights that stood out for me:
+
+- INP is a big topic and something we can not neglect anymore
+- Focus on Real User Monitoring rather than Synthetic Monitoring
+- Tools can help you, but don’t use them blindly
+
+Let me take you through real quick why I think these topics stood out and why they are relevant.
+
+### INP: A New Performance Metric
+
+This new metric measures how long it takes from the point that you interact with an element on a web page until something starts to actually change. For example if you click on a button, how long it takes before something happens. [INP](https://web.dev/articles/inp) has replaced the old metric [FIP](https://web.dev/articles/fid) since the 12th of March 2024 and is parts of Google it’s Core Web Vitals, so a negative score could impact your SEO Ranking.
+
+A good INP does not only help you rank better in the search engine, but most probably also improves your conversion rates as the user experiences a smooth encounter with your website.
+
+But how do you measure this INP metric? You can either test it on your local machine or with RUM statistics. The best way to measure the real INP of your website is by measuring metrics from real users of your website. Let me tell you why.
+
+### The Value of RUM: Real User Monitoring
+
+By collecting data from real users, called Real User Monitoring, you collect metrics from your actual users. Another way of collecting metrics is through Synthetic Monitoring, like [WebPageTest.org](http://www.webpagetest.org). [Synthetic monitoring](https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic#synthetic_monitoring) is conducted in a controlled environment where geography, network, device, browser, and cached status are predetermined. With RUM you actually collect these metrics based on the situation of your actual users. Basically without RUM data you will miss out on a lot of performance improvements.
+
+Tools like [RUMvision](https://www.rumvision.com/) or [SpeedCurve](https://www.speedcurve.com/features/performance-monitoring/) can help you collect this data for you. They have nice dashboards and reporting features that can help you distil the right data from your metrics.
+
+### Don’t use tools blindly
+
+While tools that collect metrics can give you the insights you need, they might also give you a false idea that everything works fine. For example if you have a dashboard setup that reports you about INP, but neglects other metrics, it could be still that your website is not as performant as you thought.
+
+By collecting your Core Web Vital metrics with Real User Monitoring, you are already doing a very great job. But always be mindful for the fact that these metrics depend on a lot of factors. Check out this talk of Harry Roberts where he explains certain caveats: [Site-Speed That Sticks](https://www.youtube.com/watch?v=b18Y1fUydC8&list=PLjnstNlepBvOxZeta4-yAFDllxfW-A5EC&index=3).
+
+## Short recap
+
+I went to visit Performance.now() in November 2024 to learn more about performance improvements on the web. What I experienced was a two-day event fully packed with insights and inspiration. I had a chance to learn about new techniques but most importantly I got heavily inspired to do more performance improvements during my client work.
+
+The 2025 edition has already been planned and for sure I will be joining! Will I see you there?
+
+## Online recordings
+
+You can find online recordings of all the talks on Youtube, [watch here](https://youtube.com/playlist?list=PLjnstNlepBvOxZeta4-yAFDllxfW-A5EC&feature=shared).
+
+## Useful Resources
+
+- [HTTP Archive](https://httparchive.org/)
+- [Google Chrome DevTools Performance Tab](https://developer.chrome.com/docs/devtools/performance/overview)
+- [Core Web Vitals: INP](https://web.dev/articles/inp)
+- [Synthetic Monitoring vs Real User Monitoring](https://developer.mozilla.org/en-US/docs/Web/Performance/Rum-vs-Synthetic)
