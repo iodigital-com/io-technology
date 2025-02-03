@@ -2,7 +2,7 @@
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import Image from './Image'
-import CustomLink from './Link'
+import Link from './Link'
 import TOCInline from './TOCInline'
 import Pre from './Pre'
 import Heading from './Heading'
@@ -10,7 +10,7 @@ import Heading from './Heading'
 export const MDXComponents = {
   Image,
   TOCInline,
-  a: CustomLink,
+  a: Link,
   pre: Pre,
   h1: Heading(1),
   h2: Heading(2),

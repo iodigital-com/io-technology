@@ -29,8 +29,7 @@ export default function DevoxxJava() {
                 src={'/talks.jpg'}
                 width={1192}
                 height={1192}
-                layout="responsive"
-                className="rounded-full"
+                className="h-auto w-full rounded-full"
                 alt=""
               />
             </div>

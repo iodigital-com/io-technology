@@ -52,8 +52,7 @@ export default function Talk({ talk, authors }) {
                 src={author.avatar}
                 width={800}
                 height={800}
-                layout="responsive"
-                className="rounded-full"
+                className="h-auto w-full rounded-full"
                 alt={`avatar ${author.name}`}
               />
               <div className="mt-3">

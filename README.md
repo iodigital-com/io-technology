@@ -34,6 +34,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Check the guidelines in the [Wiki](https://github.com/iodigital-com/io-technology/wiki)
 
+### Updating Dependencies
+
+If you want to help by keeping our dependencies up te date, first read the [updating guide](./UPDATING.md).
+
 ## Contributors
 
 Thank you to all our [contributors](https://github.com/iodigital-com/io-technology/graphs/contributors) ❤️

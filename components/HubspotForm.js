@@ -17,7 +17,7 @@ const HubspotForm = ({ portalId, formId, className, style }) => {
         })
       }
     })
-  }, [])
+  }, [portalId, formId])
 
   return <div id="hubspotForm" className={`${className} hubspot`} style={style}></div>
 }
