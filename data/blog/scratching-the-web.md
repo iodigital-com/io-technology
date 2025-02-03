@@ -20,7 +20,7 @@ _For the sake of the length of the article, the provided code blocks are simplif
 
 An example of what can be made: [The turntable](https://pimskie.github.io/scratch/)
 
-<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/cuVeltZcfQ4?si=9hRla5ROES2uDnwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/cuVeltZcfQ4?si=9hRla5ROES2uDnwA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 ## The record
 
@@ -71,8 +71,8 @@ Now a little math is required to determine the angle that was dragged. Take give
 
 ![Calculating the angle](/articles/scratching-the-web/calculate-angle.svg)
 
-The user clicks on spot "A", and moves the pointer towards "B". The center of the record is at "C".  
-The angle between "A" and "C", and "B" and "C" need to be calculated.  
+The user clicks on spot "A", and moves the pointer towards "B". The center of the record is at "C".
+The angle between "A" and "C", and "B" and "C" need to be calculated.
 The difference between "AC" and "BC" is "D", the angle dragged.
 
 The three built-in functions needed for the calculations are `Math.atan2`, `Math.sin`, and `Math.cos`.
@@ -159,12 +159,12 @@ autoRotate(msElapsed: number) {
 }
 ```
 
-So far the record can spin on its own, it can be dragged and the playback speed is calculated.  
+So far the record can spin on its own, it can be dragged and the playback speed is calculated.
 Time to look at the audio.
 
 ## The Audio
 
-Loading the audio is pretty straightforward using a simple `fetch`.  
+Loading the audio is pretty straightforward using a simple `fetch`.
 The response, which will be an `ArrayBuffer`, is used to create an `AudioBuffer`. Once that is created, an `AudioBufferSourceNode` can be made which will be the actual sound source that can be controlled.
 
 ```js:Audio.js
@@ -216,8 +216,8 @@ const audioBuffer = new AudioBuffer(...)
 audioBufferReversed.getChannelData(0).set(channelDataReversed);
 ```
 
-> _Is it worth it? Let me work it  
-> I put my thang down, flip it and reverse it  
+> _Is it worth it? Let me work it
+> I put my thang down, flip it and reverse it
 > Ti esrever dna ti pilf nwod gnaht ym tup i_ - Missy Elliot
 
 So when two audio buffers are available, they can easily be switched depending on the playback speed. For example:
@@ -283,7 +283,7 @@ And there we have it! A working turntable, all with some good old plain javascri
 
 ### Follow ups
 
-This gives an example on how to create a turntable. But what's cooler than one turntable? Two!  
+This gives an example on how to create a turntable. But what's cooler than one turntable? Two!
 The next iteration could be making two turntables and put a mixer in between. Maybe with some extra `GainNode`?
 
 See you in the next one!

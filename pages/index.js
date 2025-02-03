@@ -64,10 +64,10 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
                   src={Image1}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
+                  className="w-screen"
                 />
               </div>
               <div className="w-1/2">
@@ -76,11 +76,10 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
                   src={Image2}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
-                  className="rounded-full"
+                  className="h-auto w-full rounded-full"
                 />
               </div>
             </div>
@@ -93,19 +92,27 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
             </span>
             <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#articles">Our latest articles</a>
+                <Link href="#articles" className="text-black">
+                  Our latest articles
+                </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#videos">Our latest videos</a>
+                <Link href="#videos" className="text-black">
+                  Our latest videos
+                </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#people">Our writers &amp; speakers</a>
+                <Link href="#people" className="text-black">
+                  Our writers &amp; speakers
+                </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#jobs">Some of our jobs</a>
+                <Link href="#jobs" className="text-black">
+                  Some of our jobs
+                </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
             </ul>

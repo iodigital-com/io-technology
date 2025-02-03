@@ -20,8 +20,7 @@ const VideoCard = ({ video, playButton = true }) => {
           width={1280}
           height={720}
           unoptimized={true}
-          objectFit="cover"
-          layout="responsive"
+          className="h-auto w-full object-cover"
         />
 
         {playButton && (

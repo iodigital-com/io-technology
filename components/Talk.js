@@ -34,22 +34,19 @@ const Talk = ({ title, summary, authors, tags, video, slides, slug }) => {
                 <Image
                   key={author.name}
                   src={author.avatar || '/authors/io.jpg'}
-                  width="100%"
-                  height="100%"
+                  width={100}
+                  height={100}
                   alt={`avatar ${author.name}`}
-                  objectFit="cover"
-                  className="rounded-full"
+                  className="rounded-full object-cover"
                 />
               </div>
               <div>
                 <p className="text-sm font-medium">
-                  <Link>
-                    <a
-                      href={`/authors/${author.slug[0]}`}
-                      className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
-                    >
-                      {author.name}
-                    </a>
+                  <Link
+                    href={`/authors/${author.slug[0]}`}
+                    className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                  >
+                    {author.name}
                   </Link>
                 </p>
                 <p className="text-sm">{author.occupation}</p>

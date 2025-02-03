@@ -11,8 +11,7 @@ const InnerContributor = ({ contributor }) => {
           width={200}
           height={200}
           alt={`Avatar of ${contributor.name}`}
-          objectFit="cover"
-          className="rounded-full"
+          className="rounded-full object-cover"
         />
       </div>
       <p>{contributor.name}</p>
