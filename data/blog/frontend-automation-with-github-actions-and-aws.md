@@ -1,6 +1,6 @@
 ---
 title: 'Frontend Automation with Github Actions and AWS'
-date: '2025-01-31'
+date: '2025-02-04'
 tags: ['frontend', 'aws', 'github-actions', 'devops']
 images: ['/articles/frontend-automation-with-github-actions-and-aws/gha-in-action.png']
 summary: "No matter which tech stack you use, automating your deployment process can save you time and headaches. Let's see how to use Github Actions to automate your frontend deployments to AWS S3."
