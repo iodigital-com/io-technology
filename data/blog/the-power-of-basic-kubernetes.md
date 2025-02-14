@@ -16,7 +16,7 @@ theme: 'blue'
 
 ## Introduction
 
-As a seasoned Java developer turned technical writer, I recently found myself working on a greenfield project that sparked my interest in Kubernetes (K8s). While attempting to clean up the project's Helm charts, I dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform. This exploration led me to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
+As a Java developer I recently found myself working on a greenfield project that sparked my interest in Kubernetes (K8s). While attempting to clean up the project's Helm charts, I dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform. This exploration led me to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
 
 ## What is Kubernetes (K8s)?
 
