@@ -8,7 +8,7 @@ authors: ['komeil-mehranfar']
 theme: 'blue'
 ---
 
-In my experience, unit testing can be very beneficial in frontend development by helping to ensure that individual components and functions work as intended. Writing clean and effective unit tests has helped me enhance code quality, facilitate refactoring, and maintain a reliable codebase. In this article, I'd like to share some best practices for writing unit tests in frontend applications that I've found useful, focusing on clarity, readability, and maintainability.
+In this article, I'd like to share some best practices for writing unit tests in JavaScript that I've found useful, focusing on clarity, readability, and maintainability.
 
 ## Table of Contents
 
