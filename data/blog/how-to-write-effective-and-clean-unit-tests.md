@@ -36,7 +36,7 @@ In this article, I'd like to share some best practices for writing unit tests in
 
 Don't:
 
-```javascript
+```javascript {1}
 test('calculate total', () => {
   // Test implementation
 })
@@ -44,7 +44,7 @@ test('calculate total', () => {
 
 Do:
 
-```javascript
+```javascript {1}
 it('should calculate the cart total with discounts', () => {
   // Test implementation
 })
@@ -60,7 +60,7 @@ Why:
 
 Don't:
 
-```javascript
+```javascript {1}
 it('should return false', () => {
   // Test implementation
 })
@@ -68,7 +68,7 @@ it('should return false', () => {
 
 Do:
 
-```javascript
+```javascript {1}
 it('should show error message when email is invalid', () => {
   // Test implementation
 })
@@ -92,7 +92,7 @@ it('should show username when authenticated', () => {
 
 Do:
 
-```javascript
+```javascript {1,5}
 describe('When user is authenticated', () => {
   it('should show username in header', () => {
     // Test implementation
@@ -120,7 +120,7 @@ describe('When submitting the form', () => {
 
 Do:
 
-```javascript
+```javascript {2-16}
 describe('When submitting the form', () => {
   beforeEach(() => {
     // Common setup for the tests
@@ -161,7 +161,7 @@ it('should calculate total with tax', () => {
 
 Do:
 
-```javascript
+```javascript {2,6,9}
 it('should calculate total with tax', () => {
   // Arrange
   const subtotal = 99.99
@@ -203,7 +203,7 @@ it('should process order successfully', () => {
 
 Do:
 
-```javascript
+```javascript {3,5}
 it('should process order successfully', () => {
   // Arrange
   loginUser('user123')
@@ -241,7 +241,7 @@ it('should use the mock alert', () => {
 
 Do:
 
-```javascript
+```javascript {2,4}
 it('should use the mocked alert', () => {
   jest.spyOn(window, 'alert').mockImplementation(() => {})
   // Test implementation
@@ -264,7 +264,7 @@ Why:
 
 Don't:
 
-```javascript
+```javascript {2,13}
 // utils.js
 export function validateEmail(email) {
   return email.includes('@')
@@ -287,7 +287,7 @@ it('should validate form correctly', () => {
 
 Do:
 
-```javascript
+```javascript {2}
 // utils.js
 function validateEmail(email) {
   return email.includes('@')
@@ -336,7 +336,7 @@ it('should test private helper', () => {
 
 Do:
 
-```javascript
+```javascript {2,7,12,14}
 // module.js
 function privateHelper() {
   // ...
@@ -376,7 +376,7 @@ it('should calculate discount with optional membership level', () => {
 
 Do:
 
-```javascript
+```javascript {6-10}
 it('should apply no discount when membership level is not provided', () => {
   const result = calculateDiscount(100, null)
   expect(result).toBe(0)
@@ -398,7 +398,7 @@ Why:
 
 Don't:
 
-```javascript
+```javascript {2,4}
 it('should calculate final price', () => {
   const expectedPrice = 89.99
   const result = calculatePrice(79.99, 10)
@@ -409,7 +409,7 @@ it('should calculate final price', () => {
 
 Do:
 
-```javascript
+```javascript {3}
 it('should calculate final price', () => {
   const result = calculatePrice(79.99, 10)
   expect(result).toBe(89.99)
@@ -426,7 +426,7 @@ Why:
 
 Don't:
 
-```javascript
+```javascript {2,3}
 it('should format user name', () => {
   const result = formatName('a', 'b')
   expect(result).toBe('a b')
@@ -435,7 +435,7 @@ it('should format user name', () => {
 
 Do:
 
-```javascript
+```javascript {2,3}
 it('should format user name', () => {
   const result = formatName('John', 'Doe')
   expect(result).toBe('John Doe')
@@ -496,7 +496,7 @@ Why:
 
 Don't:
 
-```javascript
+```javascript {1-7}
 const user = {
   id: 1,
   name: 'John',
@@ -513,7 +513,7 @@ it('should handle admin users', () => {
 
 Do:
 
-```javascript
+```javascript {1-8}
 const createTestUser = (overrides = {}) => ({
   id: 1,
   name: 'John',
@@ -672,7 +672,7 @@ it('should multiply value', () => {
 
 Do:
 
-```javascript
+```javascript {2,3,8,9}
 it('should increment value', () => {
   const state = { value: 0 }
   state.value++
