@@ -23,7 +23,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       video,
-      theme: 'black',
+      theme: 'green',
     },
   }
 }
@@ -36,7 +36,7 @@ export default function Video({ video }) {
     <>
       <PageSEO title={`${video.title} - ${siteMetadata.author}`} description={video.description} />
 
-      <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24 text-white`}>
+      <div className={`bg-io_${theme}-500 mb-72 pb-14 pt-24`}>
         <div className="container mx-auto">
           <h1 className="text-4xl font-medium xl:text-7xl">
             <span dangerouslySetInnerHTML={{ __html: video.title }}></span>
@@ -58,7 +58,7 @@ export default function Video({ video }) {
           </div>
 
           <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
-            <div className="aspect-w-16 aspect-h-9 my-10">
+            <div className="aspect-h-9 aspect-w-16 my-10">
               <iframe
                 src={`https://www.youtube.com/embed/${video.id}`}
                 title="YouTube video player"

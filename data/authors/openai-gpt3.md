@@ -1,4 +1,5 @@
 ---
+archived: true
 name: OpenAI GPT-3
 avatar: /authors/openai-gpt3.png
 occupation: Cloud Occupant

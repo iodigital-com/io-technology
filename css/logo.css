@@ -3,8 +3,5 @@
 }
 
 .logo .lottieIcon {
-  fill: #fff;
-}
-.logo.theme-default .lottieIcon {
   fill: #000;
 }

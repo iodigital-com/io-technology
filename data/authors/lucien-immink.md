@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Lucien Immink
 avatar: /authors/lucien-immink.webp
 occupation: Software Architect & Developer Advocate

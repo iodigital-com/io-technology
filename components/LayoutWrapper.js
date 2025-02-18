@@ -1,11 +1,13 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
+import { Player } from './LottiePlayer'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import { Player } from '@lottiefiles/react-lottie-player'
 
 const LayoutWrapper = ({ children }) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false)
@@ -17,6 +19,7 @@ const LayoutWrapper = ({ children }) => {
     const headerHeight = headerRef.current.scrollHeight
     const handleScroll = () => {
       const hasScrolledPasHeader = window.scrollY >= headerHeight
+
       setScrolledPassedHeader(hasScrolledPasHeader)
 
       if (!hasScrolledPasHeader) {
@@ -32,7 +35,6 @@ const LayoutWrapper = ({ children }) => {
   }, [])
   const { theme } = useBrandingTheme()
   const themeBg = theme === 'default' ? 'white' : theme
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
@@ -40,7 +42,7 @@ const LayoutWrapper = ({ children }) => {
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
           scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
-        } py-4 px-4 ${textClass} xl:bg-io_${themeBg}-500`}
+        } px-4 py-4 xl:bg-io_${themeBg}-500`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
@@ -54,7 +56,7 @@ const LayoutWrapper = ({ children }) => {
                   <Player
                     autoplay
                     src="/logo.json"
-                    className={`logo theme-${theme} -translate-x-3 sm:translate-x-0`}
+                    className={`logo -translate-x-3 sm:translate-x-0`}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
@@ -67,7 +69,10 @@ const LayoutWrapper = ({ children }) => {
               </div>
             </Link>
           </div>
-          <div className="relative flex items-center text-base leading-5" ref={navigationItemsRef}>
+          <div
+            className={`relative flex items-center text-base leading-5`}
+            ref={navigationItemsRef}
+          >
             <div
               className={`hidden items-center rounded-full pl-2 sm:flex sm:pr-12 ${
                 navigationIsOpen ? 'pointer-events-auto border-white' : 'border-gray-200'
@@ -80,7 +85,7 @@ const LayoutWrapper = ({ children }) => {
                   className={`font-semibold ease-out sm:mt-2 sm:p-4 ${
                     navigationIsOpen
                       ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
-                      : `${textClass} duration-200 dark:text-gray-100
+                      : `duration-200 dark:text-gray-100
                       ${
                         scrolledPassedHeader
                           ? 'pointer-events-none -translate-y-4 opacity-0'
@@ -121,7 +126,7 @@ const LayoutWrapper = ({ children }) => {
                 </svg>
               </button>
               <span
-                className={`absolute top-0 right-0 bottom-0 -z-10 h-16 w-full rounded-full border border-gray-200 bg-white transition-all duration-300 ease-out ${
+                className={`absolute bottom-0 right-0 top-0 -z-10 h-16 w-full rounded-full border border-gray-200 bg-white transition-all duration-300 ease-out ${
                   navigationIsOpen ? `max-w-2xl` : 'max-w-[calc(72px)]'
                 }
                 ${scrolledPassedHeader ? 'sm:opacity-100' : 'opacity-0'}`}

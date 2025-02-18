@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from './Link'
 import Arrow from '@/data/arrow.svg'
 
 export default function Pagination({ totalPages, currentPage, subpath = 'articles' }) {
@@ -9,7 +9,7 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
   const btnClassesDisabled = `${btnClasses} cursor-auto disabled:opacity-50`
 
   return (
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
           <button rel="previous" className={btnClassesDisabled} disabled={!prevPage}>
@@ -20,11 +20,11 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
         {prevPage && (
           <Link
             href={currentPage - 1 === 1 ? `/${subpath}/` : `/${subpath}/page/${currentPage - 1}`}
+            rel="previous"
+            className={btnClasses}
           >
-            <a rel="previous" className={btnClasses}>
-              <Arrow className="mr-4 w-6 rotate-180" />
-              <span>Previous</span>
-            </a>
+            <Arrow className="mr-4 w-6 rotate-180" />
+            <span>Previous</span>
           </Link>
         )}
         <span className="py-4 text-base font-bold leading-none">
@@ -37,11 +37,9 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
           </button>
         )}
         {nextPage && (
-          <Link href={`/${subpath}/page/${currentPage + 1}`}>
-            <a rel="next" className={btnClasses}>
-              <span>Next</span>
-              <Arrow className="ml-4 w-6" />
-            </a>
+          <Link href={`/${subpath}/page/${currentPage + 1}`} rel="next" className={btnClasses}>
+            <span>Next</span>
+            <Arrow className="ml-4 w-6" />
           </Link>
         )}
       </nav>

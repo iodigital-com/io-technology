@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Jurgen Beliën
 avatar: /authors/jurgen-belien.jpeg
 occupation: Senior Frontend Developer

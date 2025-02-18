@@ -4,7 +4,7 @@ date: '2023-02-07'
 tags: ['frontend', 'a11y', 'accessibility']
 summary: 'This article contains a guide to building an accessible main navigation of a website in 5 steps. The key takeaways of this guide are HTML semantics, WAI-ARIA, CSS, and JS for accessibility.'
 authors: ['tim-dujardin']
-theme: 'orange'
+theme: 'blue'
 ---
 
 ## Introduction
@@ -314,7 +314,7 @@ button {
 Finally, I add some styling to make it look more like the usual website navigation.
 The full code example is available on CodePen: [Accessible main navigation](https://codepen.io/timdujardin/pen/bGjWNNo).
 
-<iframe height="300" style={{ width: '100%' }} scrolling="no" title="Accessible main navigation" src="https://codepen.io/timdujardin/embed/preview/bGjWNNo?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="300" style={{ width: '100%' }} scrolling="no" title="Accessible main navigation" src="https://codepen.io/timdujardin/embed/preview/bGjWNNo?default-tab=result&theme-id=dark" frameBorder="no" loading="lazy" allowtransparency="true" allowFullScreen="true">
   See the Pen <a href="https://codepen.io/timdujardin/pen/bGjWNNo">
   Accessible main navigation</a> by Tim Dujardin (<a href="https://codepen.io/timdujardin">@timdujardin</a>)
   on <a href="https://codepen.io">CodePen</a>.

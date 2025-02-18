@@ -1,19 +1,15 @@
 import MarkdownRenderer from 'react-markdown-renderer'
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
 import { PageSEO } from '@/components/SEO'
-import siteMetadata from '@/data/siteMetadata'
-import formatDate from '@/lib/utils/formatDate'
 import ScrollTop from '@/components/ScrollTop'
 
-export default function StaticPageLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { date, title, name } = frontMatter
+export default function StaticPageLayout({ frontMatter, children }) {
+  const { title } = frontMatter
 
   return (
     <>
       <PageSEO {...frontMatter} />
       <ScrollTop />
-      <article className="container mx-auto mx-auto mb-72 pt-8 pb-14 xl:pt-32">
+      <article className="container mx-auto mx-auto mb-72 pb-14 pt-8 xl:pt-32">
         <div>
           <div
             className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0 "
@@ -23,7 +19,7 @@ export default function StaticPageLayout({ frontMatter, authorDetails, next, pre
               {<MarkdownRenderer markdown={title} />}
             </h1>
             <div className="mx-auto max-w-xl divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">{children}</div>
             </div>
           </div>
         </div>

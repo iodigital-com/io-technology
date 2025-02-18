@@ -10,4 +10,4 @@ This application uses the experimental Face Detection API in the browser to brin
 
 The experimental Face Detection API is part of the browser. There is no additional code shipped to make it work. This opens up a powerful toolset for developers to leverage and create concepts around their applications.
 
-Read more about [Native Browser Face Detection](techhub.iodigital.com/articles/native-face-detection-cropping).
+Read more about [Native Browser Face Detection](/articles/native-face-detection-cropping).

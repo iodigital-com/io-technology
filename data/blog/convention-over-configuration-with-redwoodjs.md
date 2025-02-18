@@ -7,7 +7,7 @@ summary: 'We have seen how the industry has continuously raised the level of abs
 delivering functionality and less time writing low-level infrastructure. Even though JavaScript is the most versatile
 programming language on the planet, we still have a long way to go.'
 authors: ['lee-ravenberg']
-theme: 'rouge'
+theme: 'beige'
 ---
 
 ## Javascript all the things

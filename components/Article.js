@@ -3,10 +3,9 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
-import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const Article = ({ slug, date, title, tags, authors, border = true }) => {
+const Article = ({ slug, date, title, summary, tags, authors, border = true }) => {
   const { theme } = useBrandingTheme()
 
   return (
@@ -28,8 +27,7 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
                       width={200}
                       height={200}
                       alt="avatar"
-                      objectFit="cover"
-                      className="rounded-full"
+                      className="rounded-full object-cover"
                     />
                   </div>
                 ))}
@@ -40,7 +38,7 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
                     <p className="mb-0">
                       <Link
                         href={`/authors/${author.slug[0]}`}
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                        className={`text-io_${theme}-600 hover:text-io_${theme}-800`}
                       >
                         {author.name}
                       </Link>
@@ -54,7 +52,12 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
         )}
         <div className={`col-span-full ${authors ? 'md:col-start-4 xl:col-start-7' : ''}`}>
           <Link href={`/articles/${slug}`}>
-            <h2 className="teaser-title text-2xl">{<MarkdownRenderer markdown={title} />}</h2>
+            <h2 className="teaser-title mb-2 text-3xl">{<MarkdownRenderer markdown={title} />}</h2>
+            <div className="mb-3 hidden md:block">
+              <h3 className="line-clamp-3 hyphens-auto">
+                {<MarkdownRenderer markdown={summary} />}
+              </h3>
+            </div>
           </Link>
           <dl className="mb-4">
             <dt className="sr-only">Published on</dt>
@@ -67,9 +70,6 @@ const Article = ({ slug, date, title, tags, authors, border = true }) => {
               <Tag key={tag} text={tag} />
             ))}
           </div>
-          <Link href={`/articles/${slug}`}>
-            <Arrow className="w-6" />
-          </Link>
         </div>
       </div>
     </article>

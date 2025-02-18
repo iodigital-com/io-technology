@@ -4,8 +4,10 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
+import { getLatestEvents } from '@/lib/events'
 import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
+import EventCarousel from '@/components/EventCarousel'
 import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
@@ -23,16 +25,19 @@ export async function getStaticProps() {
   const posts = (await getAllFilesFrontMatter('blog')).filter(
     (frontMatter) => !frontMatter.hideInArticleList
   )
-  const { videos } = await getLatestVideos(6)
+  const { videos } = await getLatestVideos(10)
   const { jobs } = await getLatestJobs(9)
+  const { events } = await getLatestEvents(9)
 
   const allAuthors = await getAllAuthors()
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
-  return { props: { posts, videos, jobs, contributors, theme: 'orange' } }
+  return {
+    props: { posts, videos, jobs, events, contributors, theme: 'green' },
+  }
 }
 
-export default function Home({ posts, videos, jobs, contributors }) {
+export default function Home({ posts, videos, jobs, events, contributors }) {
   const { theme } = useBrandingTheme()
 
   const authors = contributors.reduce((acc, author) => {
@@ -40,15 +45,17 @@ export default function Home({ posts, videos, jobs, contributors }) {
     return acc
   }, {})
 
+  const activeContributors = contributors.filter((contributor) => !contributor.archived)
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500 text-white`}>
+      <div className={`bg-io_${theme}-500`}>
         <div className="pb-14 pt-24">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window of{' '}
-              <span className="font-serif font-light">infinite opportunity</span>?
+              Is technology your window to{' '}
+              <span className="font-serif font-light">great experiences</span>?
             </h1>
             <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
               <div className="w-1/2">
@@ -57,10 +64,10 @@ export default function Home({ posts, videos, jobs, contributors }) {
                   src={Image1}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
+                  className="w-screen"
                 />
               </div>
               <div className="w-1/2">
@@ -69,40 +76,44 @@ export default function Home({ posts, videos, jobs, contributors }) {
                   src={Image2}
                   width={2160}
                   height={2160}
-                  layout="responsive"
                   sizes="(min-width: 768px) 20vw, 33vw"
                   priority={true}
                   placeholder="blur"
-                  className="rounded-full"
+                  className="h-auto w-full rounded-full"
                 />
               </div>
             </div>
             <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
               <p className="text-lg">
-                We are iO – a growing team of experts thriving on curiosity and explorers of all
-                things <span className="font-serif">new and exciting</span>. As an end-to-end agency
-                we <span className="font-serif">think big and work locally</span> in strategy,
-                creation, content, marketing & technology - across every industry imaginable.
-                Knowledge is the foundation of everything we undertake. Are you creative, curious
-                and hungry for knowledge? Feed your mind.
+                We blend marketing, technology and creativity because we believe that creating the
+                ultimate customer experience requires a blend of these different skills to make an
+                impact on our clients' brand and business.
               </p>
             </span>
             <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#articles">Our latest articles</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Link href="#articles" className="text-black">
+                  Our latest articles
+                </Link>
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#videos">Our latest videos</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Link href="#videos" className="text-black">
+                  Our latest videos
+                </Link>
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#people">Our writers &amp; speakers</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Link href="#people" className="text-black">
+                  Our writers &amp; speakers
+                </Link>
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <a href="#jobs">Some of our jobs</a>
-                <Arrow className="mt-1 ml-2 rotate-90" />
+                <Link href="#jobs" className="text-black">
+                  Some of our jobs
+                </Link>
+                <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
             </ul>
           </div>
@@ -116,7 +127,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
         {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, title, tags } = frontMatter
+          const { slug, date, title, summary, tags } = frontMatter
           const authorsResolved = frontMatter.authors.map((author) => {
             return authors[author]
           })
@@ -127,6 +138,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
               slug={slug}
               date={date}
               title={title}
+              summary={summary}
               tags={tags}
               authors={authorsResolved}
               border={index !== 0}
@@ -140,7 +152,7 @@ export default function Home({ posts, videos, jobs, contributors }) {
           <Link
             href="/articles"
             aria-label="all posts"
-            className="relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+            className="relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
           >
             <span>All Posts</span>
             <Arrow className="ml-4 w-6" />
@@ -154,13 +166,18 @@ export default function Home({ posts, videos, jobs, contributors }) {
         <span className="font-serif font-light">speakers</span>
       </SectionTitle>
       <div className="container mx-auto mt-8">
-        <ContributorsGrid contributors={contributors} />
+        <ContributorsGrid contributors={activeContributors} />
       </div>
 
       <SectionTitle id="videos">
         Our latest <span className="font-serif font-light">videos</span>
       </SectionTitle>
       <VideoCarousel videos={videos} />
+
+      <SectionTitle id="events">
+        Our latest <span className="font-serif font-light">events</span>
+      </SectionTitle>
+      <EventCarousel events={events} />
 
       <SectionTitle id="jobs">
         Some of our <span className="font-serif font-light">jobs</span>

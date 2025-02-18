@@ -26,7 +26,6 @@ export async function getStaticProps() {
 
 export default function Experiments({ experiments }) {
   const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
@@ -34,10 +33,10 @@ export default function Experiments({ experiments }) {
         title={`Experiments - ${siteMetadata.author}`}
         description={siteMetadata.description}
       />
-      <section className={`bg-io_${theme}-500 ${textClass}`}>
-        <div className="container mx-auto pt-8 pb-24 md:pb-32">
+      <section className={`bg-io_${theme}-500`}>
+        <div className="container mx-auto pb-24 pt-8 md:pb-32">
           <div className="grid grid-cols-12">
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-16 xl:mt-12">
               <h1 className="text-4xl md:text-5xl xl:text-7xl">
                 Don't you just love experimenting with{' '}
                 <span className="font-serif font-light">code?</span>
@@ -49,9 +48,7 @@ export default function Experiments({ experiments }) {
                 alt="hackathon"
                 width={816}
                 height={816}
-                layout="responsive"
-                className="rounded-full"
-                objectFit="cover"
+                className="aspect-square rounded-full object-cover"
               />
             </div>
             <div className="col-span-full md:col-span-5 md:col-start-3 xl:col-span-4 xl:col-start-3">

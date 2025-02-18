@@ -5,31 +5,31 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
 import SectionTitle from '@/components/SectionTitle'
 import Talk from '@/components/Talk'
+import Workshop from '@/components/Workshop'
 
-export default function AuthorLayout({ children, frontMatter, posts, talks }) {
+export default function AuthorLayout({ children, frontMatter, posts, talks, workshops }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
 
   const { theme } = useBrandingTheme()
-  const textClass = theme === 'default' ? 'text-black' : 'text-white'
 
   return (
     <>
       <PageSEO title={`Author - ${name}`} description={`About me - ${name}`} />
 
-      <section className={`bg-io_${theme}-500 ${textClass}`}>
-        <div className="container mx-auto pt-8 pb-12">
+      <section className={`bg-io_${theme}-500`}>
+        <div className="container mx-auto pb-12 pt-8">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               <Image
                 src={avatar}
                 width={800}
                 height={800}
-                layout="responsive"
-                className="rounded-full"
+                className="h-auto w-full rounded-full"
+                alt="avatar"
               />
             </div>
 
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mt-4 md:mb-10 xl:row-start-1 xl:mt-12 xl:mb-16">
+            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-16 xl:mt-12">
               <h1 className="mb-2 text-4xl md:text-5xl xl:text-7xl">{name}</h1>
               <p className="mb-4 text-2xl">{occupation}</p>
               <div className="flex flex-wrap gap-4">
@@ -80,14 +80,14 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
         </div>
       </section>
 
-      {posts.length && (
+      {posts.length ? (
         <>
           <SectionTitle>
             Articles by <span className="font-serif font-light">{name}</span>
           </SectionTitle>
           <section className="container mx-auto max-w-2xl">
             {posts.map((fm, index) => {
-              const { slug, date, title, tags } = fm
+              const { slug, date, title, summary, tags } = fm
 
               return (
                 <Article
@@ -95,6 +95,7 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
                   slug={slug}
                   date={date}
                   title={title}
+                  summary={summary}
                   tags={tags}
                   border={index !== 0}
                 />
@@ -102,9 +103,9 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             })}
           </section>
         </>
-      )}
+      ) : null}
 
-      {talks.length && (
+      {talks.length ? (
         <>
           <SectionTitle>
             Talks by <span className="font-serif font-light">{name}</span>
@@ -117,7 +118,22 @@ export default function AuthorLayout({ children, frontMatter, posts, talks }) {
             </ul>
           </section>
         </>
-      )}
+      ) : null}
+
+      {workshops.length ? (
+        <>
+          <SectionTitle>
+            Workshops by <span className="font-serif font-light">{name}</span>
+          </SectionTitle>
+          <section className="container mx-auto max-w-2xl">
+            <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
+              {workshops.map((workshop) => {
+                return <Workshop key={workshop.title} {...workshop} authors={[]} />
+              })}
+            </ul>
+          </section>
+        </>
+      ) : null}
     </>
   )
 }

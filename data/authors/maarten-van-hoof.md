@@ -1,4 +1,5 @@
 ---
+archived: true
 name: Maarten Van Hoof
 avatar: /authors/maarten-van-hoof.jpg
 occupation: Developer Advocate & Frontend
