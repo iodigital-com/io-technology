@@ -1,6 +1,6 @@
 ---
 title: 'What is WebLLM'
-date: '2025-02-18'
+date: '2025-02-19'
 tags: ['frontend', 'web-llm', 'llm', 'large-language-models']
 images: ['/articles/what-is-webllm/header.jpg']
 summary: WebLLM runs in browser to allow Models to be more accessible inside the browser and fully client side! With the evaluation of AI technologies, it is expected that WebLLM will be an important part of future applications.
@@ -149,7 +149,13 @@ It also supports media formats like image urls.
 Also there are some examples of how to use WebLLM in different projects/frameworks on mlc-ai team repository for web-llm: [examples](https://github.com/mlc-ai/web-llm/tree/main/examples) folder.
 
 
+
 ### Try it out
+
+<figure class="flex flex-col items-center justify-center">
+  <img alt="WebLLM in action" src="/articles/what-is-webllm/webllm-in-action.gif"/>
+  <figcaption>WebLLM in action</figcaption>
+</figure>
 
 The MLC-AI team has developed website: 
 https://chat.webllm.ai/ that allows you to download and try wide range of LLMs locally in the browser without any installation or configuration.
