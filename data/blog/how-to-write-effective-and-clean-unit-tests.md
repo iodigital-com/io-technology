@@ -1,6 +1,6 @@
 ---
 title: 'How to write effective and clean unit tests in JavaScript'
-date: '2025-02-14'
+date: '2025-02-18'
 tags: ['javascript', 'testing', 'unit-tests', 'jest', 'best-practices']
 images: ['/articles/how-to-write-effective-and-clean-unit-tests/banner.png']
 summary: 'Learn essential best practices for writing clean and effective unit tests in JavaScript. From using descriptive test cases to following the Arrange-Act-Assert pattern, discover how to enhance your testing practices for better code quality and maintainability.'
