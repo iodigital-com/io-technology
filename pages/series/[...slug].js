@@ -4,9 +4,12 @@ import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 import { getLatestJobs } from '@/lib/jobs'
+import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
+import path from 'path'
 
+const root = process.cwd()
 const DEFAULT_LAYOUT = 'SerieLayout'
 
 export async function getStaticPaths() {
@@ -38,18 +41,22 @@ export async function getStaticProps({ params }) {
 
   // rss
   if (allSeries.length > 0) {
-    const rss = generateRss(allSeries)
-    fs.writeFileSync('./public/feed.xml', rss)
+    const rss = await generateRss(allSeries, '/series/feed.xml')
+    const rssPath = path.join(root, 'public', 'series')
+    fs.mkdirSync(rssPath, { recursive: true })
+    fs.writeFileSync('./public/series/feed.xml', rss)
   }
 
   const { jobs } = await getLatestJobs(4)
 
-  const theme = serie.frontMatter.theme || 'orange'
+  const { events } = await getLatestEvents(3)
 
-  return { props: { serie, posts, authorDetails, prev, next, jobs, theme } }
+  const theme = serie.frontMatter.theme || 'blue'
+
+  return { props: { serie, posts, authorDetails, prev, next, jobs, events, theme } }
 }
 
-export default function Serie({ posts, authorDetails, prev, next, jobs, serie }) {
+export default function Serie({ posts, authorDetails, prev, next, jobs, events, serie }) {
   const { mdxSource, toc, frontMatter } = serie
 
   return (
@@ -66,9 +73,10 @@ export default function Serie({ posts, authorDetails, prev, next, jobs, serie })
             next={next}
             serie={serie}
             posts={posts}
+            events={events}
           />
 
-          <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
+          <div className="container mx-auto space-y-2 pb-8 pt-6 md:space-y-5">
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
             </h2>

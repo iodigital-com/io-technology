@@ -18,7 +18,7 @@ const MobileNav = () => {
   }
 
   return (
-    <div className="sm:hidden">
+    <div className="pointer-events-auto sm:hidden">
       <button
         type="button"
         className="h-16 w-16 rounded-full border border-gray-100 bg-white p-5"
@@ -37,7 +37,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed top-0 right-0 z-10 flex h-full w-full transform flex-col items-end bg-white pt-10 duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 z-10 flex h-full w-full transform flex-col items-end bg-white pt-10 duration-300 ease-in-out ${
           navShow ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

@@ -13,8 +13,20 @@ import formatDate from '@/lib/utils/formatDate'
 import Arrow from '@/data/arrow.svg'
 import Clock from '@/data/clock.svg'
 import SeriePlaylist from '@/components/SeriePlaylist'
+import EventCalendar from '@/components/EventCalendar'
+import { hasFutureEvents } from '@/lib/events'
+import HubspotForm from '@/components/HubspotForm'
 
-export default function PostLayout({ frontMatter, authorDetails, serie, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  serie,
+  events,
+  next,
+  prev,
+  contactForm,
+  children,
+}) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
   const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
@@ -28,11 +40,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
       />
       <ScrollTop />
       <article>
-        <div
-          className={`bg-io_${theme}-500 pb-14 pt-24 text-white ${
-            images?.length > 0 ? 'mb-72' : 'mb-12'
-          }`}
-        >
+        <div className={`bg-io_${theme}-500 pb-14 pt-24 ${images?.length > 0 ? 'mb-72' : 'mb-12'}`}>
           <div className="container mx-auto">
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
@@ -60,9 +68,8 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                   alt={title}
                   width={1280}
                   height={720}
-                  layout="responsive"
-                  objectFit="cover"
                   priority={true}
+                  className="h-auto w-full object-cover"
                 />
               </div>
             )}
@@ -73,7 +80,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}
         >
-          <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+          <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
             <dt className="sr-only">Authors</dt>
             <dd>
               <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
@@ -82,22 +89,20 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
                     {author.avatar && (
                       <Image
                         src={author.avatar}
-                        width="100px"
-                        height="100px"
+                        width={100}
+                        height={100}
                         alt="avatar"
-                        className="flex-grow-0 rounded-full"
+                        className="flex-grow-0 h-auto rounded-full"
                       />
                     )}
                     <dl className="whitespace-nowrap text-sm font-medium leading-7">
                       <dt className="sr-only">Name</dt>
                       <dd className="text-gray-900 dark:text-gray-100">
-                        <Link>
-                          <a
-                            href={`/authors/${author.slug[0]}`}
-                            className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
-                          >
-                            {author.name}
-                          </a>
+                        <Link
+                          href={`/authors/${author.slug[0]}`}
+                          className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
+                        >
+                          {author.name}
                         </Link>
                       </dd>
 
@@ -158,10 +163,37 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
           </dl>
           <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
             <div className="xl:col-span-2 xl:pb-0">
-              <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
+              <div className="container prose mx-auto pb-8 pt-10 dark:prose-dark ">
                 {children}
+
+                {contactForm && (
+                  <>
+                    <hr className="my-24" />
+                    <div>
+                      <div className="mb-8">
+                        <h1>Let's solve your challenges together</h1>
+                        <p>
+                          Discover how our expertise can drive success for your unique needs. Reach
+                          out to us today and let's explore how we can elevate your next project
+                          together.
+                        </p>
+                        <HubspotForm
+                          portalId={'513128'}
+                          formId="ba87ba1f-8afd-478b-a7ef-031bdd16d286"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <hr className="my-24" />
                 <div>
-                  <hr className="my-24" />
+                  {hasFutureEvents(events) && (
+                    <div className="mb-8">
+                      <h1>Upcoming events</h1>
+                      <EventCalendar events={events} />
+                    </div>
+                  )}
                   <h1>Share</h1>
                   <Share />
                 </div>
@@ -222,7 +254,7 @@ export default function PostLayout({ frontMatter, authorDetails, serie, next, pr
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/articles"
-                className={`relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
+                className={`relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
               >
                 <Arrow className="mr-4 w-6 rotate-180" /> Back to all articles
               </Link>

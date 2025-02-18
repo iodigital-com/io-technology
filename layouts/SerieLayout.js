@@ -3,6 +3,7 @@ import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
+import Share from '@/components/Share'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import Serie from '@/components/Serie'
@@ -13,8 +14,18 @@ import formatDate from '@/lib/utils/formatDate'
 import Arrow from '@/data/arrow.svg'
 import Clock from '@/data/clock.svg'
 import { Children } from 'react'
+import EventCalendar from '@/components/EventCalendar'
+import { hasFutureEvents } from '@/lib/events'
 
-export default function PostLayout({ frontMatter, authorDetails, posts, next, prev, children }) {
+export default function PostLayout({
+  frontMatter,
+  authorDetails,
+  posts,
+  events,
+  next,
+  prev,
+  children,
+}) {
   const { slug, date, title, tags, images, summary, readingTime } = frontMatter
   const { theme } = useBrandingTheme()
   const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
@@ -28,11 +39,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
       />
       <ScrollTop />
       <article>
-        <div
-          className={`bg-io_${theme}-500 pb-14 pt-24 text-white ${
-            images?.length > 0 ? 'mb-72' : 'mb-12'
-          }`}
-        >
+        <div className={`bg-io_${theme}-500 pb-14 pt-24 ${images?.length > 0 ? 'mb-72' : 'mb-12'}`}>
           <div className="container mx-auto">
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
@@ -60,8 +67,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                   alt={title}
                   width={1280}
                   height={720}
-                  layout="responsive"
-                  objectFit="cover"
+                  className="h-auto w-full object-cover"
                   priority={true}
                 />
               </div>
@@ -73,7 +79,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
           className="container mx-auto pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
           style={{ gridTemplateRows: 'auto 1fr' }}
         >
-          <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+          <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
             <dt className="sr-only">Authors</dt>
             <dd>
               <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
@@ -82,8 +88,8 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                     {author.avatar && (
                       <Image
                         src={author.avatar}
-                        width="100px"
-                        height="100px"
+                        width={100}
+                        height={100}
                         alt="avatar"
                         className="flex-grow-0 rounded-full"
                       />
@@ -91,13 +97,11 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
                     <dl className="whitespace-nowrap text-sm font-medium leading-7">
                       <dt className="sr-only">Name</dt>
                       <dd className="text-gray-900 dark:text-gray-100">
-                        <Link>
-                          <a
-                            href={`/authors/${author.slug[0]}`}
-                            className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
-                          >
-                            {author.name}
-                          </a>
+                        <Link
+                          href={`/authors/${author.slug[0]}`}
+                          className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
+                        >
+                          {author.name}
                         </Link>
                       </dd>
                       {author.linkedin && (
@@ -149,10 +153,22 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
           <div className="xl:col-span-3 xl:row-span-3 xl:grid xl:grid-cols-3">
             <div className="xl:col-span-2 xl:pb-0">
               {Children.count > 0 && (
-                <div className="container prose mx-auto pt-10 pb-8 dark:prose-dark ">
+                <div className="container prose mx-auto pb-8 pt-10 dark:prose-dark ">
                   {children}
+                  <hr className="my-24" />
+                  <div>
+                    {hasFutureEvents(events) && (
+                      <div className="mb-8">
+                        <h1>Upcoming events</h1>
+                        <EventCalendar events={events} />
+                      </div>
+                    )}
+                    <h1>Share</h1>
+                    <Share />
+                  </div>
                 </div>
               )}
+
               <div className="container mx-auto pb-8 ">
                 <ul>
                   {!posts.length && 'No articles found.'}
@@ -222,7 +238,7 @@ export default function PostLayout({ frontMatter, authorDetails, posts, next, pr
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/series"
-                className={`relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
+                className={`relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
               >
                 <Arrow className="mr-4 w-6 rotate-180" /> Back to all series
               </Link>

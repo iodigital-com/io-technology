@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   media-src 'none';
   connect-src *;
   font-src 'self';
-  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com;
+  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com;
 `
 
 const securityHeaders = [
@@ -57,7 +57,16 @@ module.exports = withBundleAnalyzer({
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
   images: {
-    domains: ['i.ytimg.com'],
+    localPatterns: [
+      {
+        // local images
+        pathname: '**',
+      },
+      {
+        // remote images
+        pathname: 'i.ytimg.com',
+      },
+    ],
   },
   async headers() {
     return [
@@ -67,21 +76,11 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     })
-
-    if (!dev && !isServer) {
-      // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      })
-    }
 
     return config
   },

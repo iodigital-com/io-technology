@@ -41,7 +41,7 @@ export async function getStaticProps(context) {
       initialDisplayPosts,
       pagination,
       authors,
-      theme: 'rouge',
+      theme: 'beige',
     },
   }
 }

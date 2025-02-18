@@ -30,8 +30,17 @@
   hyphens: auto;
 }
 
+.simple-embed {
+  @apply h-full w-full;
+  aspect-ratio: 4/3;
+}
+
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  color: #747474;
 }

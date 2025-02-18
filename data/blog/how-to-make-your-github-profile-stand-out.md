@@ -5,7 +5,7 @@ tags: ['github']
 images: ['/articles/how-to-make-your-github-profile-stand-out/hero.png']
 summary: 'In this article, we will look at how you can make your GitHub profile stand out from the crowd.'
 authors: ['dave-bitter']
-theme: 'black'
+theme: 'green'
 ---
 
 GitHub is often one of the more overlooked social platforms that developers use. While having an active Twitter or LinkedIn account is great, you should have a look at your GitHub profile.

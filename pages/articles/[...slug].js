@@ -4,6 +4,7 @@ import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 import { getRelatedJobs } from '@/lib/jobs'
+import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
 
@@ -37,19 +38,23 @@ export async function getStaticProps({ params }) {
 
   // rss
   if (allPosts.length > 0) {
-    const rss = generateRss(allPosts)
+    const rss = await generateRss(allPosts)
     fs.writeFileSync('./public/feed.xml', rss)
   }
 
   const searchString = authorDetails.reduce((acc, author) => acc + author.occupation + ' ', '')
   const { jobs } = await getRelatedJobs(4, searchString)
 
-  const theme = post.frontMatter.theme || 'orange'
+  const { events } = await getLatestEvents(3)
 
-  return { props: { post, authorDetails, prev, next, jobs, serie, theme } }
+  const theme = post.frontMatter.theme || 'blue'
+
+  return {
+    props: { post, authorDetails, prev, next, jobs, events, serie, theme },
+  }
 }
 
-export default function Blog({ post, authorDetails, prev, next, jobs, serie }) {
+export default function Blog({ post, authorDetails, prev, next, jobs, events, serie }) {
   const { mdxSource, toc, frontMatter } = post
 
   return (
@@ -65,8 +70,11 @@ export default function Blog({ post, authorDetails, prev, next, jobs, serie }) {
             prev={prev}
             next={next}
             serie={serie}
+            events={events}
+            contactForm={frontMatter.contactForm}
           />
-          <div className="container mx-auto space-y-2 pt-6 pb-8 md:space-y-5">
+
+          <div className="container mx-auto space-y-2 pb-8 pt-6 md:space-y-5">
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
             </h2>

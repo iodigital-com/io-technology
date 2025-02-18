@@ -21,6 +21,10 @@ const siteMetadata = {
     { title: 'Cookies', url: 'https://www.iodigital.com/en/cookie-policy' },
     { title: 'Privacy', url: 'https://www.iodigital.com/en/privacy-policy' },
     { title: 'Terms & Conditions', url: 'https://www.iodigital.com/en/terms-and-conditions' },
+    {
+      title: 'Accessibility statement',
+      url: 'https://www.iodigital.com/en/accessibility-statement',
+    },
     { title: 'Disclaimer', url: 'https://www.iodigital.com/en/disclaimer' },
   ],
 }
