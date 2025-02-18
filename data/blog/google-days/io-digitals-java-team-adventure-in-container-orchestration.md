@@ -12,24 +12,126 @@ serie: 'google-days'
 
 ![kubenetes-workshop.png](/articles/io-digitals-java-team-adventure-in-container-orchestration/kubenetes-workshop.png)
 
-# Navigating the Kubernetes Sea: iO Digital's Java Team's Adventure in Container Orchestration
+At iO Digital on of our core values is always being curious and stimulating having an open mind, always.
+Therefore we organise so-called "Google Days" and try to dive into things we want to have deeper understanding of.
+No matter if it is something new, if it is related to client work or even something completely different.
 
-At iO Digital, we encourage curiosity and challenge our developers to keep learning and growing. That is why recently, our Java team sailed onto a journey into the world of Kubernetes, exploring its capabilities and potential for enhancing our development and deployment processes. On our so-called "Google Day" we tried to learn about deployment techniques like A/B testing and Canary releases. Here's a recap of our adventure and discoveries we did that day.
+Since one of our team members recently gave a presentation on A/B testing and Canary releases in Kubernetes we decided to use this as our subject.
+Here is a recap of our adventure and discoveries we did that day.
 
-## What's Kubernetes, Anyway?
+## Kubernetes
 
-Before diving into our team's adventure, let's briefly explain what container orchestration is and why Kubernetes in our humble opinion is the tool to use. Container orchestration is the automated process of managing, scaling, and maintaining containerized applications. It's like having a smart conductor for your software orchestra, ensuring all parts work harmoniously together. This is where Kubernetes shines. Kubernetes offers remarkable flexibility - it can run anywhere, be it in the cloud, on-premises, or in hybrid environments. Its extensibility allows it to adapt to a wide range of use cases, from simple web applications to complex microservices architectures.
+Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.
+For us as developers Kubernetes is a way to declare infra as Yaml, that will be translated into:
 
-Kubernetes has firmly established itself as the de facto standard for container orchestration in enterprise environments. This widespread adoption means that it has better support, more resources, and a larger pool of experienced professionals. Within our Enterprise clients environments we often deal with complex, large-scale deployments across multiple environments (on-premises, multi-cloud, hybrid). Kubernetes excels in managing these diverse and scalable infrastructures.
+- **Clusters:** A set of worker machines (nodes) that run containerized applications.
+- **Pods:** The smallest deployable units, usually containing one container or a group of tightly coupled containers.
+- **Deployments:** Declarative management of application state and rolling updates.
+- **Services:** An abstraction of a (set of) pods and a policy to access them.
+- **ReplicaSets:** Ensures the desired number of pod replicas are running (though often managed indirectly through Deployments).
 
-All major cloud providers offer managed Kubernetes services GKE (Google Kubernetes Engine), AKS (Azure Kubernetes Service) and EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters. With strong backing from the Cloud Native Computing Foundation (CNCF) and major tech companies, Kubernetes has a clear roadmap and continued development, ensuring its relevance for years to come. Currently auto-scaling, rolling updates, and self-healing capabilities are some of the advanced features that Kubernetes offers that are crucial for enterprise-grade applications.
+Kubernetes offers a way of doing declarative configuration, with great portability and scalability.
+All major cloud providers offer managed Kubernetes services.
+Google has GKE (Google Kubernetes Engine), Azure has AKS (Azure Kubernetes Service) and Amazone has EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters.
+The fact that Kubernetes is backed by the Cloud Native Computing Foundation (CNCF) and major tech companies, makes it a great choice for configuring your containers.
 
-## Setting Sail: Our Kubernetes Environments
+# The Power of Basic Kubernetes: Blue-Green Releases Demystified
 
+So what did we look into? One of our developers recently found himself working on a greenfield project with Kubernetes (K8s), attempting to clean up the project's Helm charts.
+What happened was that he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform.
+This exploration led him to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
+
+## Blue-Green Deployments
+
+Before we dive into Blue-Green releases, let's review some core K8s resources:
+What's the benefit of using a service instead of connecting directly to a pod?
+Services provide a stable endpoint for accessing pods. Why is that important? Well pod's can be ephemeral; meaning they can be destroyed and / or recreated at any given time.
+Services also enable load balancing and service discovery within the cluster.
+
+An Ingress is an API object that manages external access to services within a cluster, typically via HTTP or HTTPS.
+It acts as a smart router for your cluster.
+
+### The code
+
+Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
+
+First thing you need to do is create an environment to work with.
 Our team explored various ways to run Kubernetes locally, each with its own advantages:
 
 1. **Docker Desktop with Kubernetes**: Most of our team opted for this method, enabling the Kubernetes feature in Docker Desktop. This approach doesn't require a VM, resulting in less overhead and a smoother experience for many developers.
 2. **Minikube**: A couple of team members chose Minikube, finding it relatively easy to set up. Minikube creates a VM to run a single-node Kubernetes cluster, which also works well with kubectl (the Kubernetes command-line tool).
+
+When you did this make sure to have kubectl installed and configured.
+For the Mac users that is as easy as:
+
+```shell
+brew install kubectl
+```
+
+As you see in the readme, after building the application with gradle, we start with creating the first pod.
+You can do so by running:
+
+```shell
+kubectl apply -f blue-deployment.yaml,service-node-port-blue.yaml
+```
+
+To check if that worked you can run (assuming you have httpie installed):
+
+```shell
+http get localhost:30081
+```
+
+or for the curl users:
+
+```shell
+curl localhost:30081
+```
+
+Now create the second pod and service:
+
+```shell
+kubectl apply -f green-deployment.yaml,service-node-port-green.yaml
+```
+
+And again check if that worked:
+
+```shell
+http get localhost:30082
+```
+
+If you look at the service-node-port scripts you will see the service definition helping you to access the pods from outside the cluster.
+
+Now we are going to add the nginx ingress controller. The YAML to deploy NGNIX Ingress Controller can be found at their github.
+We used the 1.12.0 release from the tag: [1.12.0](https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml).
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml
+```
+
+# Creating an ingress
+
+We need the services to run on a clusterIp now because we're going to access them from outside
+
+```shell
+kubectl apply -f service-cluster-ip.yaml
+```
+
+```shell
+kubectl apply -f ingress-single.yaml
+```
+
+```shell
+http get app.localhost
+```
+
+## The Power of Simplicity
+
+What makes this approach powerful is its simplicity. With just a few Kubernetes resources and some YAML configurations, we've implemented a sophisticated deployment strategy. This "basic" setup provides:
+
+- Zero-downtime deployments
+- Easy rollbacks
+- Gradual rollout with traffic splitting
+- Reduced risk in production deployments
 
 ## Challenges in the Kubernetes Sea
 
@@ -134,6 +236,13 @@ Now if you like these subjects you can connect with us on our [LinkedIn](https:/
 ## **Conclusion**
 
 Our Google Day adventure into Kubernetes was both challenging and insightful.
+Kubernetes (k8s) is a powerful tool that offers a wide range of features for managing containerized applications. While it can be complex, Kubernetes provides a solid foundation for deploying, scaling, and managing applications in a cloud-native environment.
+Tools like Istio can make certain tasks easier, but it is more important to understand the basic functionality that Kubernetes provides.
+Sometimes, you don't need additional tools to achieve the same result. Kubernetes can be quite powerful on its own, and it's very easy to try out these deployment strategies.
+
+By mastering these fundamental concepts, you'll be better equipped to make informed decisions about when to use additional tools and when to leverage the built-in capabilities of Kubernetes.
+Remember, in the world of microservices and cloud-native applications, sometimes less is more. The power of Kubernetes often lies in its basic, yet flexible, building blocks.
+
 It’s always fun to see the team’s adaptability, problem-solving skills, and passion for important technologies.
 While we encountered hurdles, we did ran into learning opportunities and insights into the power and complexity of Kubernetes.
 As we continue to explore and implement Kubernetes in our projects, we're excited to also realise again what we can do for our clients.
