@@ -3,7 +3,7 @@ title: 'What is WebLLM'
 date: '2025-02-18'
 tags: ['frontend', 'web-llm', 'llm', 'large-language-models']
 images: ['/articles/what-is-webllm/header.jpg']
-summary: WebLLM represents a significant step toward democratizing LLM access by enabling execution within web browsers. While it comes with performance trade-offs, its privacy benefits, ease of use, and portability make it a compelling alternative to native LLM solutions. As web technologies continue to evolve, WebLLM is expected to become even more viable for real-world applications.
+summary: WebLLM runs in browsers, making LLMs more accessible. It trades some performance for privacy, ease of use, and portability, with future improvements expected. As web technologies continue to evolve, WebLLM is expected to become even more viable for real-world applications.
 authors: ['jafar-rezaei']
 theme: 'rouge'
 ---
@@ -70,7 +70,11 @@ if you have previously worked with the OpenAI library, the structure of WebLLMâ€
 
 Beyond text-based interactions, WebLLM extends its capabilities to support multimedia formats such as images, allowing for a richer, more versatile AI-driven experience. This feature unlocks use cases such as image-based captioning, analysis, and multimodal AI applicationsâ€”all within the browser.
 
-<img alt="Volcanium image" src="/articles/what-is-webllm/webllm-in-action.gif"/>
+
+<figure class="flex flex-col items-center justify-center">
+  <img alt="WebLLM in action" src="/articles/what-is-webllm/webllm-in-action.gif"/>
+  <figcaption>WebLLM in action</figcaption>
+</figure>
 
 ### Try WebLLM in Action
 
