@@ -140,6 +140,10 @@ Our team's curiosity led them down various paths. Here are some highlights of in
 
 Now if you like these subjects you can connect with us on our [LinkedIn](https://www.linkedin.com/company/iodigital-com/) and we can discuss these topics further.
 
+## Interested in what we did?
+
+Stay tuned for our detailed article about Green-Blue deployments and Canary releases in Kubernetes.
+
 ## **Conclusion**
 
 Our Google Day adventure into Kubernetes was both challenging and insightful.
