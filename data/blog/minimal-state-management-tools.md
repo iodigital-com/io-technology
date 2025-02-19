@@ -15,7 +15,7 @@ Now that we've clarified these foundational concepts, let's explore the state ma
 
 ## Zustand
 
-Zustand, which fittingly means "state" in German, is a small, fast, and scalable state management library designed for React, but can be used in any Javascript environment. Created six years ago, and is now on their fifth version, Zustand offers developers a lightweight alternative to more complex state management solutions.
+[Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction), which fittingly means "state" in German, is a small, fast, and scalable state management library designed for React, but can be used in any Javascript environment. Created six years ago, and is now on their fifth version, Zustand offers developers a lightweight alternative to more complex state management solutions.
 
 At its core, Zustand is designed with simplicity in mind. It provides a comfortable API based on hooks, leveraging React's own hook system.
 By having a low learning curve and a minimal set-up the library is attractive for developers to implement this in their project.
@@ -33,7 +33,7 @@ Zustand is often used with React Query or SWR for data fetching, providing a com
 
 ## Nanostores
 
-Nano Stores is a tiny state management tool that can be used with React, React Native, Preact, Vue, Svelte, Solid, Lit, Angular, and vanilla JS. Four years ago Nano Stores was created. The library is designed to move logic from components to stores. It's known for its lightweight nature and good performance in various scenarios and well suited for project of medium size.
+[Nano Stores](https://github.com/nanostores/nanostores) is a tiny state management tool that can be used with React, React Native, Preact, Vue, Svelte, Solid, Lit, Angular, and vanilla JS. Four years ago Nano Stores was created. The library is designed to move logic from components to stores. It's known for its lightweight nature and good performance in various scenarios and well suited for project of medium size.
 
 The library uses many atomic stores and direct manipulation. Nano Stores has a straightforward API, resulting in a low learning curve for developers. Unlike some more complex state management solutions, Nano Stores doesn't require extensive boilerplate code, allowing developers to get up and running quickly.
 
@@ -45,21 +45,21 @@ Nano Stores does not include a formal middleware system like some other librarie
 
 ## Jotai
 
-Jotai, meaning "atomic" in Japanese, is a state management library for React, inspired by Recoil. Launched five years ago and now is on its second major version. The library takes an atomic approach to global React state management.
+[Jotai](https://jotai.org/), meaning "atomic" in Japanese, is a state management library for React, inspired by Recoil. Launched five years ago and now is on its second major version. The library takes an atomic approach to global React state management.
 
 While primarily designed for React, Jotai is compatible with various frameworks including Next.js, Waku, Remix, and React Native. The library stands out for its minimal boilerplate and moderate learning curve, making it scalable in a project of different sizes.
 
-Jotai makes use of hooks and allows atoms to be created and used without wrapping your application in a provider. The library uses a pull-based model for state updated and comes with built-in in utilities. The library has extensions so you can use others, like React query for data fetching and XState for complex state management. Jotai also offers server-side rendering support when used with frameworks like Next.js and Waku.
+Jotai makes use of hooks and allows atoms to be created and used without wrapping your application in a provider. The library uses a pull-based model for state updated and comes with built-in in utilities. It has excellent TypesScript support. The library has extensions so you can use others, like React query for data fetching and XState for complex state management. Jotai also offers server-side rendering support when used with frameworks like Next.js and Waku.
 
 ## MobX
 
-MobX is a signal based, battle-tested library that makes state management simple and scalable by transparently applying functional reactive programming. Their strategy is "Anything that can be derived from the application state, should be. Automatically.".
+[MobX](https://mobx.js.org/README.html) is a signal based, battle-tested library that makes state management simple and scalable by transparently applying functional reactive programming. Their strategy is "Anything that can be derived from the application state, should be. Automatically.".
 
 The library uses a virtual dependency tree to track which parts of the state are used by which reactions, ensuring that only relevant parts of an application update when state changes occur.
 
 Built around the concept of observables, MobX works well with object-oriented programming, allowing developers to work with classes and objects in a way that's natural to OOP principles. It employs a push-based model where changes in observables automatically trigger reactions and computations. The library's main concepts include observables for representing the state, actions for modifying the state, reactions for synchronizing state changes with effect like UI updates, and computed values for automatically deriving values from the state, also called derivations.
 
-Created nine years ago and is currently on version 6.13.6. MobX works in any ES5 environment, which includes browsers and NodeJS.
+Created nine years ago and is currently on version 6.13.6. MobX works in any ES5 environment, which includes browsers and NodeJS. It has excellent TypeScript support.
 While MobX can be used as a standalone library, most people use it with React. However its flexibility allows for seamless integration with other popular frameworks such as Vue and Angular as well as plain vanilla JavaScript applications.
 
 There is a higher learning curve then the other libraries, especially for developers new to reactive programming concepts.
@@ -73,3 +73,10 @@ Jotai is a great choice for flexible, atom-based state management in React.
 For complex applications with intricate state interactions, especially in OOP style, MobX is very powerful.
 
 The choice between these libraries often depends on the specific needs of the project, the team's familiarity with state managament tools, and the desired balance between simplicity, power, and performance.
+
+## Links
+
+[Zustand, When, how and why](https://dev.to/ricardogesteves/zustand-when-how-and-why-1kpi) <br/>
+[State Management in Astro: A Deep Dive into Nanostores](https://meirjc.hashnode.dev/state-management-in-astro-a-deep-dive-into-nanostores)<br />
+[State Management with Jotai — React and TypeScript ready library](https://medium.com/@maciejpoppek/state-management-with-jotai-react-and-typescript-ready-library-a40ac967ac3e) <br/>
+[MobX adoption guide: Overview, examples, and alternatives](https://blog.logrocket.com/mobx-adoption-guide/#what-is-mobx)
