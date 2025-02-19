@@ -12,17 +12,27 @@ serie: 'google-days'
 
 ![kubenetes-workshop.png](/articles/io-digitals-java-team-adventure-in-container-orchestration/kubenetes-workshop.png)
 
-# Navigating the Kubernetes Sea: iO Digital's Java Team's Adventure in Container Orchestration
+## Kubernetes
 
-At iO Digital, we encourage curiosity and challenge our developers to keep learning and growing. That is why recently, our Java team sailed onto a journey into the world of Kubernetes, exploring its capabilities and potential for enhancing our development and deployment processes. On our so-called "Google Day" we tried to learn about deployment techniques like A/B testing and Canary releases. Here's a recap of our adventure and discoveries we did that day.
+Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.
+For us as developers Kubernetes is a way to declare infra as Yaml, that will be translated into:
 
-## What's Kubernetes, Anyway?
+- **Clusters:** A set of worker machines (nodes) that run containerized applications.
+- **Pods:** The smallest deployable units, usually containing one container or a group of tightly coupled containers.
+- **Deployments:** Declarative management of application state and rolling updates.
+- **Services:** An abstraction of a (set of) pods and a policy to access them.
+- **ReplicaSets:** Ensures the desired number of pod replicas are running (though often managed indirectly through Deployments).
 
-Before diving into our team's adventure, let's briefly explain what container orchestration is and why Kubernetes in our humble opinion is the tool to use. Container orchestration is the automated process of managing, scaling, and maintaining containerized applications. It's like having a smart conductor for your software orchestra, ensuring all parts work harmoniously together. This is where Kubernetes shines. Kubernetes offers remarkable flexibility - it can run anywhere, be it in the cloud, on-premises, or in hybrid environments. Its extensibility allows it to adapt to a wide range of use cases, from simple web applications to complex microservices architectures.
+Kubernetes offers a way of doing declarative configuration, with great portability and scalability.
+All major cloud providers offer managed Kubernetes services.
+Google has GKE (Google Kubernetes Engine), Azure has AKS (Azure Kubernetes Service) and Amazone has EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters.
+The fact that Kubernetes is backed by the Cloud Native Computing Foundation (CNCF) and major tech companies, makes it a great choice for configuring your containers.
 
-Kubernetes has firmly established itself as the de facto standard for container orchestration in enterprise environments. This widespread adoption means that it has better support, more resources, and a larger pool of experienced professionals. Within our Enterprise clients environments we often deal with complex, large-scale deployments across multiple environments (on-premises, multi-cloud, hybrid). Kubernetes excels in managing these diverse and scalable infrastructures.
+# The Power of Basic Kubernetes: Blue-Green Releases Demystified
 
-All major cloud providers offer managed Kubernetes services GKE (Google Kubernetes Engine), AKS (Azure Kubernetes Service) and EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters. With strong backing from the Cloud Native Computing Foundation (CNCF) and major tech companies, Kubernetes has a clear roadmap and continued development, ensuring its relevance for years to come. Currently auto-scaling, rolling updates, and self-healing capabilities are some of the advanced features that Kubernetes offers that are crucial for enterprise-grade applications.
+So what did we look into? One of our developers recently found himself working on a greenfield project with Kubernetes (K8s), attempting to clean up the project's Helm charts.
+What happened was that he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform.
+This exploration led him to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
 
 ## Setting Sail: Our Kubernetes Environments
 
@@ -31,15 +41,14 @@ Our team explored various ways to run Kubernetes locally, each with its own adva
 1. **Docker Desktop with Kubernetes**: Most of our team opted for this method, enabling the Kubernetes feature in Docker Desktop. This approach doesn't require a VM, resulting in less overhead and a smoother experience for many developers.
 2. **Minikube**: A couple of team members chose Minikube, finding it relatively easy to set up. Minikube creates a VM to run a single-node Kubernetes cluster, which also works well with kubectl (the Kubernetes command-line tool).
 
-## Challenges in the Kubernetes Sea
+## Challenges we ran into with Kubernetes
 
-As with any exploration into new territory, we came upon some challenges:
+What are some typical issues we ran into during the Google day?
+Let's sum it up;
 
 1. **Docker Registry Hurdles**: Setting up a local private registry proved tricky. We faced port issues (especially with port 5000) and encountered problems with certain build tools.
 2. **HTTPS Complications**: When using Maven's Jib plugin for building Docker images, we ran into HTTPS requirements. This led to some interesting discussions about secure vs. insecure registry configurations.
 3. **Build Tool Discrepancies**: One team member noticed that Gradle-built images worked fine, but npm-built images caused issues with the registry.
-
-So let's dive into them a bit more.
 
 ### **1. Docker Registry HTTPS Issues**
 
