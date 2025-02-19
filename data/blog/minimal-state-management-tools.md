@@ -2,7 +2,7 @@
 title: 'Minimal state management tools'
 date: '2025-02-17'
 tags: ['JavaScript']
-images: ['/articles/match-media/match-media.jpg']
+images: ['/articles/minimal-state-management-tools/coding.jpg']
 summary: "Let's talks about some state managament tools"
 authors: ['audrey-behiels']
 theme: 'blue'
