@@ -8,7 +8,7 @@ authors: ['jafar-rezaei']
 theme: 'rouge'
 ---
 
-# WebLLM: Running LLMs in the Browser
+## WebLLM: Running LLMs in the Browser
 
 Large Language Models (LLMs) changed the play for natural language processing (NLP) as they help implementing chatbots, code generations and etc easier.
 As we move forward the models are getting smaller and faster and this opens a lot of opportunities.
@@ -96,7 +96,7 @@ console.log(reply.choices[0].message);
 console.log(reply.usage);
 ```
 
-It also supports streaming and it can be done easily by passing `stream: true` property to the create method.
+It also supports streaming, and it can be done easily by passing `stream: true` property to the create method.
 
 ```javascript
 const chunks = await engine.chat.completions.create({
@@ -142,12 +142,10 @@ async function main() {
 ```
 
 
-
 If you have worked with OpenAI library previously, the code structure might look similar to you, the reason it that they tried to keep it similar in a way that it feels like interacting with a server via sending and receiving JSON
 
 It also supports media formats like image urls.
-Also there are some examples of how to use WebLLM in different projects/frameworks on mlc-ai team repository for web-llm: [examples](https://github.com/mlc-ai/web-llm/tree/main/examples) folder.
-
+Also, there are some examples of how to use WebLLM in different projects/frameworks on mlc-ai team repository for web-llm: [examples](https://github.com/mlc-ai/web-llm/tree/main/examples) folder.
 
 
 ### Try it out
