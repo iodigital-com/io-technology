@@ -1,6 +1,6 @@
 ---
 title: 'What is WebLLM'
-date: '2025-02-19'
+date: '2025-02-21'
 tags: ['frontend', 'web-llm', 'llm', 'large-language-models']
 images: ['/articles/what-is-webllm/header.jpg']
 summary: WebLLM runs in browser to allow Models to be more accessible inside the browser and fully client side! With the evaluation of AI technologies, it is expected that WebLLM will be an important part of future applications.
@@ -10,28 +10,28 @@ theme: 'rouge'
 
 ## WebLLM: Running LLMs in the Browser
 
-Large Language Models (LLMs) changed the play for natural language processing (NLP) as they help implementing chatbots, code generations and etc easier.
+Large Language Models (LLMs) changed the play for natural language processing (NLP) as they help implement chatbots, code generations, etc easier.
 As we move forward the models are getting smaller and faster and this opens a lot of opportunities.
-Traditionally, LLMs had to be served from a powerful cloud-based GPUs and powerful servers, but with the recent progress made it much easier to 
-be even possible to run in a local client side browser. In this article we will cover how WebLLM can help this process of serving a model fully on client side.
+Traditionally, LLMs had to be served from powerful cloud-based GPUs and powerful servers, but recent progress made it much easier to 
+be even possible to run in a local client-side browser. In this article, we will cover how WebLLM can help this process of serving a model fully on the client side.
 
 ## What is WebLLM?
 
 WebLLM is an approach implemented by [MLC-AI](https://github.com/mlc-ai) team that allows LLMs to run fully locally within a browser using 
 [WebAssembly (WASM)](https://developer.mozilla.org/en-US/docs/WebAssembly), [WebGPU](https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API), and other modern web technologies.
-When WebLLM, it will download the chosen model and store it locally to [CacheStorage](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage) so it can be used offline.
+When WebLLM is used, it first downloads the chosen model and stores it locally in the [CacheStorage](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage). From that moment on, it can be used fully offline. While it might be a bit extra work to download and run a model locally, with the growth of internet speed and device capabilities, this might be a good idea in the near future.
 
 
 ## How WebLLM Works
 The technology behind WebLLM allows it to work fully in the browser without any server-side infrastructure. but how does it work?
 
-- **Use of WebAssembly (WASM) and WebGPU**: It Converts the models computations into a specific format, efficient for WebAssembly modules and uses WebGPU for acceleration to run the model.
-- **Running on the Client Side**: Unlike traditional cloud-based LLMs, WebLLM does works fully local and in browser, so it does not send data to remote servers and ensures privacy and security.
-- **Optimized model Size**: WebLLM Uses quantized and optimized version of models so it can be faster and more efficient in a browser environment.
+- **Use of WebAssembly (WASM) and WebGPU**: It Converts the model computations into a specific format, is efficient for WebAssembly modules, and uses WebGPU for acceleration to run the model.
+- **Running on the Client Side**: Unlike traditional cloud-based LLMs, WebLLM works fully locally and in the  browser, so it does not send data to remote servers and ensures privacy and security.
+- **Optimized model Size**: WebLLM Uses a quantized and optimized version of models so it can be faster and more efficient in a browser environment.
 
 ## Cloud vs. In-Browser LLMs
-Comparing Native LLM embedding vs web-based LLM embedding might be a good way to understand the differences between the two. Ofcourse it
-might not be the ideal for all projects, but having this possibility to run LLMs in the browser is a great advantage for most of the projects.
+Comparing Native LLM embedding vs web-based LLM embedding might be a good way to understand the differences between the two. Of course it
+might not be ideal for all projects, but running LLMs in the browser is a great advantage for most projects.
 
 | Feature             | LLM served from Cloud                      | WebLLM (In-Browser)                         |
 |---------------------|--------------------------------------------|---------------------------------------------|
@@ -142,9 +142,9 @@ async function main() {
 ```
 
 
-If you have worked with OpenAI library previously, the code structure might look similar to you, the reason it that they tried to keep it similar in a way that it feels like interacting with a server via sending and receiving JSON
+If you have worked with the OpenAI library previously, the code structure might look similar to you, the reason is that they tried to keep it similar in a way that it feels like interacting with a server via sending and receiving JSON.
 
-It also supports media formats like image urls.
+It also supports media formats like image URLs.
 Also, there are some examples of how to use WebLLM in different projects/frameworks on mlc-ai team repository for web-llm: [examples](https://github.com/mlc-ai/web-llm/tree/main/examples) folder.
 
 
@@ -155,8 +155,8 @@ Also, there are some examples of how to use WebLLM in different projects/framewo
   <figcaption>WebLLM in action</figcaption>
 </figure>
 
-The MLC-AI team has developed website: 
-https://chat.webllm.ai/ that allows you to download and try wide range of LLMs locally in the browser without any installation or configuration.
+The MLC-AI team has developed the website: 
+https://chat.webllm.ai/ allows you to download and try a wide range of LLMs locally in the browser without any installation or configuration.
 It can give a quick overview of how webLLM works and how to use it.
 
 
