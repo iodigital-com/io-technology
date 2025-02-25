@@ -10,8 +10,6 @@ theme: 'beige'
 serie: 'google-days'
 ---
 
-![kubenetes-workshop.png](/articles/io-digitals-java-team-adventure-in-container-orchestration/kubenetes-workshop.png)
-
 ## Kubernetes
 
 Kubernetes, also known as K8s, is an open source system for automating deployment, scaling, and management of containerized applications.
@@ -28,7 +26,7 @@ All major cloud providers offer managed Kubernetes services.
 Google has GKE (Google Kubernetes Engine), Azure has AKS (Azure Kubernetes Service) and Amazone has EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters.
 The fact that Kubernetes is backed by the Cloud Native Computing Foundation (CNCF) and major tech companies, makes it a great choice for configuring your containers.
 
-# The Power of Basic Kubernetes: Blue-Green Releases Demystified
+# Basic Kubernetes
 
 So what did we look into? One of our developers recently found himself working on a greenfield project with Kubernetes (K8s), attempting to clean up the project's Helm charts.
 What happened was that he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform.
