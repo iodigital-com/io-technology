@@ -1,6 +1,6 @@
 ---
 title: 'Navigating the Kubernetes Sea: iO Digital Java Team Adventure in Container Orchestration'
-date: '2025-01-31'
+date: '2025-02-25'
 tags: ['kubernetes', 'devops', 'docker']
 images:
   ['/articles/io-digitals-java-team-adventure-in-container-orchestration/kubenetes-workshop.png']
@@ -26,7 +26,7 @@ All major cloud providers offer managed Kubernetes services.
 Google has GKE (Google Kubernetes Engine), Azure has AKS (Azure Kubernetes Service) and Amazone has EKS (Amazon Elastic Kubernetes Service), making it easier for enterprises to adopt and maintain Kubernetes clusters.
 The fact that Kubernetes is backed by the Cloud Native Computing Foundation (CNCF) and major tech companies, makes it a great choice for configuring your containers.
 
-# Basic Kubernetes
+## Basic Kubernetes
 
 So what did we look into? One of our developers recently found himself working on a greenfield project with Kubernetes (K8s), attempting to clean up the project's Helm charts.
 What happened was that he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform.
