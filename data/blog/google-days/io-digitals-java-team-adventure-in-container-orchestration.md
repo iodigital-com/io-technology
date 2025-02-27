@@ -1,5 +1,5 @@
 ---
-title: 'Navigating the Kubernetes Sea: iO Digital Java Team Adventure in Container Orchestration'
+title: 'Navigating the Kubernetes Sea: iO Java Team Adventure in Container Orchestration'
 date: '2025-02-27'
 tags: ['kubernetes', 'devops', 'docker']
 images:
