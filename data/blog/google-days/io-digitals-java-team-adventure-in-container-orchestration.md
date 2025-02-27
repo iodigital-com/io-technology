@@ -1,6 +1,6 @@
 ---
 title: 'Navigating the Kubernetes Sea: iO Digital Java Team Adventure in Container Orchestration'
-date: '2025-02-25'
+date: '2025-02-27'
 tags: ['kubernetes', 'devops', 'docker']
 images:
   ['/articles/io-digitals-java-team-adventure-in-container-orchestration/kubenetes-workshop.png']
