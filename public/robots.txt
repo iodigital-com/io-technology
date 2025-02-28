@@ -2,6 +2,7 @@ Sitemap: https://techhub.iodigital.com/sitemap.xml
 
 User-agent: *
 Allow: /*
+Allow: /api/og/*
 
 Disallow: /api/*
 Disallow: /devoxx-23-quiz-front-end
