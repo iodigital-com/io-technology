@@ -2,56 +2,30 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import removeMarkdown from 'markdown-to-text'
 import siteMetadata from '@/data/siteMetadata'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
-const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList, date }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  let { theme } = useBrandingTheme()
+const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList }) => {
+  const dynamicOgImageURL = new URL('http://localhost:3000/api/og')
 
-  const dynamicOgImageURL = new URL('https://og-image-io.vercel.app/')
-  const fileType = 'png'
   const authorListFormatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
-
-  dynamicOgImageURL.pathname = `${encodeURIComponent(title)}.${fileType}`
 
   const searchParams = [
     {
-      key: 'teaserImage',
-      value: featuredImages?.length && featuredImages[0].url,
+      key: 'title',
+      value: title.replaceAll('_', ''),
     },
     {
       key: 'author',
       value: authorList?.length && authorListFormatter.format(authorList.map(({ name }) => name)),
     },
     {
-      key: 'authorImage',
-      value:
-        authorList?.length &&
-        authorList[0].avatar &&
-        `https://techhub.iodigital.com${authorList[0].avatar}`,
-    },
-    {
-      key: 'blendTheme',
-      value: theme,
-    },
-    {
-      key: 'date',
-      value: date?.length && new Intl.DateTimeFormat('en').format(new Date(date)),
-    },
-    {
-      key: 'domain',
-      value: 'tech_hub',
+      key: 'image',
+      value: featuredImages?.[0]?.url,
     },
   ]
 
   searchParams.forEach(
     ({ key, value }) => value && dynamicOgImageURL.searchParams.append(key, value)
   )
-
-  /*** added to prevent development generated image to be used for prod ***/
-  if (process.env.NODE_ENV === 'development') {
-    dynamicOgImageURL.searchParams.append('isDevelopment', 'true')
-  }
 
   return dynamicOgImageURL
 }
