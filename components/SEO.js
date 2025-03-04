@@ -4,14 +4,14 @@ import removeMarkdown from 'markdown-to-text'
 import siteMetadata from '@/data/siteMetadata'
 
 const getConstructedDynamicOGImageURL = ({ title, featuredImages, authorList }) => {
-  const dynamicOgImageURL = new URL('http://localhost:3000/api/og')
+  const dynamicOgImageURL = new URL(`${siteMetadata.siteUrl}/api/og`)
 
   const authorListFormatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
 
   const searchParams = [
     {
       key: 'title',
-      value: title.replaceAll('_', ''),
+      value: title?.replaceAll('_', ''),
     },
     {
       key: 'author',
