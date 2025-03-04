@@ -234,8 +234,8 @@ For complex applications with intricate state interactions, especially in OOP st
 
 The choice between these libraries often depends on the specific needs of the project, the team's familiarity with state management tools, and the desired balance between simplicity, power, and performance.
 
-I'd be interested to collaborate about working on a project that uses Zustand for state management. Its comprehensive documentation includes practical examples, making implementation straightforward. The library offers excellent tutorials for newcomers, and having React experience is definitely beneficial when working with Zustand, as it's designed specifically for React applications.
-Similar to my thoughts on Jotai, I appreciate the readable documentation. I particularly like that they provide an interactive playground where you can experiment with the code directly without needing to set up a project from scratch.
+I'd be interested to collaborate on a project that uses Zustand for state management. Its comprehensive documentation includes practical examples, making implementation straightforward. The library offers excellent tutorials for newcomers, and having React experience is definitely beneficial when working with Zustand, as it's designed specifically for React applications.
+My thoughts on Jotai are quit similar, I appreciate the readable documentation. I particularly like their interactive playground where you can experiment with the code directly without needing to set up a project from scratch.
 What impresses me about Nano Stores is its cross-framework compatibility and significantly smaller footprint compared to other state management solutions.
 The documentation for MobX gives the impression of being more technically demanding to understand compared to other libraries.
 
