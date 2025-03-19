@@ -140,7 +140,9 @@ To deploy an ingress we will have to apply it with kubect by using the YAML that
 We used the 1.12.0 release from the tag: [1.12.0](https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml).
 You can do this by running: `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml`.
 
-### Additional configuration
+### So Green Blue deployments in action
+
+To enable
 
 We also need to add a clusterIp service now because we're going to access them from outside
 
