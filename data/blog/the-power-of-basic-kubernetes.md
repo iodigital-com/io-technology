@@ -18,7 +18,7 @@ One of my team members recently found himself working on a greenfield project th
 
 Since not everybody is born to familiar with all the features of Kubernetes, we decided to share his findings in a blog post.
 
-## What is Kubernetes (K8s)?
+# What is Kubernetes (K8s)?
 
 Kubernetes is an open-source platform for managing containerized workloads and services. Its key features include:
 
@@ -32,27 +32,28 @@ Before we dive into Blue-Green releases, let's review some core K8s resources:
 
 - **Clusters:** A set of worker machines (nodes) that run containerized applications.
 - **Pods:** The smallest deployable units, usually containing one container or a group of tightly coupled containers.
-- **Deployments:** Declarative management of application state and rolling updates.
 - **Services:** An abstraction of a (set of) pods and a policy to access them.
 - **ReplicaSets:** Ensures the desired number of pod replicas are running (though often managed indirectly through Deployments).
+- **Deployments:** Declarative management a higher-level Kubernetes resource that manages ReplicaSets and provides declarative updates for Pods.
+
+## Let us start with the POD
+
+A Pod is the smallest and most fundamental deployable unit in Kubernetes. A Pod represents a single instance of a running process in your cluster.
+Pods contain one or more containers, such as Docker containers. When a pod is created, it is scheduled to run on a node in the cluster. Each pod is assigned a unique IP address within the cluster, allowing the containers to communicate with each other.
+
+POD's have a lifecycle, they can be in the following states: Pending, Running, Succeeded, Failed, Unknown.
+When POD's are recreated they get a new IP address, so you can't rely on the IP address to access the pod.
 
 ### The Power of Services
 
-Q: What's the benefit of using a service instead of connecting directly to a pod?
+So what is the benefit of using a service instead of connecting directly to a pod?
+Services provide a stable endpoint for accessing pods. Like I said, when a pod is recreated the ip address changes, but the service stays the same.
+There are different types of services, but the most common are ClusterIP, NodePort, and LoadBalancer.
+The ClusterIp is only for usage within the kubernetes cluster, a NodePort exposes a specific port on all nodes to the outside world and a LoadBalancer service builds upon the NodePort Service by automatically provisioning an external load balancer from your cloud provider.
 
-A: Services provide a stable endpoint for accessing pods, which can be ephemeral. They also enable load balancing and service discovery within the cluster.
+# Time to get our hands dirty
 
-### Kubernetes Ingress
-
-An Ingress is an API object that manages external access to services within a cluster, typically via HTTP or HTTPS. It acts as a smart router for your cluster.
-
-## Blue-Green Deployment Demo
-
-Let's walk through a Blue-Green deployment using basic Kubernetes resources. This demo will show how powerful K8s can be without additional tools like Istio.
-
-### The code
-
-Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
+Enough introduction, let's dive into some action. Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
 
 First thing you need to do is create an environment to work with.
 Our team explored various ways to run Kubernetes locally, each with its own advantages:
@@ -63,7 +64,7 @@ Our team explored various ways to run Kubernetes locally, each with its own adva
 When you did this make sure to have kubectl installed and configured.
 For the Mac users that is as easy as: `brew install kubectl`.
 
-### Building the application
+## Building the application
 
 There are multiple ways to build a default container image from gradle. One of them would be using the Jib plugin like below:
 
@@ -102,7 +103,7 @@ ktor {
 Now to build the image you can run: `./gradlew publishImageToLocalRegistry` to build the image and push it to the local registry.
 If you want to validate if the image is there you can run: `docker images` or add `| grep my-app` to filter the list.
 
-### Now let us get started with some Kubernetes commands
+## Now let us get started with some Kubernetes commands
 
 First we will create a pod and a service. In the project you will find a blue-deployment.yaml and a service-node-port-blue.yaml file.
 
@@ -126,7 +127,7 @@ If you look at the service-node-port scripts you will see the service definition
 
 ### Adding the Ingress Controller
 
-Ingress in Kubernetes is a resource API object that manages external access to services within a cluster, typically handling HTTP/HTTPS traffic routing.
+For the next step, let's add an Ingress Controller. Ingress in Kubernetes is a resource API object that manages external access to services within a cluster, typically handling HTTP/HTTPS traffic routing.
 Unlike basic Service objects that provide L4 load balancing, Ingress operates at L7 (application layer), enabling you to do more than just ip based routing.
 Using an Ingress Controller enables us to route traffic based on host names, url paths, http headers, cookies or even the content type.
 
@@ -137,14 +138,11 @@ For this example we will setup NGINX Ingress Controller, since it is the most us
 
 To deploy an ingress we will have to apply it with kubect by using the YAML that can be found on the kubernetes github.
 We used the 1.12.0 release from the tag: [1.12.0](https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml).
+You can do this by running: `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml`.
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml
-```
+### Additional configuration
 
-# Creating an ingress
-
-We need the services to run on a clusterIp now because we're going to access them from outside
+We also need to add a clusterIp service now because we're going to access them from outside
 
 ```shell
 kubectl apply -f service-cluster-ip.yaml
