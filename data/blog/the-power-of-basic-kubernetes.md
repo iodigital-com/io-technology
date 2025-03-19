@@ -12,11 +12,11 @@ theme: 'blue'
 
 <TOCInline toc={props.toc} exclude={["Table of Contents"]} toHeading={2} />
 
-# The Power of Basic Kubernetes: Blue-Green Releases Demystified
+## How did we get here?
 
-## Introduction
+One of my team members recently found himself working on a greenfield project that sparked his interest in Kubernetes (K8s). While attempting to clean up the project's Helm charts, he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform. This exploration led him to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
 
-As a Java developer I recently found myself working on a greenfield project that sparked my interest in Kubernetes (K8s). While attempting to clean up the project's Helm charts, I dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform. This exploration led me to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
+Since not everybody is born to familiar with all the features of Kubernetes, we decided to share his findings in a blog post.
 
 ## What is Kubernetes (K8s)?
 
@@ -42,13 +42,130 @@ Q: What's the benefit of using a service instead of connecting directly to a pod
 
 A: Services provide a stable endpoint for accessing pods, which can be ephemeral. They also enable load balancing and service discovery within the cluster.
 
-## Kubernetes Ingress
+### Kubernetes Ingress
 
 An Ingress is an API object that manages external access to services within a cluster, typically via HTTP or HTTPS. It acts as a smart router for your cluster.
 
 ## Blue-Green Deployment Demo
 
 Let's walk through a Blue-Green deployment using basic Kubernetes resources. This demo will show how powerful K8s can be without additional tools like Istio.
+
+### The code
+
+Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
+
+First thing you need to do is create an environment to work with.
+Our team explored various ways to run Kubernetes locally, each with its own advantages:
+
+1. **Docker Desktop with Kubernetes**: Most of our team opted for this method, enabling the Kubernetes feature in Docker Desktop. This approach doesn't require a VM, resulting in less overhead and a smoother experience for many developers.
+2. **Minikube**: A couple of team members chose Minikube, finding it relatively easy to set up. Minikube creates a VM to run a single-node Kubernetes cluster, which also works well with kubectl (the Kubernetes command-line tool).
+
+When you did this make sure to have kubectl installed and configured.
+For the Mac users that is as easy as: `brew install kubectl`.
+
+### Building the application
+
+There are multiple ways to build a default container image from gradle. One of them would be using the Jib plugin like below:
+
+```kotlin
+id("com.google.cloud.tools.jib") version "3.4.0"
+
+jib {
+    from {
+        image = "openjdk:11-jre-slim"
+    }
+    to {
+        image = "my-app:1.0.0"
+    }
+    container {
+        mainClass = "io.ktor.server.netty.EngineMain"
+        ports = listOf("8080")
+    }
+}
+```
+
+Since we are using KTOR in this example, we can use the ktor docker plugin to build the image:
+
+```kotlin
+plugins {
+    alias(libs.plugins.ktor)
+}
+
+ktor {
+    docker {
+        localImageName.set("my-app")
+        imageTag.set("1.0.0")
+    }
+}
+```
+
+Now to build the image you can run: `./gradlew publishImageToLocalRegistry` to build the image and push it to the local registry.
+If you want to validate if the image is there you can run: `docker images` or add `| grep my-app` to filter the list.
+
+### Now let us get started with some Kubernetes commands
+
+First we will create a pod and a service. In the project you will find a blue-deployment.yaml and a service-node-port-blue.yaml file.
+
+To apply the deployment and service you can run:
+
+- `kubectl apply -f blue-deployment.yaml,service-node-port-blue.yaml`
+- and check `http get localhost:30081` or `curl localhost:30081` to see if it is running
+
+To see if the service is running can use `kubectl get services` or `kubectl get svc` for short.
+
+- To validate if your pod started use `kubectl get pods` to check the pods.
+- For deep-diving into the logs you can use `kubectl logs <pod-name>`
+- so for example `kubectl logs green-deployment-c5697b5f5-fs4mz` and check the full logs
+
+Now create the second pod and service:
+
+- Use: `kubectl apply -f green-deployment.yaml,service-node-port-green.yaml`
+- And again check if that worked: `http get localhost:30082`
+
+If you look at the service-node-port scripts you will see the service definition helping you to access the pods from outside the cluster.
+
+### Adding the Ingress Controller
+
+Ingress in Kubernetes is a resource API object that manages external access to services within a cluster, typically handling HTTP/HTTPS traffic routing.
+Unlike basic Service objects that provide L4 load balancing, Ingress operates at L7 (application layer), enabling you to do more than just ip based routing.
+Using an Ingress Controller enables us to route traffic based on host names, url paths, http headers, cookies or even the content type.
+
+The most widely used Ingress Controller is the NGINX Ingress Controller. It is the best for general-purpose use cases. Other options are for example;
+Traefik, HAProxy, AWS ALB Ingress (AWS Specific), Istio, Kong Ingress, Contour, Ambassador, and many more.
+
+For this example we will setup NGINX Ingress Controller, since it is the most used for general-purpose use cases.
+
+To deploy an ingress we will have to apply it with kubect by using the YAML that can be found on the kubernetes github.
+We used the 1.12.0 release from the tag: [1.12.0](https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml).
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml
+```
+
+# Creating an ingress
+
+We need the services to run on a clusterIp now because we're going to access them from outside
+
+```shell
+kubectl apply -f service-cluster-ip.yaml
+```
+
+```shell
+kubectl apply -f ingress-single.yaml
+```
+
+```shell
+http get app.localhost
+```
+
+## The Power of Simplicity
+
+What makes this approach powerful is its simplicity. With just a few Kubernetes resources and some YAML configurations, we've implemented a sophisticated deployment strategy. This "basic" setup provides:
+
+- Zero-downtime deployments
+- Easy rollbacks
+- Gradual rollout with traffic splitting
+- Reduced risk in production deployments
 
 ### Step 1: Create the Blue Deployment and Service
 
