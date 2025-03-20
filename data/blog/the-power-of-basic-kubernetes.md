@@ -15,26 +15,30 @@ theme: 'blue'
 ## How did we get here?
 
 One of my team members recently found himself working on a greenfield project that sparked his interest in Kubernetes (K8s). While attempting to clean up the project's Helm charts, he dove deep into the K8s documentation and discovered a wealth of functionality already baked into the platform. This exploration led him to appreciate the power of "basic" Kubernetes, especially when it comes to implementing deployment strategies like Blue-Green releases.
-
-Since not everybody is born to familiar with all the features of Kubernetes, we decided to share his findings in a blog post.
+Since not everybody likes writing, I decided to write this blog post to share the knowledge we learned from him during our Google day at IO Digital.
 
 # What is Kubernetes (K8s)?
 
-Kubernetes is an open-source platform for managing containerized workloads and services. Its key features include:
+Kubernetes is an open-source platform for managing containerized workloads and services. It is an abstraction to configure your cloud. Its key features include:
 
 - Portability: Run on any cloud provider or bare metal
 - Declarative configuration: Describe the desired state, and K8s makes it happen
 - Scalability: Easily scale your applications up or down
 
-## Core Kubernetes Resources for Developers
+## Core Kubernetes Objects
 
-Before we dive into Blue-Green releases, let's review some core K8s resources:
+Before we dive into complex release strategies with Kubernetes, let's get familiar with some core K8s objects and their names.
 
 - **Clusters:** A set of worker machines (nodes) that run containerized applications.
 - **Pods:** The smallest deployable units, usually containing one container or a group of tightly coupled containers.
 - **Services:** An abstraction of a (set of) pods and a policy to access them.
-- **ReplicaSets:** Ensures the desired number of pod replicas are running (though often managed indirectly through Deployments).
+- **ConfigMaps:** A way to decouple configuration from your containerized applications.
+- **Secrets:** A way to store sensitive information, such as passwords, OAuth tokens, and SSH keys.
+- **Ingress:** An API object that manages external access to services within a cluster, typically handling HTTP/HTTPS traffic routing.
+- **StatefulSets:** Manages the deployment and scaling of a set of pods, and provides guarantees about the ordering and uniqueness of these pods.
 - **Deployments:** Declarative management a higher-level Kubernetes resource that manages ReplicaSets and provides declarative updates for Pods.
+- **Namespaces:** A way to divide cluster resources between multiple users or teams.
+- **Volumes:** A way to store data in Kubernetes, which can be mounted into a pod.
 
 ## Let us start with the POD
 
@@ -42,26 +46,28 @@ A Pod is the smallest and most fundamental deployable unit in Kubernetes. A Pod 
 Pods contain one or more containers, such as Docker containers. When a pod is created, it is scheduled to run on a node in the cluster. Each pod is assigned a unique IP address within the cluster, allowing the containers to communicate with each other.
 
 POD's have a lifecycle, they can be in the following states: Pending, Running, Succeeded, Failed, Unknown.
-When POD's are recreated they get a new IP address, so you can't rely on the IP address to access the pod.
+When Pods are recreated they get a new IP address, so you can't rely on the IP address to access the pod.
 
-### The Power of Services
+### Services
 
-So what is the benefit of using a service instead of connecting directly to a pod?
-Services provide a stable endpoint for accessing pods. Like I said, when a pod is recreated the ip address changes, but the service stays the same.
+Let us look at services and what they add to the mix.
+Services provide a stable endpoint for accessing pods. Like I wrote before, when a pod is recreated the ip address changes, but the service stays the same.
 There are different types of services, but the most common are ClusterIP, NodePort, and LoadBalancer.
 The ClusterIp is only for usage within the kubernetes cluster, a NodePort exposes a specific port on all nodes to the outside world and a LoadBalancer service builds upon the NodePort Service by automatically provisioning an external load balancer from your cloud provider.
 
-# Time to get our hands dirty
+# Time for action!
 
-Enough introduction, let's dive into some action. Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
+Enough introduction, let's dive into some actual work. Now if you go to https://github.com/iodigital-com/kubernetes-greenblue-workshop you can find the code we started with during the Google day.
 
-First thing you need to do is create an environment to work with.
-Our team explored various ways to run Kubernetes locally, each with its own advantages:
+First thing you need to do is create an environment to work with. There are multiple ways to do this, but we will focus on two methods:
 
-1. **Docker Desktop with Kubernetes**: Most of our team opted for this method, enabling the Kubernetes feature in Docker Desktop. This approach doesn't require a VM, resulting in less overhead and a smoother experience for many developers.
-2. **Minikube**: A couple of team members chose Minikube, finding it relatively easy to set up. Minikube creates a VM to run a single-node Kubernetes cluster, which also works well with kubectl (the Kubernetes command-line tool).
+1. **Docker Desktop with Kubernetes**: This approach doesn't require a VM, resulting in less overhead and a smoother experience for many developers.
+2. **Minikube**: Minikube creates a VM to run a single-node Kubernetes cluster, which also works well with kubectl (the Kubernetes command-line tool).
 
-When you did this make sure to have kubectl installed and configured.
+![How to enable Kubernetes on docker desktop](/articles/the-power-of-basic-kubernetes/enable-docker-desktop.png)
+
+For most people using Docker Desktop will be the easiest way to get started.
+After enabling one of these options, make sure to have kubectl installed and configured.
 For the Mac users that is as easy as: `brew install kubectl`.
 
 ## Building the application
@@ -140,84 +146,91 @@ To deploy an ingress we will have to apply it with kubect by using the YAML that
 We used the 1.12.0 release from the tag: [1.12.0](https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml).
 You can do this by running: `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/refs/heads/release-1.12/deploy/static/provider/kind/deploy.yaml`.
 
-### So Green Blue deployments in action
+### Creating two ClusterIP Services
 
-To enable
+We will setup two ClusterIP services now because so we can switch the Ingress to route to one of the applications.
+To do this we will apply the service-cluster-ip.yaml with `kubectl apply -f service-cluster-ip.yaml` and the ingress-single.yaml wiht `kubectl apply -f ingress-single.yaml`.
+Now you can check if the ingress is working by running `http get app.localhost`.
 
-We also need to add a clusterIp service now because we're going to access them from outside
+If you look inside the ingress-single.yaml you will see that we are using the app.localhost as the host. This is because we are using the localhost as the domain. If you want to use a different domain you can change the host to that domain.
 
-```shell
-kubectl apply -f service-cluster-ip.yaml
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service-blue
+spec:
+  selector:
+    app: my-app
+    version: blue
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service-green
+spec:
+  selector:
+    app: my-app
+    version: green
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8080
+  type: ClusterIP
 ```
 
-```shell
-kubectl apply -f ingress-single.yaml
+The cluster defined in the ingress-single.yaml can be read above. You can see in the metadata the name of the service and the selector to select the pods. The ports are defined and the type is ClusterIP.
+What this does is create a service that is only accessible within the cluster.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-app-ingress-blue
+  labels:
+    app: my-app
+    version: blue
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: app.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app-service-blue
+                port:
+                  name: http
 ```
 
-```shell
-http get app.localhost
+The ingress-single.yaml file is defined above. You can see the metadata with the name and the labels. The spec is defined with the ingressClassName, rules, host, http, paths, and backend. The host is the domain you want to use, the paths are the paths you want to use, and the backend is the service you want to use.
+As you can see we now only have the blue service in the ingress.
+
+Now to verify this setup you can run `http get app.localhost:30047` and you should see the blue application.
+If not you might have to check verious things like the ingress, the services, the pods, and the deployments.
+
+One of the cases could be that you have to add app.locahost to your hosts file. You can do this by adding `echo "127.0.0.1 app.localhost" | sudo tee -a /etc/hosts`.
+Check the ingress with `kubectl get ingress` and the services with `kubectl get services`.
+
+If all went well that should work. To explain the flow of the request, see the block below.
+
+```
+External Client (app.localhost:30047)
+→ Ingress Controller Service (NodePort 30047)
+→ Ingress Controller Pod (port 80)
+→ Routing based on Ingress Rules
+→ Your ClusterIP Service (port 8080)
+→ Your Application Pod
 ```
 
-## The Power of Simplicity
-
-What makes this approach powerful is its simplicity. With just a few Kubernetes resources and some YAML configurations, we've implemented a sophisticated deployment strategy. This "basic" setup provides:
-
-- Zero-downtime deployments
-- Easy rollbacks
-- Gradual rollout with traffic splitting
-- Reduced risk in production deployments
-
-### Step 1: Create the Blue Deployment and Service
-
-```bash
-kubectl apply -f blue-deployment.yaml,service-node-port-blue.yaml
-```
-
-Verify the deployment:
-
-```bash
-http get localhost:30081
-```
-
-### Step 2: Create the Green Deployment and Service
-
-```bash
-kubectl apply -f green-deployment.yaml,service-node-port-green.yaml
-```
-
-Verify the deployment:
-
-```bash
-http get localhost:30082
-```
-
-### Step 3: Add the NGINX Ingress Controller
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
-```
-
-### Step 4: Create ClusterIP Services
-
-We need to switch to ClusterIP services for use with the Ingress:
-
-```bash
-kubectl apply -f service-cluster-ip.yaml
-```
-
-### Step 5: Create the Ingress
-
-```bash
-kubectl apply -f ingress-single.yaml
-```
-
-Verify the Ingress:
-
-```bash
-http get app.localhost
-```
-
-### Step 6: Implement Canary Deployment
+## From a single pod to implementing Canary Deployment
 
 To demonstrate a gradual rollout, we'll use a canary deployment:
 
