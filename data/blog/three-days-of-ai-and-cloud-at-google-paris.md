@@ -54,7 +54,7 @@ What made it cool is that it can not just recognize things in an image, but give
 
 Next, we had a look at video understanding. [Multimodal live streaming is so incredibly cool!](https://ai.google.dev/gemini-api/docs/live) Make sure to check this demo out:
 
-https://youtu.be/9hE5-98ZeCg
+<iframe width="100%" style={{aspectRatio: "16/9"}} src="https://www.youtube.com/embed/9hE5-98ZeCg?si=Ewu4hCtgqAmUxSKx&amp;controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 It’s incredible to see how natural this seems to work. Even being able to interup the AI is very cool. It reminded me a lot of what I’ve been working on myself with voice and AI:
 
