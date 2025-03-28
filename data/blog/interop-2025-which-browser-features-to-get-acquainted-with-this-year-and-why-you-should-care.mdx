@@ -1,0 +1,283 @@
+---
+title: 'Interop 2025 - Which browser features to get acquainted with this year and why you should care'
+date: '2025-03-28'
+tags: ['frontend', 'css', 'js']
+images:
+  [
+    '/articles/interop-2025-which-browser-features-to-get-acquainted-with-this-year-and-why-you-should-care/interop.jpg',
+  ]
+summary: 'It’s been a few years since the Interop initiative was set in play. This has historically been one of the key elements in moving the web forward as it aims for a consistent web between browser vendors. In contrast to the “old days browser wars”, we as developers get streamlined features without having to check everything in every browser. The features of Interop 2025 are now known, features to be made stable across browsers by the end of the year. In this article, we’ll take a look at what we should get acquainted with in 2025.'
+authors: ['brecht-de-ruyte']
+theme: 'beige'
+---
+
+Let’s start with a more formal explanation:
+
+**Interop is** the collaborative initiative that drives browser vendors to address key compatibility issues by focusing on historically problematic web platform features, leading to significant and continual gains in cross-browser consistency.
+
+**Interop is not** about new features that aren’t fully specced or that the W3C is still working on.
+
+It is key that in order for features to be interoperable, they need to have a specification. That being said, we are getting some really sweet features that were fully specced last year. The goal of this article is an overview and to give you some starting points to learn about these features. Let’s not save the best for last, and let me kick it off with one of the features I look forward to the most:
+
+## Anchor positioning
+
+~Love and marriage~ Popovers and anchoring go together like horse and carriage. With popovers already having a whopping 90% browser support at the moment, it makes sense that we get a system to anchor them to our buttons to create “popover”, “toggletips”, “clickable tooltips” or whatever you want to call them.
+
+But anchoring will be useful for a lot more situations, especially with more complex UI elements and recently released features such as the customizable select.
+
+Here are some links to get you started:
+
+- [The CSS anchor positioning API](https://developer.chrome.com/docs/css-ui/anchor-positioning-api)
+- [MDN: CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning)
+- [Drawing a Line to Connect Elements with CSS Anchor Positioning](https://frontendmasters.com/blog/drawing-a-line-to-connect-elements-with-css-anchor-positioning/)
+- [Anchor-tool](https://anchor-tool.com/)
+- [Let’s hang! An intro to CSS Anchor Positioning with basic examples](https://utilitybend.com/blog/lets-hang-an-intro-to-css-anchor-positioning-with-basic-examples)
+
+Anchor positioning is currently supported in Chromium browsers. If you watch the following demos in Chrome or Edge you can get an idea about this feature:
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="Anchored popover" src="https://codepen.io/utilitybend/embed/preview/zYQKdNN?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/zYQKdNN"> Anchored popover</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>) on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+Demo 2, drag the hotpink squares:
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="Anchoring dragging" src="https://codepen.io/utilitybend/embed/preview/LYwEvwY?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/LYwEvwY">
+    Anchoring dragging</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+## Enhancing the details element
+
+The details element is getting a lot of love in the last couple of years. Last year we got introduced to the `name` attribute for details to link them together as an accordion. This time, the disclosure widget is getting some new tools to enhance it further:
+
+- The `::marker` and `::details-content` CSS pseudo-elements. Allowing us to easily update “the arrow thingy” as well as a pseudo-element wrapper that holds the content of the details element, especially handy for those open- and closing animations.
+- Using `content-visibility` to toggle the content instead of `display`.
+- Auto-expanding the `<details>` element with find-in-page matches.
+- The `hidden="until-found"` attribute, is used to hide the element until it is found using the native in-page search or when directly navigated to, using an in-page fragment.
+
+In this example, I play around with the `::details-content pseudo-element`. This is however a [demo of interpolate-size](https://utilitybend.com/blog/added-to-my-css-reset-interpolate-size-the-quality-of-life-feature-we-all-wanted-at-some-point), which isn’t part of Interop. Nevertheless, it does show an excellent use case for this addition:
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="details element content animation" src="https://codepen.io/utilitybend/embed/preview/PoMyBbj?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/PoMyBbj">
+    details element content animation</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+## @scope
+
+A lot of people like to scope CSS nowadays, well, now there will be a way to do it natively as a next step in the cascade that comes after specificity but before order of appearance. We’ve seen a lot of solutions for CSS scoping ranging form BEM writing methodologies to styled components.
+
+But I do want to be honest: I believe this is a very good feature… WHEN it is widely supported. Until that day comes I don’t have a use case in it as progressive enhancement seems barely possible. This is certainly a step in the right direction. I do wonder if this might be the feature of CSS that came too late, as so many things have been used for this instead. Especially in the JS landscape we live in now, which is full of scoping mechanisms.
+
+That being said, this year might be a good time to start getting acquainted with it. Maybe for some personal projects at first, so that by the time we can use it for production, it becomes an automation.
+
+Here is a quick demo of how you could get this working. It plays with the idea of having buttons styled differently based on their location.
+
+In this example, a button inside of `.cms-content` would not have a purple border. Even though it is wrapped inside of a `.card`. This is the idea behind it, followd up by the demo:
+
+```css
+@scope (.card) to (.cms-content) {
+  button {
+    background-color: white;
+    color: #6200ee;
+    border: 2px solid #6200ee;
+  }
+}
+
+@scope (.cms-content) {
+  button {
+    background-color: #bb86fc;
+    color: #333;
+  }
+}
+```
+
+Example:
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="@scope demo" src="https://codepen.io/utilitybend/embed/preview/PwodOJW?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/PwodOJW">
+    @scope demo</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+For more reading:
+
+- [MDN @scope](https://developer.mozilla.org/en-US/docs/Web/CSS/@scope)
+- [Limit the reach of your selectors with the CSS @scope at-rule](https://developer.chrome.com/docs/css-ui/at-scope)
+
+## View transitions for single-page applications
+
+Same-document view transitions should be available in every browser by the end of the year. The big question that I find here is if most browser vendors won’t just be doing the cross-document view transitions at the same time. Time will tell of course and I’m sure that view transitions for multi-page applications (or… websites) are a bit harder to implement.
+
+At the moment of writing, we’re only waiting on Firefox to include SPA and MPA view transitions. It could be a nice addition as a progressive enhancement for your projects. But some things might still need some polishing as there are still some minor bugs to be tackled based on the current status. Something to look forward to.
+
+For more view transitions, I’d like to refer to Bram.us who has written a ton about it and some videos, do check them out. [Bram.us tag on view transitions](https://www.bram.us/tag/view-transitions/)
+
+## backdrop-filter bug fixing
+
+The `backdrop-filter` property still seems to have some bugs in it. I think I recall having an issue with it a little while ago but in the end found a workaround. I remembered reading a blogpost in the past by Josh Comeau who had [a rather niche bug with a backdrop-filter](https://bugzilla.mozilla.org/show_bug.cgi?id=1803813), this was years ago, and is still unresolved:
+
+_I ran into a known bug: backdrop-filter stops working in Firefox on a position: sticky element if an ancestor has both overflow and border-radius set._
+
+![Issue where the two scroll containers are visible as described above this image the scond one does not weem to have a blur while the first one does](/articles/interop-2025-which-browser-features-to-get-acquainted-with-this-year-and-why-you-should-care/backdrop-filter.png)
+
+It can get this specific, and even though this one sounds so niche, it’s only funny until you run into it while working on a project. So creating a safe zone for using `backdrop-filter` is a welcome addition to Interop.
+
+[Here you can find the backdrop-filter tests](https://wpt.fyi/results/css/filter-effects?label=experimental&label=master&aligned&q=backdrop-filter), click around on some of those, it’s quite interesting (or is that my geek side talking?).
+
+## The scrollend event
+
+This sweet addition to Interop is one that many of us wanted to have. I know that I’ve been a couple of times in a situation where I wanted to know when a user stopped scrolling. In the past, we only could use `setTimeout` for this. With this event, the browser handles all that hassle for us.
+
+Here is a little demo, I also included how you can use this as a progressive enhancement for now:
+
+```javascript
+const isScrollEndSupported = 'onscrollend' in window
+
+document.addEventListener('scroll', function () {
+  document.body.classList.add('is-scrolling')
+
+  if (!isScrollEndSupported) {
+    // Fallback for browsers without scrollend support
+    clearTimeout(window.scrollEndTimer)
+    window.scrollEndTimer = setTimeout(function () {
+      document.body.classList.remove('is-scrolling')
+    }, 100)
+  }
+})
+
+// Progressive enhancement scrollend
+if (isScrollEndSupported) {
+  document.addEventListener('scrollend', function () {
+    document.body.classList.remove('is-scrolling')
+  })
+}
+```
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="OnScrollEnd Chicken" src="https://codepen.io/utilitybend/embed/preview/OPJozVQ?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/OPJozVQ">
+    OnScrollEnd Chicken</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+## The text-decoration property
+
+There is [a lot that we can do with text-decoration](https://www.youtube.com/watch?v=x3MTfp3HDLc) and it’s in my opinion one of the least used powerhouses in CSS to create some really slick effects. The text-decoration property is a shorthand and could for example be written as the following:
+
+```css
+.cool-link {
+  text-decoration: underline dotted blue 2px;
+  /* This sets: line type, style, color, and thickness */
+}
+```
+
+However, in Safari we need to use the individual properties instead of the shorthand until the fix is implemented in 2025:
+
+```css
+.safari-cool-link {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: blue;
+  text-decoration-thickness: 2px;
+}
+```
+
+I'm looking forward to this little improvement; it's nice and consistent.
+
+## Writing modes: sideways-lr and sideways-rl
+
+Sometimes, you just want to place something vertical. I have been in a situation where I wanted to vertically align an `<input type=”range” />`, the options here are rotating using transforms or changing the writing mode. This does have an impact, so I like the idea of changing the look of text without changing the flow of content.
+
+I created a quick demo to illustrate the differences. You see a bunch of inputs with their value below in the DOM order. Their wrapper gets assigned a different writing mode. Also, notice the difference in the direction of the slider, this is exactly why we need this feature:
+
+<div
+  dangerouslySetInnerHTML={{
+    __html: `
+<iframe height="300" scrolling="no" class="simple-embed" title="CSS Writing Modes example with range Inputs" src="https://codepen.io/utilitybend/embed/preview/GgRXazK?default-tab=result&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/utilitybend/pen/GgRXazK">
+    CSS Writing Modes example with range Inputs</a> by utilitybend (<a href="https://codepen.io/utilitybend">@utilitybend</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+`,
+  }}
+/>
+
+For this demo, I used a font which is a bit of a joke regarding this article… not sure if anyone got that one…
+
+## Consistency in performance metrics: Core web vitals
+
+There has been a historical inconsistency in how LCP and INP metrics have been measured and reported across browsers. To be honest, I usually do performance testing on Chrome so I barely noticed that. However, I’m sure a dedicated performance engineer will be happy to see some consistency here as some of these things were specced. So if this is you reading this article, let the good times roll! This being said though, It is on my radar to get a bit more into the whole performance metric world
+
+## Other updates: Navigation API, Storage API and WebAssembly
+
+There are a few other updates that are currently out of my expertise. However, I do not want to end with a half-baked list. Instead, I’m doing a bit of research, adding this to my notes so I can get into them myself during the course of this year.
+
+### Navigation API
+
+This is a successor to previous web platform features such as the History API and `window.location`, those used to have some shortcomings. It has a lot of support in Chromium-based browsers and even-though outside of my expertise, I heard a lot of people being excited about this feature landing on the Interop radar.
+
+If you never heard of the [Navigation API, MDN has a great overview of this](https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API)
+
+### URLPattern
+
+The URL Pattern API is a syntax that is used to create URL pattern matchers. These patterns can be matched against URLs or individual URL components. [Read more about URLPattern here](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
+
+### WebAssembly
+
+I’m going to quote the [web.dev blog post by Rachel Andrew](https://web.dev/blog/interop-2025) for this one here.
+
+This year, the work will focus on the following features:
+
+- JavaScript string builtins: to make the WebAssembly built-in string functions mirror a subset of the JavaScript String API so it can be callable without JavaScript glue code.
+- Resizable buffers integration: to integrate WebAssembly into JavaScript code that uses resizable buffers.
+
+### WebRTC
+
+WebRTC is an open-source project that is supported by all browser vendors. It enables real-time audio, video, and data communication directly between browsers and devices. Interop 2025's focus on WebRTC aims to improve the reliability of these real-time communication capabilities as well as to standardize some things between browsers. This includes addressing variations in codec support, API implementations, and error handling.
+
+### Updates on layout, modules, Pointer and mouse events
+
+A lot of smaller updates are in there as well, there are still some tests failing on layouts such as grid and flex for example. Those issues are a lot more niche and most of us will probably not run into them, but it is great to see that this is a continuous improvement.
+
+## What I wished for and more Interop links
+
+I’m happy with this interop list, but there are a few things I wished for that aren’t there. For instance, on a personal level, I would’ve rather seen scroll-driven animation up there instead of view transitions because of the many possibilities they open up. There have been a lot of new features in CSS that have gotten a spec last year, so I’m sure it wasn’t an easy choice on what to include. But the good news (at least for me), is that Safari is already implementing scroll-driven animations at the moment. I’m sure that many more new features will get full browser support during this year and if there are still some issues on those, they might be tackled in Interop 2026.
+
+Since Interop, the web started moving forward at an inclined pace. This list can certainly be used as a guide on what to learn in the next couple of months as these features will soon be a thing of “the now” instead of “the future”.
+
+### More reading:
+
+- [Web.dev article by Rachel Andrew](https://web.dev/blog/interop-2025)
+- [The Interop dashboard](https://wpt.fyi/interop-2025)
+- [The Igalia Chats podcast](https://www.youtube.com/watch?v=OWfx2k6cdik)
