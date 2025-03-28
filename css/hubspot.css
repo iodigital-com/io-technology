@@ -39,19 +39,16 @@
 }
 
 .hubspot .hs-button {
+  position: relative;
+  display: inline-flex;
   border-radius: 9999px;
-  border: solid 1px black;
-  padding: 1rem 2.25rem;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  background: #000;
-  color: #fff;
+  background-color: #0017ee; /* bg-io_blue-600 */
+  padding: 1rem 2.25rem; /* px-9 py-4 */
+  font-size: 1rem; /* text-base */
+  font-weight: 700; /* font-bold */
+  line-height: 1; /* leading-none */
+  color: white; /* text-white */
   cursor: pointer;
-}
-.hubspot .hs-button:hover {
-  background-color: transparent;
-  color: #000;
 }
 
 .hubspot.quiz .form-columns-1,
