@@ -42,12 +42,12 @@
   position: relative;
   display: inline-flex;
   border-radius: 9999px;
-  background-color: #0017ee; /* bg-io_blue-600 */
-  padding: 1rem 2.25rem; /* px-9 py-4 */
-  font-size: 1rem; /* text-base */
-  font-weight: 700; /* font-bold */
-  line-height: 1; /* leading-none */
-  color: white; /* text-white */
+  background-color: #0017ee;
+  padding: 1rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: white;
   cursor: pointer;
 }
 
