@@ -213,11 +213,10 @@ spec:
 The ingress-single.yaml file is defined above. You can see the metadata with the name and the labels. The spec is defined with the ingressClassName, rules, host, http, paths, and backend. The host is the domain you want to use, the paths are the paths you want to use, and the backend is the service you want to use.
 As you can see we now only have the blue service in the ingress.
 
-Now to verify this setup you can run `http get app.localhost:30047` and you should see the blue application.
-If not you might have to check verious things like the ingress, the services, the pods, and the deployments.
+Now to verify this setup you can run `http get app.localhost:30047` and you should see the blue application, note that NodePorts are assigned from range 30000-32767.
 
 One of the cases could be that you have to add app.locahost to your hosts file. You can do this by adding `echo "127.0.0.1 app.localhost" | sudo tee -a /etc/hosts`.
-Check the ingress with `kubectl get ingress` and the services with `kubectl get services`.
+Check the ingress with `kubectl get ingress` and the services with `kubectl get services` or even `kubectl describe svc -n ingress-nginx ingress-nginx-controller` to see the details of the ingress controller.
 
 If all went well that should work. To explain the flow of the request, see the block below.
 
@@ -230,9 +229,27 @@ External Client (app.localhost:30047)
 → Your Application Pod
 ```
 
+To flip the ingress to the green service you can change the ingress-single.yaml to use the green service, change the file to refer to `my-app-service-green`.
+First delete the old ingress with `kubectl delete ingress my-app-ingress-blue` and then apply the new ingress with `kubectl apply -f ingress-single.yaml`.
+
+### Fun fact
+
+So, I do not see myself as a superstar developer, I actually got lost a bit while learning these things myself.
+One thing that I got really passionate about is LLM and GenAi in using Kubernetes.
+On my MacBook I have installed WARP - a Ai powered console and I went into WARP's pairing mode and asked it;
+
+```
+can you explain me again the flow from outside to pod via ingress clusterIp etc?
+Let me gather the current state of all components to give you a detailed explanation of the traffic flow.
+```
+
+For people starting with Kubernetes I think this is actually a supercharger in learning, because you can see commands and using natural language to get the information you need.
+
+![Warp as a kubernetes learning buddy](/articles/the-power-of-basic-kubernetes/warp-usage.png)
+
 ## From a single pod to implementing Canary Deployment
 
-To demonstrate a gradual rollout, we'll use a canary deployment:
+So finally let's get to Canary Releases. To demonstrate a gradual rollout, we'll use a canary deployment:
 
 ```bash
 kubectl apply -f ingress-canary.yaml
@@ -262,3 +279,5 @@ While tools like Istio can make certain tasks easier, it's crucial to understand
 By mastering these fundamental concepts, you'll be better equipped to make informed decisions about when to use additional tools and when to leverage the built-in capabilities of Kubernetes.
 
 Remember, in the world of microservices and cloud-native applications, sometimes less is more. The power of Kubernetes often lies in its basic, yet flexible, building blocks.
+
+Next: https://aio.iodigital.com/share/znp7aFq5PkoxQumCh_b5V Helm in the mix
