@@ -1,6 +1,6 @@
 ---
 title: 'Refactoring Gone Wild: Avoiding code smells and cleaning up the mess'
-date: '2025-03-29'
+date: '2025-04-11'
 tags: ['kotlin', 'refactoring', 'best practices', 'clean code']
 images: ['/articles/refactoring-gone-wild-avoiding-code-smells-and-cleaning-up-the-mess/banner.png']
 summary: 'Identifying and avoiding bad coding practices, and refactoring them into clean, elegant, self-explanatory code'
@@ -8,9 +8,9 @@ authors: ['mohamed-elmedany']
 theme: 'blue'
 ---
 
-Recently, I was refactoring one of the core domain services my team works on, and I ran into some classic bad practices. These are the kinds of mistakes most engineers, including myself, fall into because of tight deadlines, lack of knowledge about the tools and frameworks in use, and the ever-present "I will clean this up later" syndrome. I thought it would be fun to share some of these as a reference for others, and future me, to avoid them next time.
+Recently, I was refactoring a big part of one of the core domain services my team works on, and I ran into some classic bad practices. These are the kinds of mistakes most engineers, including myself, fall into because of tight deadlines, lack of knowledge about the tools and frameworks in use, and the ever-present "I will clean this up later" syndrome. I thought it would be fun to share some of these as a reference for others, and future me, to avoid them next time.
 
-If you’ve ever wrestled with legacy code, you might recognise these patterns. Let’s break them down and transform messy, hard-to-maintain code into something clean, elegant, and self-explanatory, powered by Kotlin’s built-in features!
+If you have ever wrestled with legacy code, you might recognise these patterns. Let's break them down and transform messy, hard-to-maintain code into something clean, elegant, and self-explanatory, powered by Kotli's built-in features!
 
 ## 1. The Pyramid of Doom
 
@@ -84,9 +84,9 @@ fun attemptToSendNotification(user: User?) {
 
 The `guard clause` pattern in the improved version makes the code flow more natural, almost like reading a story. Each check serves as a gatekeeper, immediately handling failures and allowing only the valid path to proceed, eliminating unnecessary nesting.
 
-## 2. The Name Game Confusion
+## 2. The Name Confusion
 
-Ever worked on a codebase where `customer,` `client,` `user,` and `account` were used interchangeably? Or where some functions used `camelCase` while others used `snake_case`? And let’s not forget those cryptic function names that give no hint about their purpose. Welcome to naming hell, where consistency is optional, and confusion is guaranteed!
+Ever worked on a codebase where `customer,` `client,` `user,` and `account` were used interchangeably? Or where some functions used `camelCase` while others used `snake_case`? And let's not forget those cryptic function names that give no hint about their purpose. Welcome to naming hell, where consistency is optional, and confusion is guaranteed!
 
 **Before (Confusing naming conventions)**
 
@@ -94,7 +94,7 @@ Ever worked on a codebase where `customer,` `client,` `user,` and `account` were
 class OrderProcessor {
     private fun processShipment(Shipment: Shipment) { /* ... */ }
     private fun processshipment(shipment: Shipment) { /* ... */ }
-    private fun isShipped(shipment: Shipment): Boolean { /* ... */ }
+    private fun shipped(shipment: Shipment): Boolean { /* ... */ }
     private fun shipment_delivered(s: Shipment): Boolean { /* ... */ }
     private fun check(shipment: Shipment): Boolean { /* ... */ }
 }
@@ -104,49 +104,57 @@ class OrderProcessor {
 
 ```kotlin
 class OrderProcessor {
-    private fun processShipment(shipment: Shipment) { /* ... */ }
+    private fun processStandardShipment(shipment: Shipment) { /* ... */ }
     private fun processExpressShipment(shipment: Shipment) { /* ... */ }
     private fun isShipped(shipment: Shipment): Boolean { /* ... */ }
     private fun isDelivered(shipment: Shipment): Boolean { /* ... */ }
-    private fun isShipmentCompleted(shipment: Shipment): Boolean { /* ... */ }
+    private fun isShipmentComplete(shipment: Shipment): Boolean { /* ... */ }
 }
 ```
 
 Your future self, and your colleagues, will thank you for consistent naming conventions. It is like organising your toolbox, everything has its place, and finding the right tool is effortless!
 
-## 3. The Mystery Parameters Party
+## 3. The Mystery Parameters
 
-Ah, the joy of encountering a function with eight boolean parameters. Is that `true` for this, that, or even the other one? Who knows? It is a guessing game that only leads to confusion!
+Ah, the joy of encountering a function with eight different, including boolean, parameters. Is that value for this, that, or even the other one? Who knows? It is a guessing game that only leads to confusion!
 
 **Before (Guessing game)**
 
 ```kotlin
 // What do all these parameters mean?
-sendOrderConfirmation("ORD-12345", "customer@example.com", true, false, true, null, "EUR", false)
+sendOrderConfirmation("ORD-12345", "customer@example.com", true, false, true, 50.0, "EUR", false)
 ```
 
 **After (Self-explaining parameters)**
 
 ```kotlin
+data class DeliveryOptions(
+    val isExpressDelivery: Boolean = false,
+    val hasGiftWrapping: Boolean = false,
+    val sendSmsNotification: Boolean = false,
+    val specialInstructions: String? = null
+)
+
 sendOrderConfirmation(
     orderId = "ORD-12345",
     customerEmail = "customer@example.com",
-    isExpressDelivery = true,
-    hasGiftWrapping = false,
-    sendSmsNotification = true,
-    specialInstructions = null,
+    deliveryOptions = DeliveryOptions(
+        isExpressDelivery = true,
+        sendSmsNotification = true
+    ),
+    totalPaid = 50.0,
     currencyCode = "EUR",
     isBusinessOrder = false
 )
 ```
 
-Using Kotlin’s named argument feature here is like wearing name tags at a networking event, it helps everyone understand who’s who without any awkward guessing.
+Extracting parameters into a data class improves structure by grouping related values and providing optional ones with defaults. In the same context, using Kotlin's named arguments when calling the function is like wearing name tags at a networking event, everyone knows who-is-who without awkward guessing.
 
 ## 4. The Monolithic Monster Function
 
-We have all encountered, or maybe even created, that massive function that does everything, from data validation to business logic to formatting output. It becomes a beast no one dares to touch, too intimidating to refactor. Even your most experienced team members will avoid it, hoping someone else will take the responsibility.
+We have all encountered, or maybe even created, that massive function that does everything, from data validation to business logic to formatting output. It becomes a beast no one dares to touch, too scary to refactor. Even your most experienced team members will avoid it, hoping someone else will take the responsibility.
 
-**Before (The function that ate the codebase)**
+**Before (The black hole in the codebase)**
 
 ```kotlin
 fun processCustomerOrder(order: Order, customer: Customer): OrderResult {
@@ -217,7 +225,7 @@ private fun calculateOrderDetails(order: Order, customer: Customer): OrderDetail
 // Additional helper functions...
 ```
 
-Breaking down monolithic functions is like reorganising a chaotic toolbox. Suddenly, you are not wasting time searching for the right tool. When debugging, you can jump straight to the right, well-separated functions instead of wrestling with a giant block of spaghetti code. It is faster, cleaner, and spares you from those "Where on earth is this even going wrong?" moments.
+Breaking down giant functions into smaller ones is like cleaning up a messy toolbox. You no longer waste time looking for the right tool. When you need to fix something, it is possible to quickly find the problem instead of getting lost in a big, confusing block of code, saving you from those "Where on earth is this even going wrong?" moments.
 
 ## 5. The Null-Check Jungle
 
@@ -235,6 +243,7 @@ fun getCustomerShippingLabel(orderId: String?): String {
             if (address != null) {
                 val postalCode = address.postalCode
                 if (postalCode != null) {
+                    // Finally! We did it!
                     return formatShippingLabel(customer.name, address, postalCode)
                 } else {
                     return "Missing postal code"
@@ -271,11 +280,11 @@ fun getCustomerShippingLabel(orderId: String?): String {
                 ?: return "Missing customer name"
 
             formatShippingLabel(name, address, postalCode)
-    } ?: "Invalid order information"
+        } ?: "Invalid order information"
 }
 ```
 
-**Even more detailed:**
+**Even better**
 
 ```kotlin
 fun getCustomerShippingLabel(orderId: String?): String {
@@ -288,13 +297,13 @@ fun getCustomerShippingLabel(orderId: String?): String {
 }
 ```
 
-Kotlin’s safe call operator `?.` and Elvis operator `?:` are efficient tools that help you avoid null pointer exceptions with ease. They allow you to handle nullability in a clean, concise, and safe way, keeping your code sharp and bug-free.
+Kotlin's safe call operator `?.` and Elvis operator `?:` are efficient tools that help you avoid null pointer exceptions effortlessly. They allow you to handle nullability in a clean, concise, and safe way, keeping your code sharp and bug-free.
 
 ## 6. The Puzzle of Boolean Expressions
 
 Complex boolean expressions with unclear meaning are like puzzles left for the next developer to solve. They create a cryptic mess of conditions, leading only to confusion and frustration.
 
-**Before (Booleans puzzle)**
+**Before (Boolean puzzle)**
 
 ```kotlin
 if (shipment.status == "DELIVERED" || shipment.status == "DELIVERED_DAMAGED" ||
@@ -324,7 +333,7 @@ private fun isShipmentCompleted(shipment: Shipment): Boolean {
 private fun isShipmentReturned(shipment: Shipment) = shipment.status == "RETURNED" && shipment.receivedAtWarehouse
 ```
 
-Extracting boolean expressions into well-named variables or functions turns cryptic conditions into clear, readable business rules. It is like translating a complex sentence into simple, easy-to-understand language that anyone can read and follow.
+Extracting boolean expressions into well-named variables or functions transforms cryptic conditions into clear, readable business rules. It is like turning a complex riddle into a straightforward, easy-to-understand story that anyone can read and follow.
 
 ## 7. The Error Handling Chaos
 
@@ -337,7 +346,7 @@ fun processPayment(payment: Payment) {
     try {
         paymentGateway.process(payment)
     } catch (e: Exception) {
-        Log.e("Payment", "Failed to process payment", e)
+        Log.error("Payment", "Failed to process payment", e)
         throw RuntimeException("Payment processing failed")
     }
 }
@@ -346,8 +355,7 @@ fun refundPayment(paymentId: String) {
     try {
         paymentGateway.refund(paymentId)
     } catch (e: Exception) {
-        e.printStackTrace()
-        // Swallow the exception and continue
+        // Swallow the exception and continue, who cares!
     }
 }
 
@@ -404,13 +412,13 @@ private fun executePaymentOperation(allowFailure: Boolean = false, operation: ()
 }
 
 private fun logPaymentError(e: Exception) {
-    Log.e("Payment", "Payment operation failed", e)
+    Log.error("Payment", "Payment operation failed", e)
 }
 ```
 
-Standardising error handling makes your code more predictable and easier to debug. It is like having a clear fire escape plan, when something goes wrong, there’s no panic or guessing, just a straightforward path to safety.
+Standardising and centralising error handling makes your code more predictable and easier to debug. It is like having a clear fire escape plan. When something goes wrong, there is no panic or guessing, just a straightforward path to safety.
 
-## 8. The Mutable Collection Overuse
+## 8. The Mutable Collections Overuse
 
 Using mutable collections when immutability is enough, like giving everyone in the office a key to the server room. Sooner or later, someone is going to mess with something they should not. Immutability keeps things secure and under control, preventing unintended modifications and hard-to-track errors.
 
@@ -435,10 +443,6 @@ fun getActiveUsers(allUsers: List<User>): List<User> = allUsers.filter { it.isAc
 ```
 
 Unless you have a clear, unavoidable need for mutability, immutability is your best defence against bugs caused by unexpected state changes.
-
-## 9. The Validation Repetition
-
-Repeating the same validation logic across multiple functions is not just repetitive, it is a recipe for mistakes. Each duplication increases the chance of errors, and keeping everything in sync becomes a nightmare. Centralising your validation logic keeps things clean, consistent, and easier to maintain.
 
 ## 9. The Validation Repetition
 
@@ -551,7 +555,7 @@ fun logAnalyticsEvent(event: AnalyticsEvent) {
         try {
             analyticsService.logEvent(event)
         } catch (e: Exception) {
-            Log.e("Analytics", "Failed to log event", e)
+            Log.error("Analytics", "Failed to log event", e)
         }
     }
 }
@@ -584,8 +588,10 @@ fun getCategorizedProducts(products: List<Product>): Map<String, List<Product>> 
 **After (Idiomatic Kotlin)**
 
 ```kotlin
-fun getCategorizedProducts(products: List<Product>): Map<String, List<Product>> = products.associateBy { it.category }
+fun getCategorizedProducts(products: List<Product>): Map<String, List<Product>> = products.groupBy { it.category }
 ```
+
+By using Kotlin's `groupBy` function, we not only simplify the code into a concise one-liner but also boost readability.
 
 **Before (Verbose code)**
 
@@ -614,7 +620,8 @@ fun processPayment(payment: Payment) {
     val maxRetries = 3
     while (attempt < maxRetries) {
         try {
-            return paymentGateway.process(payment)  // Try to process the payment
+            // Try to process the payment
+            return paymentGateway.process(payment)
         } catch (e: Exception) {
             attempt++
             if (attempt < maxRetries) {
@@ -632,7 +639,8 @@ fun processPayment(payment: Payment) {
 fun processPayment(payment: Payment, maxRetries: Int = 3) {
     repeat(maxRetries) { attempt ->
         try {
-            return paymentGateway.process(payment)  // Try to process the payment
+            // Try to process the payment
+            return paymentGateway.process(payment)
         } catch (e: Exception) {
             if (attempt < maxRetries - 1) {
                 Log.error("Failed to process payment, retrying (attempt ${attempt + 1})", e)
@@ -662,19 +670,20 @@ fun <T> retryOperation(maxRetries: Int, operation: () -> T): T {
 
 fun processPayment(payment: Payment) {
     return retryOperation(3) {
-        paymentGateway.process(payment)  // Try to process the payment
+        // Try to process the payment
+        paymentGateway.process(payment)
     }
 }
 ```
 
 By extracting the retry logic into a reusable `retryOperation()` function, we not only make the `processPayment()` function more readable but also create a utility that can be used across different parts of the codebase, improving maintainability and reducing duplication.
 
-There are countless other examples. Mastering Kotlin's standard library functions equips you with the perfect set of tools for every task. These built-in functions are designed to make your code more expressive, concise, and maintainable, helping you focus on solving business problems rather than reinventing the wheel.
+There are countless other examples. Mastering Kotlin's standard library functions gives you a powerful toolkit for any task. These built-in functions are designed to make your code more expressive, concise, and maintainable, allowing you to focus on solving business problems instead of reinventing the wheel.
 
 ## Conclusion
 
-These patterns might seem small on their own, but they quickly add up. The good news is that refactoring them is often simple and incredibly satisfying, like tidying up your desk and suddenly feeling more organised.
+These patterns may seem small on their own, but they add up quickly. The good news is that refactoring them is often simple and highly satisfying, like tidying up your desk and instantly feeling more organised.
 
-Even experienced developers fall into these traps. The key is to spot them and improve your codebase gradually. You don’t need to fix everything at once, small and incremental progress still makes a big difference.
+Even experienced developers can fall into these traps. The key is to spot them and improve your codebase gradually. You don't need to fix everything at once. Small, incremental progress still makes a big difference.
 
 Happy coding!
