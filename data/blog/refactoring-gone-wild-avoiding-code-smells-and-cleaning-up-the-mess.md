@@ -10,7 +10,7 @@ theme: 'blue'
 
 Recently, I was refactoring a big part of one of the core domain services my team works on, and I ran into some classic bad practices. These are the kinds of mistakes most engineers, including myself, fall into because of tight deadlines, lack of knowledge about the tools and frameworks in use, and the ever-present "I will clean this up later" syndrome. I thought it would be fun to share some of these as a reference for others, and future me, to avoid them next time.
 
-If you have ever wrestled with legacy code, you might recognise these patterns. Let's break them down and transform messy, hard-to-maintain code into something clean, elegant, and self-explanatory, powered by Kotli's built-in features!
+If you have ever wrestled with legacy code, you might recognise these patterns. Let's break them down and transform messy, hard-to-maintain code into something clean, elegant, and self-explanatory, powered by Kotlin's built-in features!
 
 ## 1. The Pyramid of Doom
 
@@ -446,7 +446,7 @@ Unless you have a clear, unavoidable need for mutability, immutability is your b
 
 ## 9. The Validation Repetition
 
-Repetition of the same validation logic across multiple functions is not just redundant, it is highly error-prone. Each duplicate increases the chance of inconsistency, making maintenance a nightmare. Centralising validation logic keeps the code clean, consistent, and easier to manage.
+We have all done it, copying the same validation checks across multiple functions. It seems harmless at first, but over time, it is like patching a leaking pipe with duct tape. A small change in one place breaks something unexpected elsewhere. Before you know it, debugging is like chasing ghosts, and no one knows what the "correct" rules even are.
 
 **Before (Scattered validation)**
 
@@ -685,5 +685,7 @@ There are countless other examples. Mastering Kotlin's standard library function
 These patterns may seem small on their own, but they add up quickly. The good news is that refactoring them is often simple and highly satisfying, like tidying up your desk and instantly feeling more organised.
 
 Even experienced developers can fall into these traps. The key is to spot them and improve your codebase gradually. You don't need to fix everything at once. Small, incremental progress still makes a big difference.
+
+For frontend, it is a bit different game. Unlike backend, which benefits from solid design patterns, frontend development faces constant rewrites and updates. This forces our frontend colleagues into a never-ending cycle of rebuilding features and updating legacy components to meet new standards. Dave Bitter's [The infinite legacy cycle in front-end](https://techhub.iodigital.com/articles/the-infinite-legacy-cycle-in-front-end) highlights this challenge. Check it out!
 
 Happy coding!
