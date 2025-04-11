@@ -29,21 +29,21 @@ fun attemptToSendNotification(user: User?) {
                     notificationService.sendTo(deviceToken)?.let { result ->
                         if (result.isSuccessful) {
                             // Finally! We did it!
-                            logSuccess("Sent notification to ${validUser.name}")
+                            Log.info("Sent notification to ${validUser.name}")
                         } else {
-                            logError("Failed to send: ${result.errorMessage}")
+                            Log.error("Failed to send: ${result.errorMessage}")
                         }
                     }
                 } else {
-                    logError("Service unavailable")
+                    Log.error("Service unavailable")
                 }
             } else {
-                logError("No device token")
+                Log.error("No device token")
             }
         } else {
-            logError("Notifications disabled")
+            Log.error("Notifications disabled")
         }
-    } ?: logError("No user found")
+    } ?: Log.error("No user found")
 }
 ```
 
@@ -52,32 +52,32 @@ fun attemptToSendNotification(user: User?) {
 ```kotlin
 fun attemptToSendNotification(user: User?) {
     val validUser = user ?: run {
-        logError("No user found")
+        Log.error("No user found")
         return
     }
 
     if (!validUser.hasEnabledNotifications()) {
-        logError("Notifications disabled")
+        Log.error("Notifications disabled")
         return
     }
 
     val deviceToken = validUser.getDeviceToken() ?: run {
-        logError("No device token")
+        Log.error("No device token")
         return
     }
 
     val notificationService = getNotificationService()
     if (!notificationService.isAvailable()) {
-        logError("Service unavailable")
+        Log.error("Service unavailable")
         return
     }
 
     val result = notificationService.sendTo(deviceToken) ?: return
 
     if (result.isSuccessful) {
-        logSuccess("Sent notification to ${validUser.name}")
+        Log.info("Sent notification to ${validUser.name}")
     } else {
-        logError("Failed to send: ${result.errorMessage}")
+        Log.error("Failed to send: ${result.errorMessage}")
     }
 }
 ```
