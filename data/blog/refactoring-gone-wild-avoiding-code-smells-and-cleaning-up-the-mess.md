@@ -14,7 +14,7 @@ If you have ever wrestled with legacy code, you might recognise these patterns. 
 
 ## 1. The Pyramid of Doom
 
-We have all been there, checking one condition after another, nesting deeper and deeper until the code starts looking like an ancient pyramid. As an Egyptian, I love pyramids, but not this kind. Unlike those architectural marvels, our code pyramids are a nightmare to maintain, not something to admire.
+We have all been there, checking one condition after another, nesting deeper and deeper until the code starts looking like an ancient pyramid. As an Egyptian, I love pyramids, but not this kind. Unlike those architectural marvels, our `code pyramids` are a nightmare to maintain, not something to admire.
 
 **Before (Deeply nested and hard to read)**
 
@@ -116,7 +116,7 @@ Your future self, and your colleagues, will thank you for consistent naming conv
 
 ## 3. The Mystery Parameters
 
-Ah, the joy of encountering a function with eight different, including boolean, parameters. Is that value for this, that, or even the other one? Who knows? It is a guessing game that only leads to confusion!
+Ah, the joy of encountering a function with eight different, including `boolean`, parameters. Is that value for `this`, `that`, or even `the other one`? Who knows? It is a guessing game that only leads to confusion!
 
 **Before (Guessing game)**
 
@@ -148,11 +148,11 @@ sendOrderConfirmation(
 )
 ```
 
-Extracting parameters into a data class improves structure by grouping related values and providing optional ones with defaults. In the same context, using Kotlin's named arguments when calling the function is like wearing name tags at a networking event, everyone knows who-is-who without awkward guessing.
+Extracting parameters into a `data class` improves structure by grouping related values and providing optional ones with defaults. In the same context, using Kotlin's `named arguments` when calling the function is like wearing name tags at a networking event, everyone knows who-is-who without awkward guessing.
 
 ## 4. The Monolithic Monster Function
 
-We have all encountered, or maybe even created, that massive function that does everything, from data validation to business logic to formatting output. It becomes a beast no one dares to touch, too scary to refactor. Even your most experienced team members will avoid it, hoping someone else will take the responsibility.
+We have all encountered, or maybe even created, that massive function that does everything, from `data validation` to `business logic` to `formatting output`. It becomes a beast no one dares to touch, too scary to refactor. Even your most experienced team members will avoid it, hoping someone else will take the responsibility.
 
 **Before (The black hole in the codebase)**
 
@@ -229,7 +229,7 @@ Breaking down giant functions into smaller ones is like cleaning up a messy tool
 
 ## 5. The Null-Check Jungle
 
-Kotlin provides powerful tools to handle nullability, yet we often find ourselves writing one null check after another, or worse, nesting them. Each checks again on top of the previous one, growing taller with every "just to be safe" condition. Kotlin's null-handling features can save us from this mess. Once again, not my preferred type of pyramids.
+Kotlin provides powerful tools to handle nullability, yet we often find ourselves writing one `null check` after another, or worse, nesting them. Each checks again on top of the previous one, growing taller with every "just to be safe" condition. Kotlin's null-handling features can save us from this mess. Once again, not my preferred type of pyramids.
 
 **Before (The just to be safe null checks)**
 
@@ -420,7 +420,7 @@ Standardising and centralising error handling makes your code more predictable a
 
 ## 8. The Mutable Collections Overuse
 
-Using mutable collections when immutability is enough, like giving everyone in the office a key to the server room. Sooner or later, someone is going to mess with something they should not. Immutability keeps things secure and under control, preventing unintended modifications and hard-to-track errors.
+Using `mutable` collections when `immutability` is enough, like giving everyone in the office a key to the server room. Sooner or later, someone is going to mess with something they should not. Immutability keeps things secure and under control, preventing unintended modifications and hard-to-track errors.
 
 **Before (Unnecessary mutability)**
 
@@ -442,7 +442,7 @@ fun getActiveUsers(allUsers: MutableList<User>): MutableList<User> {
 fun getActiveUsers(allUsers: List<User>): List<User> = allUsers.filter { it.isActive }
 ```
 
-Unless you have a clear, unavoidable need for mutability, immutability is your best defence against bugs caused by unexpected state changes.
+Unless you have a clear, unavoidable need for `mutability`, `immutability` is your best defence against bugs caused by unexpected state changes.
 
 ## 9. The Validation Repetition
 
