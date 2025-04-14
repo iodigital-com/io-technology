@@ -42,7 +42,7 @@ const LayoutWrapper = ({ children }) => {
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
           scrolledPassedHeader ? 'bg-white shadow-md' : `bg-io_${themeBg}-500`
-        } px-4 py-4`}
+        } px-4 py-4 sm:px-1 sm:py-1`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
@@ -52,11 +52,12 @@ const LayoutWrapper = ({ children }) => {
                   scrolledPassedHeader ? 'opacity-100' : 'pointer-events-auto opacity-100'
                 }`}
               >
-                <div className="mr-3 duration-150 ease-out sm:opacity-100">
+                <div className="mr-3 duration-150 ease-out sm:opacity-100 ">
                   <Player
                     autoplay
                     src="/logo.json"
                     className={`logo -translate-x-3 sm:translate-x-0`}
+                    style={{ width: '60px', height: '60px' }}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
@@ -82,7 +83,7 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className={`font-semibold ease-out sm:mt-2 sm:p-4 ${
+                  className={`font-semibold ease-out sm:p-4 ${
                     navigationIsOpen
                       ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
                       : `duration-200 ${

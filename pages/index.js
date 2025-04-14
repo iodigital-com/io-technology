@@ -50,72 +50,41 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
-        <div className="pb-14 pt-24">
-          <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window to{' '}
-              <span className="font-serif font-light">great experiences</span>?
-            </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image1}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="w-screen"
-                />
-              </div>
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image2}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="h-auto w-full rounded-full"
-                />
+      <div className="relative min-h-screen">
+        {/* Full-width/height background image */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            alt="Hero Image"
+            src={Image1}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority={true}
+            placeholder="blur"
+            sizes="100vw"
+            className="brightness-75"
+          />
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 min-h-screen sm:min-h-screen sm:flex sm:flex-col md:min-h-screen lg:min-h-screen xl:min-h-screen max-sm:flex max-sm:flex-col-reverse max-sm:min-h-[calc(100vh-108px)]">
+          <div className="container mx-auto h-full pt-24 pb-14">
+            <div className="flex flex-col justify-center h-full">
+              {/* Main content */}
+              <div className="max-w-3xl">
+                <h1 className="text-4xl md:text-5xl xl:text-7xl mb-6 text-white drop-shadow-lg">
+                  Is technology your window to{' '}
+                  <span className="font-serif font-light">great experiences</span>?
+                </h1>
+                <p className="text-lg mb-8 text-white drop-shadow-lg max-w-xl">
+                  We blend marketing, technology and creativity because we believe that creating the
+                  ultimate customer experience requires a blend of these different skills to make an
+                  impact on our clients' brand and business.
+                </p>
+                <button className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-colors w-fit">
+                  View case →
+                </button>
               </div>
             </div>
-            <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <p className="text-lg">
-                We blend marketing, technology and creativity because we believe that creating the
-                ultimate customer experience requires a blend of these different skills to make an
-                impact on our clients' brand and business.
-              </p>
-            </span>
-            <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-black">
-                  Our latest articles
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-black">
-                  Our latest videos
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-black">
-                  Our writers &amp; speakers
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-black">
-                  Some of our jobs
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-            </ul>
           </div>
         </div>
       </div>
