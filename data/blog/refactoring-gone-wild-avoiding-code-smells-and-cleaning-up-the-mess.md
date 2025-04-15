@@ -1,6 +1,6 @@
 ---
 title: 'Refactoring Gone Wild: Avoiding code smells and cleaning up the mess'
-date: '2025-04-11'
+date: '2025-04-15'
 tags: ['kotlin', 'refactoring', 'best practices', 'clean code']
 images: ['/articles/refactoring-gone-wild-avoiding-code-smells-and-cleaning-up-the-mess/banner.png']
 summary: 'Identifying and avoiding bad coding practices, and refactoring them into clean, elegant, self-explanatory code'
@@ -439,7 +439,9 @@ fun getActiveUsers(allUsers: MutableList<User>): MutableList<User> {
 **After (Embracing immutability)**
 
 ```kotlin
-fun getActiveUsers(allUsers: List<User>): List<User> = allUsers.filter { it.isActive }
+fun getActiveUsers(allUsers: List<User>): List<User> {
+    return allUsers.filter { it.isActive }
+}
 ```
 
 Unless you have a clear, unavoidable need for `mutability`, `immutability` is your best defence against bugs caused by unexpected state changes.
@@ -505,7 +507,7 @@ fun loadUserData(userId: String, callback: (UserData) -> Unit) {
     CoroutineScope(Dispatchers.IO).launch {
         val userData = userRepository.fetchUserData(userId)
 
-        // Switching to main thread for UI updates
+        // Switching to the main thread for UI updates
         withContext(Dispatchers.Main) {
             callback(userData)
         }
@@ -523,16 +525,23 @@ fun refreshAllData() {
 **After (Structured concurrency)**
 
 ```kotlin
-// In a service or any other component
+// Coroutine scope tied to a lifecycle-aware component (e.g. Service or Repository)
+// The SupervisorJob allows child coroutines to fail independently
+val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+// In a service component
 fun loadUserData(userId: String, callback: (UserData) -> Unit) {
     serviceScope.launch {
         try {
+            // Keeps concurrency structured
             val userData = withContext(Dispatchers.IO) {
                 userRepository.fetchUserData(userId)
             }
+            // Continuing on the main thread
             callback(userData)
         } catch (e: Exception) {
-            handleError(e)
+            // Errors are caught and handled/logged accordingly
+            handleError("loadUserData", e)
         }
     }
 }
@@ -544,7 +553,7 @@ fun refreshAllData() {
                 dataRepository.refreshAll()
             }
         } catch (e: Exception) {
-            handleError(e)
+            handleError("refreshAllData", e)
         }
     }
 }
@@ -555,9 +564,15 @@ fun logAnalyticsEvent(event: AnalyticsEvent) {
         try {
             analyticsService.logEvent(event)
         } catch (e: Exception) {
-            Log.error("Analytics", "Failed to log event", e)
+            handleError("logAnalyticsEvent", e)
         }
     }
+}
+
+// Centralised error handler for consistent handled/logging
+fun handleError(source: String, throwable: Throwable) {
+    Log.error("Error in $source: ${throwable.message}", throwable)
+    // ...
 }
 ```
 
