@@ -1,6 +1,6 @@
 ---
 title: 'Refactoring Gone Wild: Avoiding code smells and cleaning up the mess'
-date: '2025-04-15'
+date: '2025-04-17'
 tags: ['kotlin', 'refactoring', 'best practices', 'clean code']
 images: ['/articles/refactoring-gone-wild-avoiding-code-smells-and-cleaning-up-the-mess/banner.png']
 summary: 'Identifying and avoiding bad coding practices, and refactoring them into clean, elegant, self-explanatory code'
