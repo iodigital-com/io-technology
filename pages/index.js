@@ -14,12 +14,10 @@ import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
-import Image1 from '../public/iO-technology-blog1.png'
-import Image2 from '../public/iO-technology-blog2.png'
+import HeroImage from '../public/iO_Herentals_1427.jpg'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
-
-const MAX_BLOG_POSTS = 5
+const MAX_BLOG_POSTS = 6
 
 export async function getStaticProps() {
   const posts = (await getAllFilesFrontMatter('blog')).filter(
@@ -55,7 +53,7 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
         <div className="absolute inset-0 w-full h-full">
           <Image
             alt="Hero Image"
-            src={Image1}
+            src={HeroImage}
             fill
             style={{ objectFit: 'cover' }}
             priority={true}
@@ -95,25 +93,28 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
 
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
-        {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, title, summary, tags } = frontMatter
-          const authorsResolved = frontMatter.authors.map((author) => {
-            return authors[author]
-          })
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
+            const { slug, date, title, summary, tags, images } = frontMatter
+            const authorsResolved = frontMatter.authors.map((author) => {
+              return authors[author]
+            })
 
-          return (
-            <Article
-              key={slug}
-              slug={slug}
-              date={date}
-              title={title}
-              summary={summary}
-              tags={tags}
-              authors={authorsResolved}
-              border={index !== 0}
-            />
-          )
-        })}
+            return (
+              <Article
+                key={slug}
+                slug={slug}
+                date={date}
+                title={title}
+                summary={summary}
+                tags={tags}
+                authors={authorsResolved}
+                images={images}
+                border={false}
+              />
+            )
+          })}
+        </div>
       </section>
 
       {posts.length > MAX_BLOG_POSTS && (

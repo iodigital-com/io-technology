@@ -12,7 +12,7 @@ const Tag = ({ text }) => {
   return (
     <Link
       href={`/tags/${kebabCase(text)}`}
-      className={`bg-io_${theme}-600 px-1 text-sm font-medium uppercase text-white hover:bg-white hover:text-io_${theme}-600`}
+      className={`bg-io_${theme}-600 px-2 text-sm font-medium uppercase text-white hover:bg-white hover:text-io_${theme}-600 rounded-full`}
     >
       {text.split(' ').join('-')}
     </Link>
