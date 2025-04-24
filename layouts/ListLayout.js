@@ -68,10 +68,10 @@ export default function ListLayout({
       </section>
 
       <div className="container mx-auto">
-        <ul>
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {!filteredBlogPosts.length && 'No articles found.'}
           {displayPosts.map((frontMatter, index) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, images } = frontMatter
             const authorsResolved = frontMatter.authors.map((author) => {
               return authors[author]
             })
@@ -84,6 +84,7 @@ export default function ListLayout({
                   date={date}
                   title={title}
                   summary={summary}
+                  images={images}
                   tags={tags}
                   authors={authorsResolved}
                   border={index !== 0}

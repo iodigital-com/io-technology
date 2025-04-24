@@ -41,7 +41,9 @@ const LayoutWrapper = ({ children }) => {
       <header
         ref={headerRef}
         className={`sticky top-0 z-50 duration-150 ease-out ${
-          scrolledPassedHeader ? 'bg-white shadow-md' : `bg-io_${themeBg}-500`
+          scrolledPassedHeader || themeBg === 'white'
+            ? 'bg-white shadow-md'
+            : `bg-io_${themeBg}-500`
         } px-4 py-4 sm:px-1 sm:py-1`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
@@ -57,11 +59,21 @@ const LayoutWrapper = ({ children }) => {
                     autoplay
                     src="/logo.json"
                     className={`logo -translate-x-3 sm:translate-x-0`}
-                    style={{ width: '60px', height: '60px' }}
+                    style={{
+                      width: '60px',
+                      height: '60px',
+                      fill: !scrolledPassedHeader && themeBg === 'transparent' ? 'white' : 'black',
+                    }}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl">
+                  <div
+                    className={`hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl ${
+                      !scrolledPassedHeader && themeBg === 'transparent'
+                        ? 'text-white'
+                        : 'text-black'
+                    }`}
+                  >
                     {siteMetadata.headerTitle}
                   </div>
                 ) : (
@@ -86,9 +98,9 @@ const LayoutWrapper = ({ children }) => {
                   className={`font-semibold ease-out sm:p-4 ${
                     navigationIsOpen
                       ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
-                      : `duration-200 ${
-                          scrolledPassedHeader ? 'text-gray-600' : 'dark:text-gray-100'
-                        }`
+                      : `duration-200`
+                  } ${
+                    !scrolledPassedHeader && themeBg === 'transparent' ? 'text-white' : 'text-black'
                   }`}
                   style={{ transitionDelay: `${navigationIsOpen ? 200 + index * 100 : 0}ms` }}
                 >

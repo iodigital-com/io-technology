@@ -15,7 +15,7 @@ const Article = ({ slug, date, title, summary, tags, authors, images, border = t
         className="group relative mb-4 block aspect-[4/3] w-full overflow-hidden"
       >
         <Image
-          src={images?.[0] || '/static/images/default-cover.jpg'}
+          src={images?.[0] || '/images/og-default-image.png'}
           alt={title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           width={600}

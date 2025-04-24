@@ -12,7 +12,6 @@ import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
 import HeroImage from '../public/iO_Herentals_1427.jpg'
 import ContributorsGrid from '@/components/ContributorsGrid'
@@ -31,13 +30,11 @@ export async function getStaticProps() {
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
   return {
-    props: { posts, videos, jobs, events, contributors, theme: 'green' },
+    props: { posts, videos, jobs, events, contributors, theme: 'transparent' },
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors }) {
-  const { theme } = useBrandingTheme()
-
+export default function Home({ posts, videos, jobs, events, contributors, theme }) {
   const authors = contributors.reduce((acc, author) => {
     acc[author.slug[0]] = author
     return acc
@@ -48,11 +45,11 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="relative min-h-screen">
+      <div className="relative h-[70vh]">
         {/* Full-width/height background image */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 -top-[108px] md:-top-[70px] w-full h-full">
           <Image
-            alt="Hero Image"
+            alt="Person walking up a staircase in an iO office"
             src={HeroImage}
             fill
             style={{ objectFit: 'cover' }}
@@ -64,8 +61,8 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
         </div>
 
         {/* Content overlay */}
-        <div className="relative z-10 min-h-screen sm:min-h-screen sm:flex sm:flex-col md:min-h-screen lg:min-h-screen xl:min-h-screen max-sm:flex max-sm:flex-col-reverse max-sm:min-h-[calc(100vh-108px)]">
-          <div className="container mx-auto h-full pt-24 pb-14">
+        <div className="relative z-10 min-h-screen sm:min-h-screen sm:flex sm:flex-col md:min-h-screen lg:min-h-screen xl:min-h-screen">
+          <div className="container mx-auto h-full pt-48 pb-14">
             <div className="flex flex-col justify-center h-full">
               {/* Main content */}
               <div className="max-w-3xl">
@@ -78,9 +75,12 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
                   ultimate customer experience requires a blend of these different skills to make an
                   impact on our clients' brand and business.
                 </p>
-                <button className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-colors w-fit">
-                  View case →
-                </button>
+                <a
+                  href="#articles"
+                  className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-colors w-fit"
+                >
+                  View articles →
+                </a>
               </div>
             </div>
           </div>

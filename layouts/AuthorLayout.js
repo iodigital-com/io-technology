@@ -6,6 +6,7 @@ import Article from '@/components/Article'
 import SectionTitle from '@/components/SectionTitle'
 import Talk from '@/components/Talk'
 import Workshop from '@/components/Workshop'
+import ListLayout from '@/layouts/ListLayout'
 
 export default function AuthorLayout({ children, frontMatter, posts, talks, workshops }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
@@ -85,22 +86,27 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
           <SectionTitle>
             Articles by <span className="font-serif font-light">{name}</span>
           </SectionTitle>
-          <section className="container mx-auto max-w-2xl">
-            {posts.map((fm, index) => {
-              const { slug, date, title, summary, tags } = fm
+          <section className="container mx-auto">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {posts.map((fm, index) => {
+                const { slug, date, title, summary, tags, images } = fm
 
-              return (
-                <Article
-                  key={slug}
-                  slug={slug}
-                  date={date}
-                  title={title}
-                  summary={summary}
-                  tags={tags}
-                  border={index !== 0}
-                />
-              )
-            })}
+                return (
+                  <li key={slug}>
+                    <Article
+                      key={slug}
+                      slug={slug}
+                      date={date}
+                      title={title}
+                      images={images}
+                      summary={summary}
+                      tags={tags}
+                      border={index !== 0}
+                    />
+                  </li>
+                )
+              })}
+            </ul>
           </section>
         </>
       ) : null}
