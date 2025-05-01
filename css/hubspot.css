@@ -39,19 +39,16 @@
 }
 
 .hubspot .hs-button {
+  position: relative;
+  display: inline-flex;
   border-radius: 9999px;
-  border: solid 1px black;
+  background-color: #0017ee;
   padding: 1rem 2.25rem;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1;
-  background: #000;
-  color: #fff;
+  color: white;
   cursor: pointer;
-}
-.hubspot .hs-button:hover {
-  background-color: transparent;
-  color: #000;
 }
 
 .hubspot.quiz .form-columns-1,

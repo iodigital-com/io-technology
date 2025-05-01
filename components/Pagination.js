@@ -5,15 +5,16 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
   const prevPage = parseInt(currentPage) - 1 > 0
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
   const btnClasses =
-    'relative inline-flex rounded-full border border-black py-4 px-9 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white'
-  const btnClassesDisabled = `${btnClasses} cursor-auto disabled:opacity-50`
+    'group relative inline-flex rounded-full bg-io_blue-600 px-9 py-4 text-base font-bold leading-none text-white transition-all delay-100'
+  const btnClassesDisabled =
+    'group relative inline-flex rounded-full bg-gray-300 px-9 py-4 text-base font-bold leading-none text-white transition-all delay-100 cursor-not-allowed'
 
   return (
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
           <button rel="previous" className={btnClassesDisabled} disabled={!prevPage}>
-            <Arrow className="mr-4 w-6 rotate-180" />
+            <Arrow className="mr-3 w-5 rotate-180 transition-transform group-hover:-translate-x-3" />
             <span>Previous</span>
           </button>
         )}
@@ -23,7 +24,7 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
             rel="previous"
             className={btnClasses}
           >
-            <Arrow className="mr-4 w-6 rotate-180" />
+            <Arrow className="mr-3 w-5 rotate-180 transition-transform group-hover:-translate-x-3" />
             <span>Previous</span>
           </Link>
         )}
@@ -33,13 +34,13 @@ export default function Pagination({ totalPages, currentPage, subpath = 'article
         {!nextPage && (
           <button rel="next" className={btnClassesDisabled} disabled={!nextPage}>
             <span>Next</span>
-            <Arrow className="ml-4 w-6" />
+            <Arrow className="ml-3 w-5 transition-transform group-hover:translate-x-3" />
           </button>
         )}
         {nextPage && (
           <Link href={`/${subpath}/page/${currentPage + 1}`} rel="next" className={btnClasses}>
             <span>Next</span>
-            <Arrow className="ml-4 w-6" />
+            <Arrow className="ml-3 w-5 transition-transform group-hover:translate-x-3" />
           </Link>
         )}
       </nav>

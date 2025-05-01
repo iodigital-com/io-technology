@@ -238,9 +238,10 @@ export default function PostLayout({
             <div className="pt-4 xl:pt-8">
               <Link
                 href="/series"
-                className={`relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white`}
+                className="group relative inline-flex rounded-full bg-io_blue-600 px-9 py-4 text-base font-bold leading-none text-white transition-all delay-100"
               >
-                <Arrow className="mr-4 w-6 rotate-180" /> Back to all series
+                <Arrow className="mr-3 w-5 rotate-180 transition-transform group-hover:-translate-x-3" />{' '}
+                Back to all series
               </Link>
             </div>
           </footer>

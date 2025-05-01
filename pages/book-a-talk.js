@@ -104,10 +104,10 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
         <Link
           href="/talks"
           aria-label="all talks"
-          className="relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+          className="group relative inline-flex rounded-full bg-io_blue-600 px-9 py-4 text-base font-bold leading-none text-white transition-all delay-100"
         >
           <span>All Talks</span>
-          <Arrow className="ml-4 w-6" />
+          <Arrow className="ml-3 w-5 transition-transform group-hover:translate-x-3" />
         </Link>
       </div>
 

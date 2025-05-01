@@ -12,14 +12,11 @@ import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Article from '@/components/Article'
-import Image1 from '../public/iO-technology-blog1.png'
-import Image2 from '../public/iO-technology-blog2.png'
+import HeroImage from '../public/iO_Herentals_1427.jpg'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
-
-const MAX_BLOG_POSTS = 5
+const MAX_BLOG_POSTS = 6
 
 export async function getStaticProps() {
   const posts = (await getAllFilesFrontMatter('blog')).filter(
@@ -33,13 +30,11 @@ export async function getStaticProps() {
   const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
 
   return {
-    props: { posts, videos, jobs, events, contributors, theme: 'green' },
+    props: { posts, videos, jobs, events, contributors, theme: 'transparent' },
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors }) {
-  const { theme } = useBrandingTheme()
-
+export default function Home({ posts, videos, jobs, events, contributors, theme }) {
   const authors = contributors.reduce((acc, author) => {
     acc[author.slug[0]] = author
     return acc
@@ -50,72 +45,44 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
-        <div className="pb-14 pt-24">
-          <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window to{' '}
-              <span className="font-serif font-light">great experiences</span>?
-            </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image1}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="w-screen"
-                />
-              </div>
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image2}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="h-auto w-full rounded-full"
-                />
+      <div className="relative h-[70vh]">
+        {/* Full-width/height background image */}
+        <div className="absolute inset-0 -top-[108px] md:-top-[70px] w-full h-full">
+          <Image
+            alt="Person walking up a staircase in an iO office"
+            src={HeroImage}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority={true}
+            placeholder="blur"
+            sizes="100vw"
+            className="brightness-75"
+          />
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 min-h-screen sm:min-h-screen sm:flex sm:flex-col md:min-h-screen lg:min-h-screen xl:min-h-screen">
+          <div className="container mx-auto h-full pt-48 pb-14">
+            <div className="flex flex-col justify-center h-full">
+              {/* Main content */}
+              <div className="max-w-3xl">
+                <h1 className="text-4xl md:text-5xl xl:text-7xl mb-6 text-white drop-shadow-lg">
+                  Is technology your window to{' '}
+                  <span className="font-serif font-light">great experiences</span>?
+                </h1>
+                <p className="text-lg mb-8 text-white drop-shadow-lg max-w-xl">
+                  We blend marketing, technology and creativity because we believe that creating the
+                  ultimate customer experience requires a blend of these different skills to make an
+                  impact on our clients' brand and business.
+                </p>
+                <a
+                  href="#articles"
+                  className="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-colors w-fit"
+                >
+                  View articles →
+                </a>
               </div>
             </div>
-            <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <p className="text-lg">
-                We blend marketing, technology and creativity because we believe that creating the
-                ultimate customer experience requires a blend of these different skills to make an
-                impact on our clients' brand and business.
-              </p>
-            </span>
-            <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-black">
-                  Our latest articles
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-black">
-                  Our latest videos
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-black">
-                  Our writers &amp; speakers
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-black">
-                  Some of our jobs
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -126,25 +93,28 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
 
       <section className="container mx-auto">
         {!posts.length && 'No articles found.'}
-        {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, title, summary, tags } = frontMatter
-          const authorsResolved = frontMatter.authors.map((author) => {
-            return authors[author]
-          })
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
+            const { slug, date, title, summary, tags, images } = frontMatter
+            const authorsResolved = frontMatter.authors.map((author) => {
+              return authors[author]
+            })
 
-          return (
-            <Article
-              key={slug}
-              slug={slug}
-              date={date}
-              title={title}
-              summary={summary}
-              tags={tags}
-              authors={authorsResolved}
-              border={index !== 0}
-            />
-          )
-        })}
+            return (
+              <Article
+                key={slug}
+                slug={slug}
+                date={date}
+                title={title}
+                summary={summary}
+                tags={tags}
+                authors={authorsResolved}
+                images={images}
+                border={false}
+              />
+            )
+          })}
+        </div>
       </section>
 
       {posts.length > MAX_BLOG_POSTS && (
@@ -152,10 +122,10 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
           <Link
             href="/articles"
             aria-label="all posts"
-            className="relative inline-flex rounded-full border border-black px-9 py-4 text-base font-bold leading-none transition-colors delay-100 hover:bg-black hover:text-white"
+            className="group relative inline-flex rounded-full bg-io_blue-600 px-9 py-4 text-base font-bold leading-none text-white transition-all delay-100"
           >
             <span>All Posts</span>
-            <Arrow className="ml-4 w-6" />
+            <Arrow className="ml-3 w-5 transition-transform group-hover:translate-x-3" />
           </Link>
         </div>
       )}

@@ -58,7 +58,6 @@ export default function ErrorPage({ error }) {
   return (
     <div className="">
       <div className="lg:flex">
-        <h1>LOTTIE HIER</h1>
         <Player autoplay loop src={Number(error) === 404 ? '/404.json' : '/500.json'} />
 
         <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center p-4">
