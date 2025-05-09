@@ -1,6 +1,6 @@
 ---
 title: 'React Fiber Three - 3D for the web'
-date: '2025-05-8'
+date: '2025-05-09'
 tags: ['frontend', 'js', 'react']
 images: ['/articles/react-fiber-three-3d-for-the-web/banner-r3f.jpg']
 summary: 'The simplest way to create interactive 3d experiences'
@@ -88,7 +88,7 @@ I recommend exploring various approaches to see which improvements yield the bes
 ## Conclusion
 
 There's much more to see and explore with React Fiber Three.  
-I recommend looking at the **examples** and doing some **testing yourself**. If any of your clients would benefit from beautiful 3D elements on their website, React Fiber Three is definitely worth considering.
+I recommend looking at the **examples** and doing some **testing yourself**. If any of your clients would benefit from **beautiful 3D elements** on their website, React Fiber Three is definitely worth considering.
 
 ## Sources and examples
 
