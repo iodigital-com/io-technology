@@ -1,6 +1,6 @@
 ---
 title: 'Quick Tip: Generate Types Based on OpenAPI (Swagger)'
-date: '2025-05-09'
+date: '2025-05-12'
 tags: ['frontend']
 images: ['/articles/generate-types-with-swagger/header.jpg']
 summary: "No more manual type generation! In this article, I'll show you how to generate types based on a OpenAPI (Swagger) file using a simple npm package."
