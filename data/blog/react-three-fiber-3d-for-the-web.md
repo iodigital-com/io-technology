@@ -1,26 +1,82 @@
 ---
-title: 'React Fiber Three - 3D for the web'
-date: '2025-05-09'
+title: 'React three fiber - 3D for the web'
+date: '2025-05-12'
 tags: ['frontend', 'js', 'react']
-images: ['/articles/react-fiber-three-3d-for-the-web/banner-r3f.jpg']
+images: ['/articles/react-three-fiber-3d-for-the-web/banner-r3f.jpg']
 summary: 'The simplest way to create interactive 3d experiences'
 authors: ['tim-dhoore']
 theme: 'blue'
 ---
 
-React Fiber Three is a renderer that enables the creation of 3D scenes using React by leveraging Three.js under the hood. Build interactive website with the same ease as making any other webapp.
+React three fiber is a renderer that enables the creation of 3D scenes using React by leveraging Three.js under the hood. Build interactive website with the same ease as making any other webapp.
 
 ## Why Not Just Use Three.js?
 
-React Fiber Three significantly simplifies the process of building 3D experiences for the web by handling most of the complex work for you. There's no need to build animation loops or set up render engines manually. Consider this simple example comparing vanilla Three.js and React Fiber Three:
+React three fiber significantly simplifies the process of building 3D experiences for the web by handling most of the complex work for you. There's no need to build animation loops or set up render engines manually. Consider this simple example comparing vanilla Three.js and React three fiber:
 
-![Code example for threejs and react fiber three to compaire the differences](/articles/react-fiber-three-3d-for-the-web/threejs-reactfiber-three-comparison.jpg)
+### Threejs
+
+```js
+    import as THREE from 'three';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000
+    );
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setAnimationLoop( animate );
+    document.body.appendChild(renderer.domElement );
+
+    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    const cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    camera.position.z = 5;
+
+    function animate() {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render( scene, camera );
+    }
+```
+
+### React fiber three
+
+```jsx
+import { createRoot } from 'react-dom/client'
+import React, { useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+
+function Box(props) {
+  const meshRef = useRef()
+
+  useFrame((state, delta) => {
+    meshRef.current.rotation.x += 0.01
+    meshRef.current.rotation.y += 0.01
+  })
+
+  return (
+    <mesh ref={meshRef}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial color="#00ff00" />
+    </mesh>
+  )
+}
+
+createRoot(document.getElementById('root')).render(
+  <Canvas>
+    <Box />
+  </Canvas>
+)
+```
 
 This simple cube example only scratches the surface. When you start adding interactions with 3D elements or disposing of unused content, the difference in complexity becomes even more apparent.
 
 ## Powerful Built-in Features
 
-React Fiber Three comes with an extensive library of built-in components found in [Drei](https://drei.docs.pmnd.rs/getting-started/introduction). Here are a few highlights:
+React three fiber comes with an extensive library of built-in components found in [Drei](https://drei.docs.pmnd.rs/getting-started/introduction). Here are a few highlights:
 
 ### [Performance optimisation tools](https://r3f.docs.pmnd.rs/advanced/scaling-performance)
 
@@ -49,13 +105,23 @@ A comprehensive selection of **filters** and **effects** is available to use imm
 ### [Physics](https://github.com/pmndrs/react-three-rapier)
 
 Creating interactive experiences with **moving objects, particles or drivable cars** is just a few components away.  
-React Fiber Three has an integration with **Rapier** that makes adding **physics** to your scenes as simple as incorporating a couple of wrappers around your objects.  
+React three fiber has an integration with **Rapier** that makes adding **physics** to your scenes as simple as incorporating a couple of wrappers around your objects.  
 There's no need for complex setups - simply add it and adjust the settings until it feels just right.
 
 ## When to Use It
 
 There is a small down side of cource **bundle size**.  
-React Fiber Three tends to be larger than a plain vanilla Three.js setup, and of course, you need to use React. animate-pulse-slowly
+React three fiber tends to be larger than a plain vanilla Three.js setup, and of course, you need to use React.
+
+Let's take our example from a above and create a bundle for each. The vanila threejs bundle is just **462.13kb** vs the **1,035.56** kb for react three fiber. That is a difference of **573,43 kb**.
+
+### Threejs bundlesize
+
+![Threejs bundlesize](/articles/react-three-fiber-3d-for-the-web/r3f.jpg)
+
+### React three fiber bundlesize
+
+![React fiber three bundlesize](/articles/react-three-fiber-3d-for-the-web/threejs.jpg)
 
 However, it compensates for this with its ease of use and considerable number of helpers, making it best suited for more complex projects. If you **simply** need to render a 3D object with a static camera, **Three.js** is still the best solution.
 
@@ -75,7 +141,7 @@ It's worth noting that certain physics elements don't integrate seamlessly with 
 
 ### [**r3f-perf**](https://github.com/utsuboco/r3f-perf)
 
-Monitoring the **performance** of your React Three Fiber application is essential for delivering smooth user experiences. The most valuable advice I can offer is to carefully track the number of **render calls** (listed as "calls" in the performance metrics). Keeping these to a minimum will significantly boost your application's performance.
+Monitoring the **performance** of your React three fiber application is essential for delivering smooth user experiences. The most valuable advice I can offer is to carefully track the number of **render calls** (listed as "calls" in the performance metrics). Keeping these to a minimum will significantly boost your application's performance.
 
 You can **reduce render calls** by:
 
@@ -87,10 +153,10 @@ I recommend exploring various approaches to see which improvements yield the bes
 
 ## Conclusion
 
-There's much more to see and explore with React Fiber Three.  
-I recommend looking at the **examples** and doing some **testing yourself**. If any of your clients would benefit from **beautiful 3D elements** on their website, React Fiber Three is definitely worth considering.
+There's much more to see and explore with React three fiber.  
+I recommend looking at the **examples** and doing some **testing yourself**. If any of your clients would benefit from **beautiful 3D elements** on their website, React three fiber is definitely worth considering.
 
 ## Sources and examples
 
-- [React fiber three](https://r3f.docs.pmnd.rs/getting-started/introduction)
+- [React three fiber](https://r3f.docs.pmnd.rs/getting-started/introduction)
 - [Examples](https://r3f.docs.pmnd.rs/getting-started/examples)
