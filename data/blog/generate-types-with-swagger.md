@@ -8,8 +8,6 @@ authors: ['steve-jonk']
 theme: 'green'
 ---
 
-TODO: Add an image to the article
-
 As front-end developers, we often work with APIs that provide data in a structured format. One of the most common formats for describing APIs is OpenAPI (Swagger).
 A very common task is to create TypeScript types based on the API specification. This can be a tedious and error-prone process if done manually, especially when the API changes frequently.
 In this article, I'll show you how to generate TypeScript types based on a Swagger file using a simple npm package.
