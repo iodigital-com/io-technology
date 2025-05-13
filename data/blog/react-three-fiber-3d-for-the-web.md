@@ -1,6 +1,6 @@
 ---
 title: 'React three fiber - 3D for the web'
-date: '2025-05-12'
+date: '2025-05-13'
 tags: ['frontend', 'js', 'react']
 images: ['/articles/react-three-fiber-3d-for-the-web/banner-r3f.jpg']
 summary: 'The simplest way to create interactive 3d experiences'
