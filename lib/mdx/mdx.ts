@@ -96,6 +96,7 @@ export async function getFileBySlugSafe(
     }
 
     let toc: TableOfContents[] = []
+    const tocRef = { current: toc }
 
     const { code, frontmatter } = await bundleMDX({
       source,
@@ -104,7 +105,7 @@ export async function getFileBySlugSafe(
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkExtractFrontmatter as any,
-          [remarkTocHeadings, { exportRef: toc }] as any,
+          [remarkTocHeadings, { exportRef: tocRef }] as any,
           remarkGfm as any,
           remarkCodeTitles as any,
           [remarkFootnotes, { inlineNotes: true }] as any,
@@ -138,7 +139,7 @@ export async function getFileBySlugSafe(
 
     const result: MDXContent = {
       mdxSource: code,
-      toc,
+      toc: tocRef.current,
       frontMatter: {
         readingTime: readingTime(contentStripped),
         slug: slug || null,
@@ -173,6 +174,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
   }
 
   let toc: TableOfContents[] = []
+  const tocRef = { current: toc }
 
   const { code, frontmatter } = await bundleMDX({
     source,
@@ -185,7 +187,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkExtractFrontmatter as any,
-        [remarkTocHeadings, { exportRef: toc }] as any,
+        [remarkTocHeadings, { exportRef: tocRef }] as any,
         remarkGfm as any,
         remarkCodeTitles as any,
         [remarkFootnotes, { inlineNotes: true }] as any,
@@ -219,7 +221,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
 
   return {
     mdxSource: code,
-    toc,
+    toc: tocRef.current,
     frontMatter: {
       readingTime: readingTime(contentStripped),
       slug: slug || null,

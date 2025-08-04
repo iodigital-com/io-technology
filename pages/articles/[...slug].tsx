@@ -39,7 +39,9 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
     return authorResults.frontMatter
   })
   const authorDetails = await Promise.all(authorPromise)
-  const serie = await getSerie(post.frontMatter.serie as string, allPosts)
+  const serie = post.frontMatter.serie
+    ? await getSerie(post.frontMatter.serie as string, allPosts)
+    : null
 
   // rss
   if (allPosts.length > 0) {
