@@ -89,7 +89,8 @@ describe('Shuffle', () => {
   })
 
   it('should mutate the original array (current implementation behavior)', () => {
-    const input = [1, 2, 3, 4, 5]
+    // Use a larger array to virtually eliminate chance of same order
+    const input = Array.from({ length: 20 }, (_, i) => i)
     const originalInput = [...input]
 
     const result = Shuffle(input)
