@@ -1,0 +1,79 @@
+import Link from '@/components/Link'
+import { useRouter } from 'next/router'
+import { Player } from '@/components/LottiePlayer'
+
+const getContentForError = (error: any) => {
+  switch (Number(error)) {
+    case 404:
+      return {
+        title: 'Oi, looks like we lost this page.',
+        action: (
+          <>
+            Take a small detour, go back to
+            <Link href={'/'} className="text-gray-400 hover:text-gray-500">
+              homepage
+            </Link>
+            ,
+            <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
+              articles
+            </Link>{' '}
+            or check our
+            <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
+              videos.
+            </Link>
+          </>
+        ),
+      }
+
+    case 500:
+    default:
+      return {
+        title: 'Oi, looks like something went wrong.',
+        action: (
+          <>
+            Go back to
+            <Link href={'/'} className="text-gray-400 hover:text-gray-500">
+              homepage
+            </Link>
+            ,
+            <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
+              articles
+            </Link>
+            or check our
+            <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
+              videos.
+            </Link>
+          </>
+        ),
+      }
+  }
+}
+
+interface ErrorPageProps {
+  error: any
+}
+
+export default function ErrorPage({ error }: ErrorPageProps) {
+  const router = useRouter()
+  error = router.query.error || error
+
+  const { title, action } = getContentForError(error)
+
+  return (
+    <div className="">
+      <div className="lg:flex">
+        <h1>LOTTIE HIER</h1>
+        <Player autoplay loop src={Number(error) === 404 ? '/404.json' : '/500.json'} />
+
+        <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center p-4">
+          <h1 className="text-4xl xl:text-5xl">{title}</h1>
+          <p className="mt-4 text-lg xl:text-2xl">{action}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+ErrorPage.getInitialProps = () => {
+  return { theme: 'green' }
+}
