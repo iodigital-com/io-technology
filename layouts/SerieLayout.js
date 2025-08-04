@@ -185,7 +185,7 @@ export default function PostLayout({
                           tags={tags}
                           authors={[]}
                           border={index !== 0}
-                          type="serie"
+                          type="article"
                           showAuthors={false}
                         />
                       </li>
