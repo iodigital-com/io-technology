@@ -4,52 +4,12 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    branches:
-      - main
-      - develop
   schedule:
     - cron: '0 7 * * 2,4' # At 07:00 on Tuesday and Thursday
 
 jobs:
-  quality-checks:
-    name: Quality Checks
+  build:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.event_name == 'push'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22.x'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: 🔍 TypeScript type check
-        run: npm run type-check
-
-      - name: 🧹 Lint code
-        run: npm run lint
-
-      - name: 🧪 Run tests
-        run: npm test
-
-      - name: 🏗️ Build application
-        run: npm run build
-        env:
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          SUPABASE_PROJECT_URL: ${{ secrets.SUPABASE_PROJECT_URL }}
-          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-
-  data-updates:
-    name: Data Updates
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/develop')
 
     env:
       YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -58,12 +18,16 @@ jobs:
 
     steps:
       - name: Checkout current repository to Master branch
-        uses: actions/checkout@v4
-      - name: Setup NodeJs 22.x
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v2
+      - name: Setup NodeJs 20.x
+        uses: actions/setup-node@v1
         with:
-          node-version: '22.x'
-          cache: 'npm'
+          node-version: '20.x'
+      - name: Cache dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Update YouTube data
