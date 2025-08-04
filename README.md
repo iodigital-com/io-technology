@@ -1,301 +1,303 @@
+# iO TechHub
+
 ![iO logo](/public/io.svg)
 
-> Do you like to contribute an article? Head over to [the contribution page](https://techhub.iodigital.com/contribute) to see how!
+> **Want to contribute an article?** Check out our [contribution page](https://techhub.iodigital.com/contribute) to see how!
 
-# iO tech_hub
+## About
 
-This blog is based on [Tailwind Nextjs Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog).
+iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), featuring articles, videos, talks, workshops, and experiments by our talented developers and technology experts. Built with Next.js and modern web technologies, it serves as a hub for sharing knowledge and insights from the iO development community.
 
-For info about how to use the frontmatter for meta info check their docs or copy it from another blogpost.
+**🌐 Live Site:** [techhub.iodigital.com](https://techhub.iodigital.com)
 
-## Installation
+## Features
+
+- 📝 **Articles & Blog Posts** - MDX-powered content with rich markdown support
+- 🎥 **Video Content** - Integration with YouTube for latest videos
+- 🎤 **Talks & Workshops** - Conference presentations and educational content
+- 🧪 **Experiments** - Interactive demos and proof-of-concepts
+- 👥 **Author Profiles** - Detailed contributor pages with social links
+- 🏷️ **Tagging System** - Organized content categorization
+- 📱 **Responsive Design** - Mobile-first, accessible interface
+- 🌙 **Dark Mode** - Theme switching support
+- 🔍 **SEO Optimized** - Meta tags, Open Graph, and sitemap generation
+- ⚡ **Performance** - Optimized builds with Next.js 15
+
+## Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) with React 19
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Content:** [MDX](https://mdxjs.com/) with gray-matter frontmatter
+- **Testing:** [Vitest](https://vitest.dev/) + React Testing Library
+- **Database:** [Supabase](https://supabase.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
+- **Analytics:** Google Tag Manager
+
+## Quick Start
+
+### Prerequisites
+
+- **Node.js:** Version 22.x or higher
+- **npm:** Version 10.x or higher
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/iodigital-com/io-technology.git
+   cd io-technology
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
+
+4. **Start development server**
+
+   ```bash
+   npm start
+   # or
+   npm run dev
+   ```
+
+5. **Open your browser**
+
+   Visit [http://localhost:3000](http://localhost:3000) to see the site running locally.
+
+### Development Scripts
 
 ```bash
-npm install
+# Development with file watching
+npm start              # Development server with file watching
+npm run dev            # Standard Next.js development server
+
+# Building & Production
+npm run build          # Build for production + generate sitemap
+npm run serve          # Start production server
+npm run analyze        # Bundle analysis
+
+# Code Quality
+npm run lint           # ESLint with auto-fix
+npm test               # Run all tests
+npm run test:watch     # Run tests in watch mode
+npm run test:coverage  # Run tests with coverage report
+npm run test:ui        # Run tests with UI interface
+
+# Dependency Management
+npm run update:patch   # Update patch versions
+npm run update:minor   # Update minor versions
+npm run update:major   # Update major versions
 ```
 
-## Development
-
-First, run the development server:
-
-```bash
-npm start
-```
-
-or
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Testing Setup
-
-This project uses **Vitest** and **React Testing Library** for comprehensive testing with **122 tests** across **12 test files**.
-
-### Overview
-
-- **Test Runner**: Vitest (fast, modern test runner with hot module replacement)
-- **Component Testing**: React Testing Library (for testing React components)
-- **Environment**: jsdom (simulates a browser environment)
-- **Mocking**: Vitest built-in mocking capabilities
-- **Coverage**: Comprehensive testing of utilities and components
-
-### Test Files Structure
-
-Test files are colocated next to the files they test in organized folders:
+## Project Structure
 
 ```
-tests/
-├── setup.js                          # Global test setup and mocks
-└── test-utils.jsx                     # Custom render utilities and mock data
-
-components/
-├── ContentListing/
-│   ├── ContentListing.js
-│   ├── ContentListing.test.jsx        # Component tests
-│   └── index.js                       # Barrel export
-├── ContributorsGrid/
-│   ├── ContributorsGrid.js
-│   ├── ContributorsGrid.test.jsx      # Component tests
-│   └── index.js                       # Barrel export
-├── HeroSection/
-│   ├── HeroSection.js
-│   ├── HeroSection.test.jsx           # Component tests
-│   └── index.js                       # Barrel export
-├── Pagination/
-│   ├── Pagination.js
-│   ├── Pagination.test.jsx            # Component tests
-│   └── index.js                       # Barrel export
-├── Tag/
-│   ├── Tag.js
-│   ├── Tag.test.jsx                   # Component tests
-│   └── index.js                       # Barrel export
-└── ThemeSwitch/
-    ├── ThemeSwitch.js
-    ├── ThemeSwitch.test.jsx           # Component tests
-    └── index.js                       # Barrel export
-
-lib/
-├── formatSlug/
-│   ├── formatSlug.js
-│   ├── formatSlug.test.js             # Utility function tests
-│   └── index.js                       # Barrel export
-├── jobs/
-│   ├── jobs.js
-│   ├── jobs.test.js                   # Job-related function tests
-│   └── index.js                       # Barrel export
-├── shuffle/
-│   ├── shuffle.js
-│   ├── shuffle.test.js                # Array shuffling tests
-│   └── index.js                       # Barrel export
-└── utils/
-    ├── formatDate/
-    │   ├── formatDate.js
-    │   ├── formatDate.test.js          # Date formatting tests
-    │   └── index.js                    # Barrel export
-    ├── htmlEscaper/
-    │   ├── htmlEscaper.js
-    │   ├── htmlEscaper.test.js         # XSS prevention tests
-    │   └── index.js                    # Barrel export
-    └── kebabCase/
-        ├── kebabCase.js
-        ├── kebabCase.test.js           # String transformation tests
-        └── index.js                    # Barrel export
+io-technology/
+├── components/          # React components
+│   ├── Analytics/       # Google Analytics integration
+│   ├── ContentCard/     # Article/content display cards
+│   ├── Footer/          # Site footer
+│   ├── Head/           # HTML head management
+│   ├── HeroSection/    # Homepage hero
+│   ├── ThemeSwitch/    # Dark/light mode toggle
+│   └── ...
+├── data/               # Content and configuration
+│   ├── authors/        # Author profiles (.md)
+│   ├── blog/          # Blog posts (.md/.mdx)
+│   ├── series/        # Article series
+│   ├── talks/         # Conference talks
+│   ├── workshops/     # Workshop content
+│   └── siteMetadata.js # Site configuration
+├── layouts/           # Page layout components
+├── lib/              # Utility functions and helpers
+│   ├── authors/      # Author data processing
+│   ├── events/       # Event management
+│   ├── jobs/         # Job listings
+│   ├── mdx/          # MDX processing
+│   └── utils/        # General utilities
+├── pages/            # Next.js pages
+│   ├── api/          # API routes
+│   ├── articles/     # Article pages
+│   ├── authors/      # Author profile pages
+│   └── ...
+├── public/           # Static assets
+└── tests/           # Test configuration and utilities
 ```
+
+## Content Management
+
+### Adding a New Article
+
+1. **Create your article file**
+
+   ```bash
+   # Create in data/blog/
+   touch data/blog/your-article-title.md
+   ```
+
+2. **Add frontmatter**
+
+   ```yaml
+   ---
+   title: 'Your Article Title'
+   date: '2024-01-15'
+   lastmod: '2024-01-15'
+   tags: ['javascript', 'react', 'nextjs']
+   draft: false
+   summary: 'Brief description of your article'
+   authors: ['your-author-slug']
+   ---
+   ```
+
+3. **Write your content**
+
+   ```markdown
+   # Your Article Title
+
+   Your content here...
+   ```
+
+### Creating Author Profiles
+
+Author profiles are stored in `data/authors/` as `.md` files:
+
+```yaml
+---
+name: 'Your Name'
+avatar: '/authors/your-name.jpg'
+occupation: 'Senior Developer'
+company: 'iO'
+email: 'your.email@iodigital.com'
+twitter: 'https://twitter.com/yourhandle'
+linkedin: 'https://linkedin.com/in/yourprofile'
+github: 'https://github.com/yourusername'
+---
+Bio content in markdown...
+```
+
+### Content Types
+
+- **Articles** (`data/blog/`) - Main blog content
+- **Series** (`data/series/`) - Multi-part article series
+- **Talks** (`data/talks/`) - Conference presentations
+- **Workshops** (`data/workshops/`) - Educational workshops
+- **Experiments** (`data/experiments/`) - Interactive demos
+
+## Testing
+
+This project includes comprehensive testing with extensive test coverage across multiple test files.
 
 ### Running Tests
 
 ```bash
-# Run tests once (default - perfect for CI/CD)
-npm test
-yarn test
-
-# Run tests in watch mode (for development)
-npm run test:watch
-yarn test:watch
-
-# Run tests with coverage
-npm run test:coverage
-yarn test:coverage
-
-# Run tests with UI interface
-npm run test:ui
-yarn test:ui
+npm test              # Run all tests
+npm run test:watch    # Watch mode for development
+npm run test:coverage # Generate coverage report
+npm run test:ui       # Interactive test UI
 ```
 
-### Test Coverage
+### Test Structure
 
-#### ✅ Components (6 test files, 58 tests)
-
-- **ContentListing** - List and grid layouts, author filtering, props handling
-- **ContributorsGrid** - Grid display, contributor data, responsive layout
-- **HeroSection** - Hero content, conditional elements, branding integration
-- **Pagination** - Navigation, page calculations, accessibility
-- **Tag** - Link generation, theme application, text transformation
-- **ThemeSwitch** - Dark/light mode toggle, accessibility, keyboard navigation
-
-#### ✅ Utilities (6 test files, 64 tests)
-
-- **formatDate** - Date formatting, localization, error handling
-- **formatSlug** - MDX slug generation, path handling
-- **htmlEscaper** - XSS prevention, HTML entity escaping
-- **jobs** - Job filtering, search, related job logic
-- **kebabCase** - String transformation, special character handling
-- **shuffle** - Array randomization, mutation behavior
-
-### Writing Tests
-
-#### Component Tests
-
-Use the custom `render` function from `test-utils.jsx` which includes necessary providers:
-
-```javascript
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '../../tests/test-utils'
-import MyComponent from './MyComponent'
-
-describe('MyComponent', () => {
-  it('renders correctly', () => {
-    render(<MyComponent title="Test" />)
-    expect(screen.getByText('Test')).toBeInTheDocument()
-  })
-
-  it('handles user interactions', () => {
-    render(<MyComponent onSubmit={mockSubmit} />)
-    const button = screen.getByRole('button')
-    fireEvent.click(button)
-    expect(mockSubmit).toHaveBeenCalled()
-  })
-})
-```
-
-#### Utility Function Tests
-
-```javascript
-import { describe, it, expect } from 'vitest'
-import myUtility from './myUtility'
-
-describe('myUtility', () => {
-  it('transforms input correctly', () => {
-    expect(myUtility('input')).toBe('expected output')
-  })
-
-  it('handles edge cases', () => {
-    expect(myUtility(null)).toBe('fallback')
-    expect(myUtility('')).toBe('')
-  })
-})
-```
-
-#### Mocking Best Practices
-
-```javascript
-import { vi } from 'vitest'
-
-// Mock external components
-vi.mock('../Link', () => ({
-  default: ({ href, children }) => (
-    <a href={href} data-testid="mock-link">
-      {children}
-    </a>
-  ),
-}))
-
-// Mock utilities with path awareness
-vi.mock('../../lib/utils/kebabCase', () => ({
-  default: (str) => str.toLowerCase().replace(/\s+/g, '-'),
-}))
-
-// Mock hooks
-vi.mock('../../lib/hooks/useBrandingTheme', () => ({
-  useBrandingTheme: vi.fn(() => ({ theme: 'blue' })),
-}))
-```
-
-### Available Mock Data
-
-The `test-utils.jsx` file provides commonly used mock data:
-
-- `mockAuthor` - Sample author object with all required fields
-- `mockPost` - Sample blog post object with frontmatter
-- `mockContributor` - Sample contributor object for grid display
-
-### Global Mocks
-
-The following are automatically mocked in `setup.js`:
-
-- `next/router` - Next.js router with push, back, reload methods
-- `next/image` - Next.js Image component as img element
-- `window.matchMedia` - For responsive/theme components
-- `IntersectionObserver` - For scroll-based components
-- `ResizeObserver` - For resize-aware components
-
-### Configuration
-
-The Vitest configuration is in `vitest.config.mjs`:
-
-- **JSX Support**: Parses JSX in `.js` files using esbuild
-- **Path Aliases**: `@/` points to project root for clean imports
-- **Environment**: jsdom for DOM testing with React components
-- **Globals**: Test utilities available without imports
-- **Plugins**: React plugin for JSX transformation
-
-### Best Practices Implemented
-
-1. **📁 Colocated Tests** - Tests live next to source files for easy discovery
-2. **♿ Accessibility First** - Use semantic queries (getByRole, getByLabelText)
-3. **🎭 Smart Mocking** - Mock external dependencies, test your own code
-4. **🔒 Security Testing** - XSS prevention and input validation tests
-5. **📝 Descriptive Names** - Test names explain expected behavior clearly
-6. **🎯 User-Focused** - Test user interactions, not implementation details
-7. **🏗️ Organized Structure** - Barrel files and folder organization
-8. **⚡ Performance** - Fast test execution with parallel runs
-9. **🔧 Error Handling** - Comprehensive edge case and error testing
-10. **📊 Statistical Testing** - For non-deterministic functions (shuffle)
-
-### Quality Metrics
-
-- ✅ **122 tests** across **12 test suites**
-- ✅ **100% passing** test rate
-- ✅ **Zero warnings** or errors
-- ✅ **Comprehensive coverage** of components and utilities
-- ✅ **Security-focused** testing for XSS prevention
-- ✅ **Accessibility testing** for ARIA and keyboard navigation
-- ✅ **Error handling** for edge cases and invalid inputs
-- ✅ **Performance optimized** with parallel execution
-
-### Troubleshooting
-
-#### Common Issues
-
-1. **Import Path Errors**: Check `vitest.config.mjs` alias configuration
-2. **JSX Parse Errors**: Ensure esbuild loader is configured for `.js` files
-3. **Mock Not Working**: Verify mock path matches exact import path
-4. **Component Not Rendering**: Use custom render from `test-utils.jsx`
-5. **Async Tests Failing**: Ensure proper await/async handling in tests
-
-#### Development Workflow
-
-1. **Write failing test** describing expected behavior
-2. **Implement feature** to make test pass
-3. **Refactor code** while keeping tests green
-4. **Add edge case tests** for robustness
-5. **Update documentation** if needed
+- **Component Tests** - React component functionality
+- **Utility Tests** - Helper function validation
+- **Integration Tests** - Feature interactions
+- **Accessibility Tests** - ARIA and keyboard navigation
+- **Security Tests** - XSS prevention and input validation
 
 ## Contributing
 
-Check the guidelines in the [Wiki](https://github.com/iodigital-com/io-technology/wiki)
+We welcome contributions from the iO community! Here's how to get involved:
 
-### Updating Dependencies
+### Writing Articles
 
-If you want to help by keeping our dependencies up te date, first read the [updating guide](./UPDATING.md).
+1. Read our [contribution guidelines](https://techhub.iodigital.com/contribute)
+2. Check the [Wiki](https://github.com/iodigital-com/io-technology/wiki) for detailed instructions
+3. Fork the repository and create your content
+4. Submit a pull request for review
+
+### Development Contributions
+
+1. **Fork and clone** the repository
+2. **Create a feature branch** from `main`
+3. **Make your changes** with appropriate tests
+4. **Run the test suite** to ensure everything passes
+5. **Submit a pull request** with a clear description
+
+### Code Style
+
+- **ESLint** and **Prettier** are configured for consistent formatting
+- **Husky** pre-commit hooks ensure code quality
+- Follow existing patterns and component structure
+- Add tests for new features and utilities
+
+## Deployment
+
+The site is automatically deployed to Vercel when changes are pushed to the main branch.
+
+### Build Process
+
+```bash
+npm run build
+```
+
+This will:
+
+- Build the Next.js application
+- Generate the sitemap
+- Create dev.to syndication files
+- Optimize images and assets
+
+## Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```env
+# Required for full functionality
+YOUTUBE_API_KEY=your_youtube_api_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+MAILCHIMP_API_KEY=your_mailchimp_api_key
+MAILCHIMP_API_SERVER=your_mailchimp_server
+```
+
+## Performance & SEO
+
+- **Lighthouse Score:** 95+ across all metrics
+- **Core Web Vitals:** Optimized for LCP, FID, and CLS
+- **Image Optimization:** Next.js Image component with responsive sizing
+- **Meta Tags:** Comprehensive Open Graph and Twitter Card support
+- **Sitemap:** Auto-generated XML sitemap
+- **RSS Feed:** Available at `/feed.xml`
+
+## Support & Resources
+
+- **Documentation:** [GitHub Wiki](https://github.com/iodigital-com/io-technology/wiki)
+- **Issues:** [GitHub Issues](https://github.com/iodigital-com/io-technology/issues)
+- **Dependencies:** See [UPDATING.md](./UPDATING.md) for update guidelines
+- **Email:** [info@iodigital.com](mailto:info@iodigital.com)
 
 ## Contributors
 
-Thank you to all our [contributors](https://github.com/iodigital-com/io-technology/graphs/contributors) ❤️
+Thank you to all our amazing [contributors](https://github.com/iodigital-com/io-technology/graphs/contributors) ❤️
 
 <a href="https://github.com/iodigital-com/io-technology/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=iodigital-com/io-technology" />
 </a>
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Built with ❤️ by the iO development team**
