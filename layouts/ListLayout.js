@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
-import Article from '@/components/Article'
+import ContentCard from '@/components/ContentCard'
 
 export default function ListLayout({
   posts,
@@ -76,7 +76,7 @@ export default function ListLayout({
 
             return (
               <li key={slug}>
-                <Article
+                <ContentCard
                   key={slug}
                   slug={slug}
                   date={date}
@@ -85,6 +85,7 @@ export default function ListLayout({
                   tags={tags}
                   authors={authorsResolved}
                   border={index !== 0}
+                  type="article"
                 />
               </li>
             )

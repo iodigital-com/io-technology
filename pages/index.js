@@ -13,7 +13,7 @@ import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import Article from '@/components/Article'
+import ContentCard from '@/components/ContentCard'
 import Image1 from '../public/iO-technology-blog1.png'
 import Image2 from '../public/iO-technology-blog2.png'
 import ContributorsGrid from '@/components/ContributorsGrid'
@@ -133,7 +133,7 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
           })
 
           return (
-            <Article
+            <ContentCard
               key={slug}
               slug={slug}
               date={date}
@@ -142,6 +142,7 @@ export default function Home({ posts, videos, jobs, events, contributors }) {
               tags={tags}
               authors={authorsResolved}
               border={index !== 0}
+              type="article"
             />
           )
         })}

@@ -6,7 +6,7 @@ import Image from '@/components/Image'
 import Share from '@/components/Share'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import Serie from '@/components/Serie'
+import ContentCard from '@/components/ContentCard'
 import ScrollTop from '@/components/ScrollTop'
 import SocialIcon from '@/components/social-icons'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
@@ -177,13 +177,16 @@ export default function PostLayout({
 
                     return (
                       <li key={slug}>
-                        <Serie
+                        <ContentCard
                           key={slug}
                           slug={slug}
                           date={date}
                           title={title}
                           tags={tags}
+                          authors={[]}
                           border={index !== 0}
+                          type="serie"
+                          showAuthors={false}
                         />
                       </li>
                     )
