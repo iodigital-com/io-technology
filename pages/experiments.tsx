@@ -14,7 +14,7 @@ export async function getStaticProps() {
       const exp = await getFileBySlug('experiments', experiment.slug || '')
       return {
         ...experiment,
-        authors: experiment.authors.map((author) => authors[author]),
+        authors: experiment.authors.map((author) => authors[author]).filter(Boolean),
         content: exp.mdxSource,
       }
     })

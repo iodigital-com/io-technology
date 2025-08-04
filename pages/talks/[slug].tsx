@@ -26,7 +26,8 @@ export const getStaticProps = async (context: any) => {
   )
 
   const authors = await getAuthors(talks)
-  const talkAuthors = talkDetails?.authors?.map((author: any) => authors[author]) || []
+  const talkAuthors =
+    talkDetails?.authors?.map((author: any) => authors[author]).filter(Boolean) || []
   return {
     props: {
       talk: talkDetails,
@@ -45,29 +46,39 @@ export default function Talk({ talk, authors }: TalkProps) {
   const { theme } = useBrandingTheme()
   const author = authors?.[0]
 
+  // Fallback for talks without valid authors
+  const defaultAuthor = {
+    name: 'iO',
+    slug: ['io'],
+    avatar: '/images/logo.png',
+    occupation: 'Technology Team',
+  }
+
+  const displayAuthor = author || defaultAuthor
+
   return (
     <>
-      <PageSEO title={`${talk.title} - ${author.name}`} description={talk.summary} />
+      <PageSEO title={`${talk.title} - ${displayAuthor.name}`} description={talk.summary} />
 
       <section className={`bg-io_${theme}-500`}>
         <div className="container mx-auto pb-12 pt-8">
           <div className="grid grid-cols-12">
             <div className="col-start-1 col-end-12 mb-8 flex flex-col text-center md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
               <Image
-                src={author.avatar}
+                src={displayAuthor.avatar}
                 width={800}
                 height={800}
                 className="h-auto w-full rounded-full"
-                alt={`avatar ${author.name}`}
+                alt={`avatar ${displayAuthor.name}`}
               />
               <div className="mt-3">
                 <Link
-                  href={`/authors/${author.slug[0]}`}
+                  href={`/authors/${displayAuthor.slug[0]}`}
                   className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-xl`}
                 >
-                  {author.name}
+                  {displayAuthor.name}
                 </Link>
-                <p>{author.occupation}</p>
+                <p>{displayAuthor.occupation}</p>
               </div>
             </div>
 
