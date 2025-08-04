@@ -2,10 +2,8 @@ import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import Article from '@/components/Article'
+import ContentCard from '@/components/ContentCard'
 import SectionTitle from '@/components/SectionTitle'
-import Talk from '@/components/Talk'
-import Workshop from '@/components/Workshop'
 
 export default function AuthorLayout({ children, frontMatter, posts, talks, workshops }) {
   const { name, avatar, occupation, twitter, linkedin, github, website } = frontMatter
@@ -90,14 +88,17 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
               const { slug, date, title, summary, tags } = fm
 
               return (
-                <Article
+                <ContentCard
                   key={slug}
                   slug={slug}
                   date={date}
                   title={title}
                   summary={summary}
                   tags={tags}
+                  authors={[]}
                   border={index !== 0}
+                  type="article"
+                  showAuthors={false}
                 />
               )
             })}
@@ -113,7 +114,17 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
           <section className="container mx-auto max-w-2xl">
             <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
               {talks.map((talk) => {
-                return <Talk key={talk.title} {...talk} authors={[]} />
+                return (
+                  <ContentCard
+                    key={talk.title}
+                    {...talk}
+                    authors={[]}
+                    type="talk"
+                    layout="list"
+                    showAuthors={false}
+                    showReadMore={true}
+                  />
+                )
               })}
             </ul>
           </section>
@@ -128,7 +139,17 @@ export default function AuthorLayout({ children, frontMatter, posts, talks, work
           <section className="container mx-auto max-w-2xl">
             <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
               {workshops.map((workshop) => {
-                return <Workshop key={workshop.title} {...workshop} authors={[]} />
+                return (
+                  <ContentCard
+                    key={workshop.title}
+                    {...workshop}
+                    authors={[]}
+                    type="workshop"
+                    layout="list"
+                    showAuthors={false}
+                    showReadMore={true}
+                  />
+                )
               })}
             </ul>
           </section>
