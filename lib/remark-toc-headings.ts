@@ -6,12 +6,25 @@ import type {
 } from './remark-toc-headings/types'
 import type { Node } from 'unist'
 
+// Define a more specific type for heading nodes
+interface HeadingNode extends Node {
+  type: 'heading'
+  depth: number
+  children?: Node[]
+}
+
+// Define a node with children property for recursive toString
+interface NodeWithChildren extends Node {
+  children?: NodeWithChildren[]
+  value?: string
+}
+
 export default function remarkTocHeadings(
   options: RemarkTocHeadingsOptions
 ): RemarkTocHeadingsTransformer {
   return (tree: Node) =>
-    visit(tree, 'heading', (node: any) => {
-      const textContent = toString(node)
+    visit(tree, 'heading', (node: HeadingNode) => {
+      const textContent = toString(node as NodeWithChildren)
       options.exportRef.current.push({
         value: textContent,
         url: '#' + slug(textContent),
@@ -21,8 +34,8 @@ export default function remarkTocHeadings(
 }
 
 // Helper function to extract text content from a node
-function toString(node: any): string {
-  if (node.type === 'text') return node.value
+function toString(node: NodeWithChildren): string {
+  if (node.type === 'text') return node.value || ''
   if (node.children) {
     return node.children.map(toString).join('')
   }

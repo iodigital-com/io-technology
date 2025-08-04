@@ -3,6 +3,7 @@ import SeriesLayout from '@/layouts/SeriesLayout'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getContentWithPagination } from '@/lib/hooks/useContentData'
+import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
 
 export const SERIES_PER_PAGE = 10
 
@@ -11,10 +12,10 @@ export async function getStaticProps() {
 }
 
 interface SeriesProps {
-  series: any[]
-  initialDisplaySeries: any[]
-  pagination: any
-  authors: any
+  series: ContentItem[]
+  initialDisplaySeries: ContentItem[]
+  pagination: PaginationMeta
+  authors: AuthorsMap
 }
 
 export default function Series({ series, initialDisplaySeries, pagination, authors }: SeriesProps) {

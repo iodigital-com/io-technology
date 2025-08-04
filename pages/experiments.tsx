@@ -23,6 +23,7 @@ export async function getStaticProps() {
   return { props: { experiments } }
 }
 
+// Keep experiments as any[] for now since it has complex mapping to Author objects
 interface ExperimentsProps {
   experiments: any[]
 }

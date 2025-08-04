@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { getAllJobs, getLatestJobs, getRelatedJobs } from './jobs'
+import type { Job } from './types'
 
 // Mock the jobs data inside the mock factory
 vi.mock('../../data/jobs.json', () => ({
@@ -133,7 +134,7 @@ describe('jobs utilities', () => {
       expect(result).toHaveLength(4)
       // Should find jobs with React in tags array
       const reactJobs = result.filter(
-        (job: any) => Array.isArray(job.tags.tag) && job.tags.tag.includes('React')
+        (job: Job) => Array.isArray(job.tags?.tag) && job.tags.tag.includes('React')
       )
       expect(reactJobs.length).toBeGreaterThan(0)
     })
@@ -143,7 +144,7 @@ describe('jobs utilities', () => {
 
       expect(result).toHaveLength(4)
       // Should find job with Node.js as string tag
-      const nodeJob = result.find((job: any) => job.tags.tag === 'Node.js')
+      const nodeJob = result.find((job: Job) => job.tags?.tag === 'Node.js')
       expect(nodeJob).toBeDefined()
     })
 

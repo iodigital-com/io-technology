@@ -1,11 +1,12 @@
 import { ImageResponse } from '@vercel/og'
+import type { NextApiRequest } from 'next'
 
 export const config = {
   runtime: 'edge',
 }
 
-export default async function handler(req: any) {
-  const url = new URL(req.url)
+export default async function handler(req: NextApiRequest) {
+  const url = new URL(req.url || '')
   const origin = url.origin
   const queryParams = Object.fromEntries(url.searchParams.entries())
   const fallbackImage = `${origin}/images/og-default-image.png`

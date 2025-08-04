@@ -23,9 +23,9 @@ describe('Shuffle', () => {
     expect(result).toEqual([42])
   })
 
-  it('should handle empty arrays', () => {
-    const input: any[] = []
-    const result = Shuffle([...input])
+  it('returns empty array for empty input', () => {
+    const input: unknown[] = []
+    const result = Shuffle(input)
     expect(result).toEqual([])
   })
 

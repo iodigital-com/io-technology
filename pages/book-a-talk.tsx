@@ -12,6 +12,7 @@ import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
 import shuffle from '@/lib/shuffle'
 import HubspotForm from '@/components/HubspotForm'
+import type { ContentItem, Author, AuthorsMap } from '../types'
 
 import bol from 'public/images/clients/bol.png'
 import ing from 'public/images/clients/ing.png'
@@ -22,7 +23,7 @@ import nn from 'public/images/clients/nn.png'
 
 export async function getStaticProps() {
   const talkTitles = [
-    'inversion-of-control-through compound-components',
+    'inversion-of-control-through compound-components',
     'react-server-components',
     'an-anything-to-anything-translation-device',
     'css-got-more-exciting',
@@ -33,7 +34,7 @@ export async function getStaticProps() {
   const talks = await getAllFilesFrontMatter('talks')
   const talksList = talks
     .filter((talk) => talk.slug && talkTitles.includes(talk.slug))
-    .sort(sortCreation as any)
+    .sort(sortCreation as (a: ContentItem, b: ContentItem) => number)
   const authors = await getAuthors(talks)
 
   const allAuthors = await getAllAuthors()
@@ -47,7 +48,7 @@ export async function getStaticProps() {
   ]
   const authorsArray = Array.isArray(allAuthors) ? allAuthors : []
   const filteredAuthors = authorsArray.filter(
-    (author: any) => author.slug?.[0] && highlightedAuthorsNames.includes(author.slug[0])
+    (author: Author) => author.slug?.[0] && highlightedAuthorsNames.includes(author.slug[0])
   )
   const highlightedAuthors = shuffle(filteredAuthors)
 
@@ -55,9 +56,9 @@ export async function getStaticProps() {
 }
 
 interface TalksProps {
-  talks: any[]
-  authors: any
-  highlightedAuthors: any[]
+  talks: ContentItem[]
+  authors: AuthorsMap
+  highlightedAuthors: Author[]
 }
 
 export default function Talks({ talks, authors, highlightedAuthors }: TalksProps) {
@@ -78,7 +79,7 @@ export default function Talks({ talks, authors, highlightedAuthors }: TalksProps
               </p>
             </div>
             <div className="col-start-1 col-end-12 mb-8 mt-10 grid grid-cols-2 gap-y-4 md:col-start-9 md:col-end-13 md:row-start-1 md:row-end-4 md:mb-0 xl:col-start-9 xl:row-start-1">
-              {highlightedAuthors.map((author: any) => (
+              {highlightedAuthors.map((author: Author) => (
                 <Contributor
                   key={author.slug?.[0] || Math.random()}
                   contributor={author}
@@ -108,16 +109,24 @@ export default function Talks({ talks, authors, highlightedAuthors }: TalksProps
       </SectionTitle>
       <div className="container mx-auto pb-4 pt-10 lg:pt-16">
         <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">
-          {talks.map((talk: any) => {
-            const talkAuthors = talk.authors.map((author: any) => authors[author])
+          {talks.map((talk: ContentItem) => {
+            const talkAuthors = talk.authors
+              .map((author: string) => authors[author])
+              .filter((author): author is Author => Boolean(author))
             return (
               <ContentCard
                 key={talk.title}
-                {...talk}
+                slug={talk.slug || ''}
+                title={talk.title}
+                summary={talk.summary}
+                date={talk.date || ''}
+                tags={talk.tags}
                 authors={talkAuthors}
                 type="talk"
                 layout="list"
                 showReadMore={true}
+                {...(talk.video && { video: talk.video })}
+                {...(talk.slides && { slides: talk.slides })}
               />
             )
           })}

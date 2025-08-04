@@ -3,14 +3,15 @@ import { PageSEO } from '@/components/SEO'
 import HeroSection from '@/components/HeroSection'
 import ContentListing from '@/components/ContentListing'
 import { getContentWithAuthors } from '@/lib/hooks/useContentData'
+import type { ContentItem, AuthorsMap } from '../types'
 
 export async function getStaticProps() {
   return getContentWithAuthors('workshops', 'pink')
 }
 
 interface WorkshopsProps {
-  workshops: any[]
-  authors: any
+  workshops: ContentItem[]
+  authors: AuthorsMap
 }
 
 export default function Workshops({ workshops, authors }: WorkshopsProps) {
