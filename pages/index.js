@@ -30,7 +30,11 @@ export async function getStaticProps() {
   const { events } = await getLatestEvents(9)
 
   const allAuthors = await getAllAuthors()
-  const contributors = shuffle(allAuthors.filter((author) => author.slug[0] !== 'default'))
+  // Add defensive check to ensure allAuthors is an array
+  const authorsArray = Array.isArray(allAuthors) ? allAuthors : []
+  const contributors = shuffle(
+    authorsArray.filter((author) => author.slug && author.slug[0] !== 'default')
+  )
 
   return {
     props: { posts, videos, jobs, events, contributors, theme: 'green' },
