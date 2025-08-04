@@ -1,13 +1,20 @@
 import Link from '@/components/Link'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { Player } from '@/components/LottiePlayer'
 
-const getContentForError = (error: any) => {
+interface ErrorContent {
+  title: string
+  description: React.ReactNode
+  image: string
+}
+
+const getContentForError = (error: string | number): ErrorContent => {
   switch (Number(error)) {
     case 404:
       return {
         title: 'Oi, looks like we lost this page.',
-        action: (
+        description: (
           <>
             Take a small detour, go back to
             <Link href={'/'} className="text-gray-400 hover:text-gray-500">
@@ -23,13 +30,14 @@ const getContentForError = (error: any) => {
             </Link>
           </>
         ),
+        image: '/404.json',
       }
 
     case 500:
     default:
       return {
         title: 'Oi, looks like something went wrong.',
-        action: (
+        description: (
           <>
             Go back to
             <Link href={'/'} className="text-gray-400 hover:text-gray-500">
@@ -45,19 +53,26 @@ const getContentForError = (error: any) => {
             </Link>
           </>
         ),
+        image: '/500.json',
       }
   }
 }
 
 interface ErrorPageProps {
-  error: any
+  error: string | number
 }
 
 export default function ErrorPage({ error }: ErrorPageProps) {
   const router = useRouter()
-  error = router.query.error || error
 
-  const { title, action } = getContentForError(error)
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
+  const errorParam = router.query.error
+  const actualError = Array.isArray(errorParam) ? errorParam[0] : errorParam || error
+
+  const { title, description } = getContentForError(actualError || '404')
 
   return (
     <div className="">
@@ -67,7 +82,7 @@ export default function ErrorPage({ error }: ErrorPageProps) {
 
         <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center p-4">
           <h1 className="text-4xl xl:text-5xl">{title}</h1>
-          <p className="mt-4 text-lg xl:text-2xl">{action}</p>
+          <p className="mt-4 text-lg xl:text-2xl">{description}</p>
         </div>
       </div>
     </div>

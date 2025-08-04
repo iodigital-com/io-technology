@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getAllFilesFrontMatter } from '../mdx'
 import { getAuthors } from '../authors'
+import type { ContentItem } from '../../types'
+import type { ContentType } from '../mdx/types'
 
 /**
  * Common pattern for content pages with pagination
  */
 export const getContentWithPagination = async (
-  contentType: any,
-  itemsPerPage = 10,
-  theme = 'beige',
-  filter: any = null
+  contentType: ContentType | string,
+  itemsPerPage: number,
+  theme: string,
+  filter: ((item: ContentItem) => boolean) | null = null
 ) => {
-  let content = await getAllFilesFrontMatter(contentType)
+  let content = await getAllFilesFrontMatter(contentType as any)
 
   // Apply filter if provided
   if (filter) {
@@ -24,30 +26,43 @@ export const getContentWithPagination = async (
     totalPages: Math.ceil(content.length / itemsPerPage),
   }
 
+  const authors = await getAuthors(content)
+
   return {
-    posts: content,
-    initialDisplayPosts: initialDisplayItems,
-    pagination,
-    authors: await getAuthors(content),
-    theme,
+    props: {
+      [contentType]: content,
+      [`initialDisplay${contentType.charAt(0).toUpperCase() + contentType.slice(1)}`]:
+        initialDisplayItems,
+      pagination,
+      authors,
+      theme,
+    },
   }
 }
 
 /**
  * Get content with authors for display
  */
-export const getContentWithAuthors = async (contentType: any, filter: any = null) => {
-  let content = await getAllFilesFrontMatter(contentType)
+export const getContentWithAuthors = async (
+  contentType: ContentType | string,
+  theme: string,
+  filter: ((item: ContentItem) => boolean) | null = null
+) => {
+  let content = await getAllFilesFrontMatter(contentType as any)
 
   // Apply filter if provided
   if (filter) {
     content = content.filter(filter)
   }
 
+  const authors = await getAuthors(content)
+
   return {
-    posts: content,
-    authors: await getAuthors(content),
-    theme: 'blue', // Changed from 'pink' to valid theme color
+    props: {
+      [contentType]: content,
+      authors,
+      theme,
+    },
   }
 }
 
@@ -86,12 +101,12 @@ export const getPagedContent = async (
 /**
  * Hook for managing content state
  */
-export const useContentData = (initialData: any[]) => {
-  const [content, setContent] = useState<any[]>(initialData || [])
+export const useContentData = (initialData: ContentItem[]) => {
+  const [content, setContent] = useState<ContentItem[]>(initialData || [])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const updateContent = async (newData: any[]) => {
+  const updateContent = async (newData: ContentItem[]) => {
     try {
       setLoading(true)
       setContent(newData)
@@ -103,11 +118,11 @@ export const useContentData = (initialData: any[]) => {
     }
   }
 
-  const sortContent = (sortFn: (a: any, b: any) => number) => {
+  const sortContent = (sortFn: (a: ContentItem, b: ContentItem) => number) => {
     setContent((prev) => [...prev].sort(sortFn))
   }
 
-  const filterContent = (filterFn: (item: any) => boolean) => {
+  const filterContent = (filterFn: (item: ContentItem) => boolean) => {
     setContent((prev) => prev.filter(filterFn))
   }
 

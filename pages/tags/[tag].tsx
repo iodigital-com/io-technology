@@ -9,6 +9,7 @@ import fs from 'fs'
 import path from 'path'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getAuthors } from '@/lib/authors'
+import type { ContentItem, AuthorsMap } from '../../types'
 
 const root = process.cwd()
 
@@ -25,7 +26,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }: { params: any }) {
+export async function getStaticProps({ params }: { params: { tag: string } }) {
   const allPosts = await getAllFilesFrontMatter('blog')
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
@@ -45,9 +46,9 @@ export async function getStaticProps({ params }: { params: any }) {
 }
 
 interface TagProps {
-  posts: any[]
+  posts: ContentItem[]
   tag: string
-  authors: any
+  authors: AuthorsMap
 }
 
 export default function Tag({ posts, tag, authors }: TagProps) {

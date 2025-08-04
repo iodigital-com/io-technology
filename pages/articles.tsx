@@ -3,6 +3,7 @@ import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/SEO'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getContentWithPagination } from '@/lib/hooks/useContentData'
+import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
 
 export const POSTS_PER_PAGE = 10
 
@@ -11,15 +12,15 @@ export async function getStaticProps() {
     'blog',
     POSTS_PER_PAGE,
     'beige',
-    (frontMatter: any) => !frontMatter.hideInArticleList
+    (frontMatter: ContentItem) => !frontMatter.hideInArticleList
   )
 }
 
 interface ArticlesProps {
-  blog: any[]
-  initialDisplayBlog: any[]
-  pagination: any
-  authors: any
+  blog: ContentItem[]
+  initialDisplayBlog: ContentItem[]
+  pagination: PaginationMeta
+  authors: AuthorsMap
 }
 
 export default function Articles({ blog, initialDisplayBlog, pagination, authors }: ArticlesProps) {

@@ -1,6 +1,7 @@
 import type { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import type { FrontMatter, Author, Event, PaginationMeta, AuthorsMap } from '../types'
 import type { Job } from '../lib/jobs/types'
+import type { TableOfContents } from '../lib/mdx/types'
 
 // ===========================
 // COMMON PAGE TYPES
@@ -39,7 +40,7 @@ export interface ArticlePageProps extends BasePageProps {
     description?: string
     posts: FrontMatter[]
   }
-  toc?: any[]
+  toc?: TableOfContents[]
 }
 
 export interface ArticlesPageProps extends BasePageProps {

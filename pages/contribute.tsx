@@ -1,9 +1,7 @@
 import { getFileBySlug } from '@/lib/mdx'
 
-import { PageSEO } from '@/components/SEO'
-import siteMetadata from '@/data/siteMetadata'
-
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
+import type { MDXContent } from '../lib/mdx/types'
 
 const DEFAULT_LAYOUT = 'StaticPageLayout'
 
@@ -14,24 +12,18 @@ export async function getStaticProps() {
 }
 
 interface ContributeProps {
-  content: any
+  content: MDXContent
 }
 
 export default function Contribute({ content }: ContributeProps) {
-  const { mdxSource, frontMatter } = content
+  const { mdxSource, toc, frontMatter } = content
 
   return (
-    <>
-      <PageSEO
-        title={`Contribute - ${siteMetadata.author}`}
-        description={siteMetadata.description}
-      />
-
-      <MDXLayoutRenderer
-        layout={frontMatter.layout || DEFAULT_LAYOUT}
-        mdxSource={mdxSource}
-        frontMatter={frontMatter}
-      />
-    </>
+    <MDXLayoutRenderer
+      layout={(frontMatter.layout as string) || DEFAULT_LAYOUT}
+      mdxSource={mdxSource}
+      frontMatter={frontMatter}
+      toc={toc}
+    />
   )
 }

@@ -4,14 +4,15 @@ import { PageSEO } from '@/components/SEO'
 import HeroSection from '@/components/HeroSection'
 import ContentListing from '@/components/ContentListing'
 import { getContentWithAuthors } from '@/lib/hooks/useContentData'
+import type { ContentItem, AuthorsMap } from '../types'
 
 export async function getStaticProps() {
   return getContentWithAuthors('talks', 'pink')
 }
 
 interface TalksProps {
-  talks: any[]
-  authors: any
+  talks: ContentItem[]
+  authors: AuthorsMap
 }
 
 export default function Talks({ talks, authors }: TalksProps) {

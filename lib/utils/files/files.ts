@@ -1,14 +1,14 @@
 import fs from 'fs'
 import path from 'path'
-import type { FileProcessor, FlattenFunction, MapFunction } from './types'
+import type { FileProcessor, MapFunction } from './types'
 
 const pipe =
   <T>(...fns: Array<(input: T) => T>): FileProcessor<T> =>
   (x: T): T =>
     fns.reduce((v, f) => f(v), x)
 
-const flattenArray: FlattenFunction<any> = (input: any[]) =>
-  input.reduce((acc: any[], item: any) => [...acc, ...(Array.isArray(item) ? item : [item])], [])
+const flattenArray = <T>(input: T[]): T[] =>
+  input.reduce((acc: T[], item: T) => [...acc, ...(Array.isArray(item) ? item : [item])], [])
 
 const map: MapFunction<any, any> =
   <T, R>(fn: (item: T) => R) =>

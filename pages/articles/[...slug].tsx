@@ -7,6 +7,9 @@ import { getRelatedJobs } from '@/lib/jobs'
 import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
+import type { ContentItem, Event, FrontMatter } from '../../types'
+import type { Job } from '../../lib/jobs/types'
+import type { MDXContent } from '../../lib/mdx/types'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
@@ -22,7 +25,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }: { params: any }) {
+export async function getStaticProps({ params }: { params: { slug: string[] } }) {
   const allPosts = await getAllFilesFrontMatter('blog')
   const postIndex = allPosts.findIndex(
     (post) => formatSlug(post.slug || '') === (params.slug || []).join('/')
@@ -31,7 +34,7 @@ export async function getStaticProps({ params }: { params: any }) {
   const next = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('blog', (params.slug || []).join('/'))
   const authorList = post.frontMatter.authors || ['default']
-  const authorPromise = authorList.map(async (author: any) => {
+  const authorPromise = authorList.map(async (author: string) => {
     const authorResults = await getFileBySlug('authors', author as string)
     return authorResults.frontMatter
   })
@@ -45,7 +48,7 @@ export async function getStaticProps({ params }: { params: any }) {
   }
 
   const searchString = authorDetails.reduce(
-    (acc: string, author: any) => acc + author.occupation + ' ',
+    (acc: string, author: FrontMatter) => acc + ((author as any).occupation || '') + ' ',
     ''
   )
   const jobs = await getRelatedJobs(4, searchString)
@@ -60,12 +63,12 @@ export async function getStaticProps({ params }: { params: any }) {
 }
 
 interface BlogProps {
-  post: any
-  authorDetails: any[]
-  prev: any
-  next: any
-  jobs: any[]
-  events: any[]
+  post: MDXContent
+  authorDetails: FrontMatter[]
+  prev: ContentItem | null
+  next: ContentItem | null
+  jobs: Job[]
+  events: Event[]
   serie: any
 }
 
@@ -77,7 +80,7 @@ export default function Blog({ post, authorDetails, prev, next, jobs, events, se
       {frontMatter.draft !== true ? (
         <>
           <MDXLayoutRenderer
-            layout={frontMatter.layout || DEFAULT_LAYOUT}
+            layout={(frontMatter.layout as string) || DEFAULT_LAYOUT}
             toc={toc}
             mdxSource={mdxSource}
             frontMatter={frontMatter}
@@ -93,7 +96,7 @@ export default function Blog({ post, authorDetails, prev, next, jobs, events, se
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
             </h2>
-            <JobGrid jobs={jobs} />
+            <JobGrid jobs={jobs as any} />
           </div>
         </>
       ) : (
