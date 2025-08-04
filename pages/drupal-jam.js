@@ -1,6 +1,6 @@
 import siteMetadata from '@/data/siteMetadata'
 import { PageSEO } from '@/components/SEO'
-import HubSpotForm from '@/components/HubspotForm'
+import HubspotForm from '@/components/HubspotForm'
 
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
@@ -19,7 +19,7 @@ export default function DrupalJam() {
             <h1 className="mb-8 text-4xl md:text-5xl xl:text-5xl">
               The iO <span className="font-serif font-light">Pool Request</span>
             </h1>
-            <HubSpotForm
+            <HubspotForm
               className="quiz"
               portalId={'513128'}
               formId={'e3de18a4-ae3b-4f2c-b76c-b29898f06ff8'}

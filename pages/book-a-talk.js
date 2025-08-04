@@ -3,7 +3,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { PageSEO } from '@/components/SEO'
 import { getAuthors, getAllAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-import Talk from '@/components/Talk'
+import ContentCard from '@/components/ContentCard'
 import Image from '@/components/Image'
 import sortCreation from '@/lib/utils/sortCreation'
 import Contributor from '@/components/Contributor'
@@ -96,7 +96,16 @@ export default function Talks({ talks, authors, highlightedAuthors }) {
         <ul className="grid gap-y-10 md:gap-x-4 lg:grid-cols-2 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-6">
           {talks.map((talk) => {
             const talkAuthors = talk.authors.map((author) => authors[author])
-            return <Talk key={talk.title} {...talk} authors={talkAuthors} />
+            return (
+              <ContentCard
+                key={talk.title}
+                {...talk}
+                authors={talkAuthors}
+                type="talk"
+                layout="list"
+                showReadMore={true}
+              />
+            )
           })}
         </ul>
       </div>
