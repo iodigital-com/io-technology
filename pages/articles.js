@@ -1,36 +1,29 @@
-import { getAllFilesFrontMatter } from '@/lib/mdx'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/SEO'
-import { getAuthors } from '@/lib/authors'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import { getContentWithPagination } from '@/lib/hooks/useContentData'
 
 export const POSTS_PER_PAGE = 10
 
 export async function getStaticProps() {
-  const posts = (await getAllFilesFrontMatter('blog')).filter(
+  return getContentWithPagination(
+    'blog',
+    POSTS_PER_PAGE,
+    'beige',
     (frontMatter) => !frontMatter.hideInArticleList
   )
-
-  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
-  const pagination = {
-    currentPage: 1,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
-  const authors = await getAuthors(posts)
-
-  return { props: { initialDisplayPosts, posts, pagination, authors, theme: 'beige' } }
 }
 
-export default function Articles({ posts, initialDisplayPosts, pagination, authors }) {
+export default function Articles({ blog, initialDisplayBlog, pagination, authors }) {
   const { theme } = useBrandingTheme()
 
   return (
     <>
       <PageSEO title={`Articles - ${siteMetadata.author}`} description={siteMetadata.description} />
       <ListLayout
-        posts={posts}
-        initialDisplayPosts={initialDisplayPosts}
+        posts={blog}
+        initialDisplayPosts={initialDisplayBlog}
         pagination={pagination}
         title="Discover all articles"
         authors={authors}
