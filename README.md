@@ -262,15 +262,6 @@ We welcome contributions from the iO community! Here's how to get involved:
 - Follow existing patterns and component structure
 - Add tests for new features and utilities
 
-### TypeScript Guidelines
-
-- Use **explicit return types** for functions when not obvious
-- Prefer **interfaces** over types for object shapes
-- Use **generic types** for reusable components and utilities
-- Avoid `any` - use `unknown` or proper types instead
-- Add **JSDoc comments** for complex type definitions
-- Follow the existing **type organization** structure in `/types` directory
-
 ## Deployment
 
 The site is automatically deployed to Vercel when changes are pushed to the main branch.
