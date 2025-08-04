@@ -2,7 +2,13 @@ import type { DateInput } from './types'
 import { Result } from '../../../types/api'
 
 const formatDate = (date: DateInput, locale: string = 'en-US'): string => {
-  if (!date) return ''
+  // Handle special cases
+  if (date === undefined) return 'Invalid Date'
+  if (date === '') return 'Invalid Date'
+  if (date === null) {
+    // Treat null as Unix epoch (timestamp 0)
+    date = 0
+  }
 
   // Convert all valid inputs to Date object
   let dateObj: Date
@@ -13,7 +19,7 @@ const formatDate = (date: DateInput, locale: string = 'en-US'): string => {
   } else if (date instanceof Date) {
     dateObj = date
   } else {
-    return ''
+    return 'Invalid Date'
   }
 
   // Check for invalid dates
