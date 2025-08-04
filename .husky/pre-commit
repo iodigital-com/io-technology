@@ -10,8 +10,8 @@ npx --no-install lint-staged
 echo "🔧 Checking TypeScript types..."
 npm run type-check
 
-# Run tests (quick check) - temporarily disabled due to dependency issue
-# echo "🧪 Running tests..."
-# npm test
+# Run tests (quick check)
+echo "🧪 Running tests..."
+npm test
 
 echo "✅ Pre-commit checks completed!"
