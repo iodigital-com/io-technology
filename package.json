@@ -40,7 +40,7 @@
     "markdown-it": "13.0.2",
     "markdown-to-text": "0.1.1",
     "marked": "9",
-    "mdx-bundler": "8.1.0",
+    "mdx-bundler": "10.1.1",
     "next": "15.1.6",
     "next-themes": "0.4.4",
     "node-html-parser": "6.1.13",

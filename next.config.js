@@ -62,9 +62,13 @@ module.exports = withBundleAnalyzer({
         // local images
         pathname: '**',
       },
+    ],
+    remotePatterns: [
       {
-        // remote images
-        pathname: 'i.ytimg.com',
+        // YouTube images
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        pathname: '/**',
       },
     ],
   },

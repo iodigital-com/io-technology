@@ -80,5 +80,5 @@ const safelist: string[] = Object.entries(colors).reduce((acc: string[], [name, 
   return acc
 }, [])
 
-export { colors, safelist }
+module.exports = { colors, safelist }
 export type { BrandColors, ColorTint }

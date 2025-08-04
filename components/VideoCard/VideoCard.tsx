@@ -11,6 +11,10 @@ interface Video {
   description: string
   thumbnails: {
     default: VideoThumbnail
+    medium?: VideoThumbnail
+    high?: VideoThumbnail
+    standard?: VideoThumbnail
+    maxres?: VideoThumbnail
   }
 }
 
@@ -19,7 +23,19 @@ interface VideoCardProps {
   playButton?: boolean
 }
 
+// Helper function to get the best available thumbnail
+const getBestThumbnailUrl = (thumbnails: Video['thumbnails']): string => {
+  // Try thumbnails in order of preference (highest quality first)
+  if (thumbnails.maxres?.url) return thumbnails.maxres.url
+  if (thumbnails.standard?.url) return thumbnails.standard.url
+  if (thumbnails.high?.url) return thumbnails.high.url
+  if (thumbnails.medium?.url) return thumbnails.medium.url
+  return thumbnails.default.url
+}
+
 const VideoCard = ({ video, playButton = true }: VideoCardProps) => {
+  const thumbnailUrl = getBestThumbnailUrl(video.thumbnails)
+
   return (
     <article className="relative flex flex-col-reverse items-center bg-gray-100 p-8">
       <div>
@@ -34,7 +50,7 @@ const VideoCard = ({ video, playButton = true }: VideoCardProps) => {
       <div className="relative mb-8 w-full">
         <Image
           alt={video.title}
-          src={video.thumbnails.default.url.replace('default', 'maxresdefault')}
+          src={thumbnailUrl}
           width={1280}
           height={720}
           className="h-auto w-full object-cover"

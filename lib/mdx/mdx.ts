@@ -1,4 +1,5 @@
 import { bundleMDX } from 'mdx-bundler'
+import type { Options } from '@mdx-js/esbuild/lib'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
@@ -101,7 +102,7 @@ export async function getFileBySlugSafe(
     const { code, frontmatter } = await bundleMDX({
       source,
       cwd: path.join(root, 'components'),
-      xdmOptions(options, _frontmatter) {
+      mdxOptions(options: Options, _frontmatter: FrontMatter) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkExtractFrontmatter as any,
@@ -180,7 +181,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
     source,
     // mdx imports can be automatically source from the components directory
     cwd: path.join(root, 'components'),
-    xdmOptions(options, _frontmatter) {
+    mdxOptions(options: Options, _frontmatter: FrontMatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
       // plugins in the future.
