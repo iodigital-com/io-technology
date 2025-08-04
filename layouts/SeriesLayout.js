@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
-import Serie from '@/components/Serie'
+import ContentCard from '@/components/ContentCard'
 
 export default function ListLayout({
   series,
@@ -76,7 +76,7 @@ export default function ListLayout({
 
             return (
               <li key={slug}>
-                <Serie
+                <ContentCard
                   key={slug}
                   slug={slug}
                   date={date}
@@ -84,7 +84,8 @@ export default function ListLayout({
                   tags={tags}
                   authors={authorsResolved}
                   border={index !== 0}
-                  subpath="series"
+                  type="serie"
+                  basePath="/series"
                 />
               </li>
             )
