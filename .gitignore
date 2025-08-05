@@ -38,3 +38,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# TypeScript build cache
+*.tsbuildinfo
