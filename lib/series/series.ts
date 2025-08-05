@@ -19,5 +19,6 @@ export async function getSerie(serieID: string, posts: FrontMatter[]): Promise<S
     posts: seriePosts.sort(
       (a, b) => new Date(a.date || '').getTime() - new Date(b.date || '').getTime()
     ),
+    slug: serieID,
   }
 }
