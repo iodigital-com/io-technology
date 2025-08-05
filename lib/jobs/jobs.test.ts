@@ -4,32 +4,34 @@ import type { Job } from './types'
 
 // Mock the jobs data inside the mock factory
 vi.mock('../../data/jobs.json', () => ({
-  default: [
-    {
-      id: 1,
-      title: 'Frontend Developer',
-      published_at: '2024-01-15',
-      tags: { tag: ['React', 'JavaScript', 'CSS'] },
-    },
-    {
-      id: 2,
-      title: 'Backend Developer',
-      published_at: '2024-01-10',
-      tags: { tag: 'Node.js' },
-    },
-    {
-      id: 3,
-      title: 'Full Stack Developer',
-      published_at: '2024-01-20',
-      tags: { tag: ['React', 'Node.js', 'TypeScript'] },
-    },
-    {
-      id: 4,
-      title: 'UI/UX Designer',
-      published_at: '2024-01-05',
-      tags: { tag: ['Design', 'Figma'] },
-    },
-  ],
+  default: {
+    jobs: [
+      {
+        id: 1,
+        title: 'Frontend Developer',
+        published_at: '2024-01-15',
+        tags: { tag: ['React', 'JavaScript', 'CSS'] },
+      },
+      {
+        id: 2,
+        title: 'Backend Developer',
+        published_at: '2024-01-10',
+        tags: { tag: 'Node.js' },
+      },
+      {
+        id: 3,
+        title: 'Full Stack Developer',
+        published_at: '2024-01-20',
+        tags: { tag: ['React', 'Node.js', 'TypeScript'] },
+      },
+      {
+        id: 4,
+        title: 'UI/UX Designer',
+        published_at: '2024-01-05',
+        tags: { tag: ['Design', 'Figma'] },
+      },
+    ],
+  },
 }))
 
 const mockJobs = [
