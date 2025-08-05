@@ -13,7 +13,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps = async (context: { params: { slug: string } }) => {
   const { videos } = await getAllVideos()
 
   const video = videos.find((vid) =>
@@ -29,7 +29,7 @@ export const getStaticProps = async (context: any) => {
 }
 
 interface VideoProps {
-  video: any
+  video: any // TODO: ContentItem conflicts with video data structure
 }
 
 export default function Video({ video }: VideoProps) {

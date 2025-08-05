@@ -1,12 +1,6 @@
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Link from '../Link'
-
-interface Job {
-  id: string
-  careers_url: string
-  title: string
-  location: string
-}
+import type { Job } from '../../lib/jobs/types'
 
 interface JobGridProps {
   jobs?: Job[]
@@ -23,7 +17,7 @@ const JobGrid = ({ jobs = [] }: JobGridProps) => {
       {jobsArray.map((job) => (
         <Link
           key={job.id}
-          href={job.careers_url}
+          href={job.careers_url || job.url || '#'}
           target="_blank"
           rel="noreferrer"
           className="h-40 border-t border-slate-200 pt-3"
@@ -35,7 +29,11 @@ const JobGrid = ({ jobs = [] }: JobGridProps) => {
                 dangerouslySetInnerHTML={{ __html: job.title }}
               ></h3>
             </header>
-            <p className="mb-2 font-serif text-sm font-light">{job.location}</p>
+            <p className="mb-2 font-serif text-sm font-light">
+              {typeof job.location === 'string'
+                ? job.location
+                : job.location?.city || job.city || job.country || 'Remote'}
+            </p>
             <svg style={{ width: 24, height: 24 }} className="text-gray-400" viewBox="0 0 24 24">
               <path
                 fill="currentColor"

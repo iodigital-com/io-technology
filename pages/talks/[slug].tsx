@@ -8,6 +8,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import SocialIcon from '@/components/social-icons'
 import Link from '@/components/Link'
+import type { ContentItem, Author } from '../../types'
 
 export const getStaticPaths = async () => {
   const talks = await getAllFilesFrontMatter('talks')
@@ -18,7 +19,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async (context: any) => {
+export const getStaticProps = async (context: { params: { slug: string } }) => {
   const talks = await getAllFilesFrontMatter('talks')
 
   const talkDetails = talks.find((talk) =>
@@ -38,8 +39,8 @@ export const getStaticProps = async (context: any) => {
 }
 
 interface TalkProps {
-  talk: any
-  authors: any[]
+  talk: ContentItem
+  authors: Author[]
 }
 
 export default function Talk({ talk, authors }: TalkProps) {
