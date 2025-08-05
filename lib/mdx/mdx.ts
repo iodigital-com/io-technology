@@ -1,5 +1,5 @@
 import { bundleMDX } from 'mdx-bundler'
-import type { Options } from '@mdx-js/esbuild/lib'
+// import type { CompileOptions as Options } from 'xdm'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
@@ -102,7 +102,7 @@ export async function getFileBySlugSafe(
     const { code, frontmatter } = await bundleMDX({
       source,
       cwd: path.join(root, 'components'),
-      mdxOptions(options: Options, _frontmatter: FrontMatter) {
+      xdmOptions(options: any, _frontmatter: FrontMatter) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkExtractFrontmatter as any,
@@ -115,12 +115,12 @@ export async function getFileBySlugSafe(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          rehypeSlug,
-          rehypeAutolinkHeadings,
-          rehypeKatex,
-          [rehypeCitation, { path: path.join(root, 'data') }],
-          [rehypePrismPlus, { ignoreMissing: true }],
-          rehypePresetMinify,
+          rehypeSlug as any,
+          rehypeAutolinkHeadings as any,
+          rehypeKatex as any,
+          [rehypeCitation, { path: path.join(root, 'data') }] as any,
+          [rehypePrismPlus, { ignoreMissing: true }] as any,
+          rehypePresetMinify as any,
         ]
         return options
       },
@@ -143,9 +143,9 @@ export async function getFileBySlugSafe(
       toc: tocRef.current,
       frontMatter: {
         readingTime: readingTime(contentStripped),
-        slug: slug || null,
         fileName,
         ...frontmatter,
+        slug: frontmatter.slug || slug || null,
         date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
       } as FrontMatter,
     }
@@ -181,7 +181,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
     source,
     // mdx imports can be automatically source from the components directory
     cwd: path.join(root, 'components'),
-    mdxOptions(options: Options, _frontmatter: FrontMatter) {
+    xdmOptions(options: any, _frontmatter: FrontMatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
       // plugins in the future.
@@ -197,12 +197,12 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        rehypeSlug,
-        rehypeAutolinkHeadings,
-        rehypeKatex,
-        [rehypeCitation, { path: path.join(root, 'data') }],
-        [rehypePrismPlus, { ignoreMissing: true }],
-        rehypePresetMinify,
+        rehypeSlug as any,
+        rehypeAutolinkHeadings as any,
+        rehypeKatex as any,
+        [rehypeCitation, { path: path.join(root, 'data') }] as any,
+        [rehypePrismPlus, { ignoreMissing: true }] as any,
+        rehypePresetMinify as any,
       ]
       return options
     },
@@ -225,9 +225,9 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
     toc: tocRef.current,
     frontMatter: {
       readingTime: readingTime(contentStripped),
-      slug: slug || null,
       fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
       ...frontmatter,
+      slug: frontmatter.slug || slug || null,
       date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
     } as FrontMatter,
   }
