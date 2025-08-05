@@ -5,6 +5,8 @@ import { POSTS_PER_PAGE } from '../../articles'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getPagedContent } from '@/lib/hooks/useContentData'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
+import type { ContentItem } from '../../../types'
+import type { PaginationMeta } from '../../../types/api'
 
 export async function getStaticPaths() {
   const allPosts = await getAllFilesFrontMatter('blog')
@@ -19,7 +21,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps(context: { params: { page: string } }) {
   const {
     params: { page },
   } = context
@@ -35,10 +37,10 @@ export async function getStaticProps(context: any) {
 }
 
 interface PostPageProps {
-  blog: any[]
-  initialDisplayBlog: any[]
-  pagination: any
-  authors: any
+  blog: ContentItem[]
+  initialDisplayBlog: ContentItem[]
+  pagination: PaginationMeta
+  authors: any // TODO: Fix AuthorsMap vs Author[] conflict
 }
 
 export default function PostPage({ blog, initialDisplayBlog, pagination, authors }: PostPageProps) {

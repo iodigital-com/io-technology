@@ -9,6 +9,9 @@ import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
 import path from 'path'
+import type { ContentItem, Event, Author } from '../../types'
+import type { Job } from '../../lib/jobs/types'
+import type { MDXContent } from '../../lib/mdx/types'
 
 const root = process.cwd()
 const DEFAULT_LAYOUT = 'SerieLayout'
@@ -25,7 +28,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }: { params: any }) {
+export async function getStaticProps({ params }: { params: { slug: string[] } }) {
   const allSeries = await getAllFilesFrontMatter('series')
   const allPosts = await getAllFilesFrontMatter('blog')
   const postIndex = allSeries.findIndex(
@@ -56,13 +59,13 @@ export async function getStaticProps({ params }: { params: any }) {
 }
 
 interface SerieProps {
-  posts: any[]
-  authorDetails: any[]
-  prev: any
-  next: any
-  jobs: any[]
-  events: any[]
-  serie: any
+  posts: ContentItem[]
+  authorDetails: Author[]
+  prev: ContentItem | null
+  next: ContentItem | null
+  jobs: Job[]
+  events: Event[]
+  serie: MDXContent
 }
 
 export default function Serie({
@@ -81,7 +84,7 @@ export default function Serie({
       {frontMatter.draft !== true ? (
         <>
           <MDXLayoutRenderer
-            layout={frontMatter.layout || DEFAULT_LAYOUT}
+            layout={(frontMatter.layout as string) || DEFAULT_LAYOUT}
             toc={toc}
             mdxSource={mdxSource}
             frontMatter={frontMatter}

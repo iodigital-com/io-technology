@@ -22,7 +22,7 @@ import type { LayoutProps, Author, FrontMatter, Event } from '../types'
 interface PostLayoutProps extends LayoutProps {
   frontMatter: FrontMatter
   authorDetails: Author[]
-  serie?: any // TODO: Define series type
+  serie?: any // TODO: Fix Serie type conflicts
   events: Event[]
   next?: FrontMatter
   prev?: FrontMatter

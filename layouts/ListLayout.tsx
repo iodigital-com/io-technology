@@ -3,12 +3,13 @@ import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
 import ContentCard from '@/components/ContentCard'
 import type { FrontMatter, AuthorsMap, ThemeColor } from '../types'
+import type { PaginationMeta } from '../types/api'
 
 interface ListLayoutProps {
   posts: FrontMatter[]
   title: string
   initialDisplayPosts?: FrontMatter[]
-  pagination?: any // TODO: Define pagination type
+  pagination?: PaginationMeta
   authors: AuthorsMap
   theme: ThemeColor
 }

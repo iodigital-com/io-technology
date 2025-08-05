@@ -11,6 +11,7 @@ import JobGrid from '@/components/JobGrid'
 import type { ContentItem, Event, Author } from '../../types'
 import type { Job } from '../../lib/jobs/types'
 import type { MDXContent } from '../../lib/mdx/types'
+import type { SerieData } from '../../lib/series/types'
 
 const DEFAULT_LAYOUT = 'PostLayout'
 
@@ -68,7 +69,7 @@ interface BlogProps {
   next: ContentItem | null
   jobs: Job[]
   events: Event[]
-  serie: any
+  serie: SerieData | null
 }
 
 export default function Blog({ post, authorDetails, prev, next, jobs, events, serie }: BlogProps) {
@@ -95,7 +96,7 @@ export default function Blog({ post, authorDetails, prev, next, jobs, events, se
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
               Jobs
             </h2>
-            <JobGrid jobs={jobs as any} />
+            <JobGrid jobs={jobs} />
           </div>
         </>
       ) : (

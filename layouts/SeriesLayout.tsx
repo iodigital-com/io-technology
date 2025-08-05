@@ -3,12 +3,13 @@ import removeMarkdown from 'markdown-to-text'
 import Pagination from '@/components/Pagination'
 import ContentCard from '@/components/ContentCard'
 import type { FrontMatter, AuthorsMap, ThemeColor } from '../types'
+import type { PaginationMeta } from '../types/api'
 
 interface SeriesLayoutProps {
   series: FrontMatter[]
   title: string
   initialDisplaySeries?: FrontMatter[]
-  pagination?: any // TODO: Define pagination type
+  pagination?: PaginationMeta
   authors: AuthorsMap
   theme: ThemeColor
 }
