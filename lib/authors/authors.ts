@@ -58,9 +58,13 @@ export async function getAuthors(frontMatters: FrontMatter[]): Promise<AuthorsMa
   const authors: AuthorsMap = {}
 
   authorArray.forEach((author) => {
-    const authorData = authorsFrontMatter.find(
-      (authorFrontMatter) => authorFrontMatter.slug?.[0] === author
-    )
+    const authorData = authorsFrontMatter.find((authorFrontMatter) => {
+      // Handle both string and array slug formats
+      const authorSlug = Array.isArray(authorFrontMatter.slug)
+        ? authorFrontMatter.slug[0]
+        : authorFrontMatter.slug
+      return authorSlug === author
+    })
     if (authorData) {
       const convertedAuthor = frontMatterToAuthor(authorData)
       if (convertedAuthor) {

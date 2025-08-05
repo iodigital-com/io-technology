@@ -24,7 +24,7 @@ const ContentListing = ({
   const filteredItems = showArchivedFilter
     ? items.filter((item) => {
         if (!item.authors) return true
-        const itemAuthors = item.authors.map((authorSlug) => authors[authorSlug])
+        const itemAuthors = item.authors.map((authorSlug) => authors[authorSlug]).filter(Boolean)
         return !itemAuthors.find((author) => author?.archived)
       })
     : items
