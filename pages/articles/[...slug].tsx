@@ -3,11 +3,12 @@ import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
+import { getAuthors } from '@/lib/authors'
 import { getRelatedJobs } from '@/lib/jobs'
 import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
 import JobGrid from '@/components/JobGrid'
-import type { ContentItem, Event, FrontMatter } from '../../types'
+import type { ContentItem, Event, Author } from '../../types'
 import type { Job } from '../../lib/jobs/types'
 import type { MDXContent } from '../../lib/mdx/types'
 
@@ -33,12 +34,8 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
   const prev = allPosts[postIndex + 1] || null
   const next = allPosts[postIndex - 1] || null
   const post = await getFileBySlug('blog', (params.slug || []).join('/'))
-  const authorList = post.frontMatter.authors || ['default']
-  const authorPromise = authorList.map(async (author: string) => {
-    const authorResults = await getFileBySlug('authors', author as string)
-    return authorResults.frontMatter
-  })
-  const authorDetails = await Promise.all(authorPromise)
+  // Get properly processed author objects with correct slug format
+  const authorDetails = Object.values(await getAuthors([post.frontMatter]))
   const serie = post.frontMatter.serie
     ? await getSerie(post.frontMatter.serie as string, allPosts)
     : null
@@ -50,7 +47,7 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
   }
 
   const searchString = authorDetails.reduce(
-    (acc: string, author: FrontMatter) => acc + ((author as any).occupation || '') + ' ',
+    (acc: string, author) => acc + (author.occupation || '') + ' ',
     ''
   )
   const jobs = await getRelatedJobs(4, searchString)
@@ -66,7 +63,7 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
 
 interface BlogProps {
   post: MDXContent
-  authorDetails: FrontMatter[]
+  authorDetails: Author[]
   prev: ContentItem | null
   next: ContentItem | null
   jobs: Job[]
