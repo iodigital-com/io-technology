@@ -17,7 +17,7 @@ const ContentCard = ({
   authors = [],
   border = true,
   type = 'article', // 'article', 'talk', 'workshop', 'serie'
-  basePath = '/articles',
+  basePath,
   showDate = true,
   showSummary = true,
   showReadMore = false,
