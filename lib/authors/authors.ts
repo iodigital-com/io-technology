@@ -10,7 +10,7 @@ function frontMatterToAuthor(frontMatter: FrontMatter): Author | null {
   const author: any = {
     name: authorName,
     avatar: frontMatter.images?.[0] || (frontMatter as any).avatar || '/default-avatar.jpg',
-    slug: Array.isArray(frontMatter.slug) ? frontMatter.slug : [frontMatter.slug],
+    slug: [Array.isArray(frontMatter.slug) ? frontMatter.slug.join('') : frontMatter.slug],
     archived: frontMatter.draft ?? false,
   }
 
