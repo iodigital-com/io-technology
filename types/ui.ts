@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 // ===========================
 // THEME SYSTEM
 // ===========================
-export type ThemeColor = 'blue' | 'green' | 'beige' | 'orange' | 'purple' | 'red'
+export type ThemeColor = 'blue' | 'green' | 'beige' | 'pink'
 export type SystemTheme = 'light' | 'dark' | 'system'
 
 // Enhanced branding theme
