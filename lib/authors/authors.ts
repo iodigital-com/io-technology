@@ -3,30 +3,42 @@ import type { Author, FrontMatter } from '../../types'
 import type { AuthorsMap } from './types'
 
 function frontMatterToAuthor(frontMatter: FrontMatter): Author | null {
-  // Ensure required fields exist
-  if (!frontMatter.title || !frontMatter.slug) return null
+  // Ensure required fields exist (authors use 'name' field, not 'title')
+  const authorName = (frontMatter as any).name || frontMatter.title
+  if (!authorName || !frontMatter.slug) return null
 
-  return {
-    name: frontMatter.title, // Use title as name for authors
-    avatar: frontMatter.images?.[0] || '/default-avatar.jpg',
+  const author: any = {
+    name: authorName,
+    avatar: frontMatter.images?.[0] || (frontMatter as any).avatar || '/default-avatar.jpg',
     slug: Array.isArray(frontMatter.slug) ? frontMatter.slug : [frontMatter.slug],
-    occupation: (frontMatter as any).occupation,
-    company: (frontMatter as any).company,
-    bio: frontMatter.summary,
-    social: (frontMatter as any).social,
     archived: frontMatter.draft ?? false,
   }
+
+  // Only add optional properties if they have values
+  if ((frontMatter as any).occupation) {
+    author.occupation = (frontMatter as any).occupation
+  }
+  if ((frontMatter as any).company) {
+    author.company = (frontMatter as any).company
+  }
+  if (frontMatter.summary) {
+    author.bio = frontMatter.summary
+  }
+  if ((frontMatter as any).social) {
+    author.social = (frontMatter as any).social
+  }
+
+  return author
 }
 
-export async function getAllAuthors(): Promise<AuthorsMap> {
+export async function getAllAuthors(): Promise<Author[]> {
   const authorsFrontMatter = await getAllFilesFrontMatter('authors')
-  const authors: AuthorsMap = {}
+  const authors: Author[] = []
 
   authorsFrontMatter.forEach((authorFrontMatter) => {
-    const slug = authorFrontMatter.slug?.[0] || ''
     const author = frontMatterToAuthor(authorFrontMatter)
-    if (slug && author) {
-      authors[slug] = author
+    if (author) {
+      authors.push(author)
     }
   })
 
