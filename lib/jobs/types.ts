@@ -43,27 +43,42 @@ export interface JobLocation {
 export interface Job {
   id: string
   title: string
-  company: CompanyInfo | string // Support both structured and string
+  company?: CompanyInfo | string // Support both structured and string
   location?: JobLocation | string // Support both structured and string
+  country?: string
+  city?: string
+  postal_code?: string
+  country_code?: string
+  department?: string
+  employment_type?: string
+  category?: string
+  experience?: string
+  education?: string
   type?: EmploymentType
   experienceLevel?: ExperienceLevel
   published_at: string
+  created_at?: string
+  updated_at?: string
   description?: string
   requirements?: string[]
   responsibilities?: string[]
   benefits?: string[]
   url?: string
   applyUrl?: string
+  careers_url?: string
   salary?: SalaryInfo
   skills?: string[]
   tags?: {
     tag: string | string[]
     [key: string]: unknown
   }
+  min_hours?: number | null
+  max_hours?: number | null
   remote?: boolean
   urgent?: boolean
   featured?: boolean
   expiresAt?: string
+  closed?: string
 }
 
 // Job search and filtering
