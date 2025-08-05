@@ -12,7 +12,6 @@ import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import ContentCard from '@/components/ContentCard'
 import Image1 from '../public/iO-technology-blog1.png'
 import Image2 from '../public/iO-technology-blog2.png'
@@ -58,6 +57,7 @@ interface HomeProps {
   jobs: FlexibleJob[]
   events: FlexibleEvent[]
   contributors: Author[]
+  theme: string
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -82,13 +82,12 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       jobs: jobs as unknown as FlexibleJob[],
       events: events as unknown as FlexibleEvent[],
       contributors,
+      theme: 'green',
     },
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors }: HomeProps) {
-  const { theme } = useBrandingTheme()
-
+export default function Home({ posts, videos, jobs, events, contributors, theme }: HomeProps) {
   const authors: AuthorsFrontMatter = contributors.reduce((acc: AuthorsFrontMatter, author) => {
     acc[author.slug?.[0] || ''] = author
     return acc
