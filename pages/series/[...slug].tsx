@@ -3,6 +3,7 @@ import PageTitle from '@/components/PageTitle'
 import generateRss from '@/lib/generate-rss'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
+import { getAuthors } from '@/lib/authors'
 import { getLatestJobs } from '@/lib/jobs'
 import { getLatestEvents } from '@/lib/events'
 import { getSerie } from '@/lib/series'
@@ -34,12 +35,8 @@ export async function getStaticProps({ params }: { params: any }) {
   const next = allSeries[postIndex - 1] || null
   const serie = await getFileBySlug('series', (params.slug || []).join('/'))
   const { posts = [] } = (await getSerie(params.slug.join('/'), allPosts)) || {}
-  const authorList = serie.frontMatter.authors || ['default']
-  const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug('authors', author)
-    return authorResults.frontMatter
-  })
-  const authorDetails = await Promise.all(authorPromise)
+  // Get properly processed author objects with correct slug format
+  const authorDetails = Object.values(await getAuthors([serie.frontMatter]))
 
   // rss
   if (allSeries.length > 0) {
