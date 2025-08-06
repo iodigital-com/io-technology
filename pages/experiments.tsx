@@ -3,6 +3,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import { getAuthors } from '@/lib/authors'
 import Experiment from '@/components/Experiment'
+import type { ExperimentProps } from '@/components/Experiment/types'
 import HeroSection from '@/components/HeroSection'
 
 export async function getStaticProps() {
@@ -23,9 +24,8 @@ export async function getStaticProps() {
   return { props: { experiments } }
 }
 
-// Keep experiments as any[] for now since it has complex mapping to Author objects
 interface ExperimentsProps {
-  experiments: any[]
+  experiments: ExperimentProps[]
 }
 
 export default function Experiments({ experiments }: ExperimentsProps) {
@@ -45,7 +45,7 @@ export default function Experiments({ experiments }: ExperimentsProps) {
       />
       <div className="container mx-auto">
         <ul>
-          {experiments.map((experiment: any, index: number) => (
+          {experiments.map((experiment, index: number) => (
             <li key={experiment.title}>
               <Experiment {...experiment} border={index !== 0} />
             </li>

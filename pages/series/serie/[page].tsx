@@ -5,7 +5,7 @@ import { SERIES_PER_PAGE } from '../../series'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getPagedContent } from '@/lib/hooks/useContentData'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import type { ContentItem } from '../../../types'
+import type { ContentItem, AuthorsMap } from '../../../types'
 import type { PaginationMeta } from '../../../types/api'
 
 export async function getStaticPaths() {
@@ -40,7 +40,7 @@ interface SeriesPageProps {
   series: ContentItem[]
   initialDisplaySeries: ContentItem[]
   pagination: PaginationMeta
-  authors: any // TODO: Fix AuthorsMap vs Author[] conflict
+  authors: AuthorsMap
 }
 
 export default function SeriesPage({

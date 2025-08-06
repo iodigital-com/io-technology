@@ -1,6 +1,7 @@
 import ContentCard from '@/components/ContentCard'
 
 import type { ContentListingProps } from './types'
+import type { ContentItem, Author } from '../../types'
 
 const ContentListing = ({
   items = [],
@@ -29,9 +30,14 @@ const ContentListing = ({
       })
     : items
 
-  const renderItem = (item: any, index: number) => {
+  const renderItem = (item: ContentItem, index: number) => {
+    // Skip items without a slug
+    if (!item.slug) return null
+
     const itemAuthors = item.authors
-      ? item.authors.map((authorSlug: string) => authors[authorSlug]).filter(Boolean)
+      ? item.authors
+          .map((authorSlug: string) => authors[authorSlug])
+          .filter((author): author is Author => Boolean(author))
       : []
 
     const needsListContainer = ['talk', 'workshop'].includes(contentType)
@@ -41,15 +47,15 @@ const ContentListing = ({
       slug: item.slug,
       title: item.title,
       summary: item.summary,
-      date: item.date,
+      date: item.date || '',
       tags: item.tags || [],
       authors: itemAuthors,
       border: index !== 0,
       type: contentType,
       layout: cardLayout as 'default' | 'list' | 'compact',
       showReadMore: cardLayout === 'list',
-      video: item.video,
-      slides: item.slides,
+      ...(item.video && { video: item.video }),
+      ...(item.slides && { slides: item.slides }),
     }
 
     if (layout === 'list') {

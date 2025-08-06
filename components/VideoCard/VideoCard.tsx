@@ -1,27 +1,6 @@
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-
-interface VideoThumbnail {
-  url: string
-}
-
-interface Video {
-  id: string
-  title: string
-  description: string
-  thumbnails: {
-    default: VideoThumbnail
-    medium?: VideoThumbnail
-    high?: VideoThumbnail
-    standard?: VideoThumbnail
-    maxres?: VideoThumbnail
-  }
-}
-
-interface VideoCardProps {
-  video: Video
-  playButton?: boolean
-}
+import type { VideoCardProps, Video } from './types'
 
 // Helper function to get the best available thumbnail
 const getBestThumbnailUrl = (thumbnails: Video['thumbnails']): string => {
