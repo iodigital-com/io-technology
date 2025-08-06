@@ -18,11 +18,12 @@ import EventCalendar from '@/components/EventCalendar'
 import { hasFutureEvents } from '@/lib/events'
 import HubspotForm from '@/components/HubspotForm'
 import type { LayoutProps, Author, FrontMatter, Event } from '../types'
+import type { Serie } from '@/lib/series/types'
 
 interface PostLayoutProps extends LayoutProps {
   frontMatter: FrontMatter
   authorDetails: Author[]
-  serie?: any // TODO: Fix Serie type conflicts
+  serie?: Serie
   events: Event[]
   next?: FrontMatter
   prev?: FrontMatter

@@ -5,7 +5,7 @@ import { POSTS_PER_PAGE } from '../../articles'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getPagedContent } from '@/lib/hooks/useContentData'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import type { ContentItem } from '../../../types'
+import type { ContentItem, AuthorsMap } from '../../../types'
 import type { PaginationMeta } from '../../../types/api'
 
 export async function getStaticPaths() {
@@ -40,7 +40,7 @@ interface PostPageProps {
   blog: ContentItem[]
   initialDisplayBlog: ContentItem[]
   pagination: PaginationMeta
-  authors: any // TODO: Fix AuthorsMap vs Author[] conflict
+  authors: AuthorsMap
 }
 
 export default function PostPage({ blog, initialDisplayBlog, pagination, authors }: PostPageProps) {

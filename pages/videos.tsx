@@ -2,6 +2,7 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllVideos } from '@/lib/youtube'
 import VideoCard from '@/components/VideoCard'
+import type { Video } from '@/components/VideoCard/types'
 import HeroSection from '@/components/HeroSection'
 
 export async function getStaticProps() {
@@ -10,7 +11,7 @@ export async function getStaticProps() {
 }
 
 interface VideosProps {
-  videos: any[]
+  videos: Video[]
 }
 
 export default function Videos({ videos }: VideosProps) {
@@ -29,7 +30,7 @@ export default function Videos({ videos }: VideosProps) {
       <div className="container mx-auto">
         <div className="container py-12">
           <div className="-m-4 flex flex-wrap">
-            {videos.map((vid: any) => (
+            {videos.map((vid) => (
               <div key={vid.id} className="md p-4 md:w-1/3">
                 <VideoCard video={vid} playButton={false} />
               </div>

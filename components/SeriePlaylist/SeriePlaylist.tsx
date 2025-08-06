@@ -3,17 +3,7 @@ import MarkdownRenderer from 'react-markdown-renderer'
 
 import Link from '@/components/Link'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
-
-interface SeriePost {
-  slug: string
-  title: string
-}
-
-interface Serie {
-  title: string
-  posts: SeriePost[]
-  slug: string
-}
+import type { Serie, SeriePost } from '@/lib/series/types'
 
 interface SeriePlaylistProps {
   serie: Serie
