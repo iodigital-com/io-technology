@@ -2,14 +2,6 @@ import type { Node } from 'unist'
 
 /**
  * Configuration options for the remark img to jsx plugin
- * @example
- * ```typescript
- * const options: RemarkImgToJsxOptions = {
- *   className: "responsive-image",
- *   loading: "lazy",
- *   sizes: "(max-width: 768px) 100vw, 50vw"
- * }
- * ```
  */
 export interface RemarkImgToJsxOptions {
   /** CSS class name to apply to converted images */
@@ -43,15 +35,6 @@ export type RemarkImgToJsxTransformer = (tree: Node, options?: RemarkImgToJsxOpt
 
 /**
  * Image node structure in the AST
- * @example
- * ```typescript
- * const imageNode: ImageNode = {
- *   type: 'image',
- *   url: '/images/example.jpg',
- *   alt: 'Example image',
- *   title: 'An example image'
- * }
- * ```
  */
 export interface ImageNode extends Node {
   type: 'image'
