@@ -8,7 +8,12 @@ const DEFAULT_LAYOUT = 'StaticPageLayout'
 export async function getStaticProps() {
   const content = await getFileBySlug('contribute', 'contribute')
 
-  return { props: { content } }
+  return {
+    props: {
+      content,
+      theme: 'green',
+    },
+  }
 }
 
 interface ContributeProps {

@@ -1,8 +1,43 @@
 ---
-title: 'Contribute to _sharing knowledge_'
+title: 'Contribute to sharing knowledge'
+theme: 'green'
+heroImage: '/iO-technology-blog2.png'
+heroImageAlt: 'iO technology blog illustration'
+heroDescription: "Thinking about contributing to the iO tech_hub? Great! We're always looking for iO colleagues to share their knowledge with the world!"
 ---
 
-Thinking about contributing to the iO tech_hub? Great! We’re always looking for iO colleagues to share their knowledge with the world!
+<style>
+  {`
+  .mx-auto.max-w-xl p + p {
+    margin-top: 2rem;
+  }
+  .mx-auto.max-w-xl li + li {
+    margin-top: 0.5rem;
+  }
+  .bg-tinted-green::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bg-tinted-green {
+    position: relative;
+  }
+  .bg-tinted-green .mx-auto {
+    position: relative;
+    z-index: 1;
+  }
+`}
+</style>
+
+<div className="mx-auto max-w-xl pb-12">
+
+Thinking about contributing to the iO tech_hub? Great! We're always looking for iO colleagues to share their knowledge with the world!
 
 The iO tech_hub offers space for relevant and interesting content, centred around our key technologies and expertise. Blogging not only enables you to make your knowledge accessible to others, but it also helps to reinforce your own knowledge. In addition, you can gain credibility as an expert and get recognised for your expertise. It is also important for iO: we want to attract future colleagues and spark their interest as an organisation that matches their vision, technology and working methods.
 
@@ -12,15 +47,55 @@ The iO tech_hub has the following target audiences:
 - Students looking for internships and potential employees/job applicants looking for some more insight into what we do at iO
 - Prospects who want to know if iO has knowledge about a particular subject
 
-## What can I contribute?
+## Table of Contents
+
+<TOCInline toc={props.toc} />
+
+</div>
+<div className="bg-io_green-400 py-8" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)'}}>
+<div className="mx-auto max-w-xl">
+
+## Getting Started
+
+### Technical Setup
+
+For technical setup, development environment, and running the tech_hub locally, please refer to the main [README](https://github.com/iodigital-com/io-technology) which has comprehensive setup instructions.
+
+</div>
+</div>
+
+<div className="bg-io_green-400 bg-tinted-green" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### What Can You Contribute?
 
 The iO tech_hub is a place for a variety of content. Whether you want to add a blog, video, talk or workshop, the tech_hub is the place to be. We share content through a variety of channels. Did you know we have an [iO technology YouTube channel](https://www.youtube.com/channel/UCNhy3hGzwMfbtX3Ei8Htcpg) as well?
-Whether you have content in the above form or a new one, reach out to us and we’ll guide you.
+
+Whether you have content in the above form or a new one, reach out to us and we'll guide you.
+
 Need to write your hours? Find the most relevant project of the Center of Excellence and create a Jira issue to write them. Reach out to Raymond Muilwijk if you need help.
 
-## Contributing a blog
+</div>
+</div>
 
-One of the most used forms of sharing knowledge on the iO tech_hub is writing blogs. You might already have an idea of what you want to write about. Generally, blogs on the iO tech_hub are not too long. It’s a collection of bite-size content that inspires people. Here are some tips and “rules” when contributing with a blog:
+<div className="bg-white py-8" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)'}}>
+<div className="mx-auto max-w-xl">
+
+## Contributing a Blog
+
+One of the most used forms of sharing knowledge on the iO tech_hub is writing blogs. You might already have an idea of what you want to write about. Generally, blogs on the iO tech_hub are not too long. It's a collection of bite-size content that inspires people.
+
+</div>
+</div>
+
+<div className="bg-white" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingBottom: '3rem', paddingTop: '0.5rem'}}>
+<div className="mx-auto max-w-xl">
+
+### Writing Guidelines
+
+Here are some tips and "rules" when contributing with a blog:
+
+**Style & Language:**
 
 - We communicate in British English, following the relevant guidelines (e.g. behaviour vs. behavior, centre vs. center, organisation vs. organization, 23 July vs July 23rd)
 - Given the fact that our brand name starts with a lowercase letter and most spelling guidelines require sentences to start with a capital letter, we avoid putting iO at the beginning of a sentence. We do not capitalise the i, nor do we start sentences with a lowercase letter.
@@ -28,25 +103,115 @@ One of the most used forms of sharing knowledge on the iO tech_hub is writing bl
 - The organisations we work for are not customers, they are clients. A customer buys products, a client buys services.
 - You write the article from your point of view (e.g. "I find that..." instead of "We find that...")
 - Within iO we work with a lot of technologies, so keep in mind to show respect to other approaches, technologies or tech stacks
+
+**Content Structure:**
+
 - When making a summary of points, use lists for readability
 - Try to make your article visual, images, screenshots and diagrams of what you are writing about are great to add
-- Make sure you don’t use code examples we created for clients specifically
+- Make sure you don't use code examples we created for clients specifically
 - Make your code examples short and to the point and remove parts not relevant to the context
 - Did you include a (cover) image? Make sure it is copyright-free! Pexels, Unsplash and Pixabay offer free stock photos of high-quality.
 
-### How can I get my blog on the tech_hub?
+</div>
+</div>
 
-The steps for contributing with a blog are pretty minimal. The goal is to make it as easy as possible for you to contribute to the tech_hub. Excited? Here are the steps to contribute with a blog:
+<div className="bg-gray-100" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### Content Standards
+
+**Article Length:**
+
+Don't worry if you think your article is too short! We love concise, focused articles that get straight to the point. A well-written short article that clearly explains a concept or solution is often more valuable than a lengthy one. If you have something useful to share, whether it's a quick tip, a solution to a common problem, or a brief explanation of a concept, we'd love to feature it. For very long content, consider splitting it into a series of articles.
+
+**SEO Guidelines:**
+
+- Include relevant keywords naturally in your title and content
+- Write compelling meta descriptions (the summary field in your frontmatter)
+- Use descriptive headings (H2, H3) to structure your content
+- Include internal links to other relevant tech_hub articles when appropriate
+
+**Accessibility Requirements:**
+
+- Use descriptive alt text for all images
+- Ensure proper heading hierarchy (don't skip heading levels)
+- Write in clear, simple language when possible
+- Use descriptive link text (avoid "click here" or "read more")
+- Ensure good colour contrast if including custom styling
+- Test your content with a screen reader if possible
+
+**Performance Considerations:**
+
+- Optimize images (use WebP format when possible, max 1MB per image)
+- Keep code examples concise and focused
+- Use appropriate image sizes for different contexts
+
+</div>
+</div>
+
+<div className="bg-white" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### Pre-Submission Checklist
+
+Before submitting your article, ensure you've completed the following:
+
+**Content Quality:**
+
+- [ ] Article provides valuable insights and clear explanations
+- [ ] Code examples are tested and work correctly
+- [ ] All images have descriptive alt text
+- [ ] Links are working and point to relevant, current resources
+- [ ] Content follows our style guide (British English, terminology)
+
+**Technical Requirements:**
+
+- [ ] Frontmatter includes all required fields (title, date, authors, tags, summary)
+- [ ] Article slug matches filename
+- [ ] Images are optimized and placed in correct folder
+- [ ] No spelling or grammar errors (use Grammarly or similar)
+- [ ] Tested locally with the development server
+
+**Accessibility & SEO:**
+
+- [ ] Proper heading hierarchy (H1 → H2 → H3)
+- [ ] Descriptive meta description in summary field
+- [ ] Good contrast if using custom colours
+- [ ] Descriptive link text throughout
+
+**Legal & Ethics:**
+
+- [ ] All images are copyright-free or properly licensed
+- [ ] No client-specific code or confidential information
+- [ ] Respectful tone towards other technologies and approaches
+
+</div>
+</div>
+
+<div className="bg-gray-100" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### How to Submit Your Blog
+
+The steps for contributing with a blog are pretty minimal. The goal is to make it as easy as possible for you to contribute to the tech_hub. Excited? Here are the steps:
+
+**Preparation:**
 
 - Write your blog with the above points in mind
-  - Make sure to check it with a tool like:
-    - [Grammarly](https://www.grammarly.com/)
-    - [LanguageTool for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool)
+- Make sure to check it with a tool like:
+  - [Grammarly](https://www.grammarly.com/)
+  - [LanguageTool for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool)
+
+**Setup:**
+
 - Fork the [tech_hub repository](https://github.com/iodigital-com/io-technology)
-  - Create a branch to add your blog
+- Create a branch to add your blog
 - Add yourself as an author in [data/authors](https://github.com/iodigital-com/io-technology/tree/develop/data/authors)
   - Provide the metadata you want to share
   - Add an image of yourself to [public/authors](https://github.com/iodigital-com/io-technology/tree/develop/public/authors)
+
+**Content Creation:**
+
 - Add your blog in [data/blog](https://github.com/iodigital-com/io-technology/tree/develop/data/blog)
   - Are you writing a series of blogs that belong together? You can then create a series under [data/series](https://github.com/iodigital-com/io-technology/tree/develop/data/series). Then, add a field to your blog with the value of that series (e.g. `series: my-series`). This will enhance the page with a series overview and more.
   - The filename will be the slug used (e.g. `top-front-end-frameworks.md` will be mapped to `/articles/top-front-end-frameworks`
@@ -59,6 +224,9 @@ The steps for contributing with a blog are pretty minimal. The goal is to make i
 - Add your images to [public/articles](https://github.com/iodigital-com/io-technology/tree/develop/public/articles)
   - The folder name should match the slug you created earlier (e.g. `top-front-end-frameworks`
 - [Run the tech_hub locally](https://github.com/iodigital-com/io-technology) to see if you are satisfied with how the article looks
+
+**Submission:**
+
 - Open a pull request from your fork branch to the tech_hub `develop` branch
   - Notify [Dave Bitter](mailto:dave.bitter@iodigital.com) or [Brecht De Ruyte](mailto:brecht.deruyte@iodigital.com)
   - Get a pull request review
@@ -67,11 +235,80 @@ The steps for contributing with a blog are pretty minimal. The goal is to make i
 - The blogs will become the property of iO after you contribute, credited with your name
 - Feel free to also post it on your own blog with a canonical url (preferable with message/link saying it was originally posted here)
 
-### How is a blog reviewed?
+</div>
+</div>
 
-We try to keep contributing as easy as possible but we do like to do a small review. After submitting the PR we will ask you to find a colleague who can review the contents of your blog.
+<div className="bg-white" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
 
-## Contributing a talk or workshop
+### Content Updates & Maintenance
+
+- **Your Responsibility**: Notify us if your content becomes outdated or incorrect
+- **Our Commitment**: We'll work with you to keep content current and relevant
+- **Major Updates**: For significant changes, we may ask you to review and approve updates
+- **Legacy Content**: Older articles may be archived or updated by our team with proper attribution
+
+</div>
+</div>
+
+<div className="bg-gray-100" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### Content Promotion
+
+**How We Promote Your Content:**
+
+- Featured on the iO tech_hub homepage and relevant category pages
+- Shared across iO's social media channels (LinkedIn, Twitter)
+- Included in our weekly tech newsletter (if applicable)
+- Potential inclusion in conference talks and presentations
+
+**How You Can Promote:**
+
+- Share on your personal social media channels
+- Include in your portfolio and professional profiles
+- Cross-post to your personal blog with proper canonical linking
+
+</div>
+</div>
+
+<div className="bg-white" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)', paddingTop: '3rem', paddingBottom: '3rem'}}>
+<div className="mx-auto max-w-xl">
+
+### Review Process
+
+We try to keep contributing as easy as possible but we do like to do a small review. Here's what you can expect:
+
+**Review Process:**
+
+When you open a pull request, we'll conduct one review on GitHub to ensure your content meets our quality standards and technical requirements.
+
+**Timeline Expectations:**
+
+- **Initial Response**: You can expect feedback within 2-3 business days
+- **Publication**: We tend to merge articles the same week, depending on the amount of feedback and how quickly you can address any requested changes
+
+**What Makes a Good Review:**
+
+- Check for technical accuracy and up-to-date information
+- Ensure the content is relevant to our target audience
+- Verify that code examples work and are properly explained
+- Confirm that the writing is clear and follows our style guide
+
+**If Changes Are Requested:**
+
+- Don't worry! Most articles need some adjustments
+- We'll provide specific, actionable feedback
+- You can discuss any feedback in the PR comments
+- Once changes are made, we'll do a final review and merge
+
+</div>
+</div>
+
+<div className="bg-io_green-500 py-8" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)'}}>
+<div className="mx-auto max-w-xl">
+
+## Contributing a Talk or Workshop
 
 Similar to contributing with a blog, you can also contribute with a talk or workshop. You'll follow the same steps, with the exception of the content being a talk in [data/talks](https://github.com/iodigital-com/io-technology/tree/develop/data/talks) or workshop in [data/workshops](https://github.com/iodigital-com/io-technology/tree/develop/data/workshops).
 
@@ -79,6 +316,37 @@ Similar to contributing with a blog, you can also contribute with a talk or work
 
 No, you're never "forced" to give a talk or workshop. We merely use this as an overview for us to see what we could offer to events. Also, people organising events might find your talk or workshop interesting and reach out to us. We can then always discuss it with you.
 
+</div>
+</div>
+
+<div className="bg-io_green-400 py-8" style={{marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', paddingLeft: 'calc(50vw - 50%)', paddingRight: 'calc(50vw - 50%)'}}>
+<div className="mx-auto max-w-xl">
+
+## Troubleshooting Common Issues
+
+**Problem: "My images aren't showing up"**
+
+- Check that images are in the correct folder: `public/articles/your-article-slug/`
+- Verify image file names match exactly what's referenced in your markdown
+- Ensure image file extensions are lowercase (.jpg, .png, .webp)
+- Check that images are optimized and under 1MB
+
+**Problem: "My article frontmatter is causing errors"**
+
+- Ensure all required fields are present (title, date, authors, tags, summary)
+- Check that date format is YYYY-MM-DD
+- Verify author slugs exist in the `data/authors/` directory
+- Make sure there are no special characters breaking the YAML format
+
+**Still having issues?**
+
+- Check our [GitHub Issues](https://github.com/iodigital-com/io-technology/issues) for similar problems
+- For technical setup issues, refer to the main [README](https://github.com/iodigital-com/io-technology)
+- Reach out to the maintainers using the contact information below
+
+</div>
+</div>
+
 ## Who can I reach out to regarding the tech_hub?
 
-If you have any questions, please don’t hesitate to reach out to [Dave Bitter](mailto:dave.bitter@iodigital.com) or [Brecht De Ruyte](mailto:brecht.deruyte@iodigital.com)!
+If you have any questions, please don't hesitate to reach out to [Dave Bitter](mailto:dave.bitter@iodigital.com) or [Brecht De Ruyte](mailto:brecht.deruyte@iodigital.com)!
