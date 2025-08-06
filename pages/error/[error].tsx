@@ -1,11 +1,11 @@
 import Link from '@/components/Link'
-import React from 'react'
+import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { Player } from '@/components/LottiePlayer'
 
 interface ErrorContent {
   title: string
-  description: React.ReactNode
+  description: ReactNode
   image: string
 }
 

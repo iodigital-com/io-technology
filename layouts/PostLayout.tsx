@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import MarkdownRenderer from 'react-markdown-renderer'
 import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
@@ -27,7 +27,7 @@ interface PostLayoutProps extends LayoutProps {
   next?: FrontMatter
   prev?: FrontMatter
   contactForm?: boolean
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function PostLayout({

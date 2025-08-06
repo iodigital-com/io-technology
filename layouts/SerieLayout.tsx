@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import { Children, ReactNode } from 'react'
 import MarkdownRenderer from 'react-markdown-renderer'
 import removeMarkdown from 'markdown-to-text'
 import Link from '@/components/Link'
@@ -25,7 +25,7 @@ interface SerieLayoutProps {
   events: Event[]
   next?: FrontMatter
   prev?: FrontMatter
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function PostLayout({

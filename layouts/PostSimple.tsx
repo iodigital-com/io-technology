@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
@@ -12,7 +12,7 @@ interface PostLayoutProps {
   frontMatter: FrontMatter
   next?: FrontMatter
   prev?: FrontMatter
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function PostLayout({ frontMatter, next, prev, children }: PostLayoutProps) {

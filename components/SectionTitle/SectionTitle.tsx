@@ -1,7 +1,7 @@
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface SectionTitleProps {
-  children: React.ReactNode
+  children: ReactNode
   id: string
 }
 
