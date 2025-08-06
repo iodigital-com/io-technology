@@ -4,10 +4,6 @@
 
 /**
  * Theme colors available throughout the application
- * @example
- * ```typescript
- * const theme: Theme = Theme.BLUE
- * ```
  */
 export enum Theme {
   BLUE = 'blue',
@@ -20,10 +16,6 @@ export enum Theme {
 
 /**
  * Content types supported by the application
- * @example
- * ```typescript
- * const contentType: ContentType = ContentType.ARTICLE
- * ```
  */
 export enum ContentType {
   ARTICLE = 'article',
@@ -39,15 +31,6 @@ export enum ContentType {
 
 /**
  * Reading time calculation results from the reading-time library
- * @example
- * ```typescript
- * const readingTime: ReadingTime = {
- *   text: "5 min read",
- *   minutes: 5,
- *   time: 300000,
- *   words: 1000
- * }
- * ```
  */
 export interface ReadingTime {
   text: string
@@ -58,14 +41,6 @@ export interface ReadingTime {
 
 /**
  * Base content interface containing common properties for all content types
- * @example
- * ```typescript
- * const baseContent: BaseContent = {
- *   slug: "my-article",
- *   fileName: "my-article.mdx",
- *   creationDate: "2024-01-01T00:00:00.000Z"
- * }
- * ```
  */
 export interface BaseContent {
   slug: string | null
@@ -111,14 +86,6 @@ export interface FrontMatter extends BaseContent {
 
 /**
  * Social media links for an author
- * @example
- * ```typescript
- * const socialLinks: SocialLinks = {
- *   twitter: "https://twitter.com/johndoe",
- *   github: "https://github.com/johndoe",
- *   linkedin: "https://linkedin.com/in/johndoe"
- * }
- * ```
  */
 export interface SocialLinks {
   email?: string
@@ -203,17 +170,6 @@ export interface ContentItem extends FrontMatter {
 
 /**
  * File data structure for content file metadata
- * @example
- * ```typescript
- * const fileData: FileData = {
- *   slug: "my-article",
- *   date: "2024-01-01T00:00:00.000Z",
- *   title: "My Article",
- *   path: "/content/my-article.mdx",
- *   size: 1024,
- *   mimeType: "text/markdown"
- * }
- * ```
  */
 export interface FileData {
   slug: string

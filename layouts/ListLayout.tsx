@@ -76,7 +76,7 @@ export default function ListLayout({
           </div>
         </div>
       </section>
-      <section className="container mx-auto max-w-2xl">
+      <section className="container mx-auto">
         <div className="pb-24 pt-6">
           {!filteredBlogPosts.length && 'No posts found.'}
           <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">

@@ -45,11 +45,6 @@ export interface APIResponse<T> {
 
 /**
  * Result type for operations that can succeed or fail
- * @example
- * ```typescript
- * const successResult: Result<string> = { success: true, data: "Hello World" }
- * const errorResult: Result<string> = { success: false, error: { code: "ERROR", message: "Failed" } }
- * ```
  */
 export type Result<T, E = APIError> = { success: true; data: T } | { success: false; error: E }
 
@@ -105,15 +100,6 @@ export interface SafeAPIAdapter<TExternal, TInternal> {
 
 /**
  * Pagination metadata for paginated responses
- * @example
- * ```typescript
- * const pagination: PaginationMeta = {
- *   currentPage: 1,
- *   totalPages: 10,
- *   totalItems: 100,
- *   itemsPerPage: 10
- * }
- * ```
  */
 export interface PaginationMeta {
   currentPage: number
@@ -141,13 +127,6 @@ export interface PaginationProps extends PaginationMeta {
 
 /**
  * Date range filter for search and filtering
- * @example
- * ```typescript
- * const dateRange: DateRange = {
- *   start: "2024-01-01",
- *   end: "2024-12-31"
- * }
- * ```
  */
 export interface DateRange {
   start: string
