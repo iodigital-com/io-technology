@@ -22,10 +22,12 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
 - 🌙 **Dark Mode** - Theme switching support
 - 🔍 **SEO Optimized** - Meta tags, Open Graph, and sitemap generation
 - ⚡ **Performance** - Optimized builds with Next.js 15
+- 🔒 **Type Safety** - Full TypeScript implementation with 60%+ type coverage
 
 ## Tech Stack
 
 - **Framework:** [Next.js 15](https://nextjs.org/) with React 19
+- **Language:** [TypeScript](https://www.typescriptlang.org/) with strict type checking
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Content:** [MDX](https://mdxjs.com/) with gray-matter frontmatter
 - **Testing:** [Vitest](https://vitest.dev/) + React Testing Library
@@ -88,6 +90,7 @@ npm run analyze        # Bundle analysis
 
 # Code Quality
 npm run lint           # ESLint with auto-fix
+npm run type-check     # TypeScript type checking
 npm test               # Run all tests
 npm run test:watch     # Run tests in watch mode
 npm run test:coverage  # Run tests with coverage report
@@ -97,6 +100,16 @@ npm run test:ui        # Run tests with UI interface
 npm run update:patch   # Update patch versions
 npm run update:minor   # Update minor versions
 npm run update:major   # Update major versions
+```
+
+## TypeScript
+
+This project uses TypeScript with strict type checking enabled. Type definitions are organized in the `/types` directory with centralized exports.
+
+```bash
+# Type checking
+npm run type-check     # Check types without compilation
+npx tsc --noEmit       # Direct TypeScript check
 ```
 
 ## Project Structure
@@ -131,7 +144,15 @@ io-technology/
 │   ├── authors/      # Author profile pages
 │   └── ...
 ├── public/           # Static assets
-└── tests/           # Test configuration and utilities
+├── tests/           # Test configuration and utilities
+├── types/           # TypeScript type definitions
+│   ├── api.ts       # API and response types
+│   ├── content.ts   # Content and author types
+│   ├── events.ts    # Event-related types
+│   ├── forms.ts     # Form and validation types
+│   ├── site.ts      # Site configuration types
+│   └── index.ts     # Main type exports
+└── tsconfig.json    # TypeScript configuration
 ```
 
 ## Content Management
@@ -235,8 +256,9 @@ We welcome contributions from the iO community! Here's how to get involved:
 
 ### Code Style
 
+- **TypeScript** with strict type checking enabled
 - **ESLint** and **Prettier** are configured for consistent formatting
-- **Husky** pre-commit hooks ensure code quality
+- **Husky** pre-commit hooks ensure code quality and type safety
 - Follow existing patterns and component structure
 - Add tests for new features and utilities
 
