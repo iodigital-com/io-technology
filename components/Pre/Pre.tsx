@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef, ReactNode } from 'react'
 
 interface PreProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const Pre = (props: PreProps) => {

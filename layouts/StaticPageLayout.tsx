@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import MarkdownRenderer from 'react-markdown-renderer'
 import { PageSEO } from '@/components/SEO'
 import ScrollTop from '@/components/ScrollTop'
@@ -6,7 +6,7 @@ import type { FrontMatter } from '../types'
 
 interface StaticPageLayoutProps {
   frontMatter: FrontMatter
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function StaticPageLayout({ frontMatter, children }: StaticPageLayoutProps) {

@@ -1,11 +1,11 @@
-import React from 'react'
+import { ReactNode, createElement } from 'react'
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 interface HeadingProps {
   id?: string
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 
@@ -22,7 +22,7 @@ const Heading = (level: HeadingLevel) => {
   }
 
   return function CreateTag(props: HeadingProps) {
-    return React.createElement(
+    return createElement(
       Tag,
       {
         id: props.id,

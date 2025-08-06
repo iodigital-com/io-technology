@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, ReactNode } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from '../Link'
@@ -10,7 +10,7 @@ import { Player } from '../LottiePlayer'
 import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 interface LayoutWrapperProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const LayoutWrapper = ({ children }: LayoutWrapperProps) => {

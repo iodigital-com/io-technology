@@ -1,7 +1,7 @@
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface EmptyLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function EmptyLayout({ children }: EmptyLayoutProps) {
