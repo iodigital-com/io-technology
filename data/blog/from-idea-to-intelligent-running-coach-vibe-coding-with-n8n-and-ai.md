@@ -299,13 +299,13 @@ What makes this approach powerful is that once you have the cloud hosting, creat
 
 ## The Migration: From Self-Hosted to Cloud Hosting
 
-The transition from local Docker to n8n Cloud revealed some fascinating insights about the evolution of development approaches:
+I first ran this locally in Docker. For production, I did not want to manage containers, updates, or deployment plumbing, so when I got access to n8n Cloud I moved it there and kept building.
 
-The migration brought significant gains. I eliminated maintenance overhead entirely: no more Docker updates, server monitoring, or backup management. I gained enterprise reliability with professional-grade uptime and automatic scaling I couldn't achieve locally. Workflows now go live immediately without container orchestration, and email, scheduling, and monitoring are built-in without separate services. Most importantly, I could focus 100% of my energy on workflow logic instead of infrastructure concerns.
+What improved: maintenance overhead dropped to near zero, with no Docker updates, server monitoring, or backup chores. Reliability improved with solid uptime and automatic scaling I could not get locally. Deploys became instant, and email, scheduling, and monitoring were available out of the box. Most importantly, I could focus on the workflow logic.
 
-Of course, there were trade-offs. I lost some local development control: it’s harder to mock external services or develop offline. I also lost infrastructure learning opportunities and the hands-on experience with Docker orchestration and deployment. And while still very generous, I now have free tier limits instead of unlimited local usage.
+What I gave up: there is less local control, mocking external services or working fully offline is harder, and there’s a natural disconnect between Cursor and the deployed n8n Cloud instance which added friction when iterating and debugging. I did less infrastructure work, so I learned less about orchestration.
 
-The most surprising insight was that moving to cloud hosting didn't just eliminate infrastructure work. It fundamentally changed how I think about automation projects. Instead of "How do I deploy this?", the question became "What should I automate next?" The cognitive overhead shift was more significant than expected.
+The unexpected takeaway: moving to cloud did not only remove infrastructure work, it also changed my headspace. I stopped thinking about "How do I deploy this?" and started asking "What should I automate next?"
 
 ## Your Next Steps
 
