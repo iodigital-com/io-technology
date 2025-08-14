@@ -2,7 +2,7 @@
 
 ![iO logo](/public/io.svg)
 
-> **Want to contribute an article?** Check out our [contribution page](https://techhub.iodigital.com/contribute) to see how!
+> **Want to contribute an article?** Check out our [contribution guide](data/contribute/contribute.mdx) to see how!
 
 ## About
 
@@ -241,7 +241,7 @@ We welcome contributions from the iO community! Here's how to get involved:
 
 ### Writing Articles
 
-1. Read our [contribution guidelines](https://techhub.iodigital.com/contribute)
+1. Read our [contribution guidelines](data/contribute/contribute.mdx)
 2. Check the [Wiki](https://github.com/iodigital-com/io-technology/wiki) for detailed instructions
 3. Fork the repository and create your content
 4. Submit a pull request for review
