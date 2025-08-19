@@ -6,13 +6,13 @@ type ThemeType = 'green' | 'beige' | 'blue' | 'pink'
 const ALLOWED_THEME_TYPES: ThemeType[] = ['green', 'beige', 'blue', 'pink']
 
 const DEFAULT: BrandingTheme = {
-  theme: 'blue', // Default to blue theme
+  theme: 'green', // Default to green theme
 }
 
 const ThemeContext = createContext<BrandingTheme>(DEFAULT)
 
 const onlyAllowedThemeType = (theme: string): ThemeType =>
-  ALLOWED_THEME_TYPES.includes(theme as ThemeType) ? (theme as ThemeType) : 'blue'
+  ALLOWED_THEME_TYPES.includes(theme as ThemeType) ? (theme as ThemeType) : 'green'
 
 interface ThemeProviderProps {
   children: ReactNode

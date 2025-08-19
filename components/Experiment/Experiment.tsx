@@ -1,6 +1,5 @@
 import MarkdownRenderer from 'react-markdown-renderer'
 import Image from '@/components/Image'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Arrow from '@/data/arrow.svg'
 import Link from '@/components/Link'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
@@ -28,7 +27,6 @@ const Experiment = ({
   content,
   border = true,
 }: ExperimentProps) => {
-  const { theme } = useBrandingTheme()
   const id = kebabCase(title)
 
   return (
@@ -62,7 +60,7 @@ const Experiment = ({
                 <p className="mb-0">
                   <Link
                     href={`/authors/${author.slug[0]}`}
-                    className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+                    className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700`}
                   >
                     {author.name}
                   </Link>

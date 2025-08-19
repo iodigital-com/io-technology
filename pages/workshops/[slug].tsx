@@ -75,7 +75,7 @@ export default function Workshop({ workshop, authors }: WorkshopProps) {
               <div className="mt-3">
                 <Link
                   href={`/authors/${displayAuthor.slug[0]}`}
-                  className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-xl`}
+                  className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700 text-xl`}
                 >
                   {displayAuthor.name}
                 </Link>
