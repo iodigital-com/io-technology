@@ -1,6 +1,5 @@
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import type { AuthorInfoProps } from './types'
 import type { Author } from '../../types'
 
@@ -11,8 +10,6 @@ const AuthorInfo = ({
   avatarSize = 'medium', // 'small', 'medium', 'large'
   linkToAuthorPage = true,
 }: AuthorInfoProps) => {
-  const { theme } = useBrandingTheme()
-
   if (!authors || authors.length === 0) return null
 
   const getAvatarClasses = () => {
@@ -42,7 +39,7 @@ const AuthorInfo = ({
           {linkToAuthorPage ? (
             <Link
               href={`/authors/${author.slug[0]}`}
-              className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+              className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700`}
             >
               {author.name}
             </Link>
@@ -85,7 +82,7 @@ const AuthorInfo = ({
               {linkToAuthorPage ? (
                 <Link
                   href={`/authors/${author.slug[0]}`}
-                  className={`text-io_${theme}-600 hover:text-io_${theme}-800`}
+                  className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-800`}
                 >
                   {author.name}
                 </Link>

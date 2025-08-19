@@ -7,7 +7,7 @@ import HeroSection from '@/components/HeroSection'
 
 export async function getStaticProps() {
   const { videos } = await getAllVideos()
-  return { props: { videos, theme: 'blue' } }
+  return { props: { videos, theme: 'green' } }
 }
 
 interface VideosProps {

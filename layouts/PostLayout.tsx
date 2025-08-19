@@ -119,7 +119,7 @@ export default function PostLayout({
                       <dd className="text-gray-900 dark:text-gray-100">
                         <Link
                           href={`/authors/${author.slug[0]}`}
-                          className={`text-io_${theme}-600 hover:text-io_${theme}-700 text-lg`}
+                          className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700 text-lg`}
                         >
                           {author.name}
                         </Link>
@@ -241,7 +241,7 @@ export default function PostLayout({
                         Previous Article
                       </h2>
                       <div
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+                        className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700 dark:hover:text-primary-400`}
                       >
                         <Link href={`/articles/${prev.slug}`}>{removeMarkdown(prev.title)}</Link>
                       </div>
@@ -253,7 +253,7 @@ export default function PostLayout({
                         Next Article
                       </h2>
                       <div
-                        className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+                        className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700 dark:hover:text-primary-400`}
                       >
                         <Link href={`/articles/${next.slug}`}>{removeMarkdown(next.title)}</Link>
                       </div>
