@@ -1,38 +1,56 @@
 @font-face {
-  font-family: 'TTCommonsPro';
-  src: url('/fonts/TTCommonsPro-Regular.woff2');
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-ExtraLight.ttf');
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Light.ttf');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Regular.ttf');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'TTCommonsPro';
-  src: url('/fonts/TTCommonsPro-Medium.woff2');
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Medium.ttf');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'TTCommonsPro';
-  src: url('/fonts/TTCommonsPro-Bold.woff2');
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-SemiBold.ttf');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Bold.ttf');
   font-style: normal;
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Reckless';
-  src: url('/fonts/Reckless-LightItalic.woff2');
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Reckless';
-  src: url('/fonts/Reckless-RegularItalic.woff2');
-  font-weight: 400;
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-ExtraBold.ttf');
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
 }
 
@@ -41,11 +59,11 @@ html {
 }
 
 .heading-title strong {
-  font-family: 'Reckless', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  font-weight: 400;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .teaser-title strong {
-  font-family: 'Reckless', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  font-weight: 300;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
 }
