@@ -5,7 +5,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getContentWithPagination } from '@/lib/hooks/useContentData'
 import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
 
-export const POSTS_PER_PAGE = 10
+export const POSTS_PER_PAGE = 12
 
 export async function getStaticProps() {
   return getContentWithPagination(

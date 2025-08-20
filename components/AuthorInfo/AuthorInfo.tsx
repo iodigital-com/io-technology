@@ -57,7 +57,7 @@ const AuthorInfo = ({
   )
 
   const renderStackedAvatars = () => (
-    <div className="flex flex-col gap-4 xl:flex-row">
+    <div className="flex flex-col items-center gap-4 xl:flex-row">
       <div className="flex items-center -space-x-6 xl:-space-x-12">
         {authors.map((author, index) => (
           <div
