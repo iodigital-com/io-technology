@@ -79,9 +79,9 @@ export default function ListLayout({
       <section className="container mx-auto">
         <div className="pb-24 pt-6">
           {!filteredBlogPosts.length && 'No posts found.'}
-          <ul className="grid grid-cols-1 gap-y-10 lg:gap-y-12">
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {displayPosts.map((frontMatter: FrontMatter, index: number) => {
-              const { slug, date, title, summary, tags } = frontMatter
+              const { slug, date, title, summary, tags, images } = frontMatter
               const authorsResolved = frontMatter.authors
                 .map((author) => {
                   return authors[author]
@@ -99,6 +99,7 @@ export default function ListLayout({
                   authors={authorsResolved}
                   border={index !== 0}
                   type="article"
+                  {...(images && { images })}
                 />
               )
             })}

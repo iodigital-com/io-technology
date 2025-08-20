@@ -172,10 +172,10 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
         Our latest <span className="font-serif font-light">articles</span>
       </SectionTitle>
 
-      <section className="container mx-auto">
+      <section className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {!posts.length && 'No articles found.'}
         {posts.slice(0, MAX_BLOG_POSTS).map((frontMatter, index) => {
-          const { slug, date, title, summary, tags } = frontMatter
+          const { slug, date, title, summary, tags, images } = frontMatter
           const authorsResolved = frontMatter.authors
             .map((author) => {
               return authors[author]
@@ -198,6 +198,7 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
               authors={authorsResolved}
               border={index !== 0}
               type="article"
+              {...(images && { images })}
             />
           )
         })}

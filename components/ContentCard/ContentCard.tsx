@@ -4,7 +4,9 @@ import formatDate from '@/lib/utils/formatDate'
 import Tag from '@/components/Tag'
 import SocialIcon from '@/components/social-icons'
 import AuthorInfo from '@/components/AuthorInfo'
+import ReadMoreButton from '@/components/ReadMoreButton'
 import Arrow from '@/data/arrow.svg'
+import Image1 from '../../public/iO-technology-blog1.png'
 
 import type { ContentCardProps } from './types'
 
@@ -15,7 +17,6 @@ const ContentCard = ({
   date,
   tags = [],
   authors = [],
-  border = true,
   type = 'article', // 'article', 'talk', 'workshop', 'serie'
   basePath,
   showDate = true,
@@ -25,6 +26,7 @@ const ContentCard = ({
   showAuthors = true,
   video,
   slides,
+  images,
   layout = 'default', // 'default', 'list', 'compact'
 }: ContentCardProps) => {
   const getBasePath = () => {
@@ -42,6 +44,8 @@ const ContentCard = ({
   }
 
   const path = `${getBasePath()}/${slug}`
+
+  const image = images?.[0]
 
   const renderListLayout = () => (
     <li className="flex border-b-2 border-gray-100 pb-10">
@@ -98,52 +102,79 @@ const ContentCard = ({
   )
 
   const renderDefaultLayout = () => (
-    <article className={`border-gray-300 py-8 ${border && 'border-t'}`}>
-      <div className="grid grid-cols-12">
-        {showAuthors && authors.length > 0 && (
-          <div className="hidden md:col-span-3 md:block xl:col-span-5">
-            <AuthorInfo authors={authors} layout="stacked" avatarSize="large" />
-          </div>
-        )}
-
-        <div
-          className={`col-span-full ${
-            showAuthors && authors.length > 0 ? 'md:col-start-4 xl:col-start-7' : ''
-          }`}
-        >
+    <article className="py-8">
+      <div
+        className={`flex flex-col justify-between h-full min-h-[400px] col-span-full ${
+          showAuthors && authors.length > 0 ? 'md:col-start-4 xl:col-start-7' : ''
+        }`}
+      >
+        {/* Header Section */}
+        <div className="flex-shrink-0">
+          <div
+            className="w-full mb-4 h-64 bg-cover bg-center"
+            style={{
+              backgroundImage: image ? `url('${image}')` : `url('${Image1.src}')`,
+            }}
+            aria-label={title}
+            role="img"
+          />
           <Link href={path}>
-            <h2 className={`teaser-title mb-2 ${type === 'serie' ? 'text-2xl' : 'text-3xl'}`}>
+            <h2 className={`teaser-title ${type === 'serie' ? 'text-2xl' : 'text-3xl'}`}>
               <MarkdownRenderer markdown={title} />
             </h2>
             {showSummary && summary && (
-              <div className="mb-3 hidden md:block">
+              <div className="mt-2 hidden md:block">
                 <h3 className="line-clamp-3 hyphens-auto">
                   <MarkdownRenderer markdown={summary} />
                 </h3>
               </div>
             )}
           </Link>
+        </div>
 
-          {showDate && date && (
-            <dl className="mb-4">
+        {/* Date Section */}
+        {showDate && date && (
+          <div className="flex-shrink-0 mt-2">
+            <dl>
               <dt className="sr-only">Published on</dt>
               <dd className="leading- text-sm font-light">
                 <time dateTime={date}>{formatDate(date)}</time>
               </dd>
             </dl>
-          )}
+          </div>
+        )}
 
-          {showTags && tags.length > 0 && (
-            <div className="mb-6 flex flex-wrap gap-3">
+        {/* Tags Section */}
+        {showTags && tags.length > 0 && (
+          <div className="flex-shrink-0 mt-4">
+            <div className="flex flex-wrap gap-3">
               {tags.map((tag) => (
                 <Tag key={tag} text={tag} />
               ))}
             </div>
-          )}
+          </div>
+        )}
 
+        {/* Authors Section */}
+        {showAuthors && authors.length > 0 && (
+          <div className="flex-shrink-0 hidden md:col-span-3 md:block xl:col-span-5 mt-4 mb-4">
+            <AuthorInfo authors={authors} layout="stacked" avatarSize="large" />
+          </div>
+        )}
+
+        {/* Action Section */}
+        <div className="flex-shrink-0 mt-4">
+          {type === 'article' && (
+            <ReadMoreButton
+              href={path}
+              ariaLabel={`Read more: ${title}`}
+              variant="button"
+              size="medium"
+            />
+          )}
           {type === 'serie' && (
-            <Link href={path}>
-              <Arrow className="w-6" />
+            <Link href={path} className="group">
+              <Arrow className="w-6 transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
             </Link>
           )}
         </div>
