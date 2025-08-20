@@ -41,8 +41,8 @@ describe('Tag', () => {
     render(<Tag text="JavaScript" />)
 
     const link = screen.getByTestId('tag-link')
-    expect(link).toHaveClass('bg-io_blue-600')
-    expect(link).toHaveClass('hover:text-io_blue-600')
+    expect(link).toHaveClass('bg-io_energeticBlue-600')
+    expect(link).toHaveClass('hover:text-io_energeticBlue-600')
     expect(link).toHaveClass('px-1')
     expect(link).toHaveClass('text-sm')
     expect(link).toHaveClass('font-medium')

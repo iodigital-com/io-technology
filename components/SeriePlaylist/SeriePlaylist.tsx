@@ -20,7 +20,7 @@ const SeriePlaylist = ({ serie }: SeriePlaylistProps) => {
       <h4 className="teaser-title text-md font-medium text-gray-600">
         <Link href={`/series/${slug}`}>
           <div
-            className={`text-io_${theme}-600 hover:text-io_${theme}-700 dark:hover:text-primary-400`}
+            className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700 dark:hover:text-primary-400`}
           >
             <MarkdownRenderer markdown={title} />
           </div>

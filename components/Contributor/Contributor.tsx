@@ -1,6 +1,5 @@
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 import type { ContributorProps } from './types'
 
@@ -28,13 +27,11 @@ interface FullContributorProps {
 }
 
 const Contributor = ({ contributor, link = true }: FullContributorProps) => {
-  const { theme } = useBrandingTheme()
-
   if (link) {
     return (
       <Link
         href={`/authors/${contributor.slug[0]}`}
-        className={`flex flex-col items-center text-center text-io_${theme}-600 hover:text-io_${theme}-700`}
+        className={`flex flex-col items-center text-center text-io_energeticBlue-600 hover:text-io_energeticBlue-700`}
       >
         <InnerContributor contributor={contributor} />
       </Link>
