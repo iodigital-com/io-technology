@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest) {
   const fallbackImage = `${origin}/images/og-default-image.png`
   const { title, author, image = fallbackImage } = queryParams
 
-  const fontUrl = `${origin}/fonts/TTCommonsPro-Medium.ttf`
+  const fontUrl = `${origin}/fonts/Manrope-Medium.ttf`
 
   const fontResponse = await fetch(fontUrl)
   const fontData = await fontResponse.arrayBuffer()
