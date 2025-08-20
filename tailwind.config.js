@@ -34,8 +34,8 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['TTCommonsPro', ...defaultTheme.fontFamily.sans],
-        serif: ['Reckless', ...defaultTheme.fontFamily.serif],
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+        serif: ['Manrope', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         0: '0',
