@@ -38,7 +38,7 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
     }
   }, [])
   const { theme } = useBrandingTheme()
-  const themeBg = theme || 'blue' // fallback to blue if theme is undefined
+  const themeBg = theme || 'green' // fallback to blue if theme is undefined
 
   return (
     <>

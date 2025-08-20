@@ -35,6 +35,7 @@ export default async function handler(req: NextApiRequest) {
         }}
       >
         {image && (
+          /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={imageSrc}
             alt="Open Graph background image"
