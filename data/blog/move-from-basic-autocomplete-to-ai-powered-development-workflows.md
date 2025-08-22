@@ -17,6 +17,10 @@ This isn't another "AI will change everything" piece. It's a practical guide bas
 
 Whether you're already using [GitHub Copilot](https://github.com/features/copilot) for autocomplete or you've been putting this whole AI thing off, there's something here for you. Let's explore what's actually possible when you move beyond treating AI as just a better search engine.
 
+## Table of Contents
+
+<TOCInline toc={props.toc} exclude={["Table of Contents"]} toHeading={2} />
+
 ## 1. The New Reality
 
 ### Industry momentum
