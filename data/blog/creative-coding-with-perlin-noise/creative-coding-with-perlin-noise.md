@@ -132,7 +132,7 @@ When we add a little attraction _force_ to pull them towards the middle where an
 We take the Noise movement as basis, and on top of that we add a couple more techniques and principles to create a blazin' fire sparks effect.
 
 - Movement: our newly learned trick, noice!
-- Depth: The more in front the spark is, the faster it seems to move. [Remember parallax?](https://www.smashingmagazine.com/2011/07/behind-the-scenes-of-nike-better-world/)?
+- Depth: The more in front the spark is, the faster it seems to move. [Remember parallax?](https://www.smashingmagazine.com/2011/07/behind-the-scenes-of-nike-better-world/)
 - Decay: The spark slowly decays until it disappears.
 
 When you look closely at sparks flying around it may look like some are flowing around in the same "wind current". To simulate that effect we can share Noise function instances between sparks.
