@@ -8,13 +8,13 @@ authors: ['pim-van-die']
 theme: 'blue'
 ---
 
-As a change from our serious work where we need to consider quality, rules and tools, it can be refreshing to simply create cool visual effects. And maybe learn something new along the way. No constraints. That's where Creative Coding comes in.
+As a change from our serious work where we need to consider quality, rules, and tools, it can be refreshing to simply create cool visual effects. And maybe learn something new along the way. No constraints. That's where Creative Coding comes in.
 
-In this article we'll take a look specifically at Perlin Noise. What is it but most importantly, how can we use it to create nature like randomness.
+In this article, we'll take a look specifically at Perlin Noise. What is it, but most importantly, how can we use it to create nature-like randomness?
 
 ## The problem with `Math.random`
 
-Let's say we want to move an object, or a pixel, horizontally across the screen but add some randomness to it. One can utilize `Math.random()` which generates a random number between 0 and 1, and do something like:
+Let's say we want to move an object, or a pixel, horizontally across the screen, but add some randomness to it. One can utilize `Math.random()`, which generates a random number between 0 and 1, and do something like:
 
 ```js:random.js
 const loop = () => {
@@ -23,7 +23,7 @@ const loop = () => {
 }
 ```
 
-But the problem with `Math.random()` is, \*Drum roll...\* it's random. So every loop some random value between 0 to 1 gets added to the position. Check the example, which doesn't look smooth or appealing _at all_ :
+But the problem with `Math.random()` is, \*Drum roll...\* it's random. So every loop, some random value between 0 to 1 gets added to the position. Check the example, which doesn't look smooth or appealing _at all_ :
 
 <iframe width="100%" height="350" scrolling="no" title="TH Perlin Noise: movement with Math.random()" src="https://codepen.io/pimskie/embed/ZYbvJRZ?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe>
 
@@ -37,7 +37,7 @@ So we want to generate some movement or terrain that _looks_ random, but as we s
 
 > Perlin noise is a type of gradient noise developed by Ken Perlin in 1983. It has many uses, including but not limited to: procedurally generating terrain, applying pseudo-random changes to a variable [...]
 
-Perlin noise creates smooth, natural-looking randomness by calculating gradual transitions between points rather than jumping between completely random values. Or, more simple: it is a function which returns a not-so-random-random value between 0 and 1 for the given input.
+Perlin noise creates smooth, natural-looking randomness by calculating gradual transitions between points rather than jumping between completely random values. Or, more simply: it is a function which returns a not-so-random-random value between 0 and 1 for the given input.
 
 > It creates a not so random random value
 
@@ -129,13 +129,13 @@ When we add a little attraction _force_ to pull them towards the middle where an
 
 ### Fire sparks
 
-We take the Noise movement as basis, and on top of that we add a couple more techniques and principles to create a blazin' fire sparks effect.
+We take the Noise movement as a basis, and on top of that, we add a couple more techniques and principles to create a blazing fire sparks effect.
 
 - Movement: our newly learned trick, sweet!
 - Depth: The more in front the spark is, the faster it seems to move. [Remember parallax?](https://www.smashingmagazine.com/2011/07/behind-the-scenes-of-nike-better-world/)
 - Decay: The spark slowly decays until it disappears.
 
-When you look closely at sparks flying around it may look like some are flowing around in the same "wind current". To simulate that effect we can share Noise function instances between sparks.
+When you look closely at sparks flying around, it may look like some are flowing around in the same "wind current". To simulate that effect, we can share Noise function instances between sparks.
 
 ![Professional sketch of the concept](/articles/creative-coding-with-perlin-noise/layering.svg)
 
@@ -143,9 +143,7 @@ When you look closely at sparks flying around it may look like some are flowing 
 
 ### Flow field
 
-We can imagine our canvas as a grid. In each cell we calculate the noise value and use that value to calculate the angle, just as in earlier examples.
-The next step is updating a particle in that particular cell to use that angle for both the horizontal as vertical movement. In the fire sparks example, only the y-position was updated.
-This approach creates an effect called a "flowfield".
+We can imagine our canvas as a grid. In each cell, we calculate the noise value and use that value to calculate the angle, just as in earlier examples. The next step is updating a particle in that particular cell to use that angle for both horizontal and vertical movement. In the fire sparks example, only the y-position was updated. This approach creates an effect called a "flowfield".
 
 ![Concept of a flowfield](/articles/creative-coding-with-perlin-noise/flowfield.svg)
 
@@ -153,6 +151,6 @@ This approach creates an effect called a "flowfield".
 
 ## Wrapping up
 
-Once you get the hang of working with Perlin Noise, you'll notice how easy it is to generate cool things with it. It can be static, or moving. It can be visually 2D or 3D, or apply the outcome to sound. Take a look around and think about what you can make with it. A fur texture, or leaves blowing in the wind? A height map for a game? Your creativity is the only limit.
+Once you get the hang of working with Perlin Noise, you'll notice how easy it is to generate cool things with it. It can be static or moving. It can be visually 2D or 3D, or apply the outcome to sound. Take a look around and think about what you can make with it. A fur texture, or leaves blowing in the wind? A height map for a game? Your creativity is the only limit.
 
 If you feel like getting creative, I created a [commented boilerplate on Codepen](https://codepen.io/pimskie/pen/yyYxXwW) to start from. Fork it, break it, change it, but most importantly, enjoy creative coding 🤘
