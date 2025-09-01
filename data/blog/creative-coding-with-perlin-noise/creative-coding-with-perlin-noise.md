@@ -153,6 +153,6 @@ This approach creates an effect called a "flowfield".
 
 ## Wrapping up
 
-Once you get the hang of working with Perlin Noise, you'll notice how easy it is to generate cool things with it. It can be static, or moving. It can be visually 2D or 3D, or apply the outcome to sound. Take a look around and think about what you can make with it. A fur texture, or leaves blowing in the wind? A height map for a game? Your creativity is the only limit.
+Once you get the hang of working with Perlin Noise, you'll notice how easy it is to generate cool things with it. It can be static or moving. It can be visually 2D or 3D, or apply the outcome to sound. Take a look around and think about what you can make with it. A fur texture, or leaves blowing in the wind? A height map for a game? Your creativity is the only limit.
 
 If you feel like getting creative, I created a [commented boilerplate on Codepen](https://codepen.io/pimskie/pen/yyYxXwW) to start from. Fork it, break it, change it, but most importantly, enjoy creative coding 🤘
