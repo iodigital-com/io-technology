@@ -143,9 +143,7 @@ When you look closely at sparks flying around, it may look like some are flowing
 
 ### Flow field
 
-We can imagine our canvas as a grid. In each cell we calculate the noise value and use that value to calculate the angle, just as in earlier examples.
-The next step is updating a particle in that particular cell to use that angle for both the horizontal as vertical movement. In the fire sparks example, only the y-position was updated.
-This approach creates an effect called a "flowfield".
+We can imagine our canvas as a grid. In each cell, we calculate the noise value and use that value to calculate the angle, just as in earlier examples. The next step is updating a particle in that particular cell to use that angle for both horizontal and vertical movement. In the fire sparks example, only the y-position was updated. This approach creates an effect called a "flowfield".
 
 ![Concept of a flowfield](/articles/creative-coding-with-perlin-noise/flowfield.svg)
 
