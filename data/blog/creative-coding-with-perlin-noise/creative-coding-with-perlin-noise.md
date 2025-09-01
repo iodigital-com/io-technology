@@ -23,7 +23,7 @@ const loop = () => {
 }
 ```
 
-But the problem with `Math.random()` is, \*Drum roll...\* it's random. So every loop some random value between 0 to 1 gets added to the position. Check the example, which doesn't look smooth or appealing _at all_ :
+But the problem with `Math.random()` is, \*Drum roll...\* it's random. So every loop, some random value between 0 to 1 gets added to the position. Check the example, which doesn't look smooth or appealing _at all_ :
 
 <iframe width="100%" height="350" scrolling="no" title="TH Perlin Noise: movement with Math.random()" src="https://codepen.io/pimskie/embed/ZYbvJRZ?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe>
 
