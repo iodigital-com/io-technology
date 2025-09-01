@@ -10,7 +10,7 @@ theme: 'blue'
 
 As a change from our serious work where we need to consider quality, rules, and tools, it can be refreshing to simply create cool visual effects. And maybe learn something new along the way. No constraints. That's where Creative Coding comes in.
 
-In this article we'll take a look specifically at Perlin Noise. What is it but most importantly, how can we use it to create nature like randomness.
+In this article, we'll take a look specifically at Perlin Noise. What is it, but most importantly, how can we use it to create nature-like randomness?
 
 ## The problem with `Math.random`
 
