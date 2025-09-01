@@ -14,7 +14,7 @@ In this article, we'll take a look specifically at Perlin Noise. What is it, but
 
 ## The problem with `Math.random`
 
-Let's say we want to move an object, or a pixel, horizontally across the screen but add some randomness to it. One can utilize `Math.random()` which generates a random number between 0 and 1, and do something like:
+Let's say we want to move an object, or a pixel, horizontally across the screen, but add some randomness to it. One can utilize `Math.random()`, which generates a random number between 0 and 1, and do something like:
 
 ```js:random.js
 const loop = () => {
