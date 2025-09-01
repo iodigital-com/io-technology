@@ -135,7 +135,7 @@ We take the Noise movement as basis, and on top of that we add a couple more tec
 - Depth: The more in front the spark is, the faster it seems to move. [Remember parallax?](https://www.smashingmagazine.com/2011/07/behind-the-scenes-of-nike-better-world/)
 - Decay: The spark slowly decays until it disappears.
 
-When you look closely at sparks flying around it may look like some are flowing around in the same "wind current". To simulate that effect we can share Noise function instances between sparks.
+When you look closely at sparks flying around, it may look like some are flowing around in the same "wind current". To simulate that effect, we can share Noise function instances between sparks.
 
 ![Professional sketch of the concept](/articles/creative-coding-with-perlin-noise/layering.svg)
 
