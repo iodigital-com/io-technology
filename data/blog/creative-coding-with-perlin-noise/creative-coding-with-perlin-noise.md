@@ -37,7 +37,7 @@ So we want to generate some movement or terrain that _looks_ random, but as we s
 
 > Perlin noise is a type of gradient noise developed by Ken Perlin in 1983. It has many uses, including but not limited to: procedurally generating terrain, applying pseudo-random changes to a variable [...]
 
-Perlin noise creates smooth, natural-looking randomness by calculating gradual transitions between points rather than jumping between completely random values. Or, more simple: it is a function which returns a not-so-random-random value between 0 and 1 for the given input.
+Perlin noise creates smooth, natural-looking randomness by calculating gradual transitions between points rather than jumping between completely random values. Or, more simply: it is a function which returns a not-so-random-random value between 0 and 1 for the given input.
 
 > It creates a not so random random value
 
