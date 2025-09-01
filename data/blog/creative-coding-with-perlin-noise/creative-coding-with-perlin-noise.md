@@ -131,7 +131,7 @@ When we add a little attraction _force_ to pull them towards the middle where an
 
 We take the Noise movement as basis, and on top of that we add a couple more techniques and principles to create a blazin' fire sparks effect.
 
-- Movement: our newly learned trick, noice!
+- Movement: our newly learned trick, sweet!
 - Depth: The more in front the spark is, the faster it seems to move. [Remember parallax?](https://www.smashingmagazine.com/2011/07/behind-the-scenes-of-nike-better-world/)
 - Decay: The spark slowly decays until it disappears.
 
