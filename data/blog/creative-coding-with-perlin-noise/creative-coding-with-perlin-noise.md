@@ -1,6 +1,6 @@
 ---
 title: 'Creative Coding With Perlin Noise'
-date: '2025-08-29'
+date: '2025-09-02'
 tags: ['frontend', 'javascript', 'creative coding']
 images: ['/articles/creative-coding-with-perlin-noise/cover.jpg']
 summary: 'Have fun with creative coding. Discover how Perlin noise adds life into your creations, replacing harsh randomness with flowing, natural patterns. Creating particles, flow fields, and terrains that feel organic and alive.'
