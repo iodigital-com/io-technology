@@ -12,9 +12,9 @@ theme: 'blue'
 
 In today’s API-driven world, REST is starting to show its limits. You either fetch way too much data, or you end up making multiple round trips just to render a single page. Frontend teams get frustrated, backend teams fight schema drift, and performance takes a hit.
 
-This is where GraphQL shines. It lets clients ask for exactly what they need — nothing more, nothing less. But GraphQL alone can still be tricky to implement well.
+GraphQL is perfect for letting clients request precisely the data they need—nothing more, nothing less. This eliminates over- and under-fetching issues common with traditional REST APIs, making your applications more efficient. However, implementing a robust GraphQL service from scratch can be challenging.
 
-That’s why Netflix built the Domain Graph Service (DGS) framework, a production-ready GraphQL server for Spring Boot that powers billions of requests in their platform. And when you pair it with Kotlin and Spring Boot, you get:
+This is where Netflix's Domain Graph Service (DGS) framework comes in. It's a production-ready GraphQL server for Spring Boot that powers billions of requests on the Netflix platform. By pairing it with Kotlin and Spring Boot, you get a powerful combination that streamlines development and provides:
 
 **🚀 Developer productivity**: Concise, type-safe code with Kotlin.
 
@@ -22,7 +22,7 @@ That’s why Netflix built the Domain Graph Service (DGS) framework, a productio
 
 **🔗 Flexibility**: GraphQL ensures frontend and backend teams move faster without stepping on each other.
 
-![Rest vs Graphql](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/rest-vs-graphql.png)
+![REST vs GraphQL API comparison showing multiple REST calls versus a single GraphQL query.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/rest-vs-graphql.png)
 
 In this article, I’ll show you why GraphQL + Netflix DGS + Spring Boot Kotlin is a dream team for modern APIs — and how to set it up with real-world examples.
 
@@ -48,7 +48,7 @@ In this article, I’ll show you why GraphQL + Netflix DGS + Spring Boot Kotlin 
 
 **Spring Boot Integration**: Seamless integration with the Spring ecosystem, leveraging familiar patterns and configurations.
 
-**Code-First Approach**: Define your GraphQL schema using annotations directly in your code, eliminating the need to maintain separate schema files.
+**Supports Code-First Approach**: Define your GraphQL schema using annotations directly in your code, eliminating the need to maintain separate schema files.
 
 **Built-in Testing Support**: Comprehensive testing utilities that make it easy to test your GraphQL endpoints.
 
@@ -108,7 +108,7 @@ Clean, simple, and Kotlin's data classes give you equals, hashCode, and toString
 
 ### The Magic: DGS Data Fetchers
 
-Here's where DGS shines. Look how clean this is:
+Here’s the magic of DGS — it automatically maps the GraphQL BookInput type from your schema straight into a Kotlin data class with the same fields. No boilerplate, no hassle. Just clean and type-safe:
 
 ```kotlin
 @DgsComponent
@@ -138,7 +138,7 @@ class BookDataFetcher {
 }
 ```
 
-That's it. No XML, no separate schema files, no ceremony. Just annotate your methods and DGS handles the rest.
+And that’s all it takes — no XML, no extra schema files, no heavy setup. Just annotate your methods and let DGS do the work. That said, the schema-first approach is still considered a best practice in most cases.
 
 ## How It All Flows Together
 
@@ -236,6 +236,9 @@ fun bookAuthor(dfe: DataFetchingEnvironment): CompletableFuture<Author?> {
 }
 ```
 
+The `@DgsData` annotation plays a key role here: it declares this function as the data fetcher for the author field on the Book type. This explicit mapping is what lets DGS connect the GraphQL schema to your Kotlin code, enabling the DataLoader to resolve that specific field efficiently.
+In other words: whenever a query asks for `book { author }`, DGS will call this function to resolve the author.
+
 **What DataLoader gives you:**
 
 - **Automatic Batching**: Collects all author requests during query execution and batches them
@@ -245,9 +248,11 @@ fun bookAuthor(dfe: DataFetchingEnvironment): CompletableFuture<Author?> {
 
 ### Error Handling
 
-It can be useful to map application specific exceptions to meaningful exceptions back to the client. The framework provides two different mechanisms to achieve this.
+It can be useful to map application-specific exceptions to meaningful exceptions back to the client. The framework provides two different mechanisms to achieve this.
 
 #### Spring
+
+The `@ControllerAdvice` approach is the most idiomatic Spring way to handle exceptions globally, and it works seamlessly with DGS:
 
 ```kotlin
 @ControllerAdvice
@@ -258,6 +263,8 @@ class ControllerExceptionHandler {
     }
 }
 ```
+
+This approach leverages Spring's familiar exception handling patterns that most developers already know and provides consistent behavior across your entire application.
 
 #### Graphql-java
 
@@ -279,9 +286,36 @@ class CustomErrorHandler : DataFetchingExceptionHandler {
 }
 ```
 
-### Query Complexity Analysis: Preventing Expensive Queries
+### Query Validation and Protection
 
-Not all GraphQL queries are created equal. Some can bring your server to its knees. Query complexity analysis lets you reject dangerous queries before they execute.
+GraphQL is powerful because clients can request exactly what they need. However, this flexibility comes with risks: a single query can unintentionally (or maliciously) overload your server. Some key risks include:
+
+- **Deeply Nested Queries**: A client can request data several layers deep. Each nested field can trigger additional database or API calls, causing exponential growth in resource usage.
+
+- **High Multiplicity Fields**: Fields that return lists (e.g., books, reviews, posts) can dramatically increase the load if the query requests large first or limit values.
+
+- **Expensive Computations**: Some fields require heavy computation, like ML-based recommendations, aggregations, or complex joins. These fields may be cheap in isolation but extremely costly at scale.
+
+Without limits, a query like this:
+
+```graphql
+query {
+  books(first: 1000) {
+    reviews(first: 100) {
+      author {
+        books(first: 50) {
+          similarBooks {
+            title
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+can explode in cost—triggering tens of millions of operations—potentially crashing your server.
+To safeguard your GraphQL API, we assign costs to fields, calculate the total query complexity, and reject queries that exceed safe limits.
 
 ```kotlin
 @Component
@@ -313,29 +347,93 @@ class QueryComplexityInstrumentation : Instrumentation {
 }
 ```
 
-**Why this matters:**
+Assign costs to fields and reject queries that exceed your "budget":
+
+```kotlin
+@Component
+class QueryCostAnalyzer {
+
+    private val fieldCosts = mapOf(
+        "Book.reviews" to 10,      // Reviews are expensive to fetch
+        "User.posts" to 5,         // Posts moderate cost
+        "Book.similarBooks" to 50, // ML-based recommendations are expensive
+        "Book.title" to 1          // Simple fields are cheap
+    )
+
+    fun calculateCost(document: Document): Int {
+        var totalCost = 0
+
+        document.definitions.forEach { definition ->
+            if (definition is OperationDefinition) {
+                totalCost += calculateSelectionCost(definition.selectionSet, "Query")
+            }
+        }
+
+        return totalCost
+    }
+
+    private fun calculateSelectionCost(selectionSet: SelectionSet, parentType: String): Int {
+        var cost = 0
+
+        selectionSet.selections.forEach { selection ->
+            when (selection) {
+                is Field -> {
+                    val fieldKey = "$parentType.${selection.name}"
+                    val fieldCost = fieldCosts[fieldKey] ?: 1
+
+                    // Apply multipliers for arguments like 'first'
+                    val multiplier = selection.arguments
+                        .find { it.name == "first" }
+                        ?.value?.let { (it as? IntValue)?.value?.toInt() } ?: 1
+
+                    cost += fieldCost * multiplier
+
+                    // Recursively calculate nested field costs
+                    selection.selectionSet?.let { nestedSet ->
+                        cost += calculateSelectionCost(nestedSet, getReturnType(fieldKey))
+                    }
+                }
+            }
+        }
+
+        return cost
+    }
+}
+```
+
+This prevents queries like:
 
 ```graphql
-# This query could be expensive
-query DangerousQuery {
-  books(first: 100) {
-    # 100 books
-    reviews(first: 50) {
-      # 100 * 50 = 5,000 reviews
+query ExpensiveQuery {
+  books(first: 1000) {
+    # 1000 * base cost
+    reviews(first: 100) {
+      # 1000 * 100 * review cost = 100,000 points
       author {
-        # 5,000 author lookups
-        books(first: 20) {
-          # 5,000 * 20 = 100,000 more books!
-          reviews {
-            # Exponential explosion!
-            comment
+        # Another 100,000 author lookups
+        books(first: 50) {
+          # Exponential explosion!
+          similarBooks {
+            # ML recommendations for each!
+            title
           }
         }
       }
     }
   }
 }
+# Total cost: ~50,000,000 points - REJECTED!
 ```
+
+#### Benefits of Query Complexity Analysis:
+
+- **Prevents Denial of Service (DoS) attacks caused by expensive queries**
+
+- **Protects database and backend services from heavy load**
+
+- **Allows flexible yet safe GraphQL usage by clients**
+
+- **Encourages thoughtful schema design, e.g., limiting fields or providing pagination**
 
 ### Persisted Queries: Security and Performance
 
@@ -581,86 +679,6 @@ query Search($query: String!) {
 }
 ```
 
-### Query Cost Analysis: Budget-Based Protection
-
-Assign costs to fields and reject queries that exceed your "budget":
-
-```kotlin
-@Component
-class QueryCostAnalyzer {
-
-    private val fieldCosts = mapOf(
-        "Book.reviews" to 10,      // Reviews are expensive to fetch
-        "User.posts" to 5,         // Posts moderate cost
-        "Book.similarBooks" to 50, // ML-based recommendations are expensive
-        "Book.title" to 1          // Simple fields are cheap
-    )
-
-    fun calculateCost(document: Document): Int {
-        var totalCost = 0
-
-        document.definitions.forEach { definition ->
-            if (definition is OperationDefinition) {
-                totalCost += calculateSelectionCost(definition.selectionSet, "Query")
-            }
-        }
-
-        return totalCost
-    }
-
-    private fun calculateSelectionCost(selectionSet: SelectionSet, parentType: String): Int {
-        var cost = 0
-
-        selectionSet.selections.forEach { selection ->
-            when (selection) {
-                is Field -> {
-                    val fieldKey = "$parentType.${selection.name}"
-                    val fieldCost = fieldCosts[fieldKey] ?: 1
-
-                    // Apply multipliers for arguments like 'first'
-                    val multiplier = selection.arguments
-                        .find { it.name == "first" }
-                        ?.value?.let { (it as? IntValue)?.value?.toInt() } ?: 1
-
-                    cost += fieldCost * multiplier
-
-                    // Recursively calculate nested field costs
-                    selection.selectionSet?.let { nestedSet ->
-                        cost += calculateSelectionCost(nestedSet, getReturnType(fieldKey))
-                    }
-                }
-            }
-        }
-
-        return cost
-    }
-}
-```
-
-This prevents queries like:
-
-```graphql
-query ExpensiveQuery {
-  books(first: 1000) {
-    # 1000 * base cost
-    reviews(first: 100) {
-      # 1000 * 100 * review cost = 100,000 points
-      author {
-        # Another 100,000 author lookups
-        books(first: 50) {
-          # Exponential explosion!
-          similarBooks {
-            # ML recommendations for each!
-            title
-          }
-        }
-      }
-    }
-  }
-}
-# Total cost: ~50,000,000 points - REJECTED!
-```
-
 ## Real-World Query Examples
 
 Here's what your frontend team will love you for:
@@ -711,7 +729,7 @@ dgs:
       - 'classpath*:schema/**/*.graphql*'
 ```
 
-That's literally it for basic setup for the backend.
+That's literally it for the basic setup for the backend.
 
 ### The JavaScript Client Experience
 
