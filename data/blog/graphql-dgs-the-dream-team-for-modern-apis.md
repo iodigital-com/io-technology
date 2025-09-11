@@ -22,7 +22,7 @@ This is where Netflix's Domain Graph Service (DGS) framework comes in. It's a pr
 
 **🔗 Flexibility**: GraphQL ensures frontend and backend teams move faster without stepping on each other.
 
-![REST vs GraphQL API comparison showing multiple REST calls versus a single GraphQL query.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/rest-vs-graphql.png)
+!["A side-by-side code comparison of REST and GraphQL. The 'REST' column shows a 'GET /books/1' request that returns a large JSON object with all book details, including id, title, authorId, isbn, pageCount, and more. The 'GraphQL' column shows a query that specifically asks for only the title, author, and publicationYear. The corresponding GraphQL response contains a JSON object with only those three requested fields, demonstrating how it avoids over-fetching data.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/rest-vs-graphql.png)
 
 In this article, I’ll show you why GraphQL + Netflix DGS + Spring Boot Kotlin is a dream team for modern APIs — and how to set it up with real-world examples.
 
@@ -60,7 +60,7 @@ In this article, I’ll show you why GraphQL + Netflix DGS + Spring Boot Kotlin 
 
 Picture this: You're tired of REST APIs where you either get way too much data or have to make 17 different calls just to render one page. Sound familiar? GraphQL solves this, but the real magic happens when you pair it with Netflix DGS (Domain Graph Service) and Kotlin.
 
-![Tech-stack](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/tech-stack.png)
+<div style={{ maxWidth: "300px", margin: "0 auto" }}>![A vertical architecture diagram showing the layers of a tech stack. The flow begins at the top with a 'Client App', which connects down to a 'GraphQL Endpoint', then to the 'Netflix DGS Framework', followed by the 'Spring Boot + Kotlin' application layer, and finally ends at a 'Database' at the bottom.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/tech-stack.png)</div>
 
 **GraphQL** gives you that "ask for exactly what you need" superpower. **Netflix DGS** makes it dead simple to build GraphQL services (and Netflix knows a thing or two about scale). **Spring Boot** handles all the boring stuff. **Kotlin** makes your code actually readable and safe.
 
@@ -68,7 +68,7 @@ Picture this: You're tired of REST APIs where you either get way too much data o
 
 Let's be honest - building GraphQL servers used to be a pain. You'd have schema files here, resolvers there, and somehow they never stayed in sync. Netflix DGS said "nah, let's fix this" and gave us annotations that Just Work™.
 
-![Netflix DGS ](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/dgs.png)
+![A process diagram illustrating a code-first workflow. The flow moves from left to right through five sequential boxes. It begins with a yellow box labeled 'Code-First Approach', which leads to 'DGS Annotations', then 'Auto Schema Generation', and 'Type-Safe Resolvers'. The process concludes with a final green box labeled 'Production Ready'.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/dgs.png)
 
 Okay, enough theory. Let’s roll up our sleeves and actually build something.
 
@@ -142,7 +142,7 @@ And that’s all it takes — no XML, no extra schema files, no heavy setup. Jus
 
 ## How It All Flows Together
 
-![API flows ](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/request-diagram.png)
+![A sequence diagram illustrating the lifecycle of a GraphQL query. The diagram shows five components: Client, GraphQL, DGS, Service, and Database. The flow is as follows: 1. The Client sends a query for the title and author of books to the GraphQL layer. 2. GraphQL parses and validates the query, then passes it to the DGS component. 3. DGS calls the appropriate @DgsQuery method in the Service layer. 4. The Service calls Repository.findAll() to fetch data from the Database. 5. The Database returns a list of Book objects to the Service. 6. The Service returns the books to DGS. 7. DGS passes the data to GraphQL to serialize the response. 8. Finally, GraphQL returns a JSON object to the Client containing only the requested fields.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/request-diagram.png)
 
 ### Schema Definition
 
@@ -180,7 +180,7 @@ input BookInput {
 
 One of the coolest things about this stack? Fire up your app and hit `http://localhost:8080/graphiql`. You get a beautiful GraphQL playground out of the box.
 
-![Development Experience ](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/dev-experience.png)
+![A diagram of a rapid development loop using GraphQL. It shows a linear sequence of five boxes: 1. 'Write Code'. 2. 'Start App'. 3. 'Open GraphiQL' (highlighted in blue). 4. 'Test Queries'. 5. 'Iterate Fast' (highlighted in green). A large arrow loops from the final 'Iterate Fast' step back to the first 'Write Code' step, indicating a continuous and efficient cycle.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/dev-experience.png)
 
 Try this query:
 
@@ -203,7 +203,7 @@ And boom - you get exactly what you asked for, nothing more, nothing less.
 
 One of the biggest performance killers in GraphQL is the N+1 query problem. When you fetch a list of books and then request each book's author, you end up with 1 query for books + N queries for authors. DataLoader solves this elegantly.
 
-![Development Experience ](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/client.png)
+![A side-by-side comparison of API architectures. On the left, a REST API shows a client making three separate calls to 'Players,' 'Team,' and 'Matches' endpoints, which in turn access multiple databases. On the right, a GraphQL API shows a client making one single call for all the data, which is handled by a central GraphQL layer that then fetches the information from the databases.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/client.png)
 
 Here's how to implement it:
 
@@ -792,4 +792,4 @@ Key takeaways from this setup:
 
 This approach scales well from simple APIs to complex microservice architectures, making it an excellent choice for modern application development. The GraphQL ecosystem continues to mature, and with tools like Netflix DGS, building robust GraphQL APIs has never been easier.
 
-![](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/flows.png)
+![A comparison diagram with two parallel flowcharts illustrating different development outcomes. The top flow, colored pink, shows that 'Traditional REST' leads to 'Multiple Endpoints', which causes 'Over/Under Fetching', resulting in 'Frontend Frustration'. In contrast, the bottom flow, colored green, shows that 'GraphQL + DGS' leads to a 'Single Endpoint' and 'Precise Data', resulting in 'Happy Developers'.](/articles/graphql-netflix-dgs-the-dream-team-for-modern-apis/flows.png)
