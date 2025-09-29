@@ -89,7 +89,7 @@ function parseMarkdown(input) {
 }
 
 function transformGroupsToEvents(events, eventType) {
-  const normalizedEvents = events?.map((event) =>
+  const normalizedEvents = events?.filter(Boolean).map((event) =>
     event?.groupByUrlname[eventType]?.edges?.map((edge) => ({
       ...edge.node,
       groupName: event.groupByUrlname.name,
