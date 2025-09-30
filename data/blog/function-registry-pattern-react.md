@@ -501,6 +501,14 @@ const DynamicForm: React.FC<FormProps> = ({ schema, onSubmit }) => {
 
 **That's it!** Clean, memoized, and it just works. Notice how simple the usage is, just call transformField and let the registry handle all the complexity.
 
+### When This Pattern Might Be Overkill
+
+This pattern shines with complex transformation logic, but consider simpler approaches when:
+- You have fewer than 5 transformation types
+- The transformations are very simple (just property mapping)
+- Your team is new to design patterns
+- Performance is extremely critical (direct if-else is faster)
+
 ### Conclusion
 
 The Function Registry Design Pattern transforms messy, hard-to-maintain transformation logic into clean, extensible architecture. By breaking down monolithic functions into specialized, registered transformers, we achieve:
