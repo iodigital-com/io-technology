@@ -98,25 +98,27 @@ export default function AuthorLayout({
           <SectionTitle id="articles">
             Articles by <span className="font-serif font-light">{name}</span>
           </SectionTitle>
-          <section className="container mx-auto max-w-2xl">
-            {posts.map((fm, index) => {
-              const { slug, date, title, summary, tags } = fm
+          <section className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {posts.map((fm, index) => {
+                const { slug, date, title, summary, tags } = fm
 
-              return (
-                <ContentCard
-                  key={slug || index.toString()}
-                  slug={slug || ''}
-                  date={date || ''}
-                  title={title}
-                  summary={summary}
-                  tags={tags}
-                  authors={[]}
-                  border={index !== 0}
-                  type="article"
-                  showAuthors={false}
-                />
-              )
-            })}
+                return (
+                  <ContentCard
+                    key={slug || index.toString()}
+                    slug={slug || ''}
+                    date={date || ''}
+                    title={title}
+                    summary={summary}
+                    tags={tags}
+                    authors={[]}
+                    border={index !== 0}
+                    type="article"
+                    showAuthors={false}
+                  />
+                )
+              })}
+            </div>
           </section>
         </>
       ) : null}
