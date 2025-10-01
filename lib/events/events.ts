@@ -6,7 +6,7 @@ export async function getAllEvents(): Promise<typeof events> {
 }
 
 export async function getLatestEvents(num: number = 5): Promise<{ events: Event[] }> {
-  const { events } = await getAllEvents()
+  const { events }: { events: Event[] } = await getAllEvents()
   // Ensure events is an array before sorting
   const eventsArray = Array.isArray(events) ? events : []
 
