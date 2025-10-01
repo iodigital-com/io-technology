@@ -12,6 +12,8 @@
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
+    "postinstall": "node ./scripts/setup-git-lfs.js",
+    "setup:lfs": "node ./scripts/setup-git-lfs.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
