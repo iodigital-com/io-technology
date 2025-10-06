@@ -41,6 +41,7 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
 
 - **Node.js:** Version 22.x or higher
 - **npm:** Version 10.x or higher
+- **Git LFS:** Required for downloading image assets ([installation guide](https://git-lfs.github.io/))
 
 ### Installation
 
@@ -51,10 +52,25 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
    cd io-technology
    ```
 
-2. **Install dependencies**
+2. **Install dependencies (with automatic Git LFS setup)**
 
    ```bash
    npm install
+   ```
+
+   > **✨ Git LFS Auto-Setup:** The installation will automatically detect and install Git LFS if needed, then download all image assets. This ensures images display correctly without manual setup!
+
+   **Manual Git LFS Setup (if needed):**
+
+   If the automatic setup fails or you prefer manual control:
+
+   ```bash
+   # Install Git LFS manually (if not already installed)
+   npm run setup:lfs
+
+   # Or set up Git LFS step by step:
+   git lfs install     # Initialize Git LFS
+   git lfs pull        # Download all LFS-tracked files (images)
    ```
 
 3. **Set up environment variables**
@@ -95,6 +111,9 @@ npm test               # Run all tests
 npm run test:watch     # Run tests in watch mode
 npm run test:coverage  # Run tests with coverage report
 npm run test:ui        # Run tests with UI interface
+
+# Git LFS Management
+npm run setup:lfs      # Manual Git LFS setup and image download
 
 # Dependency Management
 npm run update:patch   # Update patch versions
