@@ -101,7 +101,7 @@ export default function AuthorLayout({
           <section className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {posts.map((fm, index) => {
-                const { slug, date, title, summary, tags } = fm
+                const { slug, date, title, summary, tags, images } = fm
 
                 return (
                   <ContentCard
@@ -115,6 +115,7 @@ export default function AuthorLayout({
                     border={index !== 0}
                     type="article"
                     showAuthors={false}
+                    images={images || []}
                   />
                 )
               })}
