@@ -11,7 +11,7 @@ const ContentSecurityPolicy = `
   font-src 'self';
   frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com;
 `
-
+//
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
