@@ -41,13 +41,14 @@ describe('Tag', () => {
     render(<Tag text="JavaScript" />)
 
     const link = screen.getByTestId('tag-link')
-    expect(link).toHaveClass('bg-io_energeticBlue-600')
-    expect(link).toHaveClass('hover:text-io_energeticBlue-600')
+    expect(link).toHaveClass('bg-black')
+    expect(link).toHaveClass('hover:text-black')
     expect(link).toHaveClass('px-1')
     expect(link).toHaveClass('text-sm')
     expect(link).toHaveClass('font-medium')
     expect(link).toHaveClass('uppercase')
     expect(link).toHaveClass('text-white')
+    expect(link).toHaveClass('transition-colors')
   })
 
   it('converts spaces to dashes in display text', () => {
