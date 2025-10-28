@@ -1,6 +1,6 @@
 ---
 title: 'Building a Translation Demo with the Chrome Built-in AI APIs'
-date: '2025-10-28'
+date: '2025-10-29'
 tags: ['ai', 'frontend']
 images:
   [
