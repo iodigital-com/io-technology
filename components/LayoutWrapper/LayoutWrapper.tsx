@@ -38,7 +38,7 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
     }
   }, [])
   const { theme } = useBrandingTheme()
-  const themeBg = theme || 'blue' // fallback to blue if theme is undefined
+  const themeBg = theme || 'green' // fallback to blue if theme is undefined
 
   return (
     <>
@@ -64,7 +64,7 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="hidden h-6 items-center font-mono text-xl font-light sm:flex xl:text-2xl">
+                  <div className="hidden h-6 items-center font-mono text-xl font-light lg:flex xl:text-2xl">
                     {siteMetadata.headerTitle}
                   </div>
                 ) : (
@@ -78,23 +78,25 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
             ref={navigationItemsRef}
           >
             <div
-              className={`hidden items-center rounded-full pl-2 sm:flex sm:pr-12 ${
-                navigationIsOpen ? 'pointer-events-auto border-white' : 'border-gray-200'
+              className={`hidden items-center rounded-full sm:flex ${
+                navigationIsOpen
+                  ? 'pointer-events-auto border-white sm:pl-2 sm:pr-12'
+                  : 'border-gray-200'
               }`}
             >
               {headerNavLinks.map((link, index) => (
                 <Link
                   key={link.title}
                   href={link.href}
-                  className={`font-semibold ease-out sm:mt-2 sm:p-4 ${
+                  className={`font-semibold ease-out sm:p-3 ${
                     navigationIsOpen
-                      ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white'
+                      ? 'translate-y-0 text-gray-600 transition-all duration-300 dark:text-white sm:mt-2'
                       : `duration-200 dark:text-gray-100
-                      ${
-                        scrolledPassedHeader
-                          ? 'pointer-events-none -translate-y-4 opacity-0'
-                          : 'translate-y-0 opacity-100'
-                      }`
+                        ${
+                          scrolledPassedHeader
+                            ? 'pointer-events-none -translate-y-4 opacity-0'
+                            : 'translate-y-0 opacity-100'
+                        }`
                   }`}
                   style={{ transitionDelay: `${navigationIsOpen ? 200 + index * 100 : 0}ms` }}
                 >

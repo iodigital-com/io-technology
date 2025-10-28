@@ -1,6 +1,5 @@
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import type { AuthorInfoProps } from './types'
 import type { Author } from '../../types'
 
@@ -11,8 +10,6 @@ const AuthorInfo = ({
   avatarSize = 'medium', // 'small', 'medium', 'large'
   linkToAuthorPage = true,
 }: AuthorInfoProps) => {
-  const { theme } = useBrandingTheme()
-
   if (!authors || authors.length === 0) return null
 
   const getAvatarClasses = () => {
@@ -42,7 +39,7 @@ const AuthorInfo = ({
           {linkToAuthorPage ? (
             <Link
               href={`/authors/${author.slug[0]}`}
-              className={`text-io_${theme}-600 hover:text-io_${theme}-700`}
+              className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-700`}
             >
               {author.name}
             </Link>
@@ -60,7 +57,7 @@ const AuthorInfo = ({
   )
 
   const renderStackedAvatars = () => (
-    <div className="flex flex-col gap-4 xl:flex-row">
+    <div className="flex flex-col items-center gap-4 xl:flex-row">
       <div className="flex items-center -space-x-6 xl:-space-x-12">
         {authors.map((author, index) => (
           <div
@@ -85,7 +82,7 @@ const AuthorInfo = ({
               {linkToAuthorPage ? (
                 <Link
                   href={`/authors/${author.slug[0]}`}
-                  className={`text-io_${theme}-600 hover:text-io_${theme}-800`}
+                  className={`text-io_energeticBlue-600 hover:text-io_energeticBlue-800`}
                 >
                   {author.name}
                 </Link>

@@ -1,4 +1,3 @@
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import Link from '../Link'
 import type { Job } from '../../lib/jobs/types'
 
@@ -7,8 +6,6 @@ interface JobGridProps {
 }
 
 const JobGrid = ({ jobs = [] }: JobGridProps) => {
-  const { theme } = useBrandingTheme()
-
   // Ensure jobs is an array
   const jobsArray = Array.isArray(jobs) ? jobs : []
 
@@ -47,7 +44,7 @@ const JobGrid = ({ jobs = [] }: JobGridProps) => {
         href="https://www.iodigital.com/en/careers/jobs?expertise=Technology"
         target="_blank"
         rel="noreferrer"
-        className={`h-40 bg-io_${theme}-600 p-2 pt-3 text-white hover:bg-io_${theme}-700`}
+        className={`h-40 bg-io_energeticBlue-600 p-2 pt-3 text-white hover:bg-io_energeticBlue-700`}
       >
         <h3 className="text my-1.5 text-2xl font-medium">
           View all <span className="font-serif font-light">jobs</span>
@@ -55,7 +52,7 @@ const JobGrid = ({ jobs = [] }: JobGridProps) => {
         <svg style={{ width: 24, height: 24 }} className="text-white" viewBox="0 0 24 24">
           <path
             fill="currentColor"
-            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+            d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
           />
         </svg>
       </Link>
