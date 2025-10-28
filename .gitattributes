@@ -113,21 +113,21 @@ Procfile          text
 *.ai              binary
 *.bmp             binary
 *.eps             binary
-*.gif             binary
+*.gif filter=lfs diff=lfs merge=lfs -text
 *.gifv            binary
 *.ico             binary
 *.jng             binary
 *.jp2             binary
-*.jpg             binary
-*.jpeg            binary
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
 *.jpx             binary
 *.jxr             binary
 *.pdf             binary
-*.png             binary
+*.png filter=lfs diff=lfs merge=lfs -text
 *.psb             binary
 *.psd             binary
 # SVG treated as an asset (binary) by default.
-*.svg             binary
+*.svg filter=lfs diff=lfs merge=lfs -text
 # If you want to treat it as binary,
 # use the following line instead.
 # *.svg           binary
@@ -135,7 +135,7 @@ Procfile          text
 *.tif             binary
 *.tiff            binary
 *.wbmp            binary
-*.webp            binary
+*.webp filter=lfs diff=lfs merge=lfs -text
 # Audio
 *.kar             binary
 *.m4a             binary
