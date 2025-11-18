@@ -1,6 +1,6 @@
 ---
 title: 'ChatGPT as My Coding Mentor: How I Learned React and Next.js as a Junior Developer'
-date: '2025-11-13'
+date: '2025-11-18'
 tags: ['ai', 'frontend']
 images: ['/articles/chatgpt-as-my-coding-mentor/learning-react-and-next-with-ai-hero.png']
 summary: "A junior developer's journey from confusion to confidence, learning React and Next.js by discovering how to turn AI into an effective coding mentor through better prompting and asking for explanations 'like I'm 5.'"
