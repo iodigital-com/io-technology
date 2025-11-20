@@ -1,6 +1,6 @@
 ---
 title: 'How to create a modular and maintainable CSS setup with @layer'
-date: '2025-11-02'
+date: '2025-11-20'
 tags: ['frontend', 'css']
 images: []
 summary: 'Utilize @layer to create a solid modular foundation for styling. It helps the team to orgainize the order of styling.'
