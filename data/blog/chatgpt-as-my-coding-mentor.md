@@ -12,7 +12,7 @@ theme: 'blue'
 
 That's the first thing I typed into my coding agent on my very first morning as a junior developer. I was staring at React documentation, trying to understand useState, and feeling completely overwhelmed.
 
-Coming from school, where I'd used Svelte, I needed to learn React for my new job. The official docs assumed I understood concepts I'd never encountered. Terms like "trigger a re-render" and "current state" were everywhere, and I needed someone to explain the basics patiently.
+[Coming from school](https://fdnd.nl/), where I'd used Svelte, I needed to learn React for my new job. The official docs assumed I understood concepts I'd never encountered. Terms like "trigger a re-render" and "current state" were everywhere, and I needed someone to explain the basics patiently.
 
 My first attempts didn't go well. When I asked, "What is useState?" my coding agent responded: "useState is one of the most fundamental React Hooks that allows you to add state to functional components." As a junior developer, I had no idea what that meant.
 
