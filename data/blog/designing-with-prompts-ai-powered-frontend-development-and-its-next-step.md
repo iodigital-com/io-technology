@@ -1,6 +1,6 @@
 ---
 title: 'Designing with Prompts: AI Powered Frontend Development and Its Next Step'
-date: '2025-12-03'
+date: '2025-12-05'
 tags: ['AI', 'React', 'Frontend', 'Development', 'Web Development']
 authors: ['osman-fikret-ceylan']
 images:
@@ -91,21 +91,10 @@ AI is powerful, but it's not perfect. Common issues include:
 
 As AI becomes part of development workflows, **ethical practices** are critical. Here are some principles to keep in mind:
 
-### Transparency
-
-Make sure AI decisions can be explained and audited.
-
-### Bias Control
-
-Use diverse datasets and monitor outputs to avoid discrimination.
-
-### Privacy and Compliance
-
-Follow regulations like the **EU AI Act** and **OECD guidelines**, which require risk checks and accountability.
-
-### Responsible Use
-
-Set up internal review processes to prevent misuse and maintain trust.
+- **Transparency:** Make sure AI decisions can be explained and audited.
+- **Bias Control:** Use diverse datasets and monitor outputs to avoid discrimination.
+- **Privacy and Compliance:** Follow regulations like the **EU AI Act** and **OECD guidelines**, which require risk checks and accountability.
+- **Responsible Use:** Set up internal review processes to prevent misuse and maintain trust.
 
 > **Warning:** Ignoring these steps can lead to serious legal and reputational problems.
 
