@@ -33,14 +33,14 @@ A key interaction pattern was subscribing to `valueChanges` or `statusChanges` o
 
 ### Example for a Simple Reactive Form
 
-<iframe width="100%" height="600" src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-reactive-form?embed=1&file=src/app/app.component.ts&embed=1" frameBorder="0" allowFullScreen></iframe>
+[Open in StackBlitz](https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-reactive-form?file=src/app/app.component.ts)
 
 ### Example for an Advanced Reactive form (most commonly used)
 
 In practice, while Angular’s simple form examples are helpful, real-world applications—especially in enterprise environments—tend to rely on far more complex form structures. Instead of managing many individual controls separately, developers typically organize entire sections of related inputs under a single `FormGroup` (and often nested `FormGroups`).
 This “umbrella” approach makes large forms easier to manage, validate, and maintain. It also allows teams to encapsulate logic, reuse form sections, and keep the form model consistent with the structure of the underlying business domain. As a result, FormGroup-centric architectures became the standard for building sophisticated, enterprise-grade forms in Angular.
 
-<iframe width="100%" height="600" src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/advanced-reactive-form?embed=1&file=src/app/app.component.ts&embed=1" frameBorder="0" allowFullScreen></iframe>
+[Open in StackBlitz](https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/advanced-reactive-form?file=src/app/app.component.ts)
 
 ## How do we use forms with Signals?
 
@@ -50,13 +50,13 @@ When discussing signal-based inputs, one of the most important points to underst
 
 At the same time, it’s important to emphasize that Angular’s direction toward a Signals-based model is very promising. The foundation being built around Signal is solid, and once the form-related APIs mature, Signals are likely to provide a cleaner, more predictable, and more efficient way to handle reactivity across the entire framework.
 
-<iframe width="100%" height="600" src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-signal-form?embed=1&file=src/app/app.component.ts&embed=1" frameBorder="0" allowFullScreen></iframe>
+[Open in StackBlitz](https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-signal-form?file=src/app/app.component.ts)
 
 ### Hybrid model - technically _works_, but no benefits, not recommended
 
 The current problem with forms with signals is that they lacked a fully mature API to organize complex forms in a grouped structure with all the capabilities we expect (nested grouping, dynamic validation, complex logic, etc.). Although a "cheat" workaround exists — re-using the old `FormGroup` (from _Reactive Forms_) inside a signal-based setup — but relies on the legacy _zone.js + observable & subscription model_, which undermines many of things advantages Signals aim to deliver. As a result, using Signals with `FormGroup` in this hybrid way often offers little to no real benefit. Therefore, it is generally not recommended to combine them this way.
 
-<iframe width="100%" height="600" src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/hybrid-form?embed=1&file=src/app/app.component.ts&embed=1" frameBorder="0" allowFullScreen></iframe>
+[Open in StackBlitz](https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/hybrid-form?file=src/app/app.component.ts)
 
 ## The advanced solution is on the way, experimental API was released.
 
@@ -66,4 +66,4 @@ One of the most significant additions is the **experimental** release is _Signal
 
 Validation can be done with the newly released `schemaPath`. Among many nishe validation this contains the classic `minLegth`, `maxLength`, `required` etc. validation. [The Signal Forms API](https://angular.dev/guide/forms/signals/overview 'Official documentation - Signal Forms API') is marked as experimental, meaning the API could evolve with future releases — so it is not yet recommended for production usage without caution. Based on the current version of the Signal Forms’ API, we can expect for a similarly elegant solution then _Reactive Forms_ in the future.
 
-<iframe width="100%" height="600" src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/experimental-advanced-signal-form?embed=1&file=src/app/app.component.ts&embed=1" frameBorder="0" allowFullScreen></iframe>
+[Open in StackBlitz](https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/experimental-advanced-signal-form?file=src/app/app.component.ts)
