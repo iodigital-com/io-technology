@@ -1,9 +1,0 @@
-.iframe-mobile-hide {
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .iframe-mobile-hide {
-    display: none;
-  }
-}
