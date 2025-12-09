@@ -2,7 +2,7 @@
 title: 'Angular 21 — Signal with Forms — Why Sometimes Waiting Is The Better Choice'
 date: '2025-12-09'
 tags: ['Angular', 'Angular21', 'Signals', 'Signal Forms']
-images: ['']
+images: ['/articles/angular21-signals-with-forms/angular21-signals-with-forms.png']
 summary: 'In the rapidly evolving landscape of Angular 21, this guide provides a practical overview of the current state of form handling in Angular.'
 authors: ['susan-fulop']
 theme: 'beige'
