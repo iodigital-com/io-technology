@@ -6,6 +6,7 @@ import Link from '../Link'
 import TOCInline from '../TOCInline'
 import Pre from '../Pre'
 import Heading from '../Heading'
+import { LazyStackBlitz } from '../LazyStackBlitz'
 
 interface WrapperProps {
   components?: any
@@ -22,6 +23,7 @@ interface MDXLayoutRendererProps {
 export const MDXComponents = {
   Image,
   TOCInline,
+  LazyStackBlitz,
   a: Link,
   pre: Pre,
   h1: Heading(1),
