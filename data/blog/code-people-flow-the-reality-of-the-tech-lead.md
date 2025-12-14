@@ -7,7 +7,7 @@ images:
   [
     '/articles/code-people-flow-the-reality-of-the-tech-lead/pexels-cigdem-bilgin-2154409770-33647018-code-people-flow-the-reality-of-the-tech-lead.jpg',
   ]
-summary: 'Decode the ambiguous role of the Tech Lead by revealing the critical balance between leadership, architecture, and development. Learn how to optimize software flow and manage complexity using insights from Team Topologies, DORA metrics, and Domain Driven Design.'
+summary: 'Decode the ambiguous role of the Tech Lead by revealing the critical balance between leadership, architecture, and development. Learn how to optimize software flow and manage complexity using insights from Team Topologies, DORA metrics, and Domain-Driven Design.'
 theme: 'orange'
 ---
 
@@ -19,7 +19,7 @@ The title sounds powerful. But the reality is often confusing.
 
 Are you a manager? An architect? A lead developer?
 
-The industry is not good at defining this role. It creates confusion. It creates stress. But there is a way to navigate this chaos. Based on the insights from a 5-day Technical Leadership learning journey, i can let you through it to decode what it actually means to lead in technology.
+The industry is not good at defining this role. It creates confusion. It creates stress. But there is a way to navigate this chaos. Based on the insights from a 5-day Technical Leadership learning journey, I will let you through it to decode what it actually means to lead in technology.
 
 It isn't just about code anymore. It is about the flow of value.
 
@@ -78,11 +78,11 @@ One powerful tool for this is **EventStorming**. You put a massive paper roll on
 
 You will see the hotspots. You will see the bottlenecks. You will see where the communication breaks down. This visualization creates a shared brain for the team. It removes the "us vs. them" mentality.
 
-## Taming the Complexity: Domain Driven Design
+## Taming the Complexity: Domain-Driven Design
 
 Software is complex. If we don't manage that complexity, it turns into a "Big Ball of Mud".
 
-This is where **Domain Driven Design (DDD)** comes in. DDD is about tackling complexity in the heart of software.
+This is where **Domain-Driven Design (DDD)** comes in. DDD is about tackling complexity in the heart of software.
 
 You cannot just code blindly. You need a **Ubiquitous Language**. This is a shared language between the developers and the business experts. If the business calls it a "Client" and the code calls it a "User," you have a translation cost. You have bugs waiting to happen. The code must speak the language of the business.
 
