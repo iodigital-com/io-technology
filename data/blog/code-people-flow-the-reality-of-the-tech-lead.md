@@ -19,7 +19,7 @@ The title sounds powerful. But the reality is often confusing.
 
 Are you a manager? An architect? A lead developer?
 
-The industry is not good at defining this role. It creates confusion. It creates stress. But there is a way to navigate this chaos. Based on the insights from a 5-day Technical Leadership learning journey, I will let you through it to decode what it actually means to lead in technology.
+The industry is not good at defining this role. It creates confusion. It creates stress. But there is a way to navigate this chaos. Based on the insights from a 5-day Technical Leadership learning journey I did with my iO colleagues, I will let you through it to decode what it actually means to lead in technology.
 
 It isn't just about code anymore. It is about the flow of value.
 
