@@ -94,6 +94,14 @@ You distinguish between what is **Core** (what makes your business to earn money
 
 ## The Conclusion
 
+### The Awakening: From Code to People
+
+For years, I’ve focused on writing the cleanest code and solving complex technical problems. But with this workshop, the focus shifted. We didn't just talk about architecture or software design; we talked about people.
+
+The biggest takeaway for me was realizing that my job isn't just to trying to be the "best engineer" in the room anymore. It’s about unblocking my team, making clear decisions when things are ambiguous, and helping others grow.
+
+### Closing Words
+
 Being a Tech Lead is not a destination. It is a journey.
 
 You start by writing good code. You end up designing social and technical systems. You move from managing variables to managing cognitive load. You move from debugging servers to debugging team dynamics.
@@ -108,10 +116,10 @@ But when you get it right, you build teams that flow. You build software that ma
 
 These are the books referred to in the 5-day Tech Lead training by our tutor Kenny Baas-Schwegler:
 
-- **Collaborative Software Design** by Evelyn van Kelle, Gien Verschatse, and Kenny Baas-Schwegler. _The core text on connecting the social and technical aspects of design._
-- **Domain-Driven Design: Tackling Complexity in the Heart of Software** by Eric Evans. _The seminal book that established DDD._
-- **Team Topologies** by Matthew Skelton and Manuel Pais. _Essential reading for organizing business and technology teams for fast flow._
-- **Accelerate** by Nicole Forsgren, Jez Humble, and Gene Kim. _The science behind DevOps and the Four Key Metrics._
-- **The Goal** by Eliyahu M. Goldratt. _A business novel about the Theory of Constraints and process improvement._
-- **Facilitating Software Architecture** by Andrew Harmel-Law. _Empowering teams to make architectural decisions._
-- **Patronen** by Danielle Braun. _Recognizing and changing patterns with an anthropological view._
+- [**Collaborative Software Design**](https://www.bol.com/nl/nl/f/collaborative-software-design/9300000165818746/) by Evelyn van Kelle, Gien Verschatse, and Kenny Baas-Schwegler. _The core text on connecting the social and technical aspects of design._
+- [**Domain-Driven Design: Tackling Complexity in the Heart of Software**](https://www.bol.com/nl/nl/f/domain-driven-design/9200000002151217/) by Eric Evans. _The seminal book that established DDD._
+- [**Team Topologies**](https://www.amazon.nl/Team-Topologies-Organizing-Business-Technology/dp/1966280009/ref=asc_df_1966280009) by Matthew Skelton and Manuel Pais. _Essential reading for organizing business and technology teams for fast flow._
+- [**Accelerate**](https://www.bol.com/nl/nl/p/accelerate/9200000080652224/) by Nicole Forsgren, Jez Humble, and Gene Kim. _The science behind DevOps and the Four Key Metrics._
+- [**The Goal**](https://www.bol.com/nl/nl/f/the-goal/30211999/) by Eliyahu M. Goldratt. _A business novel about the Theory of Constraints and process improvement._
+- [**Facilitating Software Architecture**](https://www.oreilly.com/library/view/facilitating-software-architecture/9781098151850/) by Andrew Harmel-Law. _Empowering teams to make architectural decisions._
+- [**Patronen**](https://www.bol.com/nl/nl/p/patronen/9300000017199073/) by Danielle Braun. _Recognizing and changing patterns with an anthropological view._
