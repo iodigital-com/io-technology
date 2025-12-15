@@ -13,7 +13,7 @@ theme: 'orange'
 
 # Code, People, Flow: The Reality of the Tech Lead
 
-You are an experienced senior engineer. You solve problems. You write clean code. You know your stack inside and out. Then, someone promotes you. And, you are a `Tech Lead`.
+You are an experienced senior engineer. You solve problems. You write clean code. You know your stack inside and out. Then, someone promotes you. And, you are a _Tech Lead_.
 
 The title sounds powerful. But the reality is often confusing.
 
