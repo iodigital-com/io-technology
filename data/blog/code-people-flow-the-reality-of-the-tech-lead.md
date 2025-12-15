@@ -45,7 +45,7 @@ Most teams should be **Stream-aligned teams**. These teams own the full lifecycl
 
 But they cannot do everything. They have limits. This limit is called **Cognitive Load**. If a team has to know too much about infrastructure, complex calculations, security protocols, business logic, they slow down. They break.
 
-As a Tech Lead, you must manage this load. You use **Platform Teams** to handle the heavy lifting of infrastructure. You use **Enabling Teams** to teach new skills. You use **Complicated Subsystem Teams** to handle the really hard math or algorithms.
+As a Tech Lead, you must manage this load. You leverage **Platform Teams** to handle the heavy lifting of infrastructure. You levarage **Enabling Teams** to teach new skills. You leverage **Complicated Subsystem Teams** to handle the really hard math or algorithms.
 
 You design the interactions. You reduce the friction. You make the flow smooth.
 
