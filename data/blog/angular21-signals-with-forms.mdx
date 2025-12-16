@@ -34,7 +34,7 @@ A key interaction pattern was subscribing to `valueChanges` or `statusChanges` o
 ### Example for a Simple Reactive Form
 
 <LazyStackBlitz
-  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-reactive-form?embed=1&file=src/app/app.component.ts&view=editor"
+  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-reactive-form?embed=1&file=src/app/app.component.ts&view=editor&ctl=1"
   title="Simple Reactive Form"
 />
 
@@ -44,7 +44,7 @@ In practice, while Angular’s simple form examples are helpful, real-world appl
 This “umbrella” approach makes large forms easier to manage, validate, and maintain. It also allows teams to encapsulate logic, reuse form sections, and keep the form model consistent with the structure of the underlying business domain. As a result, FormGroup-centric architectures became the standard for building sophisticated, enterprise-grade forms in Angular.
 
 <LazyStackBlitz
-  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/advanced-reactive-form?embed=1&file=src/app/app.component.ts&view=editor"
+  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/advanced-reactive-form?embed=1&file=src/app/app.component.ts&view=editor&ctl=1"
   title="Advanced Reactive Form"
 />
 
@@ -57,7 +57,7 @@ When discussing signal-based inputs, one of the most important points to underst
 At the same time, it’s important to emphasize that Angular’s direction toward a Signals-based model is very promising. The foundation being built around Signal is solid, and once the form-related APIs mature, Signals are likely to provide a cleaner, more predictable, and more efficient way to handle reactivity across the entire framework.
 
 <LazyStackBlitz
-  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-signal-form?embed=1&file=src/app/app.component.ts&view=editor"
+  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/simple-signal-form?embed=1&file=src/app/app.component.ts&view=editor&ctl=1"
   title="Simple Signal Form"
 />
 
@@ -66,7 +66,7 @@ At the same time, it’s important to emphasize that Angular’s direction towar
 The current problem with forms with signals is that they lacked a fully mature API to organize complex forms in a grouped structure with all the capabilities we expect (nested grouping, dynamic validation, complex logic, etc.). Although a "cheat" workaround exists — re-using the old `FormGroup` (from _Reactive Forms_) inside a signal-based setup — but relies on the legacy _zone.js + observable & subscription model_, which undermines many of the benefits that Signals aim to deliver. As a result, using Signals with `FormGroup` in this hybrid way often offers little to no real benefit. Therefore, it is generally not recommended to combine them this way.
 
 <LazyStackBlitz
-  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/hybrid-form?embed=1&file=src/app/app.component.ts&view=editor"
+  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/hybrid-form?embed=1&file=src/app/app.component.ts&view=editor&ctl=1"
   title="Hybrid Form"
 />
 
@@ -79,6 +79,6 @@ One of the most significant additions is the **experimental** release of _Signal
 Validation can be done with the newly released `schemaPath`. Among many nishe validation this contains the classic `minLegth`, `maxLength`, `required` etc. validation. [The Signal Forms API](https://angular.dev/guide/forms/signals/overview 'Official documentation - Signal Forms API') is marked as experimental, meaning the API could evolve with future releases — so it is not yet recommended for production usage without caution. Based on the current version of the Signal Forms’ API, we can expect for a similarly elegant solution then _Reactive Forms_ in the future.
 
 <LazyStackBlitz
-  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/experimental-advanced-signal-form?embed=1&file=src/app/app.component.ts&view=editor"
+  src="https://stackblitz.com/github/susanfulop/io-signal-form-article/tree/experimental-advanced-signal-form?embed=1&file=src/app/app.component.ts&view=editor&ctl=1"
   title="Experimental Signal Form"
 />
