@@ -39,15 +39,21 @@ Some of its key features are outlined here:
 
 ## What problem does Zod solve?
 
-### The problem: Runtime errors from invalid data
+### 🦹‍♂️ The problem
+
+Runtime errors from invalid data
 
 - Form submission crashes app
 - API returns unexpected structure
 - Environment variables missing
 
-### The hero: Zod - A new hope for type safety
+### 🦸 The hero
 
-### What you'll learn: Concrete examples of Zod solving real problems
+Zod - A new hope for type safety
+
+### 🚀 What you'll learn
+
+Concrete examples of Zod solving real problems
 
 ## Why use Zod in TypeScript?
 
@@ -61,7 +67,7 @@ Zod has became popular for several key reasons.
 - Became deeply integrated into the ecosystem with hundreds of libraries depending on it
 - Zod 4 was released with an innovative versioning approach to avoid "version avalanche" problems
 
-**Key Benefits:**
+### Key Benefits
 
 - **Schema as Single Source of Truth**: Define your data structure once, get both TypeScript types and
   runtime validation. No duplication or sync issues
@@ -197,7 +203,7 @@ const NotificationSchema = z.discriminatedUnion('type', [
 ])
 ```
 
-### Use when
+### ✅ Use when
 
 - Different data shapes based on "type" (discriminator)
 
@@ -284,7 +290,7 @@ const ApiResponseSchema = z.discriminatedUnion('success', [
 ])
 ```
 
-### Benefits
+### 💪 Benefits
 
 - **Type Safety**: TypeScript can narrow types automatically
 
@@ -305,7 +311,7 @@ function handlePayment(payment: z.infer<typeof PaymentMethodSchema>) {
 - **Performance**: More efficient than regular unions
 - **Clarity**: Makes the data structure's intent obvious
 
-### Avoid when
+### ❌ Avoid when
 
 - All variants have the same structure (use regular objects)
 - You just need optional fields (use .optional())
@@ -474,7 +480,7 @@ const CategorySchema: z.ZodType<Category> = z.object({
 
 ## When to use conditional composition
 
-### Use when
+### ✅ Use when
 
 - Fields depend on other field values
 - Business rules require cross-field validation
@@ -482,13 +488,13 @@ const CategorySchema: z.ZodType<Category> = z.object({
 - State determines available options
 - Form flows have conditional steps
 
-### Avoid when
+### ❌ Avoid when
 
 - Simple optional fields work fine
 - Logic is too complex (move to business layer)
 - Performance is critical (.refine() can be expensive)
 
-### Best Practices
+### 🚀 Best Practices
 
 - Keep conditions simple and readable
 - Provide clear error messages with specific paths
@@ -705,18 +711,16 @@ From **hoping** your data is right → **knowing** your data is right
 
 ## Closing thoughts
 
-This article is based on a talk that I gave at [iO Digital](https://www.iodigital.com/en) Frontend day 2025 conference, you can find the downloadable pdf of the presentation below as reference.
+This article is based on a talk that I gave at iO Frontend day 2025 conference, you can find a downloadable pdf of the presentation below as reference.
 
 ![Conference 1](/articles/zod-returns/io-frontend-developer-day-02067-min.jpg)
 
-A day filled with knowledge sharing and insights from colleagues at iO!
+A day filled with knowledge sharing and insights from colleagues at iO! 🙌
 
 ![Conference 2](/articles/zod-returns/io-frontend-developer-day-02522-min.jpg)
 
 ## Resources
 
-- Zod documentation: <https://zod.dev/>
-- Github demo with react hook form: <https://github.com/sagarsys/zod-returns>
-- Download the presentation as reference:
-
-  [Zod Returns!](/talks/zod-returns.pdf)
+- Zod documentation: [https://zod.dev/](https://zod.dev/)
+- Github demo with react hook form: [https://github.com/sagarsys/zod-returns](https://github.com/sagarsys/zod-returns)
+- Download the presentation as reference: [Zod Returns! PDF File](/talks/zod-returns.pdf)
