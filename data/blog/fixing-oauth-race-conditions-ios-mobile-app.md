@@ -1,8 +1,7 @@
 ---
 title: 'Fixing OAuth Race Conditions in iOS Mobile Apps with App Extensions'
 date: '2026-01-23'
-tags: ['mobile', 'ios']
-images: ['/aritcles/fixing-oauth-race-conditions-ios-mobile-app/diagram-overview.png']
+tags: ['mobile', 'ios', ]
 summary: 'How to prevent token conflicts between your app, widgets, and background services'
 authors: ['thomas-sempf']
 theme: 'beige'
