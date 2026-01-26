@@ -1,6 +1,6 @@
 ---
 name: Thomas Sempf
-avatar: /authors/thomas-sempf.jpeg
+avatar: /authors/thomas-sempf.png
 occupation: Senior Mobile Developer
 github: https://github.com/thomas-sempf
 linkedin: https://www.linkedin.com/in/tsempf/

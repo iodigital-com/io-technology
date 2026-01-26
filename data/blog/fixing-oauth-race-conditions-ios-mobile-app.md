@@ -1,17 +1,12 @@
 ---
 title: 'Fixing OAuth Race Conditions in iOS Mobile Apps with App Extensions'
 date: '2026-01-23'
-tags: ['mobile', 'ios', ]
+tags: ['mobile', 'ios']
+images: ['/articles/fixing-oauth-race-conditions-ios-mobile-app/race_conditions.jpg']
 summary: 'How to prevent token conflicts between your app, widgets, and background services'
 authors: ['thomas-sempf']
 theme: 'beige'
 ---
-
-# 
-
-**How to prevent token conflicts between your app, widgets, and background services — with native Apple APIs**
-
-## Introduction
 
 Widgets. App Clips. Notification services.
 
@@ -22,12 +17,13 @@ If these extensions need access to live data, they'll need to fetch it on their 
 Because when your app and its extensions both try to update the same OAuth token at the same time, you're risking:
 
 - Failed authentication
-- Unexpected logouts  
+- Unexpected logouts
 - Hard-to-trace race conditions
 
 Luckily, Apple gives us some tools to prevent and improve these scenarios.
 
 ## TL;DR
+
 **Short-lived tokens + multiple iOS processes = race conditions waiting to happen.**
 
 This locking approach makes sure only one process updates your OAuth state at a time — cleanly and safely.
@@ -58,7 +54,7 @@ For this we utilize the `NSFileCoordinator` class, a native API from Apple, whic
 
 Here’s how it works (find all the nitty-gritty details in the Swift code below):
 
-![Flow diagram of the locking mechanism](/aritcles/fixing-oauth-race-conditions-ios-mobile-app/diagram-overview.png)
+![Flow diagram of the locking mechanism](/articles/fixing-oauth-race-conditions-ios-mobile-app/diagram-overview.png)
 
 Here's how it works:
 
@@ -81,38 +77,38 @@ We remove the file and the lock onto it, indicating for others that the token up
 ```swift
 func acquireLock() async -> Bool {
     // URL based in the shared group file container
-    guard let lockFileURL = getLockFileURL() else { 
-        return false 
+    guard let lockFileURL = getLockFileURL() else {
+        return false
     }
-    
+
     var retryCount = 0
     var backoffTime: TimeInterval = 0.2
-    
+
     while retryCount < 5 {
         if attemptToAcquireLock(lockFileURL) {
             return true
         }
-        
+
         retryCount += 1
         NSLog("FileLock: Retrying in \(backoffTime) seconds...")
         try? await Task.sleep(nanoseconds: UInt64(backoffTime * 1_000_000_000))
         backoffTime *= 2 // Exponential backoff
     }
-    
+
     NSLog("FileLock: Failed to acquire lock after 5 retries.")
     return false
 }
 
 func releaseLock() {
-    guard let lockFileURL = getLockFileURL() else { 
-        return 
+    guard let lockFileURL = getLockFileURL() else {
+        return
     }
-    
+
     let coordinator = NSFileCoordinator()
     var error: NSError?
-    
-    coordinator.coordinate(writingItemAt: lockFileURL, 
-                          options: [], 
+
+    coordinator.coordinate(writingItemAt: lockFileURL,
+                          options: [],
                           error: &error) { (url) in
         do {
             try FileManager.default.removeItem(at: url)
@@ -121,7 +117,7 @@ func releaseLock() {
             NSLog("FileLock: Failed to remove lock file: \(error.localizedDescription)")
         }
     }
-    
+
     if let error = error {
         NSLog("FileLock: NSFileCoordinator error while releasing lock: \(error)")
     }
@@ -132,9 +128,9 @@ func attemptToAcquireLock(_ lockFileURL: URL) -> Bool {
     let lockTimeout: TimeInterval = 60
     var error: NSError?
     var success = false
-    
-    coordinator.coordinate(writingItemAt: lockFileURL, 
-                          options: [], 
+
+    coordinator.coordinate(writingItemAt: lockFileURL,
+                          options: [],
                           error: &error) { (url) in
         if let attributes = try? FileManager.default.attributesOfItem(atPath: url.path),
            let creationDate = attributes[.creationDate] as? Date {
@@ -146,11 +142,11 @@ func attemptToAcquireLock(_ lockFileURL: URL) -> Bool {
                 NSLog("FileLock: Lock expired. Forcing acquisition.")
             }
         }
-        
+
         do {
             let lockContent = ISO8601DateFormatter().string(from: Date())
-            try lockContent.write(to: url, 
-                                atomically: true, 
+            try lockContent.write(to: url,
+                                atomically: true,
                                 encoding: .utf8)
             success = true
             NSLog("FileLock: Lock acquired.")
@@ -158,16 +154,17 @@ func attemptToAcquireLock(_ lockFileURL: URL) -> Bool {
             NSLog("FileLock: Failed to create lock file: \(error.localizedDescription)")
         }
     }
-    
+
     if let error = error {
         NSLog("FileLock: NSFileCoordinator error while acquiring lock: \(error)")
     }
-    
+
     return success
 }
 ```
 
 ### One Caveat (and a possible workaround)
+
 If iOS decides to terminate the app or extension mid-refresh, the lock file might linger longer than intended. Using **beginBackgroundTask** can help mitigate this issue.
 
 ## Why It Matters
