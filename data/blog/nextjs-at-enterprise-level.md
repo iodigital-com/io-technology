@@ -1,10 +1,10 @@
 ---
-title: 'Your Article Title'
+title: 'Next.js at Enterprise Level'
 date: '2026-02-04'
 lastmod: '2026-02-04'
-tags: ['javascript', 'react', 'nextjs']
+tags: ['nextjs', 'enterprise', 'scalability', 'caching', 'performance']
 draft: false
-summary: 'How to scale Next.js for enterprise: lifecycle and caching, SLA/SLO and monitoring, CDN, horizontal scaling with Redis, API gateways, blob storage, event-driven design, and HTTP/2 or gRPC.'
+summary: 'Next.js works great out of the box—until traffic and complexity hit. Here’s how to take it to enterprise scale without rewriting everything: from caching and CDN to horizontal scaling, API gateways, and beyond.'
 images: ['/articles/nextjs-at-enterprise-level/nextjs-at-enterprise-level.png']
 authors: ['mohi-bagherani']
 ---
@@ -69,6 +69,8 @@ When a user requests a page from a running Next.js application, the server initi
   - **RSC Payload (React Server Components):** A specialized data format required for the client-side hydration step.
   - **Hydration:** The browser uses the RSC payload to make the static HTML interactive without requiring a full page reload.
 
+![Nextjs app request response lifecycle](/articles/nextjs-at-enterprise-level/nextjs-lifecycle.jpg)
+
 ### 2. The Static Alternative (SSG)
 
 If your application is built entirely without server-side dependencies (fully static), the lifecycle changes significantly:
@@ -77,9 +79,7 @@ If your application is built entirely without server-side dependencies (fully st
 - **Static Hosting:** Because there is no logic to execute per request, you do not need a running Node.js server. These files can be served directly from a global CDN or a simple web server (like Nginx or Apache).
 - **Scaling Advantage:** Static sites are inherently easier to scale because they eliminate the CPU overhead of server-side rendering.
 
-![Nextjs app request response lifecycle](/articles/nextjs-at-enterprise-level/nextjs-lifecycle.jpg)
-
-Now, let’s go one level deeper. When a request enters a Next.js application, it is first intercepted by any existing proxy.ts (formerly known as middleware in Next.js &lt;15). This is the ideal stage to decide whether to proceed with the request or reject it—for instance, by performing authentication.
+Now, let’s go one level deeper. When a request enters a Next.js application, it is first intercepted by any existing `proxy.ts` (formerly known as middleware in Next.js &lt;15). This is a stage usually developers decide whether to proceed with the request or reject it—for instance, by performing authentication.
 
 If the request is accepted, it is then handled by the appropriate route based on the URL. At this stage, Next.js first checks its internal cache to see if a similar request has been made before and remains valid. If a valid entry exists, it consumes the cached data for a faster response. If not, Next.js generates the response, serves it, and then caches it for future use.
 
@@ -99,18 +99,19 @@ Additionally, if the developer has implemented the React cache function or any o
 
 Now that we have explored the request/response lifecycle and the fundamentals of caching in Next.js, a critical question arises: what happens when we run two separate instances of the same application? Will data be duplicated across the caches of each server? Naturally, the answer is yes.
 
-## Easy wins
+## Make Your Next.js App Performant: Easy Wins
 
-Strategy for Scaling: Easy Wins Before Horizontal Scaling
+### Strategy for Scaling: Easy Wins Before Horizontal Scaling
+
 Before moving toward complex horizontal scaling (scaling out), there are several "easy wins" that can make an application robust enough to meet performance goals with minimal effort.
 
 ### 1. Content Delivery Network (CDN)
 
 Implementing a CDN is arguably the biggest Return on Investment (ROI) with the lowest complexity. By simply setting appropriate cache headers in your code and pointing your DNS to a CDN provider, you can achieve a 30–70% reduction in latency. It is a high-impact "set it and forget it" strategy for global performance.
 
-```typescript
-// Example 1: Setting Cache-Control headers in a Next.js Route Handler (App Router)
+**Example 1:** Setting Cache-Control headers in a Next.js Route Handler
 
+```typescript
 // /api/hello/route.ts
 export async function GET() {
   return NextResponse.json(
@@ -126,9 +127,9 @@ export async function GET() {
 }
 ```
 
-```typescript
-// Example 2: Customizing cache headers for static assets (Next.js 15+)
+**Example 2:** Customizing cache headers for static assets
 
+```typescript
 // next.config.ts
 const nextConfig: NextConfig = {
   async headers() {
@@ -199,7 +200,7 @@ export default function Page() {
 }
 
 async function AsyncContent() {
-  const data = await fetch('api/data').then((r) => r.json())
+  const data = await fetch('/api/data').then((r) => r.json())
   return <div>{data.message}</div>
 }
 ```
@@ -240,7 +241,7 @@ To solve this, you must implement a **shared cache** that all instances can acce
 
 ### Domain-Driven Scaling (Micro-Frontends)
 
-Rather than replicating the entire system, you can divide the application into Micro-Frontends based on **Domain-Driven Design** (DDD). This allows you to scale specific domains that experience higher demand. For example, in an e-commerce platform, the "Product" service might require ten replicas to handle high traffic, while the "Profile" service may only need two.
+Rather than replicating the entire system, you can divide the application into Micro-Frontends based on **Domain-Driven Design (DDD)**. This allows you to scale specific domains that experience higher demand. For example, in an e-commerce platform, the "Product" service might require ten replicas to handle high traffic, while the "Profile" service may only need two.
 
 ### Autoscaling with Kubernetes (K8s)
 
@@ -248,21 +249,21 @@ Modern infrastructure often utilizes Autoscaling to manage resources automatical
 
 ## API Gateway
 
-Moving repetitive logic to a dedicated place makes the system more scalable and manageable and optimization like caching can be done easier. One common logic that we can separate it from applications is authentication. If you have a bunch of code on every application that before letting a request come in, it checks the validity of the user (for instance using proxy.ts in next.js), it is a good point to move this into a separate service.  
-API Gateway can be a good option by putting it in front of your infrastructure that needs to be protected against unauthorized access. We call these services as proxy servers that hide the infrastructure and also they can act as an HTTPS termination.  
-So all the traffic afterward can be travelled without encryption because it is not required anymore since everything after that proxy will be in our infrastructure’s network and no outsider can access it. So it is safe to proceed and communicate with a simpler and a bit faster protocol like HTTP.  
-How to configure an API Gateway is simple, you just need to launch an Nginx server(preferably a managed service by cloud so it will control the availability for you too) and set some configurations that for certain resources, it checks for a valid authentication tokens using another simple server by passing only the request headers to it and if not, it will reject the request with proper HTTP status code before letting the request to proceed.
+Centralizing repetitive logic in a dedicated layer improves scalability and maintainability; cross-cutting concerns such as caching and authentication become easier to optimize and enforce. A common candidate for extraction is **authentication**: when each application repeatedly validates the user before accepting a request (for example via `proxy.ts` in Next.js), that logic is a strong candidate for a separate, shared service.  
+An **API Gateway** fulfills this role by sitting in front of the infrastructure that must be protected from unauthorized access. It acts as a reverse proxy, hiding internal services from the public and often serving as the **HTTPS termination** point.  
+Once the gateway has terminated TLS, traffic between the gateway and your internal services can use plain HTTP, since it remains within your own network. This reduces overhead and simplifies internal communication.  
+Implementing an API Gateway typically involves deploying a reverse proxy such as Nginx (or a managed equivalent from your cloud provider, which also handles availability). For protected routes, the proxy is configured to validate authentication by forwarding only the request headers to a dedicated auth service. If the token is invalid, the gateway responds with the appropriate HTTP status (for example 401) and does not forward the request to the app.
 
 ![Nextjs and API Gateway](/articles/nextjs-at-enterprise-level/nextjs-and-api-gateway.jpg)
 
-An example diagram how it will look like would be like the image below:
+The following Nginx configuration illustrates this pattern:
 
 ```shell
 http {
     # 1. Define where your microservices live
-    upstream cart_service    { server localhost:3001; }
-    upstream product_service { server localhost:3002; }
-    upstream profile_service { server localhost:3003; }
+    upstream cart_app    { server localhost:3001; }
+    upstream product_app { server localhost:3002; }
+    upstream profile_app { server localhost:3003; }
 
     server {
         listen 80;
@@ -279,17 +280,17 @@ http {
         # 3. Protected Routes
         location /cart {
             auth_request /auth-verify;
-            proxy_pass http://cart_service;
+            proxy_pass http://cart_app;
         }
 
         location /product {
             auth_request /auth-verify;
-            proxy_pass http://product_service;
+            proxy_pass http://product_app;
         }
 
         location /profile {
             auth_request /auth-verify;
-            proxy_pass http://profile_service;
+            proxy_pass http://profile_app;
         }
 
         # 4. Error Handling
@@ -334,6 +335,7 @@ Sometimes, a single user interaction triggers a cascade of internal service invo
 - **Analytics:** Sending data to an external tracking tool.
 - **Logging:** Collecting system logs for monitoring.
 - **Inventory (SAP):** Calling ERP services to deduct product availability.
+- ...
 
 When thousands of users perform this action simultaneously, it results in tens of thousands of invocations. If these are handled synchronously (waiting for one to finish before starting the next), the system will quickly become sluggish or crash under the load.
 
@@ -381,4 +383,4 @@ While REST is common for public APIs, gRPC is often the superior choice for inte
 
 ## Summary
 
-This article explores advanced strategies for building enterprise-grade applications with Next.js. It covers critical infrastructure aspects like direct blob storage uploads for scalable file handling, event-driven architecture for managing high-volume interactions efficiently, and the advantages of asynchronous processing for resilience and throughput. The article also highlights the benefits of upgrading to HTTP/2 and utilizing gRPC over REST for internal service communication, leading to better performance, resource efficiency, and maintainability in large-scale systems.
+Scaling Next.js for enterprise means going beyond defaults: defining SLAs and SLOs, understanding the request lifecycle and caching behavior, and layering in CDN, horizontal scaling with a shared cache, API gateways, blob storage, and event-driven or HTTP/2/gRPC-based communication where they fit. No single team can adopt everything at once—and that is fine. Start with the highest-impact, lowest-friction wins (for example CDN and cache headers, or moving auth behind an API gateway), measure against your SLOs, then iterate. The goal is a system that stays performant and maintainable as traffic and complexity grow. Pick one area from this article that matches your current bottleneck and try it in your next sprint.
