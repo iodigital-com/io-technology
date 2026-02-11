@@ -1,7 +1,7 @@
 ---
 title: 'Next.js at Enterprise Level'
-date: '2026-02-10'
-lastmod: '2026-02-10'
+date: '2026-02-11'
+lastmod: '2026-02-11'
 tags: ['nextjs', 'enterprise', 'scalability', 'caching', 'performance']
 draft: false
 summary: 'Next.js works great out of the box—until traffic and complexity hit. Here’s how to take it to enterprise scale without rewriting everything: from caching and CDN to horizontal scaling, API gateways, and beyond.'
