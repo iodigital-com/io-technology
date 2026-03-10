@@ -143,8 +143,8 @@ Quick reference:
 Here's how it looks in practice:
 
 ```typescript
-// Streaming: voyage list
-const subscriptionInstance = useWebsocketSubscription<Voyage[]>({
+// Streaming: data list
+const subscriptionInstance = useWebsocketSubscription<Data[]>({
   key: 'data-list',
   url: '/api',
   uri: '/api/data',
@@ -233,4 +233,4 @@ Here’s a concise rundown of what i finally ended up with:
 
 ## Summary
 
-It's been emotional to say the least! A lot of trial and error, but it's reached a point where I'm pretty happy with the result. Using TypeScript classes for most of the logic was something I had never really considered, but it made sense: stability, shareable instances, and a clear separation of concerns. The main trade-off is a slightly different mental model from typical React patterns, but it works well for real-time features and scales across components. TanStack championed that mental model, and it resonated with me.
+It's been emotional to say the least! A lot of trial and error, but it has reached a point where I'm pretty happy with the result. Using TypeScript classes for most of the logic was something I had never really considered, but it made sense: stability, shareable instances, and a clear separation of concerns. The main trade-off is a slightly different mental model from typical React patterns, but it works well for real-time features and scales across components. TanStack championed that mental model, and it resonated with me.
