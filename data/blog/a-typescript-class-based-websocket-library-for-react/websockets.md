@@ -8,13 +8,24 @@ authors: ['max-troost']
 theme: 'blue'
 ---
 
-While working for my client the need for WebSockets came up. The new application would rely heavily on WebSocket connections for fast, live updates, and certain subscriptions would be needed across multiple pages. Ideally, those subscriptions would not have to cycle through `unsubscribe` and `subscribe` within a fraction of a second every time the user navigated.
+While working for my client, the need for WebSockets came up. The new application would rely heavily on WebSocket connections for fast, live updates, and certain subscriptions would be needed across multiple pages. Ideally, those subscriptions would not have to cycle through `unsubscribe` and `subscribe` within a fraction of a second every time the user navigated.
 
 The solution had to do a few things. I wanted a single WebSocket connection per URL, reused for all subscriptions that share that URL. The connection had to stay alive: the browser, AWS, or any other factor could trigger a disconnect and a reconnect after that, and I needed to handle that with an automatic resubscribe. I also needed to be able to disable the connection in different situations—user rights, connection sequence, or user region (client-specific). Subscriptions had to persist between pages without resubscribing, and the whole thing had to be easy to use in React.
 
 So I built a practical WebSocket setup for React using TypeScript classes and TanStack Store. In this post I’ll walk through the design, trade-offs, and how to use it.
 
-Why build it myself? There aren’t many React-ready WebSocket libraries out there, and how hard could it be? Well—pretty tough, as it turns out 😄
+---
+
+## Why build it myself?
+
+There aren’t many React-ready WebSocket libraries out there—in fact, there’s really only one: `react-use-websocket`. But it was missing some key features I wanted:
+
+- **Reactivity only when needed** – Only data and status values trigger re-renders; the rest of the logic stays outside React’s render cycle.
+- **Access to received data deep in the tree** – Child components can read data without prop drilling or paying a performance cost.
+- **Safe to use in React context** – No need to worry about the usual performance pitfalls of React context; it’s a single class instance, so updates stay predictable.
+- **Promise-based message sending** – Send a message and await the response.
+
+How hard could it be right? Well—pretty tough, as it turns out 😄
 
 ---
 
@@ -39,7 +50,7 @@ Here's how it all fits together.
 
 **`WebsocketConnection`** is a singleton per URL key. It owns the raw `WebSocket`, heartbeat, reconnection, and message routing. It doesn't distinguish between subscription and message APIs; it only knows the **`WebsocketListener`** interface.
 
-**`WebsocketSubscriptionApi`** and **`WebsocketMessageApi`** both implement `WebsocketListener`. When you register one via, the connection:
+**`WebsocketSubscriptionApi`** and **`WebsocketMessageApi`** both implement `WebsocketListener`. When you register one, the connection:
 
 1. Injects a send callback into **`WebsocketSubscriptionApi`** or **`WebsocketMessageApi`** so they can send messages back to the **`WebsocketConnection`**
 2. Starts the WebSocket if it isn't already open
@@ -89,7 +100,7 @@ const data = useStore(subscriptionInstance, (s) => s.message)
 
 Here's the tricky part: classes themselves are not reactive. React won’t re-render when you call `subscriptionInstance.subscribe()` or when the WebSocket receives data.
 
-**Reactivity comes from TanStack Store inside the class** which uses `useSyncExternalStore` underneath it al:
+**Reactivity comes from TanStack Store inside the class**, which uses `useSyncExternalStore` underneath it all:
 
 ```typescript
 // Inside WebsocketSubscriptionApi
@@ -138,9 +149,9 @@ Quick reference:
 | **`useWebsocketMessage`**           | One-off commands (validate, modify, mark read)          |
 | **`useWebsocketSubscriptionByKey`** | Child components that need a parent’s subscription data |
 
-**Subscription** – Single URI, subscribe once, receive a stream of messages. Good for data lists, status checks and notifications.
+**Subscription** – Single URI, subscribe once, receive a stream of messages. Good for data lists, status checks, and notifications.
 
-**Message** – Send to any URI you want, optionally await a response. Good for commands that need a reply or fire-and-forget actions.
+**Message** – Send to any URI you want, optionally await a response. Good for commands that need a reply, or for fire-and-forget actions.
 
 Here's how it looks in practice:
 
@@ -169,7 +180,7 @@ const result = await messageInstance.sendMessage('/api/validate', formValues)
 
 In short: the connection stays open as long as at least one listener is registered. When the last listener is removed, a **cleanup delay** (3 seconds in production) runs before closing the socket—so quick re-renders don’t cause unnecessary disconnects.
 
-**Disconnection triggers**: URL change (e.g. auth/region) or explicit `reconnect()` tears down and reconnects. Browser offline tears down immediately and defers reconnect until online. Pong timeout (no pong within 10 seconds) force-closes and triggers reconnection. Close code **1000** (Normal Closure) does not reconnect; other codes (1001, 1006, 1011, 1012, 1013, etc.) do. Code **1013** (Try Again Later) adds an extra 30 second delay before reconnecting.
+**Disconnection triggers**: URL change (e.g. auth/region) or explicit `reconnect()` tears down and reconnects. Browser offline tears down immediately and defers reconnect until online. A pong timeout (no pong within 10 seconds) force-closes and triggers reconnection. Close code **1000** (Normal Closure) does not reconnect; other codes (1001, 1006, 1011, 1012, 1013, etc.) do. Code **1013** (Try Again Later) adds an extra 30 second delay before reconnecting.
 
 Reconnection uses **exponential backoff**: 4 seconds for attempts 0–4, 30 seconds for 5–9, 90 seconds for 10+. After 20 failed attempts, automatic reconnection stops and you must click Retry to reconnect. Notifications only appear after 10 failed attempts to avoid noise during brief outages.
 
@@ -179,8 +190,7 @@ Reconnection uses **exponential backoff**: 4 seconds for attempts 0–4, 30 seco
 
 I ran into a few gotchas while building this—things that aren't obvious until you hit them:
 
-**Cached messages** – When the socket isn't open yet, only non-subscribe messages get queued. Subscribe messages (from `WebsocketSubscriptionApi`) kick off a connect but are not cached; other messages (e.g. from `WebsocketMessageApi`) are queued and sent when the connection opens. The Message API is promise-based so you can build on it. Subscriptions on the other hand expose a `pendingSubscription` flag in the store—`true` while a subscription is in flight, `false` once the data has been received.
-I made that choice deliberately to avoid stale subscription state, but it's something to keep in mind. The important thing: the user of the application never sees or cares how these connections are made—this is all for ease of use and to keep the concerns inside the websocket implementation.
+**Cached messages** – When the socket isn't open yet, only non-subscribe messages get queued. Subscribe messages (from `WebsocketSubscriptionApi`) kick off a connect but are not cached; other messages (e.g. from `WebsocketMessageApi`) are queued and sent when the connection opens. I made that choice deliberately to avoid stale subscription state, but it's something to keep in mind. The Message API is promise-based so you can build on it. Subscriptions expose a `pendingSubscription` flag in the store—`true` while a subscription is in flight, `false` once the data has been received. The important thing: the user of the application never sees or cares how these connections are made—this is all for ease of use and to keep the concerns inside the websocket implementation.
 
 **`replaceUrl` vs `reconnect`** – Both end up calling `teardownAndReconnect`. There's a guard (`_isReconnecting`) so that when auth changes and both fire in the same render, you don't get overlapping reconnect cycles. Took me a while to get that right.
 
@@ -198,7 +208,7 @@ I made that choice deliberately to avoid stale subscription state, but it's some
 
 ## Feature list
 
-Here’s a concise rundown of what i finally ended up with:
+Here’s a concise rundown of what I finally ended up with:
 
 **Connection (`WebsocketConnection`)**
 
@@ -231,6 +241,13 @@ Here’s a concise rundown of what i finally ended up with:
 
 - Hooks wire into the provider and auth context: URL is derived from region/role; `replaceUrl` and `reconnect` run when auth changes.
 - Options are deep-compared to avoid unnecessary effect re-runs; removal is delayed slightly to avoid subscribe/unsubscribe churn on re-renders.
+
+---
+
+## Download a copy
+
+This package isn’t published yet, but you can download it here and take a look.
+[use-websocket](/articles/a-typescript-class-based-websocket-library-for-react/use-websocket.zip)
 
 ---
 
