@@ -87,7 +87,9 @@ const data = useStore(subscriptionInstance, (s) => s.message)
 
 ### Reactivity
 
-Here's the tricky part: classes themselves are not reactive. React won’t re-render when you call `subscriptionInstance.subscribe()` or when the WebSocket receives data. Reactivity comes from **TanStack Store** inside the class:
+Here's the tricky part: classes themselves are not reactive. React won’t re-render when you call `subscriptionInstance.subscribe()` or when the WebSocket receives data.
+
+**Reactivity comes from TanStack Store inside the class** which uses `useSyncExternalStore` underneath it al:
 
 ```typescript
 // Inside WebsocketSubscriptionApi
@@ -177,7 +179,8 @@ Reconnection uses **exponential backoff**: 4 seconds for attempts 0–4, 30 seco
 
 I ran into a few gotchas while building this—things that aren't obvious until you hit them:
 
-**Cached messages** – When the socket isn't open yet, only non-subscribe messages get queued. Subscribe messages (from `WebsocketSubscriptionApi`) kick off a connect but are not cached; other messages (e.g. from `WebsocketMessageApi`) are queued and sent when the connection opens. I made that choice deliberately to avoid stale subscription state, but it's something to keep in mind.
+**Cached messages** – When the socket isn't open yet, only non-subscribe messages get queued. Subscribe messages (from `WebsocketSubscriptionApi`) kick off a connect but are not cached; other messages (e.g. from `WebsocketMessageApi`) are queued and sent when the connection opens. The Message API is promise-based so you can build on it. Subscriptions on the other hand expose a `pendingSubscription` flag in the store—`true` while a subscription is in flight, `false` once the data has been received.
+I made that choice deliberately to avoid stale subscription state, but it's something to keep in mind. The important thing: the user of the application never sees or cares how these connections are made—this is all for ease of use and to keep the concerns inside the websocket implementation.
 
 **`replaceUrl` vs `reconnect`** – Both end up calling `teardownAndReconnect`. There's a guard (`_isReconnecting`) so that when auth changes and both fire in the same render, you don't get overlapping reconnect cycles. Took me a while to get that right.
 
