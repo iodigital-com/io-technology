@@ -1,7 +1,7 @@
 ---
 title: 'A TypeScript Class-Based WebSocket Library for React'
 date: '2026-03-10'
-tags: ['typescript', 'frontend', 'react', 'websockets']
+tags: ['Typescript', 'Frontend', 'React', 'Websockets', 'Github']
 images: ['/articles/a-typescript-class-based-websocket-library-for-react/weboscket-header.jpeg']
 summary: 'A practical WebSocket setup for React using TypeScript classes and TanStack Store'
 authors: ['max-troost']
@@ -244,10 +244,24 @@ Here’s a concise rundown of what I finally ended up with:
 
 ---
 
-## Download a copy
+## Repository & NPM package
 
-This package isn’t published yet, but you can download it here and take a look.
-[use-websocket](/articles/a-typescript-class-based-websocket-library-for-react/use-websocket.zip)
+The library is open source! If you're interested in diving deeper, reviewing the implementation, or even contributing, the full source code is available on GitHub. You can check out the repository for usage examples, latest updates, and documentation:
+
+For easy integration into your project, the package is also published on npm. You can install it directly using your favorite package manager:
+
+```bash
+npm install @maxtroost/use-websocket
+# or
+yarn add @maxtroost/use-websocket
+# or
+pnpm add @maxtroost/use-websocket
+```
+
+Both the GitHub repository and npm package offer up-to-date resources, a readme with usage info, and a place to report issues or request features. Happy hacking!
+
+- [Github Repository](https://github.com/max-troost-io/use-websockets)
+- [NPM package](https://www.npmjs.com/package/@maxtroost/use-websocket)
 
 ---
 
