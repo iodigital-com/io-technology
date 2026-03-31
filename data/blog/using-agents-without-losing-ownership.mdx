@@ -2,7 +2,7 @@
 title: 'How I Use Agents Without Losing Ownership of My Code'
 date: '2026-03-31'
 tags: ['frontend', 'ai', 'tooling', 'developer-experience']
-images: ['/articles/using-agents-without-losing-ownership/hero.svg']
+images: ['/articles/using-agents-without-losing-ownership/hero.webp']
 summary: 'A practical look at building an agent workflow that makes you faster — without turning your codebase into AI slop.'
 authors: ['jake-ortega']
 theme: 'beige'
@@ -11,7 +11,7 @@ theme: 'beige'
 Most AI workflow content is either overhyped or too abstract to apply in real codebases. I joined iO in mid-February and am using the gap before my first client project to build a real agent workflow. This is not about using more AI. It is about using it with constraints.
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '2rem 0'}}>
-	<img src='/articles/using-agents-without-losing-ownership/hero.svg' alt='Visual summary of idea to plan to ship workflow with clear human ownership' />
+	<img src='/articles/using-agents-without-losing-ownership/hero.webp' alt='Pilot and AI co-pilot in a cockpit, representing AI assistance with human ownership of decisions' />
 </div>
 
 ## The problem I kept seeing
@@ -76,7 +76,7 @@ These come from mistakes I already made.
 **Run a strict delivery loop.** At first I skipped planning and ticket creation, and the result was predictable: I kept revisiting half-baked implementations. This is the workflow I use now:
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '1.5rem 0 2rem'}}>
-	<img src='/articles/using-agents-without-losing-ownership/workflow-loop.svg' alt='Loop diagram from idea refinement to plan, tickets, implementation, and governance checks' />
+	<img src='/articles/using-agents-without-losing-ownership/workflow-steps.webp' alt='Stepping-stone path from idea to delivery, with checkpoints representing structured planning and validation' />
 </div>
 
 1. Start with the raw idea and ask AI for an opinion.
@@ -103,7 +103,7 @@ npm run events:guard       # catches io-prefixed custom event names
 These checks exist partly because agents drift. They follow prompts, not unstated system rules. Automated gates catch drift that code review can miss.
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '1.5rem 0 2rem'}}>
-	<img src='/articles/using-agents-without-losing-ownership/governance-gates.svg' alt='Checklist visual of governance gates before shipping code' />
+	<img src='/articles/using-agents-without-losing-ownership/cleanup-wave.webp' alt='Split visual showing fast feature delivery on one side and delayed cleanup complexity on the other' />
 </div>
 
 **Read every diff.** Agent output is fast, but careful review is not optional. Quiet mistakes happen: inverted conditionals, almost-correct token variables, or tests that pass for the wrong reason. If I miss those, I pay later.
