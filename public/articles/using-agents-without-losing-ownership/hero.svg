@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">Using Agents Without Losing Ownership</title>
+  <desc id="hero-desc">A three-stage AI-assisted development workflow — Idea, Plan, and Ship — showing how to use AI agents while maintaining human ownership of each decision.</desc>
+
+  <defs>
+    <!-- Drop shadow for cards: blur 12px, opacity 0.10 -->
+    <filter id="card-shadow" x="-8%" y="-5%" width="122%" height="122%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0D1F2D" flood-opacity="0.10"/>
+    </filter>
+
+    <!-- Clip paths so accent bars follow card border-radius -->
+    <clipPath id="clip-card1">
+      <rect x="100" y="160" width="420" height="580" rx="16"/>
+    </clipPath>
+    <clipPath id="clip-card2">
+      <rect x="590" y="160" width="420" height="580" rx="16"/>
+    </clipPath>
+    <clipPath id="clip-card3">
+      <rect x="1080" y="160" width="420" height="580" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1600" height="900" fill="#FAFAF8"/>
+
+  <!-- ── Decorative low-opacity circles ── -->
+  <circle cx="1490" cy="90" r="310" fill="#1A6EAE" opacity="0.06"/>
+  <circle cx="110" cy="840" r="290" fill="#D9C9A8" opacity="0.06"/>
+
+  <!-- ══════════════════════════════════════
+       CARD 1 — IDEA
+       x: 100–520 · y: 160–740
+       ══════════════════════════════════════ -->
+
+  <!-- White card body + drop shadow -->
+  <rect x="100" y="160" width="420" height="580" rx="16" fill="#FFFFFF" filter="url(#card-shadow)"/>
+  <!-- Accent bar: blue, clipped to card rounding -->
+  <rect x="100" y="160" width="420" height="8" fill="#1A6EAE" clip-path="url(#clip-card1)"/>
+
+  <!-- Heading -->
+  <text x="136" y="248"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="36" font-weight="700" fill="#0D1F2D" letter-spacing="-0.5">Idea</text>
+
+  <!-- Divider -->
+  <line x1="136" y1="272" x2="484" y2="272" stroke="#1A6EAE" stroke-width="1" opacity="0.20"/>
+
+  <!-- Sub-item 1 -->
+  <circle cx="136" cy="322" r="6" fill="#1A6EAE"/>
+  <text x="158" y="322"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Refine with AI</text>
+
+  <!-- Sub-item 2 -->
+  <circle cx="136" cy="390" r="6" fill="#1A6EAE"/>
+  <text x="158" y="390"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Challenge assumptions</text>
+
+  <!-- Sub-item 3 -->
+  <circle cx="136" cy="458" r="6" fill="#1A6EAE"/>
+  <text x="158" y="458"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Define boundaries</text>
+
+  <!-- Decorative watermark step number -->
+  <text x="494" y="700"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="130" font-weight="800" fill="#1A6EAE" opacity="0.05"
+        text-anchor="end">01</text>
+
+  <!-- ══════════════════════════════════════
+       ARROW 1  (gap x: 520–590, centre x=555, y=450)
+       ══════════════════════════════════════ -->
+  <path d="M524,443 L554,443 L554,430 L578,450 L554,470 L554,457 L524,457 Z"
+        fill="#1A6EAE"/>
+
+  <!-- ══════════════════════════════════════
+       CARD 2 — PLAN
+       x: 590–1010 · y: 160–740
+       ══════════════════════════════════════ -->
+
+  <rect x="590" y="160" width="420" height="580" rx="16" fill="#FFFFFF" filter="url(#card-shadow)"/>
+  <rect x="590" y="160" width="420" height="8" fill="#D9C9A8" clip-path="url(#clip-card2)"/>
+
+  <!-- Heading -->
+  <text x="626" y="248"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="36" font-weight="700" fill="#0D1F2D" letter-spacing="-0.5">Plan</text>
+
+  <!-- Divider -->
+  <line x1="626" y1="272" x2="974" y2="272" stroke="#D9C9A8" stroke-width="1" opacity="0.40"/>
+
+  <!-- Sub-item 1 -->
+  <circle cx="626" cy="322" r="6" fill="#D9C9A8"/>
+  <text x="648" y="322"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Break into tickets</text>
+
+  <!-- Sub-item 2 -->
+  <circle cx="626" cy="390" r="6" fill="#D9C9A8"/>
+  <text x="648" y="390"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">One ticket at a time</text>
+
+  <!-- Sub-item 3 -->
+  <circle cx="626" cy="458" r="6" fill="#D9C9A8"/>
+  <text x="648" y="458"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Agent per task</text>
+
+  <!-- Decorative watermark step number -->
+  <text x="984" y="700"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="130" font-weight="800" fill="#D9C9A8" opacity="0.22"
+        text-anchor="end">02</text>
+
+  <!-- ══════════════════════════════════════
+       ARROW 2  (gap x: 1010–1080, centre x=1045, y=450)
+       ══════════════════════════════════════ -->
+  <path d="M1014,443 L1044,443 L1044,430 L1068,450 L1044,470 L1044,457 L1014,457 Z"
+        fill="#1A6EAE"/>
+
+  <!-- ══════════════════════════════════════
+       CARD 3 — SHIP
+       x: 1080–1500 · y: 160–740
+       ══════════════════════════════════════ -->
+
+  <rect x="1080" y="160" width="420" height="580" rx="16" fill="#FFFFFF" filter="url(#card-shadow)"/>
+  <rect x="1080" y="160" width="420" height="8" fill="#2E7D52" clip-path="url(#clip-card3)"/>
+
+  <!-- Heading -->
+  <text x="1116" y="248"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="36" font-weight="700" fill="#0D1F2D" letter-spacing="-0.5">Ship</text>
+
+  <!-- Divider -->
+  <line x1="1116" y1="272" x2="1464" y2="272" stroke="#2E7D52" stroke-width="1" opacity="0.25"/>
+
+  <!-- Sub-item 1 -->
+  <circle cx="1116" cy="322" r="6" fill="#2E7D52"/>
+  <text x="1138" y="322"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Run governance checks</text>
+
+  <!-- Sub-item 2 -->
+  <circle cx="1116" cy="390" r="6" fill="#2E7D52"/>
+  <text x="1138" y="390"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Review every diff</text>
+
+  <!-- Sub-item 3 -->
+  <circle cx="1116" cy="458" r="6" fill="#2E7D52"/>
+  <text x="1138" y="458"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="20" fill="#4A6070" dominant-baseline="middle">Own final decisions</text>
+
+  <!-- Decorative watermark step number -->
+  <text x="1474" y="700"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="130" font-weight="800" fill="#2E7D52" opacity="0.07"
+        text-anchor="end">03</text>
+
+  <!-- ── Footer ── -->
+  <text x="100" y="876"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#4A6070">Jake Ortega · io Digital</text>
+</svg>
