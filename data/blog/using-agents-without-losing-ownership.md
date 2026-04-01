@@ -8,7 +8,7 @@ authors: ['jake-ortega']
 theme: 'beige'
 ---
 
-Most AI workflow content is either overhyped or too abstract to apply in real codebases. I joined iO in mid-February and am using the gap before my first client project to build a real agent workflow. This is not about using more AI. It is about using it with constraints.
+Most AI workflow content is either overhyped or too abstract to apply in real codebases. This is not about using more AI. It is about using it with constraints.
 
 <div style={{display: 'flex', justifyContent: 'center', margin: '2rem 0'}}>
 	<img src='/articles/using-agents-without-losing-ownership/hero.webp' alt='Pilot and AI co-pilot in a cockpit, representing AI assistance with human ownership of decisions' />
@@ -26,12 +26,12 @@ That pattern pushed me to build an actual workflow. Without structure, AI create
 
 I started with [agency-agents](https://github.com/msitarzewski/agency-agents), a registry of specialised AI agent personalities. Each one has a clear role, expected deliverables, and constraints, so they do not behave like generic assistants with no context. A Code Reviewer agent should think differently from a Frontend Developer agent, and that difference is intentional.
 
-In io-design-system, I use a curated subset with project-specific guardrails. I keep the Copilot-compatible setup aligned with the same project rules and conventions in VS Code.
+In [Diwa Design System](https://designsystem.diwacopilot.com/), I use a curated subset with project-specific guardrails. I keep the Copilot-compatible setup aligned with the same project rules and conventions in VS Code.
 
 The agents I reach for most often are:
 
 - **Frontend Developer** — component scaffolding, prop wiring, Shadow DOM patterns
-- **Technical Writer** — CHANGELOG and documentation alignment after refactors
+- **Technical Writer** — documentation clarity, structure, and wording passes before publishing
 - **Code Reviewer** — a second pass before I push, looking for things I would miss
 - **Accessibility Auditor** — ARIA scaffolding, focus management templates
 - **Evidence Collector** — tracing decisions back to constraints, useful when something feels off
@@ -41,7 +41,7 @@ Named agents with defined behaviour make the workflow repeatable. I am not re-ex
 
 ## The project — a real codebase, not a tutorial
 
-The initiative is a Web Component library with a Stencil.js core and auto-generated React, Vue, and Angular wrappers. It has a strict token system, so there are no hardcoded hex values or magic pixel sizes, and everything goes through `var(--io-*)` CSS custom properties. Shadow DOM is non-negotiable. WCAG AA is the minimum. Each component ships with Vitest tests for render, event emission, and disabled state.
+The product I am working on includes a framework-agnostic design system built on Web Components and shared CSS tokens. It has a strict token system, so there are no hardcoded hex values or magic pixel sizes, and everything goes through token variables. Shadow DOM boundaries are explicit. WCAG 2.2 AA is the minimum. Components ship with tests for rendering, interaction, and state handling.
 
 These are real constraints that matter to consumers of the library, not just nice engineering exercises. That made this a good environment to see where agents help and where they fall short. There is no room for shortcuts.
 
@@ -49,11 +49,9 @@ These are real constraints that matter to consumers of the library, not just nic
 
 Agents help most with clearly defined, repetitive work.
 
-**Boilerplate with constraints.** New components follow a fixed structure: Stencil class, types file, styles file, utils file, and three spec files. Doing that manually takes me around 20 to 30 minutes. With agents, that drops to a few minutes for a usable starting point. A prompt like "generate an `io-badge` component following the `io-button` structure" gives me something usable very quickly. It is never final, but it follows the correct pattern and removes most of the setup overhead.
+**Boilerplate with constraints.** New components usually follow a consistent structure: component class, types file, styles file, utils file, and spec files. Doing that manually takes me around 20 to 30 minutes. With agents, that drops to a few minutes for a usable starting point. A prompt like "generate a `diwa-badge` component following the `diwa-button` structure" gives me something usable very quickly. It is never final, but it follows the correct pattern and removes most of the setup overhead.
 
-**Consistency checks.** Agents are good at spotting drift from established patterns, like a hardcoded `#1a1a2e` where a `var(--io-text-primary)` token should be, or a component using `px` when the rest of the system uses spacing tokens. I catch many of these myself, but not all, so this extra pass is useful.
-
-**Docs synchronisation.** After refactors, CHANGELOG, CONTRIBUTING, and AGENTS.md can drift. That work is easy to postpone when speed is high. An agent can read the diff and draft updates, then I rewrite before merge. Starting from a draft is still faster than starting from a blank page.
+**Consistency checks.** Agents are good at spotting drift from established patterns, like a hardcoded `#1a1a2e` where a design token should be used, or a component using `px` when the rest of the system uses spacing tokens. I catch many of these myself, but not all, so this extra pass is useful.
 
 **Test coverage loops.** When a test fails, I paste the output back to the agent and ask for a diagnosis. It is not always right, but it narrows the search by mapping the error to likely causes. That speeds up the loop. I still do the actual debugging, but I spend less time staring at failures and guessing.
 
@@ -61,7 +59,7 @@ Agents help most with clearly defined, repetitive work.
 
 Some decisions I do not hand off under any circumstances.
 
-**API decisions.** Prop names, event shapes, and component interfaces are long-term choices in a design system. Renaming is expensive. Early on, I let one naming convention settle too early. Correcting it later (`ioInput` should have been `input`) meant touching consumers, tests, and docs. An agent would have continued that pattern without questioning it. That is where mistakes compound. I own that cost, so I make that decision myself.
+**API decisions.** Prop names, event shapes, and component interfaces are long-term choices in a design system. Renaming is expensive. Early on, I let one naming convention settle too early. Correcting it later (`diwaChange` should have been `change`, and `diwaUpdate` should have been `update`) meant touching consumers, tests, and docs. An agent would have continued that pattern without questioning it. That is where mistakes compound. I own that cost, so I make that decision myself.
 
 **Accessibility judgment.** An agent can scaffold ARIA for known patterns and check obvious cases, like button labels or modal focus trapping on paper. It cannot use a screen reader to understand what real users hear. It also misses cases where labels are technically present but still confusing. Keyboard and assistive-tech testing stay with me.
 
@@ -89,15 +87,16 @@ These come from mistakes I already made.
 
 This loop stops me from jumping between half-finished tasks and avoids the usual outcome: fast generation now, expensive cleanup later.
 
-**Scope the prompt tightly.** "Add a `loading` prop to `io-button` following the disabled prop pattern" produces a useful result, while "Improve my button component" mostly produces noise. The more constrained the instruction, the more the output matches what I actually want.
+**Scope the prompt tightly.** "Add a `loading` prop to `diwa-button` following the disabled prop pattern" produces a useful result, while "Improve my button component" mostly produces noise. The more constrained the instruction, the more the output matches what I actually want.
 
 **Tests before commit.** If tests pass and the diff looks right, it ships. If tests fail, I debug first before asking the agent again. Agents can generate code that looks fine in a quick skim but still fails at runtime. Tests are the safety layer.
 
-**Governance gates.** The io-design-system repository has two checks that run before every commit:
+**Governance gates.** In my workflow, I run checks before every commit:
 
 ```bash
-npm run governance:check   # validates workspace topology and governance files
-npm run events:guard       # catches io-prefixed custom event names
+npm run lint         # catches style and static issues early
+npm run test         # validates behavior and regressions
+npm run type-check   # catches contract and typing drift
 ```
 
 These checks exist partly because agents drift. They follow prompts, not unstated system rules. Automated gates catch drift that code review can miss.
@@ -112,4 +111,4 @@ These checks exist partly because agents drift. They follow prompts, not unstate
 
 The point is not that agents are impressive. The point is that most AI-related cleanup is a workflow problem. An undisciplined setup creates the same mess it was supposed to prevent. A disciplined setup compresses repetitive work and protects the decisions that require judgement.
 
-The io-design-system repo shows this setup directly: agent configuration, governance scripts, and component conventions.
+In Diwa Design System, the workflow combines agent configuration, quality gates, and component conventions.
