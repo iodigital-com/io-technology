@@ -1,6 +1,6 @@
 ---
 title: 'How I Use Agents Without Losing Ownership of My Code'
-date: '2026-03-31'
+date: '2026-04-02'
 tags: ['frontend', 'ai', 'tooling', 'developer-experience']
 images: ['/articles/using-agents-without-losing-ownership/hero.webp']
 summary: 'A practical look at building an agent workflow that makes you faster — without turning your codebase into AI slop.'
