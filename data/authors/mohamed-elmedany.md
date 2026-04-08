@@ -1,6 +1,6 @@
 ---
 name: Mohamed Elmedany
-avatar: /authors/mohamed-elmedany.jpeg
+avatar: /authors/mohamed-elmedany.png
 occupation: Senior Software Engineer
 linkedin: https://linkedin.com/in/melmedany
 github: https://github.com/melmedany
