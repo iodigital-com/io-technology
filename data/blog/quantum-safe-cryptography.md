@@ -51,21 +51,6 @@ The classic example is _multiplication vs factoring_. Multiplying two large prim
 
 ![rsa-diagram](/articles/quantum-safe-cryptography/rsa-diagram.png)
 
-```mermaid
-    graph TD
-        subgraph Secret ["The Secret Zone (Private)"]
-            P["<b>Prime Number P</b><br/>(A giant secret)"]
-            Q["<b>Prime Number Q</b><br/>(A giant secret)"]
-        end
-
-        P --> Multi["<b>Multiplication</b><br/>(Fast and easy)"]
-        Q --> Multi
-
-        Multi --> N["<b>Public Number N</b><br/>(The whole world knows this)"]
-
-        N -- "Can you reverse the math?" --> Stuck["<b>GOOD LUCK!</b><br/>(It would take a millions years to solve)"]
-```
-
 **[Elliptic Curve Cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography)** works on a similar idea but uses a different mathematical structure: points on an elliptic curve. The **easy direction** is multiplying a point by a number. The **hard direction** is figuring out what number was used.
 
 > The maths behind asymmetric cryptography goes deeper than what's needed day-to-day. I know the intuition, I know the properties, and I think that is completely fine. Most engineers using TLS every day are in the same boat. The important thing is understanding **what guarantees these systems provide** and **what assumptions they rely on.**
@@ -96,24 +81,6 @@ Here is where things get genuinely strange.
 **Quantum computers** work with **qubits**. And qubits are weird in a very specific, physics-breaking way:
 
 ![bit-qubit-diagram](/articles/quantum-safe-cryptography/bit-qubit-diagram.png)
-
-```mermaid
-    flowchart TB
-        subgraph Classical
-            Bit((Bit)) --> Zero["0"]
-            Bit --> ONE["1"]
-            Switch["like a light switch"] --> Bit
-        end
-
-        subgraph Quantum
-            Qubit((Qubit️))
-
-            Qubit --> Superposition["0 and 1 at the same time"]
-            Qubit --> Entanglement["spooky link with other qubits"]
-            Qubit --> Interference["correct answers get louder"]
-            Qubit --> Decoherence["tiny noise ruins the state"]
-        end
-```
 
 [The Four key principles of quantum mechanics](https://www.ibm.com/think/topics/quantum-computing#Four+key+principles+of+quantum+mechanics):
 
