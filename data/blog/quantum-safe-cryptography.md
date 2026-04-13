@@ -1,19 +1,19 @@
 ---
 title: 'Quantum-Safe Cryptography: How Encryption Evolved and Why It Needs to Evolve Again'
-date: '2026-04-03'
+date: '2026-04-13'
 tags:
   ['security', 'cryptography', 'quantum computing', 'encryption', 'post-quantum', 'java', 'backend']
 images: ['/articles/quantum-safe-cryptography/banner.png']
 summary: 'An attempt to make sense of quantum-safe cryptography: where encryption came from, why quantum computers break the rules, and what Java developers can do about it today.'
 authors: ['mohamed-elmedany']
-theme: 'black'
+theme: 'blue'
 ---
 
 ## How It All Started
 
-I was chatting with a colleague, waiting for the coffee machine to do its thing, when he dropped a couple of interesting terms that I wasn't aware of before: "quantum-safe" and "harvest now, decrypt later." They stuck in my head like a song.
+I was chatting with a colleague, waiting for the coffee machine to do its thing, when he dropped a couple of interesting terms that I was not aware of before: "quantum-safe" and "harvest now, decrypt later." They stuck in my head like a song.
 
-That evening I went home and did what any curious engineer does: opened twenty browser tabs and understood a few of them.
+That evening I went home and did what any curious engineer would do: I opened twenty browser tabs and understood a few of them.
 
 The next day, there was a session about _"quantum-safe cryptography"_ at an event I was attending. The speaker was clearly brilliant. The slides were dense. I left with even more questions than I had before.
 
@@ -41,7 +41,7 @@ The **[Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher)** is the clas
 
 More advanced versions, like the **[Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)**, used a keyword to vary the shift. Harder to crack by hand, but still vulnerable to **frequency analysis**. Letters do not appear randomly in real language. Count the ciphertext characters, and patterns emerge.
 
-This worked... until it did not. The moment there is a machine that could try all combinations faster than a human, the game changed.
+This worked... until it did not. The moment there was a machine that could try all combinations faster than a human, the game changed.
 
 ## The Shift to One-Way Maths
 
@@ -53,7 +53,7 @@ The classic example is _multiplication vs factoring_. Multiplying two large prim
 
 **[Elliptic Curve Cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography)** works on a similar idea but uses a different mathematical structure: points on an elliptic curve. The **easy direction** is multiplying a point by a number. The **hard direction** is figuring out what number was used.
 
-> The maths behind asymmetric cryptography goes deeper than what's needed day-to-day. I know the intuition, I know the properties, and I think that is completely fine. Most engineers using TLS every day are in the same boat. The important thing is understanding **what guarantees these systems provide** and **what assumptions they rely on.**
+> The maths behind asymmetric cryptography goes deeper than what is needed day-to-day. I know the intuition, I know the properties, and I think that is completely fine. Most engineers using TLS every day are in the same boat. The important thing is understanding **what guarantees these systems provide** and **what assumptions they rely on.**
 
 The assumption: **certain mathematical problems are hard.** Tough enough that even with all the computers in the world working together, a properly sized RSA key is unbreakable in any reasonable timeframe.
 
@@ -95,17 +95,17 @@ For certain classes of problems, quantum computers can find answers dramatically
 
 ## Shor's Algorithm
 
-In 1994, **Peter Shor** published an algorithm showing that a powerful enough quantum computer could factor large numbers in **polynomial time**.
+In 1994, **Peter Shor** published [Shor's algorithm](https://en.wikipedia.org/wiki/Shor%27s_algorithm) showing that a powerful enough quantum computer could factor large numbers in [Polynomial Time](https://en.wikipedia.org/wiki/Time_complexity#Polynomial_time).
 
 Let that sink in.
 
-This is the real turning point. The entire security of asymmetric cryptography depends on factoring being hard. **[Shor's algorithm](https://en.wikipedia.org/wiki/Shor%27s_algorithm) makes it not hard.**
+This is the real turning point. The entire security of asymmetric cryptography depends on factoring being hard. **Shor's algorithm makes it not hard.**
 
 On a powerful enough quantum computer, RSA keys that would take classical computers millions of years to break could be broken in a few hours. Shor's algorithm can also solve the elliptic curve discrete logarithm problem efficiently.
 
 This is not a theoretical concern about some distant future. It is a **known algorithm, published more than thirty years ago**, waiting for the hardware to catch up.
 
-As of today, quantum computers are still in the **"noisy intermediate-scale quantum" (NISQ) era**: hundreds to thousands of qubits, but error-prone and hard to keep stable. Running Shor's algorithm on RSA-2048 would require **millions of stable, error-corrected qubits**. We are not there yet. The direction is clear, but the timeline is uncertain, which is exactly the problem.
+As of today, quantum computers are still in the **"noisy intermediate-scale quantum" (NISQ) era**: hundreds to thousands of qubits, but error-prone and hard to keep stable. Running Shor's algorithm on RSA-2048 would require **millions of noisy physical qubits to produce the few thousand stable, error-corrected qubits**. We are not there yet. The direction is clear, but the timeline is uncertain, which is exactly the problem.
 
 ## Harvest Now, Decrypt Later
 
@@ -117,9 +117,9 @@ The window of vulnerability is not when quantum computers arrive. It is now, for
 
 ### Does Quantum Break ALL Encryption?
 
-No. The real vulnerability is asymmetric cryptography. Symmetric encryption like AES uses the same key to encrypt and decrypt. Its security does not rely on hard maths problems like factoring, it relies on **sheer key size and the complexity of the cipher itself.**
+No. The real vulnerability is asymmetric cryptography. Symmetric encryption like AES uses the same key to encrypt and decrypt. Its security does not rely on hard maths problems like factoring. It relies on **sheer key size and the complexity of the cipher itself.**
 
-There is an algorithm called [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) that gives quantum computers a speedup against symmetric encryption, but it only cuts the effective key size in half. AES-256 effectively becomes AES-128 strength against a quantum attacker. That is still very secure. **The fix is simple: use AES-256 and we are fine.**
+There is an algorithm called [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) that gives quantum computers a speedup against symmetric encryption, but it only **reduces the effective security** level by half. AES-256 effectively becomes AES-128 strength against a quantum attacker. That is still very secure. **The fix is simple: use AES-256 and we are fine.**
 
 Hashing algorithms like [SHA-256](https://en.wikipedia.org/wiki/SHA-2) face only minor speedups for attackers. The fix for those is straightforward (use larger output sizes if needed).
 
@@ -178,7 +178,7 @@ Follow NIST and platform vendor updates.
 
 ### For Java and JVM Developers
 
-Java developers have a practical path forward today. If you're using the [Bouncy Castle](https://www.bouncycastle.org/) library, it already supports ML-KEM and other post-quantum algorithms. Here is a minimal example of key encapsulation using ML-KEM:
+Java developers have a practical path forward today. If you are using the [Bouncy Castle](https://www.bouncycastle.org/) library, it already supports ML-KEM and other post-quantum algorithms. Here is a minimal example of key encapsulation using ML-KEM:
 
 ```java
 // Register the Bouncy Castle PQC provider
@@ -195,7 +195,7 @@ PublicKey publicKey = keyPair.getPublic();
 PrivateKey privateKey = keyPair.getPrivate();
 ```
 
-Java versions 24+ are also adding native support for post-quantum algorithms. We won't need a third-party library eventually.
+Java versions 24+ are also adding native support for post-quantum algorithms. We will not need a third-party library eventually.
 
 For now, the practical steps are:
 
