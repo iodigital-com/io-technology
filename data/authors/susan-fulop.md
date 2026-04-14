@@ -1,7 +1,7 @@
 ---
-name: Susan Fülöp
+name: Susan Fulop
 avatar: /authors/susan-fulop.jpeg
-occupation: Senior Frontend Developer
-linkedin: https://www.linkedin.com/in/zsuzsifulop/
+occupation: Senior Frontend Engineer
+linkedin: https://www.linkedin.com/in/susanfulop/
 github: https://github.com/susanfulop
 ---
