@@ -21,7 +21,7 @@ To be fair, from an engineering perspective—especially for those using Opus wi
 
 One of the key problems is that, without deliberate research, it can be quite challenging to determine which model belongs to which AI family (such as Google, OpenAI, or Anthropic) or how each model should be categorized—whether as a basic, mid-tier, or pro-level option.
 
-It also doesn’t make things easier that many editors don’t explicitly label which models belong to which category. To add to that, the actual cost is often effectively hidden from developers due to company-provided licensing, making it harder to understand the real trade-offs involved.
+It also doesn’t make things easier that many editors don’t explicitly label which models belong to which category.
 
 ---
 
