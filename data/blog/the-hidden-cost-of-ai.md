@@ -105,6 +105,6 @@ AI model tiers (basic, medium, pro) differ significantly in context window size,
 
 In many development environments, AI tools and models are accessed through team or enterprise licenses, which often obscures the true costs for individual developers. Even when this information is available, it may take some effort to locate it.
 
-This means that during day-to-day work, developers usually do not have direct visibility into how much each model call actually costs. Over time, this can weaken the natural intuition for the trade-off between cost and performance, making it easier to default to more powerful (and more expensive) models even for tasks where a cheaper alternative would be sufficient.
+This means that during day-to-day work, developers usually do not have direct visibility into how much each model call actually costs, unless they are specificly looking for. Over time, this can weaken the natural intuition for the trade-off between cost and performance, making it easier to default to more powerful (and more expensive) models even for tasks where a cheaper alternative would be sufficient.
 
 From my personal experience, whenever this cost part comes up in conversations, developers are actually very interested in it. There is a clear curiosity around understanding how pricing works, which models are more expensive, and how to make more informed choices in everyday usage.
