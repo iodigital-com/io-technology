@@ -25,7 +25,7 @@ It also doesn’t make things easier that many editors don’t explicitly label 
 
 ---
 
-## Why Understanding the AI Model Landscape Matters
+## Why understanding the AI model landscape matters
 
 In order to evaluate which models are best suited for your day-to-day work, it helps to have a general overview of what’s currently happening in the market. In this article, I’ll attempt to provide a concise summary to help make that landscape a bit easier to navigate.
 
