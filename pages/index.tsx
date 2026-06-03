@@ -5,7 +5,6 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
 import { getLatestEvents } from '@/lib/events'
-import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import EventCarousel from '@/components/EventCarousel'
 import VideoCarousel from '@/components/VideoCarousel'
@@ -13,8 +12,6 @@ import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import ContentCard from '@/components/ContentCard'
-import Image1 from '../public/iO-technology-blog1.png'
-import Image2 from '../public/iO-technology-blog2.png'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
 import type { FrontMatter, Author } from '../types'
@@ -87,7 +84,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors, theme }: HomeProps) {
+export default function Home({ posts, videos, jobs, events, contributors }: HomeProps) {
   const authors: AuthorsFrontMatter = contributors.reduce((acc: AuthorsFrontMatter, author) => {
     acc[author.slug?.[0] || ''] = author
     return acc
@@ -98,67 +95,41 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
-        <div className="pb-14 pt-24">
+      <div className="relative bg-[url('/shifting-bg-sm.jpg')] md:bg-[url('/shifting-bg-md.jpg')] lg:bg-[url('/shifting-bg-lg.jpg')] bg-cover bg-center bg-no-repeat">
+        <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+        <div className="relative pt-16 pb-16">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window to{' '}
-              <span className="font-serif font-light">great experiences</span>?
+            <h1 className="relative z-10 col-span-full text-5xl text-white font-medium md:col-span-8">
+              Is technology your window to great experiences?
             </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image1}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="w-screen"
-                />
-              </div>
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image2}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="h-auto w-full rounded-full"
-                />
-              </div>
-            </div>
-            <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <p className="text-lg">
+            <span className="col-span-full text-white mt-6 lg:mt-12 md:col-span-8 xl:flex xl:items-center">
+              <p>
                 We blend marketing, technology and creativity because we believe that creating the
                 ultimate customer experience requires a blend of these different skills to make an
                 impact on our clients' brand and business.
               </p>
             </span>
-            <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
+            <ul className="col-span-full text-white mt-10 lg:mt-16 md:col-span-8">
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-black">
+                <Link href="#articles" className="text-white">
                   Our latest articles
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-black">
+                <Link href="#videos" className="text-white">
                   Our latest videos
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-black">
+                <Link href="#people" className="text-white">
                   Our writers &amp; speakers
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-black">
+                <Link href="#jobs" className="text-white">
                   Some of our jobs
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
