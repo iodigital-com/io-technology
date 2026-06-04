@@ -41,6 +41,7 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
 
 - **Node.js:** Version 22.x or higher
 - **npm:** Version 10.x or higher
+- **yarn:** Version 1.x for package management
 
 ### Installation
 
@@ -54,7 +55,7 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
 2. **Install dependencies**
 
    ```bash
-   npm install
+   yarn
    ```
 
 3. **Set up environment variables**
