@@ -11,9 +11,10 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 
 interface LayoutWrapperProps {
   children: ReactNode
+  transparentHeader?: boolean
 }
 
-const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
+const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperProps) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false)
   const [scrolledPassedHeader, setScrolledPassedHeader] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
@@ -44,13 +45,17 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 z-50 duration-150 ease-out ${
-          scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
-        } px-4 py-4 xl:bg-io_${themeBg}-500`}
+        className={`${
+          transparentHeader
+            ? 'absolute w-full bg-transparent'
+            : `sticky top-0 ${
+                scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
+              } xl:bg-io_${themeBg}-500`
+        } z-50 duration-150 ease-out px-4 py-4`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
-            <Link href="/" aria-label={siteMetadata.headerTitle}>
+            <Link href="/" className="text-white" aria-label={siteMetadata.headerTitle}>
               <div
                 className={`flex items-center justify-between ${
                   scrolledPassedHeader ? 'opacity-0' : 'pointer-events-auto opacity-100'
@@ -74,7 +79,7 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
             </Link>
           </div>
           <div
-            className={`relative flex items-center text-base leading-5`}
+            className={`relative flex items-center text-base leading-5 text-white`}
             ref={navigationItemsRef}
           >
             <div

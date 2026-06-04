@@ -55,6 +55,7 @@ interface HomeProps {
   events: FlexibleEvent[]
   contributors: Author[]
   theme: string
+  transparentHeader?: boolean
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -80,6 +81,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       events: events as unknown as FlexibleEvent[],
       contributors,
       theme: 'green',
+      transparentHeader: true,
     },
   }
 }
@@ -97,7 +99,7 @@ export default function Home({ posts, videos, jobs, events, contributors }: Home
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="relative bg-[url('/shifting-bg-sm.jpg')] md:bg-[url('/shifting-bg-md.jpg')] lg:bg-[url('/shifting-bg-lg.jpg')] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-        <div className="relative pt-16 pb-16">
+        <div className="relative pt-28 pb-16">
           <div className="container mx-auto grid grid-cols-12 gap-x-5">
             <h1 className="relative z-10 col-span-full text-5xl text-white font-medium md:col-span-8">
               Is technology your window to great experiences?

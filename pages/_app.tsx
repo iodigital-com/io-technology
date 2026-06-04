@@ -38,10 +38,10 @@ interface ExtendedPageProps {
 }
 
 export default function App({ Component, pageProps }: AppProps & { pageProps: ExtendedPageProps }) {
-  const { useLayoutWrapper = true, theme = 'default' } = pageProps
+  const { useLayoutWrapper = true, theme = 'default', transparentHeader = false } = pageProps
 
   const pageContent = useLayoutWrapper ? (
-    <LayoutWrapper>
+    <LayoutWrapper transparentHeader={transparentHeader}>
       <Component {...pageProps} />
     </LayoutWrapper>
   ) : (
