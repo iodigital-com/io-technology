@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
@@ -13,14 +14,16 @@ import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
 import ContentCard from '@/components/ContentCard'
+import PromoCard from '@/components/PromoCard'
 import Image1 from '../public/iO-technology-blog1.png'
 import Image2 from '../public/iO-technology-blog2.png'
+import PromoCardBg from '../public/Insights_nieuwsbrief.png'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
 import type { FrontMatter, Author } from '../types'
 import type { GetStaticProps } from 'next'
 
-const MAX_BLOG_POSTS = 6
+const MAX_BLOG_POSTS = 5
 
 // Local type for authors mapping
 type AuthorsFrontMatter = Record<string, Author>
@@ -186,18 +189,27 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
           }
 
           return (
-            <ContentCard
-              key={slug}
-              slug={slug}
-              date={date}
-              title={title}
-              summary={summary}
-              tags={tags}
-              authors={authorsResolved}
-              border={index !== 0}
-              type="article"
-              {...(images && { images })}
-            />
+            <React.Fragment key={slug}>
+              <ContentCard
+                slug={slug}
+                date={date}
+                title={title}
+                summary={summary}
+                tags={tags}
+                authors={authorsResolved}
+                border={index !== 0}
+                type="article"
+                {...(images && { images })}
+              />
+              {index === 1 && (
+                <PromoCard
+                  title="Test Promo Card Title"
+                  ctaText="Test Link"
+                  ctaHref="/"
+                  image={PromoCardBg.src}
+                />
+              )}
+            </React.Fragment>
           )
         })}
       </section>
