@@ -139,7 +139,7 @@ const ContentCard = ({
 
         {/* Action Section - only for default layout */}
         {isDefaultLayout && (
-          <div className="flex-shrink-0 mt-4">
+          <div className="flex-shrink-0">
             {type === 'article' && (
               <ReadMoreButton
                 href={path}
