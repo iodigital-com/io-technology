@@ -113,25 +113,25 @@ export default function Home({ posts, videos, jobs, events, contributors }: Home
             </span>
             <ul className="col-span-full text-white mt-10 lg:mt-16 md:col-span-8">
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-white">
+                <Link href="#articles" className="text-white font-bold">
                   Our latest articles
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-white">
+                <Link href="#videos" className="text-white font-bold">
                   Our latest videos
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-white">
+                <Link href="#people" className="text-white font-bold">
                   Our writers &amp; speakers
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
               </li>
               <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-white">
+                <Link href="#jobs" className="text-white font-bold">
                   Some of our jobs
                 </Link>
                 <Arrow className="ml-2 mt-1 rotate-90" />
