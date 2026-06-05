@@ -24,8 +24,10 @@ const AuthorInfo = ({
   }
 
   const renderSingleAuthor = (author: Author) => (
-    <div key={author.name} className="flex items-center">
-      <div className={`flex-0 relative mr-3 overflow-hidden rounded-full ${getAvatarClasses()}`}>
+    <div key={author.name} className="flex">
+      <div
+        className={`flex-shrink-0 relative mr-3 overflow-hidden rounded-full ${getAvatarClasses()}`}
+      >
         <Image
           src={author.avatar || '/authors/io.jpg'}
           width={avatarSize === 'large' ? 200 : 100}
@@ -48,7 +50,11 @@ const AuthorInfo = ({
           )}
         </p>
         {showOccupation && (
-          <p className={`${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0`}>
+          <p
+            className={`${
+              avatarSize === 'small' ? 'text-sm min-h-[2.5rem]' : 'text-base min-h-[3rem]'
+            } mb-0`}
+          >
             {author.occupation}
           </p>
         )}

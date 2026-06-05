@@ -59,8 +59,8 @@ const ContentCard = ({
       }`
 
   const titleClasses = isListLayout
-    ? 'teaser-title mb-2 text-3xl'
-    : `teaser-title ${type === 'serie' ? 'text-2xl' : 'text-3xl'}`
+    ? 'teaser-title font-semibold mb-2 text-xl'
+    : `teaser-title font-semibold ${type === 'serie' ? 'text-lg' : 'text-xl'}`
 
   const summaryClasses = isListLayout ? 'text-body-xs mb-3' : 'mt-2 hidden md:block'
 
@@ -70,7 +70,7 @@ const ContentCard = ({
     <Container className={containerClasses}>
       <div className={contentClasses}>
         {/* Header Section */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 mb-4">
           {/* Background Image - only for default layout */}
           {isDefaultLayout && (
             <div
@@ -163,7 +163,7 @@ const ContentCard = ({
 
         {/* Authors Section - only for default layout */}
         {showAuthors && authors.length > 0 && isDefaultLayout && (
-          <div className="flex-shrink-0 hidden md:col-span-3 md:block xl:col-span-5 mt-4 mb-4">
+          <div className="flex-shrink-0 hidden md:col-span-3 md:block xl:col-span-5 mt-auto mb-4">
             <AuthorInfo authors={authors} layout="inline" avatarSize="small" />
           </div>
         )}
