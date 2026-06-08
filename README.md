@@ -42,6 +42,7 @@ iO TechHub is the technology blog platform for [iO](https://www.iodigital.com), 
 - **Node.js:** Version 22.x or higher
 - **npm:** Version 10.x or higher
 - **yarn:** Version 1.x for package management
+- **git-lfs:** Required for large file handling — [install instructions](https://git-lfs.com) (macOS: `brew install git-lfs`, Windows: included with Git for Windows, Linux: via package manager), then run `git lfs install`
 
 ### Installation
 
