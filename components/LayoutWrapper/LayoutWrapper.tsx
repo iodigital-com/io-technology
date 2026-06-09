@@ -22,6 +22,9 @@ const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperPro
 
   useEffect(() => {
     const headerHeight = headerRef.current?.scrollHeight || 0
+    if (transparentHeader && headerRef.current) {
+      document.documentElement.style.setProperty('--header-height', `${headerHeight}px`)
+    }
     const handleScroll = () => {
       const hasScrolledPasHeader = window.scrollY >= headerHeight
 
@@ -45,17 +48,21 @@ const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperPro
     <>
       <header
         ref={headerRef}
-        className={`${
-          transparentHeader
-            ? 'absolute w-full bg-transparent'
-            : `sticky top-0 ${
-                scrolledPassedHeader ? 'pointer-events-none' : `bg-io_${themeBg}-500`
-              } xl:bg-io_${themeBg}-500`
-        } z-50 duration-150 ease-out px-4 py-4`}
+        className={`sticky top-0 z-50 duration-150 ease-out px-4 py-4 ${
+          scrolledPassedHeader
+            ? 'pointer-events-none'
+            : !transparentHeader
+            ? `bg-io_${themeBg}-500 xl:bg-io_${themeBg}-500`
+            : ''
+        }`}
       >
         <div className="container mx-auto flex items-center justify-between p-0">
           <div>
-            <Link href="/" className="text-white" aria-label={siteMetadata.headerTitle}>
+            <Link
+              href="/"
+              className={`${transparentHeader ? 'text-white' : ''}`}
+              aria-label={siteMetadata.headerTitle}
+            >
               <div
                 className={`flex items-center justify-between ${
                   scrolledPassedHeader ? 'opacity-0' : 'pointer-events-auto opacity-100'
@@ -65,7 +72,9 @@ const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperPro
                   <Player
                     autoplay
                     src="/logo.json"
-                    className={`logo -translate-x-3 sm:translate-x-0`}
+                    className={`logo -translate-x-3 sm:translate-x-0 ${
+                      transparentHeader ? ' logo--transparent' : ''
+                    }`}
                   />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
@@ -79,7 +88,9 @@ const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperPro
             </Link>
           </div>
           <div
-            className={`relative flex items-center text-base leading-5 text-white`}
+            className={`${
+              transparentHeader ? 'text-white' : ''
+            } relative flex items-center text-base leading-5`}
             ref={navigationItemsRef}
           >
             <div
@@ -147,7 +158,11 @@ const LayoutWrapper = ({ children, transparentHeader = false }: LayoutWrapperPro
           </div>
         </div>
       </header>
-      <div className="flex h-full flex-col justify-between">
+      <div
+        className={`${
+          transparentHeader ? ' -mt-[var(--header-height)]' : ''
+        } flex h-full flex-col justify-between`}
+      >
         <main className="mb-auto">{children}</main>
         <Footer />
       </div>
