@@ -1,8 +1,8 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
+import HeroSection from '@/components/HeroSection'
 import { POSTS_PER_PAGE } from '../../articles'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getPagedContent } from '@/lib/hooks/useContentData'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import type { ContentItem, AuthorsMap } from '../../../types'
@@ -38,25 +38,16 @@ export async function getStaticProps(context: { params: { page: string } }) {
 
 interface PostPageProps {
   blog: ContentItem[]
-  initialDisplayBlog: ContentItem[]
   pagination: PaginationMeta
   authors: AuthorsMap
 }
 
-export default function PostPage({ blog, initialDisplayBlog, pagination, authors }: PostPageProps) {
-  const { theme } = useBrandingTheme()
-
+export default function PostPage({ blog, pagination, authors }: PostPageProps) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <ListLayout
-        posts={blog}
-        initialDisplayPosts={initialDisplayBlog}
-        pagination={pagination}
-        title="All Posts"
-        authors={authors}
-        theme={theme}
-      />
+      <HeroSection title="All Posts" />
+      <ListLayout posts={blog} authors={authors} pagination={pagination} subpath="articles" />
     </>
   )
 }
