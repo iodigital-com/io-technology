@@ -32,6 +32,7 @@ export async function getStaticProps(context: { params: { page: string } }) {
       initialDisplayBlog: result.posts,
       pagination: result.pagination,
       authors: result.authors,
+      transparentHeader: true,
     },
   }
 }
@@ -40,13 +41,14 @@ interface PostPageProps {
   blog: ContentItem[]
   pagination: PaginationMeta
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
-export default function PostPage({ blog, pagination, authors }: PostPageProps) {
+export default function PostPage({ blog, pagination, authors, transparentHeader }: PostPageProps) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <HeroSection title="All Posts" />
+      <HeroSection title="All Posts" isDarkBackground={transparentHeader} />
       <ListLayout posts={blog} authors={authors} pagination={pagination} subpath="articles" />
     </>
   )

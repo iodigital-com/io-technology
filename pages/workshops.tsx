@@ -26,6 +26,7 @@ export default function Workshops({ workshops, authors, transparentHeader }: Wor
       <HeroSection
         title="Looking for an inspiring workshop for your people?"
         description="We have great experts that can deliver inspiring workshops at your event. Leave your details and we will reach out to you!"
+        isDarkBackground={transparentHeader}
       >
         <div className="col-span-full md:col-span-5 xl:col-span-6 mt-6 lg:mt-12">
           <HubspotForm

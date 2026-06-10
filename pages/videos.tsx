@@ -12,9 +12,10 @@ export async function getStaticProps() {
 
 interface VideosProps {
   videos: Video[]
+  transparentHeader: boolean
 }
 
-export default function Videos({ videos }: VideosProps) {
+export default function Videos({ videos, transparentHeader }: VideosProps) {
   return (
     <>
       <PageSEO title={`Videos - ${siteMetadata.author}`} description={siteMetadata.description} />
@@ -22,6 +23,7 @@ export default function Videos({ videos }: VideosProps) {
       <HeroSection
         title="Check out our videos from meetups and expert talks"
         description="Most of our meetups are live streamed to YouTube. Please subscribe to get notified when a meetup is planned!"
+        isDarkBackground={transparentHeader}
       />
 
       <div className="container mx-auto">

@@ -8,9 +8,14 @@ import HeroSection from '@/components/HeroSection'
 interface StaticPageLayoutProps {
   frontMatter: FrontMatter
   children: ReactNode
+  transparentHeader: boolean
 }
 
-export default function StaticPageLayout({ frontMatter, children }: StaticPageLayoutProps) {
+export default function StaticPageLayout({
+  frontMatter,
+  children,
+  transparentHeader,
+}: StaticPageLayoutProps) {
   const { title, summary } = frontMatter
   const heroImage = frontMatter.heroImage as string | undefined
   const heroTitle = frontMatter.heroTitle as string | undefined
@@ -21,7 +26,11 @@ export default function StaticPageLayout({ frontMatter, children }: StaticPageLa
       <PageSEO title={title} description={summary} />
       <ScrollTop />
 
-      <HeroSection title={heroTitle || title} description={heroDescription || ''} />
+      <HeroSection
+        title={heroTitle || title}
+        description={heroDescription || ''}
+        isDarkBackground={transparentHeader}
+      />
 
       <article className="container mx-auto mx-auto mb-72 pb-14 pt-8 xl:pt-18">
         <div>

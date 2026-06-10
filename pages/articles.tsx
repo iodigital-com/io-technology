@@ -24,9 +24,16 @@ interface ArticlesProps {
   initialDisplayBlog: ContentItem[]
   pagination: PaginationMeta
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
-export default function Articles({ blog, initialDisplayBlog, pagination, authors }: ArticlesProps) {
+export default function Articles({
+  blog,
+  initialDisplayBlog,
+  pagination,
+  authors,
+  transparentHeader,
+}: ArticlesProps) {
   const { searchValue, setSearchValue, filteredPosts } = usePostSearch(blog)
 
   const displayPosts =
@@ -35,7 +42,7 @@ export default function Articles({ blog, initialDisplayBlog, pagination, authors
   return (
     <>
       <PageSEO title={`Articles - ${siteMetadata.author}`} description={siteMetadata.description} />
-      <HeroSection title="Discover all articles">
+      <HeroSection title="Discover all articles" isDarkBackground={transparentHeader}>
         <SearchLayout onChange={setSearchValue} searchPlaceholder="Search articles" />
       </HeroSection>
       <ListLayout

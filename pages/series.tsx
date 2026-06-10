@@ -8,7 +8,7 @@ import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
 export const SERIES_PER_PAGE = 10
 
 export async function getStaticProps() {
-  return getContentWithPagination('series', SERIES_PER_PAGE, 'blue', null, true)
+  return getContentWithPagination('series', SERIES_PER_PAGE, 'blue', null, false)
 }
 
 interface SeriesProps {

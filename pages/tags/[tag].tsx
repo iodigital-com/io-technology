@@ -59,9 +59,10 @@ interface TagProps {
   posts: ContentItem[]
   tag: string
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
-export default function Tag({ posts, tag, authors }: TagProps) {
+export default function Tag({ posts, tag, authors, transparentHeader }: TagProps) {
   const title = tag?.[0]?.toUpperCase() + (tag?.split(' ').join('-').slice(1) || '')
   const { searchValue, setSearchValue, filteredPosts } = usePostSearch(posts)
 
@@ -71,7 +72,7 @@ export default function Tag({ posts, tag, authors }: TagProps) {
         title={`#${title} - ${siteMetadata.author}`}
         description={`${title} tags - ${siteMetadata.author}`}
       />
-      <HeroSection title={`All #${title} articles`}>
+      <HeroSection title={`All #${title} articles`} isDarkBackground={transparentHeader}>
         <SearchLayout onChange={setSearchValue} searchPlaceholder="Search articles" />
       </HeroSection>
       <ListLayout posts={filteredPosts} authors={authors} searchValue={searchValue} />

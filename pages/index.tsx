@@ -56,7 +56,7 @@ interface HomeProps {
   events: FlexibleEvent[]
   contributors: Author[]
   theme: string
-  transparentHeader?: boolean
+  transparentHeader: boolean
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -87,7 +87,14 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors }: HomeProps) {
+export default function Home({
+  posts,
+  videos,
+  jobs,
+  events,
+  contributors,
+  transparentHeader,
+}: HomeProps) {
   const authors: AuthorsFrontMatter = contributors.reduce((acc: AuthorsFrontMatter, author) => {
     acc[author.slug?.[0] || ''] = author
     return acc
@@ -101,28 +108,33 @@ export default function Home({ posts, videos, jobs, events, contributors }: Home
       <HeroSection
         title="Is technology your window to great experiences?"
         description="We blend marketing, technology and creativity because we believe that creating the ultimate customer experience requires a blend of these different skills to make an impact on our clients' brand and business."
+        isDarkBackground={transparentHeader}
       >
-        <ul className="col-span-full text-white mt-10 lg:mt-16 md:col-span-8">
+        <ul
+          className={`col-span-full mt-10 lg:mt-16 md:col-span-8 ${
+            transparentHeader ? 'text-white' : ''
+          }`}
+        >
           <li className="mb-4 flex items-center last:mb-0">
-            <Link href="#articles" className="text-white font-bold">
+            <Link href="#articles" className="font-bold">
               Our latest articles
             </Link>
             <Arrow className="ml-2 mt-1 rotate-90" />
           </li>
           <li className="mb-4 flex items-center last:mb-0">
-            <Link href="#videos" className="text-white font-bold">
+            <Link href="#videos" className="font-bold">
               Our latest videos
             </Link>
             <Arrow className="ml-2 mt-1 rotate-90" />
           </li>
           <li className="mb-4 flex items-center last:mb-0">
-            <Link href="#people" className="text-white font-bold">
+            <Link href="#people" className="font-bold">
               Our writers &amp; speakers
             </Link>
             <Arrow className="ml-2 mt-1 rotate-90" />
           </li>
           <li className="mb-4 flex items-center last:mb-0">
-            <Link href="#jobs" className="text-white font-bold">
+            <Link href="#jobs" className="font-bold">
               Some of our jobs
             </Link>
             <Arrow className="ml-2 mt-1 rotate-90" />
