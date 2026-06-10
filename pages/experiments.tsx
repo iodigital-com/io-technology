@@ -38,10 +38,6 @@ export default function Experiments({ experiments }: ExperimentsProps) {
       <HeroSection
         title="Don't you just love experimenting with code?"
         description="We do! Especially during hackathons and innovation days. Here are some of our experiments to play around with. Some of them rely on browser flags to be set."
-        imageSrc="/experiments.jpg"
-        imageAlt="hackathon"
-        imagePosition="left"
-        showForm={false}
       />
       <div className="container mx-auto">
         <ul>

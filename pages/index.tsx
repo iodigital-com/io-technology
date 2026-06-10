@@ -11,6 +11,7 @@ import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
+import HeroSection from '@/components/HeroSection'
 import ContentCard from '@/components/ContentCard'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
@@ -97,49 +98,37 @@ export default function Home({ posts, videos, jobs, events, contributors }: Home
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className="relative bg-[url('/shifting-bg-sm.jpg')] md:bg-[url('/shifting-bg-md.jpg')] lg:bg-[url('/shifting-bg-lg.jpg')] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-        <div className="relative pt-28 pb-16">
-          <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-5xl text-white font-medium md:col-span-8">
-              Is technology your window to great experiences?
-            </h1>
-            <span className="col-span-full text-white mt-6 lg:mt-12 md:col-span-8 xl:flex xl:items-center">
-              <p>
-                We blend marketing, technology and creativity because we believe that creating the
-                ultimate customer experience requires a blend of these different skills to make an
-                impact on our clients' brand and business.
-              </p>
-            </span>
-            <ul className="col-span-full text-white mt-10 lg:mt-16 md:col-span-8">
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-white font-bold">
-                  Our latest articles
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-white font-bold">
-                  Our latest videos
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-white font-bold">
-                  Our writers &amp; speakers
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-white font-bold">
-                  Some of our jobs
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title="Is technology your window to great experiences?"
+        description="We blend marketing, technology and creativity because we believe that creating the ultimate customer experience requires a blend of these different skills to make an impact on our clients' brand and business."
+      >
+        <ul className="col-span-full text-white mt-10 lg:mt-16 md:col-span-8">
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#articles" className="text-white font-bold">
+              Our latest articles
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#videos" className="text-white font-bold">
+              Our latest videos
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#people" className="text-white font-bold">
+              Our writers &amp; speakers
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#jobs" className="text-white font-bold">
+              Some of our jobs
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+        </ul>
+      </HeroSection>
 
       <SectionTitle id="articles">
         Our latest <span className="font-serif font-light">articles</span>

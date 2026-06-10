@@ -22,9 +22,6 @@ export default function Videos({ videos }: VideosProps) {
       <HeroSection
         title="Check out our videos from meetups and expert talks"
         description="Most of our meetups are live streamed to YouTube. Please subscribe to get notified when a meetup is planned!"
-        imageSrc="/meetup.jpg"
-        imageAlt="meetup"
-        showForm={false}
       />
 
       <div className="container mx-auto">
