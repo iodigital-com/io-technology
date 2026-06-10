@@ -7,12 +7,13 @@ import { getContentWithAuthors } from '@/lib/hooks/useContentData'
 import type { ContentItem, AuthorsMap } from '../types'
 
 export async function getStaticProps() {
-  return getContentWithAuthors('talks', 'pink')
+  return getContentWithAuthors('talks', 'pink', null, true)
 }
 
 interface TalksProps {
   talks: ContentItem[]
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
 export default function Talks({ talks, authors }: TalksProps) {

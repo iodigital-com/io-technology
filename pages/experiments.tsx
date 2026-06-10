@@ -21,7 +21,7 @@ export async function getStaticProps() {
     })
   )
 
-  return { props: { experiments } }
+  return { props: { experiments, transparentHeader: true } }
 }
 
 interface ExperimentsProps {

@@ -6,12 +6,13 @@ import { getContentWithAuthors } from '@/lib/hooks/useContentData'
 import type { ContentItem, AuthorsMap } from '../types'
 
 export async function getStaticProps() {
-  return getContentWithAuthors('workshops', 'pink')
+  return getContentWithAuthors('workshops', 'pink', null, true)
 }
 
 interface WorkshopsProps {
   workshops: ContentItem[]
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
 export default function Workshops({ workshops, authors }: WorkshopsProps) {

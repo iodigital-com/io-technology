@@ -12,7 +12,8 @@ export async function getStaticProps() {
     'blog',
     POSTS_PER_PAGE,
     'beige',
-    (frontMatter: ContentItem) => !frontMatter.hideInArticleList
+    (frontMatter: ContentItem) => !frontMatter.hideInArticleList,
+    true
   )
 }
 

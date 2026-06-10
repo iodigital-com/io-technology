@@ -42,7 +42,15 @@ export async function getStaticProps({ params }: { params: { tag: string } }) {
 
   const authors = await getAuthors(allPosts)
 
-  return { props: { posts: filteredPosts, tag: params.tag, authors, theme: 'green' } }
+  return {
+    props: {
+      posts: filteredPosts,
+      tag: params.tag,
+      authors,
+      theme: 'green',
+      transparentHeader: true,
+    },
+  }
 }
 
 interface TagProps {

@@ -9,7 +9,7 @@ import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
 
-  return { props: { tags, theme: 'beige' } }
+  return { props: { tags, theme: 'beige', transparentHeader: true } }
 }
 
 interface TagsProps {
