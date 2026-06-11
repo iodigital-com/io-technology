@@ -1,6 +1,6 @@
 ---
 name: William Parr
-avatar: /authors/william-parr.png
+avatar: /authors/william-parr.jpg
 occupation: Lead Engineer Optimizely
 linkedin: https://www.linkedin.com/in/wparr3/
 github: https://github.com/WParr3
