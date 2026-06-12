@@ -1,5 +1,7 @@
 import MarkdownRenderer from 'react-markdown-renderer'
 import Link from '@/components/Link'
+import formatDate from '@/lib/utils/formatDate'
+import Tag from '@/components/Tag'
 import SocialIcon from '@/components/social-icons'
 import AuthorInfo from '@/components/AuthorInfo'
 import ReadMoreButton from '@/components/ReadMoreButton'
@@ -12,11 +14,15 @@ const ContentCard = ({
   slug,
   title,
   summary,
+  date,
+  tags = [],
   authors = [],
   type = 'article', // 'article', 'talk', 'workshop', 'serie'
   basePath,
+  showDate = true,
   showSummary = true,
   showReadMore = false,
+  showTags = true,
   showAuthors = true,
   video,
   slides,
@@ -97,6 +103,31 @@ const ContentCard = ({
             </div>
           )}
         </div>
+
+        {/* Date Section - only for default layout */}
+        {showDate && date && isDefaultLayout && (
+          <div className="flex-shrink-0 mt-2">
+            <dl>
+              <dt className="sr-only">Published on</dt>
+              <dd className="leading- text-sm font-light">
+                <time dateTime={date}>{formatDate(date)}</time>
+              </dd>
+            </dl>
+          </div>
+        )}
+
+        {/* Tags Section */}
+        {showTags && tags.length > 0 && (
+          <div className={`flex-shrink-0 ${isDefaultLayout ? 'mt-4 mb-4' : 'mb-3'}`}>
+            <div className="flex flex-wrap gap-3">
+              {tags.map((tag) => (
+                <div key={tag} className="inline-block whitespace-nowrap">
+                  <Tag text={tag} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Content wrapper for list layout */}
         {isListLayout && (
