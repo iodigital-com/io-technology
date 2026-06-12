@@ -36,8 +36,12 @@ const AuthorInfo = ({
           className="rounded-full object-cover"
         />
       </div>
-      <div>
-        <p className={`font-medium ${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0`}>
+      <div className={`${avatarSize === 'small' ? 'h-[3.75rem]' : 'h-[4.5rem]'}`}>
+        <p
+          className={`font-medium ${
+            avatarSize === 'small' ? 'text-sm' : 'text-base'
+          } mb-0 line-clamp-1`}
+        >
           {linkToAuthorPage ? (
             <Link
               href={`/authors/${author.slug[0]}`}
@@ -50,11 +54,7 @@ const AuthorInfo = ({
           )}
         </p>
         {showOccupation && (
-          <p
-            className={`${
-              avatarSize === 'small' ? 'text-sm min-h-[2.5rem]' : 'text-base min-h-[3rem]'
-            } mb-0`}
-          >
+          <p className={`${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0 line-clamp-2`}>
             {author.occupation}
           </p>
         )}
