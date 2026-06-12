@@ -18,7 +18,9 @@ const PromoCard = ({ title, ctaText, ctaHref, image }: PromoCardProps) => {
         style={image ? { backgroundImage: `url('${image}')` } : undefined}
       >
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-        <h2 className="relative z-10 teaser-title font-semibold text-white text-5xl">{title}</h2>
+        <h2 className="relative z-10 teaser-title font-semibold text-white text-5xl hyphens-auto break-words">
+          {title}
+        </h2>
         <Link
           href={ctaHref}
           aria-label={ctaText}
