@@ -1,7 +1,7 @@
 import Link from '@/components/Link'
 import Arrow from '@/data/arrow.svg'
 
-interface PromoCardProps {
+export interface PromoCardProps {
   title: string
   ctaText: string
   ctaHref: string
