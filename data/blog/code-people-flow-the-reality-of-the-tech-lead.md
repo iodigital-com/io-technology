@@ -8,7 +8,7 @@ images:
     '/articles/code-people-flow-the-reality-of-the-tech-lead/pexels-cigdem-bilgin-2154409770-33647018-code-people-flow-the-reality-of-the-tech-lead.jpg',
   ]
 summary: 'Decode the ambiguous role of the Tech Lead by revealing the critical balance between leadership, architecture, and development. Learn how to optimize software flow and manage complexity using insights from Team Topologies, DORA metrics, and Domain-Driven Design.'
-canonicalUrl: 'https://osmanfikretceylan.com/blog/i-wired-ai-directly-into-my-workflow-turns-out-code-was-never-the-bottleneck'
+canonicalUrl: 'https://osmanfikretceylan.com/blog/code-people-flow-the-reality-of-the-tech-lead'
 theme: 'orange'
 ---
 
