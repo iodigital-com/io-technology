@@ -4,6 +4,12 @@ import Pagination from '@/components/Pagination'
 import ContentCard from '@/components/ContentCard'
 import type { FrontMatter, AuthorsMap, ThemeColor } from '../types'
 import type { PaginationMeta } from '../types/api'
+import PromoCard from '@/components/PromoCard'
+import { PromoCardProps } from '@/components/PromoCard/PromoCard'
+
+interface PromoCardConfig extends PromoCardProps {
+  index: number
+}
 
 interface ListLayoutProps {
   posts: FrontMatter[]
@@ -12,6 +18,7 @@ interface ListLayoutProps {
   pagination?: PaginationMeta
   authors: AuthorsMap
   theme: ThemeColor
+  promoCard?: PromoCardConfig
 }
 
 export default function ListLayout({
@@ -21,6 +28,7 @@ export default function ListLayout({
   pagination,
   authors,
   theme,
+  promoCard,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
   const filteredBlogPosts = posts.filter((frontMatter: FrontMatter) => {
@@ -32,6 +40,9 @@ export default function ListLayout({
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+
+  // Drop one post when promoCard is provided so the grid keeps the same total item count
+  const postsToRender = promoCard ? displayPosts.slice(0, -1) : displayPosts
 
   return (
     <>
@@ -80,15 +91,13 @@ export default function ListLayout({
         <div className="pb-24 pt-6">
           {!filteredBlogPosts.length && 'No posts found.'}
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {displayPosts.map((frontMatter: FrontMatter, index: number) => {
+            {postsToRender.flatMap((frontMatter: FrontMatter, index: number) => {
               const { slug, date, title, summary, tags, images } = frontMatter
               const authorsResolved = frontMatter.authors
-                .map((author) => {
-                  return authors[author]
-                })
-                .filter((author): author is typeof author & {} => Boolean(author)) // Remove undefined authors
+                .map((author) => authors[author])
+                .filter((author): author is typeof author & {} => Boolean(author))
 
-              return (
+              const contentCard = (
                 <ContentCard
                   key={slug}
                   slug={slug || ''}
@@ -102,6 +111,18 @@ export default function ListLayout({
                   {...(images && { images })}
                 />
               )
+
+              if (promoCard && index === promoCard.index) {
+                const { index: _index, ...promoCardProps } = promoCard
+                return [
+                  <>
+                    <PromoCard {...promoCardProps} />
+                  </>,
+                  contentCard,
+                ]
+              }
+
+              return [contentCard]
             })}
           </ul>
           {pagination && pagination.totalPages > 1 && !searchValue && (
