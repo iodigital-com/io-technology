@@ -10,11 +10,15 @@ theme: 'beige'
 
 Last year I was knee-deep in a headless Optimizely CMS 12 project — .NET backend, Next.js front-end, Optimizely Graph for delivery — and I hit a problem that sounded simple on paper.
 
-> "When the editor picks product A instead of product B, the checkboxes below should update."
+> When the editor picks product A instead of product B, the checkboxes below should update.
 
 That is not a front-end problem. It is a **CMS editing UI** problem. And my first instinct — write a custom Dojo widget — turned out to be the long way around.
 
 This post is about the shortcut I wish I had known about sooner: `[ReloadOnChange]`.
+
+**TL;DR:** This post is for developers building the Optimizely CMS editing experience — especially when dropdowns or checkbox lists need to update based on another field on the same content item. Put `[ReloadOnChange]` on the **driving field** (the one whose value should trigger a refresh), not on the dependent field. When that driving field changes, the CMS editor reloads and your `ISelectionFactory` runs again, so options rebuild immediately without a manual save.
+
+**What the acronym?** Throughout this post, **OPE** means **On-Page Editing** — Optimizely's mode for editing content directly on the rendered page preview.
 
 ## The problem: one template, many SKUs
 
@@ -35,7 +39,7 @@ In Optimizely we modelled that as:
 
 That architecture is reasonable for headless. It keeps the CMS tidy and avoids cloning the same page layout fifty times.
 
-It also creates a editing UX challenge: **fields on the PDP (and on blocks within it) need to react to which SKUs are linked.**
+It also creates an editing UX challenge: **fields on the PDP (and on blocks within it) need to react to which SKUs are linked.**
 
 Examples we had to support:
 
@@ -59,12 +63,12 @@ So yes — it exists, it is official, and it is surprisingly easy to miss.
 
 ### What it actually does (and what it does not)
 
-Decorating a property with `[ReloadOnChange]` tells Optimizely: when this value changes, **reload the CMS editing shell** for the current content item. Selection factories run again. Dependent dropdowns and checkbox lists refresh. In classic MVC setups, OPE templates can re-render too.
+Decorating a property with `[ReloadOnChange]` tells Optimizely: when this value changes, **reload the CMS UI** for the current content item. Selection factories run again. Dependent dropdowns and checkbox lists refresh. In classic MVC setups, OPE templates can re-render too.
 
 **It does not:**
 
-- Automatically wire up your headless preview or On-Page Editing iframe
-- Work in the **Quick Edit** dialog (no autosave there)
+- Automatically wire up your headless preview or OPE iframe
+- Work in the **Quick Edit** dialog (the lightweight inline dialog for blocks — no autosave there)
 - Fire during **initial content creation** — there is nothing to refresh yet
 
 That last point mattered for us. We paired `[ReloadOnChange]` with a custom `[HideOnContentCreate]` attribute and a metadata extender that relaxes validation while the page is still being created. Editors are not forced to add SKU blocks before the content item exists.
@@ -120,9 +124,9 @@ public class SelectedSkuSelectionFactory : ISelectionFactory
 }
 ```
 
-The important bit: **`[ReloadOnChange]`** sits on **`Products`**, **not on the preview dropdown**. When an editor adds or removes a SKU block, the UI reloads and the selection factory rebuilds the preview list. Without that attribute, the dropdown stays empty until a manual save.
+The important bit: **`[ReloadOnChange]`** sits on **`Products`**, **not on the preview dropdown**. When an editor adds or removes a SKU block, the CMS UI reloads and the selection factory rebuilds the preview list. Without that attribute, the dropdown stays empty until a manual save.
 
-![CMS settings panel with Preview product dropdown after adding SKU blocks](/articles/optimizely-cms-reloadonchange-attribute/reloadonchange-product-preview.jpg)
+![CMS settings panel with Preview product dropdown populated with products after adding Product SKU blocks caused the UI to reload](/articles/optimizely-cms-reloadonchange-attribute/reloadonchange-product-preview.jpg)
 
 ## PoC 2: specification checkboxes with a custom editor
 
@@ -178,7 +182,7 @@ public class ProductAttributesSelectionFactory : ISelectionFactory
 }
 ```
 
-Drop a product reference, UI reloads, checkboxes appear. No Dojo. No API endpoint. This seemed far easier than I was expecting!
+Drop a product reference, the CMS UI reloads, checkboxes appear. No Dojo. No API endpoint. This seemed far easier than I was expecting!
 
 This PoC pattern — **reference field** + **`[ReloadOnChange]`** + **`ISelectionFactory`** — became the foundation for the production implementation, even though the final content model evolved (more on that below).
 
@@ -209,9 +213,9 @@ public virtual string? HighlightedSpecifications { get; set; }
 
 The selection factory resolves the linked product (or the first descendant product, if a collection was chosen) and maps PIM specifications for that specific SKU to checkbox options the editor can choose to display on the customer-facing page.
 
-**Specification group blocks** are a wrinkle: they sit one level deeper and do not carry their own `[ReloadOnChange]`. The factory walks up to the parent SKU block to read its Product reference. The UI does not reload when you are editing the nested block in isolation — but the options are still correct because the factory reads context, not just the current content item.
+**Specification group blocks** are a wrinkle: they sit one level deeper and do not carry their own `[ReloadOnChange]`. The factory walks up to the parent SKU block to read its `Product` reference. The CMS UI does not reload when you are editing the nested block in isolation — but the options are still correct because the factory reads context, not just the current content item.
 
-![Product SKU block with Product reference and specification checkboxes repopulating](/articles/optimizely-cms-reloadonchange-attribute/reloadonchange-product-specs.jpg)
+![Product SKU block with Product reference which when altered causes the UI to reload and specification checkboxes to (re)populate](/articles/optimizely-cms-reloadonchange-attribute/reloadonchange-product-specs.jpg)
 
 ### Pattern B: SKU content area → preview dropdown
 
@@ -238,13 +242,13 @@ Same trick as PoC 1, refined: `Products` is a content area of SKU blocks (not a 
 
 ### How the pieces connect
 
-![Flowchart of factoring in ReloadOnChange on content types](/articles/optimizely-cms-reloadonchange-attribute/flowchart-connect-pieces.svg)
+![A flowchart which visualises the relationship between properties that are decorated with the ReloadOnChange attribute and the properties that benefit from the UI reloading and a new context to derive from](/articles/optimizely-cms-reloadonchange-attribute/flowchart-connect-pieces.svg)
 
-Everything above is **CMS shell behaviour** — handled by `[ReloadOnChange]` and selection factories. Anything beyond what is depicted is **front-end routing and API resolution**, which is a separate concern.
+Everything above is **CMS UI behaviour** — handled by `[ReloadOnChange]` and selection factories. Anything beyond what is depicted is **front-end routing and API resolution**, which is a separate concern.
 
 ## The preview requirement that ReloadOnChange does not solve
 
-The user story also called for this: when an editor picks a SKU in the **Preview product** dropdown and hits Preview or On-Page Editing, the headless front-end should render the page **as if that SKU's URL were active** — even though Optimizely only knows the PDP's base URL.
+The user story also called for this: when an editor picks a SKU in the **Preview product** dropdown and hits Preview or OPE, the headless front-end should render the page **as if that SKU's URL were active** — even though Optimizely only knows the PDP's base URL.
 
 That is a fair requirement. It is also **not something `[ReloadOnChange]` delivers on its own.**
 
@@ -258,7 +262,7 @@ That is a fair requirement. It is also **not something `[ReloadOnChange]` delive
 
 We got partway there. The CMS side works — editors can select a preview product. The headless wiring was started but **not fully shipped**, for a practical reason unrelated to `ReloadOnChange`:
 
-> Optimizely's On-Page Editing does not support editing **nested content items** on a page in the way we needed.
+> OPE does not support editing **nested content items** on a page in the way we needed.
 
 Our PDP stores SKU configuration inside blocks within a content area. OPE cannot meaningfully edit that nested structure today. Without OPE on those blocks, investing heavily in per-SKU preview felt like polish on a feature the client could not actually use day to day.
 
@@ -271,6 +275,8 @@ Live traffic works differently anyway: the front-end resolves virtual SKU URLs v
 - Dependent dropdowns or checkbox lists on the **same content item** (or resolvable via `ISelectionFactory` context)
 - Headless projects where you are not rendering OPE Razor views but still need a sane All Properties / settings panel UX
 - Avoiding custom Dojo editors for "fetch options from another field"
+
+**Rule of thumb:** put `[ReloadOnChange]` on the **driving field**, pair dependent fields with an `ISelectionFactory`, and resist the urge to put the attribute on the dropdown itself unless _that_ field also drives further dependencies.
 
 **Less good fit:**
 
