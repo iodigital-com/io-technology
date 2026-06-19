@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection'
 import { getContentWithPagination } from '@/lib/hooks/useContentData'
 import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
 import { usePostSearch } from '@/lib/hooks/usePostSearch'
+import PromoCardBg from '../public/Insights_nieuwsbrief.png'
 
 export const POSTS_PER_PAGE = 12
 
@@ -51,6 +52,13 @@ export default function Articles({
         pagination={pagination}
         subpath="articles"
         searchValue={searchValue}
+        promoCard={{
+          index: 5,
+          title: 'Find your career with infinite opportunities',
+          ctaText: 'View our tech jobs',
+          ctaHref: 'https://www.iodigital.com/en/careers/jobs?expertise=Technology',
+          image: PromoCardBg.src,
+        }}
       />
     </>
   )

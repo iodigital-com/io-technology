@@ -142,9 +142,7 @@ export default function Home({
         </ul>
       </HeroSection>
 
-      <SectionTitle id="articles">
-        Our latest <span className="font-serif font-light">articles</span>
-      </SectionTitle>
+      <SectionTitle id="articles">Our latest articles</SectionTitle>
 
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {!posts.length && 'No articles found.'}
@@ -193,26 +191,19 @@ export default function Home({
 
       <SectionTitle id="people">
         Our amazing <br />
-        <span className="font-serif font-light">writers</span> &amp;{' '}
-        <span className="font-serif font-light">speakers</span>
+        writers &amp; speakers
       </SectionTitle>
       <div className="container mx-auto mt-8">
         <ContributorsGrid contributors={activeContributors} />
       </div>
 
-      <SectionTitle id="videos">
-        Our latest <span className="font-serif font-light">videos</span>
-      </SectionTitle>
+      <SectionTitle id="videos">Our latest videos </SectionTitle>
       <VideoCarousel videos={videos as unknown as never[]} />
 
-      <SectionTitle id="events">
-        Our latest <span className="font-serif font-light">events</span>
-      </SectionTitle>
+      <SectionTitle id="events">Our latest events</SectionTitle>
       <EventCarousel events={events as unknown as any[]} />
 
-      <SectionTitle id="jobs">
-        Some of our <span className="font-serif font-light">jobs</span>
-      </SectionTitle>
+      <SectionTitle id="jobs">Some of our jobs</SectionTitle>
       <div className="container mx-auto">
         <JobGrid jobs={jobs as unknown as never[]} />
       </div>
