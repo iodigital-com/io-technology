@@ -24,6 +24,15 @@ module.exports = {
       padding: '1rem',
     },
     extend: {
+      keyframes: {
+        'overlay-in': {
+          '0%': { backdropFilter: 'blur(0)', backgroundColor: 'transparent' },
+          '100%': { backdropFilter: 'blur(12px)', backgroundColor: 'rgb(0 0 0 / 0.7)' },
+        },
+      },
+      animation: {
+        'overlay-in': 'overlay-in 1.5s ease-out 0.6s both',
+      },
       spacing: {
         '9/16': '56.25%',
       },

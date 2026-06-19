@@ -71,7 +71,7 @@ export default function PostLayout({
                 priority={true}
                 className="object-cover"
               />
-              <div className={`absolute inset-0 backdrop-blur-md bg-black/70`} aria-hidden="true" />
+              <div className="absolute inset-0 animate-overlay-in" aria-hidden="true" />
             </>
           )}
           <div className={`relative container mx-auto`}>
