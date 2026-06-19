@@ -1,6 +1,6 @@
 ---
 title: 'This was CSS Day 2026 - a dive in CSS geekism'
-date: '2026-06-18'
+date: '2026-06-19'
 tags: ['frontend', 'css', 'events', 'conference']
 images: ['/articles/this-was-css-day-2026-a-dive-in-css-geekism/css-day-2026.png']
 summary: 'Fourteen talks, two days, one city. Color spaces, a browser built from scratch, CSS that runs x86 machine code, a select that took 33 years, and a masonry layout that is finally real. This was CSS Day 2026.'
