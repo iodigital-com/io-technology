@@ -1,6 +1,6 @@
 ---
 title: 'ReloadOnChange in Optimizely CMS: The Attribute Nobody Talks About'
-date: '2026-06-11'
+date: '2026-06-19'
 tags: ['optimizely', 'cms', 'reloadonchange', 'headless']
 images: ['/articles/optimizely-cms-reloadonchange-attribute/hero.png']
 summary: 'Optimizely CMS has a little-known attribute that reloads the editor when a property changes — perfect for dependent dropdowns and checkboxes. Here is how I found it, proved it worked, and shipped it on a Product Detail Page.'
