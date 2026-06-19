@@ -1,0 +1,23 @@
+# Build output
+.next/
+out/
+build/
+coverage/
+
+# Dependencies
+node_modules/
+
+# .env, .git/, lock files are excluded by default
+
+# TypeScript / build cache
+*.tsbuildinfo
+test-output.css
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+
+# Auto-generated public files
+public/feed.xml
+public/sitemap.xml
