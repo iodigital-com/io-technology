@@ -12,6 +12,7 @@ export async function getStaticProps() {
     props: {
       content,
       theme: 'green',
+      transparentHeader: true,
     },
   }
 }

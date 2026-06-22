@@ -2,11 +2,11 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import SeriesLayout from '@/layouts/SeriesLayout'
 import { SERIES_PER_PAGE } from '../../series'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
 import { getPagedContent } from '@/lib/hooks/useContentData'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import type { ContentItem, AuthorsMap } from '../../../types'
 import type { PaginationMeta } from '../../../types/api'
+import HeroSection from '@/components/HeroSection'
 
 export async function getStaticPaths() {
   const allSeries = await getAllFilesFrontMatter('series')
@@ -41,27 +41,20 @@ interface SeriesPageProps {
   initialDisplaySeries: ContentItem[]
   pagination: PaginationMeta
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
 export default function SeriesPage({
   series,
-  initialDisplaySeries,
   pagination,
   authors,
+  transparentHeader,
 }: SeriesPageProps) {
-  const { theme } = useBrandingTheme()
-
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <SeriesLayout
-        series={series}
-        initialDisplaySeries={initialDisplaySeries}
-        pagination={pagination}
-        title="All Series"
-        authors={authors}
-        theme={theme}
-      />
+      <HeroSection title="All Series" isDarkBackground={transparentHeader} />
+      <SeriesLayout series={series} authors={authors} pagination={pagination} subpath="series" />
     </>
   )
 }
