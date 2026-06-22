@@ -1,6 +1,45 @@
 {
   "jobs": [
     {
+      "id": "2647559",
+      "title": "Lead Front-end Developer",
+      "location": "Eindhoven, Noord-Brabant, Nederland",
+      "country": "Nederland",
+      "city": "Eindhoven",
+      "postal_code": "",
+      "country_code": "NL",
+      "department": "Technology",
+      "employment_type": "fulltime_fixed_term",
+      "category": "information_technology",
+      "experience": "experienced",
+      "education": "bachelor_degree",
+      "tags": {
+        "tag": [
+          "Content Management Systems",
+          "Front-end Frameworks",
+          "Leadership",
+          "Skil: Usability",
+          "Accessibility",
+          "Front-end",
+          "Front-end Development",
+          "Next.js",
+          "Node.js",
+          "React",
+          "Strategy",
+          "Systeemintegratie",
+          "Technische implementatie",
+          "Technology"
+        ]
+      },
+      "min_hours": 32,
+      "max_hours": 40,
+      "careers_url": "https://iodigital.com/nl/carriere/vacatures/lead-front-end-developer-2",
+      "created_at": "2001-02-01T00:00:00.000Z",
+      "updated_at": "2001-02-01T00:00:00.000Z",
+      "published_at": "2001-02-01T00:00:00.000Z",
+      "closed": ""
+    },
+    {
       "id": "2640967",
       "title": "Digitale Project Manager (junior/medior)",
       "location": "Herentals, Vlaams Gewest, België",
@@ -1228,37 +1267,6 @@
       "closed": ""
     },
     {
-      "id": "2021323",
-      "title": "Sitecore Engineer",
-      "location": "Den Bosch, Noord-Brabant, Nederland",
-      "country": "Nederland",
-      "city": "Den Bosch",
-      "postal_code": "",
-      "country_code": "NL",
-      "department": "Technology",
-      "employment_type": "fulltime_fixed_term",
-      "category": "information_technology",
-      "experience": "mid_level",
-      "education": "bachelor_degree",
-      "tags": {
-        "tag": [
-          "Azure DevOps",
-          ".NET",
-          ".NET Core",
-          "Continuous Integration",
-          "Sitecore",
-          "Systeemintegratie"
-        ]
-      },
-      "min_hours": 32,
-      "max_hours": 40,
-      "careers_url": "https://iodigital.com/nl/carriere/vacatures/sitecore-engineer-1",
-      "created_at": "2001-02-01T00:00:00.000Z",
-      "updated_at": "2001-02-01T00:00:00.000Z",
-      "published_at": "2001-02-01T00:00:00.000Z",
-      "closed": ""
-    },
-    {
       "id": "2021385",
       "title": ".NET Engineer",
       "location": "Den Bosch, Noord-Brabant, Nederland",
@@ -1290,6 +1298,37 @@
       "min_hours": 32,
       "max_hours": 40,
       "careers_url": "https://iodigital.com/nl/carriere/vacatures/net-engineer",
+      "created_at": "2001-02-01T00:00:00.000Z",
+      "updated_at": "2001-02-01T00:00:00.000Z",
+      "published_at": "2001-02-01T00:00:00.000Z",
+      "closed": ""
+    },
+    {
+      "id": "2021323",
+      "title": "Sitecore Engineer",
+      "location": "Den Bosch, Noord-Brabant, Nederland",
+      "country": "Nederland",
+      "city": "Den Bosch",
+      "postal_code": "",
+      "country_code": "NL",
+      "department": "Technology",
+      "employment_type": "fulltime_fixed_term",
+      "category": "information_technology",
+      "experience": "mid_level",
+      "education": "bachelor_degree",
+      "tags": {
+        "tag": [
+          "Azure DevOps",
+          ".NET",
+          ".NET Core",
+          "Continuous Integration",
+          "Sitecore",
+          "Systeemintegratie"
+        ]
+      },
+      "min_hours": 32,
+      "max_hours": 40,
+      "careers_url": "https://iodigital.com/nl/carriere/vacatures/sitecore-engineer-1",
       "created_at": "2001-02-01T00:00:00.000Z",
       "updated_at": "2001-02-01T00:00:00.000Z",
       "published_at": "2001-02-01T00:00:00.000Z",
