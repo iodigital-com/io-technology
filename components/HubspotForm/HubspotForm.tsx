@@ -8,7 +8,13 @@ declare global {
 
 import type { HubspotFormProps } from './types'
 
-const HubspotForm = ({ portalId, formId, className = '', style }: HubspotFormProps) => {
+const HubspotForm = ({
+  portalId,
+  formId,
+  className = '',
+  style,
+  isDarkBackground = false,
+}: HubspotFormProps) => {
   useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://js.hsforms.net/forms/v2.js'
@@ -27,7 +33,13 @@ const HubspotForm = ({ portalId, formId, className = '', style }: HubspotFormPro
     })
   }, [portalId, formId])
 
-  return <div id="hubspotForm" className={`${className} hubspot`} style={style}></div>
+  return (
+    <div
+      id="hubspotForm"
+      className={`${className} hubspot${isDarkBackground ? ' hubspot--dark' : ''}`}
+      style={style}
+    ></div>
+  )
 }
 
 export default HubspotForm

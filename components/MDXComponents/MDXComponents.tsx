@@ -34,7 +34,7 @@ export const MDXComponents = {
   h6: Heading(6),
   wrapper: ({ components, layout, ...rest }: WrapperProps) => {
     const Layout = require(`../../layouts/${layout}`).default
-    return <Layout {...rest} />
+    return <Layout {...rest} transparentHeader={true} />
   },
 }
 

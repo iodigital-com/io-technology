@@ -2,16 +2,15 @@
 title: 'Code, People, Flow: The Reality of the Tech Lead'
 date: '2025-12-15'
 tags: ['Technical Leadership', 'Domain Driven Design', 'Lead Developer', 'Web Development']
-authors: ['osman-fikret-ceylan']
+authors: ['osman-fikret-fiko-ceylan']
 images:
   [
     '/articles/code-people-flow-the-reality-of-the-tech-lead/pexels-cigdem-bilgin-2154409770-33647018-code-people-flow-the-reality-of-the-tech-lead.jpg',
   ]
 summary: 'Decode the ambiguous role of the Tech Lead by revealing the critical balance between leadership, architecture, and development. Learn how to optimize software flow and manage complexity using insights from Team Topologies, DORA metrics, and Domain-Driven Design.'
+canonicalUrl: 'https://osmanfikretceylan.com/blog/code-people-flow-the-reality-of-the-tech-lead'
 theme: 'orange'
 ---
-
-# Code, People, Flow: The Reality of the Tech Lead
 
 You are an experienced senior engineer. You solve problems. You write clean code. You know your stack inside and out. Then, someone promotes you. And, you are a _Tech Lead_.
 

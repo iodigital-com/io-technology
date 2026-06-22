@@ -5,16 +5,14 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { getLatestVideos } from '@/lib/youtube'
 import { getLatestJobs } from '@/lib/jobs'
 import { getLatestEvents } from '@/lib/events'
-import Image from '@/components/Image'
 import JobGrid from '@/components/JobGrid'
 import EventCarousel from '@/components/EventCarousel'
 import VideoCarousel from '@/components/VideoCarousel'
 import { getAllAuthors } from '@/lib/authors'
 import SectionTitle from '@/components/SectionTitle'
 import Arrow from '@/data/arrow.svg'
+import HeroSection from '@/components/HeroSection'
 import ContentCard from '@/components/ContentCard'
-import Image1 from '../public/iO-technology-blog1.png'
-import Image2 from '../public/iO-technology-blog2.png'
 import ContributorsGrid from '@/components/ContributorsGrid'
 import shuffle from '@/lib/shuffle'
 import type { FrontMatter, Author } from '../types'
@@ -58,6 +56,7 @@ interface HomeProps {
   events: FlexibleEvent[]
   contributors: Author[]
   theme: string
+  transparentHeader: boolean
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -83,11 +82,19 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       events: events as unknown as FlexibleEvent[],
       contributors,
       theme: 'green',
+      transparentHeader: true,
     },
   }
 }
 
-export default function Home({ posts, videos, jobs, events, contributors, theme }: HomeProps) {
+export default function Home({
+  posts,
+  videos,
+  jobs,
+  events,
+  contributors,
+  transparentHeader,
+}: HomeProps) {
   const authors: AuthorsFrontMatter = contributors.reduce((acc: AuthorsFrontMatter, author) => {
     acc[author.slug?.[0] || ''] = author
     return acc
@@ -98,79 +105,44 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div className={`bg-io_${theme}-500`}>
-        <div className="pb-14 pt-24">
-          <div className="container mx-auto grid grid-cols-12 gap-x-5">
-            <h1 className="relative z-10 col-span-full text-4xl md:col-start-4 md:text-5xl xl:text-7xl">
-              Is technology your window to{' '}
-              <span className="font-serif font-light">great experiences</span>?
-            </h1>
-            <div className="xl:-mt- col-span-full -mt-5 mb-12 flex md:col-span-10 md:mt-8 xl:col-span-7">
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image1}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="w-screen"
-                />
-              </div>
-              <div className="w-1/2">
-                <Image
-                  alt="Illustration"
-                  src={Image2}
-                  width={2160}
-                  height={2160}
-                  sizes="(min-width: 768px) 20vw, 33vw"
-                  priority={true}
-                  placeholder="blur"
-                  className="h-auto w-full rounded-full"
-                />
-              </div>
-            </div>
-            <span className="col-span-full mb-6 md:col-start-7 md:mb-0 xl:col-start-8 xl:flex xl:items-center">
-              <p className="text-lg">
-                We blend marketing, technology and creativity because we believe that creating the
-                ultimate customer experience requires a blend of these different skills to make an
-                impact on our clients' brand and business.
-              </p>
-            </span>
-            <ul className="col-span-full md:col-span-6 md:row-start-3 xl:col-span-3 xl:row-start-1">
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#articles" className="text-black">
-                  Our latest articles
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#videos" className="text-black">
-                  Our latest videos
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#people" className="text-black">
-                  Our writers &amp; speakers
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-              <li className="mb-4 flex items-center last:mb-0">
-                <Link href="#jobs" className="text-black">
-                  Some of our jobs
-                </Link>
-                <Arrow className="ml-2 mt-1 rotate-90" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <HeroSection
+        title="Is technology your window to great experiences?"
+        description="We blend marketing, technology and creativity because we believe that creating the ultimate customer experience requires a blend of these different skills to make an impact on our clients' brand and business."
+        isDarkBackground={transparentHeader}
+      >
+        <ul
+          className={`col-span-full mt-10 lg:mt-16 md:col-span-8 ${
+            transparentHeader ? 'text-white' : ''
+          }`}
+        >
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#articles" className="font-bold">
+              Our latest articles
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#videos" className="font-bold">
+              Our latest videos
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#people" className="font-bold">
+              Our writers &amp; speakers
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+          <li className="mb-4 flex items-center last:mb-0">
+            <Link href="#jobs" className="font-bold">
+              Some of our jobs
+            </Link>
+            <Arrow className="ml-2 mt-1 rotate-90" />
+          </li>
+        </ul>
+      </HeroSection>
 
-      <SectionTitle id="articles">
-        Our latest <span className="font-serif font-light">articles</span>
-      </SectionTitle>
+      <SectionTitle id="articles">Our latest articles</SectionTitle>
 
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {!posts.length && 'No articles found.'}
@@ -219,26 +191,19 @@ export default function Home({ posts, videos, jobs, events, contributors, theme 
 
       <SectionTitle id="people">
         Our amazing <br />
-        <span className="font-serif font-light">writers</span> &amp;{' '}
-        <span className="font-serif font-light">speakers</span>
+        writers &amp; speakers
       </SectionTitle>
       <div className="container mx-auto mt-8">
         <ContributorsGrid contributors={activeContributors} />
       </div>
 
-      <SectionTitle id="videos">
-        Our latest <span className="font-serif font-light">videos</span>
-      </SectionTitle>
+      <SectionTitle id="videos">Our latest videos </SectionTitle>
       <VideoCarousel videos={videos as unknown as never[]} />
 
-      <SectionTitle id="events">
-        Our latest <span className="font-serif font-light">events</span>
-      </SectionTitle>
+      <SectionTitle id="events">Our latest events</SectionTitle>
       <EventCarousel events={events as unknown as any[]} />
 
-      <SectionTitle id="jobs">
-        Some of our <span className="font-serif font-light">jobs</span>
-      </SectionTitle>
+      <SectionTitle id="jobs">Some of our jobs</SectionTitle>
       <div className="container mx-auto">
         <JobGrid jobs={jobs as unknown as never[]} />
       </div>

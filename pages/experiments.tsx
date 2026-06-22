@@ -21,14 +21,15 @@ export async function getStaticProps() {
     })
   )
 
-  return { props: { experiments } }
+  return { props: { experiments, transparentHeader: true } }
 }
 
 interface ExperimentsProps {
   experiments: ExperimentProps[]
+  transparentHeader: boolean
 }
 
-export default function Experiments({ experiments }: ExperimentsProps) {
+export default function Experiments({ experiments, transparentHeader }: ExperimentsProps) {
   return (
     <>
       <PageSEO
@@ -38,10 +39,7 @@ export default function Experiments({ experiments }: ExperimentsProps) {
       <HeroSection
         title="Don't you just love experimenting with code?"
         description="We do! Especially during hackathons and innovation days. Here are some of our experiments to play around with. Some of them rely on browser flags to be set."
-        imageSrc="/experiments.jpg"
-        imageAlt="hackathon"
-        imagePosition="left"
-        showForm={false}
+        isDarkBackground={transparentHeader}
       />
       <div className="container mx-auto">
         <ul>

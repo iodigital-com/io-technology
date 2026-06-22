@@ -5,6 +5,7 @@ export interface HubspotFormProps {
   formId: string
   className?: string
   style?: React.CSSProperties
+  isDarkBackground?: boolean
 }
 
 export interface HubspotFormConfig {

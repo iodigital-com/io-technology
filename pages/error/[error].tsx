@@ -16,15 +16,15 @@ const getContentForError = (error: string | number): ErrorContent => {
         title: 'Oi, looks like we lost this page.',
         description: (
           <>
-            Take a small detour, go back to
+            Take a small detour, go back to{' '}
             <Link href={'/'} className="text-gray-400 hover:text-gray-500">
               homepage
             </Link>
-            ,
+            ,{' '}
             <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
               articles
             </Link>{' '}
-            or check our
+            or check our{' '}
             <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
               videos.
             </Link>
@@ -39,15 +39,15 @@ const getContentForError = (error: string | number): ErrorContent => {
         title: 'Oi, looks like something went wrong.',
         description: (
           <>
-            Go back to
+            Go back to{' '}
             <Link href={'/'} className="text-gray-400 hover:text-gray-500">
               homepage
             </Link>
-            ,
+            ,{' '}
             <Link href={'/articles'} className="text-gray-400 hover:text-gray-500">
               articles
             </Link>
-            or check our
+            or check our{' '}
             <Link href={'/videos'} className="text-gray-400 hover:text-gray-500">
               videos.
             </Link>
@@ -75,17 +75,16 @@ export default function ErrorPage({ error }: ErrorPageProps) {
   const { title, description } = getContentForError(actualError || '404')
 
   return (
-    <div className="">
+    <>
       <div className="lg:flex">
-        <h1>LOTTIE HIER</h1>
         <Player autoplay loop src={Number(error) === 404 ? '/404.json' : '/500.json'} />
 
         <div className="min-w-3xl flex min-w-fit flex-1	 flex-col items-center justify-center p-4">
-          <h1 className="text-4xl xl:text-5xl">{title}</h1>
+          <h1 className="some-title text-4xl xl:text-5xl">{title}</h1>
           <p className="mt-4 text-lg xl:text-2xl">{description}</p>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
