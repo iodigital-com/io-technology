@@ -1,9 +1,11 @@
 import siteMetadata from '@/data/siteMetadata'
+import SearchLayout from '@/layouts/SearchLayout'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/SEO'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import HeroSection from '@/components/HeroSection'
 import { getContentWithPagination } from '@/lib/hooks/useContentData'
 import type { ContentItem, AuthorsMap, PaginationMeta } from '../types'
+import { usePostSearch } from '@/lib/hooks/usePostSearch'
 import PromoCardBg from '../public/Insights_nieuwsbrief.png'
 
 export const POSTS_PER_PAGE = 12
@@ -13,7 +15,8 @@ export async function getStaticProps() {
     'blog',
     POSTS_PER_PAGE,
     'beige',
-    (frontMatter: ContentItem) => !frontMatter.hideInArticleList
+    (frontMatter: ContentItem) => !frontMatter.hideInArticleList,
+    true
   )
 }
 
@@ -22,21 +25,33 @@ interface ArticlesProps {
   initialDisplayBlog: ContentItem[]
   pagination: PaginationMeta
   authors: AuthorsMap
+  transparentHeader: boolean
 }
 
-export default function Articles({ blog, initialDisplayBlog, pagination, authors }: ArticlesProps) {
-  const { theme } = useBrandingTheme()
+export default function Articles({
+  blog,
+  initialDisplayBlog,
+  pagination,
+  authors,
+  transparentHeader,
+}: ArticlesProps) {
+  const { searchValue, setSearchValue, filteredPosts } = usePostSearch(blog)
+
+  const displayPosts =
+    initialDisplayBlog.length > 0 && !searchValue ? initialDisplayBlog : filteredPosts
 
   return (
     <>
       <PageSEO title={`Articles - ${siteMetadata.author}`} description={siteMetadata.description} />
+      <HeroSection title="Discover all articles" isDarkBackground={transparentHeader}>
+        <SearchLayout onChange={setSearchValue} searchPlaceholder="Search articles" />
+      </HeroSection>
       <ListLayout
-        posts={blog}
-        initialDisplayPosts={initialDisplayBlog}
-        pagination={pagination}
-        title="Discover all articles"
+        posts={displayPosts}
         authors={authors}
-        theme={theme}
+        pagination={pagination}
+        subpath="articles"
+        searchValue={searchValue}
         promoCard={{
           index: 5,
           title: 'Find your career with infinite opportunities',

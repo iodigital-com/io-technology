@@ -4,36 +4,28 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
-import { useBrandingTheme } from '@/lib/hooks/useBrandingTheme'
+import HeroSection from '@/components/HeroSection'
 
 export async function getStaticProps() {
   const tags = await getAllTags('blog')
 
-  return { props: { tags, theme: 'beige' } }
+  return { props: { tags, theme: 'beige', transparentHeader: true } }
 }
 
 interface TagsProps {
   tags: any
+  transparentHeader: boolean
 }
 
-export default function Tags({ tags }: TagsProps) {
-  const { theme } = useBrandingTheme()
+export default function Tags({ tags, transparentHeader }: TagsProps) {
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
   return (
     <>
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I blog about" />
-      <section className={`bg-io_${theme}-500`}>
-        <div className="container mx-auto pb-24 pt-8 md:pb-32">
-          <div className="grid grid-cols-12">
-            <div className="col-start-1 col-end-12 mb-8 md:col-end-8 md:mb-10 md:mt-4 xl:row-start-1 xl:mb-16 xl:mt-12">
-              <h1 className="text-4xl md:text-5xl xl:text-7xl">
-                We write and talk about a lot of{' '}
-                <span className="font-serif font-light">different topics</span>. Check them out!
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        title="We write and talk about a lot of different topics. Check them out!"
+        isDarkBackground={transparentHeader}
+      />
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
         <div className="flex max-w-lg flex-wrap justify-around">
           {Object.keys(tags).length === 0 && 'No tags found.'}
