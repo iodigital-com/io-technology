@@ -42,3 +42,6 @@ yarn-error.log*
 
 # TypeScript build cache
 *.tsbuildinfo
+
+# Claude Ai personal permissions config
+.claude/settings.local.json
