@@ -22,7 +22,6 @@ export interface SiteMetadata {
   socialBanner: string
   email: string
   github: string
-  twitter: string
   facebook: string
   youtube: string
   linkedin: string

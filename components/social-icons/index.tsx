@@ -3,7 +3,7 @@ import Github from './github.svg'
 import Facebook from './facebook.svg'
 import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
-import Twitter from './twitter.svg'
+import X from './x.svg'
 import Web from './web.svg'
 import SlideDeck from './slide-deck.svg'
 import Link from '../Link'
@@ -16,7 +16,7 @@ const components = {
   facebook: Facebook,
   youtube: Youtube,
   linkedin: Linkedin,
-  twitter: Twitter,
+  x: X,
   website: Web, // from material ui icons
   'slide-deck': SlideDeck, // from material ui icons
 }

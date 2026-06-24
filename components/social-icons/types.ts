@@ -6,7 +6,7 @@ type SocialIconKind =
   | 'facebook'
   | 'youtube'
   | 'linkedin'
-  | 'twitter'
+  | 'x'
   | 'website'
   | 'slide-deck'
 

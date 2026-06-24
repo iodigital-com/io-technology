@@ -13,7 +13,6 @@ const siteMetadata: SiteMetadata = {
   socialBanner: '/twitter-card.png',
   email: 'info@iodigital.com',
   github: 'https://github.com/iodigital-com',
-  twitter: 'https://twitter.com/iodigital_com',
   facebook: 'https://www.facebook.com/iodigitalcom/',
   youtube: 'https://www.youtube.com/channel/UCNhy3hGzwMfbtX3Ei8Htcpg',
   linkedin: 'https://www.linkedin.com/company/iodigital-com/',
