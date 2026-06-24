@@ -4,6 +4,7 @@ import Facebook from './facebook.svg'
 import Youtube from './youtube.svg'
 import Linkedin from './linkedin.svg'
 import X from './x.svg'
+import Instagram from './instagram.svg'
 import Web from './web.svg'
 import SlideDeck from './slide-deck.svg'
 import Link from '../Link'
@@ -17,6 +18,7 @@ const components = {
   youtube: Youtube,
   linkedin: Linkedin,
   x: X,
+  instagram: Instagram,
   website: Web, // from material ui icons
   'slide-deck': SlideDeck, // from material ui icons
 }

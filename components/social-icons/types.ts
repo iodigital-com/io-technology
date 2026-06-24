@@ -9,6 +9,7 @@ type SocialIconKind =
   | 'x'
   | 'website'
   | 'slide-deck'
+  | 'instagram'
 
 export interface SocialIconProps {
   kind: SocialIconKind

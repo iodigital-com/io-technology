@@ -23,6 +23,7 @@ export interface SiteMetadata {
   email: string
   github: string
   facebook: string
+  instagram: string
   youtube: string
   linkedin: string
   locale: string
