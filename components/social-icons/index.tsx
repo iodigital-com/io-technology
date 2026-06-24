@@ -41,7 +41,7 @@ const SocialIcon = ({
   return (
     <Link
       className={`h flex  items-center transition ${
-        textClassNames ? textClassNames : 'hover:text-gray-800'
+        textClassNames ? textClassNames : 'hover:text-io_energeticBlue-600'
       }`}
       target="_blank"
       rel="noopener noreferrer"
