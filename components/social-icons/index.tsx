@@ -41,7 +41,7 @@ const SocialIcon = ({
   return (
     <Link
       className={`h flex  items-center transition ${
-        textClassNames ? textClassNames : 'text-gray-700 hover:text-gray-800'
+        textClassNames ? textClassNames : 'hover:text-gray-800'
       }`}
       target="_blank"
       rel="noopener noreferrer"
@@ -50,7 +50,7 @@ const SocialIcon = ({
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`h-${size} w-${size} text-gray-700 hover:text-io_energeticBlue-600 dark:text-gray-200 dark:hover:text-blue-400 ${
+        className={`h-${size} w-${size} hover:text-io_energeticBlue-600 dark:text-gray-200 dark:hover:text-blue-400 ${
           classNames ? classNames : 'fill-current'
         }`}
       />
