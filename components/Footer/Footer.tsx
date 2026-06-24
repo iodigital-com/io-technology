@@ -14,7 +14,7 @@ export default function Footer() {
           <SocialIcon kind="youtube" href={siteMetadata.youtube} size="6" />
           <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size="6" />
         </div>
-        <div className="flex flex-col text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex flex-col text-sm dark:text-gray-400">
           <div className="mb-4 flex flex-wrap justify-center space-x-2">
             <div>{`© ${new Date().getFullYear()}`}</div>
             <div>{` • `}</div>
