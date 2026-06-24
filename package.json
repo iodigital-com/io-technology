@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
     "dev": "next dev",
-    "build": "next build && node ./scripts/generate-sitemap && node ./scripts/generate-devto",
+    "build": "next build && tsx ./scripts/generate-sitemap && tsx ./scripts/generate-devto",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
@@ -105,6 +105,7 @@
     "prettier": "2.8.8",
     "socket.io": "4.8.1",
     "socket.io-client": "4.8.1",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.2",
     "vite": "^7.0.6",
     "vitest": "^3.2.4",
