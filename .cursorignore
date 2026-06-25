@@ -1,15 +1,15 @@
 # AI ignore list to reduce token usage and speed up indexing
 # Supported by WebStorm and Cursor
 
-# Env / secrets (excluded by default by Cursor)
+# Env / secrets
 .env
 .env.local
 .env.*.local
 
-# Git internals (excluded by default by Cursor)
+# Git internals
 .git/
 
-# Lock files (excluded by default by Cursor)
+# Lock files
 yarn.lock
 package-lock.json
 
