@@ -107,7 +107,7 @@ export interface SocialLinks {
  *   slug: ["john-doe"],
  *   bio: "Passionate about TypeScript and React",
  *   social: {
- *     twitter: "https://twitter.com/johndoe",
+ *     twitter: "https://x.com/johndoe",
  *     github: "https://github.com/johndoe"
  *   }
  * }

@@ -132,10 +132,12 @@ export default function PostLayout({
                       )}
                       {author.social?.twitter && (
                         <>
-                          <dt className="sr-only">Twitter</dt>
+                          <dt className="sr-only">X</dt>
                           <dd>
-                            <SocialIcon kind="twitter" href={author.social.twitter} size="5">
-                              {author.social.twitter.replace('https://twitter.com/', '@')}
+                            <SocialIcon kind="x" href={author.social.twitter} size="5">
+                              {author.social.twitter
+                                .replace('https://x.com/', '@')
+                                .replace('https://twitter.com/', '@')}
                             </SocialIcon>
                           </dd>
                         </>
