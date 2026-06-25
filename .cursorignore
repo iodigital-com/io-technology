@@ -1,5 +1,7 @@
 # AI ignore list to reduce token usage and speed up indexing
-# Supported by WebStorm and Cursor
+# Supported by Cursor natively.
+# Supported by JetBrains AI Assistant only when .aiignore is enabled in:
+#  Settings → Tools → AI Assistant → Project Settings.
 
 # Env / secrets
 .env
