@@ -1,6 +1,6 @@
 ---
 title: 'Chrome DevTools for agents'
-date: '2026-06-27'
+date: '2026-06-29'
 tags: ['ai', 'frontend', 'chrome', 'devtools', 'events']
 images:
   [
