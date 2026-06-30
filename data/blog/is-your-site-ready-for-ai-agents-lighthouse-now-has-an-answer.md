@@ -6,14 +6,14 @@ images:
   [
     '/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/lighthouse-agentic-browsing-report.png',
   ]
-summary: 'Lighthouse added an Agentic Browsing category that measures how well your site works for user-facing AI agents — from llms.txt and WebMCP to accessibility and layout stability.'
+summary: 'Lighthouse added an Agentic Browsing category that measures how well your site works for user-facing AI agents, from llms.txt and WebMCP to accessibility and layout stability.'
 authors: ['dave-bitter']
 theme: 'blue'
 ---
 
 We've been talking a lot about agents _building_ things. Using coding agents to debug, write, and iterate faster. I wrote about that [already](/articles/chrome-devtools-for-agents-what-google-showed-at-io-connect-berlin-2026).
 
-But there's a flip side that deserves its own piece: what does your site look like _to_ an agent? Not a coding agent poking at your dev environment — a user-facing agent trying to actually accomplish something on your production site. Book a table. Add something to a cart. Find the right information and act on it.
+But there's a flip side that deserves its own piece: what does your site look like _to_ an agent? Not a coding agent poking at your dev environment, but a user-facing agent trying to actually accomplish something on your production site. Book a table. Add something to a cart. Find the right information and act on it.
 
 The answer, for most sites right now, is: not great.
 
@@ -21,7 +21,7 @@ The answer, for most sites right now, is: not great.
 
 ## The Agentic Browsing audit
 
-Lighthouse added a fifth category — [Agentic Browsing](https://developer.chrome.com/docs/lighthouse/agentic-browsing/scoring) — alongside Performance, Accessibility, Best Practices, and SEO. It evaluates how well your site is constructed for machine interaction.
+Lighthouse added a fifth category, [Agentic Browsing](https://developer.chrome.com/docs/lighthouse/agentic-browsing/scoring), alongside Performance, Accessibility, Best Practices, and SEO. It evaluates how well your site is constructed for machine interaction.
 
 Unlike the other categories, it doesn't give you a score from 0 to 100. Standards for the agentic web are still being figured out, so instead you get a fractional pass/fail ratio per audit. More of a diagnostic than a grade. That's a reasonable call for something this new.
 
@@ -39,7 +39,7 @@ Think of it as `robots.txt` for AI agents: a summary of what your site is about 
 
 ## WebMCP integration
 
-![WebMCP overview — bridging web applications and AI agents through structured tools](/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/webmcp-cover.png)
+![WebMCP overview: bridging web applications and AI agents through structured tools](/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/webmcp-cover.png)
 
 [WebMCP](https://developer.chrome.com/docs/ai/webmcp) is a new web API (currently in an [Origin Trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) on Chrome 150+) that lets you explicitly expose actions on your site to AI agents. Instead of an agent guessing that some button probably submits a booking form, you tell it directly.
 
@@ -63,7 +63,7 @@ Nothing here is new. But it reframes why it matters: semantic HTML and proper AR
 
 ## Layout stability
 
-[CLS](https://web.dev/articles/cls) makes the list for a mechanical reason. An agent identifies an element, then tries to interact with it. If something shifts between those two moments — an ad loading, an image without dimensions popping in — the agent clicks the wrong thing.
+[CLS](https://web.dev/articles/cls) makes the list for a mechanical reason. An agent identifies an element, then tries to interact with it. If something shifts between those two moments, like an ad loading or an image without dimensions popping in, the agent clicks the wrong thing.
 
 If you've already got CLS under control for [Core Web Vitals](https://web.dev/articles/vitals), this is a free pass. If not, now you have two good reasons to fix it.
 
