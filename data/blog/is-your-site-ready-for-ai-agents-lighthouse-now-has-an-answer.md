@@ -41,7 +41,7 @@ Think of it as `robots.txt` for AI agents: a summary of what your site is about 
 
 ![WebMCP overview: bridging web applications and AI agents through structured tools](/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/webmcp-cover.png)
 
-[WebMCP](https://developer.chrome.com/docs/ai/webmcp) is a new web API (currently in an [Origin Trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) on Chrome 150+) that lets you explicitly expose actions on your site to AI agents. Instead of an agent guessing that some button probably submits a booking form, you tell it directly.
+I wrote about [WebMCP](/articles/web-mcp-making-the-web-ai-agent-ready) when the spec first landed. The API (currently in an [Origin Trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) on Chrome 150+) lets you explicitly expose actions on your site to AI agents. Instead of an agent guessing that some button probably submits a booking form, you tell it directly.
 
 There are two ways to register tools. [Declaratively in HTML](https://developer.chrome.com/docs/ai/webmcp/declarative-api), by adding `toolname` and `tooldescription` attributes to a form element:
 
