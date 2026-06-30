@@ -77,6 +77,10 @@ Agents are already a non-trivial portion of web traffic on many sites. Having ag
 
 If you've read my [previous piece on Chrome DevTools for agents](/articles/chrome-devtools-for-agents-what-google-showed-at-io-connect-berlin-2026), that's about coding agents helping _you_ build better. This is the other side: ensuring the site you ship is legible and useful to the agents your users will eventually send at it.
 
+Through the DevTools MCP server, your coding agent can run the same Agentic Browsing audit on a live page and get a summary back in the terminal:
+
+![Agentic Lighthouse audit summary returned by Chrome DevTools for Agents in the terminal](/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/agentic-browsing-lh-audit.png)
+
 The two concerns are related but distinct. Your dev workflow might be fully agent-assisted and still produce a site that no user-facing agent can successfully navigate. Worth checking both.
 
 The [Lighthouse agentic browsing docs](https://developer.chrome.com/docs/lighthouse/agentic-browsing/scoring) are already live if you want to dig in.
