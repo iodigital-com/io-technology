@@ -41,7 +41,7 @@ Think of it as `robots.txt` for AI agents: a summary of what your site is about 
 
 ![WebMCP overview: bridging web applications and AI agents through structured tools](/articles/is-your-site-ready-for-ai-agents-lighthouse-now-has-an-answer/webmcp-cover.png)
 
-I wrote about [WebMCP](/articles/web-mcp-making-the-web-ai-agent-ready) when the spec first landed. The API (currently in an [Origin Trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) on Chrome 150+) lets you explicitly expose actions on your site to AI agents. Instead of an agent guessing that some button probably submits a booking form, you tell it directly.
+If you've read my [previous piece on WebMCP](/articles/web-mcp-making-the-web-ai-agent-ready), you already know the basics. [WebMCP](https://developer.chrome.com/docs/ai/webmcp) is a web API (currently in an [Origin Trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) on Chrome 150+) that lets you explicitly expose actions on your site to AI agents. Instead of an agent guessing that some button probably submits a booking form, you tell it directly.
 
 There are two ways to register tools. [Declaratively in HTML](https://developer.chrome.com/docs/ai/webmcp/declarative-api), by adding `toolname` and `tooldescription` attributes to a form element:
 
@@ -75,7 +75,7 @@ Agents are already a non-trivial portion of web traffic on many sites. Having ag
 
 ## Where this fits alongside DevTools for agents
 
-If you've read my [previous piece on Chrome DevTools for agents](/articles/chrome-devtools-for-agents-what-google-showed-at-io-connect-berlin-2026), that's about coding agents helping _you_ build better. This is the other side: ensuring the site you ship is legible and useful to the agents your users will eventually send at it.
+If you've read my [previous piece on Chrome DevTools for agents](/articles/chrome-devtools-for-agents-what-google-showed-at-io-connect-berlin-2026), that's about coding agents helping _you_ build better. My [WebMCP article](/articles/web-mcp-making-the-web-ai-agent-ready) covers the implementation side of one of the audits Lighthouse now checks for. This piece is the other side: ensuring the site you ship is legible and useful to the agents your users will eventually send at it.
 
 Through the DevTools MCP server, your coding agent can run the same Agentic Browsing audit on a live page and get a summary back in the terminal:
 
