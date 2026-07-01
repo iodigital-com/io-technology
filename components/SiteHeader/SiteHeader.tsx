@@ -20,7 +20,9 @@ const SiteHeader = ({ transparentHeader = false }: SiteHeaderProps) => {
 
   useEffect(() => {
     const headerHeight = headerRef.current?.scrollHeight || 0
-    if (transparentHeader && headerRef.current) {
+    // Always set --header-height (not just for transparent headers) so the variable
+    // is defined regardless of navigation order between transparent and non-transparent pages.
+    if (headerRef.current) {
       document.documentElement.style.setProperty('--header-height', `${headerHeight}px`)
     }
     const handleScroll = () => {

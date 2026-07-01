@@ -1,6 +1,4 @@
-import type { SiteMetadata } from '../types'
-
-const siteMetadata: SiteMetadata = {
+const siteMetadata = {
   title: 'iO tech_hub',
   author: 'iO tech_hub',
   headerTitle: 'tech_hub',
@@ -31,4 +29,4 @@ const siteMetadata: SiteMetadata = {
   ],
 }
 
-export default siteMetadata
+module.exports = siteMetadata

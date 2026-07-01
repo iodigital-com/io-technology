@@ -132,10 +132,12 @@ export default function PostLayout({
                       )}
                       {author.social?.twitter && (
                         <>
-                          <dt className="sr-only">Twitter</dt>
+                          <dt className="sr-only">X</dt>
                           <dd>
-                            <SocialIcon kind="twitter" href={author.social.twitter} size="5">
-                              {author.social.twitter.replace('https://twitter.com/', '@')}
+                            <SocialIcon kind="x" href={author.social.twitter} size="5">
+                              {author.social.twitter
+                                .replace('https://x.com/', '@')
+                                .replace('https://twitter.com/', '@')}
                             </SocialIcon>
                           </dd>
                         </>
@@ -189,7 +191,7 @@ export default function PostLayout({
                 <ul>
                   {!posts.length && 'No articles found.'}
                   {posts.map((frontMatter, index) => {
-                    const { slug, date, title, tags } = frontMatter
+                    const { slug, date, title, tags, images } = frontMatter
 
                     return (
                       <li key={slug}>
@@ -203,6 +205,7 @@ export default function PostLayout({
                           border={index !== 0}
                           type="article"
                           showAuthors={false}
+                          {...(images && { images })}
                         />
                       </li>
                     )

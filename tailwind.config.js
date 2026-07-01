@@ -44,6 +44,7 @@ module.exports = {
         primary: brandColors.colors.io_blue,
         gray: colors.neutral,
         ...brandColors.colors,
+        'code-pink': '#D41675',
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -77,7 +78,7 @@ module.exports = {
               backgroundColor: theme('colors.gray.800'),
             },
             code: {
-              color: theme('colors.pink.500'),
+              color: theme('colors.code-pink'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',

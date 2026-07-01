@@ -24,7 +24,7 @@ export default function ListLayout({
         <ul>
           {!series.length && 'No series found.'}
           {series.map((frontMatter, index) => {
-            const { slug, date, title, tags } = frontMatter
+            const { slug, date, title, tags, images } = frontMatter
             const authorsResolved = frontMatter.authors
               .map((author) => {
                 return authors[author]
@@ -46,6 +46,7 @@ export default function ListLayout({
                   border={index !== 0}
                   type="serie"
                   basePath={`/${subpath}`}
+                  {...(images && { images })}
                 />
               </li>
             )

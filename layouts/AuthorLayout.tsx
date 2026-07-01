@@ -58,10 +58,12 @@ export default function AuthorLayout({
                 )}
                 {twitter && (
                   <>
-                    <dt className="sr-only">Twitter</dt>
+                    <dt className="sr-only">X</dt>
                     <dd>
-                      <SocialIcon kind="twitter" href={twitter} size="5">
-                        {twitter.replace('https://twitter.com/', '@')}
+                      <SocialIcon kind="x" href={twitter} size="5">
+                        {twitter
+                          .replace('https://x.com/', '@')
+                          .replace('https://twitter.com/', '@')}
                       </SocialIcon>
                     </dd>
                   </>
