@@ -5,7 +5,7 @@ import globby from 'globby'
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import { default as removeMarkdown } from 'markdown-to-text'
-import siteMetadata from '../data/siteMetadata.js'
+import siteMetadata from '../data/siteMetadata'
 
 const distPath = 'public/devto.xml'
 
