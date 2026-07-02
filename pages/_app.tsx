@@ -1,5 +1,6 @@
 import '@/css/tailwind.css'
 import '@/css/prism.css'
+import '@/css/prism-vs-code-dark-modern-theme.css'
 import '@/css/font.css'
 import '@/css/post-layout.css'
 import '@/css/images.css'
