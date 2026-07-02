@@ -31,7 +31,7 @@ So we're looking to extend the default media picker in Optimizely CMS in a simil
 
 ![The desired end result as present in Optimizely's own DAM Asset Picker: extending the media selection with an extra media source button](/articles/optimizely-cms-third-party-dam-integration/select-media-from-dam.jpg)
 
-And we want it to communicate with Wedia in a way that utlises the features their Content Picker sandbox offers:
+And we want it to communicate with Wedia in a way that utilises the features their Content Picker sandbox offers:
 
 ![The supplied Wedia Content Picker sandbox which can be used to preview how JSON will be received by the CMS upon selecting an asset](/articles/optimizely-cms-third-party-dam-integration/wedia-content-picker-sandbox.png)
 
@@ -310,7 +310,7 @@ _openWediaPicker: function () {
     this.propertyUniqueId = settings.propertyUniqueId;
 
     this.wediaWindow.addEventListener("load", function () {
-        this.wediaWindow.postMessage(settings, "*");
+        this.wediaWindow.postMessage(settings, "*");    // Security checks omitted for brevity
     }.bind(this));
 },
 ```
@@ -385,7 +385,7 @@ _handleWediaMessage: function (event) {
 
 ![Before actually opening a pop-up to Wedia, the user is asked to supply the desired aspect ratio for the asset they are going to pick via a native pop-up dialog](/articles/optimizely-cms-third-party-dam-integration/contentreference-wedia-dialog-resolution.png)
 
-When continuing to the Wedia Content Picker we can now see that the desired aspect ratio is applied via a bounding box on the picket asset, ready to generate that crop:
+When continuing to the Wedia Content Picker we can now see that the desired aspect ratio is applied via a bounding box on the picked asset, ready to generate that crop:
 
 ![After specifying the desired aspect ratio and selecting an asset in the ensuing pop-up that contains the Wedia Content Picker, a bounding box is present on the picked asset to generate the crop with](/articles/optimizely-cms-third-party-dam-integration/wedia-content-picker-crop.jpg)
 
@@ -579,7 +579,7 @@ public class WediaRepositoryDescriptor : ContentRepositoryDescriptorBase
     public override string Name => "Wedia";
 
     public override IEnumerable<Type> ContainedTypes =>
-        [typeof(ContentFolder), typeof(WediaImage), typeof(WediaDocument)];
+        [typeof(ContentFolder), typeof(WediaImage), typeof(WediaDocument), typeof(WediaVideo)];
 
     public override IEnumerable<Type> CreatableTypes => [typeof(ContentFolder)];
     public override IEnumerable<Type> MainNavigationTypes =>
@@ -636,7 +636,7 @@ public class WediaRootUIDescriptor : UIDescriptor<WediaRoot>, IEditorDropBehavio
         DefaultView = "contentlisting";
         EditorDropBehaviour = EditorDropBehavior.CreateLink;
         ContainerTypes = new[] {
-            typeof(ContentFolder), typeof(WediaImage), typeof(WediaDocument)
+            typeof(ContentFolder), typeof(WediaImage), typeof(WediaDocument), typeof(WediaVideo)
         };
     }
 }
