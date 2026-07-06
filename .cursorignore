@@ -3,10 +3,11 @@
 # Supported by JetBrains AI Assistant only when .aiignore is enabled in:
 #  Settings → Tools → AI Assistant → Project Settings.
 
-# Env / secrets
+# Prevent API keys, tokens, and certificates from being sent to LLM providers (except examples)
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+!.env.template
 
 # Git internals
 .git/
