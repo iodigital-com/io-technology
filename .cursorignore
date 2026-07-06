@@ -12,7 +12,8 @@
 # Git internals
 .git/
 
-# Lock files
+# Lock files are enormous (~10k+ lines), mostly resolved URLs and hashes — zero reasoning value for an AI;
+# exclude unless debugging NPM dependency issues
 yarn.lock
 package-lock.json
 
