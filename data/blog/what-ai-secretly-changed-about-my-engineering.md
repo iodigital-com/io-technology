@@ -4,11 +4,11 @@ date: '2026-07-07'
 tags:
   [
     'ai',
-    'software engineering',
-    'developer productivity',
-    'spec-driven development',
-    'claude code',
-    'github copilot',
+    'software-engineering',
+    'developer-productivity',
+    'spec-driven-development',
+    'claude-code',
+    'github-copilot',
     'junie',
   ]
 images: ['/articles/what-ai-secretly-changed-about-my-engineering/banner.png']
@@ -33,7 +33,7 @@ The first time an AI coding assistant saved me a couple of hours, I reacted like
 
 For a while, I thought the story was simple. AI made me faster. Then it started making me slower in very specific ... well, embarrassing ways.
 
-I would ask _Claude_ to implement a small change in one service, and twenty minutes later I was discussing out-of-scope changes in a module I had not touched in three months. _Copilot_ would complete a method beautifully, except it hallucinated a business rule that sounded just real enough to survive a late-afternoon review. _Junie_ would plan a refactor that looked reasonable until I realised the plan depended on a mental model of the codebase that only existed in my head, and apparently I had forgotten to share it.
+I would ask _Claude_ to implement a small change in one service, and twenty minutes later I was discussing out-of-scope changes in a module I had not touched in three months. _Copilot_ would complete a method beautifully, except it hallucinated a business rule that sounded just real enough to survive a late-afternoon review. _JetBrains Junie_ would plan a refactor that looked reasonable until I realised the plan depended on a mental model of the codebase that only existed in my head, and apparently I had forgotten to share it.
 
 The AI was not really bad at the task. **The task was badly framed.** The code was harder to understand than I admitted. The tests proved less than their confident green colour suggested. The PR was technically mine, but I felt like an outsider staring through a foggy window at someone else's black-box code.
 
@@ -161,7 +161,7 @@ For small tasks, auto-completion is still enough. If I am writing a straightforw
 
 For medium or risky tasks, everything now moves around the spec. I write it first, ask for a plan, and review that plan before any code exists. Implementation happens in a clean context, in small diffs, with tests I run and inspect myself. Another context review from the specification and the diff, without the implementation conversation. Sometimes I even use a different tool. Sometimes I simply start clean and provide the spec, the changed files, and the review criteria.
 
-![my-workflow-today](/articles/what-ai-secretly-changed-about-my-engineering/my-workflow-today.png)
+![Diagram showing the spec-driven development workflow: Spec → Plan Review → Implementation → Independent AI Review → Owner Pass → PR & Human Review, with a feedback loop from Review back to Spec when gaps are found](/articles/what-ai-secretly-changed-about-my-engineering/my-workflow-today.png)
 
 The owner pass is the part I refuse to automate, at least for now. **If my name is on the PR, I own it**: the design, the tests, the migration, the rollback plan, everything. The green build does not mean comprehension. I should still be able to explain every line six months later if it breaks at 2 a.m.
 
