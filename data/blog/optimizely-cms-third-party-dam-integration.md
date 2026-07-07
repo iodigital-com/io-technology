@@ -1,6 +1,6 @@
 ---
 title: 'Integrating a Third-Party DAM into Optimizely CMS 12: A Case Study'
-date: '2026-07-02'
+date: '2026-07-07'
 tags: ['optimizely', 'cms', 'dam', 'headless', 'dojo']
 images: ['/articles/optimizely-cms-third-party-dam-integration/hero.png']
 summary: 'There is no handbook for wiring an external DAM into Optimizely CMS 12. This case study walks through the research, dead ends, and breakthroughs — decompiling the CMP package, extending ContentReferenceEditor, proxy content items, and a custom Assets pane tab — using Wedia as the concrete example.'
