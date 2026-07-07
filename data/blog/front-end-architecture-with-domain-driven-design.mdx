@@ -1,0 +1,151 @@
+---
+title: 'Front-End Architecture with Domain Driven Design'
+authors: ['othniel-visky']
+date: '2026-07-07'
+images: ['/articles/front-end-architecture-with-domain-driven-design/ddd-image.jpg']
+tags: ['Domain-Driven Design', 'Architecture']
+summary: 'How Domain-Driven Design principles can shape a cleaner, more meaningful front-end architecture.'
+---
+
+A few years ago, I got the chance to work on a project where we would design the software we created alongside Domain-Driven Design principles.
+The app we were building was a "blast load calculation" app. The company I was working for at the time already had a desktop application
+which they developed in the late 80s, but adding new features to this app, or changing anything about it was very slow and
+cumbersome, so they wanted to create a proof of concept app showing that much faster development could be achieved by using
+a modern tech stack - essentially re-creating the app as a SaaS (software as a service) for their own internal use.
+
+The team consisted of myself, being a senior front-end engineer, two junior front-end developers, a UI/UX designer,
+a domain expert who had some coding experience and would also work as a back-end developer together with a junior back-end developer,
+and a senior blast load engineer, who acted as the product owner.
+
+When we started this work, I knew that I would want to apply Domain-Driven Design principles. I came across this software
+development approach approximately a year before that, when I was trying to solve a problem that bugged me throughout
+a few projects before: I didn't like the folder structure that front-end code bases would have. In those times one of the
+most popular ways of thinking about front-end design was along the principles detailed in the book Atomic Design by Brad Frost.
+The idea is to think about components in terms of atoms, molecules, and organisms, and that bigger components, like organisms,
+would be composed of smaller ones. This works well when thinking about the structure and responsibility of components. However, the way
+it would usually be captured in the folder structure of projects was to have a few top-level folders which would contain a
+huge number of components. These components would be sorted by the IDE alphabetically, their order and place not conveying
+any further information about their purpose. Their names did, of course, but because there was no other principle to logically
+group them, only their alphabetical order, even the names became misleading without having any other context. So basically,
+I was looking for a way to convey a component's function through their place in the folder structure, which would act like a
+namespace for them. It turns out that the concept of the model in Domain-Driven Design is a perfect solution for this problem as well, among others.
+
+Getting back to the blast load application, in summary, I needed an organizing principle by which to structure the code base
+and also a way to be able to understand the explanations and requirements the domain experts would give me when discussing
+the various details of the app we were going to build.
+
+Why does Domain-Driven Design help with this? Eric Evans' book talks at length about what I consider to be the two most important
+and most valuable "outputs" of Domain-Driven Design, namely ubiquitous language and the model.
+
+Domain-Driven Design is a software development approach that centers around modeling complex business domains to create evolvable systems.
+It achieves this by an iterative approach to the designing process, while cultivating the creation of a ubiquitous language.
+
+Ubiquitous language is a common, shared vocabulary through which all members of a team, both technical and non-technical,
+can understand each other, without their work together becoming an exercise of translation between the two groups.
+
+It's easily imaginable that I have no understanding of the physics or mathematics that goes into blast load calculation,
+yet I needed to understand what domain experts would explain to me about it, and at the same time they also needed to understand
+how their requirements will be implemented in code.
+Domain-Driven Design is ultimately a methodology for "doing the modeling". It does define certain building blocks, like
+entities, value objects, services, aggregates, and many more. By iterating over and refining the design of the software,
+the model emerges as a single source of truth containing all rules, relationships, and concepts present in the domain.
+These rules of the model can be used as the combinatory rules all natural languages have.
+
+The following sentence in user story form gives a simple example of this: "as a blast load engineer, I want to <u>calculate</u> <u>peak pressure</u>,
+
+<u>impulse</u> and <u>duration</u> of a <u>blast</u> on a <u>material</u>". The terms calculate,
+peak pressure, impulse, duration, blast, and material don't just have meaning in plain English –
+they also have a very specific meaning within the model of the software we were creating. In terms
+of Domain-Driven Design, calculate is a service; peak pressure, impulse, duration are value objects;
+blast and material entities. The team defined the rules and relationships these have within the
+model, and their implementation in code is shaped by building blocks that Domain-Driven Design
+defines as entity, value object, and service. There are many more such elements defined in Eric
+Evans' book, let's take a look at just a few of them.
+
+### Entity
+
+An entity is an object that has a unique identity within the domain. The simplest example for it would be the concept of
+a user within the system: their properties can change, but throughout these changes the user still needs to be uniquely identifiable.
+
+### Value Object
+
+As the name suggests, these are also objects, but they convey something about what or how things are, not which or who they are.
+Value objects should be easily created and also discarded – immutability is one of their main properties.
+
+### Service
+
+Services define operations or behavior, offering these as interfaces. They have no state of their own, they operate on entities and value objects,
+which are the encapsulation of the state.
+
+### Aggregate
+
+They are a clustering of associated objects. Aggregates define the boundary around "things" that belong together. They have a
+root entity through which state and behavior of the aggregate can be accessed.
+
+There are many more such building blocks, concepts defined in Domain-Driven Design. I'll stick to the above,
+because they're enough to give us a sense of how to "do the modeling". In the book, Evans also calls this exercise "knowledge crunching",
+"boiling down the knowledge" and the model itself "distilled knowledge". He strongly advocates for an iterative process,
+constantly refining previous ideas of the model, as the understanding of the team evolves, gets richer in detail.
+
+In my case, we started our work by having focused workshops where we'd discuss what we were building and the requirements.
+It literally started with me drawing some rectangles, labeling them, and drawing some lines between them.
+These rectangles were the first representations of objects we defined, which later became entities and value objects.
+After each such session I'd implement what was discussed, raising questions for the next workshop. As we did this back and
+forth of discussion and implementation, we understood more and more about the model by giving names for things and refining
+what exactly they meant – both abstractly in the model and in practice in the code base. Thus, our own ubiquitous language emerged.
+I cannot emphasize enough how amazing it was to notice at some point that both technical and non-technical members of the team
+were talking to each other without having to translate or explain the terms used. I'm certain that without this we would not
+have been able to complete the app in time.
+
+As we've gotten deeper and deeper in our understanding of the model, I used more such building blocks described in the book.
+In general, besides these elements, the book also promotes the usage of known patterns or paradigms, like layered architecture
+or the repository and service patterns. As the complexity grew, I'd apply these concepts to the implementation.
+
+Evans, in his book, argues that Domain-Driven Design isn't well suited for small projects, smart UIs
+(applications where all business logic lives in the UI layer). I agree. All the building blocks, tools, concepts that are
+described in the book are meant for tackling complexity. They will seem like overengineering when applied to projects not
+complex enough. That being said, I'm of the firm belief that even small projects can benefit from iteratively arriving at
+a model and developing a common vocabulary through which aspects of the code are described. As an example of this, I want
+to mention the usage of folder structure as a namespace:
+
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <pre style={{ padding: '2em' }}>
+    {`src
+	blast
+		detonation
+		explosive
+	components
+	material
+	result
+	services
+		calculation`}
+  </pre>
+</div>
+
+When I look at this folder structure, I immediately get a sense of relationships. When those who understand the ubiquitous language
+and the model of this app, look at it they will understand even more. To me, for example, the folder "blast" is an aggregate,
+with the blast entity sitting at its root. In the implementation, this entity might be composed of multiple files – in our
+specific case there was a `BlastPage.tsx` and `blastSchema.ts` file, through which the implementation of "blast" was bound to the model.
+The "calculation" service was implemented as the `useCalculation` React custom hook, and so on.
+Let's remember our user story example from earlier: "as a blast load engineer, I want to <u>calculate</u> <u>peak pressure</u>, <u>impulse</u>
+and <u>duration</u> of a <u>blast</u> on a <u>material</u>". By using the same terminology in the code base, I have much more
+information about what needs to be done, what elements of the code are involved just by looking at the structure.
+
+The above is an overly simplified example. My hope is, that even so, it can convey the power of ubiquitous language and the model.
+As the project gets more and more complex, this will become more and more noticeable.
+
+As a final thought, I'd like to mention the chapter in Eric Evans' book called "Supple Design". Throughout the book he mostly
+uses explanations based on the Object-Oriented Programming (OOP) paradigm – for example, his architectural diagrams are class diagrams.
+In the chapter "Supple Design", in contrast, he discusses the benefits of using principles we know from Functional Programming (FP).
+He advocates for the use of pure and side-effect-free functions, and for "closure of operations", among other declarative approaches.
+"Closure of operations" is basically the principle on which higher order functions also work: they return a new element of the same type,
+making the structure they work on immutable. In JavaScript `.map`, `.filter` or `.reduce` would be examples of this.
+In summary, the book encourages us to design our software by using the best parts of both worlds. In 2003, when the book was first published,
+the benefits of side-effect-free functions might not have been as widely known, writing "arrow functions" was not as popular as it is today.
+I'd argue that a lot of our modern tooling has incorporated many of the principles Eric Evans is describing in his book.
+Think of the concept of a "module" within NestJS, or the "collection" in MongoDB - these are implementations, if you will,
+of an aggregate at the architectural level of these tools.
+
+Eric Evans, in his book, argues for a design that draws on the best of both OOP and FP principles. The impact of
+Domain-Driven Design can be seen when we take a closer look at the modern tooling of our stacks. The fact that principles
+described in the book can be found at the core architecture of these tools speaks volumes about the legacy of the book.
