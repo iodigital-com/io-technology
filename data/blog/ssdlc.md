@@ -1,6 +1,6 @@
 ---
 title: 'Staying one step ahead of cyber attacks'
-date: '2026-06-26'
+date: '2023-06-26'
 tags: ['security', 'ssdlc', 'compliance']
 images: ['/articles/ssdlc/ssdlc.webp']
 summary: 'Building secure applications: the Secure Software Development Lifecycle (SSDLC)'
