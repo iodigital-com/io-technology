@@ -1,13 +1,12 @@
-const fs = require('fs')
-const path = require('path')
-const rss = require('rss')
-const globby = require('globby')
-const matter = require('gray-matter')
-const sanitizeHtml = require('sanitize-html')
-const MarkdownIt = require('markdown-it')
-const removeMarkdown = require('markdown-to-text').default
+import fs from 'fs'
+import path from 'path'
+import rss from 'rss'
+import globby from 'globby'
+import matter from 'gray-matter'
+import MarkdownIt from 'markdown-it'
+import { default as removeMarkdown } from 'markdown-to-text'
+import siteMetadata from '../data/siteMetadata'
 
-const siteMetadata = require('../data/siteMetadata')
 const distPath = 'public/devto.xml'
 
 const markdownParser = new MarkdownIt()
