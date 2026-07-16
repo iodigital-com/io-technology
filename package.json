@@ -103,7 +103,7 @@
     "lint-staged": "16.4.0",
     "next-remote-watch": "2.0.0",
     "node-fetch": "3.3.2",
-    "npm-check-updates": "21.0.3",
+    "npm-check-updates": "22.2.9",
     "prettier": "3.9.5",
     "socket.io": "4.8.3",
     "socket.io-client": "4.8.3",

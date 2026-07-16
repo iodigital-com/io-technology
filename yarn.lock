@@ -7226,10 +7226,10 @@ not@^0.1.0:
   resolved "https://registry.npmjs.org/not/-/not-0.1.0.tgz"
   integrity sha512-5PDmaAsVfnWUgTUbJ3ERwn7u79Z0dYxN9ErxCpVJJqe2RK0PJ3z+iFUxuqjwtlDDegXvtWoxD/3Fzxox7tFGWA==
 
-npm-check-updates@21.0.3:
-  version "21.0.3"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-21.0.3.tgz#e71d6a3a2ece1b4fb7389b6c3999b345f0af24d1"
-  integrity sha512-8y0fqtxdo5JhwzxcS9rZd969tvPbSZ3MzQoG5Fj8eqL42t1Jsg5tjZCz8CYuXLE8LNbbyV+1xxR/f/T4AdPmdg==
+npm-check-updates@22.2.9:
+  version "22.2.9"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-22.2.9.tgz#d0ea02f973e070d3a3b6ef0c165e7bd6d20dc993"
+  integrity sha512-DVeZ0KirHfliSsHuR2o7cHE+tW439sVHfJjF6cGWeDiY0Wyl3BI/jS4zV0eixtcMOquFbcF1Su/FsxOvk5MoYA==
 
 nth-check@^2.0.0, nth-check@^2.0.1:
   version "2.1.1"
