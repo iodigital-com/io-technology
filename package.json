@@ -98,7 +98,7 @@
     "file-loader": "6.2.0",
     "globby": "16.2.2",
     "husky": "9.1.7",
-    "inquirer": "9.3.8",
+    "inquirer": "10.2.2",
     "jsdom": "^26.1.0",
     "lint-staged": "11.2.6",
     "next-remote-watch": "2.0.0",
