@@ -87,7 +87,7 @@
     "@typescript-eslint/eslint-plugin": "8.64.0",
     "@typescript-eslint/parser": "8.64.0",
     "@vitejs/plugin-react": "6.0.3",
-    "cross-env": "7.0.3",
+    "cross-env": "10.1.0",
     "dedent": "0.7.0",
     "dotenv": "16.4.7",
     "esbuild": "^0.27.0",
