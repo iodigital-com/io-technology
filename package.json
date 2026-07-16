@@ -56,7 +56,7 @@
     "rehype-citation": "2.3.2",
     "rehype-katex": "7.0.1",
     "rehype-preset-minify": "7.0.1",
-    "rehype-prism-plus": "1.6.3",
+    "rehype-prism-plus": "2.0.2",
     "rehype-slug": "5.1.0",
     "remark-gfm": "4.0.1",
     "remark-math": "6.0.0",
