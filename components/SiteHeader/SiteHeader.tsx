@@ -52,8 +52,8 @@ const SiteHeader = ({ transparentHeader = false }: SiteHeaderProps) => {
         scrolledPassedHeader
           ? 'pointer-events-none'
           : !transparentHeader
-          ? `bg-io_${themeBg}-500 xl:bg-io_${themeBg}-500`
-          : ''
+            ? `bg-io_${themeBg}-500 xl:bg-io_${themeBg}-500`
+            : ''
       }`}
     >
       <div className="container mx-auto flex items-center justify-between p-0">

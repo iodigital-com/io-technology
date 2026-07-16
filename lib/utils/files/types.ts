@@ -73,8 +73,7 @@ export interface FileOperationError {
 }
 
 export type FileOperationResult<T> =
-  | { success: true; data: T }
-  | { success: false; error: FileOperationError }
+  { success: true; data: T } | { success: false; error: FileOperationError }
 
 // Batch file operations
 export interface BatchOperation<T> {
