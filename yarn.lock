@@ -8200,6 +8200,11 @@ rehype-sort-attributes@^5.0.0:
     "@types/hast" "^3.0.0"
     unist-util-visit "^5.0.0"
 
+remark-footnotes@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-5.0.0.tgz#f997f760506b130e48b632e606f4cdd69759fc35"
+  integrity sha512-bmRA8Xel4YZA5PphUOdamG3Cf3BshoGZQlwVqF+bv0Ei1/b9ETOSyoKtpVAk8zIRJ2dAwio2HFnbC9wjLmy02A==
+
 remark-frontmatter@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/remark-frontmatter/-/remark-frontmatter-5.0.0.tgz#b68d61552a421ec412c76f4f66c344627dc187a2"
