@@ -26,7 +26,7 @@
     "yarn": "~1"
   },
   "dependencies": {
-    "@fontsource/inter": "4.5.15",
+    "@fontsource/inter": "5.2.8",
     "@lottiefiles/react-lottie-player": "3.6.0",
     "@mailchimp/mailchimp_marketing": "3.0.80",
     "@supabase/supabase-js": "2.110.6",
