@@ -1053,10 +1053,10 @@
   dependencies:
     css-tree "^3.0.0"
 
-"@citation-js/core@^0.7.21":
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/@citation-js/core/-/core-0.7.21.tgz#c778fecc1571ba8481177822ef3be0a5da9bbe67"
-  integrity sha512-Vobv2/Yfnn6C6BVO/pvj7madQ7Mfzl83/jAWwixbemGF6ZThhGMz8++FD9hWHyHXDMYuLGa6fK68c2VsolZmTA==
+"@citation-js/core@^0.6.8":
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/@citation-js/core/-/core-0.6.9.tgz#16a5ba449b90ad0995b7fecf6e369324d9ec185a"
+  integrity sha512-ElG4cvedkaRm/a40yhWXOUPUzAImwqI7ZmIyL55GIR4EmfQ5PkaSEcFhA3dekMa66l52ddn4lQaNVO+/yECq9A==
   dependencies:
     "@citation-js/date" "^0.5.0"
     "@citation-js/name" "^0.4.2"
@@ -1073,27 +1073,27 @@
   resolved "https://registry.npmjs.org/@citation-js/name/-/name-0.4.2.tgz"
   integrity sha512-brSPsjs2fOVzSnARLKu0qncn6suWjHVQtrqSUrnqyaRH95r/Ad4wPF5EsoWr+Dx8HzkCGb/ogmoAzfCsqlTwTQ==
 
-"@citation-js/plugin-bibjson@^0.7.21":
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/@citation-js/plugin-bibjson/-/plugin-bibjson-0.7.21.tgz#992208cf90c4207c953cf84f8de0b63df609ae49"
-  integrity sha512-Q3eRpeV3pDqX91fvJ8xoYGJk4jB5MQD2woEr6GAoAauAzGVE19J5Lw0SksCHegoAn4z0ZbWMXtOq6rwZPtERbA==
+"@citation-js/plugin-bibjson@^0.6.8":
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/@citation-js/plugin-bibjson/-/plugin-bibjson-0.6.9.tgz#bb71adaa2bd120edf45df6cde488efb580ccd526"
+  integrity sha512-AJI9kiMLeFm7tQ8mPXJ+DpABB0e9ZN8nchhxNnWcfy3Q5RB/i76RF6S/QEsDcQ4vdP4nWmBsKT9UmKdWkFrOQA==
   dependencies:
     "@citation-js/date" "^0.5.0"
     "@citation-js/name" "^0.4.2"
 
-"@citation-js/plugin-bibtex@^0.7.21":
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/@citation-js/plugin-bibtex/-/plugin-bibtex-0.7.21.tgz#5742560ac8fcfdaae0c33b38d9ff5ed47b683f68"
-  integrity sha512-O008pSsJgiYKn4+7gAWrbNpNdUH++aMeYmZaJ2oFQ8X1tcY5jNBxJcr0zZojNtUi5CVOaXXHQ0yIifoUhuF2Vg==
+"@citation-js/plugin-bibtex@^0.6.8":
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/@citation-js/plugin-bibtex/-/plugin-bibtex-0.6.9.tgz#19d181b5b84e11a10e7f20aef490bafb9b9e4628"
+  integrity sha512-35xHut8rbDAN2ffYt+BPn+DChxXhbVnN86fu2DHDQNWlCqCrUJhQTMRMlD0L1uuyHTDrkTvgLPtcs14WC+xKzA==
   dependencies:
     "@citation-js/date" "^0.5.0"
     "@citation-js/name" "^0.4.2"
     moo "^0.5.1"
 
-"@citation-js/plugin-csl@^0.7.22":
-  version "0.7.22"
-  resolved "https://registry.yarnpkg.com/@citation-js/plugin-csl/-/plugin-csl-0.7.22.tgz#0fac5592d401dda52c90173688e91e587778fc72"
-  integrity sha512-/rGdtbeP3nS4uZDdEbQUHT8PrUcIs0da2t+sWMKYXoOhXQqfw3oJJ7p4tUD+R8lptyIR5Eq20/DFk/kQDdLpYg==
+"@citation-js/plugin-csl@^0.6.8":
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/@citation-js/plugin-csl/-/plugin-csl-0.6.9.tgz#7175f4fd7cf31cafc228e1a26a1fdbc5916cbcda"
+  integrity sha512-W8AYDK5o6qgkdBWgXPXmpzbTUxyfoADDbiGf1BqMdeD0IH3kSmgvXcsyeh8NMxiaM6B5VDg0k0pHaaxbTm5POA==
   dependencies:
     "@citation-js/date" "^0.5.0"
     citeproc "^2.4.6"
@@ -3659,10 +3659,10 @@ cross-env@10.1.0:
     "@epic-web/invariant" "^1.0.0"
     cross-spawn "^7.0.6"
 
-cross-fetch@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-4.1.0.tgz#8f69355007ee182e47fa692ecbaa37a52e43c3d2"
-  integrity sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw==
+cross-fetch@^3.1.5:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.2.0.tgz#34e9192f53bc757d6614304d9e5e6fb4edb782e3"
+  integrity sha512-Q+xVJLoGOeIMXZmbUK4HYk+69cQH6LudR0Vu/pRm2YlU/hDV9CiS0gKUMaWY5f2NeUH9C1nV3bsTlCo0FsTV1Q==
   dependencies:
     node-fetch "^2.7.0"
 
@@ -5183,21 +5183,12 @@ hast-util-embedded@^2.0.0:
   dependencies:
     hast-util-is-element "^2.0.0"
 
-hast-util-from-dom@^4.0.0:
+hast-util-from-dom@^4.0.0, hast-util-from-dom@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/hast-util-from-dom/-/hast-util-from-dom-4.2.0.tgz"
   integrity sha512-t1RJW/OpJbCAJQeKi3Qrj1cAOLA0+av/iPFori112+0X7R3wng+jxLA+kXec8K4szqPRGI8vPxbbpEYvvpwaeQ==
   dependencies:
     hastscript "^7.0.0"
-    web-namespaces "^2.0.0"
-
-hast-util-from-dom@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/hast-util-from-dom/-/hast-util-from-dom-5.0.1.tgz#c3c92fbd8d4e1c1625edeb3a773952b9e4ad64a8"
-  integrity sha512-N+LqofjR2zuzTjCPzyDUdSshy4Ma6li7p/c3pA78uTwzFgENbgbUrm2ugwsOdcjI1muO+o6Dgzp9p8WHtn/39Q==
-  dependencies:
-    "@types/hast" "^3.0.0"
-    hastscript "^9.0.0"
     web-namespaces "^2.0.0"
 
 hast-util-from-html-isomorphic@^1.0.0:
@@ -5221,7 +5212,7 @@ hast-util-from-html@^1.0.0:
     vfile "^5.0.0"
     vfile-message "^3.0.0"
 
-hast-util-from-parse5@^7.0.0:
+hast-util-from-parse5@^7.0.0, hast-util-from-parse5@^7.1.0:
   version "7.1.2"
   resolved "https://registry.npmjs.org/hast-util-from-parse5/-/hast-util-from-parse5-7.1.2.tgz"
   integrity sha512-Nz7FfPBuljzsN3tCQ4kCBKqdNhQE2l0Tn+X1ubgKBPRoiDIu1mL08Cfw4k7q71+Duyaw7DXDN+VTAp4Vh3oCOw==
@@ -5232,20 +5223,6 @@ hast-util-from-parse5@^7.0.0:
     property-information "^6.0.0"
     vfile "^5.0.0"
     vfile-location "^4.0.0"
-    web-namespaces "^2.0.0"
-
-hast-util-from-parse5@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-8.0.3.tgz#830a35022fff28c3fea3697a98c2f4cc6b835a2e"
-  integrity sha512-3kxEVkEKt0zvcZ3hCRYI8rqrgwtlIOFMWkbclACvjlDw8Li9S2hk/d51OI0nr/gIpdMHNepwgOKqZ/sy0Clpyg==
-  dependencies:
-    "@types/hast" "^3.0.0"
-    "@types/unist" "^3.0.0"
-    devlop "^1.0.0"
-    hastscript "^9.0.0"
-    property-information "^7.0.0"
-    vfile "^6.0.0"
-    vfile-location "^5.0.0"
     web-namespaces "^2.0.0"
 
 hast-util-from-string@^2.0.0:
@@ -5330,13 +5307,6 @@ hast-util-parse-selector@^3.0.0:
   integrity sha512-jdlwBjEexy1oGz0aJ2f4GKMaVKkA9jwjr4MjAAI22E5fM/TXVZHuS5OpONtdeIkRKqAaryQ2E9xNQxijoThSZA==
   dependencies:
     "@types/hast" "^2.0.0"
-
-hast-util-parse-selector@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/hast-util-parse-selector/-/hast-util-parse-selector-4.0.0.tgz#352879fa86e25616036037dd8931fb5f34cb4a27"
-  integrity sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A==
-  dependencies:
-    "@types/hast" "^3.0.0"
 
 hast-util-select@^5.0.0:
   version "5.0.5"
@@ -5440,17 +5410,6 @@ hastscript@^7.0.0:
     comma-separated-tokens "^2.0.0"
     hast-util-parse-selector "^3.0.0"
     property-information "^6.0.0"
-    space-separated-tokens "^2.0.0"
-
-hastscript@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/hastscript/-/hastscript-9.0.1.tgz#dbc84bef6051d40084342c229c451cd9dc567dff"
-  integrity sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==
-  dependencies:
-    "@types/hast" "^3.0.0"
-    comma-separated-tokens "^2.0.0"
-    hast-util-parse-selector "^4.0.0"
-    property-information "^7.0.0"
     space-separated-tokens "^2.0.0"
 
 hermes-estree@0.25.1:
@@ -5936,7 +5895,7 @@ js-yaml@^3.13.1:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-js-yaml@^4.1.0, js-yaml@^4.1.1:
+js-yaml@^4.1.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.3.0.tgz#d1900572a7f7cf0b5f540c83673e60bad3436592"
   integrity sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==
@@ -7440,7 +7399,7 @@ parse-srcset@^1.0.2:
   resolved "https://registry.npmjs.org/parse-srcset/-/parse-srcset-1.0.2.tgz"
   integrity sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==
 
-parse5@^6.0.0:
+parse5@^6.0.0, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/parse5/-/parse5-6.0.1.tgz"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
@@ -7452,7 +7411,7 @@ parse5@^7.0.0:
   dependencies:
     entities "^6.0.0"
 
-parse5@^8.0.0, parse5@^8.0.1:
+parse5@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-8.0.1.tgz#f43bcd2cd683efe084075333e9ce0da7d06da31e"
   integrity sha512-z1e/HMG90obSGeidlli3hj7cbocou0/wa5HacvI3ASx34PecNjNQeaHNo5WIZpWofN9kgkqV1q5YvXe3F0FoPw==
@@ -7949,25 +7908,24 @@ rehype-autolink-headings@7.1.0:
     unified "^11.0.0"
     unist-util-visit "^5.0.0"
 
-rehype-citation@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/rehype-citation/-/rehype-citation-2.3.2.tgz#eb5ea0fa233664aa4e1bbb9a37a250d2ed259c82"
-  integrity sha512-apeGbeIYrfbirZZMZ0KY9tEZPnMlqomlGbQDNJfMoTV8wBSmLq8XyBywlfHrPLvchFIq9Mrn7g7SmXdQob+5lw==
+rehype-citation@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/rehype-citation/-/rehype-citation-1.0.3.tgz#465161498bb0d4bbd5f075714702e88df15e69cf"
+  integrity sha512-CRDrqGyz1N3wDSEJU6ELQWz64FGkdby8yWUdgXFprkgaKTWvgMhOO2VWWohKbbCqaOQg7HqEknVQj4CZA7aWqg==
   dependencies:
-    "@citation-js/core" "^0.7.21"
+    "@citation-js/core" "^0.6.8"
     "@citation-js/date" "^0.5.1"
     "@citation-js/name" "^0.4.2"
-    "@citation-js/plugin-bibjson" "^0.7.21"
-    "@citation-js/plugin-bibtex" "^0.7.21"
-    "@citation-js/plugin-csl" "^0.7.22"
+    "@citation-js/plugin-bibjson" "^0.6.8"
+    "@citation-js/plugin-bibtex" "^0.6.8"
+    "@citation-js/plugin-csl" "^0.6.8"
     citeproc "^2.4.63"
-    cross-fetch "^4.1.0"
-    hast-util-from-dom "^5.0.1"
-    hast-util-from-parse5 "^8.0.3"
-    js-yaml "^4.1.1"
-    parse5 "^8.0.0"
-    unified "^11.0.5"
-    unist-util-visit "^5.1.0"
+    cross-fetch "^3.1.5"
+    hast-util-from-dom "^4.2.0"
+    hast-util-from-parse5 "^7.1.0"
+    parse5 "^6.0.1"
+    unified "^10.1.0"
+    unist-util-visit "^4.1.0"
 
 rehype-katex@6.0.3:
   version "6.0.3"
@@ -9582,7 +9540,7 @@ unicorn-magic@^0.4.0:
   resolved "https://registry.yarnpkg.com/unicorn-magic/-/unicorn-magic-0.4.0.tgz#78c6a090fd6d07abd2468b83b385603e00dfdb24"
   integrity sha512-wH590V9VNgYH9g3lH9wWjTrUoKsjLF6sGLjhR4sH1LWpLmCOH0Zf7PukhDA8BiS7KHe4oPNkcTHqYkj7SOGUOw==
 
-unified@^10.0.0:
+unified@^10.0.0, unified@^10.1.0:
   version "10.1.2"
   resolved "https://registry.npmjs.org/unified/-/unified-10.1.2.tgz"
   integrity sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==
@@ -9595,7 +9553,7 @@ unified@^10.0.0:
     trough "^2.0.0"
     vfile "^5.0.0"
 
-unified@^11.0.0, unified@^11.0.5:
+unified@^11.0.0:
   version "11.0.5"
   resolved "https://registry.yarnpkg.com/unified/-/unified-11.0.5.tgz#f66677610a5c0a9ee90cab2b8d4d66037026d9e1"
   integrity sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==
@@ -9699,7 +9657,7 @@ unist-util-visit-parents@^6.0.0:
     "@types/unist" "^3.0.0"
     unist-util-is "^6.0.0"
 
-unist-util-visit@5.1.0, unist-util-visit@^5.0.0, unist-util-visit@^5.1.0:
+unist-util-visit@5.1.0, unist-util-visit@^5.0.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-5.1.0.tgz#9a2a28b0aa76a15e0da70a08a5863a2f060e2468"
   integrity sha512-m+vIdyeCOpdr/QeQCu2EzxX/ohgS8KbnPDgFni4dQsfSCtpz8UqDyY5GjRru8PDKuYn7Fq19j1CQ+nJSsGKOzg==
@@ -9708,7 +9666,7 @@ unist-util-visit@5.1.0, unist-util-visit@^5.0.0, unist-util-visit@^5.1.0:
     unist-util-is "^6.0.0"
     unist-util-visit-parents "^6.0.0"
 
-unist-util-visit@^4.0.0:
+unist-util-visit@^4.0.0, unist-util-visit@^4.1.0:
   version "4.1.2"
   resolved "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-4.1.2.tgz"
   integrity sha512-MSd8OUGISqHdVvfY9TPhyK2VdUrPgxkUtWSuMHF6XAAFuL4LokseigBnZtPnJMu+FbynTkFNnFlyjxpVKujMRg==
@@ -9799,14 +9757,6 @@ vfile-location@^4.0.0:
   dependencies:
     "@types/unist" "^2.0.0"
     vfile "^5.0.0"
-
-vfile-location@^5.0.0:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-5.0.3.tgz#cb9eacd20f2b6426d19451e0eafa3d0a846225c3"
-  integrity sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==
-  dependencies:
-    "@types/unist" "^3.0.0"
-    vfile "^6.0.0"
 
 vfile-message@^3.0.0:
   version "3.1.4"
