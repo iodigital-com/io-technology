@@ -35,7 +35,7 @@
     "@vercel/og": "0.11.1",
     "autoprefixer": "10.5.4",
     "date-fns": "4.4.0",
-    "github-slugger": "1.5.0",
+    "github-slugger": "2.0.0",
     "gray-matter": "4.0.3",
     "image-size": "1.2.0",
     "markdown-it": "13.0.2",

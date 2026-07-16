@@ -51,6 +51,7 @@ const securityHeaders = [
 ]
 
 module.exports = withBundleAnalyzer({
+  transpilePackages: ['github-slugger'],
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   images: {
