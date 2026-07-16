@@ -9763,7 +9763,7 @@ vite@7.3.6:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vitest@^4.1.10:
+vitest@4.1.10:
   version "4.1.10"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-4.1.10.tgz#7e9285efe264b1167050b7a3a7ff34788e1b7afc"
   integrity sha512-R9jUTe5S4Qb0HCd4TNqpC7oGcrMssMRGXLW80ubjWsW9VH5GF8y1Y0SFLY9AbqSk6nt0PnOx4H4WNJYZ13GUPw==
