@@ -3701,10 +3701,10 @@ css-select@^5.1.0:
     domutils "^3.0.1"
     nth-check "^2.0.1"
 
-css-selector-parser@^1.0.0:
-  version "1.4.1"
-  resolved "https://registry.npmjs.org/css-selector-parser/-/css-selector-parser-1.4.1.tgz"
-  integrity sha512-HYPSb7y/Z7BNDCOrakL4raGO2zltZkbeXyAd6Tg9obzix6QhzxCotdBl6VT0Dv4vZfJGVz3WL/xaEI9Ly3ul0g==
+css-selector-parser@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/css-selector-parser/-/css-selector-parser-3.3.0.tgz#1a34220d76762c929ae99993df5a60721f505082"
+  integrity sha512-Y2asgMGFqJKF4fq4xHDSlFYIkeVfRsm69lQC1q9kbEsH5XtnINTMrweLkjYMeaUgiXBy/uvKeO/a1JHTNnmB2g==
 
 css-to-react-native@^3.0.0:
   version "3.2.0"
@@ -5171,12 +5171,13 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hast-util-embedded@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/hast-util-embedded/-/hast-util-embedded-2.0.1.tgz"
-  integrity sha512-QUdSOP1/o+/TxXtpPFXR2mUg2P+ySrmlX7QjwHZCXqMFyYk7YmcGSvqRW+4XgXAoHifdE1t2PwFaQK33TqVjSw==
+hast-util-embedded@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hast-util-embedded/-/hast-util-embedded-3.0.0.tgz#be4477780fbbe079cdba22982e357a0de4ba853e"
+  integrity sha512-naH8sld4Pe2ep03qqULEtvYr7EjrLK2QHY8KJR6RJkTUjPGObe1vnx585uzem2hGra+s1q08DZZpfgDVYRbaXA==
   dependencies:
-    hast-util-is-element "^2.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
 
 hast-util-from-dom@^5.0.0, hast-util-from-dom@^5.0.1:
   version "5.0.1"
@@ -5236,17 +5237,24 @@ hast-util-from-parse5@^8.0.0, hast-util-from-parse5@^8.0.3:
     vfile-location "^5.0.0"
     web-namespaces "^2.0.0"
 
-hast-util-from-string@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-from-string/-/hast-util-from-string-2.0.0.tgz"
-  integrity sha512-9JlBGWh+RXbT8PDrdwYZloN6poib8xg7Vq+LgN5TTqnaMDO0YqfX4EyZd3Myel6yIXlDsgysiRB1CTjH2K+1Dg==
+hast-util-from-string@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-from-string/-/hast-util-from-string-3.0.1.tgz#18bbfbd22468eb804c60c78d2c5bf1da67458240"
+  integrity sha512-EpOi8Ux+QiJEUhv69d0xtGlA/7o6V1Yr4jqy6hq0s71mgl9sJsdruRrCo9UMVLMg+VwBVB4dnut/qsOsem5WWA==
   dependencies:
-    "@types/hast" "^2.0.0"
+    "@types/hast" "^3.0.0"
 
 hast-util-has-property@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/hast-util-has-property/-/hast-util-has-property-2.0.1.tgz"
   integrity sha512-X2+RwZIMTMKpXUzlotatPzWj8bspCymtXH3cfG3iQKV+wPF53Vgaqxi/eLqGck0wKq1kS9nvoB1wchbCPEL8sg==
+
+hast-util-has-property@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hast-util-has-property/-/hast-util-has-property-3.0.0.tgz#4e595e3cddb8ce530ea92f6fc4111a818d8e7f93"
+  integrity sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==
+  dependencies:
+    "@types/hast" "^3.0.0"
 
 hast-util-heading-rank@^2.0.0:
   version "2.1.1"
@@ -5262,34 +5270,28 @@ hast-util-heading-rank@^3.0.0:
   dependencies:
     "@types/hast" "^3.0.0"
 
-hast-util-is-conditional-comment@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-is-conditional-comment/-/hast-util-is-conditional-comment-2.0.0.tgz"
-  integrity sha512-U66gW8ZWQdxP4ZjTEZ3xZT72y6rIKJqV4At5QmC1ItBbQyZyVkuTp8QkQwhxsbkHdzpifiZdQWrDipc9ByqhRg==
+hast-util-is-conditional-comment@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-is-conditional-comment/-/hast-util-is-conditional-comment-3.0.1.tgz#322a405743ddde7dacdc16bfb2333c65e9e2e80a"
+  integrity sha512-RWpXL//CiEWwOh4OeAvr2fFeoBbX/sAnPnaYN9x4Nv6O4VPdFf/3Dq64mIybctblVA498SgVjfNc0/mN9S4IQw==
   dependencies:
-    "@types/hast" "^2.0.0"
+    "@types/hast" "^3.0.0"
 
-hast-util-is-css-link@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-is-css-link/-/hast-util-is-css-link-2.0.0.tgz"
-  integrity sha512-aHTdshwLQJHuwR1r2QOU6o2tL0ocsEr6zvT9s9tIVz+Ofc8KFzg136OfY8opAObfA5IvwHQqPSYWQCM8D9krpg==
+hast-util-is-css-link@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-is-css-link/-/hast-util-is-css-link-3.0.1.tgz#7d3bf8a1f498f35012af1a0ec5568dce39bc8172"
+  integrity sha512-jyR6Ns8ypYH3nnJhvGehHTpSJdymxjKrg5PgDMClNH61JpWxXm9FLMvnk2CtWN5nulm6IeIrRgbVCsye+UPIBg==
   dependencies:
-    "@types/hast" "^2.0.0"
+    "@types/hast" "^3.0.0"
+    collapse-white-space "^2.0.0"
 
-hast-util-is-css-style@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-is-css-style/-/hast-util-is-css-style-2.0.0.tgz"
-  integrity sha512-+erdmVISIlkhbH/lzD5C4PGR9Mcq5fcpOz0txqgQqiRzyb6KsnQqWBkQq1SghgFkAkiQ6TZmrxuqXUcjddw7kw==
+hast-util-is-css-style@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-is-css-style/-/hast-util-is-css-style-3.0.1.tgz#9d337fdd623671bdd39374bd4859adaf1e9fc13b"
+  integrity sha512-5dlGKMoyB2+HY4hAB9pEkzlrH1tfnlHdkw6q1pkzLv2RI01w2ofyhJICzcYbW3NOrTUy4/0qrNvCPsVyHQlB2w==
   dependencies:
-    "@types/hast" "^2.0.0"
-
-hast-util-is-element@^2.0.0:
-  version "2.1.3"
-  resolved "https://registry.npmjs.org/hast-util-is-element/-/hast-util-is-element-2.1.3.tgz"
-  integrity sha512-O1bKah6mhgEq2WtVMk+Ta5K7pPMqsBBlmzysLdcwKVrqzZQ0CHqUPiIVspNhAG1rvxpvJjtGee17XfauZYKqVA==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    "@types/unist" "^2.0.0"
+    "@types/hast" "^3.0.0"
+    collapse-white-space "^2.0.0"
 
 hast-util-is-element@^3.0.0:
   version "3.0.0"
@@ -5298,19 +5300,29 @@ hast-util-is-element@^3.0.0:
   dependencies:
     "@types/hast" "^3.0.0"
 
-hast-util-is-event-handler@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-is-event-handler/-/hast-util-is-event-handler-2.0.0.tgz"
-  integrity sha512-iVB/akLRpcIfoVrjWpxUzbcXEKg3CXWYBzGQCtE9wkLPC79kx/dQTu0ObVRb4U7ZKAq/sxNLtaIGutIGGFfzcQ==
+hast-util-is-event-handler@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-is-event-handler/-/hast-util-is-event-handler-3.0.1.tgz#1d262a6574c441ecd40d394e92e854f8c76b0da0"
+  integrity sha512-Xu8jmmojIJ45sSE4c39kZXrW96O/J/wFCxZmg+C7/A/Av6kxwtTPRMBe9TGNJEtRRSch3v1H6iZe7C2hkGe8oQ==
 
-hast-util-is-javascript@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hast-util-is-javascript/-/hast-util-is-javascript-2.0.0.tgz"
-  integrity sha512-1SvdBcow862S+dq1BWC04PkbfUSXk8Blzd6oo/zti8LYH0/fU+VSlsBIKjsCHHwgw4ajSatY2ok6QeJwmaYc0g==
+hast-util-is-javascript@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-is-javascript/-/hast-util-is-javascript-3.0.1.tgz#f71de43a249f63bc19c4c0b4511803319f96eff8"
+  integrity sha512-z4KmilPwiFev1QP9dl++aZDvN1y9LLKgWiZ5oyOG23ybNz+F3Y4tIoWzG+RiQfns/+y3iq7H7p2ebwaY2fFLSQ==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
+    "@types/hast" "^3.0.0"
+    collapse-white-space "^2.0.0"
+
+hast-util-minify-whitespace@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-minify-whitespace/-/hast-util-minify-whitespace-1.0.1.tgz#7588fd1a53f48f1d30406b81959dffc3650daf55"
+  integrity sha512-L96fPOVpnclQE0xzdWb/D12VT5FabA7SnZOUMtL1DbXmYiHJMXZvFkIZfiMmTCNJHUeO2K9UYNXoVyfz+QHuOw==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-embedded "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    hast-util-whitespace "^3.0.0"
+    unist-util-is "^6.0.0"
 
 hast-util-parse-selector@^3.0.0:
   version "3.1.1"
@@ -5326,25 +5338,25 @@ hast-util-parse-selector@^4.0.0:
   dependencies:
     "@types/hast" "^3.0.0"
 
-hast-util-select@^5.0.0:
-  version "5.0.5"
-  resolved "https://registry.npmjs.org/hast-util-select/-/hast-util-select-5.0.5.tgz"
-  integrity sha512-QQhWMhgTFRhCaQdgTKzZ5g31GLQ9qRb1hZtDPMqQaOhpLBziWcshUS0uCR5IJ0U1jrK/mxg35fmcq+Dp/Cy2Aw==
+hast-util-select@^6.0.0:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/hast-util-select/-/hast-util-select-6.0.4.tgz#1d8f69657a57441d0ce0ade35887874d3e65a303"
+  integrity sha512-RqGS1ZgI0MwxLaKLDxjprynNzINEkRHY2i8ln4DDjgv9ZhcYVIHN9rlpiYsqtFwrgpYU361SyWDQcGNIBVu3lw==
   dependencies:
-    "@types/hast" "^2.0.0"
-    "@types/unist" "^2.0.0"
+    "@types/hast" "^3.0.0"
+    "@types/unist" "^3.0.0"
     bcp-47-match "^2.0.0"
     comma-separated-tokens "^2.0.0"
-    css-selector-parser "^1.0.0"
+    css-selector-parser "^3.0.0"
+    devlop "^1.0.0"
     direction "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-to-string "^2.0.0"
-    hast-util-whitespace "^2.0.0"
-    not "^0.1.0"
+    hast-util-has-property "^3.0.0"
+    hast-util-to-string "^3.0.0"
+    hast-util-whitespace "^3.0.0"
     nth-check "^2.0.0"
-    property-information "^6.0.0"
+    property-information "^7.0.0"
     space-separated-tokens "^2.0.0"
-    unist-util-visit "^4.0.0"
+    unist-util-visit "^5.0.0"
     zwitch "^2.0.0"
 
 hast-util-to-estree@^3.0.0:
@@ -5397,6 +5409,13 @@ hast-util-to-string@^2.0.0:
   dependencies:
     "@types/hast" "^2.0.0"
 
+hast-util-to-string@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-to-string/-/hast-util-to-string-3.0.1.tgz#a4f15e682849326dd211c97129c94b0c3e76527c"
+  integrity sha512-XelQVTDWvqcl3axRfI0xSeoVKzyIFPwsAGSLIsKdJKQMXDYJS4WYrBNF/8J7RdhIcFI2BOHgAifggsvsxp/3+A==
+  dependencies:
+    "@types/hast" "^3.0.0"
+
 hast-util-to-text@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/hast-util-to-text/-/hast-util-to-text-4.0.2.tgz#57b676931e71bf9cb852453678495b3080bfae3e"
@@ -5406,11 +5425,6 @@ hast-util-to-text@^4.0.0:
     "@types/unist" "^3.0.0"
     hast-util-is-element "^3.0.0"
     unist-util-find-after "^5.0.0"
-
-hast-util-whitespace@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/hast-util-whitespace/-/hast-util-whitespace-2.0.1.tgz"
-  integrity sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==
 
 hast-util-whitespace@^3.0.0:
   version "3.0.0"
@@ -5465,20 +5479,20 @@ html-encoding-sniffer@^6.0.0:
   dependencies:
     "@exodus/bytes" "^1.6.0"
 
-html-enumerated-attributes@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/html-enumerated-attributes/-/html-enumerated-attributes-0.1.0.tgz"
-  integrity sha512-Zd89WC8JnzDV2WYZxJJMHj3IYEoGzOW3LHh32aT6RRabJJihsTqVR5NMw5AT78MIFzFBVlmpn/2H/mxOCgfjqw==
+html-enumerated-attributes@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/html-enumerated-attributes/-/html-enumerated-attributes-1.1.1.tgz#924cad2668ad27e6c66f99b8aea30d77d9cfed5b"
+  integrity sha512-fxfswuADQ6N6RmCUYoCEIw09Zbk/h8GJSJsbiQ3Uw3mkQegJ5b7Eu5Tpxl2xDUq9meWmivHe0GFieG2qHl2j4A==
 
 html-escaper@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/html-escaper/-/html-escaper-2.0.2.tgz"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
-html-url-attributes@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/html-url-attributes/-/html-url-attributes-2.0.0.tgz"
-  integrity sha512-/7gfPjDXatJvC1qAbjsRwx0NtMSw3PuOqqnmhVgvdhwphK8e0xmh6+eOKHMQ5GW3IzaE6mxYgKloqQhC1/dwrA==
+html-url-attributes@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/html-url-attributes/-/html-url-attributes-3.0.1.tgz#83b052cd5e437071b756cd74ae70f708870c2d87"
+  integrity sha512-ol6UPyBWqsrO6EJySPz2O7ZSr856WDrEzM5zMqp+FJJLGMW35cLYmmZnl0vztAZxRUoNZJFTCohfjuIJ8I4QBQ==
 
 htmlparser2@^12.0.0:
   version "12.0.0"
@@ -7223,11 +7237,6 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-not@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/not/-/not-0.1.0.tgz"
-  integrity sha512-5PDmaAsVfnWUgTUbJ3ERwn7u79Z0dYxN9ErxCpVJJqe2RK0PJ3z+iFUxuqjwtlDDegXvtWoxD/3Fzxox7tFGWA==
-
 npm-check-updates@22.2.9:
   version "22.2.9"
   resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-22.2.9.tgz#d0ea02f973e070d3a3b6ef0c165e7bd6d20dc993"
@@ -7970,175 +7979,145 @@ rehype-katex@7.0.1:
     unist-util-visit-parents "^6.0.0"
     vfile "^6.0.0"
 
-rehype-minify-attribute-whitespace@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-attribute-whitespace/-/rehype-minify-attribute-whitespace-3.0.0.tgz"
-  integrity sha512-Isi+gPP71oHhY4SSwpmqoIvmlGuF5EQ0GCFroGKG9maKOU750Zi5rjf1+PA1B1Izhz8u79zQo17TV5cHJb07Ig==
+rehype-minify-attribute-whitespace@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-attribute-whitespace/-/rehype-minify-attribute-whitespace-4.0.1.tgz#16c029749abcd42c67353aaa7a0fa5496f7eb239"
+  integrity sha512-QAfUrcZ6KCfpYonDbiWKTRpnVu9DYxFlvXMWWZe4BQbojwjjUbGIg1zoqyInJiJHAdYYyTHN5yJV2THa3opIng==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    hast-util-is-event-handler "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    collapse-white-space "^2.0.0"
+    hast-util-is-element "^3.0.0"
+    hast-util-is-event-handler "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-minify-css-style@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-css-style/-/rehype-minify-css-style-3.0.0.tgz"
-  integrity sha512-7eZGjqUF8tyi3scMtJwEhHdTiCrc4fAVRIln6FZXBziK0iz3EYxzE30vLHQvF4tVw3ZZgzWGOMxexmrfw0e+gw==
+rehype-minify-css-style@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-css-style/-/rehype-minify-css-style-4.0.1.tgz#825a8691dbb8644425cd8a01ab59c573d635f405"
+  integrity sha512-vIYlkQx0vvstzUk7XKc//i5HOklD7N84jaRq22XzOqxgf8bpGF9Jl90V4T+OUepX110UMEltv1rHl57lpAQjjg==
   dependencies:
-    "@types/hast" "^2.0.0"
+    "@types/hast" "^3.0.0"
     clean-css "^5.0.0"
-    hast-util-from-string "^2.0.0"
-    hast-util-is-css-style "^2.0.0"
-    hast-util-to-string "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    hast-util-from-string "^3.0.0"
+    hast-util-is-css-style "^3.0.0"
+    hast-util-to-string "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-minify-enumerated-attribute@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/rehype-minify-enumerated-attribute/-/rehype-minify-enumerated-attribute-4.1.0.tgz"
-  integrity sha512-PKaPZadHjlx5GufizvOdBIeq4+I2a6rgdrBpNSg2BzREzvlnnHNICgITaff65v+raUkTN9Z3QDvqmq+dEKZn5Q==
+rehype-minify-enumerated-attribute@^5.0.0:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/rehype-minify-enumerated-attribute/-/rehype-minify-enumerated-attribute-5.0.2.tgz#92aff3dc99d1f5d8bbac6ae42196636c79e5a538"
+  integrity sha512-B4laV6OHZAtXnvfNQw17q9a2TIzSCLM5gGc0Hv8Cn2Zun7Ri0hz5wKRULy0yelAyBZfTMbjM/euR2kHAmQHITw==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-select "^5.0.0"
-    html-enumerated-attributes "^0.1.0"
-    property-information "^6.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-select "^6.0.0"
+    html-enumerated-attributes "^1.0.0"
+    property-information "^7.0.0"
     space-separated-tokens "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-minify-event-handler@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-event-handler/-/rehype-minify-event-handler-3.0.0.tgz"
-  integrity sha512-ZrVmdhbGuie4xDKN/OfBWnUkkmwQthoPsd0uzPsNO1EAOACJJjSfDnjmkG7F7qWk2jF15pv+PUctCy1m5NtLnA==
+rehype-minify-event-handler@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-event-handler/-/rehype-minify-event-handler-4.0.1.tgz#b78dbe4c49d5d5fddc5d0b7cbc2651d723de3dc1"
+  integrity sha512-zDO5GyQqPKP68mGV4lGeCDoVii9eAt4DgqOiyfYIapHA/8YTQHCjJAevrNuBd3+xPg2e9jsH4KE8SpRjjAKfLg==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-event-handler "^2.0.0"
-    uglify-js "^3.0.18"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-event-handler "^3.0.0"
+    uglify-js "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-minify-javascript-script@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-javascript-script/-/rehype-minify-javascript-script-4.0.0.tgz"
-  integrity sha512-iY4m9Jl9h9UcYuPKzRMJgMoj/uhagz6P0Jk3OiXE77hxNN1KU7h+7OcSvr/ylC1BBZh6NXWLrGjXO2w3B8ClVw==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-from-string "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-javascript "^2.0.0"
-    hast-util-to-string "^2.0.0"
-    uglify-js "^3.0.18"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-javascript-url@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-javascript-url/-/rehype-minify-javascript-url-4.0.0.tgz"
-  integrity sha512-hkBmI4bkCfIf6DCQYsaosDfkr76+ZEXKLoVsRMxXGNyek+EYE2a3eYYVYLs2tUpYZzdSyumC8xUCJvH7wSiPog==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    html-url-attributes "^2.0.0"
-    uglify-js "^3.0.18"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-json-script@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-json-script/-/rehype-minify-json-script-3.0.0.tgz"
-  integrity sha512-1Zv1ZJAYKW/9PPXSDS8LYiHOmgY7lY87m6xpvZqF1inO3bN/7FUS88oJwWlz+q5I2quWGvfWOUoMI0XyXTPsqg==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-from-string "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    hast-util-to-string "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-language@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-language/-/rehype-minify-language-2.0.0.tgz"
-  integrity sha512-sxw9/sTGqWkln4SYBJb8jZCSXGYiiK5U425LvXCMfKMK7unTCyoLZjKayn6rS6Ic8E1KnDonXDRoIywGq7REjQ==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    bcp-47-normalize "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-media-attribute@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-media-attribute/-/rehype-minify-media-attribute-3.0.0.tgz"
-  integrity sha512-afsi1zXtsJYtGdWSG8xd61plKwLU9cySFtGwvI1Ti71+KUPeP4eIZuNRChJWM6iTt9NaQmjOrFqwatyCjYDqqg==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    clean-css "^5.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-meta-color@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-meta-color/-/rehype-minify-meta-color-3.0.0.tgz"
-  integrity sha512-qpPYfdPiV9E0AkesDDtKy3aStrPJkTSdcrfu1x0EgkH4ldn768xD1Fej7HItfzynCE5FSfCmQz2b1e+TsuH97w==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    clean-css "^5.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-meta-content@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-meta-content/-/rehype-minify-meta-content-3.0.0.tgz"
-  integrity sha512-m6fD/qcWzh8fCFa6TIMr+1jmAIaNU14MU0Ne1H1VnqqBnhLqV6QAToxtGN9Z62lpBJO6nfWKLo3bP3at4O8mlw==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    comma-separated-tokens "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-style-attribute@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-minify-style-attribute/-/rehype-minify-style-attribute-3.0.0.tgz"
-  integrity sha512-WqeQL8wOwGSazoDE1ncqWNucPCMRiw1jSjjcauihQD342NCtRCtxb9nRlP2c3I/Gnm+MS2A8iKZo+CS9jIRTpQ==
-  dependencies:
-    "@types/hast" "^2.0.0"
-    clean-css "^5.0.0"
-    hast-util-has-property "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
-rehype-minify-whitespace@^5.0.0:
+rehype-minify-javascript-script@^5.0.0:
   version "5.0.1"
-  resolved "https://registry.npmjs.org/rehype-minify-whitespace/-/rehype-minify-whitespace-5.0.1.tgz"
-  integrity sha512-PPp4lWJiBPlePI/dv1BeYktbwkfgXkrK59MUa+tYbMPgleod+4DvFK2PLU0O0O60/xuhHfiR9GUIUlXTU8sRIQ==
+  resolved "https://registry.yarnpkg.com/rehype-minify-javascript-script/-/rehype-minify-javascript-script-5.0.1.tgz#adb684db720cbf5bc0da85e6c9bd2c4097a3d10a"
+  integrity sha512-7kzo/4hJz/6zIdPune/TyaFfA8IEawN3WmEZpw1Sa/iGu0nXwFI07nH45efYdYg/PD8EGNzJfuGqHGzfq0ewhA==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-embedded "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    hast-util-whitespace "^2.0.0"
-    unified "^10.0.0"
-    unist-util-is "^5.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-from-string "^3.0.0"
+    hast-util-is-javascript "^3.0.0"
+    hast-util-to-string "^3.0.0"
+    uglify-js "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-normalize-attribute-value-case@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-normalize-attribute-value-case/-/rehype-normalize-attribute-value-case-3.0.0.tgz"
-  integrity sha512-rFaP0UOfPkFMY3nIUHIcGghQHW5CbXCkm5fGzxViueIFEStdfJ7VYYtTzzYqSYjqtQBlMr3aj/+rq4ILdb5weQ==
+rehype-minify-javascript-url@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-javascript-url/-/rehype-minify-javascript-url-5.0.1.tgz#5b9bf512829b19bff039c6a38a232e7752809a9a"
+  integrity sha512-sBaN58Vj/a303tnKVv0fKKJoN9TxpZhw1Jt1k1rQoIxs3SCCjDpIc+VGp4RcqBY4K2F7i1gjbAKYQ1H/7mjUTQ==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    html-url-attributes "^3.0.0"
+    uglify-js "^3.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-json-script@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-json-script/-/rehype-minify-json-script-4.0.1.tgz#2639246e18acd96289ef68e42cdbfa18a28ce634"
+  integrity sha512-r4+mqLZvhICFTPGxNykw2uOejnCy0wHtnAZSFHZbOCq5fF0+fr9892o6fdwT7phcXCrLPeZXORRZr48mTyhEBQ==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-from-string "^3.0.0"
+    hast-util-to-string "^3.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-language@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-language/-/rehype-minify-language-3.0.1.tgz#885dad1ea5d1bb7e5202e648f27ee00f5876b7a8"
+  integrity sha512-601rocoA1MntPZZsWmPUkNN76nisKbG2JGv8OsacWs8tnpHoE8Ozurm9kp7ddvFjTbYy8xtgJB72s2yPEFhbzg==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    bcp-47-normalize "^2.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-media-attribute@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-media-attribute/-/rehype-minify-media-attribute-4.0.1.tgz#791e2084785f6a415408a6456d4ccc4cfbf5625b"
+  integrity sha512-J6W+RceuJ07PQcHUTBfFEgxw5buGvwY901PQMGSQJBoWkfe7vJhXSPwZJ5EdIeAMbh0vYpc80k//FNfFUhqKXg==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    clean-css "^5.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-meta-color@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-meta-color/-/rehype-minify-meta-color-4.0.1.tgz#77bda0f34dcaa724ef227b61867dd4296bdc16ee"
+  integrity sha512-oWpcdB+fZQNZBvVLSF8Jo7/D+s8y7okJQCJNOu73WF2asXuR5Iz5zmFChujhqTVl4X3Io2yZ9NryJ+2QK/butQ==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    clean-css "^5.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-meta-content@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-meta-content/-/rehype-minify-meta-content-4.0.1.tgz#3ddf18d96256e2bd4748f99ade4b7a5668209d79"
+  integrity sha512-81/0V5HIgaSkgzlhi8P9lXh8JkoQ8gZzda+xAIGgK0zRFu9EUYfbzJp/y5pUsV7zZaSWDgr0WhMSs4zyUnRLQA==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    comma-separated-tokens "^2.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-style-attribute@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-minify-style-attribute/-/rehype-minify-style-attribute-4.0.1.tgz#7a2074e550441a86d8d3abebb336b6b6b03a4896"
+  integrity sha512-J2efUDe9A4AIwCi04HRHnqf2+mZoADZAmnwBmfJKMAjoci1d8nGgTyAhw1uq6XHXzG0wDa3i54o5xoS+4lc5xw==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    clean-css "^5.0.0"
+    unist-util-visit "^5.0.0"
+
+rehype-minify-whitespace@^6.0.0:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/rehype-minify-whitespace/-/rehype-minify-whitespace-6.0.2.tgz#7dd234ce0775656ce6b6b0aad0a6093de29b2278"
+  integrity sha512-Zk0pyQ06A3Lyxhe9vGtOtzz3Z0+qZ5+7icZ/PL/2x1SHPbKao5oB/g/rlc6BCTajqBb33JcOe71Ye1oFsuYbnw==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-minify-whitespace "^1.0.0"
+
+rehype-normalize-attribute-value-case@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-normalize-attribute-value-case/-/rehype-normalize-attribute-value-case-4.0.1.tgz#5b6b1691018e0a5a4252433050504bc0596c6a2f"
+  integrity sha512-sdsfY4DgVWO3K9lJHdIQHg+ErgSGxpFJX0lIOo0tpChQ+iaJHMITHWCGofLor1NjcxLZeeMTfJ5Aif85kLhL3g==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    unist-util-visit "^5.0.0"
 
 rehype-parse@^8.0.2:
   version "8.0.5"
@@ -8150,34 +8129,35 @@ rehype-parse@^8.0.2:
     parse5 "^6.0.0"
     unified "^10.0.0"
 
-rehype-preset-minify@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/rehype-preset-minify/-/rehype-preset-minify-6.0.0.tgz"
-  integrity sha512-MV+iXsjru4MoQThRU3ipvhmH7RxFdPY+46menxWb6z/Ib4WvVuLljNS2GkumT/bvLScc4996UiTNHNroae18ww==
+rehype-preset-minify@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-preset-minify/-/rehype-preset-minify-7.0.1.tgz#8a561727ee9a4e9e27b2c7d2adb855ed315176da"
+  integrity sha512-yI5Jdfkg8cVar+d5GgqL3HdM1uFOSvnjIOuoJz2U5ZDOSTMrxPrFlh1egNzYNdddwVXakUz9ivKeCuZbATsFDQ==
   dependencies:
-    rehype-minify-attribute-whitespace "^3.0.0"
-    rehype-minify-css-style "^3.0.0"
-    rehype-minify-enumerated-attribute "^4.0.0"
-    rehype-minify-event-handler "^3.0.0"
-    rehype-minify-javascript-script "^4.0.0"
-    rehype-minify-javascript-url "^4.0.0"
-    rehype-minify-json-script "^3.0.0"
-    rehype-minify-language "^2.0.0"
-    rehype-minify-media-attribute "^3.0.0"
-    rehype-minify-meta-color "^3.0.0"
-    rehype-minify-meta-content "^3.0.0"
-    rehype-minify-style-attribute "^3.0.0"
-    rehype-minify-whitespace "^5.0.0"
-    rehype-normalize-attribute-value-case "^3.0.0"
-    rehype-remove-comments "^5.0.0"
-    rehype-remove-duplicate-attribute-values "^3.0.0"
-    rehype-remove-empty-attribute "^3.0.0"
-    rehype-remove-external-script-content "^3.0.0"
-    rehype-remove-meta-http-equiv "^3.0.0"
-    rehype-remove-script-type-javascript "^3.0.0"
-    rehype-remove-style-type-css "^3.0.0"
-    rehype-sort-attribute-values "^4.0.0"
-    rehype-sort-attributes "^4.0.0"
+    rehype-minify-attribute-whitespace "^4.0.0"
+    rehype-minify-css-style "^4.0.0"
+    rehype-minify-enumerated-attribute "^5.0.0"
+    rehype-minify-event-handler "^4.0.0"
+    rehype-minify-javascript-script "^5.0.0"
+    rehype-minify-javascript-url "^5.0.0"
+    rehype-minify-json-script "^4.0.0"
+    rehype-minify-language "^3.0.0"
+    rehype-minify-media-attribute "^4.0.0"
+    rehype-minify-meta-color "^4.0.0"
+    rehype-minify-meta-content "^4.0.0"
+    rehype-minify-style-attribute "^4.0.0"
+    rehype-minify-whitespace "^6.0.0"
+    rehype-normalize-attribute-value-case "^4.0.0"
+    rehype-remove-comments "^6.0.0"
+    rehype-remove-duplicate-attribute-values "^4.0.0"
+    rehype-remove-empty-attribute "^4.0.0"
+    rehype-remove-external-script-content "^4.0.0"
+    rehype-remove-meta-http-equiv "^4.0.0"
+    rehype-remove-script-type-javascript "^4.0.0"
+    rehype-remove-style-type-css "^4.0.0"
+    rehype-sort-attribute-values "^5.0.0"
+    rehype-sort-attributes "^5.0.0"
+    unified "^11.0.0"
 
 rehype-prism-plus@1.6.3:
   version "1.6.3"
@@ -8200,78 +8180,70 @@ rehype-recma@^1.0.0:
     "@types/hast" "^3.0.0"
     hast-util-to-estree "^3.0.0"
 
-rehype-remove-comments@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-comments/-/rehype-remove-comments-5.0.0.tgz"
-  integrity sha512-sfiVT+u1in19sxo9vv/SDQVbHE2mADScNrpeVsUxBFl14zOMZnfPb6l4hR+lXqe10G13UFVqv5pt8zDbCR4JYQ==
+rehype-remove-comments@^6.0.0:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-comments/-/rehype-remove-comments-6.1.1.tgz#353f3c5e7f00f384f5c1648b271bffe4f396a61d"
+  integrity sha512-O3OAvqpV8IUJf6+Q4s5nqaKQqrgeXdU/+0fjUHMO0KAB4SwkMdN34NJQC9hexwvjYE00tX/xB8GvnVJI8Cdf6g==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-conditional-comment "^2.0.0"
-    unified "^10.0.0"
-    unist-util-filter "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-conditional-comment "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-duplicate-attribute-values@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-duplicate-attribute-values/-/rehype-remove-duplicate-attribute-values-3.0.0.tgz"
-  integrity sha512-Rhux3YNBZ7Ozgovxo4zABbbIKS6x2jdCLQQI32Zlw3fIAuVASjnDOg2bdQI1jcR5nvQlltviI7qTnGCzOgw3wQ==
+rehype-remove-duplicate-attribute-values@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-duplicate-attribute-values/-/rehype-remove-duplicate-attribute-values-4.0.1.tgz#c09eee94b7940bf1833d9169cf488681a07cdc04"
+  integrity sha512-CwSTYj6Oxs/CzfMvzwJeTyqKegiYMr1L8y4PUlbAicnZm0Ex1DzDKlTmW8ik6jDOL4SzA6+f4PRkt6t4bJBM9Q==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-empty-attribute@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-empty-attribute/-/rehype-remove-empty-attribute-3.0.0.tgz"
-  integrity sha512-mhHsmepUAR8n5OgwAWf+RXrzs6wxnYNEuDIQBl26euwU7/UNQrVRNECiUxvekniuGy1LSnit0yncptiMMVOMwg==
+rehype-remove-empty-attribute@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-empty-attribute/-/rehype-remove-empty-attribute-4.0.1.tgz#bed6a6a42f8140869aadc36fa883e3a30f43d123"
+  integrity sha512-DumltSgLRNKSecLa9+amnr72Qn70D9mwnm/1Y1FcSiyXLcfrbXaM9bvTwpGGIhDPdyUp1khEDGxx1MnD2PPV2Q==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    hast-util-is-event-handler "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    hast-util-is-event-handler "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-external-script-content@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-external-script-content/-/rehype-remove-external-script-content-3.0.0.tgz"
-  integrity sha512-NcDH2NYTr1N/0+WwId0dEVmQAQKQGehgwnNBejsZNxYBIqDa9n1JXArIAro+lnukfFqtxTxY2NRwl3gwwdKKsg==
+rehype-remove-external-script-content@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-external-script-content/-/rehype-remove-external-script-content-4.0.1.tgz#2864e953739ef9a39ae35520cc1dd80afc92c124"
+  integrity sha512-wt+ONr0EY97RUMcI7J+oUuyuTu8AbMGIxApNdfaYi+/zYQfqre0LEvMuuaCSG6hRbmo22nr0a2FeKNmo6bYfNw==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-has-property "^2.0.0"
-    hast-util-is-javascript "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-javascript "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-meta-http-equiv@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-meta-http-equiv/-/rehype-remove-meta-http-equiv-3.0.0.tgz"
-  integrity sha512-AI4MZocx51norXPFVwtmELco3WqcB14xIWC2bHJud/7rCL5y1Ic2x8QYDp8Pp8tqGDfaF2QbbCYDkvUvDDSpXA==
+rehype-remove-meta-http-equiv@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-meta-http-equiv/-/rehype-remove-meta-http-equiv-4.0.1.tgz#2b5bef9e31d0116387439541b6c04b277e333760"
+  integrity sha512-BtnEEEjxFzj8ywdvY5iBoOWINFUPFHa73hdFRA/1niho82KeB7jZCbetDNX4nE4B16aooSuPUiKtM3J1WnDhiA==
   dependencies:
-    hast-util-has-property "^2.0.0"
+    "@types/hast" "^3.0.0"
     space-separated-tokens "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-script-type-javascript@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-script-type-javascript/-/rehype-remove-script-type-javascript-3.0.0.tgz"
-  integrity sha512-HTsKyryBYgBHSVhStEt1TN7SJYe2re/sfe92A3LUe7pV6x64Uzysicukjob9HbXO3+8qPH64xhQlDpcmMKbpBg==
+rehype-remove-script-type-javascript@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-script-type-javascript/-/rehype-remove-script-type-javascript-4.0.1.tgz#71faf0298a2efa5b3170138c0c79c26c72935993"
+  integrity sha512-YtFejlGvyZE1tbpGav6RThBuVcfLMV9IAG8CDf8wXENIu3qJyegyC+HFz80MZPxw3mQKsZHAOHYE3G4LoOcGzg==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-javascript "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-javascript "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-remove-style-type-css@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/rehype-remove-style-type-css/-/rehype-remove-style-type-css-3.0.0.tgz"
-  integrity sha512-M1DZIcc05I+tBIKjEr9j77470RHnbdFcknl/BtmfL8xnp2mhGilqDf6jeBon+zWODjdtYjOv8i22Yj9fFcYLAA==
+rehype-remove-style-type-css@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-remove-style-type-css/-/rehype-remove-style-type-css-4.0.1.tgz#e8e19f562b8d8f46172db46960a72ff49f4f1954"
+  integrity sha512-vMTQu+QjkzpzftOGzr6tmk/tA9V/JsfYlPz1APjrsjWl4el5ySJjKKjZiSVmxKUZDO6cDNVZQm+2ldODyoN4wg==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-css-link "^2.0.0"
-    hast-util-is-css-style "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-css-link "^3.0.0"
+    hast-util-is-css-style "^3.0.0"
+    unist-util-visit "^5.0.0"
 
 rehype-slug@5.1.0:
   version "5.1.0"
@@ -8286,24 +8258,22 @@ rehype-slug@5.1.0:
     unified "^10.0.0"
     unist-util-visit "^4.0.0"
 
-rehype-sort-attribute-values@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/rehype-sort-attribute-values/-/rehype-sort-attribute-values-4.0.0.tgz"
-  integrity sha512-+Y3OWTbbxSIutbXMVY7+aWFmcRyEvdz6HkghXAyVPjee1Y8HUi+/vryBL1UdEI9VknVBiGvphXAf5n6MDNOXOA==
+rehype-sort-attribute-values@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-sort-attribute-values/-/rehype-sort-attribute-values-5.0.1.tgz#0c77507d178c5788d4899409f42220040877476f"
+  integrity sha512-lU3ABJO5frbUgV132YS6SL7EISf//irIm9KFMaeu5ixHfgWf6jhe+09Uf/Ef8pOYUJWKOaQJDRJGCXs6cNsdsQ==
   dependencies:
-    "@types/hast" "^2.0.0"
-    hast-util-is-element "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    hast-util-is-element "^3.0.0"
+    unist-util-visit "^5.0.0"
 
-rehype-sort-attributes@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/rehype-sort-attributes/-/rehype-sort-attributes-4.0.0.tgz"
-  integrity sha512-sCT58e12F+fJL8ZmvpEP2vAK7cpYffUAf0cMQjNfLIewWjMHMGo0Io+H8eztJoI1S9dvEm2XZT5zzchqe8gYJw==
+rehype-sort-attributes@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-sort-attributes/-/rehype-sort-attributes-5.0.1.tgz#750daa9aa57c30b8e571c2c8a8a30e47f9d6d2cd"
+  integrity sha512-Bxo+AKUIELcnnAZwJDt5zUDDRpt4uzhfz9d0PVGhcxYWsbFj5Cv35xuWxu5r1LeYNFNhgGqsr9Q2QiIOM/Qctg==
   dependencies:
-    "@types/hast" "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
+    "@types/hast" "^3.0.0"
+    unist-util-visit "^5.0.0"
 
 remark-frontmatter@^5.0.0:
   version "5.0.0"
@@ -9500,9 +9470,9 @@ uc.micro@^2.0.0, uc.micro@^2.1.0:
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-2.1.0.tgz#f8d3f7d0ec4c3dea35a7e3c8efa4cb8b45c9e7ee"
   integrity sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==
 
-uglify-js@^3.0.18:
+uglify-js@^3.0.0:
   version "3.19.3"
-  resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.19.3.tgz"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.19.3.tgz#82315e9bbc6f2b25888858acd1fff8441035b77f"
   integrity sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==
 
 unbox-primitive@^1.1.0:
