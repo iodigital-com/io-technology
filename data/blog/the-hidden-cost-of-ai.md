@@ -3,8 +3,7 @@ title: 'The Hidden Cost of AI'
 date: '2026-04-15'
 tags: ['AI', 'Cluade', 'Gemini', 'ChapGPT']
 images: ['/articles/the-hidden-cost-of-ai/the-hidden-cost-of-ai.png']
-summary: 'Developers often default to the most powerful AI models without thinking about the real cost behind each call.
-This article explores why understanding model tiers and pricing matters for smarter, more efficient engineering decisions.'
+summary: 'Developers often default to the most powerful AI models without thinking about the real cost behind each call. This article explores why understanding model tiers and pricing matters for smarter, more efficient engineering decisions.'
 authors: ['susan-fulop']
 theme: 'beige'
 ---
