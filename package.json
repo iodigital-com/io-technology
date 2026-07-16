@@ -100,7 +100,7 @@
     "husky": "9.1.7",
     "inquirer": "14.0.2",
     "jsdom": "29.1.1",
-    "lint-staged": "11.2.6",
+    "lint-staged": "12.5.0",
     "next-remote-watch": "2.0.0",
     "node-fetch": "3.3.2",
     "npm-check-updates": "17.1.14",
