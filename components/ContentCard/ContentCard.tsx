@@ -153,8 +153,8 @@ const ContentCard = ({
                   )}
                 </div>
                 <div className="flex items-center gap-4">
-                  {video && <SocialIcon kind="youtube" href={video} size="7" title="Video" />}
-                  {slides && <SocialIcon kind="slide-deck" href={slides} size="8" title="Slides" />}
+                  {video && <SocialIcon kind="youtube" href={video} size={7} title="Video" />}
+                  {slides && <SocialIcon kind="slide-deck" href={slides} size={8} title="Slides" />}
                 </div>
               </div>
             )}
