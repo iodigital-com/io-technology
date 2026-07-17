@@ -1,7 +1,42 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../tailwind.config.js";
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
+
+/*
+ * Tailwind v4's default breakpoints are defined in `rem`. The root font-size
+ * for this site is set to 18px (see css/font.css), so `rem`-based values used
+ * as literal property values (e.g. the built-in `.container` utility's
+ * `max-width`) resolve 18/16 = 12.5% larger than intended, even though the
+ * `@media` breakpoint conditions themselves still trigger at the same pixel
+ * viewport widths (media query units always resolve against the browser's
+ * initial 16px font-size, not the page's computed root font-size). Pinning
+ * these back to `px` restores the pre-upgrade (Tailwind v3) sizing, where
+ * `.container` and other breakpoint-driven values were px-based, without
+ * changing when any responsive variant (`sm:`, `md:`, etc.) actually kicks in.
+ */
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/*
+ * Tailwind v4 dropped support for the JS `safelist` config option (still
+ * present, but silently ignored, in tailwind.config.js). Several components
+ * build `io_*` brand color classes dynamically via template strings, e.g.
+ * `` `bg-io_${theme}-500` `` in layouts/PostLayout.tsx, SerieLayout.tsx,
+ * AuthorLayout.tsx, components/SiteHeader/SiteHeader.tsx,
+ * components/SeriePlaylist/SeriePlaylist.tsx, and the talks/workshops/videos/
+ * book-a-talk/quiz pages. Tailwind's content scanner can't see these at build
+ * time since the class name is split across an interpolation, so the CSS for
+ * them is never generated. `@source inline(...)` is v4's CSS-native
+ * replacement for `safelist`, and force-generates every combination below
+ * regardless of whether it's found as a literal string in the source.
+ */
+@source inline("{hover:,xl:,}{bg,text}-io_{green,beige,blue,pink}-{50,100,200,300,400,500,600,700,800,900}");
 
 .task-list-item::before {
   @apply hidden;
@@ -39,7 +74,9 @@
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
 }
 
 .prose :where(a):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
