@@ -11,7 +11,6 @@ import type { MDXContent, TableOfContents, ContentType } from './types'
 import type { Result } from '../../types/api'
 // Remark packages
 import remarkGfm from 'remark-gfm'
-import remarkFootnotes from 'remark-footnotes'
 import remarkMath from 'remark-math'
 import remarkExtractFrontmatter from '../remark-extract-frontmatter'
 import remarkCodeTitles from '../remark-code-title'
@@ -102,14 +101,13 @@ export async function getFileBySlugSafe(
     const { code, frontmatter } = await bundleMDX({
       source,
       cwd: path.join(root, 'components'),
-      xdmOptions(options: any, _frontmatter: FrontMatter) {
+      mdxOptions(options: any, _frontmatter: FrontMatter) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkExtractFrontmatter as any,
           [remarkTocHeadings, { exportRef: tocRef }] as any,
           remarkGfm as any,
           remarkCodeTitles as any,
-          [remarkFootnotes, { inlineNotes: true }] as any,
           remarkMath as any,
           remarkImgToJsx as any,
         ]
@@ -181,7 +179,7 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
     source,
     // mdx imports can be automatically source from the components directory
     cwd: path.join(root, 'components'),
-    xdmOptions(options: any, _frontmatter: FrontMatter) {
+    mdxOptions(options: any, _frontmatter: FrontMatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
       // plugins in the future.
@@ -191,7 +189,6 @@ export async function getFileBySlug(type: ContentType, slug: string): Promise<MD
         [remarkTocHeadings, { exportRef: tocRef }] as any,
         remarkGfm as any,
         remarkCodeTitles as any,
-        [remarkFootnotes, { inlineNotes: true }] as any,
         remarkMath as any,
         remarkImgToJsx as any,
       ]

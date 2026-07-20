@@ -3,8 +3,7 @@ title: 'Accessibility tools'
 date: '2025-01-14'
 tags: ['frontend', 'a11y', 'accessibility']
 images: ['/articles/accessibility-tools/a11y.png']
-summary: 'In today’s digital age, many websites remain inaccessible to individuals with physical or cognitive disabilities. 
-However, there are numerous accessibility tools available to help audit and improve your web content, ensuring accessibility for everyone.'
+summary: "In today’s digital age, many websites remain inaccessible to individuals with physical or cognitive disabilities. However, there are numerous accessibility tools available to help audit and improve your web content, ensuring accessibility for everyone."
 authors: ['ravindre-ramjiawan']
 theme: 'blue'
 ---

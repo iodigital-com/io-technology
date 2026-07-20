@@ -103,7 +103,7 @@ export default function Talk({ talk, authors }: TalkProps) {
                   <>
                     <dt className="sr-only">Video</dt>
                     <dd>
-                      <SocialIcon kind="youtube" href={talk.video} size="5" title="Video" />
+                      <SocialIcon kind="youtube" href={talk.video} size={5} title="Video" />
                     </dd>
                   </>
                 )}
@@ -111,7 +111,7 @@ export default function Talk({ talk, authors }: TalkProps) {
                   <>
                     <dt className="sr-only">Slides</dt>
                     <dd>
-                      <SocialIcon kind="slide-deck" href={talk.slides} size="8" title="Slides" />
+                      <SocialIcon kind="slide-deck" href={talk.slides} size={8} title="Slides" />
                     </dd>
                   </>
                 )}

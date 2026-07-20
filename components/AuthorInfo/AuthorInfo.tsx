@@ -68,7 +68,7 @@ const AuthorInfo = ({
         {authors.map((author, index) => (
           <div
             key={author.name}
-            className={`flex-0 relative overflow-hidden rounded-full border-4 border-white ${getAvatarClasses()}`}
+            className={`flex-none relative overflow-hidden rounded-full border-4 border-white ${getAvatarClasses()}`}
             style={{ zIndex: authors.length - index }}
           >
             <Image

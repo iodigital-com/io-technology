@@ -106,7 +106,7 @@ export default function Workshop({ workshop, authors }: WorkshopProps) {
                       <SocialIcon
                         kind="slide-deck"
                         href={workshop.slides}
-                        size="8"
+                        size={8}
                         title="Slides"
                       />
                     </dd>

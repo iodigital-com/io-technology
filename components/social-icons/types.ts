@@ -11,10 +11,12 @@ type SocialIconKind =
   | 'slide-deck'
   | 'instagram'
 
+export type SocialIconSize = 5 | 6 | 7 | 8
+
 export interface SocialIconProps {
   kind: SocialIconKind
   href: string
-  size?: string | number
+  size?: SocialIconSize
   title?: string
   children?: React.ReactNode
   classNames?: string

@@ -3,9 +3,7 @@ title: "Convention over Configuration with RedwoodJS"
 date: '2023-04-28'
 tags: ['JavaScript', 'RedwoodJS']
 images: ['/articles/convention-over-configuration-with-redwoodjs/convention-over-configuration-with-redwoodjs.jpg']
-summary: 'We have seen how the industry has continuously raised the level of abstraction to allow developers to spend more time
-delivering functionality and less time writing low-level infrastructure. Even though JavaScript is the most versatile
-programming language on the planet, we still have a long way to go.'
+summary: 'We have seen how the industry has continuously raised the level of abstraction to allow developers to spend more time delivering functionality and less time writing low-level infrastructure. Even though JavaScript is the most versatile programming language on the planet, we still have a long way to go.'
 authors: ['lee-ravenberg']
 theme: 'beige'
 ---
