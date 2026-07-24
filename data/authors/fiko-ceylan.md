@@ -1,8 +1,8 @@
 ---
-name: Osman Fikret 'Fiko' Ceylan
-avatar: /authors/osman-fikret-fiko-ceylan.jpeg
+name: Fiko Ceylan
+avatar: /authors/fiko-ceylan.jpeg
 occupation: Technical Leader and Lead Front-End Developer @NN | Consultant Front-end Developer @iO
-website: https://osmanfikretceylan.com
+website: https://fikoceylan.com
 linkedin: https://www.linkedin.com/in/ofcyln/
 github: https://github.com/ofcyln
 twitter: https://twitter.com/ofcyln

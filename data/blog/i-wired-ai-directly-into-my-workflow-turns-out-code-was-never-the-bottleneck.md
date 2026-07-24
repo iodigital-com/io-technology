@@ -11,13 +11,13 @@ tags:
     'Software Engineering',
     'Developer Productivity',
   ]
-authors: ['osman-fikret-fiko-ceylan']
+authors: ['fiko-ceylan']
 images:
   [
     '/articles/i-wired-ai-directly-into-my-workflow-turns-out-code-was-never-the-bottleneck/i-wired-ai-directly-into-my-workflow-turns-out-code-was-never-the-bottleneck-pexels-public-domain-pictures-50548.jpg',
   ]
 summary: 'Code was never the real bottleneck. The true constraints are requirements, legacy systems, and operational complexity, which means developers must now shift from writing code to directing AI, validating its outputs, and making architectural decisions.'
-canonicalUrl: 'https://osmanfikretceylan.com/blog/i-wired-ai-directly-into-my-workflow-turns-out-code-was-never-the-bottleneck'
+canonicalUrl: 'https://fikoceylan.com/blog/i-wired-ai-directly-into-my-workflow-turns-out-code-was-never-the-bottleneck'
 ---
 
 I have been building front-ends since 2012.
