@@ -2,7 +2,7 @@
 title: 'Designing with Prompts: AI Powered Frontend Development and Its Next Step'
 date: '2025-12-05'
 tags: ['AI', 'React', 'Frontend', 'Development', 'Web Development']
-authors: ['osman-fikret-fiko-ceylan']
+authors: ['fiko-ceylan']
 images:
   [
     '/articles/designing-with-prompts-ai-powered-frontend-development-and-its-next-step/pexels-rahulp-9800-1933900.jpg',
