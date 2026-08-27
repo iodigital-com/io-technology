@@ -52,7 +52,7 @@ What one of my colleagues pointed out after the presentation stuck with me: the 
 
 ## The bigger picture
 
-There's also a job market reality I can't ignore. A [Stanford Digital Economy Lab study](https://digitaleconomy.stanford.edu) found that employment for software developers aged 22–25 has declined nearly 20% from its late-2022 peak. The WEF's Future of Jobs Report pointed in the same direction: entry-level roles are the most at risk.
+There's also a job market reality I can't ignore. A [Stanford Digital Economy Lab study](https://digitaleconomy.stanford.edu) found that employment for software developers aged 22–25 has declined nearly 20% from its late-2022 peak. The [WEF's Future of Jobs Report](https://www.weforum.org/stories/jobs-and-the-future-of-work/ai-jobs-international-workers-day/) pointed in the same direction: entry-level roles are the most at risk.
 
 So the question isn't just "am I learning enough." It's also: can I get a job, can I keep it, can I keep up.
 
