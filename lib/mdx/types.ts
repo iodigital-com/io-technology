@@ -21,13 +21,7 @@ export interface MDXContent {
 
 // Enhanced content type system
 export type ContentType =
-  | 'blog'
-  | 'authors'
-  | 'series'
-  | 'talks'
-  | 'workshops'
-  | 'experiments'
-  | 'contribute'
+  'blog' | 'authors' | 'series' | 'talks' | 'workshops' | 'experiments' | 'contribute'
 
 // MDX processing options
 export interface MDXProcessingOptions {

@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
   media-src 'none';
   connect-src *;
   font-src 'self';
-  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com;
+  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com stackblitz.com;
 `
 //
 const securityHeaders = [
@@ -51,11 +51,9 @@ const securityHeaders = [
 ]
 
 module.exports = withBundleAnalyzer({
+  transpilePackages: ['github-slugger'],
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  eslint: {
-    dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
-  },
   images: {
     localPatterns: [
       {
@@ -80,12 +78,12 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
-
-    return config
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
 })

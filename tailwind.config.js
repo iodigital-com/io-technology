@@ -12,12 +12,9 @@ module.exports = {
     './layouts/**/*.{js,ts,jsx,tsx}',
     './lib/**/*.{js,ts,jsx,tsx}',
   ],
-  safelist: [
-    {
-      pattern: /(bg|text)-io_(green|beige|blue|pink)-(50|100|200|300|400|500|600|700|800|900)/,
-      variants: ['lg', 'hover', 'focus', 'lg:hover'],
-    },
-  ],
+  // NOTE: Tailwind v4 no longer supports the JS `safelist` option (it is
+  // silently ignored). The equivalent dynamic `io_*` brand color classes are
+  // now safelisted via `@source inline(...)` in css/tailwind.css.
   darkMode: 'class',
   theme: {
     container: {
@@ -44,6 +41,7 @@ module.exports = {
         primary: brandColors.colors.io_blue,
         gray: colors.neutral,
         ...brandColors.colors,
+        'code-pink': '#D41675',
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -77,7 +75,7 @@ module.exports = {
               backgroundColor: theme('colors.gray.800'),
             },
             code: {
-              color: theme('colors.pink.500'),
+              color: theme('colors.code-pink'),
               backgroundColor: theme('colors.gray.100'),
               paddingLeft: '4px',
               paddingRight: '4px',

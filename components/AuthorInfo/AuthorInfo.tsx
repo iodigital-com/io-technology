@@ -24,8 +24,10 @@ const AuthorInfo = ({
   }
 
   const renderSingleAuthor = (author: Author) => (
-    <div key={author.name} className="flex items-center">
-      <div className={`flex-0 relative mr-3 overflow-hidden rounded-full ${getAvatarClasses()}`}>
+    <div key={author.name} className="flex">
+      <div
+        className={`flex-shrink-0 relative mr-3 overflow-hidden rounded-full ${getAvatarClasses()}`}
+      >
         <Image
           src={author.avatar || '/authors/io.jpg'}
           width={avatarSize === 'large' ? 200 : 100}
@@ -34,8 +36,12 @@ const AuthorInfo = ({
           className="rounded-full object-cover"
         />
       </div>
-      <div>
-        <p className={`font-medium ${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0`}>
+      <div className={`${avatarSize === 'small' ? 'h-[3.75rem]' : 'h-[4.5rem]'}`}>
+        <p
+          className={`font-medium ${
+            avatarSize === 'small' ? 'text-sm' : 'text-base'
+          } mb-0 line-clamp-1`}
+        >
           {linkToAuthorPage ? (
             <Link
               href={`/authors/${author.slug[0]}`}
@@ -48,7 +54,7 @@ const AuthorInfo = ({
           )}
         </p>
         {showOccupation && (
-          <p className={`${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0`}>
+          <p className={`${avatarSize === 'small' ? 'text-sm' : 'text-base'} mb-0 line-clamp-2`}>
             {author.occupation}
           </p>
         )}
@@ -62,7 +68,7 @@ const AuthorInfo = ({
         {authors.map((author, index) => (
           <div
             key={author.name}
-            className={`flex-0 relative overflow-hidden rounded-full border-4 border-white ${getAvatarClasses()}`}
+            className={`flex-none relative overflow-hidden rounded-full border-4 border-white ${getAvatarClasses()}`}
             style={{ zIndex: authors.length - index }}
           >
             <Image

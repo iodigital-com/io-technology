@@ -1,5 +1,6 @@
 import '@/css/tailwind.css'
 import '@/css/prism.css'
+import '@/css/prism-vs-code-dark-modern-theme.css'
 import '@/css/font.css'
 import '@/css/post-layout.css'
 import '@/css/images.css'
@@ -38,10 +39,10 @@ interface ExtendedPageProps {
 }
 
 export default function App({ Component, pageProps }: AppProps & { pageProps: ExtendedPageProps }) {
-  const { useLayoutWrapper = true, theme = 'default' } = pageProps
+  const { useLayoutWrapper = true, theme = 'default', transparentHeader = false } = pageProps
 
   const pageContent = useLayoutWrapper ? (
-    <LayoutWrapper>
+    <LayoutWrapper transparentHeader={transparentHeader}>
       <Component {...pageProps} />
     </LayoutWrapper>
   ) : (

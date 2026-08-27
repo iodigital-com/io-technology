@@ -50,7 +50,7 @@ export default function AuthorLayout({
                   <>
                     <dt className="sr-only">LinkedIn</dt>
                     <dd>
-                      <SocialIcon kind="linkedin" href={linkedin} size="5">
+                      <SocialIcon kind="linkedin" href={linkedin} size={5}>
                         {name}
                       </SocialIcon>
                     </dd>
@@ -58,10 +58,12 @@ export default function AuthorLayout({
                 )}
                 {twitter && (
                   <>
-                    <dt className="sr-only">Twitter</dt>
+                    <dt className="sr-only">X</dt>
                     <dd>
-                      <SocialIcon kind="twitter" href={twitter} size="5">
-                        {twitter.replace('https://twitter.com/', '@')}
+                      <SocialIcon kind="x" href={twitter} size={5}>
+                        {twitter
+                          .replace('https://x.com/', '@')
+                          .replace('https://twitter.com/', '@')}
                       </SocialIcon>
                     </dd>
                   </>
@@ -70,7 +72,7 @@ export default function AuthorLayout({
                   <>
                     <dt className="sr-only">Github</dt>
                     <dd>
-                      <SocialIcon kind="github" href={github} size="5">
+                      <SocialIcon kind="github" href={github} size={5}>
                         {github.replace('https://github.com/', '')}
                       </SocialIcon>
                     </dd>
@@ -80,7 +82,7 @@ export default function AuthorLayout({
                   <>
                     <dt className="sr-only">Website</dt>
                     <dd>
-                      <SocialIcon kind="website" href={website} size="5">
+                      <SocialIcon kind="website" href={website} size={5}>
                         {website.replace('https://', '').replace('/', '')}
                       </SocialIcon>
                     </dd>
