@@ -8,13 +8,7 @@ authors: ['ellenoor-bok']
 theme: 'blue'
 ---
 
-# Am I learning, or am I just prompting?
-
----
-
 Recently I gave my first ever presentation at iO about something I've been sitting with for a while. Not a polished "here are five tips" kind of talk. More of an honest conversation about what it actually feels like to be a junior developer right now — in a world where AI is just... there. Always. From day one.
-
----
 
 ## The thing nobody really says out loud
 
@@ -29,8 +23,6 @@ And that's fine, right? Everyone's doing it. Except for me there was always this
 Senior developers know the basics because they built the foundation before AI existed. They wrote code themselves, broke things, fixed things without a shortcut. And yes, when you use AI all day you forget some things. But that foundation is still there underneath everything. When the moment comes they have to work without it, they'll pick it back up.
 
 For me, that foundation still feels like it's under construction. And I think a lot of junior developers feel this way. We just don't always say it.
-
----
 
 ## What the data showed
 
@@ -48,41 +40,33 @@ The most popular answers were **faster** and **lazy**. But also overwhelmed, ang
 
 AI feels both empowering and draining.
 
----
-
 ## Imposter syndrome
 
 I think AI has made imposter syndrome worse for junior developers. It's not just "I don't know enough." It's "I don't know if I know enough, or if my AI knows enough." Those are very different feelings.
 
 When I'm in a meeting and people talk about concepts I've only ever copy-pasted, it hits. They built things from scratch. I've been assembling things from suggestions. And sometimes I wonder, do I actually belong here, or am I just really good at prompting?
 
-A Korn Ferry survey of 10,000 professionals found that 71% of US CEOs experience imposter syndrome. CEOs. Still feeling like they don't belong. So it doesn't go away with seniority, which is both reassuring and kind of unsettling.
+A [Korn Ferry survey](https://www.kornferry.com/about-us/press/71percent-of-us-ceos-experience-imposter-syndrome-new-korn-ferry-research-finds) of 10,000 professionals found that 71% of US CEOs experience imposter syndrome. CEOs. Still feeling like they don't belong. So it doesn't go away with seniority, which is both reassuring and kind of unsettling.
 
 What one of my colleagues pointed out after the presentation stuck with me: the imposter syndrome might feel worse for junior developers specifically because of AI. Before with Google, you were still solving a puzzle, searching, reading, understanding, piecing it together. With AI you just get the answer. And when you didn't write the code yourself, it's harder to claim it as yours. That instant gratification doesn't stick. And maybe that's the real problem. Not that AI is bad, but that we've lost the delayed gratification that actually builds understanding.
 
----
-
 ## The bigger picture
 
-There's also a job market reality I can't ignore. A Stanford Digital Economy Lab study found that employment for junior software developers has declined nearly 20% since 2025. The WEF's Future of Jobs Report pointed in the same direction: entry-level roles are the most at risk.
+There's also a job market reality I can't ignore. A [Stanford Digital Economy Lab study](https://digitaleconomy.stanford.edu) found that employment for software developers aged 22–25 has declined nearly 20% from its late-2022 peak. The WEF's Future of Jobs Report pointed in the same direction: entry-level roles are the most at risk.
 
 So the question isn't just "am I learning enough." It's also: can I get a job, can I keep it, can I keep up.
 
 Something else came up in the conversation. One of the seniors said that when they started out, the expectation was to fail. To take time. To slowly figure things out. That was just part of being junior. But now it feels like that space is gone. Because AI can do so much, the assumption seems to be that everyone can do everything, backend, frontend, DevOps straight away. The bar has shifted, and for a junior developer who is still finding their feet, that's a lot to carry.
 
----
-
 ## So, am I learning or am I just prompting?
 
-Probably both. But if I'm honest, prompting is taking the overhand. And that's why I wanted to do this presentation.
+Probably both. But if I'm honest, prompting is taking the upper hand. And that's why I wanted to do this presentation.
 
 We're the first generation of developers for whom AI was there from day one. Nobody handed us a manual for this. We're all just figuring it out as we go. Juniors and seniors alike, apparently.
 
 What I took away from the conversation is that the goal probably isn't to stop using AI. It's to be more intentional about when you let it do the thinking for you and when you do it yourself. The basics don't disappear. They just get buried. And at some point, in a tricky code review, in a production incident, in a conversation with a client at 4pm on a Friday, you'll need them.
 
 I don't have a clean answer. But I think starting the conversation is a good first step.
-
----
 
 ## What the room said
 
@@ -103,7 +87,5 @@ A few things that stood out:
 **Someone mentioned:** Kyle Simpson's talk on imposter syndrome (worth watching: [https://www.youtube.com/watch?v=MD6Ec07X7MQ](https://www.youtube.com/watch?v=MD6Ec07X7MQ))
 
 **Lastly someone said:** _"You're not the only one — we're all feeling this or have felt it at some point."_
-
----
 
 _Did any of this resonate with you? Are you a junior developer navigating the same thing? Or a senior who remembers what it felt like before AI? I'd love to hear what you think._
