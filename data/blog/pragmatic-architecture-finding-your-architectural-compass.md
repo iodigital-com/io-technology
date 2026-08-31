@@ -1,9 +1,9 @@
 ---
-title: 'Pragmatic Microservices: Finding Your Architectural Compass'
+title: 'Pragmatic Architecture: Finding Your Architectural Compass'
 date: '2026-09-01'
 tags: ['software-architecture', 'microservices', 'modular-monolith', 'system-design']
-images: ['/articles/pragmatic-microservices-finding-your-architectural-compass/banner.webp']
-summary: 'Why microservices and modular monoliths are both valid choices, and why architecture should follow operational needs instead of industry trends.'
+images: ['/articles/pragmatic-architecture-finding-your-architectural-compass/banner.webp']
+summary: 'Why architecture should follow the needs of your system, not industry trends. And why this matters even more in the AI era.'
 authors: ['mohamed-elmedany']
 theme: 'blue'
 ---
@@ -28,7 +28,7 @@ These were reasonable questions, that was the annoying part. I reconsidered the 
 sarcastically wondering whether I had accidentally reinvented the industry's favourite architectural antipattern.
 
 The more I thought about it, the more I realised the problem was not that people were questioning microservices. The
-problem was that we were questioning architecture through trends.
+problem was that we were questioning architecture through _trends._
 
 ## The Architectural Compass Has Moved
 
@@ -68,12 +68,12 @@ Five services do not mean five times the CPU bill. They mean five deployment uni
 sets of logs, five sets of alerts, five health checks, and five places to reason about failures. They also mean five
 things developers need to understand before changing the system.
 
-A team of good engineers can absolutely build and operate microservices. The more interesting question is **why they
+A team of good engineers can absolutely build and operate microservices. The more interesting question is: **why they
 would want to.**
 
-Every distributed boundary introduces another thing that can be slow, unavailable, misconfigured, incompatible, or
+Every network boundary introduces another thing that can be slow, unavailable, misconfigured, incompatible, or
 misunderstood. A function call becomes a network call, a transaction becomes a synchronisation problem, a stack trace
-becomes a distributed tracing, and an integration test becomes a small infrastructure project.
+becomes a distributed-tracing problem, and an integration test becomes a small infrastructure project.
 
 None of that is automatically bad. It is just not free.
 
@@ -113,8 +113,7 @@ Another reason the enthusiasm cooled down is straightforward. Cloud made the ope
 
 Running more services means more infrastructure, more instances, more observability, more idle capacity, and more
 network traffic. Once the system is distributed, data moves between processes constantly. Serialisation and
-deserialisation consume compute, traffic crosses availability zones. Sometimes it crosses regions or different
-providers.
+deserialisation consume compute, traffic crosses availability zones, and sometimes regions or different providers.
 
 The network is not a transparent wire. It has latency, failure modes, bandwidth limits, and security boundaries. Cloud
 networking and data transfer costs are now a much more visible architecture concern than they were when every
@@ -132,8 +131,10 @@ many systems.
 If the team is small, boundaries are changing, traffic characteristics are relatively uniform, and there is no
 meaningful reason to isolate parts of the system operationally, I would probably choose it too.
 
-Why would I pay for distributed-system complexity before I need the benefits? However, I also refuse to force a monolith
-onto a system that has obvious reasons to be distributed simply because the trend currently prefers fewer boxes.
+Why would I pay for distributed-system complexity before I need the benefits?
+
+However, I also refuse to force a monolith onto a system that has obvious reasons to be distributed simply because the
+trend currently prefers fewer boxes.
 
 That brings me back to the system that started this article.
 
@@ -142,7 +143,7 @@ That brings me back to the system that started this article.
 The architecture was straightforward. Four adapter services and one domain service, with an asynchronous event bus
 connecting them.
 
-![Architecture diagram of a domain service connecting through four adapters to external APIs, with REST, webhook, and event-bus flows](/articles/pragmatic-microservices-finding-your-architectural-compass/diagram.webp)
+![Architecture diagram of a domain service connecting through four adapters to external APIs, with REST, webhook, and event-bus flows](/articles/pragmatic-architecture-finding-your-architectural-compass/diagram.webp)
 
 The important part was not the technology. It was that these components had materially different operational
 characteristics.
@@ -154,7 +155,7 @@ The domain service had a completely different responsibility. It handled the bus
 
 That difference gave me two very practical reasons to keep the boundaries.
 
-One adapter handled roughly 75% of the incoming external traffic. If everything lived in one process, scaling that
+One adapter handled roughly _75%_ of the incoming external traffic. If everything lived in one process, scaling that
 traffic would mean scaling the entire application. The domain logic would consume the same pool of CPU and memory as the
 adapter doing most of the work. Instead of scaling the thing that was actually hot, I would scale everything.
 
@@ -180,21 +181,49 @@ I think the industry has learned some useful lessons from the microservices era.
 We learned that distributed systems are hard, operational complexity compounds, tiny services can still create a
 surprisingly large amount of work, and a modular monolith is sometimes exactly the right thing to start with.
 
-The fact that an architecture practice is popular is not evidence that it belongs in your system, nor solving your
-problems. The fact that many companies are successful with it is even less useful. They probably have different scales,
-different constraints, different organisational structures, different failure modes, and a different set of problems to
-solve.
+The fact that an architecture practice is popular is not evidence that it belongs in your system, nor that it is solving
+your problems. The fact that many companies are successful with it is even less useful. They probably have different
+scales, different constraints, different organisational structures, different failure modes, and a different set of
+problems to solve.
 
-My approach is much less exciting. I ask what the system needs.
+My approach is much less exciting: **I always ask what the system needs.**
 
-If everything has roughly the same traffic profile, deployment cadence, failure boundary, and scaling characteristics, I
-will probably start with a modular monolith.
+If everything has roughly the same traffic profile, deployment schedule, failure boundary, and scaling characteristics,
+I will probably start with a modular monolith.
 
 When a capability has materially different operational characteristics, I will consider separating it. When an external
 dependency creates a meaningful blast radius, I will consider isolation. When a component needs to scale independently,
 I will consider giving it its own deployment.
 
 If I cannot explain the benefit of a service boundary in one or two sentences, I probably do not need the service.
+
+## ...And Not Even Now
+
+Another reason I think this matters even more now.
+
+AI is making software development easier and faster. You can ask an AI coding agent to build an API, generate
+infrastructure, add a message queue, create tests, explain unfamiliar systems, or split a module into a separate
+application. The code can be there in minutes.
+
+But it does not remove the challenging architectural decisions.
+
+> Why should we do it?
+
+> Where should the boundary be? What should scale independently?
+
+> What should be allowed to fail independently?
+
+> What complexity are we introducing, and what do we get in return?
+
+AI can help us implement the decision. **It does not make the decision for us.**
+
+The same applies to microservices. AI can make creating and maintaining another service feel almost trivial. However,
+the operational cost is not necessarily trivial.
+
+A new service still has to be deployed, monitored, secured, tested, debugged, and operated. It still has its own failure
+modes and adds another boundary to the system.
+
+The technology is changing quickly. The architectural questions are not.
 
 ## Final Thoughts
 
@@ -213,6 +242,6 @@ I would rather keep the old-fashioned skill of looking at the system in front of
 ## Further Reading
 
 - [Microservice Trade-Offs](https://martinfowler.com/articles/microservice-trade-offs.html)
-- [How to break a Monolith into Microservices](https://martinfowler.com/articles/break-monolith-into-microservices.html)
 - [Modular Monolith vs Microservices: How to Choose](https://milanjovanovic.tech/blog/modular-monolith-vs-microservices)
+- [How to break a Monolith into Microservices](https://martinfowler.com/articles/break-monolith-into-microservices.html)
 - [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_service_architecture_monolith_soa_microservice.html)
