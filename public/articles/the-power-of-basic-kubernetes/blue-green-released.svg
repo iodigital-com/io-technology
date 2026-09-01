@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1B2A4A;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#162240;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#4A90E2;stop-opacity:0" />
+        </radialGradient>
+        <radialGradient id="greenGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:#50E3C2;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#50E3C2;stop-opacity:0" />
+        </radialGradient>
+    </defs>
+
+    <!-- Background -->
+    <rect width="800" height="400" fill="url(#bgGradient)"/>
+
+    <!-- Blue-Green glow effects -->
+    <circle cx="300" cy="200" r="180" fill="url(#blueGlow)" opacity="0.3"/>
+    <circle cx="500" cy="200" r="180" fill="url(#greenGlow)" opacity="0.3"/>
+
+    <!-- Kubernetes logo stylized -->
+    <g transform="translate(400, 200) scale(1.5)">
+        <path d="M0,-80 L-69.3,-40 L-69.3,40 L0,80 L69.3,40 L69.3,-40 Z" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+        <circle cx="0" cy="0" r="15" fill="#FFFFFF"/>
+        <path d="M-40,0 L40,0 M0,-40 L0,40" stroke="#FFFFFF" stroke-width="5" opacity="0.5"/>
+    </g>
+
+    <!-- Blue-Green deployment representation -->
+    <circle cx="300" cy="200" r="60" fill="#4A90E2" opacity="0.8"/>
+    <circle cx="500" cy="200" r="60" fill="#50E3C2" opacity="0.8"/>
+
+    <!-- Connection lines -->
+    <path d="M300,200 Q400,100 500,200" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+    <path d="M300,200 Q400,300 500,200" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+
+    <!-- Small decorative circles -->
+    <circle cx="200" cy="150" r="10" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="600" cy="250" r="15" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="150" cy="300" r="8" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="650" cy="100" r="12" fill="#FFFFFF" opacity="0.6"/>
+</svg>
