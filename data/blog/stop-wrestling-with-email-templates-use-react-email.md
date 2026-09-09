@@ -34,17 +34,17 @@ React Email can be set up automatically or manually. Full instructions are avail
 
 - **`build`**: Copies the preview app to .react-email and builds it
 - **`dev`**: Starts the local editor and preview server
-- **`export`**: Compiles your email templates to .HTML files in .out
+- **`export`**: Compiles your email templates to .HTML files in the out folder
 
 ![Terminal output of the React Email dev command starting the local preview server](/articles/stop-wrestling-with-email-templates-use-react-email/commands.webp)
 
 #### Folder Structure and File Setup
 
-Run `dev` to start the local development server. Create your email templates inside the `.emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
+Run `dev` to start the local development server. Create your email templates inside the `emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
 
 As a working example, I'll build a simple example email using two files: `example.tsx` and `base.tsx`.
 
-> **Note:** Any components that you don't want to show up in the export .out folder can be placed inside the `.emails/_components` folder.
+> **Note:** Any components that you don't want to show up in the export .out folder can be placed inside the `emails/_components` folder.
 
 - **`Example.tsx`** The final email template; this must live in the root of the `emails` folder
 - **`Base.tsx`** A base template responsible for:
@@ -153,7 +153,7 @@ There are two ways to export a finished email template.
 
 #### Node.js Integration
 
-If you're working in a **Node.js environment**, you can use React Email's `export` function to export templates directly to HTML with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
+If you're working in a **Node.js environment**, you can use React Email's `render()` function to export templates directly to HTML with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
 
 #### Plain HTML Export
 
