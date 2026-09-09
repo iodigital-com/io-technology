@@ -5,3 +5,7 @@
 .logo .lottieIcon {
   fill: #000;
 }
+
+.logo.logo--transparent .lottieIcon {
+  fill: #fff;
+}

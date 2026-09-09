@@ -9,9 +9,9 @@ const ContentSecurityPolicy = `
   media-src 'none';
   connect-src *;
   font-src 'self';
-  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com;
+  frame-src youtube.com www.youtube.com *.youtube-nocookie.com codepen.io *.hotjar.com facebook.com *.hsforms.com stackblitz.com;
 `
-
+//
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {
@@ -51,20 +51,22 @@ const securityHeaders = [
 ]
 
 module.exports = withBundleAnalyzer({
+  transpilePackages: ['github-slugger'],
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-  eslint: {
-    dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
-  },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   images: {
     localPatterns: [
       {
         // local images
         pathname: '**',
       },
+    ],
+    remotePatterns: [
       {
-        // remote images
-        pathname: 'i.ytimg.com',
+        // YouTube images
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        pathname: '/**',
       },
     ],
   },
@@ -76,12 +78,12 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
-
-    return config
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
 })

@@ -54,6 +54,22 @@
   color: #000;
 }
 
+.hubspot--dark label,
+.hubspot--dark legend {
+  color: #fff;
+}
+
+.hubspot--dark .hs-button {
+  background-color: #0000d2;
+  border-color: #0000d2;
+  color: #fff;
+}
+
+.hubspot--dark .hs-button:hover {
+  background-color: #0000d2;
+  color: #fff;
+}
+
 .hubspot.quiz .form-columns-1,
 .hubspot.quiz .form-columns-2 {
   padding: 0 2rem;
