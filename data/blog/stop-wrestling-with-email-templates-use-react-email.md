@@ -1,6 +1,6 @@
 ---
 title: 'Stop wrestling with email templates. Use React Email'
-date: '2026-08-24'
+date: '2026-09-09'
 tags: ['js', 'react', 'email', 'frontend', 'tailwind', 'tooling']
 images: ['/articles/stop-wrestling-with-email-templates-use-react-email/banner.webp']
 summary: 'Email development has long been stuck in the past. React Email is here to change that.'
