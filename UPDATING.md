@@ -12,6 +12,7 @@ To keep the dependencies up-to-date we use `npm-check-updates`. Each version ran
    1. Review each dependency in the `reject` array, if available, and see if you can remove it
    1. Run `npm run update:patch` in the project root
    1. See if there are any issues with the new updates
+   1. **Run tests to verify everything still works**: `npm test`
    1. Fix any issues you encounter
       1. If you somehow can't fix it, upgrade the dependency to the highest version which doesn't have the issue
          Sometimes you can resolve it by updating to the next version range (`patch` -> `minor` -> `major`), if available
@@ -19,8 +20,11 @@ To keep the dependencies up-to-date we use `npm-check-updates`. Each version ran
          - Add a comment on why you rejected it
       1. Go back to step 2.2
 1. Repeat the above step for [minor version config](./.ncurc.minor.cjs)
+   1. **Always run tests after minor updates**: `npm test`
 1. Before migrating the remaining packages to a newer `major` version, migrate [`next`](https://nextjs.org/docs/app/building-your-application/upgrading) and [`react`](https://react.dev/versions) manually first, if available. They provide convenient tools making the update easier for you
+   1. **Run comprehensive tests after major framework updates**: `npm test && npm run test:coverage`
 1. Repeat the above step for [major version config](./.ncurc.major.cjs)
+   1. **Verify all tests pass after major updates**: `npm test`
 1. Review this process and update when necessary
 
 ### Please note

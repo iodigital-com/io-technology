@@ -1,4 +1,17 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo "🔍 Running pre-commit checks..."
+
+# Run lint-staged for formatting and linting
 npx --no-install lint-staged
+
+# TypeScript type check
+echo "🔧 Checking TypeScript types..."
+npm run type-check
+
+# Run tests (quick check)
+echo "🧪 Running tests..."
+npm test
+
+echo "✅ Pre-commit checks completed!"

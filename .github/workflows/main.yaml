@@ -18,24 +18,28 @@ jobs:
 
     steps:
       - name: Checkout current repository to Master branch
-        uses: actions/checkout@v2
-      - name: Setup NodeJs 20.x
-        uses: actions/setup-node@v1
+        uses: actions/checkout@v4
+      - name: Setup NodeJs 22.x
+        uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
       - name: Cache dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
-          path: node_modules
-          key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
+          path: |
+            ~/.yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
       - name: Update YouTube data
         run: node scripts/youtube.js
       - name: Update Jobs data
         run: node scripts/jobs.js
-      - name: Update Events data
-        run: node scripts/events.js
+      # - name: Update Events data
+      #   run: node scripts/events.js
       - name: Commit and Push updated json files to the repository
         uses: EndBug/add-and-commit@v9
         with:
@@ -43,4 +47,4 @@ jobs:
           default_author: github_actions
           new_branch: 'develop'
           commit: '--no-verify'
-          message: 'chore(data): update YouTube, jobs and events files'
+          message: 'chore(data): update YouTube and jobs files'

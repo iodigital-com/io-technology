@@ -5,6 +5,8 @@
  * https://github.com/PrismJS/prism-themes
  */
 
+@reference "./tailwind.css";
+
 /* Code title styles */
 .remark-code-title {
   @apply -mx-4 rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 md:-mx-12;
@@ -24,15 +26,15 @@
 }
 
 .code-line.inserted {
-  @apply bg-green-500 bg-opacity-20;
+  @apply bg-green-500/20;
 }
 
 .code-line.deleted {
-  @apply bg-red-500 bg-opacity-20;
+  @apply bg-red-500/20;
 }
 
 .highlight-line {
-  @apply -mx-4 border-l-4 border-primary-500  bg-gray-700 bg-opacity-50;
+  @apply -mx-4 border-l-4 border-primary-500 bg-gray-700/50;
 }
 
 .line-number::before {
