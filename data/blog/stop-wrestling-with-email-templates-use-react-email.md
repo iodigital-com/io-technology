@@ -1,5 +1,5 @@
 ---
-title: 'Stop wrestling with email templates — Use React Email'
+title: 'Stop wrestling with email templates. Use React Email'
 date: '2026-08-24'
 tags: ['js', 'react', 'email', 'frontend', 'tailwind', 'tooling']
 images: ['/articles/stop-wrestling-with-email-templates-use-react-email/banner.webp']
@@ -8,17 +8,17 @@ authors: ['tim-dhoore']
 theme: 'blue'
 ---
 
-## Stop wrestling with email templates — Use React Email
+## Stop wrestling with email templates. Use React Email
 
-Standard email templating feels like stepping into a time machine back to the 90s. The old layout and styling techniques are a stark reminder of how far web development has come — yet email clients have remained frozen in that era, largely for the sake of compatibility.
+Standard email templating feels like stepping into a time machine back to the 90s. The **old layout and styling techniques** are a stark reminder of how far web development has come. Yet email clients have remained frozen in that era, largely for the sake of compatibility.
 
-The simplest of designs can require an enormous amount of code to get right, and even then there's no guarantee it'll render correctly in every email client. I find this particularly frustrating when working alongside talented colleagues who expect modern tooling to match modern expectations.
+The simplest of designs can require an **enormous amount of code** to get right, and even then there's no guarantee it'll render correctly in every email client. I find this particularly frustrating when working alongside talented colleagues who expect modern tooling to match modern expectations.
 
 Thankfully, there are better ways to build emails today. In this article, I'll take a look at one of those tools: [**React Email**](https://react.email/).
 
 ### What Is React Email?
 
-React Email is a modern library for building and testing HTML emails using React. There are other options out there, and they each have their merits — but I chose React Email for its simplicity, its excellent set of default components, and its first-class Tailwind CSS integration.
+React Email is a modern library for building and testing HTML emails using React. There are other options out there, and they each have their merits. But I chose React Email for its simplicity, its excellent set of default components, and its first-class **Tailwind CSS integration**.
 
 ![The React Email library homepage showing its component-based approach to email development](/articles/stop-wrestling-with-email-templates-use-react-email/react-email.webp)
 
@@ -26,28 +26,28 @@ React Email is a modern library for building and testing HTML emails using React
 
 #### The Basics
 
-React Email works exactly as you'd expect React to work. Everything is broken down into components. You use the library's built-in components to construct your layout, and build your own custom components for more specific needs.
+React Email works exactly as you'd expect React to work. Everything is broken down into components. You use the library's **built-in components** to construct your layout, and build your own custom components for more specific needs.
 
 #### Project Setup
 
 React Email can be set up automatically or manually. Full instructions are available in the [official documentation](https://react.email/docs/getting-started/automatic-setup). Either approach gives you access to three key commands:
 
-- **`build`** — Copies the preview app to `.react-email` and builds it
-- **`dev`** — Starts the local editor and preview server
-- **`render`** — Compiles your email templates to HTML
+- **`build`**: Copies the preview app to /react-email and builds it
+- **`dev`**: Starts the local editor and preview server
+- **`render`**: Compiles your email templates to HTML
 
 ![Terminal output of the React Email dev command starting the local preview server](/articles/stop-wrestling-with-email-templates-use-react-email/commands.webp)
 
 #### Folder Structure and File Setup
 
-Run `dev` to start the local development server. Create your email templates inside the `emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
+Run `dev` to start the local development server. Create your email templates inside the `/emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
 
 As a working example, I'll build a simple example email using two files: `example.tsx` and `base.tsx`.
 
-- **`Example.tsx`** — The final email template; this must live in the root of the `emails` folder
-- **`Base.tsx`** — A base template responsible for:
+- **`Example.tsx`** The final email template; this must live in the root of the `emails` folder
+- **`Base.tsx`** A base template responsible for:
   - The base HTML structure
-  - Tailwind configuration and variables
+  - **Tailwind** configuration and variables
   - Header (or this can be its own file)
   - Footer (or this can be its own file)
 
@@ -57,17 +57,17 @@ As a working example, I'll build a simple example email using two files: `exampl
 
 #### Built-in and Custom Components
 
-React Email provides everything you need to construct an email layout. The [components documentation](https://react.email/components) is thorough and well-organised. These components can be styled using Tailwind classes — though it's worth keeping in mind that not everything will work perfectly, since the output ultimately runs inside an email client.
+React Email provides everything you need to construct an email layout. The [components documentation](https://react.email/components) is thorough and well-organised. These components can be **styled using Tailwind**. Though it's worth keeping in mind that not every tailwind class will work perfectly, since the output ultimately runs inside an email client.
 
 #### Building Out the Base Template
 
-Starting with `base.tsx`, I add brand colours, default fonts, and — most importantly — the `pixelBasedPreset`. This tells Tailwind to use pixels instead of `rem` values, which would otherwise be incompatible with most email clients.
+Starting with `base.tsx`, I add brand colours, default fonts, and most importantly the `pixelBasedPreset`. This tells Tailwind to use pixels instead of `rem` values, which would otherwise be incompatible with most email clients.
 
-I also add a `<style>` tag for dark mode CSS. Tailwind's built-in dark mode support doesn't translate well to email, so defining the correct colours manually in the header is the more reliable approach.
+I also add a `<style>` tag for **dark mode** CSS. Tailwind's built-in dark mode support doesn't translate well to email, so defining the correct colours manually in the header is the more reliable approach.
 
 > **Note:** Dark mode overrides may not appear in the editor preview, but will display correctly in your actual email client.
 
-Finally, I add a `children` prop to the base component — this works exactly like any other React component, so you're free to extend it with additional props as needed.
+Finally, I add a `children` prop to the base component. This works exactly like any other React component, so you're free to extend it with additional props as needed.
 
 ```jsx
 import { Head, Html, Body, Tailwind, pixelBasedPreset, Container, Img } from 'react-email'
@@ -134,15 +134,15 @@ export default function Base({ children }) {
 
 ## Using the Editor
 
-With the base template in place, it's time to build out the example email. Before diving in, the built-in editor is worth exploring — it provides a live preview of all your templates and components, and includes everything you need to test your email.
+With the base template in place, it's time to build out the example email. Before diving in, the **built-in editor** is worth exploring. It provides a **live preview** of all your templates and components, and includes everything you need to test your email.
 
 ![The React Email editor showing a live preview of an email template with responsive and dark mode toggles](/articles/stop-wrestling-with-email-templates-use-react-email/editor.webp)
 
 Once you're happy with the result, the editor lets you:
 
-- **Test responsiveness** — Check how your email adapts to different screen widths
-- **Preview dark mode** — Note that this is browser-based, so it's not always a perfect representation; always test across several major email clients
-- **Send a test email** — At any point during development, you can send a live test to yourself to see the email under real-world conditions
+- **Test responsiveness**: Check how your email adapts to different screen widths
+- **Preview dark mode**: Note that this is browser-based, so it's not always a perfect representation; always test across several major email clients
+- **Send a test email**: At any point during development, you can send a live test to yourself to see the email under real-world conditions
 
 ### Exporting Your Template
 
@@ -150,11 +150,11 @@ There are two ways to export a finished email template.
 
 #### Node.js Integration
 
-If you're working in a Node.js environment, you can use React Email's `render` function to export templates directly to HTML — with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
+If you're working in a **Node.js environment**, you can use React Email's `render` function to export templates directly to HTML with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
 
 #### Plain HTML Export
 
-Just need the HTML file? The `render` command compiles your templates to static HTML files in the `out` folder. Keep in mind that these static exports won't support dynamic variables — you'll need to inject those separately.
+Just need the HTML file? The `render` command compiles your templates to static HTML files in the `/out` folder. Keep in mind that these static exports won't support dynamic variables. You'll need to inject those separately.
 
 ```jsx
 //input code
@@ -387,7 +387,7 @@ export default function Example({ name }) {
 
 ### Conclusion
 
-React Email addresses many of the most painful aspects of email development — from more readable, component-based code to a vastly improved styling workflow. The difference compared to traditional email templating is significant, and I find it genuinely makes building emails an enjoyable experience rather than a frustrating one.
+React Email addresses many of the most painful aspects of email development. From more **readable code** to a vastly **improved styling workflow**. The difference compared to traditional email templating is significant, and I find it genuinely makes building emails an enjoyable experience rather than a frustrating one.
 
 If you're regularly building HTML emails, it's well worth adding to your toolkit.
 
