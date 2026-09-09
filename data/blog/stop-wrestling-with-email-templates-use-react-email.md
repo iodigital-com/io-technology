@@ -32,17 +32,19 @@ React Email works exactly as you'd expect React to work. Everything is broken do
 
 React Email can be set up automatically or manually. Full instructions are available in the [official documentation](https://react.email/docs/getting-started/automatic-setup). Either approach gives you access to three key commands:
 
-- **`build`**: Copies the preview app to /react-email and builds it
+- **`build`**: Copies the preview app to .react-email and builds it
 - **`dev`**: Starts the local editor and preview server
-- **`render`**: Compiles your email templates to HTML
+- **`export`**: Compiles your email templates to .HTML files in .out
 
 ![Terminal output of the React Email dev command starting the local preview server](/articles/stop-wrestling-with-email-templates-use-react-email/commands.webp)
 
 #### Folder Structure and File Setup
 
-Run `dev` to start the local development server. Create your email templates inside the `/emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
+Run `dev` to start the local development server. Create your email templates inside the `.emails` folder using either a `.jsx` or `.tsx` extension. All components live in this folder and can be exported later.
 
 As a working example, I'll build a simple example email using two files: `example.tsx` and `base.tsx`.
+
+> **Note:** Any components that you don't want to show up in the export .out folder can be placed inside the `.emails/_components` folder.
 
 - **`Example.tsx`** The final email template; this must live in the root of the `emails` folder
 - **`Base.tsx`** A base template responsible for:
@@ -119,6 +121,7 @@ export default function Base({ children }) {
         </Head>
         <Body className="font-sans text-base leading-6 text-forground dark-text bg-white bg">
           <Container className="bg-brand px-4">
+            <!-- Use an absolute/CDN URL for production  -->
             <Img src="/static/logo-white.png" alt="iO digital" width={80} />
           </Container>
           <Container>{children}</Container>
@@ -150,11 +153,11 @@ There are two ways to export a finished email template.
 
 #### Node.js Integration
 
-If you're working in a **Node.js environment**, you can use React Email's `render` function to export templates directly to HTML with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
+If you're working in a **Node.js environment**, you can use React Email's `export` function to export templates directly to HTML with dynamic variables included. The [integrations overview](https://react.email/docs/integrations/overview) covers a wide range of setups and frameworks.
 
 #### Plain HTML Export
 
-Just need the HTML file? The `render` command compiles your templates to static HTML files in the `/out` folder. Keep in mind that these static exports won't support dynamic variables. You'll need to inject those separately.
+Just need the HTML file? The `export` command compiles your templates to static HTML files in the `.out` folder. Keep in mind that these static exports won't support dynamic variables. You'll need to inject those separately.
 
 ```jsx
 //input code
@@ -195,6 +198,204 @@ export default function Example({ name }) {
 ```html
 <!-- output html -->
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="dark-bg" dir="ltr" lang="en" style="background-color:rgb(255,255,255)">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>iO digital |</title>
+    <meta content="light dark" name="color-scheme" />
+    <meta content="light dark" name="supported-color-schemes" />
+    <style></style>
+    <style type="text/css">
+      :root {
+        color-scheme: light dark;
+      }
+
+      .bg,
+      .bg > table {
+        background: #ffffff !important;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .bg,
+        .bg > table {
+          background: #000000 !important;
+        }
+
+        .dark-text {
+          color: #ffffff !important;
+        }
+
+        .bg-brand {
+          background: #0017ee !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="dark-text bg" dir="ltr" lang="en" style="background-color:rgb(255,255,255)">
+    <!--$--><!--html--><!--head--><!--body-->
+    <table
+      border="0"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      role="presentation"
+      align="center"
+    >
+      <tbody>
+        <tr>
+          <td
+            dir="ltr"
+            lang="en"
+            style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:rgb(35,35,35);background-color:rgb(255,255,255)"
+          >
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:37.5em;background-color:rgb(0,23,238)"
+            >
+              <tbody>
+                <tr style="width:100%">
+                  <td style="padding-right:16px;padding-left:16px">
+                    <!-- Use an absolute/CDN URL for production  -->
+                    <img
+                      alt="iO digital"
+                      src="/static/logo-white.png"
+                      style="display:block;outline:none;border:none;text-decoration:none"
+                      width="80"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:37.5em"
+            >
+              <tbody>
+                <tr style="width:100%">
+                  <td>
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tbody style="width:100%">
+                        <tr style="width:100%">
+                          <td data-id="__react-email-column">
+                            <img
+                              alt="placeholder image"
+                              src="/static/image.jpg"
+                              style="display:block;outline:none;border:none;text-decoration:none;max-width:100%"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      align="center"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tbody style="width:100%">
+                        <tr style="width:100%">
+                          <td
+                            data-id="__react-email-column"
+                            style="padding-bottom:40px;padding-top:40px;padding-right:16px;padding-left:16px"
+                          >
+                            <h1>
+                              Hey
+                              <!-- -->,
+                            </h1>
+                            <p
+                              style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px"
+                            >
+                              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda,
+                              commodi exercitationem. Itaque quasi pariatur totam beatae cumque nam
+                              voluptate, temporibus nobis qui vitae ut, facilis nemo reprehenderit
+                              odit! Modi, id?
+                            </p>
+                            <a
+                              href="https://www.iodigital.com"
+                              style="line-height:100%;text-decoration:none;display:inline-block;max-width:100%;mso-padding-alt:0px;background-color:rgb(0,23,238);padding-right:16px;padding-left:16px;padding-bottom:8px;padding-top:8px;border-radius:0.375rem;color:rgb(255,255,255)"
+                              target="_blank"
+                              ><span
+                                ><!--[if mso
+                                  ]><i style="mso-font-width:400%;mso-text-raise:12px" hidden
+                                    >&#8202;&#8202;</i
+                                  ><!
+                                [endif]--></span
+                              ><span
+                                style="max-width:100%;display:inline-block;line-height:120%;mso-padding-alt:0px;mso-text-raise:6px"
+                                >Click me</span
+                              ><span
+                                ><!--[if mso
+                                  ]><i style="mso-font-width:400%" hidden
+                                    >&#8202;&#8202;&#8203;</i
+                                  ><!
+                                [endif]--></span
+                              ></a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              align="center"
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              role="presentation"
+              style="max-width:37.5em;background-color:rgb(0,23,238);text-align:center;color:rgb(255,255,255)"
+            >
+              <tbody>
+                <tr style="width:100%">
+                  <td
+                    style="padding-right:16px;padding-left:16px;padding-bottom:24px;padding-top:24px"
+                  >
+                    © 2026 iO digital
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--/$-->
+  </body>
+</html>
+```
+
+### Conclusion
+
+React Email addresses many of the most painful aspects of email development. From more **readable code** to a vastly **improved styling workflow**. The difference compared to traditional email templating is significant, and I find it genuinely makes building emails an enjoyable experience rather than a frustrating one. Which of these two code bases is more readable?
+
+#### with regular html
+
+```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="dark-bg" dir="ltr" lang="en" style="background-color:rgb(255,255,255)">
   <head>
@@ -385,10 +586,42 @@ export default function Example({ name }) {
 </html>
 ```
 
-### Conclusion
+#### with react email
 
-React Email addresses many of the most painful aspects of email development. From more **readable code** to a vastly **improved styling workflow**. The difference compared to traditional email templating is significant, and I find it genuinely makes building emails an enjoyable experience rather than a frustrating one.
+```jsx
+import { Column, Row, Text, Heading, Button, Img } from 'react-email'
+import Base from './_components/Base'
 
-If you're regularly building HTML emails, it's well worth adding to your toolkit.
+export default function Example({ name }) {
+  return (
+    <Base>
+      <Row>
+        <Column>
+          <Img src="/static/image.jpg" alt="placeholder image" className="max-w-full" />
+        </Column>
+      </Row>
+      <Row>
+        <Column className="py-10 px-4">
+          <Heading as="h1">Hey {name},</Heading>
+          <Text>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda, commodi
+            exercitationem. Itaque quasi pariatur totam beatae cumque nam voluptate, temporibus
+            nobis qui vitae ut, facilis nemo reprehenderit odit! Modi, id?
+          </Text>
+
+          <Button
+            href="https://www.iodigital.com"
+            className="bg-brand px-4 py-2 rounded-md text-brand-foreground"
+          >
+            Click me
+          </Button>
+        </Column>
+      </Row>
+    </Base>
+  )
+}
+```
+
+I know what I will be using in the future. If you're regularly building HTML emails, it's well worth adding to your toolkit and remember to always check your emails in several email clients to ensure everything is working as intended. At the end of the day it's still email development.
 
 [Lookup React email](https://react.email/)
