@@ -1,6 +1,6 @@
 ---
 title: 'Using OKF to provide long term context to your agent'
-date: '2026-09-10'
+date: '2026-09-11'
 tags: ['ai', 'development', 'tooling', 'okf']
 authors: ['oscar-reyes']
 images:
@@ -11,9 +11,9 @@ theme: 'blue'
 summary: 'Your agent forgets you after every compaction. The Open Knowledge Format is a small set of conventions for writing knowledge down as markdown, so it survives the session and the next agent can read it without a translation layer.'
 ---
 
-There is a moment in a long agent session where things finally click. The agent knows its way around the codebase, it knows why that odd workaround exists, and it has stopped suggesting the function we deleted three weeks ago. It feels like working with a colleague who has been on the team for a while.
+There is a moment in a long agent session when things finally click, and it feels like working with a colleague who has been on the team for a while. The agent knows its way around the codebase. It knows why that odd workaround exists, and it has stopped re-proposing the approach we ruled out months ago. The flow is just about right; dare I say, I catch myself feeling some fondness and giving it a personality.
 
-Then the context window fills up, the session is compacted, and all of that is gone. Or I finish the task, open a fresh session for the next one, and I am back at the beginning: _"read this file for background, no we don't use that pattern anymore, yes that test is supposed to fail."_ Right when you feel the agent finally understands you, it is as if that colleague no longer remembers you.
+Then the context window fills up. The session is compacted, and all of that is gone. Or when I start a new task and open a fresh session, I am back at the beginning: _"read this file for background, no we don't use that pattern anymore, yes that test is supposed to fail."_ That colleague no longer remembers me.
 
 I griped about exactly this on my personal blog a few months ago: _"It is frustrating to spend 5 hrs vibe coding one day just to start from (almost) scratch the next day."_ My workaround was a pile of markdown files: a plan here, a summary there, a `guidelines.md` I kept trimming. It worked, sort of. The problem was that the meaning of those files lived in my head, and nothing except me knew which ones were still true.
 
@@ -35,7 +35,7 @@ Those tools solve the forgetting problem properly, but I want that solution in t
 
 ## What it is
 
-The Open Knowledge Format (OKF) is an open specification published by the Google Cloud team behind their Knowledge Catalog, and it is deliberately simple: **a directory of markdown files with YAML front matter**. No runtime, no SDK, no service to run. If you can `cat` a file you can read it; if you can `git clone` a repo you can ship it.
+The Open Knowledge Format (OKF) is an open specification published by the Google Cloud team behind their Knowledge Catalog, and it is basically **a directory of markdown files with YAML front matter**. There is no runtime, no SDK and no service to run. If you can `cat` a file you can read it; if you can `git clone` a repo you can ship it.
 
 The whole format is about four ideas:
 
@@ -90,17 +90,15 @@ sources:
 
 Actors follow one convention: `<producer>/<version>` for a tool, `human:<id>` for a person, `process:<id>` for automation. A consumer reads a trust tier straight off `verified`. No key at all means unverified; machine actors only means machine-confirmed; a `human:` actor means somebody reviewed it.
 
-Also, when you start accumulating information, it becomes very important to know whether a document should be read at all in the first place. After all, if everything is linked together, you can end up filling the agent's context window with information it doesn't need.
-
 Even if you never adopt the format, there are a couple of ideas in there worth keeping in mind.
 
 **Absence carries meaning.** A missing `verified` key is a statement: _"nobody has confirmed this"_. I have a rule in my instructions file that an agent may never write a `human:` verifier, because that forges the strongest trust signal in the format and makes the whole tier worthless everywhere it appears. Only an actual, dated human action earns one.
 
 **Record signals, not scores.** A source records `author`, `usage_count` and `last_modified`, and no credibility number. A score is a judgement that goes stale the moment it is written, whereas the facts travel and let the consumer weigh them.
 
-## Why not just RAG, embeddings, or an MCP server?
+## RAG, embeddings and MCP servers
 
-This was the first question I had when I heard about this format. Then I learned they are not really competing, but they do solve different halves. The half OKF solves is the one I was missing: long-term context.
+The first question I had when I heard about this format was: _"Why not just RAG, embeddings, or an MCP server?"_ Then I learned they are not really competing, but they do solve different halves. The half OKF solves is the one I was missing: long-term context.
 
 **Retrieval re-derives the answer on every query.** The model finds relevant chunks in the raw sources and synthesises an answer, then throws the synthesis away. Ask a question that needs five documents stitched together and it stitches them together again next time, from scratch, possibly differently. Nothing accumulates.
 
@@ -108,10 +106,10 @@ A wiki is the opposite: it is a **compounding artefact**. The cross-references a
 
 A few practical consequences:
 
-- **It is reviewable.** A change to the corpus shows up as a diff in a pull request. I cannot review a re-indexed embedding.
-- **It is greppable and boring.** Debugging _"why did the agent believe that?"_ is a `grep`, rather than a similarity search I have to interpret.
-- **It has no infrastructure.** No database to run, no sync job, no re-index after a rename. It is files in the repo, versioned with the code they describe.
-- **It degrades to `cat`.** A person can read it in a browser, on GitHub, or in Obsidian.
+- **Reviewable.** A change to the corpus shows up as a diff in a pull request. I cannot review a re-indexed embedding.
+- **Greppable (and boring).** Debugging _"why did the agent believe that?"_ is a `grep`, rather than a similarity search I have to interpret.
+- **Infrastructure-free.** No database to run, no sync job, no re-index after a rename. It is files in the repo, versioned with the code they describe.
+- **As simple as using `cat`.** Ready to read as plain text, on GitHub, in Obsidian, or in the terminal.
 
 MCP is a different kind of thing altogether. It is a protocol for how an agent reaches a tool or a system, while OKF describes what got written down. An MCP server needs something to serve, and an OKF bundle is a perfectly good thing to serve through one. I use both: a code-graph MCP server answers _"who calls this function"_ from the live code, and the bundle answers _"why is it built this way"_, which no amount of reading the code will tell you.
 
@@ -119,14 +117,14 @@ None of this makes OKF better than retrieval. It makes it the thing to reach for
 
 ## How it sits next to Spec Driven Development
 
-Spec Driven Development (write a spec, derive a plan, break it into tasks, execute them one at a time) is more or less the workflow I described on my personal blog last year, and I still work that way. OKF does not replace it. They fit together because they hold different shapes of document:
+OKF perfectly complements Spec Driven Development (write a spec, derive a plan, break it into tasks, execute them one at a time). They fit together because they hold different shapes of document:
 
 - **A plan is workflow-shaped.** It tracks steps towards a state. Once every step has landed, re-reading it costs an agent context for no benefit, because nobody re-executes a finished step.
 - **A design is state-shaped.** It explains why the code is the shape it is, for as long as that code exists, which routinely outlives the plan by a wide margin.
 
-The mistake I made for months was letting finished plans pile up as the project's memory. They are the worst possible memory: long, sequential and mostly about work already done. What I do now is treat the plan as disposable, and make sure its durable half (the decision, the rejected alternative, the measured outcome) migrates into a design concept before the plan goes away. Otherwise the reasoning dies with the plan, and someone re-proposes the thing we already rejected.
+Spec Driven Development is how the work gets done, and OKF is where the understanding lands afterwards.
 
-Put simply: spec-driven development is how the work gets done, and OKF is where the understanding lands afterwards.
+The mistake I made for months was letting finished plans pile up as the project's memory. They are the worst possible memory: long, sequential and mostly about work already done. What I do now is treat the plan as disposable, and make sure its durable half (the decision, the rejected alternative, the measured outcome) migrates into a design concept before the plan goes away. Otherwise the reasoning dies with the plan, and someone re-proposes the thing we already rejected.
 
 ## What I keep in there
 
@@ -223,7 +221,7 @@ The two documents most worth copying are the [workflow](https://github.com/oscar
 
 The effect I wanted is there. I no longer open a session by re-explaining the project; the agent reads two index files and one design document, and arrives roughly where the previous session ended. The colleague who forgot me now reads their own handover notes on the way in. I no longer have to guess what is in the `MEMORY.md` files on other people's machines.
 
-It needs pruning, in the same way the rest of agent work does. Agents like to be verbose, they like to fill fields, and nobody reads a knowledge base that records everything, not even the agent, which pays for it in context while you pay for it in tokens. The discipline is the one I wrote about earlier: keep it small but complete, and revisit it when a new practice emerges.
+It needs pruning, in the same way the rest of agent work does. Agents like to be verbose, they like to fill fields, and nobody reads a knowledge base that records everything, not even the agent, which pays for it in context while you pay for it in tokens. The discipline required is straightforward: keep it small but complete, and revisit it when a new practice emerges.
 
 ## TL;DR
 
