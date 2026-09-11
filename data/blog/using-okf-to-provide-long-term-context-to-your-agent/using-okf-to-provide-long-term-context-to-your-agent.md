@@ -29,7 +29,7 @@ The catch is where most of it lands. The plan and the memories sit in a director
 - A different tool cannot read them, and if I switch machines they are gone.
 - They cannot be referenced (easily), and memories go stale without you noticing.
 
-And yet, the knowledge accumulated is related to the code; e.g. the reason why prices are cached per-tenant is a fact about the codebase, not a fact that belongs to my laptop.
+And yet, the knowledge accumulated is related to the code: the reason an odd workaround is needed until a migration lands is a fact about the codebase, not a fact that belongs to my laptop.
 
 Those tools solve the forgetting problem properly, but I want that solution in the repository. Put the plan and the durable notes next to the code they describe, in a shape a person can review in a pull request and a different tool can still read next year. That is the whole appeal of a format.
 
@@ -49,9 +49,9 @@ The front matter carries the structured fields. Only `type` is required, and it 
 ```yaml
 ---
 type: Design Decision
-title: Caching strategy for the pricing service
-description: Why prices are cached per-tenant instead of globally.
-tags: [caching, pricing]
+title: 'Tool Distribution: installed from git, not published to npm'
+description: why the tool is a global command you install from the repository rather than a package in the public registry
+tags: [decision, distribution, npm]
 ---
 ```
 
@@ -76,16 +76,16 @@ When a person authors a document, the provenance can be verified easily; you can
 | Was this number computed the sanctioned way? | `type: Attested Computation` |
 
 ```yaml
-generated: { by: my-agent/opus-5, at: 2026-09-08T14:00:00Z }
-verified:
-  - { by: process:doc-link-check, at: 2026-09-08T14:05:00Z }
 status: stable
 stale_after: 2026-12-31T00:00:00Z
+generated: { by: pi-agent/opus-5, at: 2026-09-10T22:50:00Z }
+verified:
+  - { by: 'human:oscar-io', at: 2026-09-10T23:54:00Z }
 sources:
-  - id: adr-014
-    resource: /design/multi-tenant-caching.md
-    title: Multi-tenant caching decision
-    last_modified: 2026-08-30T00:00:00Z
+  - id: language
+    resource: /docs/design/language-choice.md
+    title: 'TypeScript was chosen partly on npm reach'
+    last_modified: 2026-09-10T22:37:02Z
 ```
 
 Actors follow one convention: `<producer>/<version>` for a tool, `human:<id>` for a person, `process:<id>` for automation. A consumer reads a trust tier straight off `verified`. No key at all means unverified; machine actors only means machine-confirmed; a `human:` actor means somebody reviewed it.
@@ -150,10 +150,11 @@ docs/
 ├── design/
 │   ├── index.md
 │   ├── log.md
-│   ├── caching-strategy.md
-│   └── auth-flow.md
+│   ├── distribution.md
+│   └── language-choice.md
 └── plans/
     ├── index.md
+    ├── log.md
     └── migrate-to-postgres.md
 ```
 
@@ -162,12 +163,12 @@ docs/
 ```markdown
 # design: index
 
-Subsystem and decision documents. What changed in any of them is in [`log.md`](log.md).
+What changed in any of these is in [`log.md`](log.md).
 
 ## Documents
 
-- [`caching-strategy.md`](caching-strategy.md) - why prices are cached per-tenant instead of globally.
-- [`auth-flow.md`](auth-flow.md) - how a request acquires and carries its identity.
+- [`distribution.md`](distribution.md) - why the tool is a global command you install from the repository rather than a package in the public registry.
+- [`language-choice.md`](language-choice.md) - why a tool that should not care what language a project uses is written in TypeScript anyway.
 ```
 
 `log.md` carries no front matter either. Date headings, newest first, and always link the document that changed:
@@ -175,27 +176,29 @@ Subsystem and decision documents. What changed in any of them is in [`log.md`](l
 ```markdown
 # design: update log
 
-## 2026-09-08
+Why the decisions in this directory changed. Newest first.
 
-- **Update**: [`caching-strategy.md`](caching-strategy.md) now records the per-tenant
-  decision and why a global cache was rejected.
+## 2026-09-10
 
-## 2026-09-02
-
-- **Creation**: [`auth-flow.md`](auth-flow.md).
+- **Creation** [distribution.md](./distribution.md) drops npm publishing, and takes the
+  registry-reach argument away from [language-choice.md](./language-choice.md).
+- **Creation** [language-choice.md](./language-choice.md) picks TypeScript over Go, and
+  names the condition that would reverse it.
 ```
+
+A log records **why** a document moved, not that it changed, because git already has the second one.
 
 Note that both files exist **per directory**, not only at the root. That is what keeps reading affordable: an agent looking for a design decision reads `docs/index.md`, then `docs/design/index.md`, then one document. It never loads the catalogue of everything.
 
 ## On tooling
 
-There are already tools to read this format. The specification ships with reference implementations, including a producer that generates a bundle, and an ecosystem of third-party tools is being catalogued. I am not using any of them yet, mostly because the format is plain markdown and my editor already renders it.
+There are already tools to read this format. The specification ships with reference implementations, including a producer that generates a bundle, and an ecosystem of third-party tools is being catalogued. I did not reach for them, mostly because the format is plain markdown and my editor already renders it.
 
-What I did write is a small script that validates front matter, to check that every file parses, that each one carries a non-empty `type`, that every actor matches one of the three forms, and that every timestamp has an explicit offset. It runs in CI next to the tests. That is my entire investment in tooling so far, and it has already caught some subtle mistakes, mostly timestamps without an offset and actors written as prose instead of an id.
+What I did write is a script that validates front matter, to check that every file parses, that each one carries a non-empty `type`, that every actor matches one of the three forms, and that every timestamp has an explicit offset. It runs in CI next to the tests. It has already caught some subtle mistakes, mostly timestamps without an offset and actors written as prose instead of an id.
 
-## To make it work
+## How to make it work
 
-It is as simple as adding the following excerpt to the `AGENTS.md` file, or your agent's equivalent, so it applies to every session.
+Start by adding an excerpt like this to your `AGENTS.md`, or your agent's equivalent, so it applies to every session.
 
 ```markdown
 Before starting work, read `docs/index.md` and then the `index.md` of the
@@ -208,13 +211,19 @@ When a decision changes, update the document and add one entry to the
 Only a real, dated human review may add a `human:` verifier. Do not write one.
 ```
 
+One caveat worth stating: OKF describes a format, not a method. It says what a document looks like and leaves you to decide when one gets written, which is a good thing, because that part should fit the way your team already works.
+
 ## What I would tell you before you try it
 
 I have been at this for a couple of weeks, which is long enough to be useful and short enough that you should read this as an early report rather than a verdict.
 
+To show what a bundle actually looks like in a project, I created [okf-drift](https://github.com/oscar-io/okf-drift) which serves a double purpose: the example bundle for this article, and a tool that detects when a bundle has stopped being true. The excerpts from above are taken from [its docs/ folder](https://github.com/oscar-io/okf-drift/tree/main/docs): the [design decisions](https://github.com/oscar-io/okf-drift/tree/main/docs/design), their [log](https://github.com/oscar-io/okf-drift/blob/main/docs/design/log.md), the [backlog](https://github.com/oscar-io/okf-drift/tree/main/docs/product/tickets) with tickets that were delivered and one that was rejected, and a [status register](https://github.com/oscar-io/okf-drift/blob/main/docs/status.md) saying which documents describe behaviour that exists and which describe intentions. Those files hold the part that normally evaporates: not what changed, which git has, but why it changed and what was turned down along the way.
+
+The two documents most worth copying are the [workflow](https://github.com/oscar-io/okf-drift/blob/main/docs/product/bundle-workflow.md) and the [authoring guide](https://github.com/oscar-io/okf-drift/blob/main/docs/design/authoring-guide.md). Use them as a starting point: none of it is prescribed, and a bundle that ignores every one of my house rules is still perfectly conformant.
+
 The effect I wanted is there. I no longer open a session by re-explaining the project; the agent reads two index files and one design document, and arrives roughly where the previous session ended. The colleague who forgot me now reads their own handover notes on the way in. I no longer have to guess what is in the `MEMORY.md` files on other people's machines.
 
-It also needs pruning, in the same way the rest of agent work does. Agents like to be verbose, they like to fill fields, and nobody reads a knowledge base that records everything, not even the agent, which pays for it in context while you pay for it in tokens. The discipline is the one I wrote about earlier: keep it small but complete, and revisit it when a new practice emerges.
+It needs pruning, in the same way the rest of agent work does. Agents like to be verbose, they like to fill fields, and nobody reads a knowledge base that records everything, not even the agent, which pays for it in context while you pay for it in tokens. The discipline is the one I wrote about earlier: keep it small but complete, and revisit it when a new practice emerges.
 
 ## TL;DR
 
@@ -224,7 +233,7 @@ It also needs pruning, in the same way the rest of agent work does. Agents like 
 - v0.2 adds provenance and trust (`sources`, `generated`, `verified`, `status`, `stale_after`) so a consumer can judge a document before reading it. Absence of a field is information, so resist filling every one.
 - Retrieval finds knowledge and a wiki accumulates it; MCP is a transport and can serve a bundle. These stack rather than compete.
 - Plans are workflow-shaped and disposable, designs are state-shaped and durable. Make sure the durable half survives the plan.
-- The format is inert until your instructions file tells the agent to read it and to update it.
+- The format is inert until your instructions file tells the agent to read it and to update it. Three lines will get you started, but deciding when a document gets written is a workflow you still have to settle.
 
 ## References
 
@@ -232,3 +241,4 @@ It also needs pruning, in the same way the rest of agent work does. Agents like 
 - [Open Knowledge Format v0.2 adds trust signals](https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals), covering provenance, trust, freshness, lifecycle and attestation.
 - [The OKF specification](https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md), short, and worth reading in full.
 - [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), Andrej Karpathy's gist, where the pattern was articulated.
+- [okf-drift](https://github.com/oscar-io/okf-drift), whose [docs/ folder](https://github.com/oscar-io/okf-drift/tree/main/docs) is the worked bundle every excerpt here came from.
