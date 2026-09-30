@@ -12,7 +12,7 @@ theme: 'blue'
 
 When you start a new web app and need authentication, the path of least resistance seems obvious: protect your API with Bearer tokens, let the frontend handle the login, store the JWT in `localStorage`, and call it a day.
 
-That approach works — until it doesn't. `localStorage` is accessible to any JavaScript running on the page, which makes it a prime target for [XSS attacks](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) — as [OWASP's HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) explicitly warns against storing sensitive data there. And once you start managing token refresh cycles in the [SPA](#what-is-a-spa), you've added a layer of complexity that lives in every browser session — a problem the IETF addresses directly in [RFC 10017: OAuth 2.0 for Browser-Based Applications](https://www.rfc-editor.org/info/rfc10017) and [RFC 9700: OAuth 2.0 Security Best Current Practice](https://www.rfc-editor.org/info/rfc9700).
+That approach works — until it doesn't. `localStorage` is accessible to any JavaScript running on the page, which makes it a prime target for [XSS attacks](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) — as [OWASP's HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) explicitly warns against storing sensitive data there. And once you start managing token refresh cycles in the [SPA (Single Page Application)](#what-is-a-spa), you've added a layer of complexity that lives in every browser session — a problem the IETF addresses directly in [RFC 10017: OAuth 2.0 for Browser-Based Applications](https://www.rfc-editor.org/info/rfc10017) and [RFC 9700: OAuth 2.0 Security Best Current Practice](https://www.rfc-editor.org/info/rfc9700).
 
 There's a cleaner alternative: let the backend own the auth flow entirely. The frontend redirects to login, Spring Boot handles the OAuth2 dance, and all the frontend ever sees is an HttpOnly session cookie. No tokens in JavaScript. No refresh logic in the SPA.
 
@@ -24,28 +24,9 @@ This article walks through exactly that pattern, grounded in a real Spring Boot 
 
 Here's the full auth lifecycle at a glance:
 
-```
-[Browser]
-    │  1. User visits app, no session
-    ▼
-[Spring Boot]
-    │  2. Redirects to Azure AD login page
-    ▼
-[Azure AD]
-    │  3. User authenticates, Azure AD redirects back with auth code
-    ▼
-[Spring Boot]
-    │  4. Exchanges auth code for JWT, validates it, creates session
-    │  5. Sets HttpOnly SESSION cookie on the response
-    ▼
-[Browser]
-    │  6. All subsequent API calls ride the cookie — SPA never sees the JWT
-    ▼
-[Spring Boot]
-    │  7. Reads session, extracts user identity, processes request
-```
+![OAuth2 login flow sequence diagram showing Browser, Spring Boot, and Azure AD interactions](/articles/spring-boot-oauth2-login-flow/oauth2-flow.svg)
 
-The key insight: the JWT exists only inside the Spring Boot process. The browser never holds it.
+The JWT exists only inside Spring Boot — the browser holds a session cookie and never sees the token directly.
 
 ---
 
@@ -54,17 +35,6 @@ The key insight: the JWT exists only inside the Spring Boot process. The browser
 ### Dependencies
 
 Start with `spring-boot-starter-oauth2-client` and `spring-boot-starter-security`:
-
-```kotlin
-// build.gradle.kts
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-}
-```
-
-Using Maven instead:
 
 ```xml
 <!-- pom.xml -->
@@ -79,9 +49,20 @@ Using Maven instead:
     </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-webflux</artifactId>
+        <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 </dependencies>
+```
+
+Or with Gradle:
+
+```groovy
+// build.gradle
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
 ```
 
 ### Application config
@@ -116,49 +97,18 @@ A few things to note:
 
 ### Security config
 
-Here's where you wire it all together:
+`application.yml` handles _what_ Azure AD tenant to connect to, but it can't express _how_ requests should be authorized — which paths are public, which require a logged-in user, what origins are allowed for CORS. Those rules are behavioral logic, not configuration values, so Spring Security exposes them through a Java/Kotlin API rather than YAML keys.
 
-```kotlin
-@Configuration
-@EnableWebFluxSecurity
-class SecurityConfig(
-    private val apiHost: String,
-    private val frontendHost: String,
-) {
-    @Bean
-    fun securityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain =
-        http
-            .cors { it.configurationSource(corsConfigurationSource()) }
-            .csrf { it.disable() }
-            .authorizeExchange { exchanges ->
-                exchanges
-                    .pathMatchers("/actuator/health").permitAll()
-                    .pathMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                    .anyExchange().authenticated()
-            }
-            .oauth2Login { }
-            .build()
+`SecurityConfig` is the class that holds all of that logic. The two annotations on it do distinct things:
 
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource {
-        val config = CorsConfiguration().apply {
-            allowedOrigins = listOf(apiHost, frontendHost)
-            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            allowedHeaders = listOf("*")
-            allowCredentials = true
-        }
-        return UrlBasedCorsConfigurationSource().apply {
-            registerCorsConfiguration("/**", config)
-        }
-    }
-}
-```
+- `@Configuration` tells Spring to treat this class as a source of bean definitions. Any method annotated with `@Bean` inside it will be registered in the application context and injected wherever it's needed. Without `@Configuration`, Spring would not process the `@Bean` methods.
+- `@EnableWebSecurity` activates the Spring Security filter chain for a Spring MVC application. Without it, none of the security rules below would take effect — requests would reach your controllers unprotected.
 
-The same configuration in Java:
+Here's the configuration:
 
 ```java
 @Configuration
-@EnableWebFluxSecurity
+@EnableWebSecurity
 public class SecurityConfig {
 
     private final String apiHost;
@@ -170,14 +120,14 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .authorizeExchange(exchanges -> exchanges
-                .pathMatchers("/actuator/health").permitAll()
-                .pathMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                .anyExchange().authenticated()
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/actuator/health").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                .anyRequest().authenticated()
             )
             .oauth2Login(withDefaults())
             .build();
@@ -197,9 +147,15 @@ public class SecurityConfig {
 }
 ```
 
-`.oauth2Login { }` is doing a lot of work silently. When an unauthenticated request hits a protected route, Spring redirects to `/oauth2/authorization/azure`, which kicks off the Azure AD login. After the user authenticates, Azure redirects back to `/login/oauth2/code/azure`, Spring validates the token, creates a session, and sets the cookie.
+The `securityFilterChain` bean defines three things that have no YAML equivalent:
 
-Two security details worth highlighting:
+- **Which paths are public.** `/actuator/health` and the Swagger/OpenAPI endpoints need to be reachable without a session (by load balancers and API clients respectively). Every other path requires authentication. Spring Security has no YAML syntax for per-path rules — they must be expressed in code.
+- **CORS policy.** Allowed origins, methods, and the `allowCredentials` flag are runtime decisions that depend on values injected from config (`apiHost`, `frontendHost`). Spring does not provide a YAML-based CORS configuration for WebFlux Security — you must supply a `CorsConfigurationSource` bean.
+- **CSRF.** Disabled here because the app relies on `SameSite` cookie policy rather than CSRF tokens. This is a deliberate security trade-off that must be expressed in code, not config.
+
+When authenticated, `.oauth2Login { }` does a lot of things behind the scenes. When an unauthenticated request hits a protected route, Spring redirects to `/oauth2/authorization/azure`, which kicks off the Azure AD login. After the user authenticates, Azure redirects back to `/login/oauth2/code/azure`, Spring validates the token, creates a session, and sets the cookie.
+
+Note :
 
 1. **CORS origins are always explicit** — never `allowedOrigins = listOf("*")`. With `allowCredentials = true`, a wildcard origin is both a security risk and a spec violation.
 2. **CSRF is disabled** — this is safe because the app uses cookie-based session auth with SameSite cookie policy and the API is only called from the same origin.
@@ -209,23 +165,6 @@ Two security details worth highlighting:
 ## Extracting the user from the JWT
 
 After login, every request carries the session cookie. Spring resolves it to an `Authentication` object. To get the current user's identity, inject `@AuthenticationPrincipal` into your controllers:
-
-```kotlin
-@RestController
-@RequestMapping("/api/trips")
-class TripController(private val tripService: TripService) {
-
-    @GetMapping
-    suspend fun getTrips(
-        @AuthenticationPrincipal principal: OidcUser
-    ): List<TripDto> {
-        val userId = principal.subject  // the `sub` claim from the JWT
-        return tripService.findTrips(userId)
-    }
-}
-```
-
-The Java equivalent using WebFlux's `Mono`:
 
 ```java
 @RestController
@@ -239,7 +178,7 @@ public class TripController {
     }
 
     @GetMapping
-    public Mono<List<TripDto>> getTrips(@AuthenticationPrincipal OidcUser principal) {
+    public List<TripDto> getTrips(@AuthenticationPrincipal OidcUser principal) {
         String userId = principal.getSubject(); // the `sub` claim from the JWT
         return tripService.findTrips(userId);
     }
@@ -249,21 +188,6 @@ public class TripController {
 The `sub` claim is the stable, unique identifier Azure AD issues per user. It's what you store in your database as the user's identity — not their email, which can change.
 
 A common pattern is to provision a user row on their first authenticated call:
-
-```kotlin
-@Service
-class UserService(private val userRepository: UserRepository) {
-
-    suspend fun getOrProvision(principal: OidcUser): UserEntity =
-        withContext(Dispatchers.IO) {
-            val sub = principal.subject
-            userRepository.findBySub(sub)
-                ?: userRepository.save(UserEntity(sub = sub, email = principal.email))
-        }
-}
-```
-
-In Java, the same pattern uses `Mono` and `switchIfEmpty` instead of Kotlin's Elvis operator:
 
 ```java
 @Service
@@ -275,19 +199,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Mono<UserEntity> getOrProvision(OidcUser principal) {
+    public UserEntity getOrProvision(OidcUser principal) {
         String sub = principal.getSubject();
         return userRepository.findBySub(sub)
-            .switchIfEmpty(userRepository.save(new UserEntity(sub, principal.getEmail())));
+            .orElseGet(() -> userRepository.save(new UserEntity(sub, principal.getEmail())));
     }
 }
 ```
 
 ---
 
-## Handling 401s in the SPA
+## Handling 401s and 403s in the SPA
 
-Because auth is fully server-side, the [SPA](#what-is-a-spa) never explicitly checks whether a session is valid. Instead, configure your HTTP client to intercept `401` responses globally:
+Because auth is fully server-side, the SPA never explicitly checks whether a session is valid. Instead, configure your HTTP client to intercept error responses globally. It is important to handle `401` and `403` separately — they mean different things:
+
+- **401 Unauthorized** — no valid session exists. The correct response is to redirect the user to the Azure AD login page so they can authenticate.
+- **403 Forbidden** — the user _is_ authenticated but does not have permission to access that resource. Redirecting to login is the wrong move here: the user will log in again and immediately receive another `403`. Instead, route them to a dedicated access-denied page.
 
 ```typescript
 // customAxios.ts
@@ -296,6 +223,8 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       window.location.href = '/oauth2/authorization/azure'
+    } else if (error.response?.status === 403) {
+      window.location.href = '/access-denied'
     }
     return Promise.reject(error)
   }
@@ -303,6 +232,8 @@ axios.interceptors.response.use(
 ```
 
 When the session expires, the next API call returns `401`, the interceptor redirects to Azure AD login, and after re-authentication the user lands back in the app. No explicit session-expired state needed in any component.
+
+The `/access-denied` route should render a clear message explaining that the user's account does not have the required permissions, and ideally provide a way to contact the relevant team or admin.
 
 ---
 
@@ -355,14 +286,167 @@ Spring auto-discovers the OIDC metadata from the mock server the same way it wou
 
 ## What about reactive (WebFlux) specifics?
 
-If you're on Spring WebFlux (reactive, non-blocking), a few things differ from the MVC setup:
+If you're on Spring WebFlux (reactive, non-blocking), the OAuth2 login flow is identical — the same `application.yml` config works without changes. Only the Security API types differ. Replace `spring-boot-starter-web` with `spring-boot-starter-webflux` in your dependencies, then adjust the three classes below.
 
-- Use `@EnableWebFluxSecurity` instead of `@EnableWebSecurity`
-- `ServerHttpSecurity` instead of `HttpSecurity`
-- `SecurityWebFilterChain` instead of `SecurityFilterChain`
-- `@AuthenticationPrincipal` still works, but it resolves reactively
+### Security config (WebFlux)
 
-For any JPA/database access inside a `suspend fun`, wrap it in `withContext(Dispatchers.IO)` — JPA is blocking, and calling it from a coroutine on the reactor event loop will deadlock or throw:
+Swap `@EnableWebSecurity` / `HttpSecurity` / `SecurityFilterChain` for their WebFlux counterparts:
+
+**Kotlin:**
+
+```kotlin
+@Configuration
+@EnableWebFluxSecurity
+class SecurityConfig(
+    private val apiHost: String,
+    private val frontendHost: String,
+) {
+    @Bean
+    fun securityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain =
+        http
+            .cors { it.configurationSource(corsConfigurationSource()) }
+            .csrf { it.disable() }
+            .authorizeExchange { exchanges ->
+                exchanges
+                    .pathMatchers("/actuator/health").permitAll()
+                    .pathMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                    .anyExchange().authenticated()
+            }
+            .oauth2Login { }
+            .build()
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val config = CorsConfiguration().apply {
+            allowedOrigins = listOf(apiHost, frontendHost)
+            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            allowedHeaders = listOf("*")
+            allowCredentials = true
+        }
+        return UrlBasedCorsConfigurationSource().apply {
+            registerCorsConfiguration("/**", config)
+        }
+    }
+}
+```
+
+**Java:**
+
+```java
+@Configuration
+@EnableWebFluxSecurity
+public class SecurityConfig {
+
+    private final String apiHost;
+    private final String frontendHost;
+
+    public SecurityConfig(String apiHost, String frontendHost) {
+        this.apiHost = apiHost;
+        this.frontendHost = frontendHost;
+    }
+
+    @Bean
+    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
+        return http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(ServerHttpSecurity.CsrfSpec::disable)
+            .authorizeExchange(exchanges -> exchanges
+                .pathMatchers("/actuator/health").permitAll()
+                .pathMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                .anyExchange().authenticated()
+            )
+            .oauth2Login(withDefaults())
+            .build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of(apiHost, frontendHost));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+}
+```
+
+### Controller and service (WebFlux)
+
+`@AuthenticationPrincipal` still works in WebFlux, but return types become reactive. In Kotlin this is expressed with `suspend fun`; in Java with `Mono<T>`:
+
+**Kotlin:**
+
+```kotlin
+@RestController
+@RequestMapping("/api/trips")
+class TripController(private val tripService: TripService) {
+
+    @GetMapping
+    suspend fun getTrips(
+        @AuthenticationPrincipal principal: OidcUser
+    ): List<TripDto> {
+        val userId = principal.subject
+        return tripService.findTrips(userId)
+    }
+}
+
+@Service
+class UserService(private val userRepository: UserRepository) {
+
+    suspend fun getOrProvision(principal: OidcUser): UserEntity =
+        withContext(Dispatchers.IO) {
+            val sub = principal.subject
+            userRepository.findBySub(sub)
+                ?: userRepository.save(UserEntity(sub = sub, email = principal.email))
+        }
+}
+```
+
+**Java:**
+
+```java
+@RestController
+@RequestMapping("/api/trips")
+public class TripController {
+
+    private final TripService tripService;
+
+    public TripController(TripService tripService) {
+        this.tripService = tripService;
+    }
+
+    @GetMapping
+    public Mono<List<TripDto>> getTrips(@AuthenticationPrincipal OidcUser principal) {
+        String userId = principal.getSubject();
+        return tripService.findTrips(userId);
+    }
+}
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public Mono<UserEntity> getOrProvision(OidcUser principal) {
+        String sub = principal.getSubject();
+        return userRepository.findBySub(sub)
+            .switchIfEmpty(userRepository.save(new UserEntity(sub, principal.getEmail())));
+    }
+}
+```
+
+### Blocking calls in WebFlux
+
+For any JPA/database access inside a `suspend fun`, wrap it in `withContext(Dispatchers.IO)` — JPA is blocking, and calling it on the reactor event loop will deadlock or throw. In Java, use `Schedulers.boundedElastic()`:
+
+**Kotlin:**
 
 ```kotlin
 suspend fun findUser(sub: String): UserEntity? =
@@ -371,7 +455,7 @@ suspend fun findUser(sub: String): UserEntity? =
     }
 ```
 
-In Java, use `Schedulers.boundedElastic()` to offload the blocking JPA call off the reactor event loop:
+**Java:**
 
 ```java
 public Mono<UserEntity> findUser(String sub) {
@@ -403,7 +487,7 @@ Spring Boot's `oauth2Login()` gives you a complete, secure auth flow in a handfu
 
 The pattern works especially well for internal enterprise tools where you control both the frontend and backend, SSO is already in place via Azure AD, and you want to minimize the security surface exposed to client-side JavaScript.
 
-The full setup shown here is production-ready: environment-injected secrets, explicit CORS origins, a local mock for development, and a single `401` interceptor in the SPA that handles session expiry transparently.
+The full setup shown here is production-ready: environment-injected secrets, explicit CORS origins, a local mock for development, and a single `401`(Unauthorized) interceptor in the SPA that handles session expiry transparently.
 
 ---
 
