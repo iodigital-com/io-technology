@@ -12,7 +12,7 @@ theme: 'blue'
 
 When you start a new web app and need authentication, the path of least resistance seems obvious: protect your API with Bearer tokens, let the frontend handle the login, store the JWT in `localStorage`, and call it a day.
 
-That approach works — until it doesn't. `localStorage` is accessible to any JavaScript running on the page, which makes it a prime target for XSS attacks. And once you start managing token refresh cycles in the [SPA](#what-is-a-spa), you've added a layer of complexity that lives in every browser session.
+That approach works — until it doesn't. `localStorage` is accessible to any JavaScript running on the page, which makes it a prime target for [XSS attacks](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS) — as [OWASP's HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) explicitly warns against storing sensitive data there. And once you start managing token refresh cycles in the [SPA](#what-is-a-spa), you've added a layer of complexity that lives in every browser session — a problem the IETF addresses directly in [RFC 10017: OAuth 2.0 for Browser-Based Applications](https://www.rfc-editor.org/info/rfc10017) and [RFC 9700: OAuth 2.0 Security Best Current Practice](https://www.rfc-editor.org/info/rfc9700).
 
 There's a cleaner alternative: let the backend own the auth flow entirely. The frontend redirects to login, Spring Boot handles the OAuth2 dance, and all the frontend ever sees is an HttpOnly session cookie. No tokens in JavaScript. No refresh logic in the SPA.
 
