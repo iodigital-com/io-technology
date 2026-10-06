@@ -1,6 +1,6 @@
 ---
 title: 'Spring Boot: Handling the OAuth2 Login Flow'
-date: '2026-09-29'
+date: '2026-10-06'
 tags: ['java', 'spring-boot', 'security', 'oauth2']
 images: ['/articles/spring-boot-oauth2-login-flow/hero.jpg']
 summary: 'How Spring Security wires up Azure AD authentication so your frontend never has to touch a token.'
