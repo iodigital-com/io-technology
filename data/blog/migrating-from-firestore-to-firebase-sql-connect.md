@@ -1,6 +1,6 @@
 ---
 title: 'We moved off Firestore. The slow page stayed slow.'
-date: '2026-09-24'
+date: '2026-10-07'
 tags: ['firebase', 'firestore', 'postgresql', 'database-migration', 'architecture', 'performance']
 summary: 'Two days after our internal resume platform moved from Firestore to Firebase SQL Connect, the page that pushed us into it was still downloading 18 MB and locking up for a minute. The new database made a better query possible. Writing that query is what made the page fast.'
 authors: ['bulent-turkmen']
