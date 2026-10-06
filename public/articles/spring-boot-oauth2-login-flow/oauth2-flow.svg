@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="560" viewBox="0 0 820 560" font-family="ui-sans-serif, system-ui, sans-serif">
+  <defs>
+    <marker id="ab" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    </marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+    </marker>
+    <marker id="av" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="560" fill="#f8fafc" rx="12"/>
+
+  <!-- ── Participant boxes ── -->
+  <!-- Browser -->
+  <rect x="30" y="18" width="140" height="38" rx="8" fill="#2563eb"/>
+  <text x="100" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="600">Browser</text>
+
+  <!-- Spring Boot -->
+  <rect x="340" y="18" width="140" height="38" rx="8" fill="#16a34a"/>
+  <text x="410" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="600">Spring Boot</text>
+
+  <!-- Azure AD -->
+  <rect x="650" y="18" width="140" height="38" rx="8" fill="#7c3aed"/>
+  <text x="720" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="600">Azure AD</text>
+
+  <!-- ── Lifelines ── -->
+  <line x1="100" y1="56" x2="100" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="410" y1="56" x2="410" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="720" y1="56" x2="720" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- ── Step 1: Browser → Spring Boot ── -->
+  <circle cx="32" cy="88" r="10" fill="#2563eb"/>
+  <text x="32" y="92" text-anchor="middle" fill="white" font-size="9" font-weight="700">1</text>
+  <line x1="100" y1="88" x2="402" y2="88" stroke="#3b82f6" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="255" y="80" text-anchor="middle" fill="#1e3a5f" font-size="11">GET /trips  ·  no session</text>
+
+  <!-- ── Step 2: Spring Boot → Browser (redirect) ── -->
+  <circle cx="32" cy="130" r="10" fill="#16a34a"/>
+  <text x="32" y="134" text-anchor="middle" fill="white" font-size="9" font-weight="700">2</text>
+  <line x1="410" y1="130" x2="108" y2="130" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="255" y="122" text-anchor="middle" fill="#14532d" font-size="11">302 → /oauth2/authorization/azure</text>
+
+  <!-- ── Step 3: Browser → Azure AD ── -->
+  <circle cx="32" cy="172" r="10" fill="#2563eb"/>
+  <text x="32" y="176" text-anchor="middle" fill="white" font-size="9" font-weight="700">3</text>
+  <line x1="100" y1="172" x2="712" y2="172" stroke="#3b82f6" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="410" y="164" text-anchor="middle" fill="#1e3a5f" font-size="11">Browser follows redirect — user authenticates</text>
+
+  <!-- ── Step 4: Azure AD → Spring Boot (auth code) ── -->
+  <circle cx="32" cy="214" r="10" fill="#7c3aed"/>
+  <text x="32" y="218" text-anchor="middle" fill="white" font-size="9" font-weight="700">4</text>
+  <line x1="720" y1="214" x2="418" y2="214" stroke="#7c3aed" stroke-width="2" marker-end="url(#av)"/>
+  <text x="570" y="206" text-anchor="middle" fill="#3b0764" font-size="11">Auth code → /login/oauth2/code/azure</text>
+
+  <!-- ── Step 5: Spring Boot internal processing box ── -->
+  <circle cx="32" cy="252" r="10" fill="#16a34a"/>
+  <text x="32" y="256" text-anchor="middle" fill="white" font-size="9" font-weight="700">5</text>
+  <rect x="330" y="234" width="160" height="48" rx="7" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="410" y="253" text-anchor="middle" fill="#14532d" font-size="10" font-weight="600">Exchange code for JWT</text>
+  <text x="410" y="268" text-anchor="middle" fill="#14532d" font-size="10">Validate · Create session</text>
+
+  <!-- ── Step 6: Spring Boot → Browser (cookie) ── -->
+  <circle cx="32" cy="308" r="10" fill="#16a34a"/>
+  <text x="32" y="312" text-anchor="middle" fill="white" font-size="9" font-weight="700">6</text>
+  <line x1="410" y1="308" x2="108" y2="308" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="255" y="300" text-anchor="middle" fill="#14532d" font-size="11">Set-Cookie: SESSION=… (HttpOnly)</text>
+
+  <!-- ── Step 7: Browser → Spring Boot (API call with cookie) ── -->
+  <circle cx="32" cy="358" r="10" fill="#2563eb"/>
+  <text x="32" y="362" text-anchor="middle" fill="white" font-size="9" font-weight="700">7</text>
+  <line x1="100" y1="358" x2="402" y2="358" stroke="#3b82f6" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="255" y="350" text-anchor="middle" fill="#1e3a5f" font-size="11">GET /api/trips  ·  SESSION cookie</text>
+
+  <!-- ── Step 8: Spring Boot → Browser (response) ── -->
+  <circle cx="32" cy="400" r="10" fill="#16a34a"/>
+  <text x="32" y="404" text-anchor="middle" fill="white" font-size="9" font-weight="700">8</text>
+  <line x1="410" y1="400" x2="108" y2="400" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="255" y="392" text-anchor="middle" fill="#14532d" font-size="11">200 OK + response data</text>
+
+  <!-- ── Key insight banner ── -->
+  <rect x="30" y="430" width="760" height="48" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="410" y="450" text-anchor="middle" fill="#713f12" font-size="12" font-weight="700">Key insight</text>
+  <text x="410" y="468" text-anchor="middle" fill="#713f12" font-size="11">The JWT lives only inside Spring Boot — the browser holds a session cookie, never a token.</text>
+
+  <!-- ── Legend ── -->
+  <line x1="30" y1="510" x2="55" y2="510" stroke="#3b82f6" stroke-width="2" marker-end="url(#ab)"/>
+  <text x="62" y="514" fill="#475569" font-size="10">Browser request</text>
+  <line x1="180" y1="510" x2="205" y2="510" stroke="#16a34a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="212" y="514" fill="#475569" font-size="10">Spring Boot response</text>
+  <line x1="365" y1="510" x2="390" y2="510" stroke="#7c3aed" stroke-width="2" marker-end="url(#av)"/>
+  <text x="397" y="514" fill="#475569" font-size="10">Azure AD callback</text>
+  <rect x="530" y="503" width="14" height="14" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="550" y="514" fill="#475569" font-size="10">Internal processing</text>
+</svg>
