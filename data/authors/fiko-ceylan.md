@@ -1,14 +1,14 @@
 ---
 name: Fiko Ceylan
 avatar: /authors/fiko-ceylan.jpeg
-occupation: Technical Leader and Lead Front-End Developer @NN | Consultant Front-end Developer @iO
+occupation: Technical Leader / AI Tech Lead / Lead Front-End Developer | Lead Front-End Engineer at iO
 website: https://fikoceylan.com
 linkedin: https://www.linkedin.com/in/ofcyln/
 github: https://github.com/ofcyln
 twitter: https://twitter.com/ofcyln
 ---
 
-Technical Leader and Lead Front-End Developer, active since 2012.
+Technical Leader / AI Tech Lead / Lead Front-End Developer | Lead Front-End Engineer at iO, active since 2012.
 
 I focus on ["Code, People, Flow"](/articles/code-people-flow-the-reality-of-the-tech-lead), balancing technical excellence with team health while leading engineering teams from technical execution to business value.
 
