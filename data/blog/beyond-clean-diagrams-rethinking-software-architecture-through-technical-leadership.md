@@ -80,6 +80,12 @@ But what I enjoyed most were the group workshops.
 
 Working through scenarios with other developers meant going beyond knowing what a pattern does or when it might be useful. We had to consider requirements, discuss possible solutions, challenge assumptions, and explain our reasoning.
 
+One workshop case involved a sales promotion system for manufacturer representatives visiting agricultural stores. They needed to show products and take orders on their own mobile devices. The catch? Fast mobile internet wasn't guaranteed at those locations.
+
+Consider two possible approaches: an application that needs a connection throughout the visit, or one that downloads the relevant catalogue beforehand and saves orders locally for later submission. The first keeps synchronisation out of the client. The second could keep the visit moving when connectivity drops, but brings its own questions: how fresh is the catalogue, how do we prevent duplicate submissions, and can the representative tell whether an order is saved locally or actually received by ABB?
+
+For this scenario, I would favour exploring offline support for those essential tasks. That still leaves ABB's strict access restrictions to resolve; storing an order on a device doesn't solve how it gets into the internal system. But it gives the architectural discussion a concrete starting point: what must the representative be able to do when the connection fails?
+
 I found those discussions particularly valuable.
 
 When you're working on a real project, you naturally develop opinions based on previous experience. You know which approaches have worked well for you, which ones caused trouble, and which compromises you're generally comfortable making.
@@ -100,7 +106,7 @@ That's often where the more useful discussions begin.
 
 ## Good Architecture Starts With the Right Problem
 
-One of the topics I particularly appreciated was Quality-Driven Software Architecture (QDSA).
+One of the topics I particularly appreciated was [Quality-Driven Software Architecture (QDSA)](https://www.innoq.com/en/blog/2021/08/quality-driven-software-architecture-revised/).
 
 The principle is straightforward: architectural decisions should be guided by concrete quality requirements, rather than by our preference for a particular technology, framework, or design pattern.
 
@@ -125,6 +131,10 @@ Neither approach is automatically better.
 That's why defining quality requirements matters.
 
 Saying a system should be "fast," "maintainable," or "highly available" doesn't tell us enough to make meaningful architectural decisions. We need to understand what those qualities mean in the context of the application and, wherever possible, how we'll evaluate them.
+
+For the sales promotion example, "the catalogue should load quickly" could become: "With a 500-product catalogue already downloaded and the device offline, the first 20 products and their thumbnails must appear within two seconds in at least 95% of catalogue openings on the agreed test device."
+
+The exact numbers would need agreement with stakeholders. But now we have something to test: a specific action, defined conditions, and a measurable result. We can also distinguish between opening a downloaded catalogue and fetching it for the first time. Those are different expectations.
 
 The training also reinforced something I consider important when choosing architectural patterns: every pattern has its strengths, but none comes without a cost.
 
@@ -168,9 +178,9 @@ Not documentation for the sake of documentation. Nobody benefits from pages of d
 
 I'm more interested in documentation that answers practical questions: what did we decide, why did we choose that approach, and which constraints influenced the decision?
 
-Architecture Decision Records (ADRs) can be useful for exactly that reason.
+[Architecture Decision Records (ADRs)](https://adr.github.io/) can be useful for exactly that reason: they capture a decision, the reasoning behind it, and the consequences we're accepting.
 
-Different architectural views serve a similar purpose. A building block view helps communicate structure. A runtime view explains how components interact during important scenarios. A deployment view makes infrastructure and operational concerns easier to discuss.
+Different architectural views help answer other practical questions. A building block view helps communicate structure. A runtime view explains how components interact during important scenarios. A deployment view makes infrastructure and operational concerns easier to discuss. The [arc42 overview](https://arc42.org/overview/) is a useful starting point for understanding where each view fits.
 
 We don't need every diagram for every situation.
 
