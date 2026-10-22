@@ -1,6 +1,6 @@
 ---
 title: 'Beyond Clean Diagrams: Rethinking Software Architecture Through Technical Leadership'
-date: '2026-10-09'
+date: '2026-22-09'
 tags:
   [
     'Software Architecture',
