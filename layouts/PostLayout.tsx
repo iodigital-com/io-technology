@@ -129,7 +129,7 @@ export default function PostLayout({
                         <>
                           <dt className="sr-only">LinkedIn</dt>
                           <dd>
-                            <SocialIcon kind="linkedin" href={author.social.linkedin} size="5">
+                            <SocialIcon kind="linkedin" href={author.social.linkedin} size={5}>
                               {author.name}
                             </SocialIcon>
                           </dd>
@@ -137,10 +137,12 @@ export default function PostLayout({
                       )}
                       {author.social?.twitter && (
                         <>
-                          <dt className="sr-only">Twitter</dt>
+                          <dt className="sr-only">X</dt>
                           <dd>
-                            <SocialIcon kind="twitter" href={author.social.twitter} size="5">
-                              {author.social.twitter.replace('https://twitter.com/', '@')}
+                            <SocialIcon kind="x" href={author.social.twitter} size={5}>
+                              {author.social.twitter
+                                .replace('https://x.com/', '@')
+                                .replace('https://twitter.com/', '@')}
                             </SocialIcon>
                           </dd>
                         </>
@@ -149,7 +151,7 @@ export default function PostLayout({
                         <>
                           <dt className="sr-only">Github</dt>
                           <dd>
-                            <SocialIcon kind="github" href={author.social.github} size="5">
+                            <SocialIcon kind="github" href={author.social.github} size={5}>
                               {author.social.github.replace('https://github.com/', '')}
                             </SocialIcon>
                           </dd>
@@ -159,7 +161,7 @@ export default function PostLayout({
                         <>
                           <dt className="sr-only">Website</dt>
                           <dd>
-                            <SocialIcon kind="website" href={author.social.website} size="5">
+                            <SocialIcon kind="website" href={author.social.website} size={5}>
                               Blog
                             </SocialIcon>
                           </dd>

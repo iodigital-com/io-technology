@@ -84,7 +84,7 @@ const Experiment = ({
               </Link>
             )}
             {code && (
-              <SocialIcon kind="github" href={code} size="6">
+              <SocialIcon kind="github" href={code} size={6}>
                 Code
               </SocialIcon>
             )}

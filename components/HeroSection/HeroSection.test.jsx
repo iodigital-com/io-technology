@@ -2,40 +2,22 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '../../tests/test-utils'
 import HeroSection from './HeroSection'
 
-// Mock the Image component
-vi.mock('../Image', () => ({
-  default: ({ src, alt, className }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} className={className} data-testid="hero-image" />
-  ),
-}))
-
-// Mock the HubspotForm component
-vi.mock('../HubspotForm', () => ({
-  default: ({ portalId, formId }) => (
-    <div data-testid="hubspot-form">
-      Form: {portalId}-{formId}
-    </div>
-  ),
-}))
-
-// Mock the useBrandingTheme hook
-vi.mock('../../lib/hooks/useBrandingTheme', () => ({
-  useBrandingTheme: () => ({ theme: 'blue' }),
-}))
-
 describe('HeroSection', () => {
   const defaultProps = {
     title: 'Welcome to Our Blog',
     description: 'This is an awesome blog about technology',
-    imageSrc: '/hero-image.jpg',
-    imageAlt: 'Hero image description',
+    isDarkBackground: false,
   }
+
+  it('renders without crashing when no props are provided', () => {
+    const { container } = render(<HeroSection />)
+    expect(container.firstChild).toBeInTheDocument()
+  })
 
   it('renders without crashing', () => {
     const { container } = render(<HeroSection {...defaultProps} />)
-    const section = container.querySelector('section')
-    expect(section).toBeInTheDocument()
+    const mainWrapper = container.querySelector('div.relative')
+    expect(mainWrapper).toBeInTheDocument()
   })
 
   it('renders the title correctly', () => {
@@ -49,30 +31,12 @@ describe('HeroSection', () => {
     expect(screen.getByText('This is an awesome blog about technology')).toBeInTheDocument()
   })
 
-  it('renders the image with correct props', () => {
-    render(<HeroSection {...defaultProps} />)
-    const image = screen.getByTestId('hero-image')
+  it('does not render title when not provided', () => {
+    const propsWithoutTitle = { ...defaultProps }
+    delete propsWithoutTitle.title
 
-    expect(image).toBeInTheDocument()
-    expect(image).toHaveAttribute('src', '/hero-image.jpg')
-    expect(image).toHaveAttribute('alt', 'Hero image description')
-    expect(image).toHaveClass('h-auto', 'w-full', 'rounded-full')
-  })
-
-  it('uses default imageAlt when not provided', () => {
-    const propsWithoutAlt = { ...defaultProps }
-    delete propsWithoutAlt.imageAlt
-
-    render(<HeroSection {...propsWithoutAlt} />)
-    const image = screen.getByTestId('hero-image')
-    expect(image).toHaveAttribute('alt', '')
-  })
-
-  it('applies correct theme background class', () => {
-    const { container } = render(<HeroSection {...defaultProps} />)
-    const section = container.querySelector('section')
-
-    expect(section).toHaveClass('bg-io_blue-500')
+    render(<HeroSection {...propsWithoutTitle} />)
+    expect(screen.queryByText('Welcome to Our Blog')).not.toBeInTheDocument()
   })
 
   it('does not render description when not provided', () => {
@@ -83,49 +47,31 @@ describe('HeroSection', () => {
     expect(screen.queryByText('This is an awesome blog about technology')).not.toBeInTheDocument()
   })
 
-  it('renders HubspotForm when showForm is true and formConfig is provided', () => {
-    const propsWithForm = {
-      ...defaultProps,
-      showForm: true,
-      formConfig: { portalId: '12345', formId: 'abc-123' },
-    }
+  it('applies text-white class to title and description when isDarkBackground is true', () => {
+    render(<HeroSection {...defaultProps} isDarkBackground={true} />)
 
-    render(<HeroSection {...propsWithForm} />)
-    expect(screen.getByTestId('hubspot-form')).toBeInTheDocument()
-    expect(screen.getByText('Form: 12345-abc-123')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveClass('text-white')
+    expect(screen.getByText(defaultProps.description).closest('span')).toHaveClass('text-white')
   })
 
-  it('does not render HubspotForm when showForm is false', () => {
-    const propsWithoutForm = {
-      ...defaultProps,
-      showForm: false,
-      formConfig: { portalId: '12345', formId: 'abc-123' },
-    }
+  it('does not apply text-white class to title and description when isDarkBackground is false', () => {
+    render(<HeroSection {...defaultProps} isDarkBackground={false} />)
 
-    render(<HeroSection {...propsWithoutForm} />)
-    expect(screen.queryByTestId('hubspot-form')).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).not.toHaveClass('text-white')
+    expect(screen.getByText(defaultProps.description).closest('span')).not.toHaveClass('text-white')
   })
 
-  it('does not render HubspotForm when formConfig is not provided', () => {
-    const propsWithoutFormConfig = {
-      ...defaultProps,
-      showForm: true,
-      formConfig: null,
-    }
-
-    render(<HeroSection {...propsWithoutFormConfig} />)
-    expect(screen.queryByTestId('hubspot-form')).not.toBeInTheDocument()
+  it('renders children when provided', () => {
+    render(
+      <HeroSection {...defaultProps}>
+        <div>Child content</div>
+      </HeroSection>
+    )
+    expect(screen.getByText('Child content')).toBeInTheDocument()
   })
 
-  it('handles imagePosition prop for layout classes', () => {
-    const propsWithLeftImage = {
-      ...defaultProps,
-      imagePosition: 'left',
-    }
-
-    const { container } = render(<HeroSection {...propsWithLeftImage} />)
-    const imageContainer = container.querySelector('.col-start-1.col-end-12.mb-8')
-
-    expect(imageContainer).toBeInTheDocument()
+  it('background overlay has aria-hidden attribute', () => {
+    const { container } = render(<HeroSection {...defaultProps} />)
+    expect(container.querySelector('[aria-hidden="true"]')).toBeInTheDocument()
   })
 })

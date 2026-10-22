@@ -86,12 +86,5 @@ const colors: BrandColors = {
   },
 }
 
-const safelist: string[] = Object.entries(colors).reduce((acc: string[], [name, tints]) => {
-  Object.keys(tints).forEach((tint) => {
-    acc.push(`bg-${name}-${tint}`)
-  })
-  return acc
-}, [])
-
-module.exports = { colors, safelist }
+module.exports = { colors }
 export type { BrandColors, ColorTint }

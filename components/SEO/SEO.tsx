@@ -103,7 +103,6 @@ const CommonSEO = ({
       <meta property="og:title" content={removeMarkdown(title)} />
       <meta property="og:image" content={ogImage.href} key={ogImage.href} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={removeMarkdown(title)} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twImage.href} />
@@ -179,8 +178,8 @@ export const BlogSEO = ({
     images.length === 0
       ? [siteMetadata.socialBanner]
       : typeof images === 'string'
-      ? [images]
-      : images
+        ? [images]
+        : images
 
   const featuredImages = imagesArr.map((img) => {
     return {

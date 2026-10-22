@@ -11,7 +11,8 @@ export const getContentWithPagination = async (
   contentType: ContentType | string,
   itemsPerPage: number,
   theme: string,
-  filter: ((item: ContentItem) => boolean) | null = null
+  filter: ((item: ContentItem) => boolean) | null = null,
+  transparentHeader = false
 ) => {
   let content = await getAllFilesFrontMatter(contentType as any)
 
@@ -36,6 +37,7 @@ export const getContentWithPagination = async (
       pagination,
       authors,
       theme,
+      transparentHeader,
     },
   }
 }
@@ -46,7 +48,8 @@ export const getContentWithPagination = async (
 export const getContentWithAuthors = async (
   contentType: ContentType | string,
   theme: string,
-  filter: ((item: ContentItem) => boolean) | null = null
+  filter: ((item: ContentItem) => boolean) | null = null,
+  transparentHeader = false
 ) => {
   let content = await getAllFilesFrontMatter(contentType as any)
 
@@ -62,6 +65,7 @@ export const getContentWithAuthors = async (
       [contentType]: content,
       authors,
       theme,
+      transparentHeader,
     },
   }
 }

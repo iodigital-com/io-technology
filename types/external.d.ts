@@ -1,6 +1,13 @@
 // Type declarations for external modules without TypeScript support
 // This MUST be a .d.ts file because it contains ambient module declarations
 
+// rehype-citation v1.x exports map lacks a "types" condition, so TypeScript
+// cannot resolve the types automatically. We re-export them from the known path.
+declare module 'rehype-citation' {
+  export { default } from 'rehype-citation/dist/node/src/index.js'
+  export type { Options } from 'rehype-citation/dist/node/src/types.js'
+}
+
 declare module 'react-markdown-renderer' {
   import React, { ReactNode } from 'react'
   interface MarkdownRendererProps {

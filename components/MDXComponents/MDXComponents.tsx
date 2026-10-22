@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { useMemo } from 'react'
 import { getMDXComponent } from 'mdx-bundler/client'
 import Image from '../Image'
@@ -34,7 +33,7 @@ export const MDXComponents = {
   h6: Heading(6),
   wrapper: ({ components, layout, ...rest }: WrapperProps) => {
     const Layout = require(`../../layouts/${layout}`).default
-    return <Layout {...rest} />
+    return <Layout {...rest} transparentHeader={true} />
   },
 }
 

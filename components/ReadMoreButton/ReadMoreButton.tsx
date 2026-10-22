@@ -22,7 +22,7 @@ const ReadMoreButton = ({
   const getVariantClasses = () => {
     switch (variant) {
       case 'button':
-        return 'bg-io_beige-600 rounded-full border px-6 py-2 text-md transition-colors'
+        return 'rounded-full border border-black px-6 py-2 text-md transition-colors hover:bg-black hover:text-white'
       case 'text':
         return 'py-2'
       default:

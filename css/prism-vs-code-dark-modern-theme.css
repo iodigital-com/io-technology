@@ -1,0 +1,162 @@
+/* VS Code default "Dark Modern" Theme for PrismJS */
+/* It was created with https://prism.dotenv.dev/ and VS Code default dark theme */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #cccccc;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  text-shadow: none;
+  background: none;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  text-shadow: none;
+  background: none;
+}
+
+@media print {
+  code[class*='language-'],
+  pre[class*='language-'] {
+    text-shadow: none;
+  }
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  color: white;
+  background: #1f1f1f;
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.variable {
+  color: #d4d4d4;
+}
+
+.token.operator {
+  color: #d4d4d4;
+}
+
+.token.prolog {
+  color: #000080;
+}
+
+.token.comment {
+  color: #6a9955;
+}
+
+.token.punctuation {
+  color: #6a9955;
+}
+
+.token.builtin {
+  color: #4fc1ff;
+}
+
+.token.number {
+  color: #b5cea8;
+}
+
+.token.inserted {
+  color: #b5cea8;
+}
+
+.token.constant {
+  color: #646695;
+}
+
+.token.hexcode {
+  color: #646695;
+}
+
+.token.tag {
+  color: #569cd6;
+}
+
+.token.changed {
+  color: #569cd6;
+}
+
+.token.function {
+  color: #569cd6;
+}
+
+.token.keyword {
+  color: #569cd6;
+}
+
+.token.attr-name {
+  color: #9cdcfe;
+}
+
+.token.selector {
+  color: #9cdcfe;
+}
+
+.token.property {
+  color: #9cdcfe;
+}
+
+.token.deleted {
+  color: #ce9178;
+}
+
+.token.string {
+  color: #ce9178;
+}
+
+.token.regex {
+  color: #d16969;
+}
+
+.token.char {
+  color: #d16969;
+}
+
+.token.class-name {
+  color: #4ec9b0;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}

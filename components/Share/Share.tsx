@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import LinkedInIcon from '../social-icons/share-linked-in.svg'
-import TwitterIcon from '../social-icons/share-twitter.svg'
+import XIcon from '../social-icons/share-x.svg'
 import FacebookIcon from '../social-icons/share-facebook.svg'
 import EmailIcon from '../social-icons/share-email.svg'
 import Link from '../Link'
@@ -24,12 +24,12 @@ const Share = () => {
       </li>
       <li className="m-0 p-0">
         <Link
-          href={`https://twitter.com/intent/tweet?text=${shareURL}`}
+          href={`https://x.com/intent/post?text=${shareURL}`}
           target="_blank"
           rel="noreferrer"
-          title="Twitter"
+          title="X"
         >
-          <TwitterIcon className="h-10 w-10 lg:h-14 lg:w-14" />
+          <XIcon className="h-10 w-10 lg:h-14 lg:w-14" />
         </Link>
       </li>
       <li className="m-0 p-0">

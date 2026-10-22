@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const rss = require('rss')
-const globby = require('globby')
 const matter = require('gray-matter')
 const sanitizeHtml = require('sanitize-html')
 const MarkdownIt = require('markdown-it')
@@ -23,6 +22,7 @@ const markdownParser = new MarkdownIt()
     generator: siteMetadata.title,
   })
 
+  const { globby } = await import('globby')
   const blogFiles = await globby(['data/blog/**/*.mdx', 'data/blog/**/*.md'])
   blogFiles.forEach((file) => {
     const source = fs.readFileSync(file, 'utf8')

@@ -36,7 +36,8 @@ interface ContentCardTypeSpecific {
 
 // Composed interface using intersection types
 export interface ContentCardProps
-  extends ContentCardContent,
+  extends
+    ContentCardContent,
     ContentCardDisplay,
     ContentCardPresentation,
     ContentCardTypeSpecific {}

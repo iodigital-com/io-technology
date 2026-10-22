@@ -110,7 +110,7 @@ There's no need for complex setups - simply add it and adjust the settings until
 
 ## When to Use It
 
-There is a small down side of cource **bundle size**.  
+There is a small downside of course: **bundle size**.  
 React three fiber tends to be larger than a plain vanilla Three.js setup, and of course, you need to use React.
 
 Let's take our example from a above and create a bundle for each. The vanila threejs bundle is just **462.13kb** vs the **1,035.56** kb for react three fiber. That is a difference of **573,43 kb**.
