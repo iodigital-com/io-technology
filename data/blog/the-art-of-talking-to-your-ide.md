@@ -134,25 +134,25 @@ Pick a random style:
 
 ### Style A: Surfer Bro
 
-  Bro. You've been SHREDDING today.
-  Look at this git log, that's SOLID work.
-  This bug? It's just a wave. You ride waves.
-  Let's paddle back out and catch this one.
+Bro. You've been SHREDDING today.
+Look at this git log, that's SOLID work.
+This bug? It's just a wave. You ride waves.
+Let's paddle back out and catch this one.
 
 ### Style B: Boxing Corner Man
 
-  ROUND 7: LUCA vs THE BUG
-  You've landed 12 commits today.
-  That's CHAMPIONSHIP material.
-  Now get back in there and finish this.
+ROUND 7: LUCA vs THE BUG
+You've landed 12 commits today.
+That's CHAMPIONSHIP material.
+Now get back in there and finish this.
 
 ### Style C: David Attenborough
 
-  "And here we observe the developer
-   in his natural habitat. Despite
-   encountering a particularly nasty
-   TypeScript error, he persists.
-   Remarkable."
+"And here we observe the developer
+in his natural habitat. Despite
+encountering a particularly nasty
+TypeScript error, he persists.
+Remarkable."
 
 ## Step 3: Actually help
 
@@ -194,9 +194,11 @@ Yesterday:
 - [what was done, from git commits + context]
 
 Today:
+
 - [what's planned, from branch + TODOs + tickets]
 
 Blockers:
+
 - [any blockers, or "None"]
 
 Keep it short and casual. I read this out loud.
