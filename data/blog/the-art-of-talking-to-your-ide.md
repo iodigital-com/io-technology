@@ -74,7 +74,7 @@ For the deck, I did not start with "make it better". I pressed **Shift+Tab** unt
 
 _The plan, before a single line changed. Note the verification section and, my favourite, the "out of scope" list._
 
-I read it, crossed out what I did not want, and approved the rest. Then I handed it to a fast model, because the expensive reasoning model had already done the thinking and typing boilerplate does not need a genius.
+I read it, crossed out what I did not want, and approved the rest. Then came the model handoff: **Kimi K3 Max** wrote the plan, a strong reasoning model that is cheap for how smart it is, and **Composer 2.5 Fast** did the typing. The expensive model had already done the thinking; boilerplate does not need a genius.
 
 The best line in any plan is the one that says what you are _not_ doing. An agent without boundaries is an intern with admin rights and a lot of energy.
 
@@ -112,9 +112,95 @@ My favourite rule is not technical. It says that when I type "ugh", the assistan
 
 It sounds ridiculous until it is 16:30 and a stack trace has just ruined your afternoon. "This one is genuinely tricky, here is why" lands very differently from a wall of red text.
 
+And because a rule is just a file, here is the actual one:
+
+```md
+---
+description: Triggers when I say 'hype me', 'im stuck', 'this is impossible', 'ugh', or 'fml'
+alwaysApply: false
+---
+
+# Hype Man Mode
+
+Luca needs a boost. Channel your inner motivational surfer bro.
+
+## Step 1: Acknowledge the pain
+
+Read the current git diff and branch to understand what Luca is struggling with.
+
+## Step 2: Deliver the hype
+
+Pick a random style:
+
+### Style A: Surfer Bro
+
+  Bro. You've been SHREDDING today.
+  Look at this git log, that's SOLID work.
+  This bug? It's just a wave. You ride waves.
+  Let's paddle back out and catch this one.
+
+### Style B: Boxing Corner Man
+
+  ROUND 7: LUCA vs THE BUG
+  You've landed 12 commits today.
+  That's CHAMPIONSHIP material.
+  Now get back in there and finish this.
+
+### Style C: David Attenborough
+
+  "And here we observe the developer
+   in his natural habitat. Despite
+   encountering a particularly nasty
+   TypeScript error, he persists.
+   Remarkable."
+
+## Step 3: Actually help
+
+The hype is fun, but the help is what matters. Always end with one concrete next step.
+```
+
+Yes, the rule talks about me in the third person. It was easier to write that way, and now it makes me laugh every time it fires.
+
 ## The one-word standup
 
 Skills are where this gets properly lazy, in the good way. At 08:45 I type "standup". Cursor reads my git history, my calendar, and my tickets, and writes the update. I read it aloud with the confidence of a person who clearly remembers what they did yesterday.
+
+The whole skill fits on an index card:
+
+```md
+---
+description: Triggers when I say 'standup', 'daily', or around 08:45
+alwaysApply: false
+---
+
+# Standup Prep Workflow
+
+## Gather (all in parallel)
+
+1. Yesterday's git activity (Friday's, on a Monday):
+   git log --since="yesterday.midnight" --until="today.midnight" --oneline --all
+
+2. Today's calendar:
+   icalBuddy -nc -ec "Home" -ea eventsToday
+
+3. Current branch and status:
+   git branch --show-current && git status --short
+
+4. My open tickets in Jira (anything assigned, not Done)
+
+## Format
+
+Yesterday:
+- [what was done, from git commits + context]
+
+Today:
+- [what's planned, from branch + TODOs + tickets]
+
+Blockers:
+- [any blockers, or "None"]
+
+Keep it short and casual. I read this out loud.
+```
 
 The rest of the day is similar: a ticket broken into a TODO list, agent mode for the boilerplate while I keep the architecture calls, and a pre-merge review prompt at 14:00 that catches things before my colleagues do.
 
