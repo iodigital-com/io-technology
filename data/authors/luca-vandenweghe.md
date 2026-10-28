@@ -2,7 +2,8 @@
 name: Luca Vandenweghe
 avatar: /authors/luca-vandenweghe.png
 occupation: React Developer
+linkedin: https://www.linkedin.com/in/luca-vandenweghe/
 github: https://github.com/L-ubu
 ---
 
-I am a frontend developer who cares about design coming alive in code. Cursor changed how I plan, review, and ship: less menu archaeology, more clear conversation with the tools I already use. When I am not building for clients, I tinker with terminal tooling, local AI, and side projects that are probably one more feature away from "done".
+I am a React developer at iO's Ghent campus, working at the intersection of frontend, AI-assisted development, and web animation. I brief my IDE for a living, make things move on the web, and collect side projects that are always one feature away from done.
