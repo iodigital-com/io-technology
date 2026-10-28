@@ -11,13 +11,13 @@ authors: ["luca-vandenweghe"]
 theme: "purple"
 ---
 
-Animations are not decoration. They guide attention, provide feedback, and reduce cognitive load. Studies show that smooth transitions improve perceived performance and make interfaces feel more responsive. But when it comes to implementing them on the web, you have a choice to make: do you use what the browser gives you natively, or do you reach for a library?
+A while ago I caught myself writing the same fade-in for the third time in one project: once in CSS, once with the Web Animations API, and once with Motion. Each version worked, but they felt very different to write and to maintain. So when should you use what the browser gives you natively, and when is a library worth the bundle cost?
 
 In this article, I compare two tools that sit at different ends of the spectrum: the **Web Animations API** (WAAPI) and the **Motion** library. I will walk through what each offers, show code examples, and give you a clear decision framework for when to use which.
 
 ## What is the Web Animations API?
 
-The Web Animations API is a native browser API that lets you create and control animations directly from JavaScript. It shipped in all evergreen browsers around 2020 and now has [96.4% global support](https://caniuse.com/web-animation). No install, no bundle cost.
+The Web Animations API is a native browser API that lets you create and control animations directly from JavaScript. It shipped in all evergreen browsers around 2020 and now has [over 97% global support](https://caniuse.com/web-animation). No install, no bundle cost.
 
 Think of it as the programmatic equivalent of CSS transitions and `@keyframes`, but with full JavaScript control over playback.
 
@@ -75,7 +75,7 @@ bar.animate([{ width: "0%" }, { width: "100%" }], {
 });
 ```
 
-No JavaScript scroll listeners, no `requestAnimationFrame` loops. Chrome 115+, Firefox 110+, with Safari working on support.
+No JavaScript scroll listeners, no `requestAnimationFrame` loops. Supported in Chrome 115+, Safari 26+, and Firefox 159+ (previously behind a flag), which covers every major browser as of late 2026.
 
 ### Staggering (the manual way)
 
@@ -104,12 +104,14 @@ It works, but it is verbose. Keep this in mind for the comparison later.
 
 WAAPI is powerful for what it does, but it has clear gaps:
 
-- **No spring physics** - only CSS easing functions (cubic-bezier, steps)
+- **No native spring parameters** - the `linear()` easing function (Chrome 113+, Firefox 112+, Safari 17.2+) can replay precomputed spring curves, and Motion's own mini `animate()` compiles springs down to `linear()` for WAAPI, but you cannot hand the browser stiffness and damping and let it solve the physics
 - **No gesture system** - no built-in hover, tap, or drag handling
 - **No layout animations** - cannot animate elements between layout positions
 - **No exit animations** - elements disappear from the DOM instantly
 - **No declarative API** - imperative `.animate()` calls only
 - **Manual sequencing** - you chain with promises yourself
+
+Worth noting: the platform is catching up. The View Transitions API (`document.startViewTransition`) covers part of the layout story, and CSS `@starting-style` with `transition-behavior: allow-discrete` makes enter and exit transitions possible natively. Motion's value here is less "impossible natively" and more "one prop instead of orchestrating these newer APIs yourself".
 
 These gaps are exactly what Motion fills.
 
@@ -119,11 +121,19 @@ These gaps are exactly what Motion fills.
 
 It supports React, Vue, and vanilla JavaScript. Under the hood, Motion actually uses WAAPI for transforms and opacity, layering higher-level abstractions on top.
 
-There is also a paid add-on called [Motion+](https://motion.dev) (one-time purchase, not a subscription) that includes premium components, 380+ copy-paste examples, an AI Kit with agent-compatible documentation, and a visual transition editor for IDEs. The core library itself remains completely free and open-source.
+The core library is free and open-source; a paid [Motion+](https://motion.dev) add-on with premium components and examples exists alongside it.
 
 ### The declarative API
 
-Where WAAPI needed 13 lines for a fade-in, Motion needs three:
+Where WAAPI needed [13 lines for a fade-in](#the-basics-elementanimate), Motion's vanilla `animate()` needs one call:
+
+```js
+import { animate } from "motion";
+
+animate(".box", { opacity: [0, 1], x: [-60, 0] }, { duration: 0.6 });
+```
+
+In React it gets even shorter, three declarative lines:
 
 ```tsx
 <motion.div
@@ -150,7 +160,7 @@ This is Motion's superpower. Real physics simulation with mass, stiffness, and d
 />
 ```
 
-No CSS easing curve can replicate the feel of a real spring. This matters for UI interactions where natural motion makes the difference between "polished" and "good enough".
+Traditional easing keywords cannot replicate the feel of a real spring. `linear()` gets close but still needs a fixed duration and precomputed points. This matters for UI interactions where natural motion makes the difference between "polished" and "good enough".
 
 ### Gestures
 
@@ -206,7 +216,7 @@ This is impossible with WAAPI alone in a React context.
 
 ### Variants and stagger
 
-Remember the WAAPI `forEach` loop? Motion reduces stagger to a single configuration line:
+Remember [the WAAPI `forEach` loop](#staggering-the-manual-way)? Motion reduces stagger to a single configuration line:
 
 ```tsx
 const parent = {
@@ -231,17 +241,17 @@ Variants propagate through the component tree. The parent coordinates its childr
 
 | Feature | WAAPI | Motion |
 |---------|-------|--------|
-| Spring physics | No | Yes |
+| Spring physics | Approximated via linear() | Yes |
 | Gestures (hover/tap/drag) | No | Yes |
-| Layout animations | No | Yes |
-| Exit animations | No | Yes |
+| Layout animations | View Transitions API (manual) | Yes (layout prop) |
+| Exit animations | @starting-style + allow-discrete (manual) | Yes (AnimatePresence) |
 | Scroll-driven | Yes | Yes |
 | Playback control | Yes | Yes |
 | Bundle size | 0kb | ~18kb |
 | Performance | Native (compositor) | Near-native |
 | Declarative API | No | Yes |
 
-For a simple hover effect, WAAPI needs five lines of imperative JavaScript. Motion needs one prop: `whileHover={{ scale: 1.15 }}`. The visual result is the same, but the developer experience is dramatically different.
+For a simple hover effect, nobody reaches for WAAPI or Motion: a single CSS rule (`:hover { scale: 1.15; transition: scale 0.2s; }`) does the job. Motion's `whileHover` earns its place when the hover needs to feel physical: an interruptible spring that can change direction mid-flight, or a parent hover that coordinates a stack of child variants. That coordination is what takes real work in vanilla code.
 
 The performance story is worth noting: for simple transforms and opacity, both perform identically because Motion delegates to WAAPI under the hood. For springs and complex gestures, Motion does additional JavaScript work but stays smooth for typical use cases.
 

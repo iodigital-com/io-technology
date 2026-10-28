@@ -6,4 +6,4 @@ linkedin: https://www.linkedin.com/in/luca-vandenweghe/
 github: https://github.com/L-ubu
 ---
 
-Luca is a React developer at iO's Ghent campus with a passion for AI, cybersecurity, and web animations. He loves exploring how these fields intersect and sharing what he learns with colleagues and the wider community.
+I am a React developer at iO's Ghent campus, working at the intersection of frontend, AI-assisted development, and web animation. I brief my IDE for a living, make things move on the web, and collect side projects that are always one feature away from done.
