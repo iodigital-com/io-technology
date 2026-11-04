@@ -1,0 +1,170 @@
+---
+title: '/compact vs /clear: When to Compact and When to Start Fresh'
+date: '2026-11-04'
+tags: ['ai', 'claude-code', 'codex', 'tooling', 'developer-experience']
+summary: '/compact summarises your session, /clear starts fresh. Which one to use in Claude Code or Codex, when, and why the answer is mostly /clear if you write things down. With the nuances: autocompact, prompted compaction, handoff docs, and the smart zone.'
+authors: ['zakaria-taissate']
+images: ['/articles/compact-vs-clear/hero.webp']
+theme: 'green'
+---
+
+Claude Code gives you two commands for a session that has grown too big. `/compact` summarises the conversation and continues from the summary. `/clear` throws the conversation away and starts from zero. Codex has the same pair: `/compact`, and `/new` to start fresh. I'll use the Claude Code names, but the trade-off is the same in both.
+
+Most advice stops at "compact to continue, clear to switch tasks". That rule is fine, but it hides the more useful question: why does your session hold anything you can't afford to lose? If the important state lives in files, `/clear` costs you nothing. If it lives only in the chat, every option is lossy.
+
+## 1. What each command does
+
+**`/clear`** ends the session. The next message starts with an empty context window. Your `CLAUDE.md` and other project instructions load again, because they come from disk, not from the conversation. The transcript isn't deleted either; it stays on your machine and you can get back to it with `/resume`. What's gone is the agent's working state. The model is stateless, so the new session knows nothing the old one knew.
+
+**`/compact`** asks the model to summarise the session so far, drops the original history, and seeds a fresh context with that summary. Work continues as if nothing happened. You can pass instructions: `/compact keep the schema decisions, drop the exploration`.
+
+Matt Pocock's [Dictionary of AI Coding](https://github.com/mattpocock/dictionary-of-ai-coding) has the clearest one-line contrast I've found:
+
+> compaction tries to carry the essentials across; clearing bets they're already written down somewhere better.
+
+That sentence is the whole article. The rest is about when each bet pays off.
+
+## 2. Why long sessions hurt: cost, speed and the smart zone
+
+A long session costs you in three ways:
+
+- **It gets slower.** Every turn, the model has more context to get through before it answers.
+- **It costs more tokens.** Every request sends the whole conversation, so turn 30 pays again for everything read in turns 1 to 29. Prompt caching makes that cheaper, not free.
+- **It gets less accurate.**
+
+The last one hurts most. Pocock calls this the [smart zone and the dumb zone](https://github.com/mattpocock/dictionary-of-ai-coding/blob/main/dictionary/Smart%20zone.md): early in a session the agent is sharp, and as the context fills up it gets sloppier. It forgets an instruction from twenty turns ago, repeats a mistake it already fixed, or contradicts something in its own context.
+
+Two details matter here:
+
+- **The decline starts long before the window is full.** He puts the start of the dumb zone around 125K to 150K tokens on frontier models, and notes that number is debated. The context limit is where the harness stops you, not where quality drops.
+- **There's no error message.** The slide is gradual, so the natural reaction is to re-explain and push through. That adds more context and makes it worse.
+
+So the real budget for a task is the part of the session where the agent works well. Unrelated work in the same session spends that budget. One task per session gives each task the sharpest part of the session.
+
+Run `/context` now and then to see how full you are.
+
+## 3. Default to /clear
+
+If you finish a task, commit it, and move to the next one, run `/clear`. The old conversation is now noise: file reads that are out of date, failed attempts, tool output nobody needs. A fresh session reads the current code, which is the real source of truth.
+
+The same goes for a session that went sideways. If the agent is stuck looping on the same failing test, or it has hallucinated a fix and keeps defending it, the bad history is part of the problem. Prodding it to do better doesn't help, because the noise is still in its context. Clear it and start again with only the files that matter.
+
+The cost of `/clear` is that anything not written down is gone. That's the bet: decisions you need again should already be somewhere better than chat history.
+
+## 4. Use a handoff doc to make /clear safe
+
+A multi-phase feature doesn't need one long session. At the end of phase 1, ask Claude to write the state to a file, then clear, then start phase 2 by pointing at that file.
+
+Pocock calls this file a [handoff artifact](https://github.com/mattpocock/dictionary-of-ai-coding/blob/main/dictionary/Handoff%20artifact.md). Specs, tickets and plan docs all count. A good one is written for a session that knows nothing:
+
+- Concrete file paths, not "the file we discussed".
+- What was decided and **why**. Without the why, the next session re-opens decisions you already settled. He calls this relitigation, and it's the visible sign of a bad handoff.
+- What's done and what's left.
+
+You could ask for this doc by hand at the end of every phase. Don't. If writing the handoff is a separate step, you'll skip it exactly when you're tired or in a hurry, which is when you need it most.
+
+## 5. Make the handoff part of the phase
+
+Build the handoff into the work itself. I [build in phases](/articles/avoid-config-slop) anyway: plan, build one phase, verify, commit, next phase. The plan doc _is_ the handoff doc. It just has to stay current.
+
+- **Phase 0 writes it.** Planning ends with a plan doc on disk: the goal, the phases, the decisions made so far and why.
+- **Every phase updates it.** A phase isn't done until the doc says what changed, what got decided, and what was ruled out. Then commit, code and doc together.
+- **Every session starts from it.** After `/clear`, the next session reads the plan doc and picks up the next open phase.
+
+Don't put this in a prompt you have to remember. Put it in a skill, so the agent follows it every time:
+
+```markdown
+---
+name: phased-work
+description: Plan and build a feature in phases with a plan doc in docs/plans/. Use when starting a feature that takes more than one session, or when continuing one.
+---
+
+Starting a feature:
+
+1. Write docs/plans/<feature>.md for a session with zero context:
+   the goal, the phases, each decision and why, open questions.
+2. Stop and wait for my review of the plan.
+
+Continuing a feature:
+
+1. Read docs/plans/<feature>.md. Take the first phase not marked done.
+2. Check the doc's claims against the code before you rely on them.
+
+Finishing a phase:
+
+1. Verify: typecheck, lint, the tests for this phase.
+2. Update the plan doc: mark the phase done, list the files changed,
+   add new decisions with the reason, and add what you tried and ruled out.
+3. Commit the code and the plan doc together.
+4. Tell me the phase is done, so I can /clear.
+```
+
+If you'd rather not use a skill, one line in `CLAUDE.md` or `AGENTS.md` does most of the job: "For multi-phase work, keep `docs/plans/<feature>.md` current. A phase is done when its plan doc entry is updated and committed." The line costs tokens in every session. A skill only loads when the task calls for it.
+
+Now the transition between phases is two words: `/clear`, then `continue <feature>`. Nothing to write by hand, nothing to remember.
+
+A plan doc has two advantages over a compaction summary. You can read it and fix it before anything depends on it. And you can reuse it: the same spec can brief several sessions, including parallel ones.
+
+One caveat. The doc is an account of the work, not the work. It records what the writing session believed. When a claim matters, have the next session check it against the code and the tests instead of trusting the doc.
+
+## 6. When /compact is the better tool
+
+If handoff docs make `/clear` safe, why compact at all? Because sometimes writing things down is the wrong use of your time.
+
+- **The state is short-lived.** "We changed line 42, it threw this error, so we're trying approach B now" matters for the next ten minutes. It's not worth a file.
+- **You're mid-experiment.** Prototype code across several files, uncommitted, that you may throw away. A fresh session can't infer the intent from that mess, and documenting an experiment that might fail is wasted effort.
+- **The task is the same, the setup is the same.** Same directory, same test harness, same goal. You just need more room.
+
+Pocock's example of a good moment to compact: "Context's getting heavy and I still have the test pass to do."
+
+Compaction is cheap and automatic. It's also harder to inspect than a file, and it only feeds one successor session.
+
+## 7. Never compact blindly
+
+The compaction summary is written by the model, so you can steer it. Without instructions, the model decides which of your decisions are worth keeping. With instructions, you decide.
+
+Tell it why you're compacting and what must survive:
+
+```text
+/compact We're about to do the test pass. Keep the schema decisions,
+the list of changed files, the exact error from the last test run,
+and the causes we ruled out. Drop the codebase exploration.
+```
+
+The things the default summary tends to lose are the exact ones: precise error messages, variable names, a payload's shape, why you rejected an approach. Name them.
+
+Timing matters too. Pocock's advice is to compact at a phase boundary, after the plan is settled, not halfway through a change. A summary taken mid-refactor has to describe a half-finished state, and that's where it drops things.
+
+## 8. Don't let autocompact choose for you
+
+When the context gets close to full, Claude Code compacts on its own. That's [autocompact](https://github.com/mattpocock/dictionary-of-ai-coding/blob/main/dictionary/Autocompact.md), and its problem is the timing. It fires whenever the threshold is hit, maybe in the middle of a refactor, with no instructions from you about what to keep.
+
+The classic symptom: the agent carries on confidently, but has quietly forgotten a constraint you set an hour ago. You notice only when its work starts contradicting that constraint.
+
+Two defences:
+
+- Watch the context indicator and compact or clear yourself, at a moment you choose.
+- Put decisions in a file on disk, where no summary can lose them.
+
+## 9. Don't stack compactions
+
+Each compaction is lossy. Compact a session that was already compacted, and the second summary is a summary of a summary plus whatever came after. Detail falls away every round, and the summary itself takes up space at the top of the context.
+
+If you've compacted the same session twice, the task is too big for one session. Stop, write a handoff doc, and clear.
+
+## The short version
+
+|                      | `/compact`                                       | `/clear`                                      |
+| -------------------- | ------------------------------------------------ | --------------------------------------------- |
+| What happens         | History replaced by a model-written summary      | Empty context; transcript stays on disk       |
+| Project instructions | Still loaded                                     | Loaded again from disk                        |
+| Best for             | Same task, same setup, needs more room           | New task, or a session that went sideways     |
+| What you lose        | Whatever the summary left out                    | Everything not written to a file              |
+| Make it safer        | Prompt it with what to keep, at a phase boundary | Keep a plan doc current as part of each phase |
+
+And the workflow I use:
+
+1. **Normal path:** clear, continue from the plan doc, build the phase, verify, update the plan doc, commit, clear.
+2. **Detour or fight:** something unexpected comes up mid-phase, or you're ten messages deep in a stubborn bug with the context filling up. Compact with explicit instructions, finish the phase, update the plan doc, commit, clear.
+
+When the plan doc is part of the work, `/clear` becomes the default and `/compact` becomes the exception. You reach for it when the phase isn't finished and the state isn't worth a file yet.
