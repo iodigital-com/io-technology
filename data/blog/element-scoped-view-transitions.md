@@ -1,6 +1,6 @@
 ---
 title: 'Element-scoped View Transitions'
-date: '2026-11-06'
+date: '2026-11-09'
 tags: ['frontend', 'css', 'javascript']
 images: []
 summary: 'Document view transitions freeze the whole page while they run. Element-scoped view transitions in Chrome 147 keep the rest of the page interactive. Here is how they work and how to build a list that stays clickable.'
