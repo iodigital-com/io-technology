@@ -1,0 +1,326 @@
+---
+title: 'Avoid Config Slop: Guardrails, Skills and Hooks for AI Coding Agents'
+date: '2026-11-04'
+tags: ['ai', 'claude-code', 'codex', 'cursor', 'tooling', 'developer-experience']
+summary: 'A messy CLAUDE.md or AGENTS.md makes your agent slower, more expensive and less accurate. What belongs in your agent instructions, skills, hooks and lint rules, how to build in phases with a verify loop, and how to save tokens. For Claude Code, Codex and Cursor.'
+authors: ['zakaria-taissate']
+images: ['/articles/avoid-config-slop/hero.webp']
+theme: 'beige'
+---
+
+Open the `AGENTS.md` or `CLAUDE.md` of a project that has used AI agents for a year. There's a good chance you'll find something like this:
+
+```markdown
+# Project overview
+
+This is a Next.js app using React, TypeScript, Tailwind and Prisma...
+
+## Scripts
+
+(a copy of package.json from eight months ago)
+
+## IMPORTANT
+
+- ALWAYS run the tests!!!
+- NEVER edit the migrations folder
+- Use named exports
+- Prefer default exports for pages
+
+... 400 more lines
+```
+
+Every line was added for a reason. Somebody got a bad result, wrote a rule, and moved on. Nobody ever removed one. Two rules contradict each other, three point at files that no longer exist, and the one rule that really matters is buried at line 312, in capitals.
+
+We call code that grows without structure spaghetti code. We don't want our AI config to suffer the same fate, because the agent reads it at the start of every session and writes your code based on it. And messy config does more than produce messy code. It makes agents slower, because they search and read more files before they start. It costs more tokens. And it makes them less accurate at the task you gave them. Call it config slop.
+
+This isn't about one tool. Claude Code, Codex and Cursor all have the same four building blocks now: an instructions file, skills, hooks, and whatever lint and type checks you already run. The names and folders differ a little. The rules for using them well don't.
+
+## 1. What config slop costs you
+
+AI-written code already starts at a disadvantage. CodeRabbit looked at 470 open source pull requests and found [1.7 times more issues in AI co-authored PRs](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report) than in human-only ones: 10.83 issues per PR against 6.45. (CodeRabbit sells AI code review, so read that with some salt. The direction matches what I see.)
+
+More config doesn't fix that. Researchers at ETH Zurich tested repository context files (`AGENTS.md`, `CLAUDE.md`) on real coding tasks, across several agents and models. [Their results](https://arxiv.org/abs/2602.11988):
+
+- **LLM-generated context files** didn't improve the success rate (-0.5% and -2% on two benchmarks, within the noise). They added 2.5 to 4 steps per task, and raised cost by 20 to 23%.
+- **Developer-written context files** did a little better: +2.4% success on average, also within the noise. They added about 3 steps per task, and raised cost by up to 19%.
+- **Repository overviews** didn't help the agent find the right files any faster.
+
+Their conclusion is one sentence: context files "should only contain specific additional instructions beyond what is already available in the codebase."
+
+Length hurts too. The [IFScale benchmark](https://arxiv.org/abs/2507.11538) gave 20 models up to 500 instructions at once. The best frontier models followed about 68% of them. Every line you add competes with every other line, including the ones that matter. Anthropic's [Claude Code docs](https://code.claude.com/docs/en/memory) say to stay under 200 lines per file, because "longer files consume more context and reduce adherence", and that when two instructions contradict each other, "Claude may pick one arbitrarily". Cursor's [rules docs](https://cursor.com/docs/context/rules) recommend keeping each rule under 500 lines.
+
+So config slop costs you three times. The agent takes more steps before it gets to work, every step costs tokens, and it follows your instructions less reliably.
+
+## 2. Four places, four jobs
+
+The fix is the same as for spaghetti code: give every rule one place to live, and pick that place on purpose. There are four places.
+
+| Where       | Who decides              | Use it for                  |
+| ----------- | ------------------------ | --------------------------- |
+| `AGENTS.md` | The model, every session | Facts the repo doesn't show |
+| Skills      | The model, on demand     | Procedures, team knowledge  |
+| Lint, types | Your toolchain           | Anything a tool can check   |
+| Hooks       | The harness, every time  | Rules with zero exceptions  |
+
+`AGENTS.md` here also means `CLAUDE.md` and Cursor rules. Skills only load their name and description in every session, the body loads when a task needs it.
+
+The question to ask for every rule: does it have to happen every time, and can a tool check it?
+
+- **A tool can check it:** make it a lint rule or a type. Then it's enforced for humans and agents alike.
+- **It must happen every time:** make it a hook. The [Claude Code docs](https://code.claude.com/docs/en/best-practices) put it bluntly: "If you keep adding emphasis to a `CLAUDE.md` line and Claude still misses it, that's a sign the line belongs in a hook." That goes for every agent.
+- **It's a multi-step procedure:** make it a skill.
+- **The agent needs it in every session and can't work it out from the code:** that's what's left for `AGENTS.md`.
+
+The rest of this article goes through them one by one.
+
+## 3. AGENTS.md: short, and mostly commands
+
+`AGENTS.md` is the closest thing we have to a standard. Codex and Cursor read it, and so do most other agents. Claude Code reads `CLAUDE.md`, but falls back to `AGENTS.md` when there's no `CLAUDE.md`. If your team uses more than one tool, keep one file. When you do need a `CLAUDE.md`, let it import the other one with a single line: `@AGENTS.md`.
+
+Here's a test for every line: would the agent get it wrong without this line? If it can read the answer from the code, the line goes.
+
+What stays:
+
+- **Commands.** How to install, run one test file, typecheck, lint. Exact commands, not "test your changes".
+- **Conventions the code doesn't show.** "Use the error helpers in `src/lib/errors.ts`." "`src/legacy/` is still live, don't copy its patterns."
+- **Gotchas.** "Integration tests need `DATABASE_URL`, see `.env.example`."
+- **Anything you've had to correct twice.**
+
+What goes:
+
+- **The project overview.** The agent can read your folder structure. The ETH study found overviews didn't help.
+- **Your stack.** It's in `package.json`.
+- **Style rules a formatter handles.** Prettier doesn't need a prompt.
+- **IMPORTANT and ALL CAPS.** Current models follow a plainly worded line. If a line keeps getting ignored, the file is too long or the rule belongs in a hook.
+
+A good file fits on one screen:
+
+```markdown
+# Commands
+
+- Install: pnpm install
+- Dev server: pnpm dev (port 8888)
+- One test file: pnpm vitest run path/to/file.test.ts
+- Check everything: pnpm check-all (tsc + eslint)
+
+# Conventions
+
+- Data fetching goes through TanStack Query hooks in src/queries/
+- Server code talks to the database through Prisma only, never raw SQL
+
+# Gotchas
+
+- Integration tests need DATABASE_URL, see .env.example
+```
+
+### Point, don't paste
+
+The best `AGENTS.md` I've seen lately isn't even mine. `next dev` writes one into this blog's repo, and it's eight lines long. It doesn't explain the new Next.js APIs. It says: this isn't the Next.js you know, read the docs in `node_modules/next/dist/docs/` before writing code.
+
+That's the pattern. The docs that match your installed version are already on disk. Tell the agent where they are, and let it read the page it needs when it needs it.
+
+### Scope rules to where they apply
+
+A rule that only matters for API routes shouldn't load when the agent fixes a CSS bug. Every tool has a way to scope it:
+
+- **Any tool that reads `AGENTS.md`:** put an `AGENTS.md` in the subfolder. Codex and Cursor combine it with the root file when the agent works in that folder.
+- **Claude Code:** a file in `.claude/rules/` with a `paths:` filter.
+- **Cursor:** an `.mdc` file in `.cursor/rules/` with `globs:`.
+
+The Claude Code version:
+
+```markdown
+---
+paths:
+  - 'src/app/api/**/*.ts'
+---
+
+- Validate request bodies with the zod schemas in src/schemas/
+- Every route checks permissions before it touches the database
+```
+
+Careful with imports like `@AGENTS.md`: they make a long file easier to organise, but the imported file loads together with the file that imports it. They don't save a single token.
+
+## 4. Why the agent shouldn't need package.json
+
+If `AGENTS.md` doesn't list the commands, the agent finds them itself. Usually that means reading `package.json`, and maybe a README, and maybe a CI file to see what actually runs.
+
+In this blog's repo, `package.json` is 1,426 bytes, a few hundred tokens. That's not the problem. The problems are around it:
+
+- **It's a detour.** Every lookup is an extra step before the real work starts. Those are the extra steps from the ETH study in section 1, and every one of them costs tokens.
+- **Whatever gets read stays in the conversation.** Every request sends the whole conversation again, so a file read in turn 2 is paid for again in turn 30. Prompt caching makes that cheaper, not free.
+- **The neighbours are huge.** `package-lock.json` in this same repo is 268,582 bytes. At a rough four characters per token that's around 67,000 tokens, for a file the agent never needs to read.
+
+Four commands in `AGENTS.md` cost maybe 60 tokens and skip all of that. For files the agent should never open, block them instead of hoping. In Cursor that's a `.cursorignore`. In Claude Code it's a deny rule in `.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "deny": ["Read(./package-lock.json)", "Read(./.env)"]
+  }
+}
+```
+
+## 5. Lint and types: rules that enforce themselves
+
+This is the one part that works the same in every tool, because it isn't part of the tool. Every convention you can turn into a lint rule or a type is one line fewer in `AGENTS.md`, and it holds for the humans on your team too.
+
+👎🏼 **In AGENTS.md:** "Don't import Prisma in client components."
+
+👍🏼 **In ESLint:**
+
+```javascript
+// eslint.config.js
+{
+  files: ['src/components/**/*.tsx'],
+  rules: {
+    'no-restricted-imports': ['error', {
+      paths: [{ name: '@prisma/client', message: 'Use a TanStack Query hook from src/queries/ instead.' }],
+    }],
+  },
+}
+```
+
+The `message` matters. It's what the agent reads when it breaks the rule, so write it as the instruction you would have put in `AGENTS.md`. The rule now teaches the agent at the exact moment it goes wrong, instead of competing for attention at the start of every session.
+
+TypeScript works the same way. `strict: true`, no `any`, and a type that makes the wrong state impossible are worth more than a paragraph explaining which state is wrong. A compiler error is the clearest feedback an agent can get: a file, a line, and what's wrong.
+
+This only works if the agent runs the checks. That's where hooks come in.
+
+## 6. Hooks: for the rules with zero exceptions
+
+An instructions file is a guideline, and the model is allowed to decide a guideline doesn't apply. A hook is a command the agent's harness runs at a fixed point: before a tool call, after a file edit, when the agent tries to stop. The model doesn't get a vote.
+
+All three tools have hooks now, with almost the same events:
+
+- **Claude Code:** `.claude/settings.json`, with `PreToolUse`, `PostToolUse` and `Stop`.
+- **Codex:** [`.codex/hooks.json`](https://learn.chatgpt.com/docs/hooks), with the same event names and the same JSON shape.
+- **Cursor:** [`.cursor/hooks.json`](https://cursor.com/docs/agent/hooks), with `beforeShellExecution`, `afterFileEdit` and `stop`, among others.
+
+Three hooks cover most projects.
+
+**Format after every edit.** The agent never has to remember to format. The Claude Code version:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write --ignore-unknown \"$(jq -r '.tool_input.file_path')\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Codex uses the same shape, but its tools have different names, so check the `matcher`. In Cursor it's an `afterFileEdit` hook. Keep these fast: one file, one formatter, one linter. A hook that runs your full test suite after every edit makes every edit slow.
+
+**Typecheck before the agent says it's done.** In Claude Code and Codex, a `Stop` hook that exits with code 2 sends the agent back to work, with whatever went to stderr as the reason:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "pnpm tsc --noEmit 1>&2 || exit 2" }]
+      }
+    ]
+  }
+}
+```
+
+Cursor's `stop` hook does the same with a `followup_message`, which Cursor sends to the agent as the next message:
+
+```bash
+#!/bin/bash
+# .cursor/hooks/typecheck.sh, registered under "stop" in .cursor/hooks.json
+if ! out=$(pnpm tsc --noEmit 2>&1); then
+  jq -n --arg out "$out" '{followup_message: ("Typecheck fails. Fix these errors:\n" + $out)}'
+fi
+```
+
+Break a type, and the agent can't finish until `tsc` passes. A line like "always typecheck before you finish" in `AGENTS.md` works most of the time. This works every time. Claude Code and Cursor cap how often a stop hook can send the agent back (8 and 5 times by default), so a check that can never pass won't loop forever. In Codex, guard against that in your own script.
+
+**Block the things that must never happen.** Edits to `migrations/`, writes to generated files, reading `.env`. A `PreToolUse` hook in Claude Code or Codex, `beforeShellExecution` or `beforeReadFile` in Cursor.
+
+Don't overdo it. A hook is for a rule with zero exceptions. "Prefer named exports" has plenty of exceptions, so it stays a guideline. The Claude Code docs say it well: if you ever find yourself at forty hooks, most of them are preferences the agent could have weighed on its own. Every hook also fires sometimes when it shouldn't, and someone has to maintain it.
+
+## 7. Skills: procedures that load on demand
+
+How you cut a release. How you write a migration script. The steps for adding a new entity, from Prisma schema to API route to query hook. That's knowledge the model can't have, and it's too long for `AGENTS.md`.
+
+That's what skills are for. A skill is a folder with a `SKILL.md` in it. The format started at Anthropic and is now an [open standard](https://agentskills.io), so the same file works in all three tools:
+
+- **Codex:** [`.agents/skills/`](https://learn.chatgpt.com/docs/build-skills)
+- **Cursor:** [`.agents/skills/` or `.cursor/skills/`](https://cursor.com/docs/context/skills), and it also reads `.claude/skills/`
+- **Claude Code:** `.claude/skills/`
+
+The agent sees only each skill's name and description in every session. The body loads when the task calls for it. Codex caps that list at 2% of the context window by default. One measurement across Anthropic's 17 official skills put the always-loaded part at [about 80 tokens per skill](https://www.newsletter.swirlai.com/p/agent-skills-progressive-disclosure), with bodies around 2,000. A 2,000-token procedure in `AGENTS.md` costs you on every single bug fix. In a skill, it costs 80 until you need it.
+
+```markdown
+---
+name: new-entity
+description: Add a new database entity end to end. Use when the user asks to add a new table, model or resource.
+---
+
+1. Add the model to prisma/schema.prisma and run pnpm prisma migrate dev --name <name>
+2. Add zod schemas in src/schemas/<name>.ts
+3. Add API routes in src/app/api/<name>/, with a permission check on every route
+4. Add query hooks in src/queries/<name>.ts
+5. Run pnpm check-all and the tests for the new routes
+```
+
+Some rules for skills:
+
+- **The description decides when it loads.** Say what it does and when to use it. Don't summarise the steps in it: the model may follow the summary and never read the body.
+- **Same test as AGENTS.md.** Only write down what the agent can't work out on its own. A skill that explains React to the model is wasted tokens.
+- **Side effects? Make it manual.** For a deploy or a release, add `disable-model-invocation: true` (Claude Code and Cursor). The agent can't start it on its own, it only runs when you type `/release`. In Codex you start a skill yourself with `$release`.
+- **Put scripts next to it.** A skill can ship a script. A deterministic script beats ten steps of instructions the model has to follow in order.
+
+## 8. Loops: build in phases, verify every phase
+
+All of the above is set-up. The quality comes from how you run the work.
+
+Boris Cherny, who created Claude Code, calls this his most important tip: give the agent a way to verify its work. [InfoQ's write-up of his workflow](https://www.infoq.com/news/2026/01/claude-code-creator-workflow/) puts the gain at 2 to 3 times the quality of the final result. That's an estimate, not a measurement, but it matches my experience completely, in every tool I've used.
+
+The loop I use:
+
+1. **Explore.** Let the agent read the relevant code first, without writing anything.
+2. **Plan in phases.** Each phase is small enough to verify on its own, and leaves the app working.
+3. **Build one phase.**
+4. **Verify.** Typecheck, lint, the tests for that phase, and for UI work: open the app and look at it. Ask for evidence, the command and its output, not "all tests pass".
+5. **Commit.** A green phase is a checkpoint you can return to.
+6. **Next phase.** Repeat until done.
+
+This is how I [migrated Kepp from Firebase to Supabase](/articles/migrating-firebase-to-supabase): feature by feature on a branch, and migration scripts that ran over and over against dev and test until a run came through clean. Same idea, at a bigger scale.
+
+Your config is what makes this loop cheap:
+
+- **AGENTS.md** gives the agent the commands for step 4.
+- **Lint and types** give it precise errors to fix.
+- **The stop hook** makes sure step 4 actually happens.
+- **A fresh reviewer** catches what the author misses. Review the diff in a new session or a subagent that never saw the conversation, so it isn't swayed by the reasoning that produced the code. Claude Code has `/code-review` for this.
+
+Without a check, the agent stops when the code looks done. With one, it stops when the code is done.
+
+## 9. Saving tokens
+
+A short `AGENTS.md`, skills, scoped rules and blocked reads already save most of it. Three more habits:
+
+- **Make checks quiet on success.** `tsc --noEmit` prints nothing when it passes. A test runner with a dot reporter prints a line instead of a page. Everything a check prints goes into the conversation.
+- **Start fresh between unrelated tasks.** Every request re-sends the whole conversation, so the next task shouldn't keep paying for the previous one. `/clear` in Claude Code, `/new` in Codex, a new chat in Cursor. I wrote more about that in [/compact vs /clear](/articles/compact-vs-clear).
+- **Check where the tokens go.** In Claude Code, `/usage` breaks it down per skill, subagent and MCP server.
+
+## The biggest takeaway
+
+Review your AI config like code. It's in the repo, it shapes every line the agent writes, and it rots the same way code does. When you add a rule, ask where it belongs: a lint rule, a hook, a skill, or as a last resort, a line in `AGENTS.md`. When a rule stops being true, delete it.
+
+Your agent can help with the clean-up. Ask it to find rules that contradict each other, point at files that no longer exist, or describe something the code already shows. Claude Code has this built in as `/doctor prompt-audit`.
+
+If you have any questions or want to compare setups, feel free to reach out to me!
