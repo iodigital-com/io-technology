@@ -115,7 +115,7 @@ A good file fits on one screen:
 
 ### Point, don't paste
 
-The best `AGENTS.md` I've seen lately isn't even mine. `next dev` writes one into this blog's repo, and it's eight lines long. It doesn't explain the new Next.js APIs. It says: this isn't the Next.js you know, read the docs in `node_modules/next/dist/docs/` before writing code.
+The best part of an `AGENTS.md` I've seen lately isn't even mine. I work on a production SaaS application with a few other developers, and `next dev` wrote a short block into its `AGENTS.md`. It doesn't explain the new Next.js APIs. It says: this isn't the Next.js you know, read the docs in `node_modules/next/dist/docs/` before writing code.
 
 That's the pattern. The docs that match your installed version are already on disk. Tell the agent where they are, and let it read the page it needs when it needs it.
 
@@ -145,11 +145,11 @@ Careful with imports like `@AGENTS.md`: they make a long file easier to organise
 
 If `AGENTS.md` doesn't list the commands, the agent finds them itself. Usually that means reading `package.json`, and maybe a README, and maybe a CI file to see what actually runs.
 
-In this blog's repo, `package.json` is 1,426 bytes, a few hundred tokens. That's not the problem. The problems are around it:
+In that same SaaS application, `package.json` is 7,385 bytes, under 2,000 tokens. That's not the problem. The problems are around it:
 
 - **It's a detour.** Every lookup is an extra step before the real work starts. Those are the extra steps from the ETH study in section 1, and every one of them costs tokens.
 - **Whatever gets read stays in the conversation.** Every request sends the whole conversation again, so a file read in turn 2 is paid for again in turn 30. Prompt caching makes that cheaper, not free.
-- **The neighbours are huge.** `package-lock.json` in this same repo is 268,582 bytes. At a rough four characters per token that's around 67,000 tokens, for a file the agent never needs to read.
+- **The neighbours are huge.** The `package-lock.json` next to it is 926,729 bytes. At a rough four characters per token that's around 230,000 tokens, for a file the agent never needs to read. In another production application, built by a team of about a dozen developers, the lock file is 680,982 bytes, around 170,000 tokens.
 
 Four commands in `AGENTS.md` cost maybe 60 tokens and skip all of that. For files the agent should never open, block them instead of hoping. In Cursor that's a `.cursorignore`. In Claude Code it's a deny rule in `.claude/settings.json`:
 
@@ -249,7 +249,7 @@ Break a type, and the agent can't finish until `tsc` passes. A line like "always
 
 **Block the things that must never happen.** Edits to `migrations/`, writes to generated files, reading `.env`. A `PreToolUse` hook in Claude Code or Codex, `beforeShellExecution` or `beforeReadFile` in Cursor.
 
-Don't overdo it. A hook is for a rule with zero exceptions. "Prefer named exports" has plenty of exceptions, so it stays a guideline. The Claude Code docs say it well: if you ever find yourself at forty hooks, most of them are preferences the agent could have weighed on its own. Every hook also fires sometimes when it shouldn't, and someone has to maintain it.
+Don't overdo it. A hook is for a rule with zero exceptions. "Prefer named exports" has plenty of exceptions, so it stays a guideline. The Claude Code docs say it well: if you ever find yourself at forty hooks and deny rules, most of them are probably preferences the agent could have weighed on its own. Every hook also fires sometimes when it shouldn't, and someone has to maintain it.
 
 ## 7. Skills: procedures that load on demand
 
