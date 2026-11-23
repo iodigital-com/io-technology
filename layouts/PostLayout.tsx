@@ -45,6 +45,8 @@ export default function PostLayout({
   const { theme } = useBrandingTheme()
   const authorNames = new Intl.ListFormat('en').format(authorDetails.map(({ name }) => name))
 
+  const hasHeroImage = images && images.length > 0
+
   return (
     <>
       <BlogSEO
@@ -56,15 +58,31 @@ export default function PostLayout({
       <ScrollTop />
       <article>
         <div
-          className={`bg-io_${theme}-500 pb-14 pt-24 ${
-            images && images.length > 0 ? 'mb-72' : 'mb-12'
+          className={`relative overflow-hidden pb-14 pt-32 md:pt-52 lg:pt-96 mb-12 ${
+            hasHeroImage ? '' : `bg-io_${theme}-500`
           }`}
         >
-          <div className="container mx-auto">
-            <h1 className="heading-title text-4xl font-medium xl:text-7xl">
+          {hasHeroImage && (
+            <>
+              <Image
+                src={images[0] || ''}
+                alt={title}
+                fill
+                priority={true}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 animate-overlay-in" aria-hidden="true" />
+            </>
+          )}
+          <div className={`relative container mx-auto`}>
+            <h1
+              className={`heading-title text-4xl font-medium xl:text-7xl ${
+                hasHeroImage ? 'text-white' : ''
+              }`}
+            >
               {<MarkdownRenderer markdown={title} />}
             </h1>
-            <div className="my-4 divide-x">
+            <div className={`my-4 divide-x ${hasHeroImage ? 'text-white' : ''}`}>
               <p className="inline pr-2 text-xl font-light">By {authorNames}</p>
               <time className="inline px-2 font-light" dateTime={date || ''}>
                 {formatDate(date || '')}
@@ -75,23 +93,14 @@ export default function PostLayout({
               </p>
             </div>
             <div className="grid grid-cols-4">
-              <p className="col-span-full col-start-1 text-2xl md:col-start-2 xl:col-start-3">
+              <p
+                className={`col-span-full col-start-1 text-2xl md:col-start-2 xl:col-start-3 ${
+                  hasHeroImage ? 'text-white' : ''
+                }`}
+              >
                 {summary}
               </p>
             </div>
-
-            {images && images.length > 0 && (
-              <div className="-mt-20 translate-y-32 md:-mt-64 md:translate-y-72">
-                <Image
-                  src={images[0] || ''}
-                  alt={title}
-                  width={1280}
-                  height={720}
-                  priority={true}
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-            )}
           </div>
         </div>
 

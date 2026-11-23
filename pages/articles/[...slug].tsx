@@ -56,9 +56,20 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
   const { events } = await getLatestEvents(3)
 
   const theme = post.frontMatter.theme || 'blue'
+  const transparentHeader = !!(post.frontMatter.images && post.frontMatter.images.length > 0)
 
   return {
-    props: { post, authorDetails, prev, next, jobs, events, serie, theme },
+    props: {
+      post,
+      authorDetails,
+      prev,
+      next,
+      jobs,
+      events,
+      serie,
+      theme,
+      transparentHeader,
+    },
   }
 }
 
