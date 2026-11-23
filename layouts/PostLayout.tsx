@@ -64,17 +64,18 @@ export default function PostLayout({
             <h1 className="heading-title text-4xl font-medium xl:text-7xl">
               {<MarkdownRenderer markdown={title} />}
             </h1>
-            <div className="my-4 divide-x">
-              <p className="inline pr-2 text-xl font-light">By {authorNames}</p>
-              <time className="inline px-2 font-light" dateTime={date || ''}>
-                {formatDate(date || '')}
-              </time>
-              <p className="inline pl-2 font-light">
-                <Clock className="mr-2 inline w-4" />
-                {readingTime?.text || ''}
-              </p>
-            </div>
-            <div className="grid grid-cols-4">
+
+            <div className="grid grid-cols-4 mt-4 xl:mt-8">
+              <div className="mb-4 divide-x col-span-full xl:col-span-2">
+                <p className="inline pr-2 text-xl font-light">By {authorNames}</p>
+                <time className="inline px-2 font-light" dateTime={date || ''}>
+                  {formatDate(date || '')}
+                </time>
+                <p className="inline pl-2 font-light">
+                  <Clock className="mr-2 inline w-4" />
+                  {readingTime?.text || ''}
+                </p>
+              </div>
               <p className="col-span-full col-start-1 text-2xl md:col-start-2 xl:col-start-3">
                 {summary}
               </p>
