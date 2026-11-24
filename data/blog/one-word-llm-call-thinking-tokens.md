@@ -1,6 +1,6 @@
 ---
 title: 'My one-word LLM call was thinking behind my back'
-date: '2026-11-20'
+date: '2026-11-24'
 tags: ['ai', 'llm', 'java', 'spring-ai', 'observability']
 summary: 'On my triage calls, a default thinking setting I never turned on raised the estimated cost by 52% and the median response time by about 0.6 seconds. I only noticed because token counts were on the trace. This is how I found it, and the one request field that turns it off.'
 authors: ['bulent-turkmen']
